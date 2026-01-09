@@ -250,7 +250,7 @@ const LaboratorioContentView: React.FC<{ content: LaboratorioContent; onComplete
                 }>
                   <PyXomEnvironment
                     exerciseId={selectedExercise}
-                    onComplete={() => {
+                    onSuccess={() => {
                       onComplete?.(selectedExercise);
                     }}
                   />

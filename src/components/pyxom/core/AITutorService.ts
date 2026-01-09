@@ -16,11 +16,13 @@ export class AITutorService {
 
     console.log("🚀 Iniciando motor de IA local (Microsoft Phi-3)...");
     
-    // Verificar soporte de WebGPU
-    if (!navigator.gpu) {
-      console.error("❌ WebGPU no detectado en este navegador.");
-      throw new Error("WebGPU no es compatible con este navegador. Usa Chrome o Edge.");
+    // Check WebGPU support
+    if (!('gpu' in navigator)) {
+        console.warn("WebGPU not supported");
+        return;
     }
+    
+    const adapter = await (navigator as any).gpu.requestAdapter();
 
     this.isLoading = true;
     

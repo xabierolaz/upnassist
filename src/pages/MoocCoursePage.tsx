@@ -156,7 +156,13 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                     components={{
                         h1: ({node, ...props}) => <h1 className="text-4xl font-black text-gray-900 mb-8 mt-2 pb-4 border-b border-gray-100" {...props} />,
                         h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-4" {...props} />,
-                        p: ({node, ...props}) => <p className="mb-4 leading-relaxed" {...props} />,
+                        // Párrafo con lógica para detectar Quiz Placeholder
+                        p: ({node, children, ...props}: any) => {
+                            if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
+                                return <QuizPlaceholder />;
+                            }
+                            return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
+                        },
                         code: ({node, inline, className, children, ...props}: any) => {
                             if (inline) {
                                 return <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded font-mono text-sm font-bold">{children}</code>;
@@ -182,13 +188,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                         },
                         img: ({node, ...props}: any) => (
                             <img className="max-w-full h-auto rounded-lg shadow-md my-6 border border-gray-200" {...props} />
-                        ),
-                        p: ({node, children, ...props}: any) => {
-                            if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
-                                return <QuizPlaceholder />;
-                            }
-                            return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
-                        }
+                        )
                     }}
                 >
                     {block.content.replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')}

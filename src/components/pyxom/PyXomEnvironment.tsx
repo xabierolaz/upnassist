@@ -11,7 +11,7 @@ interface LogEntry {
   text: string;
 }
 
-interface PyXomEnvironmentProps {
+export interface PyXomEnvironmentProps {
   exerciseId?: string; // Nuevo prop
   initialCode?: string;
   testCode?: string;
@@ -160,13 +160,13 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
         <div className="flex-[4] min-h-0 flex flex-col bg-white text-gray-900">
             <div className="flex border-b border-gray-200 bg-gray-50">
                 <button 
-                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'console' ? 'border-b-2 border-[#c0392b] text-[#c0392b]' : 'text-gray-500 hover:text-gray-700'}`} 
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'console' ? 'border-b-2 border-[#c0392b] text-[#c0392b]' : 'text-gray-500 hover:text-gray-700'}`}
                     onClick={() => setActiveTab('console')}
                 >
                     {t.terminal}
                 </button>
                 <button 
-                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'feedback' ? 'border-b-2 border-[#c0392b] text-[#c0392b]' : 'text-gray-500 hover:text-gray-700'}`} 
+                    className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === 'feedback' ? 'border-b-2 border-[#c0392b] text-[#c0392b]' : 'text-gray-500 hover:text-gray-700'}`}
                     onClick={() => setActiveTab('feedback')}
                 >
                     {t.tests}
@@ -214,3 +214,6 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
     </div>
   );
 };
+
+// Exportación Default para compatibilidad
+export default PyXomEnvironment;
