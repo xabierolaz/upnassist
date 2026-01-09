@@ -39,16 +39,16 @@ const MoocCoursePage: React.FC = () => {
 
       {/* Sidebar - Navegación por Partes/Secciones */}
       <aside className={`
-        fixed md:relative z-20 h-full w-72 bg-gray-50 border-r border-gray-200 flex-shrink-0 flex flex-col transition-transform duration-300
+        fixed md:relative z-20 h-full w-72 bg-brand-dark text-white flex-shrink-0 flex flex-col transition-transform duration-300 shadow-xl
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
-        <div className="p-5 border-b border-gray-100 bg-white">
-          <h1 className="text-xl font-bold text-red-700 font-serif tracking-tight">{t.title}</h1>
-          <p className="text-xs text-gray-500 mt-1 uppercase tracking-wider font-bold">{t.university}</p>
+        <div className="p-6 border-b border-gray-700 bg-brand-dark">
+          <h1 className="text-2xl font-black text-white tracking-tight">{t.title}</h1>
+          <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-bold">{t.university}</p>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-2">
-            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-3 mt-4">{t.part1}</h3>
+        <div className="flex-1 overflow-y-auto p-4">
+            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-3 mt-4">{t.part1}</h3>
             <ul className="space-y-1">
                 {coursePages.map((page) => {
                     const progress = getProgress(page.id);
@@ -56,15 +56,15 @@ const MoocCoursePage: React.FC = () => {
                     <li key={page.id}>
                         <button
                             onClick={() => setActivePageId(page.id)}
-                            className={`w-full text-left px-4 py-2 rounded-md text-sm font-medium transition-colors flex justify-between items-center ${
+                            className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex justify-between items-center ${
                                 activePageId === page.id
-                                ? 'bg-red-100 text-red-800'
-                                : 'text-gray-600 hover:bg-gray-100'
+                                ? 'bg-brand-blue text-white shadow-md transform scale-[1.02]'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                             }`}
                         >
                             <span>{page.title}</span>
                             {progress && progress.completed > 0 && (
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${progress.completed === progress.total ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-600'}`}>
+                                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${progress.completed === progress.total ? 'bg-green-500 text-white' : 'bg-gray-600 text-gray-200'}`}>
                                     {progress.completed}/{progress.total}
                                 </span>
                             )}

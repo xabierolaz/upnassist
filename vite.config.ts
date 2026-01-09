@@ -18,17 +18,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['@heroicons/react', 'framer-motion'],
-          'firebase-services': [
-            'firebase/app',
-            'firebase/auth', 
-            'firebase/firestore',
-            'firebase/storage'
-          ],
-          'editor-components': [
-            '@monaco-editor/react'
-          ],
+          vendor: ['react', 'react-dom', 'react-router-dom', 'zustand'],
+          'editor-components': ['@monaco-editor/react'],
         }
       }
     },
@@ -48,10 +39,7 @@ export default defineConfig({
       'react-dom', 
       'react-router-dom',
       '@heroicons/react/24/outline',
-      '@heroicons/react/24/solid',
-      'firebase/app',
-      'firebase/auth',
-      'firebase/firestore'
+      '@heroicons/react/24/solid'
     ]
   }
 })
