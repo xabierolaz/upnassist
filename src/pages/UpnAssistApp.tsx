@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import UnauthorizedPage from './UnauthorizedPage';
 import UnifiedAsignatura from './asignaturas/UnifiedAsignatura';
 import { useUserStore } from '../stores/userStore';
+import MoocCoursePage from './MoocCoursePage';
 
 const ProtectedUpnAssist: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const ProtectedUpnAssist: React.FC = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/upnassist/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/mooc" element={<MoocCoursePage />} />
         <Route path="/asignatura/:codigo" element={
           <Suspense fallback={
             <div className="flex items-center justify-center h-full">

@@ -13,35 +13,39 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Tarjeta de Acceso Directo a Python */}
+        {/* Tarjeta de Acceso Directo a Python MOOC */}
         <div 
-          onClick={() => navigate('/upnassist/asignatura/509102')} // Código de informática
-          className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all cursor-pointer group"
+          onClick={() => navigate('/upnassist/mooc')} 
+          className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-l-[#c0392b] hover:shadow-lg transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-indigo-100 text-indigo-600 rounded-lg group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <div className="p-3 bg-red-50 text-[#c0392b] rounded-lg group-hover:bg-[#c0392b] group-hover:text-white transition-colors">
               <CodeBracketIcon className="w-8 h-8" />
             </div>
+            <span className="bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded-full uppercase">Nuevo</span>
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Curso de Python</h3>
-          <p className="text-gray-500 text-sm">
-            Accede al curso completo de Informática: Fundamentos, Estructuras de Control y Funciones.
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Python Programming MOOC 2026</h3>
+          <p className="text-gray-500 text-sm mb-4">
+            Versión interactiva del curso oficial de la Universidad de Helsinki. Aprende Python desde cero con feedback en tiempo real.
           </p>
+          <div className="text-sm font-medium text-[#c0392b] flex items-center">
+            Comenzar ahora →
+          </div>
         </div>
 
-        {/* Tarjeta de Playground (Futuro) */}
+        {/* Tarjeta de Asignatura Tradicional */}
         <div 
-          onClick={() => navigate('/upnassist/pyxom')}
+          onClick={() => navigate('/upnassist/asignatura/509102')}
           className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-green-100 text-green-600 rounded-lg group-hover:bg-green-600 group-hover:text-white transition-colors">
+            <div className="p-3 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
               <BookOpenIcon className="w-8 h-8" />
             </div>
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2">Playground Libre</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Informática (Grado)</h3>
           <p className="text-gray-500 text-sm">
-            Editor de código libre para experimentar con Python y WebLLM.
+            Recursos clásicos de la asignatura: Diapositivas, PDF y Exámenes anteriores.
           </p>
         </div>
       </div>
