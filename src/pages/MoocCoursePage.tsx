@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { coursePages, getExercise, ContentBlock } from '../data/mooc-exercises';
+import { coursePages, getExercise, ContentBlock, getLocalizedText } from '../data/mooc-exercises';
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
 import { useProgressStore } from '../stores/progressStore';
 import { QuizPlaceholder } from '../components/mooc/QuizPlaceholder';
@@ -11,7 +11,7 @@ const MoocCoursePage: React.FC = () => {
   const [activePageId, setActivePageId] = useState<string>(coursePages[0].id);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const completedExercises = useProgressStore(state => state.completedExercises);
-  const { t } = useLanguageStore();
+  const { t, currentLang } = useLanguageStore();
 
   // Obtener la página activa
   const activePage = coursePages.find(p => p.id === activePageId) || coursePages[0];
@@ -62,7 +62,7 @@ const MoocCoursePage: React.FC = () => {
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                             }`}
                         >
-                            <span>{page.title}</span>
+                            <span>{getLocalizedText(page.title, currentLang)}</span>
                             {progress && progress.completed > 0 && (
                                 <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${progress.completed === progress.total ? 'bg-green-500 text-white' : 'bg-gray-600 text-gray-200'}`}>
                                     {progress.completed}/{progress.total}
@@ -106,7 +106,7 @@ const MoocCoursePage: React.FC = () => {
                                     }}
                                     className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-[#c0392b] transition-colors"
                                 >
-                                    ← {prevPage.title}
+                                    ← {getLocalizedText(prevPage.title, currentLang)}
                                 </button>
                             ) : <div></div>}
 
@@ -118,7 +118,7 @@ const MoocCoursePage: React.FC = () => {
                                     }}
                                     className="flex items-center px-4 py-2 text-sm font-medium text-white bg-[#c0392b] border border-[#c0392b] rounded-lg hover:bg-[#a93226] shadow-sm transition-colors"
                                 >
-                                    {nextPage.title} →
+                                    {getLocalizedText(nextPage.title, currentLang)} →
                                 </button>
                             ) : (
                                 <div className="text-gray-400 text-sm font-italic">{t.endOf} {t.part1}</div>
@@ -146,10 +146,11 @@ const MoocCoursePage: React.FC = () => {
 
 // Sub-componente para renderizar cada bloque
 const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
-    const { t } = useLanguageStore(); // Hook de idioma en el subcomponente
+    const { t, currentLang } = useLanguageStore(); // Hook de idioma en el subcomponente
     
     // 1. Renderizar Texto
     if (block.type === 'markdown' && block.content) {
+        const content = getLocalizedText(block.content, currentLang);
         return (
             <div className="prose prose-slate prose-lg max-w-none font-serif mb-8 text-gray-800">
                 <ReactMarkdown
@@ -191,7 +192,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                         )
                     }}
                 >
-                    {block.content.replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')}
+                    {content.replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')}
                 </ReactMarkdown>
             </div>
         );
@@ -212,13 +213,13 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                             <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide ${isCompleted ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
                                 {isCompleted ? t.completed : t.exercise}
                             </span>
-                            <h4 className={`font-bold text-sm ${isCompleted ? 'text-green-900' : 'text-gray-800'}`}>{exercise.title}</h4>
+                            <h4 className={`font-bold text-sm ${isCompleted ? 'text-green-900' : 'text-gray-800'}`}>{getLocalizedText(exercise.title, currentLang)}</h4>
                         </div>
                         {isCompleted && <span className="text-green-600 text-xl animate-bounce">✓</span>}
                     </div>
                     {exercise.description && (
                         <div className="text-sm text-gray-600 font-serif italic border-l-2 border-red-200 pl-3 py-1">
-                            {exercise.description}
+                            {getLocalizedText(exercise.description, currentLang)}
                         </div>
                     )}
                 </div>

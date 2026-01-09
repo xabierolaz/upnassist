@@ -4,27 +4,35 @@ import { section3 } from './part1/section3';
 import { section4 } from './part1/section4';
 import { section5 } from './part1/section5';
 
+// Tipo para textos localizables (ENG, CAS, EUS)
+// Si es string, se asume ENG por defecto.
+export type LocalizedString = string | {
+  ENG: string;
+  CAS: string;
+  EUS: string;
+};
+
 export interface Exercise {
   id: string;
-  title: string;
-  description?: string; // Added description field
+  title: LocalizedString;
+  description?: LocalizedString; 
   initialCode: string;
   testCode: string;
 }
 
 export interface ContentBlock {
   type: 'markdown' | 'exercise';
-  content?: string;
+  content?: LocalizedString; // Ahora soporta multi-idioma
   exerciseId?: string;
-  title?: string;
-  description?: string; // Allow defining it in the block too
+  title?: LocalizedString;
+  description?: LocalizedString;
   initialCode?: string;
   testCode?: string;
 }
 
 export interface CoursePage {
   id: string;
-  title: string;
+  title: LocalizedString;
   blocks: ContentBlock[];
 }
 
@@ -36,6 +44,13 @@ export const coursePages: CoursePage[] = [
   section5
 ];
 
+// Helper para extraer texto seguro según idioma
+export const getLocalizedText = (text: LocalizedString | undefined, lang: 'ENG' | 'CAS' | 'EUS'): string => {
+    if (!text) return "";
+    if (typeof text === 'string') return text;
+    return text[lang] || text['ENG'] || "";
+};
+
 const extractExercises = (pages: CoursePage[]): Record<string, Exercise> => {
   const exercises: Record<string, Exercise> = {};
   pages.forEach(page => {
@@ -44,7 +59,7 @@ const extractExercises = (pages: CoursePage[]): Record<string, Exercise> => {
         exercises[block.exerciseId] = {
           id: block.exerciseId,
           title: block.title || 'Untitled Exercise',
-          description: block.description || '', // Extract description
+          description: block.description || '', 
           initialCode: block.initialCode || '',
           testCode: block.testCode || ''
         };
