@@ -2,48 +2,113 @@ import { CoursePage } from '../mooc-exercises';
 
 export const section2: CoursePage = {
   id: "part-1-2",
-  title: "2. Information from the user",
+  title: {
+    ENG: "2. Information from the user",
+    CAS: "2. Información del usuario",
+    EUS: "2. Erabiltzailearen informazioa"
+  },
   blocks: [
-    { type: 'markdown', content: "# Information from the user\n\nInput refers to any information a user gives to the program. Specifically, the Python command `input` reads in a line of input typed in by the user.\n\n```python\nname = input(\"What is your name? \")\nprint(\"Hi there, \" + name)\n```" },
+    {
+        type: 'markdown',
+        content: {
+            ENG: "# Information from the user\n\nInput refers to any information a user gives to the program. Specifically, the Python command `input` reads in a line of input typed in by the user.\n\n```python\nname = input(\"What is your name? \")\nprint(\"Hi there, \" + name)\n```",
+            CAS: "# Información del usuario\n\nLa entrada (input) se refiere a cualquier información que un usuario entrega al programa. Específicamente, el comando `input` de Python lee una línea de texto escrita por el usuario.\n\n```python\nname = input(\"¿Cómo te llamas? \")\nprint(\"Hola, \" + name)\n```",
+            EUS: "# Erabiltzailearen informazioa\n\nSarrera (input) erabiltzaileak programari ematen dion edozein informaziori dagokio. Zehazki, Python-en `input` komandoak erabiltzaileak idatzitako lerro bat irakurtzen du.\n\n```python\nname = input(\"Nola duzu izena? \")\nprint(\"Kaixo, \" + name)\n```"
+        }
+    },
     {
         type: 'exercise',
         exerciseId: 'part01-06_name_twice',
-        title: 'Name twice',
-        description: "Please write a program which asks for the user's name and then prints it twice, on two consecutive lines.",
+        title: {
+            ENG: 'Name twice',
+            CAS: 'Nombre dos veces',
+            EUS: 'Izena bi aldiz'
+        },
+        description: {
+            ENG: "Please write a program which asks for the user's name and then prints it twice, on two consecutive lines.",
+            CAS: "Escribe un programa que pida el nombre del usuario y luego lo imprima dos veces, en dos líneas consecutivas.",
+            EUS: "Idatzi programa bat erabiltzaileari izena eskatzen diona eta gero bi aldiz inprimatzen duena, bi lerro jarraitutan."
+        },
         initialCode: "# Write your code here\n",
         testCode: "import unittest\nclass TestNameTwice(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['Paul']).strip().split('\n')\n        clean_out = [l for l in out if 'Paul' in l]\n        if len(clean_out) < 2:\n            self.fail(\"❌ Debes imprimir el nombre dos veces.\")\n        if clean_out[0] == clean_out[1] and \"Paul\" in clean_out[0]:\n            pass\n        else:\n            self.fail(\"❌ Asegúrate de imprimir el nombre tal cual se ingresó, dos veces.\")"
     },
-    { type: 'markdown', content: "## Referencing a variable\n\nA single variable can be referred to many times in a program." },
+    {
+        type: 'markdown',
+        content: {
+            ENG: "## Referencing a variable\n\nA single variable can be referred to many times in a program.",
+            CAS: "## Referenciar una variable\n\nSe puede hacer referencia a una sola variable muchas veces en un programa.",
+            EUS: "## Aldagai bat erreferentziatzea\n\nPrograma batean aldagai bati askotan egin dakioke erreferentzia."
+        }
+    },
     {
         type: 'exercise',
         exerciseId: 'part01-07_name_and_exclamation_marks',
-        title: 'Name and exclamation marks',
-        description: "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.",
+        title: {
+            ENG: 'Name and exclamation marks',
+            CAS: 'Nombre y signos de exclamación',
+            EUS: 'Izena eta harridura-markak'
+        },
+        description: {
+            ENG: "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.",
+            CAS: "Escribe un programa que pida el nombre y lo imprima dos veces en una línea: con un signo de exclamación al inicio, otro entre los nombres y uno al final (ej: !Ana!Ana!).",
+            EUS: "Idatzi programa bat izena eskatu eta bi aldiz lerro berean inprimatzen duena: harridura-marka batekin hasieran, beste bat izenen artean eta hirugarren bat amaieran (adib: !Ana!Ana!)."
+        },
         initialCode: "# Write your code here\n",
         testCode: "import unittest\nclass TestExcl(unittest.TestCase):\n    def test_paul(self):\n        out = run_student_code(inputs=['Paul'])\n        expected = \"!Paul!Paul!\"\n        if expected not in out:\n            self.fail(f\"❌ Esperaba '{expected}', pero no lo encontré en tu salida.\\n💡 Revisa los espacios. No debería haber espacios entre los signos de exclamación y el nombre.\")"
     },
-    { type: 'markdown', content: "## More than one input\n\nA program can ask for more than one input." },
+    {
+        type: 'markdown',
+        content: {
+            ENG: "## More than one input\n\nA program can ask for more than one input.",
+            CAS: "## Más de una entrada\n\nUn programa puede pedir más de un dato de entrada.",
+            EUS: "## Sarrera bat baino gehiago\n\nPrograma batek sarrera datu bat baino gehiago eska dezake."
+        }
+    },
     {
         type: 'exercise',
         exerciseId: 'part01-08_name_and_address',
-        title: 'Name and address',
-        description: "Please write a program which asks for the user's name and address. The program should also print out the given information.",
+        title: {
+            ENG: 'Name and address',
+            CAS: 'Nombre y dirección',
+            EUS: 'Izena eta helbidea'
+        },
+        description: {
+            ENG: "Please write a program which asks for the user's name and address. The program should also print out the given information.",
+            CAS: "Escribe un programa que pida el nombre y la dirección del usuario. El programa debe imprimir la información introducida.",
+            EUS: "Idatzi programa bat erabiltzailearen izena eta helbidea eskatzen dituena. Programak emandako informazioa inprimatu behar du."
+        },
         initialCode: "# Write your code here\n",
         testCode: "import unittest\nclass TestAddr(unittest.TestCase):\n    def test_steve(self):\n        out = run_student_code(inputs=['Steve', 'Sanders', '91 Station Road', 'London'])\n        if \"Steve Sanders\" not in out:\n            self.fail(\"❌ No encontré el nombre completo 'Steve Sanders' en la salida.\")\n        if \"91 Station Road\" not in out:\n            self.fail(\"❌ No encontré la dirección '91 Station Road'.\")\n        if \"London\" not in out:\n            self.fail(\"❌ No encontré la ciudad 'London'.\")"
     },
     {
         type: 'exercise',
         exerciseId: 'part01-09_utterances',
-        title: 'Fix the code: Utterances',
-        description: "Here is a program which should ask for three utterances and print them out. However, there is something wrong with the code below. Please fix it.",
+        title: {
+            ENG: 'Fix the code: Utterances',
+            CAS: 'Corrige el código: Expresiones',
+            EUS: 'Konpondu kodea: Adierazpenak'
+        },
+        description: {
+            ENG: "Here is a program which should ask for three utterances and print them out. However, there is something wrong with the code below. Please fix it.",
+            CAS: "Este programa debería pedir tres palabras y luego imprimirlas juntas. Sin embargo, hay un error. Por favor arréglalo.",
+            EUS: "Programa honek hiru hitz eskatu eta elkarrekin inprimatu beharko lituzke. Hala ere, errorea dago. Mesedez konpondu ezazu."
+        },
         initialCode: "part1 = input(\"The 1st part: \")\npart2 = input(\"The 1st part: \")\npart3 = input(\"The 1st part: \")\nprint(part1 + part2 + part3)",
         testCode: "import unittest\nclass TestUtter(unittest.TestCase):\n    def test_parts(self):\n        out = run_student_code(inputs=['hickory', 'dickory', 'dock'])\n        if \"hickory-dickory-dock!\" in out:\n            pass\n        elif \"hickorydickorydock\" in out:\n             self.fail(\"❌ Falta el guión '-' entre las palabras.\")\n        else:\n             self.fail(\"❌ Esperaba 'hickory-dickory-dock!', pero tu salida fue diferente.\")"
     },
     {
         type: 'exercise',
         exerciseId: 'part01-10_story',
-        title: 'Story',
-        description: "Please write a program which prints out the following story. The user gives a name and a year.",
+        title: {
+            ENG: 'Story',
+            CAS: 'Historia',
+            EUS: 'Istorioa'
+        },
+        description: {
+            ENG: "Please write a program which prints out the following story. The user gives a name and a year.",
+            CAS: "Escribe un programa que imprima una historia. El usuario introduce un nombre y un año.",
+            EUS: "Idatzi istorio bat inprimatzen duen programa bat. Erabiltzaileak izen bat eta urte bat sartzen ditu."
+        },
         initialCode: "# Write your code here\n",
         testCode: "import unittest\nclass TestStory(unittest.TestCase):\n    def test_mary(self):\n        out = run_student_code(inputs=['Mary', '1572'])\n        if \"Mary is a valiant knight\" not in out:\n            self.fail(\"❌ La primera frase no coincide. Verifica espacios y mayúsculas.\")\n        if \"born in the year 1572\" not in out:\n            self.fail(\"❌ Verifica la parte del año. ¿Quizás falta un espacio antes de 1572?\")"
     }

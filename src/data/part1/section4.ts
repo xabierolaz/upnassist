@@ -2,73 +2,167 @@ import { CoursePage } from '../mooc-exercises';
 
 export const section4: CoursePage = {
   id: "part-1-4",
-  title: "4. Arithmetic operations",
+  title: {
+    ENG: "4. Arithmetic operations",
+    CAS: "4. Operaciones aritméticas",
+    EUS: "4. Eragiketa aritmetikoak"
+  },
   blocks: [
-    { type: 'markdown', content: "# Arithmetic operations\n\nPython supports +, -, *, /, //, %, **.\n\n### Operands, operators and data types\n\nA calculation usually consists of *operands* and *operators*:\n\n![Operands and Operators](/assets/mooc/part-1/1_4_1.png)\n\nThe data type of an operand usually determines the data type of the result." },
+    {
+        type: 'markdown', 
+        content: {
+            ENG: "# Arithmetic operations\n\nPython supports +, -, *, /, //, %, **.\n\n### Operands, operators and data types\n\nA calculation usually consists of *operands* and *operators*:\n\n![Operands and Operators](/assets/mooc/part-1/1_4_1.png)\n\nThe data type of an operand usually determines the data type of the result.",
+            CAS: "# Operaciones aritméticas\n\nPython soporta +, -, *, /, //, %, **.\n\n### Operandos, operadores y tipos de datos\n\nUn cálculo generalmente consta de *operandos* y *operadores*:\n\n![Operandos y Operadores](/assets/mooc/part-1/1_4_1.png)\n\nEl tipo de dato de un operando generalmente determina el tipo de dato del resultado.",
+            EUS: "# Eragiketa aritmetikoak\n\nPython-ek +, -, *, /, //, %, ** onartzen ditu.\n\n### Operandoak, eragileak eta datu motak\n\nKalkulu bat normalean *operandoez* eta *eragileez* osatzen da:\n\n![Operandoak eta Eragileak](/assets/mooc/part-1/1_4_1.png)\n\nOperando baten datu motak normalean emaitzaren datu mota zehazten du."
+        }
+    },
     {
       type: 'exercise',
       exerciseId: 'part01-13_times_five',
-      title: 'Times five',
-      description: "Please write a program which asks the user for a number. The program then prints out the number multiplied by five.",
+      title: {
+          ENG: 'Times five',
+          CAS: 'Por cinco',
+          EUS: 'Bost aldiz'
+      },
+      description: {
+          ENG: "Please write a program which asks the user for a number. The program then prints out the number multiplied by five.",
+          CAS: "Escribe un programa que pida un número al usuario. El programa debe imprimir el número multiplicado por cinco.",
+          EUS: "Idatzi programa bat erabiltzaileari zenbaki bat eskatzen diona. Programak zenbakia bostez biderkatuta inprimatu behar du."
+      },
       initialCode: "# Write code here\n",
-      testCode: "import unittest\nclass TestFive(unittest.TestCase):\n    def test_3(self):\n        out = run_student_code(inputs=['3'])\n        if \"33333\" in out:\n            self.fail(\"❌ Has repetido el string '3' cinco veces. Recuerda convertir el input a entero con int().\")\n        self.assertIn('15', out)"
+      testCode: "import unittest\nclass TestFive(unittest.TestCase):\n    def test_3(self):\n        out = run_student_code(inputs=['3'])
+        if \"33333\" in out:\n            self.fail(\"❌ Has repetido el string '3' cinco veces. Recuerda convertir el input a entero con int().\")\n        self.assertIn('15', out)"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-14_name_and_age',
-      title: 'Name and age',
-      description: "Please write a program which asks the user for their name and year of birth. The program then prints out their age at the end of 2021.",
+      title: {
+          ENG: 'Name and age',
+          CAS: 'Nombre y edad',
+          EUS: 'Izena eta adina'
+      },
+      description: {
+          ENG: "Please write a program which asks the user for their name and year of birth. The program then prints out their age at the end of 2021.",
+          CAS: "Escribe un programa que pida el nombre y año de nacimiento. Debe imprimir su edad al final de 2021.",
+          EUS: "Idatzi programa bat izena eta jaiotze urtea eskatzen dituena. Gero 2021 amaieran izango duen adina inprimatu behar du."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestNameAge(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['Frances', '1990'])\n        self.assertIn('Frances', out)\n        if \"31\" not in out:\n             self.fail(\"❌ Cálculo de edad incorrecto. Para 1990, la edad debería ser 31.\")\n        self.assertIn('31', out)"
+      testCode: "import unittest\nclass TestNameAge(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['Frances', '1990'])
+        self.assertIn('Frances', out)
+        if \"31\" not in out:\n             self.fail(\"❌ Cálculo de edad incorrecto. Para 1990, la edad debería ser 31.\")\n        self.assertIn('31', out)"
     },
-    { type: 'markdown', content: "## Using variables\n\nStoring sums in variables..." },
+    {
+        type: 'markdown', 
+        content: {
+            ENG: "## Using variables\n\nStoring sums in variables...",
+            CAS: "## Usando variables\n\nAlmacenando sumas en variables...",
+            EUS: "## Aldagaiak erabiltzen\n\nBatuketak aldagaiekan gordetzen..."
+        }
+    },
     {
       type: 'exercise',
       exerciseId: 'part01-15_seconds_in_a_day',
-      title: 'Seconds in a day',
-      description: "Please write a program which asks the user for a number of days. The program then prints out the number of seconds in that many days.",
+      title: {
+          ENG: 'Seconds in a day',
+          CAS: 'Segundos en un día',
+          EUS: 'Segunduak egun batean'
+      },
+      description: {
+          ENG: "Please write a program which asks the user for a number of days. The program then prints out the number of seconds in that many days.",
+          CAS: "Escribe un programa que pida un número de días. Debe imprimir el número de segundos en esa cantidad de días.",
+          EUS: "Idatzi programa bat egun kopuru bat eskatzen duena. Gero egun horietan dauden segundu kopurua inprimatu behar du."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestSec(unittest.TestCase):\n    def test_1(self):\n        out = run_student_code(inputs=['1'])\n        self.assertIn('86400', out)\n    def test_2(self):\n        out = run_student_code(inputs=['2'])\n        if \"172800\" not in out:\n             self.fail(\"❌ Cálculo incorrecto para 2 días. Recuerda: 2 * 24 * 60 * 60.\")"
+      testCode: "import unittest\nclass TestSec(unittest.TestCase):\n    def test_1(self):\n        out = run_student_code(inputs=['1'])
+        self.assertIn('86400', out)
+    def test_2(self):\n        out = run_student_code(inputs=['2'])
+        if \"172800\" not in out:\n             self.fail(\"❌ Cálculo incorrecto para 2 días. Recuerda: 2 * 24 * 60 * 60.\")"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-16_product',
-      title: 'Fix the code: Product',
-      description: "This program asks the user for three numbers. The program then prints out their product. There is something wrong with the program. Please fix it.",
+      title: {
+          ENG: 'Fix the code: Product',
+          CAS: 'Corrige el código: Producto',
+          EUS: 'Konpondu kodea: Biderkadura'
+      },
+      description: {
+          ENG: "This program asks the user for three numbers. The program then prints out their product. There is something wrong with the program. Please fix it.",
+          CAS: "Este programa pide tres números. Luego imprime su producto. Hay un error en el programa. Por favor arréglalo.",
+          EUS: "Programa honek hiru zenbaki eskatzen ditu. Gero haien biderkadura inprimatzen du. Zerbait gaizki dago programan. Mesedez konpondu."
+      },
       initialCode: "number = int(input(\"Please type in the first number: \"))\nnumber = int(input(\"Please type in the second number: \"))\nnumber = int(input(\"Please type in the third number: \"))\n\nproduct = number * number * number\n\nprint(\"The product is\", product)",
-      testCode: "import unittest\nclass TestProd(unittest.TestCase):\n    def test_prod(self):\n        out = run_student_code(inputs=['2','3','5'])\n        if \"125\" in out:\n             self.fail(\"❌ Tu programa está multiplicando el último número por sí mismo 3 veces. Debes multiplicar los tres números DISTINTOS.\")\n        self.assertIn('30', out)"
+      testCode: "import unittest\nclass TestProd(unittest.TestCase):\n    def test_prod(self):\n        out = run_student_code(inputs=['2','3','5'])
+        if \"125\" in out:\n             self.fail(\"❌ Tu programa está multiplicando el último número por sí mismo 3 veces. Debes multiplicar los tres números DISTINTOS.\")\n        self.assertIn('30', out)"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-17_sum_and_product',
-      title: 'Sum and product',
-      description: "Please write a program which asks the user for two numbers. The program will then print out the sum and the product of the two numbers.",
+      title: {
+          ENG: 'Sum and product',
+          CAS: 'Suma y producto',
+          EUS: 'Batuketa eta biderkadura'
+      },
+      description: {
+          ENG: "Please write a program which asks the user for two numbers. The program will then print out the sum and the product of the two numbers.",
+          CAS: "Escribe un programa que pida dos números. Luego debe imprimir la suma y el producto de esos dos números.",
+          EUS: "Idatzi programa bat bi zenbaki eskatzen dituena. Gero bi zenbakien batuketa eta biderkadura inprimatu behar ditu."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestSumProd(unittest.TestCase):\n    def test_calc(self):\n        out = run_student_code(inputs=['3','7'])\n        self.assertIn('10', out)\n        self.assertIn('21', out)"
+      testCode: "import unittest\nclass TestSumProd(unittest.TestCase):\n    def test_calc(self):\n        out = run_student_code(inputs=['3','7'])
+        self.assertIn('10', out)
+        self.assertIn('21', out)"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-18_sum_and_mean',
-      title: 'Sum and mean',
-      description: "Please write a program which asks the user for four numbers. The program then prints out the sum and the mean of the numbers.",
+      title: {
+          ENG: 'Sum and mean',
+          CAS: 'Suma y promedio',
+          EUS: 'Batuketa eta batezbestekoa'
+      },
+      description: {
+          ENG: "Please write a program which asks the user for four numbers. The program then prints out the sum and the mean of the numbers.",
+          CAS: "Escribe un programa que pida cuatro números. Luego debe imprimir la suma y el promedio de los números.",
+          EUS: "Idatzi programa bat lau zenbaki eskatzen dituena. Gero zenbakien batuketa eta batezbestekoa inprimatu behar ditu."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestSumMean(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['2','1','6','7'])\n        if \"16\" not in out: self.fail(\"❌ Suma incorrecta.\")\n        if \"4.0\" not in out: self.fail(\"❌ Promedio incorrecto. (16 / 4 = 4.0).\")"
+      testCode: "import unittest\nclass TestSumMean(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['2','1','6','7'])
+        if \"16\" not in out: self.fail(\"❌ Suma incorrecta.\")\n        if \"4.0\" not in out: self.fail(\"❌ Promedio incorrecto. (16 / 4 = 4.0).\")"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-19_food_expenditure',
-      title: 'Food expenditure',
-      description: "Please write a program which estimates a user's typical food expenditure.",
+      title: {
+          ENG: 'Food expenditure',
+          CAS: 'Gasto en comida',
+          EUS: 'Janari gastua'
+      },
+      description: {
+          ENG: "Please write a program which estimates a user's typical food expenditure.",
+          CAS: "Escribe un programa que estime el gasto típico en comida de un usuario.",
+          EUS: "Idatzi programa bat erabiltzaile baten ohiko janari gastua estimatzen duena."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestFood(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['4','2.5','28.5'])\n        if \"5.5\" not in out: self.fail(\"❌ Gasto diario incorrecto.\")\n        if \"38.5\" not in out: self.fail(\"❌ Gasto semanal incorrecto.\")"
+      testCode: "import unittest\nclass TestFood(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['4','2.5','28.5'])
+        if \"5.5\" not in out: self.fail(\"❌ Gasto diario incorrecto.\")\n        if \"38.5\" not in out: self.fail(\"❌ Gasto semanal incorrecto.\")"
     },
     {
       type: 'exercise',
       exerciseId: 'part01-20_students_in_groups',
-      title: 'Students in groups',
-      description: "Please write a program which asks for the number of students on a course and the desired group size. The program will then print out the number of groups formed.",
+      title: {
+          ENG: 'Students in groups',
+          CAS: 'Estudiantes en grupos',
+          EUS: 'Ikasleak taldetan'
+      },
+      description: {
+          ENG: "Please write a program which asks for the number of students on a course and the desired group size. The program will then print out the number of groups formed.",
+          CAS: "Escribe un programa que pida el número de estudiantes en un curso y el tamaño de grupo deseado. El programa imprimirá el número de grupos formados.",
+          EUS: "Idatzi programa bat ikastaro bateko ikasle kopurua eta talde tamaina eskatzen dituena. Programak osatutako talde kopurua inprimatuko du."
+      },
       initialCode: "# Write your code here\n",
-      testCode: "import unittest\nclass TestGroups(unittest.TestCase):\n    def test_11_3(self):\n        out = run_student_code(inputs=['11','3'])\n        if \"3\" in out and \"4\" not in out:\n             self.fail(\"❌ Resultado incorrecto: 3. Recuerda que si sobran alumnos, se necesita un grupo extra.\")\n        self.assertIn('4', out)"
+      testCode: "import unittest\nclass TestGroups(unittest.TestCase):\n    def test_11_3(self):\n        out = run_student_code(inputs=['11','3'])
+        if \"3\" in out and \"4\" not in out:\n             self.fail(\"❌ Resultado incorrecto: 3. Recuerda que si sobran alumnos, se necesita un grupo extra.\")\n        self.assertIn('4', out)"
     }
   ]
 };
