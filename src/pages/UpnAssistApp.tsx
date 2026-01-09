@@ -11,7 +11,7 @@ const ProtectedUpnAssist: React.FC = () => {
   return (
     <Home>
       <Routes>
-        <Route path="/" element={<Navigate to="/upnassist/dashboard" replace />} />
+        <Route path="/" element={<Navigate to="/upnassist/mooc" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/mooc" element={<MoocCoursePage />} />
         <Route path="/asignatura/:codigo" element={
@@ -24,7 +24,7 @@ const ProtectedUpnAssist: React.FC = () => {
           </Suspense>
         } />
         {/* Fallback */}
-        <Route path="*" element={<Navigate to="/upnassist/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/upnassist/mooc" replace />} />
       </Routes>
     </Home>
   );
