@@ -2,6 +2,7 @@ import PythonRunner from './PythonRunner';
 
 export interface TestCaseResult {
   name: string;
+  description?: string; // Nuevo campo opcional
   status: 'pass' | 'fail' | 'error';
   message: string;
   expected?: string;
