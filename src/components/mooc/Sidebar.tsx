@@ -44,7 +44,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ title, items, onItemClick }) =
 
       {/* Footer Logo (MOOC style) */}
       <div className="p-4 border-t border-gray-100 flex items-center justify-center">
-        <span className="font-condensed font-bold text-lg tracking-tight">MOOC.fi</span>
+        <span className="font-condensed font-bold text-lg tracking-tight">UpnAssist</span>
       </div>
     </div>
   );

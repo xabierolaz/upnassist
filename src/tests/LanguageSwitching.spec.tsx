@@ -35,6 +35,7 @@ const TestControls = () => {
     const setLanguage = useLanguageStore(s => s.setLanguage);
     return (
         <div>
+            <button onClick={() => setLanguage('ENG')}>SetENG</button>
             <button onClick={() => setLanguage('CAS')}>SetCAS</button>
             <button onClick={() => setLanguage('EUS')}>SetEUS</button>
         </div>
@@ -42,27 +43,26 @@ const TestControls = () => {
 }
 
 describe('Language Switching', () => {
-  afterEach(() => {
-      // Resetear a inglés por defecto
-      act(() => useLanguageStore.setState({ currentLang: 'ENG', t: useLanguageStore.getState().t }));
-  });
+  // afterEach(() => {
+  //     // Store reset handled by tests if needed
+  // });
 
   it('should switch interface language dynamically', async () => {
     render(<LanguageTestWrapper />);
 
-    // 1. Verificar Inglés (Default)
-    expect(screen.getByText(/Run/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Ejecutar/i)).not.toBeInTheDocument();
+    // 1. Verificar Castellano (Default)
+    expect(screen.getByText(/Ejecutar/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Run/i)).not.toBeInTheDocument();
 
-    // 2. Cambiar a Castellano
-    const btnCas = screen.getByText('SetCAS');
+    // 2. Cambiar a Inglés
+    const btnEng = screen.getByText('SetENG');
     await act(async () => {
-        btnCas.click();
+        btnEng.click();
     });
 
-    // Verificar Castellano
-    expect(screen.getByText(/Ejecutar/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Run/i)).not.toBeInTheDocument(); // Run ya no debería estar (salvo en el id del botón si hubiera)
+    // Verificar Inglés
+    expect(screen.getByText(/Run/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Ejecutar/i)).not.toBeInTheDocument();
 
     // 3. Cambiar a Euskera
     const btnEus = screen.getByText('SetEUS');

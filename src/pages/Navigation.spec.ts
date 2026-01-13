@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { coursePages } from '../data/mooc-exercises';
+import { coursePages, getLocalizedText } from '../data/mooc-exercises';
 
 describe('Navigation Logic', () => {
   it('should traverse sections correctly', () => {
@@ -11,7 +11,7 @@ describe('Navigation Logic', () => {
     const nextPage = coursePages[firstIndex + 1];
     expect(nextPage).toBeDefined();
     expect(nextPage.id).toBe(coursePages[1].id);
-    expect(nextPage.title).toContain('Information from the user');
+    expect(getLocalizedText(nextPage.title, 'ENG')).toContain('Information from the user');
   });
 
   it('should handle last page', () => {

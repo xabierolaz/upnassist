@@ -26,10 +26,10 @@ export const section2: CoursePage = {
         },
         description: {
             ENG: "Please write a program which asks for the user's name and then prints it twice, on two consecutive lines.",
-            CAS: "Escribe un programa que pida el nombre del usuario y luego lo imprima dos veces, en dos líneas consecutivas.",
+            CAS: "Por favor, escribe un programa que pida el nombre del usuario y luego lo imprima dos veces, en dos líneas consecutivas.",
             EUS: "Idatzi programa bat erabiltzaileari izena eskatzen diona eta gero bi aldiz inprimatzen duena, bi lerro jarraitutan."
         },
-        initialCode: "# Write your code here\n",
+        initialCode: "# Escribe tu código aquí\n",
         testCode: "import unittest\nclass TestNameTwice(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['Paul']).strip().split('\n')\n        clean_out = [l for l in out if 'Paul' in l]\n        if len(clean_out) < 2:\n            self.fail(\"❌ Debes imprimir el nombre dos veces.\")\n        if clean_out[0] == clean_out[1] and \"Paul\" in clean_out[0]:\n            pass\n        else:\n            self.fail(\"❌ Asegúrate de imprimir el nombre tal cual se ingresó, dos veces.\")"
     },
     {
@@ -50,10 +50,10 @@ export const section2: CoursePage = {
         },
         description: {
             ENG: "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.",
-            CAS: "Escribe un programa que pida el nombre y lo imprima dos veces en una línea: con un signo de exclamación al inicio, otro entre los nombres y uno al final (ej: !Ana!Ana!).",
+            CAS: "Por favor, escribe un programa que pida el nombre y lo imprima dos veces en una línea: con un signo de exclamación al inicio, otro entre los nombres y uno al final (ej: !Ana!Ana!).",
             EUS: "Idatzi programa bat izena eskatu eta bi aldiz lerro berean inprimatzen duena: harridura-marka batekin hasieran, beste bat izenen artean eta hirugarren bat amaieran (adib: !Ana!Ana!)."
         },
-        initialCode: "# Write your code here\n",
+        initialCode: "# Escribe tu código aquí\n",
         testCode: "import unittest\nclass TestExcl(unittest.TestCase):\n    def test_paul(self):\n        out = run_student_code(inputs=['Paul'])\n        expected = \"!Paul!Paul!\"\n        if expected not in out:\n            self.fail(f\"❌ Esperaba '{expected}', pero no lo encontré en tu salida.\\n💡 Revisa los espacios. No debería haber espacios entre los signos de exclamación y el nombre.\")"
     },
     {
@@ -74,10 +74,10 @@ export const section2: CoursePage = {
         },
         description: {
             ENG: "Please write a program which asks for the user's name and address. The program should also print out the given information.",
-            CAS: "Escribe un programa que pida el nombre y la dirección del usuario. El programa debe imprimir la información introducida.",
+            CAS: "Por favor, escribe un programa que pida el nombre y la dirección del usuario. El programa debe imprimir la información introducida.",
             EUS: "Idatzi programa bat erabiltzailearen izena eta helbidea eskatzen dituena. Programak emandako informazioa inprimatu behar du."
         },
-        initialCode: "# Write your code here\n",
+        initialCode: "# Escribe tu código aquí\n",
         testCode: "import unittest\nclass TestAddr(unittest.TestCase):\n    def test_steve(self):\n        out = run_student_code(inputs=['Steve', 'Sanders', '91 Station Road', 'London'])\n        if \"Steve Sanders\" not in out:\n            self.fail(\"❌ No encontré el nombre completo 'Steve Sanders' en la salida.\")\n        if \"91 Station Road\" not in out:\n            self.fail(\"❌ No encontré la dirección '91 Station Road'.\")\n        if \"London\" not in out:\n            self.fail(\"❌ No encontré la ciudad 'London'.\")"
     },
     {
@@ -106,10 +106,10 @@ export const section2: CoursePage = {
         },
         description: {
             ENG: "Please write a program which prints out the following story. The user gives a name and a year.",
-            CAS: "Escribe un programa que imprima una historia. El usuario introduce un nombre y un año.",
+            CAS: "Por favor, escribe un programa que imprima una historia. El usuario introduce un nombre y un año.",
             EUS: "Idatzi istorio bat inprimatzen duen programa bat. Erabiltzaileak izen bat eta urte bat sartzen ditu."
         },
-        initialCode: "# Write your code here\n",
+        initialCode: "# Escribe tu código aquí\n",
         testCode: "import unittest\nclass TestStory(unittest.TestCase):\n    def test_mary(self):\n        out = run_student_code(inputs=['Mary', '1572'])\n        if \"Mary is a valiant knight\" not in out:\n            self.fail(\"❌ La primera frase no coincide. Verifica espacios y mayúsculas.\")\n        if \"born in the year 1572\" not in out:\n            self.fail(\"❌ Verifica la parte del año. ¿Quizás falta un espacio antes de 1572?\")"
     }
   ]

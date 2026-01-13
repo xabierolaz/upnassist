@@ -66,10 +66,10 @@ export const section3: CoursePage = {
         },
         description: {
             ENG: `Complete the program to print arithmetic results.`,
-            CAS: `Completa el programa para imprimir los resultados aritméticos.`,
+            CAS: `Por favor, completa el programa para imprimir los resultados aritméticos.`,
             EUS: `Osatu programa emaitza aritmetikoak inprimatzeko.`
         }, 
-        initialCode: `x = 27\ny = 15\n# Write your code here\n`,
+        initialCode: `x = 27\ny = 15\n# Escribe tu código aquí\n`,
         testCode: `import unittest\nclass TestArith(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        if "42" in out and "27 + 15 = 42" not in out:\n            self.fail("❌ Debes imprimir la operación completa (ej: '27 + 15 = 42'), no solo el resultado.")\n        \n        self.assertIn("27 + 15 = 42", out)\n        self.assertIn("27 / 15 = 1.8", out)`
     },
     {
@@ -82,7 +82,7 @@ export const section3: CoursePage = {
         },
         description: {
             ENG: `Please fix this program so that the entire calculation, complete with result, is printed out on a single line.`,
-            CAS: `Por favor arregla este programa para que todo el cálculo, incluido el resultado, se imprima en una sola línea.`,
+            CAS: `Por favor, arregla este programa para que todo el cálculo, incluido el resultado, se imprima en una sola línea.`,
             EUS: `Mesedez konpondu programa hau kalkulu osoa, emaitzarekin batera, lerro bakar batean inprimatu dadin.`
         }, 
         initialCode: `print(5)\nprint(" + ")\nprint(8)\nprint(" - ")\nprint(4)\nprint(" = ")\nprint(5 + 8 - 4)`,

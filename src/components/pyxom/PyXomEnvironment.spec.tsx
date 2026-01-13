@@ -30,21 +30,20 @@ describe('PyXomEnvironment UI', () => {
     vi.clearAllMocks();
   });
 
-  it('renders initial buttons correctly', () => {
-    render(<PyXomEnvironment initialCode="print('hi')" />);
-    
-    // Debe haber un botón Run y un botón Submit
-    expect(screen.getByText(/Run/i)).toBeInTheDocument();
-    expect(screen.getByText(/Submit/i)).toBeInTheDocument();
-    expect(screen.getByTitle('Reset')).toBeInTheDocument();
-  });
-
+    it('renders initial buttons correctly', () => {
+      render(<PyXomEnvironment initialCode="print('hi')" />);
+  
+      // Debe haber un botón Ejecutar y un botón Enviar
+      expect(screen.getByText(/Ejecutar/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enviar/i)).toBeInTheDocument();
+      expect(screen.getByTitle('Reiniciar')).toBeInTheDocument();
+    });
   it('handles Run button click', async () => {
     render(<PyXomEnvironment initialCode="print('hi')" />);
-    
-    const runButton = screen.getByText(/Run/i);
-    
-    // Simular que el Runner tarda un poco
+
+    const runButton = screen.getByText(/Ejecutar/i);
+
+    // Mockear la ejecución
     (PythonRunner.execute as any).mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)));
 
     await act(async () => {
@@ -55,15 +54,14 @@ describe('PyXomEnvironment UI', () => {
     expect(PythonRunner.execute).toHaveBeenCalledWith("print('hi')", expect.any(Function));
   });
 
-  it('shows Reset confirmation', () => {
-    render(<PyXomEnvironment initialCode="print('original')" />);
-    
-    const confirmSpy = vi.spyOn(window, 'confirm');
-    confirmSpy.mockImplementation(() => true); 
-
-    const resetButton = screen.getByTitle('Reset');
-    fireEvent.click(resetButton);
-
-    expect(confirmSpy).toHaveBeenCalled();
-  });
-});
+    it('shows Reset confirmation', () => {
+      render(<PyXomEnvironment initialCode="print('original')" />);
+  
+      const confirmSpy = vi.spyOn(window, 'confirm');
+      confirmSpy.mockImplementation(() => true);
+  
+      const resetButton = screen.getByTitle('Reiniciar');
+      fireEvent.click(resetButton);
+  
+      expect(confirmSpy).toHaveBeenCalled();
+    });});

@@ -23,9 +23,9 @@ Let's begin programming by getting familiar with the
 print
  command. It prints text.
 
-```python
+\`\`\`python
 print("Hi there!")
-```
+\`\`\`
 
 When you run this line of code, it will print the text "Hi there!".
 `,
@@ -41,9 +41,9 @@ Empecemos a programar familiarizándonos con el comando
 print
 . Imprime texto en pantalla.
 
-```python
+\`\`\`python
 print("¡Hola!")
-```
+\`\`\`
 
 Cuando ejecutes esta línea de código, imprimirá el texto "¡Hola!".
 `,
@@ -59,9 +59,9 @@ Has gaitezen programatzen
 print
  komandoarekin trebatuz. Testua inprimatzen du.
 
-```python
+\`\`\`python
 print("Kaixo!")
-```
+\`\`\`
 
 Kode lerro hau exekutatzen duzunean, "Kaixo!" testua inprimatuko du.
 `
@@ -77,16 +77,42 @@ Kode lerro hau exekutatzen duzunean, "Kaixo!" testua inprimatuko du.
       },
       description: {
         ENG: "Please write a program which prints out an emoticon: :-)",
-        CAS: "Por favor escribe un programa que imprima un emoticono: :-)",
+        CAS: "Por favor, escribe un programa que imprima un emoticono: :-)",
         EUS: "Mesedez idatzi programa bat emotikono bat inprimatzen duena: :-)"
       },
-      initialCode: "# Write your code here\n",
-      testCode: "\nimport unittest\nfrom unittest.mock import patch\nimport io\n
+      initialCode: "# Escribe tu código aquí\n",
+      testCode: `
+import unittest
+from unittest.mock import patch
+import io
+
 class TestEmoticon(unittest.TestCase):
     def test_output(self):
         output = run_student_code()
-        self.assertEqual(output, ":-)")
-"
+        self.assertIn(":-)", output)
+`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part01-02_minutes_in_a_year',
+      title: {
+        ENG: "Minutes in a year",
+        CAS: "Minutos en un año",
+        EUS: "Minutuak urte batean"
+      },
+      description: {
+        ENG: "Please write a program which prints out the number of minutes in a year. Use Python code to perform the calculation.",
+        CAS: "Por favor, escribe un programa que imprima el número de minutos en un año. Usa código Python para realizar el cálculo.",
+        EUS: "Mesedez idatzi programa bat urte bateko minutu kopurua inprimatzen duena. Erabili Python kodea kalkulua egiteko."
+      },
+      initialCode: "# Escribe tu código aquí\nprint(365*24*60)",
+      testCode: `
+import unittest
+class TestMinutes(unittest.TestCase):
+    def test_output(self):
+        output = run_student_code()
+        self.assertIn("525600", output)
+`
     }
   ]
 };

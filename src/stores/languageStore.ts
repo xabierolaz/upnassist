@@ -35,7 +35,7 @@ interface Translation {
 const translations: Record<Language, Translation> = {
   ENG: {
     title: "Python 2026",
-    university: "University of Helsinki",
+    university: "UPNA - Public University of Navarre",
     sandbox: "Free Playground",
     part1: "Part 1",
     run: "Run",
@@ -63,7 +63,7 @@ const translations: Record<Language, Translation> = {
   },
   CAS: {
     title: "Python 2026",
-    university: "Universidad de Helsinki",
+    university: "UPNA - Universidad Pública de Navarra",
     sandbox: "Zona de Pruebas",
     part1: "Parte 1",
     run: "Ejecutar",
@@ -91,7 +91,7 @@ const translations: Record<Language, Translation> = {
   },
   EUS: {
     title: "Python 2026",
-    university: "Helsinkiko Unibertsitatea",
+    university: "NUP - Nafarroako Unibertsitate Publikoa",
     sandbox: "Proba Eremua",
     part1: "1. Zatia",
     run: "Exekutatu",
@@ -128,8 +128,8 @@ interface LanguageState {
 export const useLanguageStore = create<LanguageState>()(
   persist(
     (set) => ({
-      currentLang: 'ENG',
-      t: translations['ENG'],
+      currentLang: 'CAS',
+      t: translations['CAS'],
       setLanguage: (lang) => set({ currentLang: lang, t: translations[lang] })
     }),
     {

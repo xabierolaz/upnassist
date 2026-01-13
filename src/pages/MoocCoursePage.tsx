@@ -130,7 +130,7 @@ const MoocCoursePage: React.FC = () => {
 
             {/* Footer */}
             <footer className="mt-20 border-t border-gray-200 pt-10 pb-6 text-center text-gray-500 text-sm">
-                <p>© 2026 {t.university} / MOOC.fi</p>
+                <p>© 2026 {t.university} / UpnAssist</p>
                 <p className="mt-2">
                     {t.footer}
                     <br/>

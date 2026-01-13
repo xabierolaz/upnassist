@@ -75,7 +75,7 @@ export const playgroundExercise: Exercise = {
   id: "playground",
   title: "Sandbox / Playground",
   description: "Space to experiment freely.",
-  initialCode: "# Sandbox\nprint(\"Hola\")\n",
+  initialCode: "# Zona de pruebas\nprint(\"Hola\")\n",
   testCode: ""
 };
 

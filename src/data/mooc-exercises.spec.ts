@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { coursePages, exercisesDB, moocExercises } from './mooc-exercises';
+import { coursePages, exercisesDB, moocExercises, getLocalizedText } from './mooc-exercises';
 
 describe('MOOC Content Architecture', () => {
   
   it('should load all 5 sections of Part 1', () => {
     expect(coursePages.length).toBe(5);
-    expect(coursePages.map(p => p.title)).toEqual([
-        "1. Getting Started",
+    expect(coursePages.map(p => getLocalizedText(p.title, 'ENG'))).toEqual([
+        "Getting started",
         "2. Information from the user",
         "3. More about variables",
         "4. Arithmetic operations",
@@ -22,7 +22,7 @@ describe('MOOC Content Architecture', () => {
 
   describe('Integrity Check (Links between Pages and Exercises)', () => {
     coursePages.forEach(page => {
-        it(`Page "${page.title}" should have valid exercise links`, () => {
+        it(`Page "${getLocalizedText(page.title, 'ENG')}" should have valid exercise links`, () => {
             const exerciseBlocks = page.blocks.filter(b => b.type === 'exercise');
             
             // La página debe tener contenido
@@ -52,9 +52,10 @@ describe('MOOC Content Architecture', () => {
             const mdBlocks = page.blocks.filter(b => b.type === 'markdown');
             mdBlocks.forEach(b => {
                 if (b.content) {
+                    const content = getLocalizedText(b.content, 'ENG');
                     // Verificar que no haya caracteres de reemplazo unicode () que indican corrupción
-                    expect(b.content).not.toContain('\uFFFD'); 
-                    expect(b.content.length).toBeGreaterThan(10);
+                    expect(content).not.toContain('\uFFFD'); 
+                    expect(content.length).toBeGreaterThan(10);
                 }
             });
         });
