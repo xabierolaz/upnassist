@@ -1,0 +1,52 @@
+import { CoursePage } from '../mooc-exercises';
+
+export const section5: CoursePage = {
+  id: "part8-5",
+  title: {
+    ENG: "More examples of classes",
+    CAS: "Más ejemplos de clases",
+    EUS: "Klaseen adibide gehiago"
+  },
+  blocks: [
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n# More examples of classes\n\n## The `__str__` method\n\nThe `__str__` method returns a string representation of the object.\n\n```python\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\n    def __str__(self):\n        return f\"Person: {self.name}\"\n\np = Person(\"Peter\")\nprint(p) # Person: Peter\n```\n",
+        CAS: "\n# Más ejemplos de clases\n\n## El método `__str__`\n\nEl método `__str__` devuelve una representación en cadena del objeto.\n\n```python\nclass Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def __str__(self):\n        return f\"Persona: {self.nombre}\"\n\np = Persona(\"Peter\")\nprint(p) # Persona: Peter\n```\n",
+        EUS: "\n# Klaseen adibide gehiago\n\n## `__str__` metodoa\n\n`__str__` metodoak objektuaren kate-adierazpena itzultzen du.\n\n```python\nclass Pertsona:\n    def __init__(self, izena):\n        self.izena = izena\n\n    def __str__(self):\n        return f\"Pertsona: {self.izena}\"\n\np = Pertsona(\"Peter\")\nprint(p) # Pertsona: Peter\n```\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part08-10_simple_date',
+      title: {
+        ENG: "Simple date",
+        CAS: "Fecha simple",
+        EUS: "Data sinplea"
+      },
+      description: {
+        ENG: "Create a class SimpleDate(day, month, year). Implement __str__, __eq__ (equality), __lt__ (less than), and advance(days) methods.",
+        CAS: "Crea una clase SimpleDate(dia, mes, ano). Implementa __str__, __eq__, __lt__, y advance(dias).",
+        EUS: "Sortu SimpleDate(eguna, hila, urtea) klasea. Inplementatu __str__, __eq__, __lt__, eta advance(egunak) metodoak."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestDate(unittest.TestCase):\n    def test_run(self):\n        d1 = SimpleDate(1, 1, 2000)\n        d2 = SimpleDate(2, 1, 2000)\n        self.assertTrue(d1 < d2)\n        d1.advance(1)\n        self.assertTrue(d1 == d2)\n        self.assertEqual(str(d1), \"2.1.2000\")\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part08-11_payment_terminal',
+      title: {
+        ENG: "Payment terminal",
+        CAS: "Terminal de pago",
+        EUS: "Ordainketa terminala"
+      },
+      description: {
+        ENG: "Create PaymentTerminal class. Methods: eat_cheap(payment), eat_special(payment), eat_cheap_lunchcard(card), eat_special_lunchcard(card), add_money_to_card(card, sum). Track cash and sold meals.",
+        CAS: "Crea PaymentTerminal. Métodos para comer barato/especial con efectivo o tarjeta (LunchCard), y recargar tarjeta. Rastrea efectivo y comidas vendidas.",
+        EUS: "Sortu PaymentTerminal klasea. Bazkari merkea/berezia ordaintzeko metodoak (eskudirutan edo txartelarekin), eta txartela kargatzeko. Jarraitu eskudirua eta saldutako otorduak."
+      },
+      initialCode: "# Write your solution here\n# Assume LunchCard exists or redefine it\nclass LunchCard:\n    def __init__(self, balance):\n        self.balance = balance\n    def subtract_from_balance(self, amount):\n        if self.balance >= amount:\n            self.balance -= amount\n            return True\n        return False\n",
+      testCode: "\nimport unittest\nclass TestTerminal(unittest.TestCase):\n    def test_run(self):\n        t = PaymentTerminal()\n        change = t.eat_cheap(10)\n        self.assertAlmostEqual(change, 7.5) # assume cheap is 2.50\n        self.assertEqual(t.lunches_cheap, 1)\n"
+    }
+  ]
+};

@@ -1,0 +1,124 @@
+import { CoursePage } from '../mooc-exercises';
+
+export const section3: CoursePage = {
+  id: "part2-3",
+  title: {
+    ENG: "Combining conditions",
+    CAS: "Combinando condiciones",
+    EUS: "Baldintzak konbinatzen"
+  },
+  blocks: [
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n# Combining conditions\n\n## Logical operators\n\nYou can combine conditions with the logical operators `and` and `or`.\n\n- `and` specifies that **all** given conditions must be true.\n- `or` specifies that **at least one** of the given conditions must be true.\n\nExample: Check if a number is between 5 and 8.\n\n````python\nnumber = int(input(\"Please type in a number: \"))\nif number >= 5 and number <= 8:\n    print(\"The number is between 5 and 8\")\n````\n\nExample: Check if a number is less than 5 or greater than 8.\n\n````python\nnumber = int(input(\"Please type in a number: \"))\nif number < 5 or number > 8:\n    print(\"The number is not within the range of 5 to 8\")\n````\n\n## Negation\n\nThe `not` operator negates a condition.\n\n````python\nnumber = int(input(\"Please type in a number: \"))\nif not (number >= 5 and number <= 8):\n    print(\"The number is not within the range of 5 to 8\")\n````\n",
+        CAS: "\n# Combinando condiciones\n\n## Operadores lógicos\n\nPuedes combinar condiciones con los operadores lógicos `and` (y) y `or` (o).\n\n- `and` especifica que **todas** las condiciones dadas deben ser verdaderas.\n- `or` especifica que **al menos una** de las condiciones dadas debe ser verdadera.\n\nEjemplo: Comprobar si un número está entre 5 y 8.\n\n````python\nnumber = int(input(\"Por favor escribe un número: \"))\nif number >= 5 and number <= 8:\n    print(\"El número está entre 5 y 8\")\n````\n\nEjemplo: Comprobar si un número es menor que 5 o mayor que 8.\n\n````python\nnumber = int(input(\"Por favor escribe un número: \"))\nif number < 5 or number > 8:\n    print(\"El número no está en el rango de 5 a 8\")\n````\n\n## Negación\n\nEl operador `not` niega una condición.\n\n````python\nnumber = int(input(\"Por favor escribe un número: \"))\nif not (number >= 5 and number <= 8):\n    print(\"El número no está en el rango de 5 a 8\")\n````\n",
+        EUS: "\n# Baldintzak konbinatzen\n\n## Eragile logikoak\n\nBaldintzak `and` (eta) eta `or` (edo) eragile logikoekin konbina ditzakezu.\n\n- `and`-ek zehazten du emandako baldintza **guztiak** egia izan behar direla.\n- `or`-ek zehazten du emandako baldintzetako **bat gutxienez** egia izan behar dela.\n\nAdibidea: Egiaztatu zenbaki bat 5 eta 8 artean dagoen.\n\n````python\nnumber = int(input(\"Mesedez idatzi zenbaki bat: \"))\nif number >= 5 and number <= 8:\n    print(\"Zenbakia 5 eta 8 artean dago\")\n````\n\nAdibidea: Egiaztatu zenbaki bat 5 baino txikiagoa edo 8 baino handiagoa den.\n\n````python\nnumber = int(input(\"Mesedez idatzi zenbaki bat: \"))\nif number < 5 or number > 8:\n    print(\"Zenbakia ez dago 5 eta 8 arteko tartean\")\n````\n\n## Ezeztapena\n\n`not` eragileak baldintza bat ezeztatzen du.\n\n````python\nnumber = int(input(\"Mesedez idatzi zenbaki bat: \"))\nif not (number >= 5 and number <= 8):\n    print(\"Zenbakia ez dago 5 eta 8 arteko tartean\")\n````\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-09_nephews',
+      title: {
+        ENG: "Nephews",
+        CAS: "Sobrinos",
+        EUS: "Ilobak"
+      },
+      description: {
+        ENG: "Please write a program which asks for the user's name. If the name is Huey, Dewey or Louie, the program should recognise the user as one of Donald Duck's nephews. If the name is Morty or Ferdie, the program should recognise the user as one of Mickey Mouse's nephews.",
+        CAS: "Por favor, escribe un programa que pida el nombre del usuario. Si el nombre es Huey, Dewey o Louie, el programa debe reconocer al usuario como uno de los sobrinos del Pato Donald. Si es Morty o Ferdie, como sobrinos de Mickey Mouse.",
+        EUS: "Idatzi programa bat erabiltzaileari izena eskatzen diona. Izena Huey, Dewey edo Louie bada, programak Donald Ahatearen iloba bezala ezagutu behar du. Morty edo Ferdie bada, Mickey Mouse-ren iloba bezala."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestNephews(unittest.TestCase):\n    def test_donald(self):\n        out = run_student_code(inputs=['Huey'])\n        self.assertIn(\"Donald\", out)\n        \n    def test_mickey(self):\n        out = run_student_code(inputs=['Morty'])\n        self.assertIn(\"Mickey\", out)\n        \n    def test_other(self):\n        out = run_student_code(inputs=['Bob'])\n        self.assertIn(\"not a nephew\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-10_grades_and_points_2',
+      title: {
+        ENG: "Grades and points",
+        CAS: "Notas y puntos",
+        EUS: "Notak eta puntuak"
+      },
+      description: {
+        ENG: "Let's rewrite the grade program. This time 0-49 is fail, 50-59 is 1, ..., 90-100 is 5. Also handle impossible points (<0 or >100).",
+        CAS: "Reescribamos el programa de notas. 0-49 suspenso, 50-59 es 1, ..., 90-100 es 5. Maneja también puntos imposibles (<0 o >100).",
+        EUS: "Berridatzi dezagun noten programa. 0-49 gutxiegi, 50-59 da 1, ..., 90-100 da 5. Kudeatu puntu ezinezkoak ere (<0 edo >100)."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestGrades2(unittest.TestCase):\n    def test_impossible(self):\n        out = run_student_code(inputs=['-5'])\n        self.assertIn(\"impossible\", out)\n        \n    def test_fail(self):\n        out = run_student_code(inputs=['45'])\n        self.assertIn(\"fail\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-11_fizzbuzz',
+      title: {
+        ENG: "FizzBuzz",
+        CAS: "FizzBuzz",
+        EUS: "FizzBuzz"
+      },
+      description: {
+        ENG: "Please write a program which asks the user for an integer number. If the number is divisible by 3, print Fizz. If by 5, print Buzz. If by both, print FizzBuzz.",
+        CAS: "Escribe un programa que pida un número. Si es divisible por 3, imprime Fizz. Si por 5, Buzz. Si por ambos, FizzBuzz.",
+        EUS: "Idatzi programa bat zenbaki bat eskatzen duena. 3rekin zatigarria bada, inprimatu Fizz. 5ekin, Buzz. Biakin, FizzBuzz."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestFizzBuzz(unittest.TestCase):\n    def test_15(self):\n        out = run_student_code(inputs=['15'])\n        self.assertIn(\"FizzBuzz\", out)\n    def test_3(self):\n        out = run_student_code(inputs=['3'])\n        self.assertIn(\"Fizz\", out)\n        self.assertNotIn(\"Buzz\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-12_leap_year',
+      title: {
+        ENG: "Leap year",
+        CAS: "Año bisiesto",
+        EUS: "Urte bisustua"
+      },
+      description: {
+        ENG: "A year is a leap year if it is divisible by 4. However, if the year is divisible by 100, it is a leap year only when it is also divisible by 400. Write a program that checks this.",
+        CAS: "Un año es bisiesto si es divisible por 4. Sin embargo, si es divisible por 100, solo es bisiesto si también lo es por 400. Escribe un programa que compruebe esto.",
+        EUS: "Urte bat bisustua da 4rekin zatigarria bada. Hala ere, 100ekin zatigarria bada, bisustua da bakarrik 400ekin ere zatigarria bada. Idatzi hau egiaztatzen duen programa."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestLeap(unittest.TestCase):\n    def test_2024(self):\n        out = run_student_code(inputs=['2024'])\n        self.assertIn(\"leap year\", out)\n    def test_1900(self):\n        out = run_student_code(inputs=['1900'])\n        self.assertIn(\"not a leap year\", out)\n    def test_2000(self):\n        out = run_student_code(inputs=['2000'])\n        self.assertIn(\"leap year\", out)\n"
+    },
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n## Nested conditionals\n\nConditions can be nested inside other conditions. Indentation determines which branch a block belongs to.\n\n````python\nnumber = int(input(\"Please type in a number: \"))\n\nif number > 0:\n    if number % 2 == 0:\n        print(\"The number is even\")\n    else:\n        print(\"The number is odd\")\nelse:\n    print(\"The number is negative or zero\")\n````\n",
+        CAS: "\n## Condicionales anidados\n\nLas condiciones pueden anidarse dentro de otras condiciones. La indentación determina a qué rama pertenece un bloque.\n\n````python\nnumber = int(input(\"Por favor escribe un número: \"))\n\nif number > 0:\n    if number % 2 == 0:\n        print(\"El número es par\")\n    else:\n        print(\"El número es impar\")\nelse:\n    print(\"El número es negativo o cero\")\n````\n",
+        EUS: "\n## Habiaratutako baldintzak\n\nBaldintzak beste baldintza batzuen barruan habiaratu daitezke. Indentazioak zehazten du bloke bat zein adarri dagokion.\n\n````python\nnumber = int(input(\"Mesedez idatzi zenbaki bat: \"))\n\nif number > 0:\n    if number % 2 == 0:\n        print(\"Zenbakia bikoitia da\")\n    else:\n        print(\"Zenbakia bakoitia da\")\nelse:\n    print(\"Zenbakia negatiboa edo zero da\")\n````\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-13_alphabetically_in_the_middle',
+      title: {
+        ENG: "Alphabetically in the middle",
+        CAS: "Alfabéticamente en el medio",
+        EUS: "Alfabetikoki erdian"
+      },
+      description: {
+        ENG: "Please write a program which asks for three letters. The program should then print out whichever of the three letters would be in the middle if the letters were in alphabetical order.",
+        CAS: "Por favor, escribe un programa que pida tres letras. El programa debe imprimir cuál de las tres letras estaría en el medio si estuvieran en orden alfabético.",
+        EUS: "Idatzi programa bat hiru hizki eskatzen dituena. Programak inprimatu behar du hiru hizkietatik zein egongo litzatekeen erdian ordena alfabetikoan egongo balira."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestMiddle(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['a', 'c', 'b'])\n        self.assertIn(\"b\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-14_gift_tax',
+      title: {
+        ENG: "Gift tax",
+        CAS: "Impuesto de donaciones",
+        EUS: "Dohaintza zerga"
+      },
+      description: {
+        ENG: "Write a program that calculates the tax on a gift. The tax depends on the value of the gift (e.g. 5000-25000: 100 + (Value-5000)*0.08).",
+        CAS: "Escribe un programa que calcule el impuesto sobre una donación. El impuesto depende del valor (ej. 5000-25000: 100 + (Valor-5000)*0.08).",
+        EUS: "Idatzi dohaintza baten zerga kalkulatzen duen programa. Zerga dohaintzaren balioaren araberakoa da."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestTax(unittest.TestCase):\n    def test_low(self):\n        out = run_student_code(inputs=['4000'])\n        self.assertIn(\"No tax\", out)\n    def test_mid(self):\n        out = run_student_code(inputs=['6000'])\n        # 100 + 1000*0.08 = 180\n        self.assertIn(\"180\", out)\n"
+    }
+  ]
+};

@@ -1,0 +1,84 @@
+import { CoursePage } from '../mooc-exercises';
+
+export const section1: CoursePage = {
+  id: "part2-1",
+  title: {
+    ENG: "Programming terminology",
+    CAS: "Terminología de programación",
+    EUS: "Programazio terminologia"
+  },
+  blocks: [
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n# Programming terminology\n\nIn the first part of this course we didn't pay much attention to terminology, so let's have a look at some central concepts in programming.\n\n## Statement\n\nA _statement_ is a part of the program which executes something. It often refers to a single command.\n\n```python\nprint(\"Hi!\")\nnumber = 2\n```\n\n## Block\n\nA _block_ is a group of consecutive statements that are at the same level in the structure of the program.\n\n```python\nif age > 17:\n    # beginning of the conditional block\n    print(\"You are of age!\")\n    age = age + 1\n    print(\"You are now one year older...\")\n    # end of the conditional block\n```\n\nIn Python blocks are expressed by indenting all code in the block by the same amount of whitespace.\n\n## Expression\n\nAn _expression_ is a bit of code that results in a determined data type. When the program is executed, the expression is evaluated so that it has a value.\n\n| Expression | Value | Type |\n| :--- | :--- | :--- |\n| `2 + 4 + 3` | `9` | `int` |\n| `"abc" + "de"` | `"abcde"` | `str` |\n| `1 + 2` | `3` | `int` |\n\n## Function\n\nA _function_ executes some functionality. Functions can also take one or more _arguments_ (data passed to the function).\n\n```python\nprint(\"this is an argument\")\n```\n\n## Data type\n\nIn Python, the type of the value determines what can be done with it. You can use the function `type` to find out the data type of any expression.\n\n```python\nprint(type(\"Anna\"))\nprint(type(100))\n```\n\n```text\n<class 'str'>\n<class 'int'>\n```\n",
+        CAS: "\n# Terminología de programación\n\nEn la primera parte de este curso no prestamos mucha atención a la terminología, así que echemos un vistazo a algunos conceptos centrales en programación.\n\n## Sentencia\n\nUna _sentencia_ es una parte del programa que ejecuta algo. A menudo se refiere a un solo comando.\n\n```python\nprint(\"¡Hola!\")\nnumero = 2\n```\n\n## Bloque\n\nUn _bloque_ es un grupo de sentencias consecutivas que están al mismo nivel en la estructura del programa.\n\n```python\nif edad > 17:\n    # inicio del bloque condicional\n    print(\"¡Eres mayor de edad!\")\n    edad = edad + 1\n    print(\"Ahora eres un año mayor...\")\n    # fin del bloque condicional\n```\n\nEn Python, los bloques se expresan indentando todo el código del bloque con la misma cantidad de espacio en blanco.\n\n## Expresión\n\nUna _expresión_ es un trozo de código que da como resultado un tipo de dato determinado. Cuando se ejecuta el programa, la expresión se evalúa para obtener un valor.\n\n| Expresión | Valor | Tipo |\n| :--- | :--- | :--- |\n| `2 + 4 + 3` | `9` | `int` |\n| `"abc" + "de"` | `"abcde"` | `str` |\n| `1 + 2` | `3` | `int` |\n\n## Función\n\nUna _función_ ejecuta alguna funcionalidad. Las funciones también pueden tomar uno o más _argumentos_ (datos pasados a la función).\n\n```python\nprint(\"esto es un argumento\")\n```\n\n## Tipo de dato\n\nEn Python, el tipo del valor determina qué se puede hacer con él. Puedes usar la función `type` para averiguar el tipo de dato de cualquier expresión.\n\n```python\nprint(type(\"Anna\"))\nprint(type(100))\n```\n\n```text\n<class 'str'>\n<class 'int'>\n```\n",
+        EUS: "\n# Programazio terminologia\n\nIkastaroaren lehen zatian ez genion arreta handirik eman terminologiari; beraz, ikus ditzagun programazioko oinarrizko kontzeptu batzuk.\n\n## Sententzia\n\n_Sententzia_ bat zerbait exekutatzen duen programa-zati bat da. Askotan komando bakar bati egiten dio erreferentzia.\n\n```python\nprint(\"Kaixo!\")\nzenbakia = 2\n```\n\n## Blokea\n\n_Bloke_ bat programaren egituran maila berean dauden ondoz ondoko sententzia multzoa da.\n\n```python\nif adina > 17:\n    # bloke kondizionalaren hasiera\n    print(\"Adin nagusikoa zara!\")\n    adina = adina + 1\n    print(\"Orain urtebete zaharragoa zara...\")\n    # bloke kondizionalaren amaiera\n```\n\nPython-en blokeak adierazteko, bloke horretako kode guztia zuriune kopuru berberarekin indentatzen da.\n\n## Adierazpena\n\n_Adierazpena_ datu mota zehatz bat ematen duen kode zatia da. Programa exekutatzean, adierazpena ebaluatzen da balio bat izan dezan.\n\n| Adierazpena | Balioa | Mota |\n| :--- | :--- | :--- |\n| `2 + 4 + 3` | `9` | `int` |\n| `"abc" + "de"` | `"abcde"` | `str` |\n| `1 + 2` | `3` | `int` |\n\n## Funtzioa\n\n_Funtzio_ batek funtzionalitate bat exekutatzen du. Funtzioek _argumentu_ bat edo gehiago har ditzakete (funtzioari pasatako datuak).\n\n```python\nprint(\"hau argumentu bat da\")\n```\n\n## Datu mota\n\nPython-en, balioaren motak zehazten du zer egin daitekeen berarekin. `type` funtzioa erabil dezakezu edozein adierazpenen datu mota jakiteko.\n\n```python\nprint(type(\"Anna\"))\nprint(type(100))\n```\n\n```text\n<class 'str'>\n<class 'int'>\n```\n"
+      }
+    },
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n## Syntax\n\nThe _syntax_ of a programming language determines how the code of a program should be written. If the syntactic rules are not followed, there will be an error.\n\nThe following code has a syntax error (missing colon):\n\n```python\nif name == \"Anna\"\n    print(\"Hi!\")\n```\n\n```text\nSyntaxError: invalid syntax\n```\n",
+        CAS: "\n## Sintaxis\n\nLa _sintaxis_ de un lenguaje de programación determina cómo debe escribirse el código de un programa. Si no se siguen las reglas sintácticas, habrá un error.\n\nEl siguiente código tiene un error de sintaxis (falta dos puntos):\n\n```python\nif nombre == \"Anna\"\n    print(\"¡Hola!\")\n```\n\n```text\nSyntaxError: invalid syntax\n```\n",
+        EUS: "\n## Sintaxia\n\nProgramazio-lengoaia baten _sintaxiak_ zehazten du nola idatzi behar den programa baten kodea. Arau sintaktikoak ez badira jarraitzen, errore bat egongo da.\n\nHurrengo kodeak sintaxi errorea du (bi puntu falta dira):\n\n```python\nif izena == \"Anna\"\n    print(\"Kaixo!\")\n```\n\n```text\nSyntaxError: invalid syntax\n```\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-01_fix_syntax',
+      title: {
+        ENG: "Fix the syntax",
+        CAS: "Corrige la sintaxis",
+        EUS: "Konpondu sintaxia"
+      },
+      description: {
+        ENG: "The following program contains a syntax error. Please fix it.",
+        CAS: "El siguiente programa contiene un error de sintaxis. Por favor, corrígelo.",
+        EUS: "Hurrengo programak sintaxi errorea du. Mesedez konpondu ezazu."
+      },
+      initialCode: "number = int(input(\"Please type in a number: \"))\nif number > 100\n    print(\"The number was greater than one hundred\")\n    number = number - 100\n    print(\"Now its value has decreased by one hundred\")\n\nprint(f\"Its value is now {number}\")",
+      testCode: "\nimport unittest\nclass TestSyntax(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['150'])\n        self.assertIn(\"value is now 50\", out)\n        \n        out2 = run_student_code(inputs=['10'])\n        self.assertIn(\"value is now 10\", out2)\n"
+    },
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n## Debugging\n\nIf the syntax of the program is correct but the program still doesn't function as intended, there is a _bug_ in the program.\n\nDiscovering and locating the cause of a bug is called _debugging_. A simple yet effective way of debugging is adding `print` statements to your code to verify values at different steps.",
+        CAS: "\n## Depuración\n\nSi la sintaxis del programa es correcta pero el programa no funciona como se esperaba, hay un _bug_ (fallo) en el programa.\n\nDescubrir y localizar la causa de un fallo se llama _depuración_ (debugging). Una forma sencilla pero efectiva de depurar es añadir sentencias `print` a tu código para verificar los valores en diferentes pasos.",
+        EUS: "\n## Arazketa\n\nProgramaren sintaxia zuzena bada baina programak ez badu espero bezala funtzionatzen, programan _bug_ (akats) bat dago.\n\nAkats baten zergatia aurkitu eta kokatzeari _arazketa_ (debugging) deitzen zaio. Arazteko modu sinple baina eraginkorra zure kodeari `print` sententziak gehitzea da, urrats ezberdinetan balioak egiaztatzeko."
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-02_number_of_characters',
+      title: {
+        ENG: "Number of characters",
+        CAS: "Número de caracteres",
+        EUS: "Karaktere kopurua"
+      },
+      description: {
+        ENG: "The function len() can be used to find out the length of a string. Write a program which asks the user for a word and then prints out the number of characters in that word.",
+        CAS: "La función len() se puede usar para averiguar la longitud de una cadena. Escribe un programa que pida una palabra al usuario y luego imprima el número de caracteres de esa palabra.",
+        EUS: "len() funtzioa kate baten luzera jakiteko erabil daiteke. Idatzi programa bat erabiltzaileari hitz bat eskatzen diona eta gero hitz horren karaktere kopurua inprimatzen duena."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestLen(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['banana'])\n        self.assertIn(\"6\", out)\n        if \"greater\" in out:\n             self.fail(\"Print only the length.\")\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part02-03_typecasting',
+      title: {
+        ENG: "Typecasting",
+        CAS: "Conversión de tipos",
+        EUS: "Mota bihurketa"
+      },
+      description: {
+        ENG: "Please write a program which asks the user for a floating point number and then prints out the integer part and the decimal part separately.",
+        CAS: "Por favor, escribe un programa que pida un número decimal y luego imprima la parte entera y la parte decimal por separado.",
+        EUS: "Idatzi programa bat zenbaki dezimal bat eskatzen duena eta gero zati osoa eta zati dezimala bereizita inprimatzen dituena."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestTypecasting(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['1.34'])\n        self.assertIn(\"Integer part: 1\", out)\n        self.assertIn(\"Decimal part: 0.34\", out)\n"
+    }
+  ]
+};

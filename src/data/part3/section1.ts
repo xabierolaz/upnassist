@@ -1,0 +1,132 @@
+import { CoursePage } from '../mooc-exercises';
+
+export const section1: CoursePage = {
+  id: "part3-1",
+  title: {
+    ENG: "Loops with conditions",
+    CAS: "Bucles con condiciones",
+    EUS: "Baldintzadun begiztak"
+  },
+  blocks: [
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n# Loops with conditions\n\nThe \`while\` loop can also be controlled by a condition other than \`True\`. The loop continues as long as the condition evaluates to \`True\".\n\n````python\nnumber = int(input(\"Please type in a number: \"))\n\nwhile number < 10:\n    print(number)\n    number += 1\n\nprint(\"Execution finished.\")\n````\n\n## Initialisation, condition and update\n\nTo create a loop you often need three steps:\n1. **Initialisation**: Setting the initial value of the variable used in the condition.\n2. **Condition**: Defines how long the loop runs.\n3. **Update**: Changing the variable within the loop so it eventually ends.\n\nIf the update step is missing, you get an infinite loop!\n\n````python\nnumber = 1\nwhile number < 10:\n    print(number)\n    # number += 1 is missing! Infinite loop!\n````\n",
+        CAS: "\n# Bucles con condiciones\n\nEl bucle \`while\` también puede ser controlado por una condición distinta de \`True\`. El bucle continúa mientras la condición se evalúe como \`True\".\n\n````python\nnumber = int(input(\"Por favor escribe un número: \"))\n\nwhile number < 10:\n    print(number)\n    number += 1\n\nprint(\"Ejecución terminada.\")\n````\n\n## Inicialización, condición y actualización\n\nPara crear un bucle a menudo necesitas tres pasos:\n1. **Inicialización**: Establecer el valor inicial de la variable usada en la condición.\n2. **Condición**: Define cuánto tiempo se ejecuta el bucle.\n3. **Actualización**: Cambiar la variable dentro del bucle para que eventualmente termine.\n\nSi falta el paso de actualización, ¡tienes un bucle infinito!\n\n````python\nnumber = 1\nwhile number < 10:\n    print(number)\n    # ¡Falta number += 1! ¡Bucle infinito!\n````\n",
+        EUS: "\n# Baldintzadun begiztak\n\n\`while\` begizta \`True\` ez den beste baldintza batek ere kontrola dezake. Begiztak jarraitzen du baldintza \`True\` den bitartean.\n\n````python\nnumber = int(input(\"Mesedez idatzi zenbaki bat: \"))\n\nwhile number < 10:\n    print(number)\n    number += 1\n\nprint(\"Exekuzioa amaituta.\")\n````\n\n## Hasieratzea, baldintza eta eguneratzea\n\nBegizta bat sortzeko askotan hiru urrats behar dituzu:\n1. **Hasieratzea**: Baldintzan erabiltzen den aldagaiaren hasierako balioa ezartzea.\n2. **Baldintza**: Begiztak zenbat denbora iraungo duen definitzen du.\n3. **Eguneratzea**: Begizta barruan aldagaia aldatzea, azkenean amai dadin.\n\nEguneratze urratsa falta bada, begizta infinitua lortuko duzu!\n\n````python\nnumber = 1\nwhile number < 10:\n    print(number)\n    # number += 1 falta da! Begizta infinitua!\n````\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-01_print_numbers',
+      title: {
+        ENG: "Print numbers",
+        CAS: "Imprimir números",
+        EUS: "Zenbakiak inprimatu"
+      },
+      description: {
+        ENG: "Please write a program which prints the even numbers between 2 and 30.",
+        CAS: "Por favor, escribe un programa que imprima los números pares entre 2 y 30.",
+        EUS: "Idatzi programa bat 2 eta 30 arteko zenbaki bikoitiak inprimatzen dituena."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestEven(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"2\", out)\n        self.assertIn(\"30\", out)\n        if \"1\" in out: self.fail(\"Should not print odd numbers.\")\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-02_countdown_fix',
+      title: {
+        ENG: "Fix the code: Countdown",
+        CAS: "Corrige el código: Cuenta atrás",
+        EUS: "Konpondu kodea: Atzerako kontaketa"
+      },
+      description: {
+        ENG: "The program below should print a countdown from 5 to 1, but it doesn't work. Please fix it.",
+        CAS: "El programa de abajo debería imprimir una cuenta atrás de 5 a 1, pero no funciona. Por favor, arréglalo.",
+        EUS: "Beheko programak 5etik 1era atzerako kontaketa inprimatu beharko luke, baina ez dabil. Mesedez konpondu."
+      },
+      initialCode: "print(\"Are you ready?\\n")\nnumber = 5\nwhile number > 0:\n    print(number)\n    number = number - 1\nprint(\"Now!\")",
+      testCode: "\nimport unittest\nclass TestCountdown(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"5\", out)\n        self.assertIn(\"1\", out)\n        self.assertIn(\"Now!\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-03_numbers',
+      title: {
+        ENG: "Numbers",
+        CAS: "Números",
+        EUS: "Zenbakiak"
+      },
+      description: {
+        ENG: "Write a program that asks the user for a number N. The program should print numbers from 1 to N.",
+        CAS: "Escribe un programa que pida un número N al usuario. El programa debe imprimir los números del 1 al N.",
+        EUS: "Idatzi programa bat erabiltzaileari N zenbaki bat eskatzen diona. Programak 1etik N-rako zenbakiak inprimatu behar ditu."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestNumbers(unittest.TestCase):\n    def test_5(self):\n        out = run_student_code(inputs=['5'])\n        self.assertIn(\"1\", out)\n        self.assertIn(\"5\", out)\n        if \"6\" in out: self.fail(\"Should stop at N.\")\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-04_powers_of_two',
+      title: {
+        ENG: "Powers of two",
+        CAS: "Potencias de dos",
+        EUS: "Biren berreturak"
+      },
+      description: {
+        ENG: "Write a program that asks for a number N. The program prints powers of two (1, 2, 4, 8...) until the number is greater than N.",
+        CAS: "Escribe un programa que pida un número N. El programa imprime potencias de dos (1, 2, 4, 8...) hasta que el número sea mayor que N.",
+        EUS: "Idatzi programa bat N zenbaki bat eskatzen duena. Programak biren berreturak (1, 2, 4, 8...) inprimatzen ditu zenbakia N baino handiagoa izan arte."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestPowers(unittest.TestCase):\n    def test_10(self):\n        out = run_student_code(inputs=['10'])\n        self.assertIn(\"1\", out)\n        self.assertIn(\"8\", out)\n        self.assertNotIn(\"16\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-05_powers_of_base_n',
+      title: {
+        ENG: "Powers of base n",
+        CAS: "Potencias de base n",
+        EUS: "n oinarriko berreturak"
+      },
+      description: {
+        ENG: "Write a program that asks for an upper limit and a base. The program prints powers of the base until the limit is exceeded.",
+        CAS: "Escribe un programa que pida un límite superior y una base. El programa imprime potencias de la base hasta exceder el límite.",
+        EUS: "Idatzi programa bat goiko muga eta oinarri bat eskatzen dituena. Programak oinarriaren berreturak inprimatzen ditu muga gainditu arte."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestBaseN(unittest.TestCase):\n    def test_limit_100_base_3(self):\n        out = run_student_code(inputs=['100', '3'])\n        self.assertIn(\"1\", out)\n        self.assertIn(\"27\", out)\n        self.assertIn(\"81\", out)\n        self.assertNotIn(\"243\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-06_sum_of_consecutive_numbers',
+      title: {
+        ENG: "Sum of consecutive numbers",
+        CAS: "Suma de números consecutivos",
+        EUS: "Ondoz ondoko zenbakien batuketa"
+      },
+      description: {
+        ENG: "Write a program that asks for a limit. The program calculates the sum of consecutive numbers (1 + 2 + 3...) until the sum is at least the limit.",
+        CAS: "Escribe un programa que pida un límite. El programa calcula la suma de números consecutivos (1 + 2 + 3...) hasta que la suma sea al menos el límite.",
+        EUS: "Idatzi programa bat muga bat eskatzen duena. Programak ondoz ondoko zenbakien batuketa (1 + 2 + 3...) kalkulatzen du batuketa gutxienez muga izan arte."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestSum(unittest.TestCase):\n    def test_18(self):\n        out = run_student_code(inputs=['18'])\n        # 1+2+3+4+5+6 = 21\n        self.assertIn(\"21\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part03-07_sum_of_consecutive_numbers_2',
+      title: {
+        ENG: "Sum of consecutive numbers, version 2",
+        CAS: "Suma de números consecutivos, versión 2",
+        EUS: "Ondoz ondoko zenbakien batuketa, 2. bertsioa"
+      },
+      description: {
+        ENG: "Modify the previous program to also print the calculation: '1 + 2 + 3 + ... = sum'.",
+        CAS: "Modifica el programa anterior para imprimir también el cálculo: '1 + 2 + 3 + ... = suma'.",
+        EUS: "Aldatu aurreko programa kalkulua ere inprimatzeko: '1 + 2 + 3 + ... = batuketa'."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nclass TestSum2(unittest.TestCase):\n    def test_18(self):\n        out = run_student_code(inputs=['18'])\n        self.assertIn(\"1 + 2 + 3 + 4 + 5 + 6 = 21\", out)\n"
+    }
+  ]
+};

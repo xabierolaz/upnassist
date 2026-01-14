@@ -1,0 +1,68 @@
+import { CoursePage } from '../mooc-exercises';
+
+export const section1: CoursePage = {
+  id: "part6-1",
+  title: {
+    ENG: "Reading files",
+    CAS: "Leyendo ficheros",
+    EUS: "Fitxategiak irakurtzen"
+  },
+  blocks: [
+    {
+      type: 'markdown',
+      content: {
+        ENG: "\n# Reading files\n\nYou can read files using the `open` function.\n\n```python\nwith open(\"example.txt\") as new_file:\n    contents = new_file.read()\n    print(contents)\n```\n\nYou can iterate over the lines of a file:\n\n```python\nwith open(\"example.txt\") as new_file:\n    for line in new_file:\n        print(line)\n```\n",
+        CAS: "\n# Leyendo ficheros\n\nPuedes leer ficheros usando la función `open`.\n\n```python\nwith open(\"ejemplo.txt\") as nuevo_fichero:\n    contenido = nuevo_fichero.read()\n    print(contenido)\n```\n\nPuedes iterar sobre las líneas de un fichero:\n\n```python\nwith open(\"ejemplo.txt\") as nuevo_fichero:\n    for linea in nuevo_fichero:\n        print(linea)\n```\n",
+        EUS: "\n# Fitxategiak irakurtzen\n\nFitxategiak irakur ditzakezu `open` funtzioa erabiliz.\n\n```python\nwith open(\"adibidea.txt\") as fitxategi_berria:\n    edukia = fitxategi_berria.read()\n    print(edukia)\n```\n\nFitxategi baten lerroen gainean iteratu dezakezu:\n\n```python\nwith open(\"adibidea.txt\") as fitxategi_berria:\n    for lerroa in fitxategi_berria:\n        print(lerroa)\n```\n"
+      }
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part06-01_largest_number',
+      title: {
+        ENG: "Largest number",
+        CAS: "Número más grande",
+        EUS: "Zenbaki handiena"
+      },
+      description: {
+        ENG: "The file numbers.txt contains integer numbers, one per line. Write a function named largest which reads the file and returns the largest number.",
+        CAS: "El fichero numbers.txt contiene números enteros, uno por línea. Escribe una función llamada largest que lea el fichero y devuelva el número más grande.",
+        EUS: "numbers.txt fitxategiak zenbaki osoak ditu, bat lerro bakoitzean. Idatzi largest izeneko funtzio bat, fitxategia irakurtzen duena eta zenbaki handiena itzultzen duena."
+      },
+      initialCode: "# Write your solution here\ndef largest():\n    pass\n",
+      testCode: "\nimport unittest\nfrom unittest.mock import patch, mock_open\n\nclass TestLargest(unittest.TestCase):\n    def test_run(self):\n        file_content = \"10\\n5\\n20\\n3\"\n        with patch('builtins.open', mock_open(read_data=file_content)):\n            out = run_student_code(code_to_run=\"print(largest())\")\n            self.assertIn(\"20\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part06-02_fruit_market',
+      title: {
+        ENG: "Fruit market",
+        CAS: "Mercado de frutas",
+        EUS: "Fruta azoka"
+      },
+      description: {
+        ENG: "The file fruits.csv contains names and prices of fruits (name;price). Write a function read_fruits which returns a dictionary {name: price Perkenalkan.",
+        CAS: "El fichero fruits.csv contiene nombres y precios de frutas (nombre;precio). Escribe una función read_fruits que devuelva un diccionario {nombre: precio Perkenalkan.",
+        EUS: "fruits.csv fitxategiak fruta izenak eta prezioak ditu (izena;prezioa). Idatzi read_fruits funtzio bat, {izena: prezioa} hiztegia itzultzen duena."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nfrom unittest.mock import patch, mock_open\n\nclass TestFruits(unittest.TestCase):\n    def test_run(self):\n        file_content = \"banana;6.50\\napple;3.95\"\n        with patch('builtins.open', mock_open(read_data=file_content)):\n            out = run_student_code(code_to_run=\"print(read_fruits())\")\n            self.assertIn(\"'banana': 6.5\", out)\n            self.assertIn(\"'apple': 3.95\", out)\n"
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part06-03_matrix',
+      title: {
+        ENG: "Matrix",
+        CAS: "Matriz",
+        EUS: "Matrizea"
+      },
+      description: {
+        ENG: "The file matrix.txt contains a matrix. Write two functions: matrix_sum and matrix_max which read the file and return the sum and max respectively.",
+        CAS: "El fichero matrix.txt contiene una matriz. Escribe dos funciones: matrix_sum y matrix_max que lean el fichero y devuelvan la suma y el máximo.",
+        EUS: "matrix.txt fitxategiak matrize bat du. Idatzi bi funtzio: matrix_sum eta matrix_max, fitxategia irakurtzen dutenak eta batura eta maximoa itzultzen dutenak."
+      },
+      initialCode: "# Write your solution here\n",
+      testCode: "\nimport unittest\nfrom unittest.mock import patch, mock_open\n\nclass TestMatrix(unittest.TestCase):\n    def test_run(self):\n        file_content = \"1,2,3\\n4,5,6\"\n        with patch('builtins.open', mock_open(read_data=file_content)):\n            out = run_student_code(code_to_run=\"print(matrix_sum());print(matrix_max())\")\n            self.assertIn(\"21\", out)\n            self.assertIn(\"6\", out)\n"
+    }
+  ]
+};
