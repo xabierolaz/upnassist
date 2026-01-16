@@ -10,54 +10,112 @@ import re
 # ==========================================
 
 ADVICE_DB = {
-    # Syntax Errors
+    # --- SYNTAX ERRORS ---
     "missing_colon": {
         "pattern": r"expected ':'",
-        "es": "Te falta un signo de dos puntos ':' al final de la línea. Es obligatorio en if, for, while, def, class.",
-        "eu": "Bi puntu ':' falta zaizkizu lerroaren amaieran. Derrigorrezkoa da if, for, while, def eta class erabiltzean."
+        "es": "Te falta un signo de dos puntos ':' al final de la línea (obligatorio en if, for, while, def).",
+        "eu": "Bi puntu ':' falta zaizkizu lerroaren amaieran (derrigorrezkoa if, for, while, def-etan)."
     },
     "unmatched_parenthesis": {
         "pattern": r"unexpected EOF while parsing|was never closed",
-        "es": "Parece que te has dejado un paréntesis '(', corchete '[' o llave '{' sin cerrar.",
-        "eu": "Parentesi '(', kortxete '[' edo giltza '{' bat itxi gabe utzi duzula dirudi."
+        "es": "Te has dejado un paréntesis '(', corchete '[' o llave '{' sin cerrar.",
+        "eu": "Parentesi '(', kortxete '[' edo giltza '{' bat itxi gabe utzi duzu."
     },
     "indentation_error": {
         "pattern": r"unexpected indent|unindent does not match",
-        "es": "Error de indentación. Python es muy estricto: asegúrate de usar siempre espacios (4 es lo estándar) y no mezclarlos con tabuladores.",
-        "eu": "Indentazio errorea. Python oso zorrotza da: ziurtatu beti espazioak erabiltzen dituzula (4 da estandarra) eta ez nahastu tabuladoreekin."
+        "es": "Error de indentación. Asegúrate de usar siempre 4 espacios y no mezclar tabs.",
+        "eu": "Indentazio errorea. Ziurtatu beti 4 espazio erabiltzen dituzula eta ez nahastu tabuladoreekin."
     },
     "assignment_in_condition": {
         "pattern": r"cannot assign to literal",
-        "es": "Quizás intentaste comparar con un solo igual '='. Para comparar usa doble igual '=='.",
-        "eu": "Beharbada '=' bakarrarekin konparatzen saiatu zara. Konparatzeko erabili berdin bikoitza '=='."
+        "es": "Quizás usaste '=' (asignar) en vez de '==' (comparar) en un if/while.",
+        "eu": "Agian '=' (esleitu) erabili duzu '==' (konparatu) ordez if/while batean."
     },
-    
-    # Runtime Errors
-    "name_error": {
-        "es": "Estás usando la variable o función '{name}' que no ha sido definida todavía. ¿Revisaste si está bien escrita?",
-        "eu": "'{name}' aldagaia edo funtzioa erabiltzen ari zara eta ez da definitu oraindik. Ondo idatzita dagoen egiaztatu duzu?"
+    "eol_string": {
+        "pattern": r"EOL while scanning string literal",
+        "es": "No has cerrado unas comillas al final de la línea.",
+        "eu": "Ez dituzu komatxoak itxi lerroaren amaieran."
     },
+
+    # --- TYPE ERRORS ---
     "type_error_math": {
         "pattern": r"unsupported operand type.*str.*int",
-        "es": "Estás intentando operar matemáticamente con texto. Recuerda convertir el input con int() o float().",
-        "eu": "Testuarekin eragiketa matematikoak egiten saiatzen ari zara. Gogoratu input-a bihurtzea int() edo float() erabiliz."
+        "es": "No puedes sumar texto con números. Usa str() o int() para convertir.",
+        "eu": "Ezin dituzu testua eta zenbakiak batu. Erabili str() edo int() bihurtzeko."
     },
-    "index_error": {
-        "es": "Estás intentando acceder a una posición que no existe en la lista. Recuerda que si la lista tiene tamaño N, el último índice es N-1.",
-        "eu": "Zerrendan existitzen ez den posizio batera sartzen saiatzen ari zara. Gogoratu zerrendak N tamaina badu, azken indizea N-1 dela."
+    "not_subscriptable": {
+        "pattern": r"object is not subscriptable",
+        "es": "Intentas usar corchetes [] en algo que no es una lista ni un diccionario (quizás es un número).",
+        "eu": "Kortxeteak [] erabiltzen saiatzen ari zara zerrenda edo hiztegia ez den zerbaitetan (agian zenbaki bat da)."
     },
+    "not_callable": {
+        "pattern": r"object is not callable",
+        "es": "Intentas llamar '()' a una variable que no es una función. (Ej: x=5; x()).",
+        "eu": "Funtzioa ez den aldagai bati deitzen '()' saiatzen ari zara. (Adib: x=5; x())."
+    },
+    "arg_count": {
+        "pattern": r"takes \d+ positional arguments but \d+ were given|missing \d+ required positional argument",
+        "es": "Has llamado a la función con un número incorrecto de argumentos.",
+        "eu": "Funtzioari argumentu kopuru okerrarekin deitu diozu."
+    },
+    "list_indices_must_be_integers": {
+        "pattern": r"list indices must be integers",
+        "es": "Los índices de una lista deben ser números enteros, no texto ni decimales.",
+        "eu": "Zerrenda baten indizeek zenbaki osoak izan behar dute, ez testua ezta hamartarrak ere."
+    },
+
+    # --- VALUE ERRORS ---
+    "value_error_int": {
+        "pattern": r"invalid literal for int\(\)",
+        "es": "Intentas convertir a número (int) un texto que no es un número válido.",
+        "eu": "Zenbaki baliozkoa ez den testu bat zenbaki (int) bihurtzen saiatzen ari zara."
+    },
+    "unpacking_error": {
+        "pattern": r"not enough values to unpack|too many values to unpack",
+        "es": "Intentas asignar una lista a variables individuales pero el número de elementos no coincide.",
+        "eu": "Zerrenda bat aldagai indibidualei esleitzen saiatzen ari zara baina elementu kopurua ez dator bat."
+    },
+    "substring_not_found": {
+        "pattern": r"substring not found",
+        "es": "Intentas buscar (index/find) un texto que no existe en la cadena.",
+        "eu": "Katean existitzen ez den testu bat bilatzen (index/find) saiatzen ari zara."
+    },
+
+    # --- ATTRIBUTE/KEY/INDEX ERRORS ---
     "attribute_error_none": {
         "pattern": r"'NoneType' object has no attribute",
-        "es": "Tu variable está vacía (es None) y intentas usar un método sobre ella. Causa común: una función que no tiene 'return' devuelve None por defecto.",
-        "eu": "Zure aldagaia hutsik dago (None da) eta metodo bat erabiltzen saiatzen ari zara. Kausa ohikoa: 'return' ez duen funtzio batek None itzultzen du lehenetsita."
+        "es": "Tu variable es 'None' (vacía). Posiblemente una función anterior no devolvió nada (return).",
+        "eu": "Zure aldagaia 'None' (hutsik) da. Litekeena da aurreko funtzio batek ezer ez itzultzea (return)."
+    },
+    "index_error": {
+        "es": "Estás accediendo a una posición fuera de la lista. Recuerda: índices van de 0 a Longitud-1.",
+        "eu": "Zerrendatik kanpoko posizio batera sartzen ari zara. Gogoratu: indizeak 0-tik Luzera-1-era doaz."
     },
     "key_error": {
-        "es": "La clave '{key}' no existe en el diccionario. Usa 'if key in dic:' o '.get()' para evitar este error.",
-        "eu": "'{key}' gakoa ez da existitzen hiztegian. Erabili 'if key in dic:' edo '.get()' errore hau saihesteko."
+        "es": "Esa clave no existe en el diccionario.",
+        "eu": "Gako hori ez da existitzen hiztegian."
+    },
+    
+    # --- OTHER ERRORS ---
+    "zero_division": {
+        "es": "División por cero. Matemáticamente imposible.",
+        "eu": "Zatuketa zeroz. Matematikoki ezinezkoa."
+    },
+    "module_not_found": {
+        "es": "El módulo que intentas importar no existe.",
+        "eu": "Inportatzen saiatzen ari zaren modulua ez da existitzen."
+    },
+    "eof_error": {
+        "es": "El programa pidió más 'input()' de los que había disponibles. Revisa tus bucles.",
+        "eu": "Programak zeudenak baino 'input()' gehiago eskatu ditu. Berrikusi zure begiztak."
+    },
+    "unbound_local": {
+        "es": "Usas una variable antes de asignarle valor (probablemente dentro de una función).",
+        "eu": "Aldagai bat balioa esleitu aurretik erabiltzen ari zara (ziurrenik funtzio baten barruan)."
     },
     "recursion_error": {
-        "es": "Has caído en una recursión infinita. Revisa tu 'caso base' (la condición que detiene la recursión).",
-        "eu": "Errekurtsio infinitu batean erori zara. Berrikusi zure 'oinarri kasua' (errekurtsioa gelditzen duen baldintza)."
+        "es": "Recursión infinita. Revisa el caso base de tu función recursiva.",
+        "eu": "Errekurtsio infinitua. Berrikusi zure funtzio errekurtsiboaren oinarri kasua."
     }
 }
 
@@ -81,28 +139,31 @@ class ExpertLinter(ast.NodeVisitor):
         self.stats["functions"] += 1
         self.defined_funcs.add(node.name)
         
-        # Check 1: Mutable Default Arguments (Anti-pattern mortal)
+        # Check 1: Mutable Default Arguments
         for arg in node.args.defaults:
             if isinstance(arg, (ast.List, ast.Dict, ast.Set)):
                 self.mutable_defaults.append(node.name)
                 
-        # Check 2: Missing Return detection logic
+        # Check 2: Missing Return detection logic (improved)
         has_return = any(isinstance(n, ast.Return) for n in ast.walk(node))
-        has_print = any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == 'print' for n in ast.walk(node))
+        # Simple detection of print usage inside function
+        has_print = False
+        for n in ast.walk(node):
+            if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == 'print':
+                has_print = True
         
-        if not has_return and has_print and node.name != 'main':
-             # Heuristic: if it prints but doesn't return, and isn't 'main', it's suspicious for exercises expecting return values
+        if not has_return and has_print and node.name != 'main' and not node.name.startswith('test'):
              self.warnings.append({
                  "code": "print_no_return",
-                 "msg_es": f"La función '{node.name}' imprime pero no devuelve nada (return). Los tests suelen fallar por esto.",
-                 "msg_eu": f"'{node.name}' funtzioak inprimatu egiten du baina ez du ezer itzultzen (return). Testek askotan huts egiten dute horregatik."
+                 "msg_es": f"La función '{node.name}' imprime pero no devuelve nada (return). ¿Seguro que es lo que pide el ejercicio?",
+                 "msg_eu": f"'{node.name}' funtzioak inprimatu egiten du baina ez du ezer itzultzen (return). Ziur ariketak hori eskatzen duela?"
              })
              
         self.generic_visit(node)
 
     def visit_Assign(self, node):
-        # Check 3: Variable Shadowing (Builtins)
-        forbidden = ['list', 'dict', 'str', 'int', 'sum', 'min', 'max', 'type', 'input', 'len']
+        # Check 3: Variable Shadowing
+        forbidden = ['list', 'dict', 'str', 'int', 'sum', 'min', 'max', 'type', 'input', 'len', 'range']
         for target in node.targets:
             if isinstance(target, ast.Name):
                 if target.id in forbidden:
@@ -110,7 +171,7 @@ class ExpertLinter(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_Global(self, node):
-        # Check 4: Global keywords usage
+        # Check 4: Global keywords
         self.global_usage.extend(node.names)
         self.generic_visit(node)
 
@@ -122,13 +183,12 @@ class ExpertLinter(ast.NodeVisitor):
         self.stats["loops"] += 1
         # Check 5: While True simple check
         if isinstance(node.test, ast.Constant) and node.test.value == True:
-            # Look for break
             has_break = any(isinstance(n, ast.Break) for n in ast.walk(node))
             if not has_break:
                 self.warnings.append({
                     "code": "infinite_loop",
-                    "msg_es": "Tienes un 'while True' sin 'break'. Esto causará un bucle infinito.",
-                    "msg_eu": "'while True' bat daukazu 'break' gabe. Honek begizta infinitu bat sortuko du."
+                    "msg_es": "Tienes un 'while True' sin 'break'. Bucle infinito detectado.",
+                    "msg_eu": "'while True' bat daukazu 'break' gabe. Begizta infinitua atzeman da."
                 })
         self.generic_visit(node)
 
@@ -145,21 +205,20 @@ class ExpertLinter(ast.NodeVisitor):
             tree = ast.parse(code)
             self.visit(tree)
             
-            # Post-analysis processing
             if self.shadowed_builtins:
-                names = ", ".join(self.shadowed_builtins)
+                names = ", ".join(set(self.shadowed_builtins))
                 self.warnings.append({
                     "code": "shadowing",
-                    "msg_es": f"¡Peligro! Has llamado a tus variables: {names}. Estos son nombres reservados de Python. Cámbialos (ej: 'lista' en vez de 'list').",
-                    "msg_eu": f"Arriskua! Zure aldagaiei izen hauek eman dizkiezu: {names}. Hauek Pythonen izen erreserbatuak dira. Alda itzazu (adib: 'zerrenda' 'list' ordez)."
+                    "msg_es": f"Has usado nombres reservados de Python como variable: {names}. Esto romperá tu código.",
+                    "msg_eu": f"Pythonen izen erreserbatuak erabili dituzu aldagai gisa: {names}. Honek zure kodea hautsiko du."
                 })
             
             if self.mutable_defaults:
-                funcs = ", ".join(self.mutable_defaults)
+                funcs = ", ".join(set(self.mutable_defaults))
                 self.warnings.append({
                     "code": "mutable_default",
-                    "msg_es": f"En '{funcs}': Usar listas/diccionarios vacíos como valor por defecto en argumentos causa errores graves de memoria persistente.",
-                    "msg_eu": f"'{funcs}'-en: Zerrenda/hiztegi hutsak balio lehenetsi gisa erabiltzeak memoria errore larriak eragiten ditu."
+                    "msg_es": f"En '{funcs}': No uses listas/diccionarios vacíos como argumento por defecto.",
+                    "msg_eu": f"'{funcs}'-en: Ez erabili zerrenda/hiztegi hutsak argumentu lehenetsi gisa."
                 })
                 
             return {"stats": self.stats, "warnings": self.warnings}
@@ -167,6 +226,7 @@ class ExpertLinter(ast.NodeVisitor):
         except SyntaxError as e:
             return {"error": "syntax", "details": str(e), "line": e.lineno, "offset": e.offset}
         except Exception as e:
+            # Fallback for internal linter errors
             return {"error": "internal", "details": str(e)}
 
 # ==========================================
@@ -181,59 +241,70 @@ def humanize_runtime_error(exc_type, exc_value, tb):
     error_msg = str(exc_value)
     exc_name = exc_type.__name__
     
-    advice_es = "Ha ocurrido un error inesperado. Revisa la línea indicada."
-    advice_eu = "Espero gabeko errorea gertatu da. Berrikusi adierazitako lerroa."
+    # Generic Fallback - But translated!
+    advice_es = f"Error del tipo {exc_name}. Revisa el mensaje original."
+    advice_eu = f"{exc_name} motako errorea. Berrikusi jatorrizko mezua."
     
-    # 1. Match specific regex patterns from DB
+    # 1. Match specific regex patterns from DB (Priority)
     found_match = False
     
-    # Check syntax specific messages first if it's syntax error
-    if exc_name == "SyntaxError":
-        for key, info in ADVICE_DB.items():
-            if "pattern" in info and re.search(info["pattern"], error_msg):
-                advice_es = info["es"]
-                advice_eu = info["eu"]
-                found_match = True
-                break
-    
-    # Check Type/Value/Index errors
+    for key, info in ADVICE_DB.items():
+        if "pattern" in info and re.search(info["pattern"], error_msg, re.IGNORECASE):
+            advice_es = info["es"]
+            advice_eu = info["eu"]
+            found_match = True
+            break
+            
+    # 2. Check Exception Names if no regex match found
     if not found_match:
         if exc_name == "NameError":
-            # Extract name from message "name 'x' is not defined"
             match = re.search(r"name '(.+?)' is not defined", error_msg)
-            if match:
-                var_name = match.group(1)
-                advice_es = ADVICE_DB["name_error"]["es"].format(name=var_name)
-                advice_eu = ADVICE_DB["name_error"]["eu"].format(name=var_name)
+            var_name = match.group(1) if match else "variable"
+            advice_es = f"No existe la variable '{var_name}'. ¿Error al escribir?"
+            advice_eu = f"Ez da existitzen '{var_name}' aldagaia. Idaztean errorea?"
+        
         elif exc_name == "IndexError":
             advice_es = ADVICE_DB["index_error"]["es"]
             advice_eu = ADVICE_DB["index_error"]["eu"]
+            
         elif exc_name == "KeyError":
             match = re.search(r"'(.*?)'", error_msg)
-            key = match.group(1) if match else "?"
-            advice_es = ADVICE_DB["key_error"]["es"].format(key=key)
-            advice_eu = ADVICE_DB["key_error"]["eu"].format(key=key)
-        elif exc_name == "RecursionError":
-            advice_es = ADVICE_DB["recursion_error"]["es"]
-            advice_eu = ADVICE_DB["recursion_error"]["eu"]
-        elif exc_name == "AttributeError" and "NoneType" in error_msg:
-            advice_es = ADVICE_DB["attribute_error_none"]["es"]
-            advice_eu = ADVICE_DB["attribute_error_none"]["eu"]
-        elif exc_name == "TypeError" and re.search(r"unsupported operand type", error_msg):
-             advice_es = ADVICE_DB["type_error_math"]["es"]
-             advice_eu = ADVICE_DB["type_error_math"]["eu"]
+            key = match.group(1) if match else "clave"
+            advice_es = ADVICE_DB["key_error"]["es"] + f" Clave: {key}"
+            advice_eu = ADVICE_DB["key_error"]["eu"] + f" Gakoa: {key}"
+            
+        elif exc_name == "ZeroDivisionError":
+             advice_es = ADVICE_DB["zero_division"]["es"]
+             advice_eu = ADVICE_DB["zero_division"]["eu"]
+
+        elif exc_name == "ModuleNotFoundError" or exc_name == "ImportError":
+             advice_es = ADVICE_DB["module_not_found"]["es"]
+             advice_eu = ADVICE_DB["module_not_found"]["eu"]
+
+        elif exc_name == "EOFError":
+             advice_es = ADVICE_DB["eof_error"]["es"]
+             advice_eu = ADVICE_DB["eof_error"]["eu"]
              
-    # Default indentation handling
-    if "IndentationError" in exc_name:
-         advice_es = ADVICE_DB["indentation_error"]["es"]
-         advice_eu = ADVICE_DB["indentation_error"]["eu"]
+        elif exc_name == "UnboundLocalError":
+             advice_es = ADVICE_DB["unbound_local"]["es"]
+             advice_eu = ADVICE_DB["unbound_local"]["eu"]
+             
+        elif exc_name == "RecursionError":
+             advice_es = ADVICE_DB["recursion_error"]["es"]
+             advice_eu = ADVICE_DB["recursion_error"]["eu"]
+             
+        elif exc_name == "AttributeError" and "NoneType" in error_msg:
+             advice_es = ADVICE_DB["attribute_error_none"]["es"]
+             advice_eu = ADVICE_DB["attribute_error_none"]["eu"]
+             
+        elif exc_name == "IndentationError":
+             advice_es = ADVICE_DB["indentation_error"]["es"]
+             advice_eu = ADVICE_DB["indentation_error"]["eu"]
 
     line_no = None
     if tb:
-        # Extract the last line from the student code (not the test runner)
-        # We walk the traceback stack
         for frame in traceback.extract_tb(tb):
-            if "<string>" in frame.filename: # Standard way exec() runs strings
+            if "<string>" in frame.filename:
                 line_no = frame.lineno
 
     return {
