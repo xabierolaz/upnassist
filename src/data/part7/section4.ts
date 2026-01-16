@@ -37,9 +37,9 @@ json
 ```python
 import json
 
-data = \`[{\"name\": \"Python\", \"year\": 1991}]
+data = `[{"name": "Python", "year": 1991}]`
 parsed = json.loads(data)
-print(parsed[0][\"name\"])
+print(parsed[0]["name"])
 ```
 `,
         CAS: `
@@ -68,9 +68,9 @@ json
 ```python
 import json
 
-datos = \`[{\"nombre\": \"Python\", \"año\": 1991}]
+datos = `[{"nombre": "Python", "año": 1991}]`
 procesado = json.loads(datos)
-print(procesado[0][\"nombre\"])
+print(procesado[0]["nombre"])
 ```
 `,
         EUS: `
@@ -99,9 +99,9 @@ json
 ```python
 import json
 
-datuak = \`[{\"izena\": \"Python\", \"urtea\": 1991}]
+datuak = `[{"izena": "Python", "urtea": 1991}]`
 prozesatua = json.loads(datuak)
-print(prozesatua[0][\"izena\"])
+print(prozesatua[0]["izena"])
 ```
 `
       }
@@ -132,7 +132,7 @@ from unittest.mock import patch, mock_open
 
 class TestJson(unittest.TestCase):
     def test_run(self):
-        json_data = '[{\"name\": \"Peter\", \"age\": 20, \"hobbies\": [\"football\"]}]'
+        json_data = '[{"name": "Peter", "age": 20, "hobbies": ["football"]}]'
         with patch('builtins.open', mock_open(read_data=json_data)):
             # We assume student calls print_persons if running main, or we rely on import.
             # In this runner: verify output if called.
