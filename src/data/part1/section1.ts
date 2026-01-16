@@ -38,15 +38,15 @@ export const section1: CoursePage = {
     },
     {
       type: 'exercise',
-      exerciseId: 'part01-02_seven_brothers',
-      title: { ENG: "Fix the code: Seven Cities", CAS: "Corrige el código: Siete Ciudades", EUS: "Konpondu kodea: Zazpi Hiri" },
+      exerciseId: 'part01-02_pilgrim_route',
+      title: { ENG: "The Pilgrim's Route", CAS: "La Ruta del Peregrino", EUS: "Erromesaren Bidea" },
       description: {
-        ENG: "This program is supposed to print out the names of seven cities in alphabetical order, but it's not working quite right yet. Please fix the program.",
-        CAS: "Este programa debería imprimir los nombres de siete ciudades en orden alfabético, pero no funciona bien todavía. Por favor, corrígelo.",
-        EUS: "Programa honek zazpi hiriren izenak ordena alfabetikoan inprimatu beharko lituzke, baina oraindik ez dabil ondo. Mesedez konpondu programa."
+        ENG: "A pilgrim on the Way of St. James (Camino de Santiago) has mixed up their journal entries. Please write a program that prints these stops on the French Way (Navarra/Rioja) in alphabetical order:\nEstella, Logroño, Los Arcos, Pamplona, Puente la Reina, Roncesvalles, Zubiri.",
+        CAS: "Un peregrino del Camino de Santiago ha mezclado las entradas de su diario. Escribe un programa que imprima estas paradas del Camino Francés (Navarra/Rioja) en orden alfabético:\nEstella, Logroño, Los Arcos, Pamplona, Puente la Reina, Roncesvalles, Zubiri.",
+        EUS: "Donejakue Bideko erromes batek bere eguneroko sarrerak nahastu ditu. Idatzi programa bat Bide Frantseseko (Nafarroa/Errioxa) geldialdi hauek ordena alfabetikoan inprimatzen dituena:\nEstella, Logroño, Los Arcos, Pamplona, Puente la Reina, Roncesvalles, Zubiri."
       },
-      initialCode: `print("Pamplona")\nprint("Valencia")\nprint("Zaragoza")\nprint("Barcelona")\nprint("Sevilla")\nprint("Bilbao")\nprint("Madrid")`,
-      testCode: `import unittest\n\nclass TestSevenBrothers(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code().strip().split('\\n')\n        expected = ["Barcelona", "Bilbao", "Madrid", "Pamplona", "Sevilla", "Valencia", "Zaragoza"]\n        # Filter empty lines just in case\n        output = [line for line in output if line.strip()]\n        \n        if len(output) != 7:\n             self.fail(tr(f"Expected 7 names, but found {len(output)}. Make sure to print all of them.", f"Se esperaban 7 nombres, pero se encontraron {len(output)}. Asegúrate de imprimir todos.", f"7 izen espero ziren, baina {len(output)} aurkitu dira. Ziurtatu denak inprimatzen dituzula."))\n\n        for i in range(7):\n            if output[i].strip() != expected[i]:\n                self.fail(tr(f"The order is incorrect. Line {i+1} should be {expected[i]}, but is {output[i]}.", f"El orden es incorrecto. En la línea {i+1} debería estar {expected[i]}, pero está {output[i]}.", f"Ordena okerra da. {i+1}. lerroan {expected[i]} egon beharko litzateke, baina {output[i]} dago."))\n`
+      initialCode: `print("Pamplona")\nprint("Roncesvalles")\nprint("Logroño")\nprint("Estella")\nprint("Zubiri")\nprint("Puente la Reina")\nprint("Los Arcos")`,
+      testCode: `import unittest\n\nclass TestPilgrim(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code().strip().split('\\n')\n        expected = ["Estella", "Logroño", "Los Arcos", "Pamplona", "Puente la Reina", "Roncesvalles", "Zubiri"]\n        # Filter empty lines\n        output = [line for line in output if line.strip()]\n        \n        if len(output) != 7:\n             self.fail(tr(f"Expected 7 stops, but found {len(output)}.", f"Se esperaban 7 paradas, pero se encontraron {len(output)}.", f"7 geldialdi espero ziren, baina {len(output)} aurkitu dira."))\n\n        for i in range(7):\n            if output[i].strip() != expected[i]:\n                self.fail(tr(f"Order incorrect. Stop {i+1} should be {expected[i]}.", f"Orden incorrecto. La parada {i+1} debería ser {expected[i]}.", f"Ordena okerra. {i+1}. geldialdia {expected[i]} izan beharko litzateke."))\n`
     },
     {
       type: 'exercise',
