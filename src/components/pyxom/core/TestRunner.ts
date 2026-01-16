@@ -17,7 +17,11 @@ export interface TestSuiteResult {
   total: number;
   results: TestCaseResult[];
   score: number;
-  astStats?: any;
+  analysis?: {
+      stats: any;
+      warnings: Array<{code: string, msg_es: string, msg_eu: string}>;
+      error?: string;
+  };
 }
 
 export class TestRunner {
@@ -41,7 +45,7 @@ import sys
 import traceback
 from unittest.mock import patch
 
-# 0. CARGAR MOTOR DE ANÁLISIS
+# 0. CARGAR MOTOR EXPERTO
 ${ANALYSIS_ENGINE_PY}
 
 # CONFIG
@@ -52,25 +56,24 @@ def tr(eng, cas, eus):
     if CURRENT_LANG == 'EUS': return eus
     return cas
 
-# 1. ANÁLISIS ESTÁTICO PRELIMINAR
+# 1. ANÁLISIS ESTÁTICO (LINTER)
 STUDENT_CODE = """${safeStudentCode}"""
-ast_stats = analyze_student_code(STUDENT_CODE)
-syntax_error = None
+analysis_result = analyze_code_expert(STUDENT_CODE)
 
-if "error" in ast_stats:
-    syntax_error = ast_stats
+syntax_error = None
+if "error" in analysis_result and analysis_result["error"] == "syntax":
+    syntax_error = analysis_result
 
 # 2. DEFINIR HELPER RUNNER
 def run_student_code(inputs=None):
     if inputs is None: inputs = []
     captured_output = io.StringIO()
-    student_env = globals().copy() # Usar globals para que las clases definidas sean visibles
+    student_env = globals().copy() 
     
     with patch('builtins.input', side_effect=inputs):
         with patch('sys.stdout', new=captured_output):
             try:
                 exec(STUDENT_CODE, student_env)
-                # Exportar variables creadas al entorno global para los tests
                 globals().update(student_env)
             except StopIteration:
                 pass
@@ -85,20 +88,29 @@ passed = 0
 total = 0
 
 if syntax_error:
-    # Si hay error de sintaxis, no corremos tests, fallamos directo
-    info = humanize_error(SyntaxError, syntax_error["details"], None)
+    # Humanizar Error de Sintaxis
+    err_msg = syntax_error["details"]
+    advice_es = ADVICE_DB["missing_colon"]["es"] if "expected ':'" in err_msg else "Revisa la sintaxis."
+    advice_eu = ADVICE_DB["missing_colon"]["eu"] if "expected ':'" in err_msg else "Berrikusi sintaxia."
+    
+    # Check dictionary patterns
+    for k, v in ADVICE_DB.items():
+        if "pattern" in v and re.search(v["pattern"], err_msg):
+            advice_es = v["es"]
+            advice_eu = v["eu"]
+            break
+
     test_results.append({
         "name": "Syntax Check",
         "status": "error",
-        "message": info["message"],
-        "advice": info["advice"]
+        "message": f"Error en línea {syntax_error.get('line', '?')}: {err_msg}",
+        "advice": advice_eu if CURRENT_LANG == 'EUS' else advice_es
     })
 else:
     # Cargar tests dinámicos
     try:
         exec("""${safeTestCode}""", globals())
         
-        # Ejecutar suite
         suite = unittest.TestLoader().loadTestsFromModule(sys.modules[__name__])
         
         class JSONTestResult(unittest.TestResult):
@@ -125,14 +137,18 @@ else:
 
             def addError(self, test, err):
                 super().addError(test, err)
-                # Usar el humanizador
                 exc_type, exc_value, exc_tb = err
-                info = humanize_error(exc_type, exc_value, exc_tb)
+                
+                # USAR EL HUMANIZADOR EXPERTO
+                info = humanize_runtime_error(exc_type, exc_value, exc_tb)
+                
+                advice = info["advice_eu"] if CURRENT_LANG == 'EUS' else info["advice_es"]
+                
                 self.results_data.append({
                     "name": test.shortDescription() or test._testMethodName,
                     "status": "error",
-                    "message": info["message"],
-                    "advice": info["advice"]
+                    "message": f"{info['type']}: {info['message']}",
+                    "advice": advice
                 })
 
         runner_result = JSONTestResult()
@@ -144,7 +160,6 @@ else:
         score = (passed / total * 100) if total > 0 else 0
         
     except Exception as e:
-        # Error al cargar los tests (no culpa del alumno, o sí si definió mal clases)
         test_results.append({
             "name": "Test Loader",
             "status": "error",
@@ -157,7 +172,7 @@ output_json = {
     "total": total,
     "results": test_results,
     "score": score,
-    "astStats": ast_stats
+    "analysis": analysis_result
 }
 print(json.dumps(output_json))
 `;
