@@ -5,160 +5,48 @@ export const section2: CoursePage = {
   title: {
     ENG: "Access modifiers",
     CAS: "Modificadores de acceso",
-    EUS: "Sarbide-aldatzaileak"
+    EUS: "Atzipen-aldatzaileak"
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
-# Access modifiers
-
-In Python, access modifiers control the visibility of class members.
-
-- **Public**: Accessible from anywhere (default).
-- **Protected** (\`_name\`): Accessible within the class and its subclasses (convention).
-- **Private** (\`__name\`): Accessible only within the class itself.
-
-\`\`\`python
-class Base:
-    def __init__(self):
-        self.public = "Public"
-        self._protected = "Protected"
-        self.__private = "Private"
-
-class Derived(Base):
-    def test(self):
-        print(self.public)      # OK
-        print(self._protected)  # OK
-        # print(self.__private) # Error
-\`\`\`
-`,
-        CAS: `
-# Modificadores de acceso
-
-En Python, los modificadores de acceso controlan la visibilidad de los miembros de la clase.
-
-- **Público**: Accesible desde cualquier lugar (por defecto).
-- **Protegido** (\`_nombre\`): Accesible dentro de la clase y sus subclases (convención).
-- **Privado** (\`__nombre\`): Accesible solo dentro de la propia clase.
-
-\`\`\`python
-class Base:
-    def __init__(self):
-        self.publico = "Público"
-        self._protegido = "Protegido"
-        self.__privado = "Privado"
-
-class Derivada(Base):
-    def test(self):
-        print(self.publico)      # OK
-        print(self._protegido)   # OK
-        # print(self.__privado)  # Error
-\`\`\`
-`,
-        EUS: `
-# Sarbide-aldatzaileak
-
-Python-en, sarbide-aldatzaileek klaseko kideen ikusgarritasuna kontrolatzen dute.
-
-- **Publikoa**: Edonondik eskuragarri (lehenetsia).
-- **Babestua** (\`_izena\`): Klasearen barruan eta bere azpiklaseetan eskuragarri (hitzarmena).
-- **Pribatua** (\`__izena\`): Klasearen barruan bakarrik eskuragarri.
-
-\`\`\`python
-class Oinarria:
-    def __init__(self):
-        self.publikoa = "Publikoa"
-        self._babestua = "Babestua"
-        self.__pribatua = "Pribatua"
-
-class Eratorria(Oinarria):
-    def test(self):
-        print(self.publikoa)      # OK
-        print(self._babestua)     # OK
-        # print(self.__pribatua)  # Errorea
-\`\`\`
-`
+        ENG: "\n# Access modifiers\n\nIn Python, there are no strict access modifiers like `private` or `protected`. However, conventions exist:\n\n- `_variable`: Protected (intended for internal use and subclasses).\n- `__variable`: Private (name mangling applied, harder to access).\n\n\`\`\`python\nclass A:\n    def __init__(self):\n        self._protected = 1\n        self.__private = 2\n\nclass B(A):\n    def test(self):\n        print(self._protected) # OK\n        # print(self.__private) # Error\n\`\`\`\n",
+        CAS: "\n# Modificadores de acceso\n\nEn Python, no hay modificadores estrictos como `private` o `protected`. Sin embargo, existen convenciones:\n\n- `_variable`: Protegido (uso interno y subclases).\n- `__variable`: Privado (difícil de acceder).\n\n\`\`\`python\nclass A:\n    def __init__(self):\n        self._protected = 1\n        self.__private = 2\n\nclass B(A):\n    def test(self):\n        print(self._protected) # OK\n        # print(self.__private) # Error\n\`\`\`\n",
+        EUS: "\n# Atzipen-aldatzaileak\n\nPython-en, ez dago `private` edo `protected` bezalako aldatzaile zorrotzik. Hala ere, konbentzioak daude:\n\n- `_aldagaia`: Babestua (barne erabilerarako eta azpiklaseetarako).\n- `__aldagaia`: Pribatua (zaila atzitzeko).\n\n\`\`\`python\nclass A:\n    def __init__(self):\n        self._protected = 1\n        self.__private = 2\n\nclass B(A):\n    def test(self):\n        print(self._protected) # OK\n        # print(self.__private) # Errorea\n\`\`\`\n"
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part10-04_word_game',
+      exerciseId: 'part10-05_supergroup',
       title: {
-        ENG: "Word game",
-        CAS: "Juego de palabras",
-        EUS: "Hitz-jokoa"
+        ENG: "Supergroup",
+        CAS: "Supergrupo",
+        EUS: "Supertaldea"
       },
       description: {
-        ENG: "Class WordGame is provided. Create subclasses LongestWord, MostVowels, and RockPaperScissors. Override play_round.",
-        CAS: "Clase WordGame dada. Crea subclases LongestWord, MostVowels y RockPaperScissors. Sobrescribe play_round.",
-        EUS: "WordGame klasea ematen da. Sortu azpiklaseak LongestWord, MostVowels eta RockPaperScissors. Gainidatzi play_round."
+        ENG: "Class `SuperHero` is provided. Create `SuperGroup` with protected attributes `_name`, `_location`, `_members`. Add methods `add_member` and `print_group`.",
+        CAS: "Se da `SuperHero`. Crea `SuperGroup` con atributos protegidos. Métodos `add_member` y `print_group`.",
+        EUS: "`SuperHero` ematen da. Sortu `SuperGroup` atributu babestuekin. `add_member` eta `print_group` metodoak."
       },
-      initialCode: `import random
-
-class WordGame:
-    def __init__(self, rounds: int):
-        self.wins1 = 0
-        self.wins2 = 0
-        self.rounds = rounds
-
-    def round_winner(self, player1_word: str, player2_word: str):
-        # draw
-        return 0
-
-    def play(self):
-        print("Word game:")
-        for i in range(1, self.rounds+1):
-            print(f"round {i}")
-            answer1 = input("player1: ")
-            answer2 = input("player2: ")
-
-            if self.round_winner(answer1, answer2) == 1:
-                self.wins1 += 1
-                print("player 1 won")
-            elif self.round_winner(answer1, answer2) == 2:
-                self.wins2 += 1
-                print("player 2 won")
-            else:
-                pass # draw
-
-        print("game over, wins:")
-        print(f"player 1: {self.wins1}")
-        print(f"player 2: {self.wins2}")
-
-class LongestWord(WordGame):
-    def __init__(self, rounds: int):
-        super().__init__(rounds)
-
-    def round_winner(self, player1_word: str, player2_word: str):
-        # your code here
-        return 0
-
-class MostVowels(WordGame):
-    def __init__(self, rounds: int):
-        super().__init__(rounds)
-
-    def round_winner(self, player1_word: str, player2_word: str):
-        # your code here
-        return 0
-
-class RockPaperScissors(WordGame):
-    def __init__(self, rounds: int):
-        super().__init__(rounds)
-
-    def round_winner(self, player1_word: str, player2_word: str):
-        # your code here
-        return 0
-`,
-      testCode: `
-import unittest
-class TestWordGame(unittest.TestCase):
-    def test_longest(self):
-        g = LongestWord(1)
-        self.assertEqual(g.round_winner("long", "short"), 1)
-        self.assertEqual(g.round_winner("a", "bb"), 2)
-`
+      initialCode: "class SuperHero:\n    def __init__(self, name: str, superpowers: str):\n        self.name = name\n        self.superpowers = superpowers\n\n    def __str__(self):\n        return f'{self.name}, superpowers: {self.superpowers}'\n\n# Write your solution here\n",
+      testCode: `\nimport unittest\nclass TestSupergroup(unittest.TestCase):\n    def test_run(self):\n        pass\n`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part10-06_secret_magic_potion',
+      title: {
+        ENG: "Secret magic potion",
+        CAS: "Poción mágica secreta",
+        EUS: "Edabe magiko sekretua"
+      },
+      description: {
+        ENG: "Inherit from `MagicPotion`. `SecretMagicPotion` should require a password to add ingredients or print the recipe. Password is stored in protected attribute.",
+        CAS: "Hereda de `MagicPotion`. `SecretMagicPotion` requiere contraseña para añadir ingredientes o imprimir. Contraseña protegida.",
+        EUS: "Heredatu `MagicPotion`-etik. `SecretMagicPotion`-ek pasahitza behar du osagaiak gehitzeko edo inprimatzeko. Pasahitz babestua."
+      },
+      initialCode: "class MagicPotion:\n    def __init__(self, name: str):\n        self._name = name\n        self._ingredients = []\n\n    def add_ingredient(self, ingredient: str, amount: float):\n        self._ingredients.append((ingredient, amount))\n\n    def print_recipe(self):\n        print(self._name + \":\")\n        for ingredient in self._ingredients:\n            print(f\"{ingredient[0]} {ingredient[1]} grams\")\n\n# Write your solution here\n",
+      testCode: `\nimport unittest\nclass TestMagicPotion(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

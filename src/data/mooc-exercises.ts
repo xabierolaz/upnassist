@@ -13,14 +13,28 @@ export interface Exercise {
   testCode: string;
 }
 
+export interface QuizOption {
+  id: string;
+  text: LocalizedString;
+  isCorrect: boolean;
+  feedback?: LocalizedString;
+}
+
+export interface QuizQuestion {
+  id: string;
+  prompt: LocalizedString;
+  options: QuizOption[];
+}
+
 export interface ContentBlock {
-  type: 'markdown' | 'exercise';
+  type: 'markdown' | 'exercise' | 'quiz';
   content?: LocalizedString;
   exerciseId?: string;
   title?: LocalizedString;
   description?: LocalizedString;
   initialCode?: string;
   testCode?: string;
+  questions?: QuizQuestion[];
 }
 
 export interface CoursePage {
@@ -104,6 +118,8 @@ export const courseStructure = [
   { id: "part12-2", title: { ENG: "Generators", CAS: "Generadores", EUS: "Sorgailuak" } },
   { id: "part12-3", title: { ENG: "Functional programming", CAS: "Programación funcional", EUS: "Programazio funtzionala" } },
   { id: "part12-4", title: { ENG: "Regular expressions", CAS: "Expresiones regulares", EUS: "Adierazpen erregularrak" } },
+  { id: "part12-5", title: { ENG: "Regular expressions (Part 2)", CAS: "Expresiones regulares (Parte 2)", EUS: "Adierazpen erregularrak (2. zatia)" } },
+  { id: "part12-6", title: { ENG: "Application development", CAS: "Desarrollo de aplicaciones", EUS: "Aplikazioen garapena" } },
   // Part 13
   { id: "part13-1", title: { ENG: "Pygame", CAS: "Pygame", EUS: "Pygame" } },
   { id: "part13-2", title: { ENG: "Animation", CAS: "Animación", EUS: "Animazioa" } },
@@ -186,6 +202,8 @@ export const loadSection = async (id: string): Promise<CoursePage | null> => {
       case 'part12-2': return (await import('./part12/section2')).section2;
       case 'part12-3': return (await import('./part12/section3')).section3;
       case 'part12-4': return (await import('./part12/section4')).section4;
+      case 'part12-5': return (await import('./part12/section5')).section5;
+      case 'part12-6': return (await import('./part12/section6')).section6;
 
       case 'part13-1': return (await import('./part13/section1')).section1;
       case 'part13-2': return (await import('./part13/section2')).section2;

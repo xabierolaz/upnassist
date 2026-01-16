@@ -14,68 +14,61 @@ export const section3: CoursePage = {
         ENG: `
 # Finishing the game
 
-We add a move counter, win condition, and controls to restart/exit.
+To complete the game, you need to:
+1.  Check for victory (all boxes on targets).
+2.  Add a move counter.
+3.  Add a reset button.
 
-## Checking if solved
+## Victory condition
 
-\`\`\`python
-def game_solved(self):
-    for y in range(self.height):
-        for x in range(self.width):
-            if self.map[y][x] in [2, 6]: # Empty target or robot on target
-                return False
-    return True
-\`\`\`
+Iterate through all boxes and check if they are on a target square.
 `,
         CAS: `
 # Terminando el juego
 
-Añadimos contador de movimientos, condición de victoria y controles.
+Para completar el juego, necesitas:
+1.  Verificar la victoria (todas las cajas en objetivos).
+2.  Añadir un contador de movimientos.
+3.  Añadir un botón de reinicio.
 
-## Comprobar si está resuelto
+## Condición de victoria
 
-\`\`\`python
-def game_solved(self):
-    for y in range(self.height):
-        for x in range(self.width):
-            if self.map[y][x] in [2, 6]: # Objetivo vacío o robot en objetivo
-                return False
-    return True
-\`\`\`
+Itera sobre todas las cajas y verifica si están en una casilla objetivo.
 `,
         EUS: `
 # Jokoa amaitzen
 
-Mugimendu kontagailua, irabazteko baldintza eta kontrolak gehitzen ditugu.
+Jokoa osatzeko, hau egin behar duzu:
+1.  Garaipena egiaztatu (kaxa guztiak helburuetan).
+2.  Mugimendu kontagailua gehitu.
+3.  Berrezartzeko botoia gehitu.
 
-## Ebatzita dagoen egiaztatzen
+## Garaipen baldintza
 
-\`\`\`python
-def game_solved(self):
-    for y in range(self.height):
-        for x in range(self.width):
-            if self.map[y][x] in [2, 6]: # Helburu hutsa edo robota helburuan
-                return False
-    return True
-\`\`\`
+Iteratu kaxa guztien gainean eta egiaztatu helburu lauki batean dauden.
 `
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part14-03_finished_sokoban',
+      exerciseId: 'part14-03_finishing_touches',
       title: {
-        ENG: "Finished Sokoban",
-        CAS: "Sokoban terminado",
-        EUS: "Sokoban amaituta"
+        ENG: "Finishing touches",
+        CAS: "Toques finales",
+        EUS: "Azken ukituak"
       },
       description: {
-        ENG: "Implement the full Sokoban game with move counter, win check, and restart functionality.",
-        CAS: "Implementa el juego Sokoban completo con contador, victoria y reinicio.",
-        EUS: "Inplementatu Sokoban joko osoa kontagailuarekin, garaipenarekin eta berrabiaraztearekin."
+        ENG: "Implement victory check, move counter, and reset functionality.",
+        CAS: "Implementa verificación de victoria, contador de movimientos y funcionalidad de reinicio.",
+        EUS: "Inplementatu garaipen egiaztapena, mugimendu kontagailua eta berrezartze funtzionalitatea."
       },
-      initialCode: "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\n",
+      testCode: `
+import unittest
+class TestFinishing(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

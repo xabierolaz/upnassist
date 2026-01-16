@@ -3,178 +3,207 @@ import { CoursePage } from '../mooc-exercises';
 export const section1: CoursePage = {
   id: "part12-1",
   title: {
-    ENG: "Functions as arguments",
-    CAS: "Funciones como argumentos",
-    EUS: "Funtzioak argumentu gisa"
+    ENG: `Functions as arguments`,
+    CAS: `Funciones como argumentos`,
+    EUS: `Funtzioak argumentu gisa\`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
+        ENG: \`
 # Functions as arguments
 
-You can pass functions as arguments to other functions. This is commonly used in sorting.
+You can pass functions as arguments to other functions.
 
+\
 \`\`\`python
-def by_length(item):
-    return len(item)
+def add(x, y):
+    return x + y
 
-names = ["Alice", "Bob", "Charlie"]
-names.sort(key=by_length)
+def operate(func, x, y):
+    return func(x, y)
+
+print(operate(add, 2, 3)) # 5
+\
 \`\`\`
 
-## Lambda expressions
+## Sorting with custom key
 
-Lambda expressions are anonymous functions.
+The 
+\`sort\` method and 
+\`sorted\` function accept a 
+\`key\` argument, which is a function that transforms each element before comparison.
 
+\
 \`\`\`python
-names.sort(key=lambda name: len(name))
+def by_length(s):
+    return len(s)
+
+words = ["apple", "banana", "pear"]
+words.sort(key=by_length)
+print(words) # ['pear', 'apple', 'banana']
+\
 \`\`\`
 `,
         CAS: `
 # Funciones como argumentos
 
-Puedes pasar funciones como argumentos a otras funciones. Esto se usa comúnmente en la ordenación.
+Puedes pasar funciones como argumentos a otras funciones.
 
+\
 \`\`\`python
-def por_longitud(item):
-    return len(item)
+def sumar(x, y):
+    return x + y
 
-nombres = ["Alice", "Bob", "Charlie"]
-nombres.sort(key=por_longitud)
+def operar(func, x, y):
+    return func(x, y)
+
+print(operar(sumar, 2, 3)) # 5
+\
 \`\`\`
 
-## Expresiones Lambda
+## Ordenando con clave personalizada
 
-Las expresiones lambda son funciones anónimas.
+El método 
+\`sort\` y la función 
+\`sorted\` aceptan un argumento 
+\`key\`, que es una función que transforma cada elemento antes de la comparación.
 
+\
 \`\`\`python
-nombres.sort(key=lambda nombre: len(nombre))
+def por_longitud(s):
+    return len(s)
+
+palabras = ["manzana", "banana", "pera"]
+palabras.sort(key=por_longitud)
+print(palabras) # ['pera', 'manzana', 'banana']
+\
 \`\`\`
 `,
         EUS: `
 # Funtzioak argumentu gisa
 
-Funtzioak beste funtzio batzuei argumentu gisa pasa ditzakezu. Hau askotan erabiltzen da ordenatzerakoan.
+Funtzioak beste funtzio batzuetara argumentu gisa pasa ditzakezu.
 
+\
 \`\`\`python
-def luzeraren_arabera(item):
-    return len(item)
+def batu(x, y):
+    return x + y
 
-izenak = ["Alice", "Bob", "Charlie"]
-izenak.sort(key=luzeraren_arabera)
+def operatu(func, x, y):
+    return func(x, y)
+
+print(operatu(batu, 2, 3)) # 5
+\
 \`\`\`
 
-## Lambda adierazpenak
+## Gako pertsonalizatuarekin ordenatzen
 
-Lambda adierazpenak funtzio anonimoak dira.
 
+\`sort\` metodoak eta 
+\`sorted\` funtzioak 
+\`key\` argumentua onartzen dute, elementu bakoitza konparatu aurretik eraldatzen duen funtzio bat dena.
+
+\
 \`\`\`python
-izenak.sort(key=lambda izena: len(izena))
+def luzeraren_arabera(s):
+    return len(s)
+
+hitzak = ["sagarra", "banana", "udarea"]
+hitzak.sort(key=luzeraren_arabera)
+print(hitzak) # ['udarea', 'sagarra', 'banana']
+\
 \`\`\`
-`
+\`
       }
     },
     {
       type: 'exercise',
       exerciseId: 'part12-01_remaining_stock',
       title: {
-        ENG: "Sort by remaining stock",
-        CAS: "Ordenar por stock restante",
-        EUS: "Stock-aren arabera ordenatu"
+        ENG: \`Remaining stock`,
+        CAS: `Stock restante`,
+        EUS: `Geratzen den stocka\`
       },
       description: {
-        ENG: "Write a function sort_by_remaining_stock(items: list) that sorts a list of tuples (name, price, stock) by stock. Use a separate helper function or lambda.",
-        CAS: "Escribe función sort_by_remaining_stock que ordene tuplas (nombre, precio, stock) por stock.",
-        EUS: "Idatzi sort_by_remaining_stock funtzioa, tuplak (izena, prezioa, stocka) stock-aren arabera ordenatzen dituena."
+        ENG: \`Write a function 
+\`sort_by_remaining_stock(items: list)\`
+ that takes a list of tuples (name, price, stock). It should return a new list sorted by stock (low to high). Do not modify original list.`,
+        CAS: `Escribe 
+\`sort_by_remaining_stock(items)\`
+. Ordena por stock (ascendente). No modifiques la original.`,
+        EUS: `Idatzi 
+\`sort_by_remaining_stock(items)\`
+. Ordenatu stockaren arabera (goraka). Ez aldatu jatorrizkoa.\`
       },
-      initialCode: "def sort_by_remaining_stock(items: list):\n    # write your solution here\n    pass\n",
-      testCode: `
+      initialCode: `# Write your solution here\ndef sort_by_remaining_stock(items: list):\n    return []\n`
+      testCode: \`
 import unittest
 class TestStock(unittest.TestCase):
     def test_run(self):
-        items = [("A", 10, 5), ("B", 10, 2), ("C", 10, 10)]
-        sort_by_remaining_stock(items)
-        self.assertEqual(items[0][0], "B")
-`
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part12-02_seasons',
       title: {
-        ENG: "Sort by seasons",
-        CAS: "Ordenar por temporadas",
-        EUS: "Denboraldien arabera ordenatu"
+        ENG: \`Seasons`,
+        CAS: `Temporadas`,
+        EUS: `Denboraldiak\`
       },
       description: {
-        ENG: "Write a function sort_by_seasons(items: list) that sorts a list of dictionaries {'name': ..., 'seasons': ...} by the number of seasons.",
-        CAS: "Escribe función sort_by_seasons que ordene diccionarios por número de temporadas.",
-        EUS: "Idatzi sort_by_seasons funtzioa, hiztegiak denboraldi kopuruaren arabera ordenatzen dituena."
+        ENG: \`Write a function 
+\`sort_by_seasons(items: list)\`
+ that sorts a list of dictionaries (TV shows) by the number of seasons. Ascending order.`,
+        CAS: `Escribe 
+\`sort_by_seasons(items)\`
+. Ordena series por número de temporadas (ascendente).`,
+        EUS: `Idatzi 
+\`sort_by_seasons(items)\`
+. Ordenatu telesailak denboraldi kopuruaren arabera (goraka).\`
       },
-      initialCode: "def sort_by_seasons(items: list):\n    # write your solution here\n    pass\n",
-      testCode: `
+      initialCode: `# Write your solution here
+def sort_by_seasons(items: list):
+    return []
+`
+      testCode: \`
 import unittest
 class TestSeasons(unittest.TestCase):
     def test_run(self):
-        shows = [{"name": "A", "seasons": 5}, {"name": "B", "seasons": 2}]
-        result = sort_by_seasons(shows)
-        self.assertEqual(result[0]["name"], "B")
-`
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part12-03_ratings',
       title: {
-        ENG: "Sort by ratings",
-        CAS: "Ordenar por valoraciones",
-        EUS: "Balorazioen arabera ordenatu"
+        ENG: \`Ratings`,
+        CAS: `Calificaciones`,
+        EUS: `Balorazioak\`
       },
       description: {
-        ENG: "Write a function sort_by_ratings(items: list) that sorts a list of dictionaries by rating (descending).",
-        CAS: "Escribe función sort_by_ratings que ordene por valoración (descendente).",
-        EUS: "Idatzi sort_by_ratings funtzioa, balorazioaren arabera ordenatzen dituena (beheraka)."
+        ENG: \`Write a function 
+\`sort_by_ratings(items: list)\`
+ that sorts TV shows by rating (descending).`,
+        CAS: `Escribe 
+\`sort_by_ratings(items)\`
+. Ordena por calificación (descendente).`,
+        EUS: `Idatzi 
+\`sort_by_ratings(items)\`
+. Ordenatu balorazioaren arabera (beheraka).`
       },
-      initialCode: "def sort_by_ratings(items: list):\n    # write your solution here\n    pass\n",
+      initialCode: `# Write your solution here
+def sort_by_ratings(items: list):
+    return []
+`
       testCode: `
 import unittest
 class TestRatings(unittest.TestCase):
     def test_run(self):
-        shows = [{"rating": 8.5}, {"rating": 9.0}]
-        result = sort_by_ratings(shows)
-        self.assertEqual(result[0]["rating"], 9.0)
+        pass
 `
-    },
-    {
-      type: 'exercise',
-      exerciseId: 'part12-04_climbing_route',
-      title: {
-        ENG: "Climbing route",
-        CAS: "Ruta de escalada",
-        EUS: "Eskalada ibilbidea"
-      },
-      description: {
-        ENG: "Class ClimbingRoute is provided. Write functions sort_by_length and sort_by_difficulty that sort a list of ClimbingRoute objects.",
-        CAS: "Clase ClimbingRoute dada. Escribe funciones de ordenación.",
-        EUS: "ClimbingRoute klasea ematen da. Idatzi ordenazio funtzioak."
-      },
-      initialCode: `class ClimbingRoute:
-    def __init__(self, name: str, length: int, grade: str):
-        self.name = name
-        self.length = length
-        self.grade = grade
-    def __str__(self):
-        return f"{self.name}, length {self.length} metres, grade {self.grade}"
-
-def sort_by_length(routes: list):
-    # ...
-    pass
-
-def sort_by_difficulty(routes: list):
-    # ...
-    pass
-`,
-      testCode: "pass"
     }
   ]
 };

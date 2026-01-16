@@ -3,295 +3,131 @@ import { CoursePage } from '../mooc-exercises';
 export const section5: CoursePage = {
   id: "part4-5",
   title: {
-    ENG: "More strings and lists",
-    CAS: "Más cadenas y listas",
-    EUS: "Kate eta zerrenda gehiago"
+    ENG: `More strings and lists`,
+    CAS: `Más cadenas y listas`,
+    EUS: `Kate eta zerrenda gehiago\`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
-# More strings and lists
-
-## Slicing
-
-You can slice strings and lists using the syntax `[start:end:step]`.
-
-```python
-word = "exemplary"
-print(word[0:7:2])
-```
-
-```text
-eepa
-```
-
-Reversing a string:
-
-```python
-print(word[::-1])
-```
-
-```text
-yralpmexe
-```
-
-## String methods
-
-- `count(substring)`: counts occurrences
-- `replace(old, new)`: replaces substrings
-
-```python
-sentence = "How much wood would a woodchuck chuck"
-print(sentence.count("wood"))
-print(sentence.replace("wood", "ground"))
-```
-
-```text
-2
-How much ground would a groundchuck chuck
-```
-`,
-        CAS: `
-# Más cadenas y listas
-
-## Rebanado (Slicing)
-
-Puedes rebanar cadenas y listas usando la sintaxis `[inicio:fin:paso]`.
-
-```python
-palabra = "exemplary"
-print(palabra[0:7:2])
-```
-
-```text
-eepa
-```
-
-Invirtiendo una cadena:
-
-```python
-print(palabra[::-1])
-```
-
-```text
-yralpmexe
-```
-
-## Métodos de cadena
-
-- `count(subcadena)`: cuenta ocurrencias
-- `replace(viejo, nuevo)`: reemplaza subcadenas
-
-```python
-frase = "How much wood would a woodchuck chuck"
-print(frase.count("wood"))
-print(frase.replace("wood", "ground"))
-```
-
-```text
-2
-How much ground would a groundchuck chuck
-```
-`,
-        EUS: `
-# Kate eta zerrenda gehiago
-
-## Slicing (Zatikatzea)
-
-Kateak eta zerrendak zatikatu ditzakezu `[hasiera:amaiera:pausoa]` sintaxia erabiliz.
-
-```python
-hitza = "exemplary"
-print(hitza[0:7:2])
-```
-
-```text
-eepa
-```
-
-Kate bat alderantzikatzea:
-
-```python
-print(hitza[::-1])
-```
-
-```text
-yralpmexe
-```
-
-## Kate metodoak
-
-- `count(azpikatea)`: agerraldiak zenbatzen ditu
-- `replace(zaharra, berria)`: azpikateak ordezkatzen ditu
-
-```python
-esaldia = "How much wood would a woodchuck chuck"
-print(esaldia.count("wood"))
-print(esaldia.replace("wood", "ground"))
-```
-
-```text
-2
-How much ground would a groundchuck chuck
-```
-`
+        ENG: \`\n# More strings and lists\n\n## After this section:\n\n- You will be familiar with more methods for slicing strings and lists\n- You will understand what immutability of strings means\n- You will be able to use the methods \`count\` and \`replace\`\n\nYou are already familiar with the \`[]\` syntax for accessing a part of a string:\n\n\`\`\`python\nmy_string = \"exemplary\"\nprint(my_string[3:7])\n\`\`\`\n\n\`\`\`text\nmpla\n\`\`\`\n\nThe same syntax works with lists. Lists can be sliced just like strings:\n\n\`\`\`python\nmy_list = [3,4,2,4,6,1,2,4,2]\nprint(my_list[3:7])\n\`\`\`\n\n\`\`\`text\n[4, 6, 1, 2]\n\`\`\`\n\n## More slices\n\nIn fact, the \`[]\` syntax works very similarly to the \`range\` function, which means we can also give it a step:\n\n\`\`\`python\nmy_string = \"exemplary\"\nprint(my_string[0:7:2])\nmy_list = [1,2,3,4,5,6,7,8]\nprint(my_list[6:2:-1])\n\`\`\`\n\n\`\`\`text\neeepa\n[7, 6, 5, 4]\n\`\`\`\n\nIf we omit either of the indexes, the operator defaults to including everything. Among other things, this allows us to write a very short program to reverse a string:\n\n\`\`\`python\nmy_string = input(\"Please type in a string: \")\nprint(my_string[::-1])\n\`\`\`\n\n\`\`\`text\nPlease type in a string: exemplary\nyralpmexe\n\`\`\`\n\n## Warning: using global variables within functions\n\nWe know it is possible to assign new variables within function definitions, but the function can also see variables assigned outside it, in the main function. Such variables are called _global_ variables.\n\nUsing global variables from within functions is usually a bad idea. Among other issues, doing so may cause bugs which are difficult to trace.\n\nBelow is an example of a function which uses a global variable \"by mistake\":\n\n\`\`\`python\ndef print_reversed(names: list):\n    # using the global variable instead of the parameter by accident\n    i = len(name_list) - 1\n    while i >= 0:\n        print(name_list[i])\n        i -= 1\n\n# here the global variable is assigned\nname_list = [\"Steve\`, \"Jean\", \"Katherine\", \"Paul\"]\nprint_reversed(name_list)\nprint()\nprint_reversed([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\n\`\`\`text\nPaul\nKatherine\nJean\nSteve\n\nPaul\nKatherine\nJean\nSteve\n\`\`\`\n\nEven though both function calls have the right kind of argument, the function always prints out what is stored in the global variable \`name_list\`.\n\nTo make matters even more muddled, remember that all code for testing your functions should be placed within the \`if __name__ == "__main__":\` block for the automatic tests. The previous example should be modified:\n\n\`\`\`python\ndef print_reversed(names: list):\n    # using the global variable instead of the parameter by accident\n    i = len(name_list) - 1\n    while i>=0:\n        print(name_list[i])\n        i -= 1\n\n# All the code for testing the function should be within this block\nif __name__ == "__main__":\n    # here the global variable is assigned\n    name_list = [\"Steve\", \"Jean\", \"Katherine\", \"Paul\"]\n    print_reversed(name_list)\n    print()\n    print_reversed([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\nNotice the global variable is assigned within the \`if\` block now.\n\nThe automatic tests in the TMC system are executed without running any of the code in the \`if\` block. So, in this latter example the function wouldn't even theoretically work, since it refers to the variable \`name_list\`, which doesn't exist at all when the tests are executed.\n",
+        CAS: \`\n# Más cadenas y listas\n\n## Después de esta sección:\n\n- Estarás familiarizado con más métodos para rebanar (slicing) cadenas y listas\n- Entenderás qué significa la inmutabilidad de las cadenas\n- Podrás usar los métodos \`count\` y \`replace\`\n\nYa estás familiarizado con la sintaxis \`[]\` para acceder a una parte de una cadena:\n\n\`\`\`python\nmi_cadena = \"ejemplar\"\nprint(mi_cadena[3:7])\n\`\`\`\n\n\`\`\`text\nmpla\n\`\`\`\n\nLa misma sintaxis funciona con listas. Las listas se pueden rebanar igual que las cadenas:\n\n\`\`\`python\nmi_lista = [3,4,2,4,6,1,2,4,2]\nprint(mi_lista[3:7])\n\`\`\`\n\n\`\`\`text\n[4, 6, 1, 2]\n\`\`\`\n\n## Más rebanadas (slices)\n\nDe hecho, la sintaxis \`[]\` funciona de manera muy similar a la función \`range\`, lo que significa que también podemos darle un paso:\n\n\`\`\`python\nmi_cadena = \"ejemplar\"\nprint(mi_cadena[0:7:2])\nmi_lista = [1,2,3,4,5,6,7,8]\nprint(mi_lista[6:2:-1])\n\`\`\`\n\n\`\`\`text\neeepa\n[7, 6, 5, 4]\n\`\`\`\n\nSi omitimos cualquiera de los índices, el operador incluye todo por defecto. Entre otras cosas, esto nos permite escribir un programa muy corto para invertir una cadena:\n\n\`\`\`python\nmi_cadena = input(\"Por favor escribe una cadena: \")\nprint(mi_cadena[::-1])\n\`\`\`\n\n\`\`\`text\nPor favor escribe una cadena: ejemplar\nralpmeje\n\`\`\`\n\n## Advertencia: uso de variables globales dentro de funciones\n\nSabemos que es posible asignar nuevas variables dentro de las definiciones de funciones, pero la función también puede ver variables asignadas fuera de ella, en la función principal. Tales variables se llaman variables _globales_.\n\nUsar variables globales desde dentro de funciones suele ser una mala idea. Entre otros problemas, hacerlo puede causar errores que son difíciles de rastrear.\n\nA continuación se muestra un ejemplo de una función que utiliza una variable global \"por error\":\n\n\`\`\`python\ndef imprimir_invertido(nombres: list):\n    # usando la variable global en lugar del parámetro por accidente\n    i = len(lista_nombres) - 1\n    while i >= 0:\n        print(lista_nombres[i])\n        i -= 1\n\n# aquí se asigna la variable global\nlista_nombres = [\"Steve\`, \"Jean\", \"Katherine\", \"Paul\"]\nimprimir_invertido(lista_nombres)\nprint()\nimprimir_invertido([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\n\`\`\`text\nPaul\nKatherine\nJean\nSteve\n\nPaul\nKatherine\nJean\nSteve\n\`\`\`\n\nAunque ambas llamadas a la función tienen el tipo correcto de argumento, la función siempre imprime lo que está almacenado en la variable global \`lista_nombres\`.\n\nPara enturbiar aún más las cosas, recuerda que todo el código para probar tus funciones debe colocarse dentro del bloque \`if __name__ == "__main__":\` para las pruebas automáticas. El ejemplo anterior debería modificarse:\n\n\`\`\`python\ndef imprimir_invertido(nombres: list):\n    # usando la variable global en lugar del parámetro por accidente\n    i = len(lista_nombres) - 1\n    while i>=0:\n        print(lista_nombres[i])\n        i -= 1\n\n# Todo el código para probar la función debe estar dentro de este bloque\nif __name__ == "__main__":\n    # aquí se asigna la variable global\n    lista_nombres = [\"Steve\", \"Jean\", \"Katherine\", \"Paul\"]\n    imprimir_invertido(lista_nombres)\n    print()\n    imprimir_invertido([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\nFíjate que la variable global se asigna ahora dentro del bloque \`if\`.\n\nLas pruebas automáticas se ejecutan sin correr nada del código en el bloque \`if\`. Así que, en este último ejemplo, la función ni siquiera funcionaría teóricamente, ya que se refiere a la variable \`lista_nombres\`, que no existe en absoluto cuando se ejecutan las pruebas.\n",
+        EUS: \`\n# Kate eta zerrenda gehiago\n\n## Atal honen ondoren:\n\n- Kateak eta zerrendak zatikatzeko metodo gehiago ezagutuko dituzu\n- Kateen aldaezintasunak zer esan nahi duen ulertuko duzu\n- \`count\` eta \`replace\` metodoak erabiltzeko gai izango zara\n\nDagoeneko ezaguna duzu \`[]\` sintaxia kate baten zati bat atzitzeko:\n\n\`\`\`python\nnire_katea = \"eredugarria\"\nprint(nire_katea[3:7])\n\`\`\`\n\n\`\`\`text\nedug\n\`\`\`\n\nSintaxi berak funtzionatzen du zerrendekin. Zerrendak kateak bezala zatikatu daitezke:\n\n\`\`\`python\nnire_zerrenda = [3,4,2,4,6,1,2,4,2]\nprint(nire_zerrenda[3:7])\n\`\`\`\n\n\`\`\`text\n[4, 6, 1, 2]\n\`\`\`\n\n## Zati gehiago\n\nIzan ere, \`[]\` sintaxiak \`range\` funtzioaren oso antzera funtzionatzen du, eta horrek esan nahi du pauso bat ere eman diezaiokegula:\n\n\`\`\`python\nnire_katea = \"eredugarria\"\nprint(nire_katea[0:7:2])\nnire_zerrenda = [1,2,3,4,5,6,7,8]\nprint(nire_zerrenda[6:2:-1])\n\`\`\`\n\n\`\`\`text\neeua\n[7, 6, 5, 4]\n\`\`\`\n\nIndizeetako bat omititzen badugu, eragileak dena sartzen du lehenetsi gisa. Besteak beste, horrek kate bat alderanzteko programa oso labur bat idazteko aukera ematen digu:\n\n\`\`\`python\nnire_katea = input(\"Mesedez idatzi kate bat: \")\nprint(nire_katea[::-1])\n\`\`\`\n\n\`\`\`text\nMesedez idatzi kate bat: eredugarria\nairragudere\n\`\`\`\n\n## Abisua: aldagai globalak funtzioetan erabiltzea\n\nBadakigu posible dela aldagai berriak esleitzea funtzio-definizioen barruan, baina funtzioak kanpoan esleitutako aldagaiak ere ikus ditzake, funtzio nagusian. Horrelako aldagaiei aldagai _globalak_ deitzen zaie.\n\nAldagai globalak funtzioen barrutik erabiltzea ideia txarra izan ohi da. Beste arazo batzuen artean, hori egiteak jarraitzeko zailak diren akatsak sor ditzake.\n\nJarraian, aldagai global bat \"nahigabe\" erabiltzen duen funtzio baten adibidea dago:\n\n\`\`\`python\ndef inprimatu_alderantziz(izenak: list):\n    # aldagai globala erabiltzen parametroaren ordez istripuz\n    i = len(izen_zerrenda) - 1\n    while i >= 0:\n        print(izen_zerrenda[i])\n        i -= 1\n\n# hemen esleitzen da aldagai globala\nizen_zerrenda = [\"Steve\`, \"Jean\", \"Katherine\", \"Paul\"]\ninprimatu_alderantziz(izen_zerrenda)\nprint()\ninprimatu_alderantziz([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\n\`\`\`text\nPaul\nKatherine\nJean\nSteve\n\nPaul\nKatherine\nJean\nSteve\n\`\`\`\n\nNahiz eta bi funtzio-deiek argumentu mota egokia izan, funtzioak beti \`izen_zerrenda\` aldagai globalean gordetakoa inprimatzen du.\n\nGauzak are gehiago nahasteko, gogoratu zure funtzioak probatzeko kode guztia \`if __name__ == "__main__":\` blokearen barruan jarri behar dela proba automatikoetarako. Aurreko adibidea aldatu beharko litzateke:\n\n\`\`\`python\ndef inprimatu_alderantziz(izenak: list):\n    # aldagai globala erabiltzen parametroaren ordez istripuz\n    i = len(izen_zerrenda) - 1\n    while i>=0:\n        print(izen_zerrenda[i])\n        i -= 1\n\n# Funtzioa probatzeko kode guztia bloke honen barruan egon behar da\nif __name__ == "__main__":\n    # hemen esleitzen da aldagai globala\n    izen_zerrenda = [\"Steve\", \"Jean\", \"Katherine\", \"Paul\"]\n    inprimatu_alderantziz(izen_zerrenda)\n    print()\n    inprimatu_alderantziz([\"Huey\", \"Dewey\", \"Louie\"])\n\`\`\`\n\nOhartu aldagai globala orain \`if\` blokearen barruan esleitzen dela.\n\nProba automatikoak \`if\` blokeko koderik exekutatu gabe exekutatzen dira. Beraz, azken adibide honetan funtzioak ez luke teorikoki ere funtzionatuko, \`izen_zerrenda\` aldagaiari erreferentzia egiten diolako, eta hori ez da existitzen probak exekutatzen direnean.\n"
       }
     },
     {
       type: 'exercise',
       exerciseId: 'part04-33_everything_reversed',
       title: {
-        ENG: "Everything reversed",
-        CAS: "Todo al revés",
-        EUS: "Dena alderantziz"
+        ENG: \`Everything reversed`,
+        CAS: `Todo al revés`,
+        EUS: `Dena alderantziz\`
       },
       description: {
-        ENG: "Write a function named everything_reversed, which takes a list of strings as its argument. The function returns a new list with all of the items on the original list reversed. Also the order of items should be reversed.",
-        CAS: "Escribe una función llamada todo_al_reves, que tome una lista de cadenas. Devuelve una nueva lista con todos los elementos invertidos, y el orden de la lista también invertido.",
-        EUS: "Idatzi dena_alderantziz izeneko funtzio bat. Zerrenda berri bat itzultzen du elementu guztiekin alderantzikatuta, eta zerrendaren ordena ere alderantzikatuta."
+        ENG: \`Please write a function named \`everything_reversed\`, which takes a list of strings as its argument. The function returns a new list with all of the items on the original list reversed. Also the order of items should be reversed on the new list.`,
+        CAS: `Por favor escribe una función llamada \`todo_al_reves\`, que tome una lista de cadenas como argumento. La función devuelve una nueva lista con todos los elementos de la lista original invertidos. También el orden de los elementos debe invertirse en la nueva lista.`,
+        EUS: `Idatzi \`dena_alderantziz\` izeneko funtzio bat, kate zerrenda bat argumentu gisa hartzen duena. Funtzioak zerrenda berri bat itzultzen du jatorrizko zerrendako elementu guztiekin alderantzikatuta. Elementuen ordena ere alderantzikatu behar da zerrenda berrian.\`
       },
-      initialCode: "# Write your solution here\nif __name__ == \"__main__\":\n    print(everything_reversed([\"Anti\", \"Meto\", \"Tic\", \"Ice\", \"Po\", \"Hot\", \"Mag\", \"Net\", \"Ic\"]))",
-      testCode: `
-import unittest
-class TestRev(unittest.TestCase):
-    def test_run(self):
-        out = run_student_code()
-        # \"Anti\" -> \"itnA\"
-        # List reversed -> \"Ic\" first -> \"cI\"
-        # Output should be ['cI', 'teN', 'gaM', 'toH', 'oP', 'ecI', 'ciT', 'oteM', 'itnA']
-        self.assertIn(\"cI\", out)
-        self.assertIn(\"itnA\", out)
-`
+      initialCode: \`# Write your solution here\nif __name__ == "__main__":\n    my_list = ["Hi", "there", "example\`, \"one more\"]\n    new_list = everything_reversed(my_list)\n    print(new_list)"
+      testCode: \`import unittest\nclass TestEverythingReversed(unittest.TestCase):\n    def test_run(self):\n        # We need to assume the student defined the function 'everything_reversed'\n        # Since we cannot easily import it, we rely on the student's code structure\n        # or we execute their code and check if the function is in locals/globals.\n        \n        # However, for this environment, we will check the output of the example code\n        # if the student preserved it, AND try to run an injected test case if possible.\n        \n        # A robust way in this runner is to check the output of specific known inputs.\n        \n        # Let's try to verify the logic by running the student's code which should include the example.\n        out = run_student_code()\n        \n        # Expected output for the example: ['erom eno', 'elpmaxe', 'ereht', 'iH']\n        expected_part = "erom eno"\n        if expected_part not in out:\n             self.fail("Did not find the expected output for the example list. Expected 'erom eno' to be part of the printed list.")\n             \n        if "iH" not in out:\n             self.fail("Did not find the reversed string 'iH' in the output.")\n             \n        # Check that the list order is reversed (start with last item reversed)\n        # my_list = ["Hi", "there", "example", "one more"]\n        # Output should start with the reverse of "one more"\n        \n        # Simple check:\n        # ['erom eno', 'elpmaxe', 'ereht', 'iH']\n        \n        if "erom eno" not in out:\n            self.fail("The last item of the original list should be the first in the new list, and reversed.")\n\`
+    },
+    {
+      type: 'markdown',
+      content: {
+        ENG: \`\n## Strings are immutable\n\nStrings and lists have a lot in common, especially in the way they behave with different operators. The main difference is that strings are _immutable_. That means they cannot be changed.\n\n\`\`\`python\nmy_string = \"exemplary\"\nmy_string[0] = \"a\"\n\`\`\`\n\nStrings cannot be changed, so the execution of this program causes an error:\n\n\`\`\`text\nTypeError: 'str' object does not support item assignment\n\`\`\`\n\nA similar error follows if you try to sort a string with the \`sort\` method.\n\nStrings themselves are immutable, but the variables holding them are not. A string can be replaced by another string.\n\nThe following two examples are thus fundamentally different:\n\n\`\`\`python\nmy_list = [1,2,3]\nmy_list[0] = 10\n\`\`\`\n\n\`\`\`python\nmy_string = \"Hey\"\nmy_string = my_string + \"!\"\n\`\`\`\n\nThe first example changes the contents of the referenced list. The second example replaces the reference to the original string with a reference to another string. The original string is still somewhere in computer memory, but there is no reference to it, and it cannot be used in the program any longer.\n\n## More methods for lists and strings\n\nThe method \`count\` counts the number of times the specified item or substring occurs in the target. The method works similarly with both strings and lists:\n\n\`\`\`python\nmy_string = \"How much wood would a woodchuck chuck if a woodchuck could chuck wood\"\nprint(my_string.count(\"ch\"))\n\nmy_list = [1,2,3,1,4,5,1,6]\nprint(my_list.count(1))\n\`\`\`\n\n\`\`\`text\n5\n3\n\`\`\`\n\nThe method will not count overlapping occurrences. For example, in the string \`aaaa\` the method counts only two occurrences of the substring \`aa\`, even though there would actually be three if overlapping occurrences were allowed.\n\nThe method \`replace\` creates a new string, where a specified substring is replaced with another string:\n\n\`\`\`python\nmy_string = \"Hi there\"\nnew_string = my_string.replace(\"Hi\`, \"Hey\")\nprint(new_string)\n\`\`\`\n\n\`\`\`text\nHey there\n\`\`\`\n\nThe method will replace all occurrences of the substring:\n\n\`\`\`python\nsentence = \"sheila sells seashells on the seashore\"\nprint(sentence.replace(\"she\", \"SHE\"))\n\`\`\`\n\n\`\`\`text\nSHEila sells seaSHElls on the seashore\n\`\`\`\n\nWhen using the \`replace\` method, a typical mistake is forgetting that strings are immutable. If the old string is no longer needed, the new string can be assigned to the same variable.\n",
+        CAS: \`\n## Las cadenas son inmutables\n\nLas cadenas y las listas tienen mucho en común, especialmente en la forma en que se comportan con diferentes operadores. La principal diferencia es que las cadenas son _inmutables_. Eso significa que no se pueden cambiar.\n\n\`\`\`python\nmi_cadena = \"ejemplar\"\nmi_cadena[0] = \"a\"\n\`\`\`\n\nLas cadenas no se pueden cambiar, por lo que la ejecución de este programa provoca un error:\n\n\`\`\`text\nTypeError: 'str' object does not support item assignment\n\`\`\`\n\nUn error similar sigue si intentas ordenar una cadena con el método \`sort\`.\n\nLas cadenas en sí mismas son inmutables, pero las variables que las contienen no lo son. Una cadena puede ser reemplazada por otra cadena.\n\nLos siguientes dos ejemplos son, por lo tanto, fundamentalmente diferentes:\n\n\`\`\`python\nmi_lista = [1,2,3]\nmi_lista[0] = 10\n\`\`\`\n\n\`\`\`python\nmi_cadena = \"Hey\"\nmi_cadena = mi_cadena + \"!\"\n\`\`\`\n\nEl primer ejemplo cambia el contenido de la lista referenciada. El segundo ejemplo reemplaza la referencia a la cadena original con una referencia a otra cadena. La cadena original todavía está en algún lugar de la memoria del ordenador, pero no hay referencia a ella y no se puede usar en el programa por más tiempo.\n\n## Más métodos para listas y cadenas\n\nEl método \`count\` cuenta el número de veces que el elemento o subcadena especificado aparece en el objetivo. El método funciona de manera similar tanto con cadenas como con listas:\n\n\`\`\`python\nmi_cadena = \"How much wood would a woodchuck chuck if a woodchuck could chuck wood\"\nprint(mi_cadena.count(\"ch\"))\n\nmi_lista = [1,2,3,1,4,5,1,6]\nprint(mi_lista.count(1))\n\`\`\`\n\n\`\`\`text\n5\n3\n\`\`\`\n\nEl método no contará ocurrencias superpuestas. Por ejemplo, en la cadena \`aaaa\` el método cuenta solo dos ocurrencias de la subcadena \`aa\`, aunque en realidad habría tres si se permitieran ocurrencias superpuestas.\n\nEl método \`replace\` crea una nueva cadena, donde una subcadena especificada se reemplaza por otra cadena:\n\n\`\`\`python\nmi_cadena = \"Hola a todos\"\nnueva_cadena = mi_cadena.replace(\"Hola\`, \"Hey\")\nprint(nueva_cadena)\n\`\`\`\n\n\`\`\`text\nHey a todos\n\`\`\`\n\nEl método reemplazará todas las ocurrencias de la subcadena.\n\nAl usar el método \`replace\`, un error típico es olvidar que las cadenas son inmutables. Si la cadena antigua ya no es necesaria, la nueva cadena se puede asignar a la misma variable.\n",
+        EUS: \`\n## Kateak aldaezinak dira\n\nKateek eta zerrendek antzekotasun asko dituzte, batez ere operadore ezberdinekin duten portaeran. Desberdintasun nagusia kateak _aldaezinak_ direla da. Horrek esan nahi du ezin direla aldatu.\n\n\`\`\`python\nnire_katea = \"eredugarria\"\nnire_katea[0] = \"a\"\n\`\`\`\n\nKateak ezin dira aldatu, beraz programa honen exekuzioak errorea eragiten du:\n\n\`\`\`text\nTypeError: 'str' object does not support item assignment\n\`\`\`\n\nAntzeko errorea gertatzen da kate bat \`sort\` metodoarekin ordenatzen saiatzen bazara.\n\nKateak beraiek aldaezinak dira, baina horiek gordetzen dituzten aldagaiak ez. Kate bat beste kate batekin ordezkatu daiteke.\n\nHurrengo bi adibideak funtsean ezberdinak dira:\n\n\`\`\`python\nnire_zerrenda = [1,2,3]\nnire_zerrenda[0] = 10\n\`\`\`\n\n\`\`\`python\nnire_katea = \"Aupa\"\nnire_katea = nire_katea + \"!\"\n\`\`\`\n\nLehenengo adibideak erreferentziatutako zerrendaren edukia aldatzen du. Bigarren adibideak jatorrizko katearen erreferentzia beste kate baten erreferentziarekin ordezkatzen du. Jatorrizko katea ordenagailuaren memorian dago oraindik, baina ez dago horretarako erreferentziarik, eta ezin da programan gehiago erabili.\n\n## Zerrenda eta kateetarako metodo gehiago\n\n\`count\` metodoak zehaztutako elementua edo azpikatea helburuan zenbat aldiz agertzen den zenbatzen du. Metodoak antzera funtzionatzen du kateekin eta zerrendekin:\n\n\`\`\`python\nnire_katea = \"Zenbat egur moztuko luke egur-mozteko batek egurra moztu ahal balu\"\nprint(nire_katea.count(\"moztu\"))\n\nnire_zerrenda = [1,2,3,1,4,5,1,6]\nprint(nire_zerrenda.count(1))\n\`\`\`\n\n\`\`\`text\n2\n3\n\`\`\`\n\nMetodoak ez ditu gainjarritako agerraldiak zenbatuko. Adibidez, \`aaaa\` katean metodoak \`aa\` azpikatearen bi agerraldi bakarrik zenbatzen ditu, nahiz eta benetan hiru egongo liratekeen gainjarritako agerraldiak baimenduko balira.\n\n\`replace\` metodoak kate berri bat sortzen du, non zehaztutako azpikatea beste kate batekin ordezkatzen den:\n\n\`\`\`python\nnire_katea = \"Kaixo denei\"\nkate_berria = nire_katea.replace(\"Kaixo\`, \"Aupa\")\nprint(kate_berria)\n\`\`\`\n\n\`\`\`text\nAupa denei\n\`\`\`\n\nMetodoak azpikatearen agerraldi guztiak ordezkatuko ditu.\n\n\`replace\` metodoa erabiltzean, ohiko akatsa kateak aldaezinak direla ahaztea da. Kate zaharra gehiago behar ez bada, kate berria aldagai berari eslei dakioke.\n"
+      }
     },
     {
       type: 'exercise',
       exerciseId: 'part04-34_most_common_character',
       title: {
-        ENG: "Most common character",
-        CAS: "Carácter más común",
-        EUS: "Karaktere ohikoena"
+        ENG: \`Most common character`,
+        CAS: `Carácter más común`,
+        EUS: `Karaktere ohikoena\`
       },
       description: {
-        ENG: "Write a function named most_common_character, which takes a string argument. The function returns the character which appears most often in the string.",
-        CAS: "Escribe una función llamada caracter_mas_comun. Devuelve el carácter que aparece más a menudo.",
-        EUS: "Idatzi karaktere_ohikoena izeneko funtzio bat. Katean gehien agertzen den karakterea itzultzen du."
+        ENG: \`Please write a function named \`most_common_character\`, which takes a string argument. The function returns the character which has the most occurrences within the string. If there are many characters with equally many occurrences, the one which appears first in the string should be returned.`,
+        CAS: `Por favor escribe una función llamada \`caracter_mas_comun\`, que tome una cadena como argumento. La función devuelve el carácter que tiene más ocurrencias dentro de la cadena. Si hay muchos caracteres con la misma cantidad de ocurrencias, se debe devolver el que aparece primero en la cadena.`,
+        EUS: `Idatzi \`karaktere_ohikoena\` izeneko funtzio bat, kate argumentu bat hartzen duena. Funtzioak katearen barruan agerraldi gehien dituen karakterea itzultzen du. Agerraldi kopuru bera duten karaktere asko badaude, katean lehenen agertzen dena itzuli behar da.\`
       },
-      initialCode: "# Write your solution here\nif __name__ == \"__main__\":\n    print(most_common_character(\"exemplary\"))",
-      testCode: `
-import unittest
-class TestCommon(unittest.TestCase):
-    def test_run(self):
-        out = run_student_code()
-        # e appears 2 times, but 'x' 1, 'm' 1... wait
-        # e x e m p l a r y -> e:2
-        self.assertIn("e", out)
-`
+      initialCode: `# Write your solution here\nif __name__ == \"__main__\":\n    first_string = \"abcdbde\"\n    print(most_common_character(first_string))\n\n    second_string = \"exemplaryelementary\"\n    print(most_common_character(second_string))`
+      testCode: \`import unittest\nclass TestMostCommon(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        \n        # Example 1: abcdbde -> b (3 times?) No, b appears 2 times, d 2 times. \n        # a:1, b:2, c:1, d:2, e:1.\n        # 'b' appears before 'd' in string? abcdbde. First occurrence of b at 1, d at 3.\n        # So 'b' is correct if tie-breaking by first appearance.\n        # Wait, description says: "one which appears first in the string"\n        \n        if "b" not in out:\n             self.fail("For 'abcdbde', expected 'b'.")\n             \n        # Example 2: exemplaryelementary\n        # e is very common.\n        if "e" not in out:\n             self.fail("For 'exemplaryelementary', expected 'e'.")\n\`
     },
     {
       type: 'exercise',
       exerciseId: 'part04-35_no_vowels_allowed',
       title: {
-        ENG: "No vowels allowed",
-        CAS: "No se permiten vocales",
-        EUS: "Bokalik ez"
+        ENG: \`No vowels allowed`,
+        CAS: `No se permiten vocales`,
+        EUS: `Bokalik ez\`
       },
       description: {
-        ENG: "Write a function named no_vowels, which takes a string argument. The function returns a new string, which should be the same as the original but with all vowels removed.",
-        CAS: "Escribe una función llamada sin_vocales. Devuelve una nueva cadena sin las vocales.",
-        EUS: "Idatzi bokalik_gabe izeneko funtzio bat. Kate berri bat itzultzen du bokalik gabe."
+        ENG: \`Please write a function named \`no_vowels\`, which takes a string argument. The function returns a new string, which should be the same as the original but with all vowels removed. You can assume the string will contain only characters from the lowercase English alphabet a...z.`,
+        CAS: `Por favor escribe una función llamada \`sin_vocales\`, que tome una cadena como argumento. La función devuelve una nueva cadena, que debe ser la misma que la original pero con todas las vocales eliminadas. Puedes asumir que la cadena contendrá solo caracteres del alfabeto inglés minúsculo a...z.`,
+        EUS: `Idatzi \`bokalik_gabe\` izeneko funtzio bat, kate argumentu bat hartzen duena. Funtzioak kate berri bat itzultzen du, jatorrizkoaren berdina izan behar duena baina bokal guztiak kenduta. Suposa dezakezu kateak ingelesezko alfabeto minuskulako a...z karaktereak soilik izango dituela.\`
       },
-      initialCode: "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_vowels(\"this is an example\"))",
-      testCode: `
-import unittest
-class TestNoVowels(unittest.TestCase):
-    def test_run(self):
-        out = run_student_code()
-        # ths s n xmpl
-        self.assertIn("ths s n xmpl", out)
-`
+      initialCode: `# Write your solution here\nif __name__ == \"__main__\":\n    my_string = \"this is an example\"\n    print(no_vowels(my_string))`
+      testCode: \`import unittest\nclass TestNoVowels(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # "this is an example" -> "ths s n xmpl"\n        expected = "ths s n xmpl"\n        if expected not in out:\n             self.fail(f'Expected output \'{expected}\' not found.')\n\`
     },
     {
       type: 'exercise',
       exerciseId: 'part04-36_no_shouting_allowed',
       title: {
-        ENG: "No shouting allowed",
-        CAS: "No se permite gritar",
-        EUS: "Ez oihukatu"
+        ENG: \`No shouting allowed`,
+        CAS: `No se permite gritar`,
+        EUS: `Ez oihukatu\`
       },
       description: {
-        ENG: "Write a function named no_shouting, which takes a list of strings as an argument. The function returns a new list, containing only those strings from the original which do not consist of all uppercase characters.",
-        CAS: "Escribe una función llamada no_gritar. Devuelve una lista con las cadenas que no estén todo en mayúsculas.",
-        EUS: "Idatzi ez_oihukatu izeneko funtzio bat. Zerrenda berri bat itzultzen du letra larriz idatzita ez dauden kateekin bakarrik."
+        ENG: \`The Python string method \`isupper()\` returns \`True\` if a string consists of _only_ uppercase characters. Please use the \`isupper\` method to write a function named \`no_shouting\`, which takes a list of strings as an argument. The function returns a new list, containing only those items from the original which do not consist of solely uppercase characters.`,
+        CAS: `El método de cadena de Python \`isupper()\` devuelve \`True\` si una cadena consta _solo_ de caracteres en mayúscula. Por favor usa el método \`isupper\` para escribir una función llamada \`no_gritar\`, que tome una lista de cadenas como argumento. La función devuelve una nueva lista, que contiene solo aquellos elementos del original que no constan únicamente de caracteres en mayúscula.`,
+        EUS: `Python kateen \`isupper()\` metodoak \`True\` itzultzen du kate batek karaktere larriak _soilik_ baditu. Mesedez erabili \`isupper\` metodoa \`ez_oihukatu\` izeneko funtzio bat idazteko, kate zerrenda bat argumentu gisa hartzen duena. Funtzioak zerrenda berri bat itzultzen du, jatorrizkotik karaktere larriak soilik ez dituzten elementuak bakarrik dituena.\`
       },
-      initialCode: "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_shouting([\"HI\", \"hello\", \"HEY\", \"there\"]))",
-      testCode: `
-import unittest
-class TestNoShout(unittest.TestCase):
-    def test_run(self):
-        out = run_student_code()
-        # hello, there
-        self.assertIn("hello", out)
-        self.assertIn("there", out)
-        if "HI" in out: self.fail("Should remove uppercase strings")
-`
+      initialCode: \`# Write your solution here\nif __name__ == "__main__":\n    my_list = ["ABC", "def", "UPPER", "ANOTHERUPPER", "lower", "another lower\`, \"Capitalized\"]\n    pruned_list = no_shouting(my_list)\n    print(pruned_list)"
+      testCode: \`import unittest\nclass TestNoShouting(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # Expected: ['def', 'lower', 'another lower', 'Capitalized']\n        # "ABC", "UPPER" should be gone.\n        \n        if "ABC" in out or "UPPER" in out:\n             self.fail("Uppercase words should be removed.")\n             \n        if "def" not in out or "Capitalized" not in out:\n             self.fail("Non-uppercase words should remain.")\n\`
     },
     {
       type: 'exercise',
       exerciseId: 'part04-37_neighbours_in_list',
       title: {
-        ENG: "Neighbours in a list",
-        CAS: "Vecinos en una lista",
-        EUS: "Auzokideak zerrenda batean"
+        ENG: \`Neighbours in a list`,
+        CAS: `Vecinos en una lista`,
+        EUS: `Auzokideak zerrenda batean\`
       },
       description: {
-        ENG: "Write a function named longest_series_of_neighbours, which takes a list of integers as its argument. The function returns the length of the longest series of neighbours (values that differ by 1).",
-        CAS: "Escribe una función llamada serie_vecinos_mas_larga. Devuelve la longitud de la serie más larga de vecinos (valores que difieren en 1).",
-        EUS: "Idatzi auzokide_serie_luzeena izeneko funtzio bat. Auzokideen serie luzeenaren luzera itzultzen du (1eko aldea duten balioak)."
+        ENG: \`Given a list of integers, let's decide that two consecutive items in the list are neighbours if their difference is 1. Please write a function named \`longest_series_of_neighbours\`, which looks for the longest series of neighbours within the list, and returns its length.`,
+        CAS: `Dada una lista de enteros, decidamos que dos elementos consecutivos en la lista son vecinos si su diferencia es 1. Por favor escribe una función llamada \`serie_vecinos_mas_larga\`, que busque la serie más larga de vecinos dentro de la lista, y devuelva su longitud.`,
+        EUS: `Zenbaki osoen zerrenda bat emanda, erabaki dezagun zerrendako bi elementu jarraian auzokideak direla haien aldea 1 bada. Mesedez idatzi \`auzokide_serie_luzeena\` izeneko funtzio bat, zerrendaren barruan auzokideen serie luzeena bilatzen duena, eta bere luzera itzultzen duena.\`
       },
-      initialCode: "# Write your solution here\nif __name__ == \"__main__\":\n    print(longest_series_of_neighbours([1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]))",
-      testCode: `
-import unittest
-class TestNeighbours(unittest.TestCase):
-    def test_run(self):
-        out = run_student_code()
-        # 5, 7, 6, 5, 6 -> length 4? 
-        # 1,2 (2)
-        # 5
-        # 7,6,5,6 (4)
-        # 3,4 (2)
-        # 1,0 (2)
-        # Max is 4
-        self.assertIn("4", out)
-`
+      initialCode: \`# Write your solution here\nif __name__ == "__main__\`:\n    my_list = [1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]\n    print(longest_series_of_neighbours(my_list))"
+      testCode: \`import unittest\nclass TestNeighbours(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # [1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]\n        # 1,2 (len 2)\n        # 5\n        # 7,6,5,6 (len 4: 7-6, 6-5, 5-6)\n        # 3,4 (len 2)\n        # 1,0 (len 2)\n        # Max is 4.\n        \n        if "4" not in out:\n             self.fail("Expected output '4' for the example list.")\n"
+    }
+    {
+      type: 'markdown',
+      content: {
+        ENG: \`\n## Developing a larger programming project\n\nThis fourth part culminates in a slightly larger programming project, where you get to apply many of the techniques learnt so far.\n\nRule No. 1 in tackling any programming project is not trying to solve everything at once. The program should be built out of smaller sections, such as helper functions. You should verify the operation of each part before moving on to the next.\n\n## Passing data from one function to another\n\nWhen a program contains multiple functions, the question arises: how do you pass data from one function to another?\n\nPassing data into and out of functions is best handled by arguments and return values.`,
+        CAS: `\n## Desarrollando un proyecto de programación más grande\n\nEsta cuarta parte culmina en un proyecto de programación un poco más grande, donde puedes aplicar muchas de las técnicas aprendidas hasta ahora.\n\nLa regla número 1 al abordar cualquier proyecto de programación es no intentar resolver todo a la vez. El programa debe construirse a partir de secciones más pequeñas, como funciones auxiliares. Debes verificar el funcionamiento de cada parte antes de pasar a la siguiente.\n\n## Pasando datos de una función a otra\n\nCuando un programa contiene múltiples funciones, surge la pregunta: ¿cómo se pasan los datos de una función a otra?\n\nPasar datos dentro y fuera de las funciones se maneja mejor mediante argumentos y valores de retorno.`,
+        EUS: `\n## Programazio proiektu handiago bat garatzen\n\nLaugarren zati hau programazio proiektu apur bat handiago batean amaitzen da, non orain arte ikasitako teknika asko aplikatzeko aukera duzun.\n\nEdozein programazio proiekturi aurre egiteko 1. araua dena batera konpontzen ez saiatzea da. Programa atal txikiagoetatik eraiki behar da, funtzio laguntzaileak adibidez. Zati bakoitzaren funtzionamendua egiaztatu beharko zenuke hurrengora pasa aurretik.\n\n## Datuak funtzio batetik bestera pasatzen\n\nPrograma batek funtzio anitz dituenean, galdera sortzen da: nola pasatzen dituzu datuak funtzio batetik bestera?\n\nDatuak funtzioetara sartzea eta ateratzea argumentuen eta itzulera-balioen bidez kudeatzen da onena.\`
+      }
     },
     {
       type: 'exercise',
       exerciseId: 'part04-38_grade_statistics',
       title: {
-        ENG: "Grade statistics",
-        CAS: "Estadísticas de notas",
-        EUS: "Noten estatistikak"
+        ENG: \`Grade statistics`,
+        CAS: `Estadísticas de notas`,
+        EUS: `Noten estatistikak\`
       },
       description: {
-        ENG: "Write a program that asks the user for points and exam points, then prints statistics (average, pass percentage, grade distribution). Input terminates with empty line.",
-        CAS: "Escribe un programa que pida puntos y puntos de examen, luego imprima estadísticas (media, porcentaje de aprobados, distribución de notas). La entrada termina con una línea vacía.",
-        EUS: "Idatzi programa bat puntuak eta azterketa puntuak eskatzen dituena, eta gero estatistikak inprimatzen dituena (batezbestekoa, gainditze portzentajea, noten banaketa)."
+        ENG: \`In this exercise you will write a program for printing out grade statistics for a university course. The program asks the user for results from different students on the course. These include exam points and numbers of exercises completed. The program then prints out statistics based on the results.`,
+        CAS: `En este ejercicio escribirás un programa para imprimir estadísticas de notas para un curso universitario. El programa pide al usuario los resultados de diferentes estudiantes en el curso. Estos incluyen puntos de examen y número de ejercicios completados. El programa luego imprime estadísticas basadas en los resultados.`,
+        EUS: `Ariketa honetan unibertsitateko ikastaro baterako noten estatistikak inprimatzeko programa bat idatziko duzu. Programak ikastaroko ikasle ezberdinen emaitzak eskatzen dizkio erabiltzaileari. Horien artean azterketa puntuak eta osatutako ariketa kopurua daude. Programak gero estatistikak inprimatzen ditu emaitzetan oinarrituta.`
       },
-      initialCode: "# Write your solution here\n",
-      testCode: `
-import unittest
-class TestStats(unittest.TestCase):
-    def test_run(self):
-        inputs = ['20 100', '15 80', '10 50', '']
-        out = run_student_code(inputs=inputs)
-        # Verify some output presence
-        self.assertIn("Statistics:", out)
-        self.assertIn("Points average:", out)
-        self.assertIn("Pass percentage:", out)
-        self.assertIn("Grade distribution:", out)
-`
+      initialCode: `# Write your solution here\n`
+      testCode: `import unittest\nfrom unittest.mock import patch\nimport sys\nfrom io import StringIO\n\nclass TestGradeStatistics(unittest.TestCase):\n    def test_run(self):\n        # Input: Exam points and exercises completed\n        # 15 87\n        # 10 55\n        # 11 40\n        # 4 17\n        # empty line to stop\n        \n        input_data = [\n            "15 87`,\n            "10 55",\n            "11 40",\n            "4 17",\n            ""\n        ]\n        \n        # We need to mock input() to return these values sequentially\n        # And capture stdout\n        \n        with patch('builtins.input', side_effect=input_data):\n            # Capture output\n            captured_output = StringIO()\n            sys.stdout = captured_output\n            \n            try:\n                # We assume the student wrote the code in the main block\n                # Re-importing or exec logic would be needed if separate file, \n                # but run_student_code abstraction handles execution.\n                # Since we are mocking inside the testCode block which runs INSIDE the runner environment:\n                pass\n            except:\n                pass\n            finally:\n                # Reset stdout just in case, though the runner handles it.\n                sys.stdout = sys.__stdout__\n\n        # Since run_student_code() in our system handles input mocking via arguments,\n        # we should use that instead of manual patching if possible.\n        # But for 'empty line to stop', the student's code usually does 'if input == "": break'\n        \n        inputs = ["15 87", "10 55", "11 40", "4 17", ""]\n        out = run_student_code(inputs=inputs)\n        \n        # Expected Output validation\n        # Statistics:\n        # Points average: 14.5\n        # Pass percentage: 75.0\n        # Grade distribution:\n        #   5:\n        #   4:\n        #   3: *\n        #   2:\n        #   1: **\n        #   0: *\n        \n        if "Statistics:" not in out:\n            self.fail("Output should contain 'Statistics:'.")\n            \n        if "Points average: 14.5" not in out:\n            self.fail("Points average should be 14.5 for the example input.")\n            \n        if "Pass percentage: 75.0" not in out:\n            self.fail("Pass percentage should be 75.0 for the example input.")\n            \n        # Check distribution\n        if "5:" not in out or "0:" not in out:\n             self.fail("Grade distribution should show grades 0-5.")\n`
     }
   ]
 };
+\`\`\`

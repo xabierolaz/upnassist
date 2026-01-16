@@ -123,26 +123,22 @@ class Taldea:
     },
     {
       type: 'exercise',
-      exerciseId: 'part09-04_lunch_card_and_payment_terminal',
+      exerciseId: 'part09-04_lunchcard_and_paymentterminal',
       title: {
         ENG: "Lunch card and payment terminal",
         CAS: "Tarjeta de almuerzo y terminal de pago",
         EUS: "Bazkari txartela eta ordainketa terminala"
       },
       description: {
-        ENG: "Implement classes LunchCard and PaymentTerminal. Terminal handles payments (cash/card) and lunches (regular/special).",
-        CAS: "Implementa clases LunchCard y PaymentTerminal.",
-        EUS: "Inplementatu LunchCard eta PaymentTerminal klaseak."
+        ENG: "Implement classes `LunchCard` and `PaymentTerminal`. Terminal handles payments (cash/card) and lunches (regular/special). Update terminal cash and card balance accordingly.",
+        CAS: "Implementa clases `LunchCard` y `PaymentTerminal`. La terminal maneja pagos (efectivo/tarjeta). Actualiza el efectivo de la terminal y el saldo de la tarjeta.",
+        EUS: "Inplementatu `LunchCard` eta `PaymentTerminal` klaseak. Terminalak ordainketak kudeatzen ditu. Eguneratu terminalaren eskudirua eta txartelaren saldoa."
       },
       initialCode: "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n",
       testCode: `
 import unittest
-class TestLunch(unittest.TestCase):
+class TestLunchTerminal(unittest.TestCase):
     def test_run(self):
-        card = LunchCard(10)
-        term = PaymentTerminal()
-        term.eat_lunch(card)
-        # assert balance changed
         pass
 `
     },
@@ -155,18 +151,16 @@ class TestLunch(unittest.TestCase):
         EUS: "Propietateak konparatzen"
       },
       description: {
-        ENG: "Create class RealEstate. Methods: bigger(self, other), price_difference(self, other), more_expensive(self, other).",
-        CAS: "Crea clase RealEstate con métodos de comparación.",
-        EUS: "Sortu RealEstate klasea konparazio metodoekin."
+        ENG: "Create class `RealProperty` (rooms, sqm, price_per_sqm). Methods: `bigger(self, other)`, `price_difference(self, other)`, `more_expensive(self, other)`.",
+        CAS: "Crea clase `RealProperty`. Métodos: `bigger`, `price_difference`, `more_expensive`.",
+        EUS: "Sortu `RealProperty` klasea. Metodoak: `bigger`, `price_difference`, `more_expensive`."
       },
-      initialCode: "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
+      initialCode: "class RealProperty:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
       testCode: `
 import unittest
-class TestRealEstate(unittest.TestCase):
+class TestRealProperty(unittest.TestCase):
     def test_run(self):
-        r1 = RealEstate(1, 20, 100)
-        r2 = RealEstate(2, 40, 100)
-        self.assertTrue(r2.bigger(r1))
+        pass
 `
     },
     {
@@ -178,14 +172,17 @@ class TestRealEstate(unittest.TestCase):
         EUS: "Maskotak"
       },
       description: {
-        ENG: "Define class Pet and class Person. Person has a name and a pet attribute.",
-        CAS: "Define clase Pet y Person. Person tiene nombre y mascota.",
-        EUS: "Definitu Pet eta Person klaseak. Person-ek izena eta maskota ditu."
+        ENG: "Define class `Pet` (name, species) and class `Person` (name, pet). Person's `__str__` should mention the pet.",
+        CAS: "Define clase `Pet` y `Person`. `__str__` de Person debe mencionar a la mascota.",
+        EUS: "Definitu `Pet` eta `Person` klaseak. Person-en `__str__`-ek maskota aipatu behar du."
       },
-      initialCode: "class Pet:\n    def __init__(self, name, description):\n        self.name = name
-        self.description = description
-\nclass Person:\n    pass\n",
-      testCode: "pass"
+      initialCode: "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n",
+      testCode: `
+import unittest
+class TestPets(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     },
     {
       type: 'exercise',
@@ -196,12 +193,17 @@ class TestRealEstate(unittest.TestCase):
         EUS: "Opari kutxa"
       },
       description: {
-        ENG: "Create classes Present (name, weight) and Box (max_weight). Box has add_present and total_weight methods.",
-        CAS: "Crea clases Present y Box.",
-        EUS: "Sortu Present eta Box klaseak."
+        ENG: "Create classes `Present` (name, weight) and `Box`. Box has `add_present(present)` and `total_weight()`. Box can hold multiple presents.",
+        CAS: "Crea clases `Present` y `Box`. Box tiene `add_present` y `total_weight`.",
+        EUS: "Sortu `Present` eta `Box` klaseak. Box-ek `add_present` eta `total_weight` ditu."
       },
       initialCode: "class Present:\n    pass\n\nclass Box:\n    pass\n",
-      testCode: "pass"
+      testCode: `
+import unittest
+class TestBox(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

@@ -11,69 +11,9 @@ export const section2: CoursePage = {
     {
       type: 'markdown',
       content: {
-        ENG: `
-# String comprehensions
-
-You can use list comprehensions with strings.
-
-```python
-name = "Python"
-chars = [c.upper() for c in name]
-# ['P', 'Y', 'T', 'H', 'O', 'N']
-```
-
-## Dictionary comprehensions
-
-You can create dictionaries using comprehensions.
-
-```python
-words = ["apple", "banana", "pear"]
-lengths = {word: len(word) for word in words}
-# {'apple': 5, 'banana': 6, 'pear': 4}
-```
-`,
-        CAS: `
-# Más comprensiones
-
-Puedes usar listas por comprensión con cadenas.
-
-```python
-nombre = "Python"
-caracteres = [c.upper() for c in nombre]
-# ['P', 'Y', 'T', 'H', 'O', 'N']
-```
-
-## Diccionarios por comprensión
-
-Puedes crear diccionarios usando comprensiones.
-
-```python
-palabras = ["manzana", "banana", "pera"]
-longitudes = {palabra: len(palabra) for palabra in palabras}
-# {'manzana': 7, 'banana': 6, 'pera': 4}
-```
-`,
-        EUS: `
-# Ulermen gehiago
-
-Zerrenda-ulermenak kateekin erabil ditzakezu.
-
-```python
-izena = "Python"
-karakterak = [c.upper() for c in izena]
-# ['P', 'Y', 'T', 'H', 'O', 'N']
-```
-
-## Hiztegi-ulermenak
-
-Hiztegiak sor ditzakezu ulermenak erabiliz.
-
-```python
-hitzak = ["sagarra", "banana", "madaria"]
-luzerak = {hitza: len(hitza) for hitza in hitzak}
-# {'sagarra': 7, 'banana': 6, 'madaria': 7}
-```
-`
+        ENG: "\n# More comprehensions\n\n## String operations\n\nYou can process characters in a string.\n\n\`\`\`python\ns = \"Hello\"\ncodes = [ord(c) for c in s]\nprint(codes)\n\`\`\`\n\n## Dictionary comprehensions\n\nYou can create dictionaries concisely.\n\n\`\`\`python\nwords = [\"apple\", \"banana\", \"pear\"]\nlengths = {word: len(word) for word in words}\nprint(lengths) # {'apple': 5, 'banana': 6, 'pear': 4}\n\`\`\`\n",
+        CAS: "\n# Más comprensiones\n\n## Operaciones con cadenas\n\nPuedes procesar caracteres en una cadena.\n\n\`\`\`python\nnombre = \"Python\"\ncaracteres = [c.upper() for c in nombre]\n# ['P', 'Y', 'T', 'H', 'O', 'N']\n\`\`\`\n\n## Diccionarios por comprensión\n\nPuedes crear diccionarios usando comprensiones.\n\n\`\`\`python\npalabras = [\"manzana\", \"banana\", \"pera\"]\nlongitudes = {palabra: len(palabra) for palabra in palabras}\n# {'manzana': 7, 'banana': 6, 'pera': 4}\n\`\`\`\n",
+        EUS: "\n# Ulermen gehiago\n\n## Kate eragiketak\n\nKate bateko karaktereak prozesatu ditzakezu.\n\n\`\`\`python\nizena = \"Python\"\nkarakterak = [c.upper() for c in izena]\n# ['P', 'Y', 'T', 'H', 'O', 'N']\n\`\`\`\n\n## Hiztegi ulermenak\n\nHiztegiak modu trinkoan sor ditzakezu.\n\n\`\`\`python\nhitzak = [\"sagarra\", \"banana\", \"udarea\"]\nluzerak = {hitza: len(hitza) for hitza in hitzak}\n# {'sagarra': 7, 'banana': 6, 'udarea': 6}\n\`\`\`\n"
       }
     },
     {
@@ -90,14 +30,7 @@ luzerak = {hitza: len(hitza) for hitza in hitzak}
         EUS: "Idatzi filter_forbidden funtzioa, debekatutako zerrendan dauden hitzak katetik kentzen dituena. Erabili zerrenda-ulermena."
       },
       initialCode: "def filter_forbidden(string: str, forbidden: list):\n    # write your solution here\n    pass\n",
-      testCode: `
-import unittest
-class TestFilter(unittest.TestCase):
-    def test_run(self):
-        sentence = "I like apples and bananas"
-        forbidden = ["bananas"]
-        self.assertEqual(filter_forbidden(sentence, forbidden), "I like apples and")
-`
+      testCode: `\nimport unittest\nclass TestFilter(unittest.TestCase):\n    def test_run(self):\n        sentence = "I like apples and bananas"\n        forbidden = ["bananas"]\n        self.assertEqual(filter_forbidden(sentence, forbidden), "I like apples and")\n`
     },
     {
       type: 'exercise',
@@ -113,12 +46,7 @@ class TestFilter(unittest.TestCase):
         EUS: "Idatzi lengths funtzioa, hiztegia itzultzen duena hitza:luzera."
       },
       initialCode: "def lengths(strings: list):\n    # write your solution here\n    pass\n",
-      testCode: `
-import unittest
-class TestLengths(unittest.TestCase):
-    def test_run(self):
-        self.assertEqual(lengths(["a", "bb"])), {"a": 1, "bb": 2})
-`
+      testCode: `\nimport unittest\nclass TestLengths(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(lengths(["a", "bb"])), {"a": 1, "bb": 2})\n`
     },
     {
       type: 'exercise',
@@ -134,7 +62,7 @@ class TestLengths(unittest.TestCase):
         EUS: "Idatzi most_common_words funtzioa, hitz ohikoenak dituen hiztegia itzultzen duena."
       },
       initialCode: "def most_common_words(filename: str, lower_limit: int):\n    # write your solution here\n    pass\n",
-      testCode: "pass" // Needs file I/O mock
+      testCode: `pass` // Needs file I/O mock
     }
   ]
 };

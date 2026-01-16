@@ -11,9 +11,9 @@ export const section3: CoursePage = {
     {
       type: 'markdown',
       content: {
-        ENG: "\n# Recursion\n\nRecursion is a technique where a function calls itself. It requires a base case to stop the recursion.\n\n```python\ndef factorial(n):\n    if n < 2:\n        return 1\n    return n * factorial(n - 1)\n```\n\n## Binary Search\n\nRecursion is often used in algorithms like binary search.\n\n```python\ndef binary_search(data, item, left, right):\n    if left > right:\n        return False\n    mid = (left + right) // 2\n    if data[mid] == item:\n        return True\n    elif data[mid] < item:\n        return binary_search(data, item, mid + 1, right)\n    else:\n        return binary_search(data, item, left, mid - 1)\n```\n",
-        CAS: "\n# Recursividad\n\nLa recursividad es una técnica donde una función se llama a sí misma. Requiere un caso base para detener la recursión.\n\n```python\ndef factorial(n):\n    if n < 2:\n        return 1\n    return n * factorial(n - 1)\n```\n\n## Búsqueda Binaria\n\nLa recursividad se usa a menudo en algoritmos como la búsqueda binaria.\n",
-        EUS: "\n# Errekurtsibitatea\n\nErrekurtsibitatea funtzio batek bere buruari deitzen dion teknika da. Oinarrizko kasu bat behar du errekurtsioa gelditzeko.\n\n```python\ndef faktoriala(n):\n    if n < 2:\n        return 1\n    return n * faktoriala(n - 1)\n```\n\n## Bilaketa Binarioa\n\nErrekurtsibitatea askotan erabiltzen da bilaketa binarioa bezalako algoritmoetan.\n"
+        ENG: "\n# Recursion\n\nRecursion is a technique where a function calls itself. It requires a base case to stop the recursion.\n\n\`\`\`python\ndef factorial(n):\n    if n < 2:\n        return 1\n    return n * factorial(n - 1)\n\`\`\`\n\n## Binary Search\n\nRecursion is often used in algorithms like binary search.\n\n\`\`\`python\ndef binary_search(data, item, left, right):\n    if left > right:\n        return False\n    mid = (left + right) // 2\n    if data[mid] == item:\n        return True\n    elif data[mid] < item:\n        return binary_search(data, item, mid + 1, right)\n    else:\n        return binary_search(data, item, left, mid - 1)\n\`\`\`\n",
+        CAS: "\n# Recursividad\n\nLa recursividad es una técnica donde una función se llama a sí misma. Requiere un caso base para detener la recursión.\n\n\`\`\`python\ndef factorial(n):\n    if n < 2:\n        return 1\n    return n * factorial(n - 1)\n\`\`\`\n\n## Búsqueda Binaria\n\nLa recursividad se usa a menudo en algoritmos como la búsqueda binaria.\n",
+        EUS: "\n# Errekurtsibitatea\n\nErrekurtsibitatea funtzio batek bere buruari deitzen dion teknika da. Oinarrizko kasu bat behar du errekurtsioa gelditzeko.\n\n\`\`\`python\ndef faktoriala(n):\n    if n < 2:\n        return 1\n    return n * faktoriala(n - 1)\n\`\`\`\n\n## Bilaketa Binarioa\n\nErrekurtsibitatea askotan erabiltzen da bilaketa binarioa bezalako algoritmoetan.\n"
       }
     },
     {
@@ -30,7 +30,7 @@ export const section3: CoursePage = {
         EUS: "Idatzi add_numbers_to_list funtzio errekurtsiboa."
       },
       initialCode: "def add_numbers_to_list(numbers: list):\n    # write your solution here\n    pass\n",
-      testCode: "\nimport unittest\nclass TestAdd(unittest.TestCase):\n    def test_run(self):\n        l = [1]\n        add_numbers_to_list(l)\n        self.assertTrue(len(l) % 5 == 0)\n"
+      testCode: `\nimport unittest\nclass TestAdd(unittest.TestCase):\n    def test_run(self):\n        l = [1]\n        add_numbers_to_list(l)\n        self.assertTrue(len(l) % 5 == 0)\n`
     },
     {
       type: 'exercise',
@@ -46,7 +46,7 @@ export const section3: CoursePage = {
         EUS: "Idatzi recursive_sum(number: int) funtzio errekurtsiboa."
       },
       initialCode: "def recursive_sum(number: int):\n    # write your solution here\n    pass\n",
-      testCode: "\nimport unittest\nclass TestSum(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(recursive_sum(3), 6)\n"
+      testCode: `\nimport unittest\nclass TestSum(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(recursive_sum(3), 6)\n`
     },
     {
       type: 'exercise',
@@ -62,7 +62,7 @@ export const section3: CoursePage = {
         EUS: "Employee klasea ematen da. Idatzi count_subordinates funtzioa."
       },
       initialCode: "class Employee:\n    def __init__(self, name: str):\n        self.name = name\n        self.subordinates = []\n\n    def add_subordinate(self, employee: 'Employee'):\n        self.subordinates.append(employee)\n\ndef count_subordinates(employee: Employee):\n    # write your solution here\n    pass\n",
-      testCode: "\nimport unittest\nclass TestBosses(unittest.TestCase):\n    def test_run(self):\n        e1 = Employee(\"Boss\")\n        e2 = Employee(\"Sub1\")\n        e3 = Employee(\"Sub2\")\n        e1.add_subordinate(e2)\n        e2.add_subordinate(e3)\n        self.assertEqual(count_subordinates(e1), 2)\n"
+      testCode: `\nimport unittest\nclass TestBosses(unittest.TestCase):\n    def test_run(self):\n        e1 = Employee("Boss")\n        e2 = Employee("Sub1")\n        e3 = Employee("Sub2")\n        e1.add_subordinate(e2)\n        e2.add_subordinate(e3)\n        self.assertEqual(count_subordinates(e1), 2)\n`
     }
   ]
 };

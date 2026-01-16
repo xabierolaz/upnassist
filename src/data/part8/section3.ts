@@ -3,50 +3,202 @@ import { CoursePage } from '../mooc-exercises';
 export const section3: CoursePage = {
   id: "part8-3",
   title: {
-    ENG: "Defining classes",
-    CAS: "Definiendo clases",
-    EUS: "Klaseak definitzen"
+    ENG: `Defining classes`,
+    CAS: `Definiendo clases`,
+    EUS: `Klaseak definitzen`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: "\n# Defining classes\n\nA class is defined using the `class` keyword.\n\n```python\nclass BankAccount:\n    def __init__(self, owner, balance):\n        self.owner = owner\n        self.balance = balance\n```\n\n## The constructor\n\nThe `__init__` method is the constructor. It initializes the object. The first parameter is always `self`.\n\n```python\naccount = BankAccount(\"Peter\", 100)\nprint(account.owner)\n```\n",
-        CAS: "\n# Definiendo clases\n\nUna clase se define usando la palabra clave `class`.\n\n```python\nclass CuentaBancaria:\n    def __init__(self, titular, saldo):\n        self.titular = titular\n        self.saldo = saldo\n```\n\n## El constructor\n\nEl método `__init__` es el constructor. Inicializa el objeto. El primer parámetro es siempre `self`.\n\n```python\ncuenta = CuentaBancaria(\"Peter\", 100)\nprint(cuenta.titular)\n```\n",
-        EUS: "\n# Klaseak definitzen\n\nKlase bat `class` gako-hitza erabiliz definitzen da.\n\n```python\nclass BankuKontua:\n    def __init__(self, jabea, saldoa):\n        self.jabea = jabea\n        self.saldoa = saldoa\n```\n\n## Eraikitzailea\n\n`__init__` metodoa eraikitzailea da. Objektua hasieratzen du. Lehen parametroa beti `self` da.\n\n```python\nkontua = BankuKontua(\"Peter\", 100)\nprint(kontua.jabea)\n```\n"
+        ENG: `
+# Defining classes
+
+A class is defined using the 
+class
+ keyword.
+
+\`\`\`python
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+\`\`\`
+
+## The constructor
+
+The 
+__init__
+ method is the constructor. It initializes the object. The first parameter is always 
+self
+.
+
+\`\`\`python
+account = BankAccount("Peter", 100)
+print(account.owner)
+\`\`\`
+`,
+        CAS: `
+# Definiendo clases
+
+Una clase se define usando la palabra clave 
+class
+.
+
+\`\`\`python
+class CuentaBancaria:
+    def __init__(self, titular, saldo):
+        self.titular = titular
+        self.saldo = saldo
+\`\`\`
+
+## El constructor
+
+El método 
+__init__
+ es el constructor. Inicializa el objeto. El primer parámetro es siempre 
+self
+.
+
+\`\`\`python
+cuenta = CuentaBancaria("Peter", 100)
+print(cuenta.titular)
+\`\`\`
+`,
+        EUS: `
+# Klaseak definitzen
+
+Klase bat 
+class
+ gako-hitza erabiliz definitzen da.
+
+\`\`\`python
+class BankuKontua:
+    def __init__(self, jabea, saldoa):
+        self.jabea = jabea
+        self.saldoa = saldoa
+\`\`\`
+
+## Eraikitzailea
+
+
+__init__
+ metodoa eraikitzailea da. Objektua hasieratzen du. Lehen parametroa beti 
+self
+ da.
+
+\`\`\`python
+kontua = BankuKontua("Peter", 100)
+print(kontua.jabea)
+\`\`\`
+`
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-04_book',
+      exerciseId: 'part08-06_three_classes',
       title: {
-        ENG: "Book",
-        CAS: "Libro",
-        EUS: "Liburua"
+        ENG: `Three classes`,
+        CAS: `Tres clases`,
+        EUS: `Hiru klase`
       },
       description: {
-        ENG: "Define a class named Book. It should have a constructor that takes the name, author, genre and year of publication as arguments.",
-        CAS: "Define una clase Libro. Debe tener un constructor que tome nombre, autor, género y año como argumentos.",
-        EUS: "Definitu Liburua izeneko klasea. Eraikitzaile bat izan behar du, izena, egilea, generoa eta urtea hartzen dituena."
+        ENG: `Write three classes: 
+Checklist
+, 
+Customer
+, and 
+Cable
+. Checklist has header and entries. Customer has id, balance, discount. Cable has model, length, max_speed, bidirectional.`,
+        CAS: `Escribe tres clases: 
+Checklist
+ (encabezado, entradas), 
+Customer
+ (id, saldo, descuento), 
+Cable
+ (modelo, longitud, velocidad_max, bidireccional).`,
+        EUS: `Idatzi hiru klase: 
+Checklist
+ (goiburua, sarrerak), 
+Customer
+ (id, saldoa, deskontua), 
+Cable
+ (modeloa, luzera, abiadura_max, bidirekzionala).`
       },
-      initialCode: "# Write your solution here\nclass Book:\n    pass\n",
-      testCode: "\nimport unittest\nclass TestBook(unittest.TestCase):\n    def test_creation(self):\n        b = run_student_code(code_to_run=\"b = Book('Name', 'Author', 'Genre', 2000); print(b.author)\")\n        self.assertIn(\"Author\", b)\n"
+      initialCode: `# Write your solution here\n`,
+      testCode: `\nimport unittest\nclass TestClasses(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-05_three_classes',
+      exerciseId: 'part08-07_pet',
       title: {
-        ENG: "Three classes",
-        CAS: "Tres clases",
-        EUS: "Hiru klase"
+        ENG: `Pet`,
+        CAS: `Mascota`,
+        EUS: `Maskota`
       },
       description: {
-        ENG: "Write three classes: Checklist, Customer, and Cable. Checklist has header and entries. Customer has id, balance, discount. Cable has model, length, max_speed, bidirectional.",
-        CAS: "Escribe tres clases: Checklist (encabezado, entradas), Customer (id, saldo, descuento), Cable (modelo, longitud, velocidad_max, bidireccional).",
-        EUS: "Idatzi hiru klase: Checklist (goiburua, sarrerak), Customer (id, saldoa, deskontua), Cable (modeloa, luzera, abiadura_max, bidirekzionala)."
+        ENG: `Define a class named 
+Pet
+. The constructor should take the name, species and year of birth. Also write a function 
+new_pet(name, species, year)
+ that creates and returns a Pet object.`,
+        CAS: `Define una clase 
+Mascota
+. Constructor: nombre, especie, año. Escribe también 
+new_pet(nombre, especie, año)
+ que devuelva un objeto Mascota.`,
+        EUS: `Definitu 
+Maskota
+ klasea. Eraikitzailea: izena, espeziea, urtea. Idatzi 
+new_pet(izena, espeziea, urtea)
+ ere, Maskota objektu bat itzultzen duena.`
       },
-      initialCode: "# Write your solution here\n",
-      testCode: "\nimport unittest\nclass TestClasses(unittest.TestCase):\n    def test_run(self):\n        # We assume student defines them correctly.\n        # Just check instantiation doesn't crash.\n        code = \"\"\"\nc = Checklist(\"Header\", \"Entries\")\ncust = Customer(\"1\", 100, 0.1)\ncab = Cable(\"M\", 10, 1000, True)\nprint(\"Done\")\n\"\"\"\n        out = run_student_code(code_to_run=code)\n        self.assertIn(\"Done\", out)\n"
+      initialCode: `# Write your solution here\nclass Pet:\n    def __init__(self, name: str, species: str, year_of_birth: int):\n        self.name = name\n        self.species = species\n        self.year_of_birth = year_of_birth\n\ndef new_pet(name: str, species: str, year_of_birth: int):\n    return Pet(name, species, year_of_birth)\n`,
+      testCode: `\nimport unittest\nclass TestPet(unittest.TestCase):\n    def test_run(self):\n        pass\n`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part08-08_older_book',
+      title: {
+        ENG: `Older book`,
+        CAS: `Libro más viejo`,
+        EUS: `Liburu zaharragoa`
+      },
+      description: {
+        ENG: `Write a function 
+older_book(book1, book2)
+ that prints which book is older. If same year, print they are same age.`,
+        CAS: `Escribe 
+older_book(libro1, libro2)
+ que imprima cuál es más viejo. Si mismo año, imprime que tienen la misma edad.`,
+        EUS: `Idatzi 
+older_book(liburu1, liburu2)
+. Inprimatu zein den zaharragoa. Urte bera bada, inprimatu adin bera dutela.`
+      },
+      initialCode: `# Write your solution here\n`,
+      testCode: `\nimport unittest\nclass TestOlderBook(unittest.TestCase):\n    def test_run(self):\n        pass\n`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part08-09_books_of_genre',
+      title: {
+        ENG: `Books of genre`,
+        CAS: `Libros de un género`,
+        EUS: `Genero bateko liburuak`
+      },
+      description: {
+        ENG: `Write a function 
+books_of_genre(books: list, genre: str)
+ that returns a new list of books matching the genre.`,
+        CAS: `Escribe 
+books_of_genre(libros, genero)
+ que devuelva una lista de libros de ese género.`,
+        EUS: `Idatzi 
+books_of_genre(liburuak, generoa)
+ genero horretako liburuen zerrenda bat itzultzen duena.`
+      },
+      initialCode: `# Write your solution here\n`,
+      testCode: `\nimport unittest\nclass TestGenre(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

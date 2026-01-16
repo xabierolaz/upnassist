@@ -12,232 +12,94 @@ export const section2: CoursePage = {
       type: 'markdown',
       content: {
         ENG: `
-# Creating an animation
+# Animation
 
-The following code creates an animation where a robot moves from left to right in a pygame window:
+To animate, you update coordinates in a loop and redraw.
 
 \`\`\`python
-import pygame
-
-pygame.init()
-window = pygame.display.set_mode((640, 480))
-
-robot = pygame.image.load("robot.png")
-
 x = 0
 y = 0
-clock = pygame.time.Clock()
+velocity_x = 1
 
 while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            exit()
-
     window.fill((0, 0, 0))
     window.blit(robot, (x, y))
     pygame.display.flip()
-
-    x += 1
-    clock.tick(60)
-\`\`\`
-
-When this is executed, the result should look like this:
-
-![Pygame animation](/images/pygame_animation.gif)
-
-## Bouncing
-
-The following code makes the robot bounce off the side walls:
-
-\`\`\`python
-# ... setup ...
-velocity = 1
-while True:
-    # ... events ...
-    x += velocity
-    if velocity > 0 and x+robot.get_width() >= 640:
-        velocity = -velocity
-    if velocity < 0 and x <= 0:
-        velocity = -velocity
-    # ... draw ...
-\`\`\`
-
-Running the above code should look like this:
-
-![Pygame animation bouncing](/images/pygame_animation2.gif)
-
-## Rotation
-
-Let's create one more animation. This time the robot should rotate in a circle around the centre of the window:
-
-\`\`\`python
-# ... math import ...
-angle = 0
-while True:
-    # ... events ...
-    x = 320+math.cos(angle)*100-robot.get_width()/2
-    y = 240+math.sin(angle)*100-robot.get_height()/2
     
-    window.blit(robot, (x, y))
-    # ... flip ...
-    angle += 0.01
+    x += velocity_x
 \`\`\`
 
-Running the above code should look like this:
+## Clock
 
-![Pygame rotation](/images/pygame_rotation.gif)
+Use \`pygame.time.Clock\` to control the frame rate.
+
+\`\`\`python
+clock = pygame.time.Clock()
+
+while True:
+    # ...
+    clock.tick(60) # 60 FPS
+\`\`\`
 `,
         CAS: `
-# Creando una animación
+# Animación
 
-El siguiente código crea una animación donde un robot se mueve de izquierda a derecha en una ventana pygame:
+Para animar, actualizas las coordenadas en un bucle y redibujas.
 
 \`\`\`python
-import pygame
-
-pygame.init()
-ventana = pygame.display.set_mode((640, 480))
-
-robot = pygame.image.load("robot.png")
-
 x = 0
 y = 0
+velocidad_x = 1
+
+while True:
+    window.fill((0, 0, 0))
+    window.blit(robot, (x, y))
+    pygame.display.flip()
+    
+    x += velocidad_x
+\`\`\`
+
+## Reloj
+
+Usa \`pygame.time.Clock\` para controlar la tasa de fotogramas.
+
+\`\`\`python
 reloj = pygame.time.Clock()
 
 while True:
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            exit()
-
-    ventana.fill((0, 0, 0))
-    ventana.blit(robot, (x, y))
-    pygame.display.flip()
-
-    x += 1
-    reloj.tick(60)
+    # ...
+    reloj.tick(60) # 60 FPS
 \`\`\`
-
-Cuando esto se ejecuta, el resultado debería verse así:
-
-![Animación Pygame](/images/pygame_animation.gif)
-
-## Rebotando
-
-El siguiente código hace que el robot rebote en las paredes laterales:
-
-\`\`\`python
-# ... configuración ...
-velocidad = 1
-while True:
-    # ... eventos ...
-    x += velocidad
-    if velocidad > 0 and x+robot.get_width() >= 640:
-        velocidad = -velocidad
-    if velocidad < 0 and x <= 0:
-        velocidad = -velocidad
-    # ... dibujar ...
-\`\`\`
-
-Ejecutar el código anterior debería verse así:
-
-![Animación rebote](/images/pygame_animation2.gif)
-
-## Rotación
-
-Creemos una animación más. Esta vez el robot debe rotar en un círculo alrededor del centro de la ventana:
-
-\`\`\`python
-# ... importar math ...
-angulo = 0
-while True:
-    # ... eventos ...
-    x = 320+math.cos(angulo)*100-robot.get_width()/2
-    y = 240+math.sin(angulo)*100-robot.get_height()/2
-    
-    ventana.blit(robot, (x, y))
-    # ... actualizar ...
-    angulo += 0.01
-\`\`\`
-
-Ejecutar el código anterior debería verse así:
-
-![Rotación Pygame](/images/pygame_rotation.gif)
 `,
         EUS: `
-# Animazio bat sortzen
+# Animazioa
 
-Hurrengo kodeak animazio bat sortzen du, non robota ezkerretik eskuinera mugitzen den pygame leiho batean:
+Animatzeko, koordenatuak eguneratzen dituzu begizta batean eta berriro marrazten duzu.
 
 \`\`\`python
-import pygame
-
-pygame.init()
-leihoa = pygame.display.set_mode((640, 480))
-
-robota = pygame.image.load("robot.png")
-
 x = 0
 y = 0
+abiadura_x = 1
+
+while True:
+    window.fill((0, 0, 0))
+    window.blit(robot, (x, y))
+    pygame.display.flip()
+    
+    x += abiadura_x
+\`\`\`
+
+## Erlojua
+
+Erabili \`pygame.time.Clock\` fotograma-tasa kontrolatzeko.
+
+\`\`\`python
 erlojua = pygame.time.Clock()
 
 while True:
-    for gertaera in pygame.event.get():
-        if gertaera.type == pygame.QUIT:
-            exit()
-
-    leihoa.fill((0, 0, 0))
-    leihoa.blit(robota, (x, y))
-    pygame.display.flip()
-
-    x += 1
-    erlojua.tick(60)
+    # ...
+    erlojua.tick(60) # 60 FPS
 \`\`\`
-
-Hau exekutatzen denean, emaitzak honela beharko luke:
-
-![Pygame animazioa](/images/pygame_animation.gif)
-
-## Errebotatzen
-
-Hurrengo kodeak robota alboko paretetan errebotatzea eragiten du:
-
-\`\`\`python
-# ... konfigurazioa ...
-abiadura = 1
-while True:
-    # ... gertaerak ...
-    x += abiadura
-    if abiadura > 0 and x+robota.get_width() >= 640:
-        abiadura = -abiadura
-    if abiadura < 0 and x <= 0:
-        abiadura = -abiadura
-    # ... marraztu ...
-\`\`\`
-
-Goiko kodea exekutatzean honela beharko luke:
-
-![Pygame errebotatzen](/images/pygame_animation2.gif)
-
-## Biraketa
-
-Sortu dezagun beste animazio bat. Oraingoan robotak zirkulu batean biratu beharko luke leihoaren erdian:
-
-\`\`\`python
-# ... math inportatu ...
-angelua = 0
-while True:
-    # ... gertaerak ...
-    x = 320+math.cos(angelua)*100-robota.get_width()/2
-    y = 240+math.sin(angelua)*100-robota.get_height()/2
-    
-    leihoa.blit(robota, (x, y))
-    # ... eguneratu ...
-    angelua += 0.01
-\`\`\`
-
-Goiko kodea exekutatzean honela beharko luke:
-
-![Pygame biraketa](/images/pygame_rotation.gif)
 `
       }
     },
@@ -250,28 +112,38 @@ Goiko kodea exekutatzean honela beharko luke:
         EUS: "Mugimendu bertikala"
       },
       description: {
-        ENG: "Make the robot move vertically from top to bottom.",
-        CAS: "Haz que el robot se mueva verticalmente de arriba a abajo.",
-        EUS: "Egin robota bertikalki mugitu dadin goitik behera."
+        ENG: "Make the robot move up and down, bouncing off the edges.",
+        CAS: "Haz que el robot se mueva arriba y abajo, rebotando en los bordes.",
+        EUS: "Egin robotak gora eta behera mugi dadin, ertzetan errebote eginez."
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `
+import unittest
+class TestVertical(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     },
     {
       type: 'exercise',
-      exerciseId: 'part13-06_bouncing_ball',
+      exerciseId: 'part13-06_round_the_perimeter',
       title: {
-        ENG: "Bouncing robot",
-        CAS: "Robot rebotando",
-        EUS: "Robot saltoka"
+        ENG: "Round the perimeter",
+        CAS: "Alrededor del perímetro",
+        EUS: "Perimetroaren inguruan"
       },
       description: {
-        ENG: "Make the robot bounce off the walls of the window.",
-        CAS: "Haz que el robot rebote en las paredes de la ventana.",
-        EUS: "Egin robotak leihoaren paretetan errebotatu dezan."
+        ENG: "Make the robot move along the edges of the window clockwise.",
+        CAS: "Haz que el robot se mueva por los bordes de la ventana en sentido horario.",
+        EUS: "Egin robotak leihoaren ertzetan zehar mugi dadin erlojuaren noranzkoan."
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `
+import unittest
+class TestPerimeter(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     },
     {
       type: 'exercise',
@@ -282,12 +154,17 @@ Goiko kodea exekutatzean honela beharko luke:
         EUS: "Bi robot"
       },
       description: {
-        ENG: "Create two robots moving at different speeds/directions, bouncing off walls.",
-        CAS: "Crea dos robots moviéndose a diferentes velocidades/direcciones, rebotando.",
-        EUS: "Sortu bi robot abiadura/norabide desberdinetan mugitzen, errebotatzen."
+        ENG: "Two robots moving horizontally. One top, one bottom. Different speeds.",
+        CAS: "Dos robots moviéndose horizontalmente. Uno arriba, otro abajo. Velocidades diferentes.",
+        EUS: "Bi robot horizontalki mugitzen. Bat goian, bestea behean. Abiadura ezberdinak."
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `
+import unittest
+class TestTwoRobots(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     },
     {
       type: 'exercise',
@@ -298,12 +175,59 @@ Goiko kodea exekutatzean honela beharko luke:
         EUS: "Robot zirkulua"
       },
       description: {
-        ENG: "Make 10 robots rotate in a circle around the center of the screen.",
-        CAS: "Haz que 10 robots roten en círculo alrededor del centro.",
-        EUS: "Egin 10 robot zirkuluan biratu daitezen zentroaren inguruan."
+        ENG: "10 robots rotating in a circle around the center of the screen.",
+        CAS: "10 robots rotando en círculo alrededor del centro de la pantalla.",
+        EUS: "10 robot pantailaren erdian zirkulu batean biratzen."
       },
-      initialCode: "import pygame\nimport math\n\n# ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\nimport math\n",
+      testCode: `
+import unittest
+class TestCircle(unittest.TestCase):
+    def test_run(self):
+        pass
+`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part13-09_bouncing_ball',
+      title: {
+        ENG: "Bouncing ball",
+        CAS: "Pelota rebotando",
+        EUS: "Pilota saltoka"
+      },
+      description: {
+        ENG: "A ball (use 'ball.png') bouncing around the screen.",
+        CAS: "Una pelota ('ball.png') rebotando por la pantalla.",
+        EUS: "Pilota bat ('ball.png') pantailan zehar saltoka."
+      },
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `
+import unittest
+class TestBall(unittest.TestCase):
+    def test_run(self):
+        pass
+`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part13-10_robot_invasion',
+      title: {
+        ENG: "Robot invasion",
+        CAS: "Invasión de robots",
+        EUS: "Robot inbasioa"
+      },
+      description: {
+        ENG: "Robots fall from the sky randomly. If they hit the ground, they walk left/right.",
+        CAS: "Robots caen del cielo aleatoriamente. Si tocan el suelo, caminan izquierda/derecha.",
+        EUS: "Robotak zerutik erortzen dira ausaz. Lurra jotzen badute, ezkerrera/eskuinera ibiltzen dira."
+      },
+      initialCode: "# Write your solution here\nimport pygame\nimport random\n",
+      testCode: `
+import unittest
+class TestInvasion(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

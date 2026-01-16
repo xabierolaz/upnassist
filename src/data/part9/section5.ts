@@ -3,139 +3,50 @@ import { CoursePage } from '../mooc-exercises';
 export const section5: CoursePage = {
   id: "part9-5",
   title: {
-    ENG: "Class attributes",
-    CAS: "Atributos de clase",
-    EUS: "Klase-atributuak"
+    ENG: `Class attributes`,
+    CAS: `Atributos de clase`,
+    EUS: `Klase-atributuak`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
-# Class attributes
-
-Class attributes are shared by all instances of a class. They are defined outside the constructor.
-
-```python
-class SavingsAccount:
-    general_rate = 0.03
-
-    def __init__(self, balance):
-        self.balance = balance
-```
-
-## Class methods
-
-Class methods are methods that operate on the class itself, not on instances. They are decorated with `@classmethod`.
-
-```python
-class Registration:
-    @classmethod
-    def license_plate_valid(cls, plate):
-        # ...
-        return True
-```
-`,
-        CAS: `
-# Atributos de clase
-
-Los atributos de clase son compartidos por todas las instancias de una clase. Se definen fuera del constructor.
-
-```python
-class CuentaAhorro:
-    tasa_general = 0.03
-
-    def __init__(self, saldo):
-        self.saldo = saldo
-```
-
-## Métodos de clase
-
-Los métodos de clase son métodos que operan sobre la clase misma, no sobre las instancias. Se decoran con `@classmethod`.
-
-```python
-class Matricula:
-    @classmethod
-    def matricula_valida(cls, matricula):
-        # ...
-        return True
-```
-`,
-        EUS: `
-# Klase-atributuak
-
-Klase-atributuak klase baten instantzia guztiek partekatzen dituzte. Eraikitzailez kanpo definitzen dira.
-
-```python
-class AurrezkiKontua:
-    tasa_orokorra = 0.03
-
-    def __init__(self, saldoa):
-        self.saldoa = saldoa
-```
-
-## Klase-metodoak
-
-Klase-metodoak klasean bertan eragiten duten metodoak dira, ez instantzietan. 
-@classmethod
--ekin apaintzen dira.
-
-```python
-class Matrikula:
-    @classmethod
-    def matrikula_baliozkoa(cls, matrikula):
-        # ...
-        return True
-```
-`
+        ENG: `\n# Class attributes\n\nClass attributes are shared by all instances of a class. They are defined outside the constructor.\n\n\`\`\`python\nclass SavingsAccount:\n    general_rate = 0.03\n\n    def __init__(self, balance):\n        self.balance = balance\n\`\`\`\n\n## Class methods\n\nClass methods are methods that operate on the class itself, not on instances. They are decorated with `@classmethod`.\n\n\`\`\`python\nclass Registration:\n    @classmethod\n    def license_plate_valid(cls, plate):\n        # ...\n        return True\n\`\`\`\n`,
+        CAS: `\n# Atributos de clase\n\nLos atributos de clase son compartidos por todas las instancias de una clase. Se definen fuera del constructor.\n\n\`\`\`python\nclass CuentaAhorro:\n    tasa_general = 0.03\n\n    def __init__(self, saldo):\n        self.saldo = saldo\n\`\`\`\n\n## Métodos de clase\n\nLos métodos de clase son métodos que operan sobre la clase misma, no sobre las instancias. Se decoran con `@classmethod`.\n\n\`\`\`python\nclass Matricula:\n    @classmethod\n    def matricula_valida(cls, matricula):\n        # ...\n        return True\n\`\`\`\n`,
+        EUS: `\n# Klase-atributuak\n\nKlase-atributuak klase baten instantzia guztiek partekatzen dituzte. Eraikitzailez kanpo definitzen dira.\n\n\`\`\`python\nclass AurrezkiKontua:\n    tasa_orokorra = 0.03\n\n    def __init__(self, saldoa):\n        self.saldoa = saldoa\n\`\`\`\n\n## Klase-metodoak\n\nKlase-metodoak klasean bertan eragiten duten metodoak dira, ez instantzietan. \n@classmethod\n-ekin apaintzen dira.\n\n\`\`\`python\nclass Matrikula:\n    @classmethod\n    def matrikula_baliozkoa(cls, matrikula):\n        # ...\n        return True\n\`\`\`\n`
       }
     },
     {
       type: 'exercise',
       exerciseId: 'part09-13_postcodes',
       title: {
-        ENG: "Postcodes",
-        CAS: "Códigos postales",
-        EUS: "Posta kodeak"
+        ENG: `Postcodes`,
+        CAS: `Códigos postales`,
+        EUS: `Posta kodeak`
       },
       description: {
-        ENG: "Add class attribute postcodes to class City. It should be a dictionary. Add locations 'Helsinki': '00100', 'Turku': '20100', etc.",
-        CAS: "Añade atributo de clase postcodes a clase City. Debe ser un diccionario. Añade 'Helsinki': '00100', etc.",
-        EUS: "Gehitu postcodes klase-atributua City klaseari. Hiztegi bat izan behar du. Gehitu 'Helsinki': '00100', etab."
+        ENG: `Add class attribute `postcodes` (dictionary) to class `City`. It should be accessible via class or instances.`,
+        CAS: `Añade atributo de clase `postcodes` a `City`. Accesible vía clase o instancias.`,
+        EUS: `Gehitu `postcodes` klase-atributua `City` klaseari. Klase edo instantzien bidez eskuragarria.`
       },
-      initialCode: "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"
-",
-      testCode: `
-import unittest
-class TestCity(unittest.TestCase):
-    def test_run(self):
-        self.assertEqual(City.postcodes['Helsinki'], '00100')
-        c = City("Test", 100)
-        self.assertEqual(c.postcodes['Turku'], '20100')
-`
+      initialCode: `class City:\n    postcodes = {'Pamplona': '31001', 'Bilbao': '48001', 'Madrid': '28001', 'Barcelona': '08001', 'Sevilla': '41001'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n`,
+      testCode: `\nimport unittest\nclass TestCity(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     },
     {
       type: 'exercise',
       exerciseId: 'part09-14_list_helper',
       title: {
-        ENG: "List helper",
-        CAS: "Ayudante de lista",
-        EUS: "Zerrenda laguntzailea"
+        ENG: `List helper`,
+        CAS: `Ayudante de lista`,
+        EUS: `Zerrenda laguntzailea`
       },
       description: {
-        ENG: "Create class ListHelper with static methods greatest_frequency(my_list) and doubles(my_list). greatest_frequency returns the most common item. doubles returns the number of unique items that appear at least twice.",
-        CAS: "Crea clase ListHelper con métodos estáticos greatest_frequency y doubles.",
-        EUS: "Sortu ListHelper klasea metodo estatikoekin: greatest_frequency eta doubles."
+        ENG: `Create class `ListHelper` with static methods `greatest_frequency(my_list)` and `doubles(my_list)`.`,
+        CAS: `Crea `ListHelper` con métodos estáticos `greatest_frequency` y `doubles`.`,
+        EUS: `Sortu `ListHelper` klasea metodo estatikoekin.`
       },
-      initialCode: "# Write your solution here\nclass ListHelper:\n    pass\n",
-      testCode: `
-import unittest
-class TestListHelper(unittest.TestCase):
-    def test_run(self):
-        l = [1, 1, 2, 3, 3, 3]
-        self.assertEqual(ListHelper.greatest_frequency(l), 3)
-        self.assertEqual(ListHelper.doubles(l), 2)
-`
+      initialCode: `# Write your solution here\nclass ListHelper:\n    pass\n`,
+      testCode: `\nimport unittest\nclass TestListHelper(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

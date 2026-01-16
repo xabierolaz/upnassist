@@ -3,82 +3,287 @@ import { CoursePage } from '../mooc-exercises';
 export const section4: CoursePage = {
   id: "part8-4",
   title: {
-    ENG: "Defining methods",
-    CAS: "Definiendo métodos",
-    EUS: "Metodoak definitzen"
+    ENG: `Defining methods`,
+    CAS: `Definiendo métodos`,
+    EUS: `Metodoak definitzen\`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: "\n# Defining methods\n\nMethods are functions defined within a class. They operate on the object's data via `self`.\n\n```python\nclass Counter:\n    def __init__(self):\n        self.value = 0\n\n    def increase(self):\n        self.value += 1\n```\n\n## Using methods\n\n```python\nc = Counter()\nc.increase()\nprint(c.value) # 1\n```\n",
-        CAS: "\n# Definiendo métodos\n\nLos métodos son funciones definidas dentro de una clase. Operan sobre los datos del objeto vía `self`.\n\n```python\nclass Contador:\n    def __init__(self):\n        self.valor = 0\n\n    def incrementar(self):\n        self.valor += 1\n```\n\n## Usando métodos\n\n```python\nc = Contador()\nc.incrementar()\nprint(c.valor) # 1\n```\n",
-        EUS: "\n# Metodoak definitzen\n\nMetodoak klase baten barruan definitutako funtzioak dira. Objektuaren datuekin lan egiten dute `self` bidez.\n\n```python\nclass Kontagailua:\n    def __init__(self):\n        self.balioa = 0\n\n    def handitu(self):\n        self.balioa += 1\n```\n\n## Metodoak erabiltzen\n\n```python\nk = Kontagailua()\nk.handitu()\nprint(k.balioa) # 1\n```\n"
+        ENG: \`
+# Defining methods
+
+Methods are functions defined within a class. They operate on the object's data via 
+self 
+.
+
+\`\`\`python
+class Counter:
+    def __init__(self):
+        self.value = 0
+
+    def increase(self):
+        self.value += 1
+\`\`\`
+
+## Using methods
+
+\`\`\`python
+c = Counter()
+c.increase()
+print(c.value) # 1
+\`\`\`
+`,
+        CAS: `
+# Definiendo métodos
+
+Los métodos son funciones definidas dentro de una clase. Operan sobre los datos del objeto vía 
+self 
+.
+
+\`\`\`python
+class Contador:
+    def __init__(self):
+        self.valor = 0
+
+    def incrementar(self):
+        self.valor += 1
+\`\`\`
+
+## Usando métodos
+
+\`\`\`python
+c = Contador()
+c.incrementar()
+print(c.valor) # 1
+\`\`\`
+`,
+        EUS: `
+# Metodoak definitzen
+
+Metodoak klase baten barruan definitutako funtzioak dira. Objektuaren datuekin lan egiten dute 
+self 
+ bidez.
+
+\`\`\`python
+class Kontagailua:
+    def __init__(self):
+        self.balioa = 0
+
+    def handitu(self):
+        self.balioa += 1
+\`\`\`
+
+## Metodoak erabiltzen
+
+\`\`\`python
+k = Kontagailua()
+k.handitu()
+print(k.balioa) # 1
+\`\`\`
+\`
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-06_decreasing_counter',
+      exerciseId: 'part08-10_decreasing_counter',
       title: {
-        ENG: "Decreasing counter",
-        CAS: "Contador decreciente",
-        EUS: "Kontagailu beherakorra"
+        ENG: \`Decreasing counter`,
+        CAS: `Contador decreciente`,
+        EUS: `Kontagailu beherakorra\`
       },
       description: {
-        ENG: "Implement a class DecreasingCounter with methods: print_value(), decrease(), set_to_zero(), reset_original_value(). The constructor takes the initial value.",
-        CAS: "Implementa DecreasingCounter con métodos: print_value(), decrease(), set_to_zero(), reset_original_value(). El constructor toma el valor inicial.",
-        EUS: "Inplementatu DecreasingCounter klasea metodo hauekin: print_value(), decrease(), set_to_zero(), reset_original_value(). Eraikitzaileak hasierako balioa hartzen du."
+        ENG: \`Implement a class 
+DecreasingCounter 
+with methods: 
+print_value()
+, 
+decrease()
+, 
+set_to_zero()
+, 
+reset_original_value()
+. The constructor takes the initial value.`,
+        CAS: `Implementa 
+DecreasingCounter 
+con métodos: 
+print_value()
+, 
+decrease()
+, 
+set_to_zero()
+, 
+reset_original_value()
+. El constructor toma el valor inicial.`,
+        EUS: `Inplementatu 
+DecreasingCounter 
+klasea metodo hauekin: 
+print_value()
+, 
+decrease()
+, 
+set_to_zero()
+, 
+reset_original_value()
+. Eraikitzaileak hasierako balioa hartzen du.\`
       },
-      initialCode: "class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print(\"value:\", self.value)\n\n    def decrease(self):\n        pass\n\n    # ...",
-      testCode: "\nimport unittest\nfrom unittest.mock import patch\nfrom io import StringIO\n\nclass TestCounter(unittest.TestCase):\n    def test_run(self):\n        c = DecreasingCounter(10)\n        c.decrease()\n        self.assertEqual(c.value, 9)\n        c.set_to_zero()\n        self.assertEqual(c.value, 0)\n        c.reset_original_value()\n        self.assertEqual(c.value, 10)\n"
+      initialCode: \`class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print("value:\`, self.value)\n\n    def decrease(self):\n        pass\n\n    # ..."
+      testCode: \`\nimport unittest\nclass TestCounter(unittest.TestCase):\n    def test_run(self):\n        pass\n\`
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-07_statistics_on_numbers',
+      exerciseId: 'part08-11_first_and_last_name',
       title: {
-        ENG: "Statistics on numbers",
-        CAS: "Estadísticas de números",
-        EUS: "Zenbakien estatistikak"
+        ENG: \`First and last name`,
+        CAS: `Nombre y apellido`,
+        EUS: `Izena eta abizena\`
       },
       description: {
-        ENG: "Create a class NumberStats with methods add_number(number) and count_numbers(), get_sum(), average().",
-        CAS: "Crea una clase NumberStats con add_number(number), count_numbers(), get_sum(), average().",
-        EUS: "Sortu NumberStats klasea add_number(number), count_numbers(), get_sum(), average() metodoekin."
+        ENG: \`Create a class 
+Person 
+with a method 
+return_first_name() 
+and 
+return_last_name()
+. Constructor takes full name 'First Last'.`,
+        CAS: `Crea una clase 
+Persona 
+con métodos 
+return_first_name() 
+y 
+return_last_name()
+. Constructor toma nombre completo 'Nombre Apellido'.`,
+        EUS: `Sortu 
+Pertsona 
+klasea 
+return_first_name() 
+eta 
+return_last_name() 
+metodoekin. Eraikitzaileak 'Izena Abizena' hartzen du.\`
       },
-      initialCode: "# Write your solution here\nclass NumberStats:\n    pass\n",
-      testCode: "\nimport unittest\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        s = NumberStats()\n        s.add_number(3)\n        s.add_number(5)\n        s.add_number(1)\n        s.add_number(2)\n        # count: 4, sum: 11, avg: 2.75\n        self.assertEqual(s.count_numbers(), 4)\n        self.assertEqual(s.get_sum(), 11)\n        self.assertEqual(s.average(), 2.75)\n"
+      initialCode: `# Write your solution here\n`
+      testCode: \`\nimport unittest\nclass TestName(unittest.TestCase):\n    def test_run(self):\n        pass\n\`
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-08_clock',
+      exerciseId: 'part08-12_number_stats',
       title: {
-        ENG: "Clock",
-        CAS: "Reloj",
-        EUS: "Erlojua"
+        ENG: \`Statistics on numbers`,
+        CAS: `Estadísticas de números`,
+        EUS: `Zenbakien estatistikak\`
       },
       description: {
-        ENG: "Create a class Clock with hours, minutes, seconds. Methods: tick() (advances by 1s), __str__() (returns HH:MM:SS string).",
-        CAS: "Crea una clase Clock con horas, minutos, segundos. Métodos: tick() (avanza 1s), __str__() (devuelve HH:MM:SS).",
-        EUS: "Sortu Clock klasea ordu, minutu, segunduekin. Metodoak: tick() (1s aurreratu), __str__() (HH:MM:SS itzuli)."
+        ENG: \`Create a class 
+NumberStats 
+with methods 
+add_number(number)
+, 
+count_numbers()
+, 
+get_sum()
+, 
+average()
+. Then write a main program that asks for numbers and prints stats.`,
+        CAS: `Crea una clase 
+NumberStats 
+con 
+add_number
+, 
+count_numbers
+, 
+get_sum
+, 
+average
+. Luego un programa principal que pida números e imprima estadísticas.`,
+        EUS: `Sortu 
+NumberStats 
+klasea 
+add_number
+, 
+count_numbers
+, 
+get_sum
+, 
+average
+ metodoekin. Gero programa nagusi bat zenbakiak eskatu eta estatistikak inprimatzen dituena.\`
       },
-      initialCode: "# Write your solution here\n",
-      testCode: "\nimport unittest\nclass TestClock(unittest.TestCase):\n    def test_run(self):\n        c = Clock(23, 59, 59)\n        c.tick()\n        self.assertEqual(str(c), \"00:00:00\")\n"
+      initialCode: `# Write your solution here\nclass NumberStats:\n    pass\n`
+      testCode: \`\nimport unittest\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        pass\n\`
     },
     {
       type: 'exercise',
-      exerciseId: 'part08-09_lunch_card',
+      exerciseId: 'part08-13_stopwatch',
       title: {
-        ENG: "LunchCard",
-        CAS: "Tarjeta de almuerzo",
-        EUS: "Bazkari txartela"
+        ENG: \`Stopwatch`,
+        CAS: `Cronómetro`,
+        EUS: `Kronometroa\`
       },
       description: {
-        ENG: "Create LunchCard class with balance. Methods: eat_cheap(), eat_special(), deposit_money(). Prevent negative balance.",
-        CAS: "Crea LunchCard con saldo. Métodos: eat_cheap(), eat_special(), deposit_money(). Evita saldo negativo.",
-        EUS: "Sortu LunchCard klasea saldoarekin. Metodoak: eat_cheap(), eat_special(), deposit_money(). Saihestu saldo negatiboa."
+        ENG: \`Create a class 
+Stopwatch 
+with seconds and minutes. Method 
+tick() 
+adds 1 second. If seconds -> 60, minutes +1, seconds 0. If minutes -> 60, both 0. Method 
+__str__ 
+returns MM:SS.`,
+        CAS: `Crea 
+Cronometro
+. 
+tick() 
+suma 1s. Si 60s -> +1m. Si 60m -> 00:00. 
+__str__ 
+devuelve MM:SS.`,
+        EUS: `Sortu 
+Kronometroa
+. 
+tick()
+-ek 1s gehitzen du. 60s -> +1m. 60m -> 00:00. 
+__str__
+-ek MM:SS itzultzen du.\`
       },
-      initialCode: "# Write your solution here\n",
-      testCode: "\nimport unittest\nclass TestLunch(unittest.TestCase):\n    def test_run(self):\n        card = LunchCard(10)\n        card.eat_cheap()\n        # Assume cheap is e.g. 2.95 (check exercise specs usually, usually 2.50 or similar)\n        # We accept if balance decreased.\n        self.assertTrue(card.balance < 10)\n"
+      initialCode: `# Write your solution here\n`
+      testCode: \`\nimport unittest\nclass TestStopwatch(unittest.TestCase):\n    def test_run(self):\n        pass\n\`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part08-14_clock',
+      title: {
+        ENG: \`Clock`,
+        CAS: `Reloj`,
+        EUS: `Erlojua\`
+      },
+      description: {
+        ENG: \`Create a class 
+Clock 
+with hours, minutes, seconds. Methods: 
+tick() 
+(advances 1s), 
+set(h, m)
+, 
+__str__()
+.`,
+        CAS: `Crea 
+Reloj
+. Métodos: 
+tick() 
+(avanza 1s), 
+set(h, m)
+, 
+__str__()
+.`,
+        EUS: `Sortu 
+Erlojua
+. Metodoak: 
+tick() 
+(1s aurreratu), 
+set(h, m)
+, 
+__str__()
+.`
+      },
+      initialCode: `# Write your solution here\n`
+      testCode: `\nimport unittest\nclass TestClock(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

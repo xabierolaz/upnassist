@@ -3,7 +3,7 @@ import { CoursePage } from '../mooc-exercises';
 export const section1: CoursePage = {
   id: "part14-1",
   title: {
-    ENG: "Game project",
+    ENG: "Game Project",
     CAS: "Proyecto de juego",
     EUS: "Joko proiektua"
   },
@@ -12,83 +12,61 @@ export const section1: CoursePage = {
       type: 'markdown',
       content: {
         ENG: `
-# Game project: Sokoban
+# Game Project
 
-We will build a Sokoban game.
+In this final part of the course, you will create a complete game using Pygame.
 
-## The Map
+The project is divided into two parts:
+1.  **Sokoban:** You will implement a classic puzzle game where a robot pushes boxes.
+2.  **Your own game:** You will design and implement a game of your choice.
 
-The map is a 2D list.
+## Sokoban
 
-\
-self.map = [[1, 1, 1],
-            [1, 0, 1],
-            [1, 1, 1]]
-\
-
-## Images
-
-We load images and map them to integers.
-0 = floor, 1 = wall, 2 = target, 3 = box, 4 = robot.
+The goal is to push all boxes onto the target squares.
 `,
         CAS: `
-# Proyecto de juego: Sokoban
+# Proyecto de juego
 
-Construiremos un juego de Sokoban.
+En esta parte final del curso, crearás un juego completo usando Pygame.
 
-## El Mapa
+El proyecto se divide en dos partes:
+1.  **Sokoban:** Implementarás un clásico juego de puzles donde un robot empuja cajas.
+2.  **Tu propio juego:** Diseñarás e implementarás un juego de tu elección.
 
-El mapa es una lista 2D.
+## Sokoban
 
-\
-self.map = [[1, 1, 1],
-            [1, 0, 1],
-            [1, 1, 1]]
-\
-
-## Imágenes
-
-Cargamos imágenes y las mapeamos a enteros.
-0 = suelo, 1 = pared, 2 = objetivo, 3 = caja, 4 = robot.
+El objetivo es empujar todas las cajas a las casillas objetivo.
 `,
         EUS: `
-# Joko proiektua: Sokoban
+# Joko proiektua
 
-Sokoban joko bat eraikiko dugu.
+Ikastaroaren azken zati honetan, joko oso bat sortuko duzu Pygame erabiliz.
 
-## Mapa
+Proiektua bi zatitan banatuta dago:
+1.  **Sokoban:** Robot batek kaxak bultzatzen dituen puzzle joko klasiko bat inplementatuko duzu.
+2.  **Zure jokoa:** Zuk aukeratutako joko bat diseinatu eta inplementatuko duzu.
 
-Mapa 2D zerrenda bat da.
+## Sokoban
 
-\
-self.map = [[1, 1, 1],
-            [1, 0, 1],
-            [1, 1, 1]]
-\
-
-## Irudiak
-
-Irudiak kargatzen ditugu eta zenbaki osoetara mapatzen ditugu.
-0 = lurra, 1 = horma, 2 = helburua, 3 = kutxa, 4 = robota.
+Helburua kaxa guztiak helburu laukietara bultzatzea da.
 `
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part14-01_sokoban_grid',
+      exerciseId: 'part14-01_game_setup',
       title: {
-        ENG: "Sokoban grid",
-        CAS: "Rejilla de Sokoban",
-        EUS: "Sokoban sareta"
+        ENG: "Game setup",
+        CAS: "Configuración del juego",
+        EUS: "Jokoaren konfigurazioa"
       },
       description: {
-        ENG: "Implement the Sokoban class that loads images and draws the initial map.",
-        CAS: "Implementa la clase Sokoban que carga imágenes y dibuja el mapa inicial.",
-        EUS: "Inplementatu Sokoban klasea, irudiak kargatzen dituena eta hasierako mapa marrazten duena."
+        ENG: "Initialize the game window and load the assets (robot, box, wall, target, etc.).",
+        CAS: "Inicializa la ventana del juego y carga los recursos (robot, caja, pared, objetivo, etc.).",
+        EUS: "Hasieratu jokoaren leihoa eta kargatu baliabideak (robota, kaxa, horma, helburua, etab.)."
       },
-      initialCode: "import pygame\n\nclass Sokoban:\n    def __init__(self):
-        pygame.init()\n        # ...\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `"\nimport unittest\nclass TestSetup(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

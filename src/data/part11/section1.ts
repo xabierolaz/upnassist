@@ -3,247 +3,222 @@ import { CoursePage } from '../mooc-exercises';
 export const section1: CoursePage = {
   id: "part11-1",
   title: {
-    ENG: "List comprehensions",
-    CAS: "Listas por comprensión",
-    EUS: "Zerrenda-ulermena"
+    ENG: `List comprehensions`,
+    CAS: `Listas por comprensión`,
+    EUS: `Zerrendak ulermenez\`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
+        ENG: \`
 # List comprehensions
 
 List comprehensions provide a concise way to create lists.
 
-```python
+\`\`\`python
 numbers = [1, 2, 3, 4]
 squares = [n**2 for n in numbers]
-# [1, 4, 9, 16]
-```
+print(squares) # [1, 4, 9, 16]
+\`\`\`
 
 ## Filtering
 
-You can add an `if` clause to filter items.
+You can add an \`if\` clause to filter elements.
 
-```python
-evens = [n for n in numbers if n % 2 == 0]
-# [2, 4]
-```
-
-## Conditional expression
-
-You can use `if-else` in the expression part.
-
-```python
-parity = ["even" if n % 2 == 0 else "odd" for n in numbers]
-# ["odd", "even", "odd", "even"]
-```
+\`\`\`python
+even_squares = [n**2 for n in numbers if n % 2 == 0]
+print(even_squares) # [4, 16]
+\`\`\`
 `,
         CAS: `
 # Listas por comprensión
 
 Las listas por comprensión proporcionan una forma concisa de crear listas.
 
-```python
+\`\`\`python
 numeros = [1, 2, 3, 4]
 cuadrados = [n**2 for n in numeros]
-# [1, 4, 9, 16]
-```
+print(cuadrados) # [1, 4, 9, 16]
+\`\`\`
 
-## Filtrado
+## Filtrando
 
-Puedes añadir una cláusula `if` para filtrar elementos.
+Puedes añadir una cláusula \`if\` para filtrar elementos.
 
-```python
-pare = [n for n in numeros if n % 2 == 0]
-# [2, 4]
-```
-
-## Expresión condicional
-
-Puedes usar `if-else` en la parte de la expresión.
-
-```python
-paridad = ["par" if n % 2 == 0 else "impar" for n in numeros]
-# ["impar", "par", "impar", "par"]
-```
+\`\`\`python
+cuadrados_pares = [n**2 for n in numeros if n % 2 == 0]
+print(cuadrados_pares) # [4, 16]
+\`\`\`
 `,
         EUS: `
-# Zerrenda-ulermena
+# Zerrendak ulermenez
 
-Zerrenda-ulermenek zerrendak sortzeko modu zehatza eskaintzen dute.
+Zerrendak ulermenez zerrendak sortzeko modu trinko bat eskaintzen dute.
 
-```python
+\`\`\`python
 zenbakiak = [1, 2, 3, 4]
 karratuak = [n**2 for n in zenbakiak]
-# [1, 4, 9, 16]
-```
+print(karratuak) # [1, 4, 9, 16]
+\`\`\`
 
-## Iragazketa
+## Iragazten
 
-`if` klausula bat gehi dezakezu elementuak iragazteko.
+\`if\` klausula bat gehi dezakezu elementuak iragazteko.
 
-```python
-bikoitiak = [n for n in zenbakiak if n % 2 == 0]
-# [2, 4]
-```
-
-## Baldintzazko adierazpena
-
-`if-else` erabil dezakezu adierazpenaren zatian.
-
-```python
-paritatea = ["bikoitia" if n % 2 == 0 else "bakoitia" for n in zenbakiak]
-# ["bakoitia", "bikoitia", "bakoitia", "bikoitia"]
-```
-`
+\`\`\`python
+karratu_bikoitiak = [n**2 for n in zenbakiak if n % 2 == 0]
+print(karratu_bikoitiak) # [4, 16]
+\`\`\`
+\`
       }
     },
     {
       type: 'exercise',
       exerciseId: 'part11-01_square_roots',
       title: {
-        ENG: "Square roots",
-        CAS: "Raíces cuadradas",
-        EUS: "Erro karratuak"
+        ENG: \`Square roots`,
+        CAS: `Raíces cuadradas`,
+        EUS: `Erro karratuak\`
       },
       description: {
-        ENG: "Write a function square_roots(numbers: list) that returns a new list containing the square roots of the original numbers. Use a list comprehension.",
-        CAS: "Escribe una función square_roots(numbers: list) que devuelva una nueva lista con las raíces cuadradas. Usa lista por comprensión.",
-        EUS: "Idatzi square_roots(numbers: list) funtzioa, jatorrizko zenbakien erro karratuak dituen zerrenda berria itzultzen duena. Erabili zerrenda-ulermena."
+        ENG: \`Write a function \`square_roots(numbers: list)\` that returns a new list containing the square roots of the original numbers. Use a list comprehension. Maximum 2 lines of code.`,
+        CAS: `Escribe \`square_roots(numbers)\` que devuelva raíces cuadradas. Usa comprensión de listas. Máximo 2 líneas.`,
+        EUS: `Idatzi \`square_roots(numbers)\` erro karratuak itzultzeko. Erabili zerrenda ulermena. Gehienez 2 lerro.\`
       },
-      initialCode: "from math import sqrt\ndef square_roots(numbers: list):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `# Write your solution here\nfrom math import sqrt\n\ndef square_roots(numbers: list):\n    return []\n`
+      testCode: \`
 import unittest
-from math import sqrt
-class TestSquareRoots(unittest.TestCase):
+class TestRoots(unittest.TestCase):
     def test_run(self):
-        self.assertEqual(square_roots([1, 4, 9]), [1, 2, 3])
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-02_rows_of_stars',
       title: {
-        ENG: "Rows of stars",
-        CAS: "Filas de estrellas",
-        EUS: "Izarren ilarak"
+        ENG: \`Rows of stars`,
+        CAS: `Filas de estrellas`,
+        EUS: `Izar errenkadak\`
       },
       description: {
-        ENG: "Write a function rows_of_stars(numbers: list) that returns a list of strings, where each string contains as many stars as the corresponding number.",
-        CAS: "Escribe una función rows_of_stars(numbers: list) que devuelva una lista de cadenas con estrellas.",
-        EUS: "Idatzi rows_of_stars(numbers: list) funtzioa, izarrak dituzten kateen zerrenda bat itzultzen duena."
+        ENG: \`Write a function \`rows_of_stars(numbers: list)\` that returns a list of strings. Each string contains * characters corresponding to the number. Use list comprehension. Max 2 lines.`,
+        CAS: `Escribe \`rows_of_stars(numbers)\`. Devuelve lista de cadenas de estrellas. Usa comprensión. Máx 2 líneas.`,
+        EUS: `Idatzi \`rows_of_stars(numbers)\`. Izar kateen zerrenda itzuli. Erabili ulermena. Gehienez 2 lerro.\`
       },
-      initialCode: "def rows_of_stars(numbers: list):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `# Write your solution here\ndef rows_of_stars(numbers: list):\n    return []\n`
+      testCode: \`
 import unittest
 class TestStars(unittest.TestCase):
     def test_run(self):
-        self.assertEqual(rows_of_stars([1, 2]), ["*", "**"])
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-03_best_exam_result',
       title: {
-        ENG: "Best exam result",
-        CAS: "Mejor resultado de examen",
-        EUS: "Azterketa emaitzarik onena"
+        ENG: \`Best exam result`,
+        CAS: `Mejor resultado de examen`,
+        EUS: `Azterketa emaitzarik onena\`
       },
       description: {
-        ENG: "Class ExamResult is provided. Write a function best_results(results: list) that returns a list of only those results with grade 5.",
-        CAS: "Clase ExamResult dada. Escribe función best_results(results: list) que devuelva solo los resultados con nota 5.",
-        EUS: "ExamResult klasea ematen da. Idatzi best_results(results: list) funtzioa, 5 nota duten emaitzak bakarrik itzultzen dituena."
+        ENG: \`Write a function \`best_results(results: list)\` that receives a list of \`ExamResult\` objects and returns a list of the highest integers from each object (attributes grade1, grade2, grade3). Max 2 lines.`,
+        CAS: `Escribe \`best_results(results)\`. Recibe objetos \`ExamResult\`. Devuelve la mejor nota de cada uno. Máx 2 líneas.`,
+        EUS: `Idatzi \`best_results(results)\`. \`ExamResult\` objektuak jaso. Bakoitzaren nota onena itzuli. Gehienez 2 lerro.\`
       },
-      initialCode: "class ExamResult:\n    def __init__(self, name: str, grade: int):\n        self.name = name\n        self.grade = grade\n\ndef best_results(results: list):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `class ExamResult:\n    def __init__(self, name: str, grade1: int, grade2: int, grade3: int):\n        self.name = name\n        self.grade1 = grade1\n        self.grade2 = grade2\n        self.grade3 = grade3\n\ndef best_results(results: list):\n    return []\n`
+      testCode: \`
 import unittest
 class TestBest(unittest.TestCase):
     def test_run(self):
-        r1 = ExamResult("A", 5)
-        r2 = ExamResult("B", 3)
-        self.assertEqual(len(best_results([r1, r2])), 1)
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-04_lengths',
       title: {
-        ENG: "Lengths",
-        CAS: "Longitudes",
-        EUS: "Luzerak"
+        ENG: \`Lengths`,
+        CAS: `Longitudes`,
+        EUS: `Luzerak\`
       },
       description: {
-        ENG: "Write a function lengths(lists: list) that receives a list of lists and returns a list containing the lengths of the inner lists.",
-        CAS: "Escribe función lengths(lists: list) que reciba lista de listas y devuelva sus longitudes.",
-        EUS: "Idatzi lengths(lists: list) funtzioa, zerrenda-zerrenda bat jaso eta barneko zerrenden luzerak itzultzen dituena."
+        ENG: \`Write a function \`lengths(lists: list)\` that receives a list of lists and returns a list containing the lengths of those lists. Max 2 lines.`,
+        CAS: `Escribe \`lengths(lists)\`. Recibe lista de listas, devuelve sus longitudes. Máx 2 líneas.`,
+        EUS: `Idatzi \`lengths(lists)\`. Zerrenden zerrenda jaso, luzerak itzuli. Gehienez 2 lerro.\`
       },
-      initialCode: "def lengths(lists: list):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `# Write your solution here\ndef lengths(lists: list):\n    return []\n`
+      testCode: \`
 import unittest
 class TestLengths(unittest.TestCase):
     def test_run(self):
-        self.assertEqual(lengths([[1,2], [3], []]), [2, 1, 0])
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-05_remove_smaller_than',
       title: {
-        ENG: "Remove smaller than",
-        CAS: "Eliminar menores que",
-        EUS: "Txikiagoak ezabatu"
+        ENG: \`Remove smaller than`,
+        CAS: `Eliminar menores que`,
+        EUS: `Txikiagoak kendu\`
       },
       description: {
-        ENG: "Write a function remove_smaller_than(numbers: list, limit: int) that returns a new list with items from the original list that are >= limit.",
-        CAS: "Escribe función remove_smaller_than(numbers: list, limit: int).\n",
-        EUS: "Idatzi remove_smaller_than(numbers: list, limit: int) funtzioa."
+        ENG: \`Write a function \`remove_smaller_than(numbers: list, limit: int)\` that returns a new list keeping only numbers >= limit. Max 2 lines.`,
+        CAS: `Escribe \`remove_smaller_than(numbers, limit)\`. Devuelve lista con números >= límite. Máx 2 líneas.`,
+        EUS: `Idatzi \`remove_smaller_than(numbers, limit)\`. Zenbaki >= muga itzuli. Gehienez 2 lerro.\`
       },
-      initialCode: "def remove_smaller_than(numbers: list, limit: int):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `# Write your solution here\ndef remove_smaller_than(numbers: list, limit: int):\n    return []\n`
+      testCode: \`
 import unittest
 class TestRemove(unittest.TestCase):
     def test_run(self):
-        self.assertEqual(remove_smaller_than([1, 2, 3, 4], 3), [3, 4])
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-06_begin_with_vowel',
       title: {
-        ENG: "Begin with a vowel",
-        CAS: "Empezar con una vocal",
-        EUS: "Bokal batekin hasi"
+        ENG: \`Begin with vowel`,
+        CAS: `Empieza con vocal`,
+        EUS: `Bokalarekin hasi\`
       },
       description: {
-        ENG: "Write a function begin_with_vowel(words: list) that returns a list of words starting with a vowel (a, e, i, o, u, y). Case insensitive.",
-        CAS: "Escribe función begin_with_vowel(words: list).\n",
-        EUS: "Idatzi begin_with_vowel(words: list) funtzioa."
+        ENG: \`Write a function \`begin_with_vowel(words: list)\` that returns words starting with a vowel (a, e, i, o, u, y, ä, ö). Case insensitive. Max 2 lines.`,
+        CAS: `Escribe \`begin_with_vowel(words)\`. Devuelve palabras que empiezan por vocal. Máx 2 líneas.`,
+        EUS: `Idatzi \`begin_with_vowel(words)\`. Bokalarekin hasten diren hitzak itzuli. Gehienez 2 lerro.\`
       },
-      initialCode: "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n",
-      testCode: ""
+      initialCode: `# Write your solution here\ndef begin_with_vowel(words: list):\n    return []\n`
+      testCode: \`
 import unittest
 class TestVowel(unittest.TestCase):
     def test_run(self):
-        self.assertEqual(begin_with_vowel(["apple", "Banana", "Orange"])), ["apple", "Orange"])
-"
+        pass
+\`
     },
     {
       type: 'exercise',
       exerciseId: 'part11-07_lottery_numbers',
       title: {
-        ENG: "Lottery numbers",
-        CAS: "Números de lotería",
-        EUS: "Loteria zenbakiak"
+        ENG: \`Lottery numbers`,
+        CAS: `Números de lotería`,
+        EUS: `Loteria zenbakiak\`
       },
       description: {
-        ENG: "Class LotteryNumbers is provided. Write method correct_numbers(self, numbers: list) that returns a list containing only the numbers that match the winning numbers (week_numbers attribute).",
-        CAS: "Clase LotteryNumbers dada. Escribe método correct_numbers que devuelva los números coincidentes.",
-        EUS: "LotteryNumbers klasea ematen da. Idatzi correct_numbers metodoa, zenbaki irabazleekin bat datozenak itzultzen dituena."
+        ENG: \`Class \`LotteryNumbers\` stores a week number and a list of 7 winning numbers. Methods: \`number_of_hits(numbers)\` (returns count of matches), \`hits_in_place(numbers)\` (returns list with matches or -1).`,
+        CAS: `Clase \`LotteryNumbers\`. Métodos: \`number_of_hits\` (cuenta aciertos), \`hits_in_place\` (lista con aciertos o -1).`,
+        EUS: `\`LotteryNumbers\` klasea. Metodoak: \`number_of_hits\` (asmatzeak kontatu), \`hits_in_place\` (zerrenda asmatzeekin edo -1).`
       },
-      initialCode: "class LotteryNumbers:\n    def __init__(self, week: int, numbers: list):\n        self.week = week\n        self.numbers = numbers\n\n    def number_of_hits(self, numbers: list):\n        return [n for n in numbers if n in self.numbers]\n\n    def hits_in_place(self, numbers: list):\n        return [n if n in self.numbers else -1 for n in numbers]\n",
-      testCode: "pass"
+      initialCode: `class LotteryNumbers:\n    def __init__(self, week_number: int, winning_numbers: list):\n        self.week_number = week_number\n        self.winning_numbers = winning_numbers\n\n    # Write your solution here\n`
+      testCode: `
+import unittest
+class TestLottery(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

@@ -4,6 +4,7 @@ import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedTex
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
 import { useProgressStore } from '../stores/progressStore';
 import { QuizPlaceholder } from '../components/mooc/QuizPlaceholder';
+import { Quiz } from '../components/mooc/Quiz';
 import { useLanguageStore } from '../stores/languageStore';
 import { LanguageSwitcher } from '../components/common/LanguageSwitcher';
 
@@ -170,6 +171,11 @@ const MoocCoursePage: React.FC = () => {
 const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     const { t, currentLang } = useLanguageStore();
     
+    // Quiz
+    if (block.type === 'quiz' && block.questions) {
+        return <Quiz questions={block.questions} />;
+    }
+
     // Markdown
     if (block.type === 'markdown' && block.content) {
         const content = getLocalizedText(block.content, currentLang);

@@ -14,56 +14,73 @@ export const section4: CoursePage = {
         ENG: `
 # Your own game
 
-Create a game using Pygame.
+Now it's time to unleash your creativity. Design and implement a game of your choice using Pygame.
 
-## Requirements
-- Moveable sprite.
-- Collectable items or enemies.
-- Clear goal.
-- Score/Counter.
-- Good code structure.
+It can be:
+- A platformer.
+- A shooter.
+- A puzzle game.
+- A strategy game.
+
+**Requirements:**
+- The game must be playable.
+- It must have a clear goal.
+- The code must be well-structured.
 `,
         CAS: `
 # Tu propio juego
 
-Crea un juego usando Pygame.
+Ahora es el momento de liberar tu creatividad. Diseña e implementa un juego de tu elección usando Pygame.
 
-## Requisitos
-- Sprite movible.
-- Objetos coleccionables o enemigos.
-- Objetivo claro.
-- Puntuación/Contador.
-- Buena estructura de código.
+Puede ser:
+- Un juego de plataformas.
+- Un shooter.
+- Un juego de puzles.
+- Un juego de estrategia.
+
+**Requisitos:**
+- El juego debe ser jugable.
+- Debe tener un objetivo claro.
+- El código debe estar bien estructurado.
 `,
         EUS: `
 # Zure jokoa
 
-Sortu joko bat Pygame erabiliz.
+Orain zure sormena askatzeko garaia da. Diseinatu eta inplementatu nahi duzun joko bat Pygame erabiliz.
 
-## Baldintzak
-- Sprite mugikorra.
-- Biltzeko elementuak edo etsaiak.
-- Helburu argia.
-- Puntuazioa/Kontagailua.
-- Kode egitura ona.
+Izan daiteke:
+- Plataforma joko bat.
+- Shooter bat.
+- Puzzle joko bat.
+- Estrategia joko bat.
+
+**Baldintzak:**
+- Jokoak jolasteko modukoa izan behar du.
+- Helburu argi bat izan behar du.
+- Kodeak ondo egituratuta egon behar du.
 `
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part14-04_your_own_game',
+      exerciseId: 'part14-04_own_game',
       title: {
-        ENG: "Own game",
-        CAS: "Juego propio",
-        EUS: "Joko propioa"
+        ENG: "Your own game",
+        CAS: "Tu propio juego",
+        EUS: "Zure jokoa"
       },
       description: {
-        ENG: "Implement your own game following the requirements. Be creative!",
-        CAS: "Implementa tu propio juego siguiendo los requisitos. ¡Sé creativo!",
-        EUS: "Inplementatu zure joko propioa baldintzak jarraituz. Izan sortzailea!"
+        ENG: "Submit your own game project. Make sure to include all necessary assets.",
+        CAS: "Envía tu proyecto de juego. Asegúrate de incluir todos los recursos necesarios.",
+        EUS: "Bidali zure joko proiektua. Ziurtatu beharrezko baliabide guztiak sartzen dituzula."
       },
-      initialCode: "import pygame\n\n# Write your game code here\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\nimport pygame\n",
+      testCode: `
+import unittest
+class TestOwnGame(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

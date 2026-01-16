@@ -5,7 +5,7 @@ export const section2: CoursePage = {
   title: {
     ENG: "Robot and boxes",
     CAS: "Robot y cajas",
-    EUS: "Robota eta kutxak"
+    EUS: "Robota eta kaxak"
   },
   blocks: [
     {
@@ -14,53 +14,74 @@ export const section2: CoursePage = {
         ENG: `
 # Robot and boxes
 
-We implement the movement logic.
+The core mechanics of Sokoban:
+- The robot can move to empty squares.
+- The robot can push a box if the square behind it is empty.
+- The robot cannot move through walls or push two boxes at once.
 
-## Movement
+## Map data
 
-The 
-`move`
- method calculates new coordinates.
+You can represent the level using a grid (list of lists or strings).
 
-```python
-def move(self, move_y, move_x):
-    robot_old_y, robot_old_x = self.find_robot()
-    robot_new_y = robot_old_y + move_y
-    robot_new_x = robot_old_x + move_x
-```
-
-## Moving boxes
-
-If the new position has a box, we check if the box can be moved.
+\
+\`\`\`python
+level = [
+    "#######",
+    "#  .  #",
+    "#  $  #",
+    "# @   #",
+    "#######"
+]
+\
+\`\`\`
 `,
         CAS: `
 # Robot y cajas
 
-Implementamos la lógica de movimiento.
+La mecánica central de Sokoban:
+- El robot puede moverse a casillas vacías.
+- El robot puede empujar una caja si la casilla detrás está vacía.
+- El robot no puede atravesar paredes ni empujar dos cajas a la vez.
 
-## Movimiento
+## Datos del mapa
 
-El método 
-`move`
- calcula las nuevas coordenadas.
+Puedes representar el nivel usando una cuadrícula (lista de listas o cadenas).
 
-## Mover cajas
-
-Si la nueva posición tiene una caja, comprobamos si la caja se puede mover.
+\
+\`\`\`python
+nivel = [
+    "#######",
+    "#  .  #",
+    "#  $  #",
+    "# @   #",
+    "#######"
+]
+\
+\`\`\`
 `,
         EUS: `
-# Robota eta kutxak
+# Robota eta kaxak
 
-Mugimenduaren logika inplementatzen dugu.
+Sokoban-en oinarrizko mekanika:
+- Robota lauki hutsetara mugi daiteke.
+- Robotak kaxa bat bultza dezake atzean dagoen laukia hutsik badago.
+- Robotak ezin ditu hormak zeharkatu edo bi kaxa batera bultzatu.
 
-## Mugimendua
+## Mapa datuak
 
-`move`
- metodoak koordenatu berriak kalkulatzen ditu.
+Maila irudikatzeko sareta bat erabil dezakezu (zerrenden zerrenda edo kateak).
 
-## Kutxak mugitzen
-
-Posizio berriak kutxa bat badu, kutxa mugitu daitekeen egiaztatzen dugu.
+\
+\`\`\`python
+maila = [
+    "#######",
+    "#  .  #",
+    "#  $  #",
+    "# @   #",
+    "#######"
+]
+\
+\`\`\`
 `
       }
     },
@@ -73,12 +94,12 @@ Posizio berriak kutxa bat badu, kutxa mugitu daitekeen egiaztatzen dugu.
         EUS: "Robotaren mugimendua"
       },
       description: {
-        ENG: "Implement the move method to handle robot movement and box pushing.",
-        CAS: "Implementa el método move para manejar el movimiento del robot y el empuje de cajas.",
-        EUS: "Inplementatu move metodoa robotaren mugimendua eta kutxen bultzada kudeatzeko."
+        ENG: "Implement movement logic. Handle collisions with walls and pushing boxes.",
+        CAS: "Implementa la lógica de movimiento. Maneja colisiones con paredes y empuje de cajas.",
+        EUS: "Inplementatu mugimenduaren logika. Kudeatu hormekin talkak eta kaxak bultzatzea."
       },
-      initialCode: "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Write your code here\n        pass\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\n",
+      testCode: `"\nimport unittest\nclass TestMovement(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

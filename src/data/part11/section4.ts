@@ -3,50 +3,110 @@ import { CoursePage } from '../mooc-exercises';
 export const section4: CoursePage = {
   id: "part11-4",
   title: {
-    ENG: "More recursion examples",
-    CAS: "Más ejemplos de recursividad",
-    EUS: "Errekurtsio adibide gehiago"
+    ENG: "More classes",
+    CAS: "Más clases",
+    EUS: "Klase gehiago"
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: "\n# Binary Trees\n\nA binary tree is a data structure where each node has at most two children.\n\n```python\nclass Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n```\n\n## Recursive traversal\n\nWe can traverse a tree recursively.\n\n```python\ndef print_nodes(root):\n    if root is None:\n        return\n    print(root.value)\n    print_nodes(root.left)\n    print_nodes(root.right)\n```\n",
-        CAS: "\n# Árboles Binarios\n\nUn árbol binario es una estructura de datos donde cada nodo tiene como máximo dos hijos.\n\n```python\nclass Nodo:\n    def __init__(self, valor, izquierda=None, derecha=None):\n        self.valor = valor\n        self.izquierda = izquierda\n        self.derecha = derecha\n```\n\n## Recorrido recursivo\n\nPodemos recorrer un árbol recursivamente.\n",
-        EUS: "\n# Zuhaitz bitarrak\n\nZuhaitz binarioa datu-egitura bat da, non nodo bakoitzak gehienez bi seme-alaba dituen.\n\n```python\nclass Nodoa:\n    def __init__(self, balioa, ezkerra=None, eskuina=None):\n        self.balioa = balioa\n        self.ezkerra = ezkerra\n        self.eskuina = eskuina\n```\n\n## Ibilbide errekurtsiboa\n\nZuhaitz bat errekurtsiboki zeharkatu dezakegu.\n"
+        ENG: `
+# More classes
+
+Complex applications often involve multiple interacting classes.
+
+\
+\`\`\`python
+class Task:
+    def __init__(self, description, priority):
+        self.description = description
+        self.priority = priority
+
+class TaskList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+\
+\`\`\`
+`,
+        CAS: `
+# Más clases
+
+Las aplicaciones complejas a menudo involucran múltiples clases interactuando.
+
+\
+\`\`\`python
+class Tarea:
+    def __init__(self, descripcion, prioridad):
+        self.descripcion = descripcion
+        self.prioridad = prioridad
+
+class ListaTareas:
+    def __init__(self):
+        self.tareas = []
+
+    def agregar_tarea(self, tarea):
+        self.tareas.append(tarea)
+\
+\`\`\`
+`,
+        EUS: `
+# Klase gehiago
+
+Aplikazio konplexuek sarritan elkarreraginean dauden klase anitz izaten dituzte.
+
+\
+\`\`\`python
+class Zeregina:
+    def __init__(self, deskribapena, lehentasuna):
+        self.deskribapena = deskribapena
+        self.lehentasuna = lehentasuna
+
+class ZereginZerrenda:
+    def __init__(self):
+        self.zereginak = []
+
+    def gehitu_zeregina(self, zeregina):
+        self.zereginak.append(zeregina)
+\
+\`\`\`
+`
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part11-14_greatest_node',
-      title: {
-        ENG: "Greatest node",
-        CAS: "Nodo más grande",
-        EUS: "Nodo handiena"
-      },
-      description: {
-        ENG: "Write a recursive function greatest_node(root: Node) that returns the value of the greatest node in the binary tree.",
-        CAS: "Escribe función recursiva greatest_node que devuelva el valor del nodo más grande.",
-        EUS: "Idatzi greatest_node funtzio errekurtsiboa, zuhaitz bitarreko nodo handienaren balioa itzultzen duena."
-      },
-      initialCode: "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef greatest_node(root: Node):\n    # write your solution here\n    pass\n",
-      testCode: "\nimport unittest\nclass TestGreatest(unittest.TestCase):\n    def test_run(self):\n        tree = Node(2, Node(3, Node(5), Node(8)), Node(4))\n        self.assertEqual(greatest_node(tree), 8)\n"
-    },
-    {
-      type: 'exercise',
-      exerciseId: 'part11-15_order_book',
+      exerciseId: 'part11-18_order_book',
       title: {
         ENG: "Order book",
         CAS: "Libro de pedidos",
-        EUS: "Eskaera-liburua"
+        EUS: "Eskari liburua"
       },
       description: {
-        ENG: "Create classes Task(description, programmer, workload) and OrderBook. OrderBook stores tasks. Methods: add_order, all_orders, programmers, mark_finished, finished_orders, unfinished_orders, status_of_programmer. No recursion needed.",
-        CAS: "Crea clases Task y OrderBook. Gestiona tareas y programadores.",
-        EUS: "Sortu Task eta OrderBook klaseak. Kudeatu atazak eta programatzaileak."
+        ENG: "Create classes \`Task\` (description, programmer, workload) and \`OrderBook\`. \`OrderBook\` manages tasks (add, mark finished, list finished/unfinished, programmer status).",
+        CAS: "Crea clases \`Task\` y \`OrderBook\`. OrderBook gestiona tareas (añadir, marcar, listar, estado programador).",
+        EUS: "Sortu \`Task\` eta \`OrderBook\` klaseak. OrderBook-ek zereginak kudeatzen ditu."
       },
       initialCode: "# Write your solution here\nclass Task:\n    pass\n\nclass OrderBook:\n    pass\n",
-      testCode: "pass" // Application logic test
+      testCode: `\nimport unittest\nclass TestOrderBook(unittest.TestCase):\n    def test_run(self):\n        pass\n`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part11-19_order_book_application',
+      title: {
+        ENG: "Order book application",
+        CAS: "Aplicación de libro de pedidos",
+        EUS: "Eskari liburu aplikazioa"
+      },
+      description: {
+        ENG: "Build an interactive application for the \`OrderBook\`. Commands: 1 add order, 2 list finished, 3 list unfinished, 4 mark finished, 5 programmers, 6 status of programmer. Handle errors gracefully.",
+        CAS: "Crea una app interactiva para \`OrderBook\`. Comandos varios. Maneja errores.",
+        EUS: "Sortu aplikazio interaktiboa \`OrderBook\`-erako. Hainbat komando. Erroreak kudeatu."
+      },
+      initialCode: "# Write your solution here\n# Use the classes from previous exercise\n",
+      testCode: `\nimport unittest\nclass TestOrderApp(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

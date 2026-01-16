@@ -3,50 +3,66 @@ import { CoursePage } from '../mooc-exercises';
 export const section3: CoursePage = {
   id: "part12-3",
   title: {
-    ENG: "Functional programming",
-    CAS: "Programación funcional",
-    EUS: "Programazio funtzionala"
+    ENG: "Generators",
+    CAS: "Generadores",
+    EUS: "Sorgailuak"
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: "\n# Functional programming\n\n## map\n\nThe `map` function applies a function to all items in an iterable.\n\n```python\nnumbers = [1, 2, 3]\ndoubled = map(lambda x: x * 2, numbers)\n# [2, 4, 6] (when converted to list)\n```\n\n## filter\n\nThe `filter` function picks items for which the function returns True.\n\n```python\nevens = filter(lambda x: x % 2 == 0, numbers)\n# [2]\n```\n\n## reduce\n\nThe `reduce` function (from `functools`) aggregates items.\n\n```python\nfrom functools import reduce\nsum = reduce(lambda a, b: a + b, numbers, 0)\n# 6\n```\n",
-        CAS: "\n# Programación funcional\n\n## map\n\nLa función `map` aplica una función a todos los elementos de un iterable.\n\n## filter\n\nLa función `filter` selecciona elementos para los cuales la función devuelve True.\n\n## reduce\n\nLa función `reduce` (de `functools`) agrega elementos.\n",
-        EUS: "\n# Programazio funtzionala\n\n## map\n\n`map` funtzioak funtzio bat aplikatzen die iteragarri bateko elementu guztiei.\n\n## filter\n\n`filter` funtzioak True itzultzen duten elementuak hautatzen ditu.\n\n## reduce\n\n`reduce` funtzioak ( `functools`-etik) elementuak agregatzen ditu.\n"
+        ENG: "\n# Generators\n\nGenerators are functions that return an iterator. They use the `yield` keyword.\n\n\`\`\`python\ndef counter(max):\n    n = 0\n    while n < max:\n        yield n\n        n += 1\n\nfor i in counter(3):\n    print(i) # 0, 1, 2\n\`\`\`\n",
+        CAS: "\n# Generadores\n\nLos generadores son funciones que devuelven un iterador. Usan la palabra clave `yield`.\n\n\`\`\`python\ndef contador(max):\n    n = 0\n    while n < max:\n        yield n\n        n += 1\n\nfor i in contador(3):\n    print(i) # 0, 1, 2\n\`\`\`\n",
+        EUS: "\n# Sorgailuak\n\nSorgailuak iteratzaile bat itzultzen duten funtzioak dira. `yield` gako-hitza erabiltzen dute.\n\n\`\`\`python\ndef kontagailua(max):\n    n = 0\n    while n < max:\n        yield n\n        n += 1\n\nfor i in kontagailua(3):\n    print(i) # 0, 1, 2\n\`\`\`\n"
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part12-08_attempted_courses',
+      exerciseId: 'part12-08_even_numbers',
       title: {
-        ENG: "Attempted courses",
-        CAS: "Cursos intentados",
-        EUS: "Saiatutako ikastaroak"
+        ENG: "Even numbers",
+        CAS: "Números pares",
+        EUS: "Zenbaki bikoitiak"
       },
       description: {
-        ENG: "Class CourseAttempt(student_name, course_name, grade) is provided. Write functions names_of_students(attempts) using map, and course_names(attempts) using map (unique names).",
-        CAS: "Escribe funciones names_of_students y course_names usando map.",
-        EUS: "Idatzi names_of_students eta course_names funtzioak map erabiliz."
+        ENG: "Write a generator function `even_numbers(beginning: int, maximum: int)` that yields even numbers from beginning up to maximum (inclusive).",
+        CAS: "Escribe generador `even_numbers(beginning, maximum)`. Genera pares desde inicio hasta máximo (inclusive).",
+        EUS: "Idatzi `even_numbers(beginning, maximum)` sorgailua. Zenbaki bikoitiak sortu hasieratik maximo arte."
       },
-      initialCode: "class CourseAttempt:\n    def __init__(self, student_name: str, course_name: str, grade: int):\n        self.student_name = student_name\n        self.course_name = course_name\n        self.grade = grade\n\ndef names_of_students(attempts: list):\n    # write your solution here\n    pass\n\ndef course_names(attempts: list):\n    # write your solution here\n    pass\n",
-      testCode: "\nimport unittest\nclass TestAttempts(unittest.TestCase):\n    def test_run(self):\n        a1 = CourseAttempt(\"Peter\", \"Python\", 3)\n        a2 = CourseAttempt(\"Paula\", \"Java\", 5)\n        self.assertEqual(list(names_of_students([a1, a2])), [\"Peter\", \"Paula\"])\n"
+      initialCode: "# Write your solution here\ndef even_numbers(beginning: int, maximum: int):\n    pass\n",
+      testCode: `\nimport unittest\nclass TestEven(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     },
     {
       type: 'exercise',
-      exerciseId: 'part12-09_credits',
+      exerciseId: 'part12-09_prime_numbers',
       title: {
-        ENG: "Credits",
-        CAS: "Créditos",
-        EUS: "Kredituak"
+        ENG: "Prime numbers",
+        CAS: "Números primos",
+        EUS: "Zenbaki lehenak"
       },
       description: {
-        ENG: "Class CourseAttempt(course_name, grade, credits) is provided. Write sum_of_all_credits, sum_of_passed_credits (grade >= 1), and average_grade_of_passed using filter, map and reduce.",
-        CAS: "Escribe funciones de suma y promedio de créditos usando filter, map y reduce.",
-        EUS: "Idatzi kredituen batura eta batez besteko funtzioak filter, map eta reduce erabiliz."
+        ENG: "Write a generator function `prime_numbers()` that yields prime numbers starting from 2 (2, 3, 5, 7, ...). Infinite generator.",
+        CAS: "Escribe generador `prime_numbers()`. Genera primos infinitamente (2, 3, 5...).",
+        EUS: "Idatzi `prime_numbers()` sorgailua. Zenbaki lehenak sortu infinituki (2, 3, 5...)."
       },
-      initialCode: "from functools import reduce\n\nclass CourseAttempt:\n    def __init__(self, course_name: str, grade: int, credits: int):\n        self.course_name = course_name\n        self.grade = grade\n        self.credits = credits\n\ndef sum_of_all_credits(attempts: list):\n    pass\n\ndef sum_of_passed_credits(attempts: list):\n    pass\n\ndef average_grade_of_passed(attempts: list):\n    pass\n",
-      testCode: "pass"
+      initialCode: "# Write your solution here\ndef prime_numbers():\n    pass\n",
+      testCode: `\nimport unittest\nclass TestPrimes(unittest.TestCase):\n    def test_run(self):\n        pass\n`
+    },
+    {
+      type: 'exercise',
+      exerciseId: 'part12-10_random_words',
+      title: {
+        ENG: "Random words",
+        CAS: "Palabras aleatorias",
+        EUS: "Ausazko hitzak"
+      },
+      description: {
+        ENG: "Write generator `word_generator(characters: str, length: int, amount: int)` that yields `amount` random words of `length` using `characters`.",
+        CAS: "Escribe generador `word_generator`. Genera palabras aleatorias con los caracteres dados.",
+        EUS: "Idatzi `word_generator` sorgailua. Ausazko hitzak sortu emandako karaktererekin."
+      },
+      initialCode: "# Write your solution here\ndef word_generator(characters: str, length: int, amount: int):\n    pass\n",
+      testCode: `\nimport unittest\nclass TestRandom(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };

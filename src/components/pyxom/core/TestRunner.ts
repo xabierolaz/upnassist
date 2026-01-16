@@ -22,7 +22,7 @@ export class TestRunner {
   /**
    * Ejecuta el código del estudiante contra un set de pruebas unitarias con Mocking avanzado.
    */
-  static async runTests(studentCode: string, testCode: string): Promise<TestSuiteResult> {
+  static async runTests(studentCode: string, testCode: string, language: 'ENG' | 'CAS' | 'EUS' = 'CAS'): Promise<TestSuiteResult> {
     
     // Escapar el código del estudiante para meterlo en un string de Python seguro
     // Usamos un delimitador raro para evitar conflictos con comillas en el código del alumno
@@ -36,6 +36,14 @@ import io
 import json
 import sys
 from unittest.mock import patch
+
+# 0. CONFIGURACIÓN DE IDIOMA
+CURRENT_LANG = "${language}"
+
+def tr(eng, cas, eus):
+    if CURRENT_LANG == 'ENG': return eng
+    if CURRENT_LANG == 'EUS': return eus
+    return cas
 
 # 1. PREPARACIÓN DEL ENTORNO
 # Guardamos el código del alumno como texto para ejecutarlo múltiples veces

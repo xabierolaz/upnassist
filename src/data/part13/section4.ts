@@ -3,136 +3,116 @@ import { CoursePage } from '../mooc-exercises';
 export const section4: CoursePage = {
   id: "part13-4",
   title: {
-    ENG: "More pygame techniques",
-    CAS: "Más técnicas de pygame",
-    EUS: "Pygame teknika gehiago"
+    ENG: `More Pygame`,
+    CAS: `Más Pygame`,
+    EUS: `Pygame gehiago\`
   },
   blocks: [
     {
       type: 'markdown',
       content: {
-        ENG: `
-# More pygame techniques
+        ENG: \`
+# More Pygame
 
-## Drawing shapes
+## Game logic
 
-```python
-pygame.draw.rect(window, (255, 0, 0), (x, y, width, height))
-pygame.draw.circle(window, (0, 255, 0), (x, y), radius)
-pygame.draw.line(window, (0, 0, 255), (x1, y1), (x2, y2), width)
-```
+Separating game logic from drawing is good practice.
 
-## Text
+## Clocks and time
 
-```python
-font = pygame.font.SysFont("Arial", 24)
-text = font.render("Hello", True, (255, 255, 255))
-window.blit(text, (x, y))
-```
+Using 
+\`pygame.time.get_ticks()\`
+ allows for timed events.
 `,
         CAS: `
-# Más técnicas de pygame
+# Más Pygame
 
-## Dibujar formas
+## Lógica del juego
 
-```python
-pygame.draw.rect(ventana, (255, 0, 0), (x, y, ancho, alto))
-pygame.draw.circle(ventana, (0, 255, 0), (x, y), radio)
-pygame.draw.line(ventana, (0, 0, 255), (x1, y1), (x2, y2), ancho)
-```
+Separar la lógica del juego del dibujado es una buena práctica.
 
-## Texto
+## Relojes y tiempo
 
-```python
-fuente = pygame.font.SysFont("Arial", 24)
-texto = fuente.render("Hola", True, (255, 255, 255))
-ventana.blit(texto, (x, y))
-```
+Usar 
+\`pygame.time.get_ticks()\`
+ permite eventos temporizados.
 `,
         EUS: `
-# Pygame teknika gehiago
+# Pygame gehiago
 
-## Formak marrazten
+## Jokoaren logika
 
-```python
-pygame.draw.rect(leihoa, (255, 0, 0), (x, y, zabalera, altuera))
-pygame.draw.circle(leihoa, (0, 255, 0), (x, y), radioa)
-pygame.draw.line(leihoa, (0, 0, 255), (x1, y1), (x2, y2), zabalera)
-```
+Jokoaren logika marrazketatik bereiztea praktika ona da.
 
-## Testua
+## Erlojuak eta denbora
 
-```python
-iturburua = pygame.font.SysFont("Arial", 24)
-testua = iturburua.render("Kaixo", True, (255, 255, 255))
-leihoa.blit(testua, (x, y))
-```
-`
+\`pygame.time.get_ticks()\`
+ erabiltzeak denborazko gertaerak ahalbidetzen ditu.
+\`
       }
     },
     {
       type: 'exercise',
-      exerciseId: 'part13-11_four_walls',
+      exerciseId: 'part13-15_robot_location',
       title: {
-        ENG: "Four walls",
-        CAS: "Cuatro paredes",
-        EUS: "Lau pareta"
+        ENG: \`Robot location`,
+        CAS: `Ubicación del robot`,
+        EUS: `Robotaren kokapena\`
       },
       description: {
-        ENG: "Make the robot move with arrow keys but stop at the walls (do not go off-screen).",
-        CAS: "Haz que el robot se mueva con flechas pero se detenga en las paredes.",
-        EUS: "Egin robota gezi-teklekin mugitu dadin baina paretetan gelditu dadin."
+        ENG: \`If the user clicks on the robot, it moves to a new random location. If user clicks elsewhere, nothing happens.`,
+        CAS: `Si el usuario hace clic en el robot, se mueve a una nueva ubicación aleatoria.`,
+        EUS: `Erabiltzaileak robotaren gainean klik egiten badu, ausazko kokapen berri batera mugitzen da.\`
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
+      initialCode: `# Write your solution here\nimport pygame\nimport random\n`
+      testCode: \`
+import unittest
+class TestLocation(unittest.TestCase):
+    def test_run(self):
+        pass
+\`
     },
     {
       type: 'exercise',
-      exerciseId: 'part13-12_robot_and_mouse',
+      exerciseId: 'part13-16_clock',
       title: {
-        ENG: "Robot and mouse",
-        CAS: "Robot y ratón",
-        EUS: "Robota eta sagua"
+        ENG: \`Clock`,
+        CAS: `Reloj`,
+        EUS: `Erlojua\`
       },
       description: {
-        ENG: "Make the robot follow the mouse cursor.",
-        CAS: "Haz que el robot siga al cursor del ratón.",
-        EUS: "Egin robotak saguaren kurtsorea jarraitu dezan."
+        ENG: \`Draw an analog clock that shows the current time (hours, minutes, seconds). Update in real-time.`,
+        CAS: `Dibuja un reloj analógico que muestre la hora actual. Actualiza en tiempo real.`,
+        EUS: `Marraztu erloju analogiko bat uneko ordua erakusten duena.\`
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
+      initialCode: `# Write your solution here\nimport pygame\nimport datetime\nimport math\n`
+      testCode: \`
+import unittest
+class TestClock(unittest.TestCase):
+    def test_run(self):
+        pass
+\`
     },
     {
       type: 'exercise',
-      exerciseId: 'part13-13_two_players',
+      exerciseId: 'part13-17_asteroids',
       title: {
-        ENG: "Two players",
-        CAS: "Dos jugadores",
-        EUS: "Bi jokalari"
+        ENG: \`Asteroids`,
+        CAS: `Asteroides`,
+        EUS: `Asteroideak\`
       },
       description: {
-        ENG: "Create two robots controlled by different keys (arrows vs WASD).",
-        CAS: "Crea dos robots controlados por teclas diferentes (flechas vs WASD).",
-        EUS: "Sortu bi robot tekla desberdinek kontrolatuta (geziak vs WASD)."
+        ENG: \`Implement a simple asteroids game. Robot moves, asteroids fall. If robot hits asteroid -> Game Over. Points for time/dodging.`,
+        CAS: `Implementa un juego simple de asteroides. Robot se mueve, asteroides caen. Choque -> Fin del juego.`,
+        EUS: `Inplementatu asteroide joko sinple bat. Robota mugitzen da, asteroideak erortzen dira. Talka -> Jokoa amaitu.`
       },
-      initialCode: "import pygame\n\n# ...\n",
-      testCode: "pass"
-    },
-    {
-      type: 'exercise',
-      exerciseId: 'part13-14_clock',
-      title: {
-        ENG: "Clock",
-        CAS: "Reloj",
-        EUS: "Erlojua"
-      },
-      description: {
-        ENG: "Draw a clock showing the current time. Use math.sin/cos for hands.",
-        CAS: "Dibuja un reloj que muestre la hora actual.",
-        EUS: "Marraztu uneko ordua erakusten duen erloju bat."
-      },
-      initialCode: "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
-      testCode: "pass"
+      initialCode: `# Write your solution here\nimport pygame\nimport random\n`
+      testCode: `
+import unittest
+class TestAsteroids(unittest.TestCase):
+    def test_run(self):
+        pass
+`
     }
   ]
 };

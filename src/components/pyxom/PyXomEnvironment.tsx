@@ -27,7 +27,7 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
   className = ''
 }) => {
   const markAsCompleted = useProgressStore(state => state.markAsCompleted);
-  const { t } = useLanguageStore(); // Hook de idioma
+  const { t, currentLang } = useLanguageStore(); // Hook de idioma
   const [code, setCode] = useState(initialCode);
   const [history, setHistory] = useState<LogEntry[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -92,7 +92,7 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
     setActiveTab('feedback');
     setTestResults(null);
     try {
-      const results = await TestRunner.runTests(code, testCode);
+      const results = await TestRunner.runTests(code, testCode, currentLang);
       setTestResults(results);
       if (results.score === 100) {
           if (exerciseId) markAsCompleted(exerciseId);

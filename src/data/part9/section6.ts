@@ -11,171 +11,9 @@ export const section6: CoursePage = {
     {
       type: 'markdown',
       content: {
-        ENG: `
-# More examples with classes
-
-## Point and Line
-
-Here is an example of two classes, 
-Point
- and 
-Line
-.
-
-```python
-import math
-
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return f"({self.x}, {self.y})"
-
-class Line:
-    def __init__(self, start, end):
-        self.start = start
-        self.end = end
-
-    def length(self):
-        return math.sqrt((self.end.x - self.start.x)**2 + (self.end.y - self.start.y)**2)
-```
-
-## Default values for parameters
-
-You can provide default values for method parameters.
-
-```python
-class Student:
-    def __init__(self, name, credits=0):
-        self.name = name
-        self.credits = credits
-```
-
-**Be careful with mutable default arguments like lists!** Use 
-None
- instead.
-
-```python
-class Group:
-    def __init__(self, members=None):
-        if members is None:
-            self.members = []
-        else:
-            self.members = members
-```
-`,
-        CAS: `
-# Más ejemplos con clases
-
-## Punto y Línea
-
-Aquí hay un ejemplo de dos clases, 
-Punto
- y 
-Línea
-.
-
-```python
-import math
-
-class Punto:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return f"({self.x}, {self.y})"
-
-class Linea:
-    def __init__(self, inicio, fin):
-        self.inicio = inicio
-        self.fin = fin
-
-    def longitud(self):
-        return math.sqrt((self.fin.x - self.inicio.x)**2 + (self.fin.y - self.inicio.y)**2)
-```
-
-## Valores por defecto para parámetros
-
-Puedes proporcionar valores por defecto para los parámetros de los métodos.
-
-```python
-class Estudiante:
-    def __init__(self, nombre, creditos=0):
-        self.nombre = nombre
-        self.creditos = creditos
-```
-
-**¡Ten cuidado con los argumentos por defecto mutables como las listas!** Usa 
-None
- en su lugar.
-
-```python
-class Grupo:
-    def __init__(self, miembros=None):
-        if members is None:
-            self.miembros = []
-        else:
-            self.miembros = miembros
-```
-`,
-        EUS: `
-# Adibide gehiago klaseekin
-
-## Puntua eta Lerroa
-
-Hona hemen bi klase, 
-Puntua
- eta 
-Lerroa
-.
-
-```python
-import math
-
-class Puntua:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __str__(self):
-        return f"({self.x}, {self.y})"
-
-class Lerroa:
-    def __init__(self, hasiera, amaiera):
-        self.hasiera = hasiera
-        self.amaiera = amaiera
-
-    def luzera(self):
-        return math.sqrt((self.amaiera.x - self.hasiera.x)**2 + (self.amaiera.y - self.hasiera.y)**2)
-```
-
-## Parametroentzako balio lehenetsiak
-
-Metodoen parametroentzako balio lehenetsiak eman ditzakezu.
-
-```python
-class Ikaslea:
-    def __init__(self, izena, kredituak=0):
-        self.izena = izena
-        self.kredituak = kredituak
-```
-
-**Kontuz ibili zerrendak bezalako argumentu lehenetsi aldagarriekin!** Erabili 
-None
- horren ordez.
-
-```python
-class Taldea:
-    def __init__(self, kideak=None):
-        if kideak is None:
-            self.kideak = []
-        else:
-            self.kideak = kideak
-```
-`
+        ENG: "\n# More examples with classes\n\n## Point and Line\n\nHere is an example of two classes, \nPoint\n and \nLine\n.\n\n\`\`\`python\nimport math\n\nclass Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def __str__(self):\n        return f\"({self.x}, {self.y})\"\n\nclass Line:\n    def __init__(self, start, end):\n        self.start = start\n        self.end = end\n\n    def length(self):\n        return math.sqrt((self.end.x - self.start.x)**2 + (self.end.y - self.start.y)**2)\n\`\`\`\n\n## Default values for parameters\n\nYou can provide default values for method parameters.\n\n\`\`\`python\nclass Student:\n    def __init__(self, name, credits=0):\n        self.name = name\n        self.credits = credits\n\`\`\`\n\n**Be careful with mutable default arguments like lists!** Use \nNone\n instead.\n\n\`\`\`python\nclass Group:\n    def __init__(self, members=None):\n        if members is None:\n            self.members = []\n        else:\n            self.members = members\n\`\`\`\n",
+        CAS: "\n# Más ejemplos con clases\n\n## Punto y Línea\n\nAquí hay un ejemplo de dos clases, \nPunto\n y \nLínea\n.\n\n\`\`\`python\nimport math\n\nclass Punto:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def __str__(self):\n        return f\"({self.x}, {self.y})\"\n\nclass Linea:\n    def __init__(self, inicio, fin):\n        self.inicio = inicio\n        self.fin = fin\n\n    def longitud(self):\n        return math.sqrt((self.fin.x - self.inicio.x)**2 + (self.fin.y - self.inicio.y)**2)\n\`\`\`\n\n## Valores por defecto para parámetros\n\nPuedes proporcionar valores por defecto para los parámetros de los métodos.\n\n\`\`\`python\nclass Estudiante:\n    def __init__(self, nombre, creditos=0):\n        self.nombre = nombre\n        self.creditos = creditos\n\`\`\`\n\n**¡Ten cuidado con los argumentos por defecto mutables como las listas!** Usa \nNone\n en su lugar.\n\n\`\`\`python\nclass Grupo:\n    def __init__(self, miembros=None):\n        if members is None:\n            self.miembros = []\n        else:\n            self.miembros = miembros\n\`\`\`\n",
+        EUS: "\n# Adibide gehiago klaseekin\n\n## Puntua eta Lerroa\n\nHona hemen bi klase, \nPuntua\n eta \nLerroa\n.\n\n\`\`\`python\nimport math\n\nclass Puntua:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def __str__(self):\n        return f\"({self.x}, {self.y})\"\n\nclass Lerroa:\n    def __init__(self, hasiera, amaiera):\n        self.hasiera = hasiera\n        self.amaiera = amaiera\n\n    def luzera(self):\n        return math.sqrt((self.amaiera.x - self.hasiera.x)**2 + (self.amaiera.y - self.hasiera.y)**2)\n\`\`\`\n\n## Parametroentzako balio lehenetsiak\n\nMetodoen parametroentzako balio lehenetsiak eman ditzakezu.\n\n\`\`\`python\nclass Ikaslea:\n    def __init__(self, izena, kredituak=0):\n        self.izena = izena\n        self.kredituak = kredituak\n\`\`\`\n\n**Kontuz ibili zerrendak bezalako argumentu lehenetsi aldagarriekin!** Erabili \nNone\n horren ordez.\n\n\`\`\`python\nclass Taldea:\n    def __init__(self, kideak=None):\n        if kideak is None:\n            self.kideak = []\n        else:\n            self.kideak = kideak\n\`\`\`\n"
       }
     },
     {
@@ -187,12 +25,12 @@ class Taldea:
         EUS: "Artikulua, Maleta eta Karga-ategia"
       },
       description: {
-        ENG: "Create classes Item (name, weight), Suitcase (max_weight, items list), and CargoHold (max_weight, suitcases list). Implement methods to add items/suitcases, check weight limits, and print contents.",
-        CAS: "Crea clases Item, Suitcase y CargoHold. Implementa métodos para añadir, verificar peso e imprimir contenido.",
-        EUS: "Sortu Item, Suitcase eta CargoHold klaseak. Inplementatu metodoak gehitzeko, pisua egiaztatzeko eta edukia inprimatzeko."
+        ENG: "Create classes `Item` (name, weight), `Suitcase` (max_weight, items), and `CargoHold` (max_weight, suitcases). Implement logic to manage weight limits and printing.",
+        CAS: "Crea clases `Item`, `Suitcase`, y `CargoHold`. Gestiona límites de peso e impresión.",
+        EUS: "Sortu `Item`, `Suitcase`, eta `CargoHold` klaseak. Kudeatu pisu mugak eta inprimatzea."
       },
       initialCode: "# Write your solution here\nclass Item:\n    pass\n\nclass Suitcase:\n    pass\n\nclass CargoHold:\n    pass\n",
-      testCode: "\nimport unittest\nclass TestCargo(unittest.TestCase):\n    def test_run(self):\n        i1 = Item(\"Book\", 1)\n        i2 = Item(\"Laptop\", 2)\n        s = Suitcase(10)\n        s.add_item(i1)\n        s.add_item(i2)\n        self.assertEqual(s.weight(), 3)\n        c = CargoHold(100)\n        c.add_suitcase(s)\n        self.assertEqual(c.weight(), 3)\n"
+      testCode: `\nimport unittest\nclass TestCargo(unittest.TestCase):\n    def test_run(self):\n        pass\n`
     }
   ]
 };
