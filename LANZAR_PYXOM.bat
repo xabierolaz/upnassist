@@ -13,7 +13,7 @@ start /b cmd /c "npm run dev"
 
 :: Esperar a que Vite este listo
 echo Esperando a que cargue el entorno...
-timeout /t 4 > nul
+timeout /t 5 > nul
 
 echo [2/2] Abriendo el Curso MOOC...
 :: Intentamos abrir en el puerto 5173 (default)

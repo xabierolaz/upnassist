@@ -17,6 +17,11 @@ ADVICE_DB = {
         "es": "Te falta un signo de dos puntos ':' al final de la línea (obligatorio en if, for, while, def).",
         "eu": "Bi puntu ':' falta zaizkizu lerroaren amaieran (derrigorrezkoa if, for, while, def-etan)."
     },
+    "leading_zeros": {
+        "pattern": r"leading zeros in decimal integer",
+        "es": "Los números no pueden empezar por 0 en Python (ej: 05).",
+        "eu": "Zenbakiak ezin dira 0z hasi Pythonen (adib: 05)."
+    },
     "outside_loop": {
         "pattern": r"'break' outside loop|'continue' outside loop",
         "es": "Has usado 'break' o 'continue' fuera de un bucle. Solo funcionan dentro de for o while.",
@@ -74,6 +79,11 @@ ADVICE_DB = {
         "es": "Intentas llamar '()' a una variable que no es una función. (Ej: x=5; x()).",
         "eu": "Funtzioa ez den aldagai bati deitzen '()' saiatzen ari zara. (Adib: x=5; x())."
     },
+    "arg_count": {
+        "pattern": r"takes \d+ positional arguments but \d+ were given|missing \d+ required positional argument",
+        "es": "Número incorrecto de argumentos al llamar a la función.",
+        "eu": "Argumentu kopuru okerra funtzioari deitzean."
+    },
 
     # --- VALUE & INDEX ERRORS ---
     "value_error_int": {
@@ -91,8 +101,13 @@ ADVICE_DB = {
         "eu": "Indizea rangotik kanpo. Zerrendak N neurtzen badu, indizeak 0-tik N-1-era doaz."
     },
     "key_error": {
-        "es": "Esa clave no existe en el diccionario.",
-        "eu": "Gako hori ez da existitzen hiztegian."
+        "es": "Esa clave no existe en el diccionario. Usa .get() para evitar este error.",
+        "eu": "Gako hori ez da existitzen hiztegian. Erabili .get() errore hau saihesteko."
+    },
+    "dict_changed_size": {
+        "pattern": r"dictionary changed size during iteration",
+        "es": "No puedes añadir/borrar claves de un diccionario mientras lo recorres con un bucle.",
+        "eu": "Ezin duzu hiztegi bateko gakoak gehitu/ezabatu begizta batekin zeharkatzen duzun bitartean."
     },
 
     # --- LOGIC & RUNTIME ---
@@ -142,7 +157,7 @@ class ExpertLinter(ast.NodeVisitor):
         self.stats["classes"] += 1
         for item in node.body:
             if isinstance(item, ast.FunctionDef):
-                # Caso: Typos en __init__
+                # POO: Typos en __init__
                 if item.name in ['_init_', 'init', '__int__']:
                     self.warnings.append({
                         "code": "init_typo",
@@ -150,7 +165,7 @@ class ExpertLinter(ast.NodeVisitor):
                         "msg_eu": f"'{node.name}' klasean: '{item.name}' metodo susmagarria. '__init__' esan nahi zenuen?"
                     })
                 
-                # Caso: Falta self
+                # POO: Falta self
                 if item.args.args:
                     first_arg = item.args.args[0].arg
                     if first_arg != 'self' and item.name != '__new__':
@@ -173,12 +188,12 @@ class ExpertLinter(ast.NodeVisitor):
         self.stats["functions"] += 1
         self.defined_funcs.add(node.name)
         
-        # Caso: Mutable Defaults
+        # Funciones: Mutable Default Arguments
         for arg in node.args.defaults:
             if isinstance(arg, (ast.List, ast.Dict, ast.Set)):
                 self.mutable_defaults.append(node.name)
         
-        # Caso: Print sin Return
+        # Funciones: Print sin Return
         has_return = any(isinstance(n, ast.Return) for n in ast.walk(node))
         has_print = False
         for n in ast.walk(node):
@@ -195,55 +210,63 @@ class ExpertLinter(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_Assign(self, node):
-        # Caso: Shadowing
-        forbidden = ['list', 'dict', 'str', 'int', 'sum', 'min', 'max', 'type', 'input', 'len', 'range', 'id']
+        # Variables: Shadowing
+        forbidden = ['list', 'dict', 'str', 'int', 'sum', 'min', 'max', 'type', 'input', 'len', 'range', 'id', 'open', 'file']
         for target in node.targets:
             if isinstance(target, ast.Name):
                 self.defined_vars.add(target.id)
                 if target.id in forbidden:
                     self.shadowed_builtins.append(target.id)
         
-        # Caso: Asignar resultado de métodos in-place (l.sort()) a variable
-        # Detecta: x = lista.sort() o x = lista.append(y)
+        # Listas: Asignar resultado de métodos in-place (l.sort())
         if isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Attribute):
             method_name = node.value.func.attr
             if method_name in ['sort', 'append', 'extend', 'remove', 'reverse', 'insert']:
                 self.warnings.append({
                     "code": "inplace_assign",
-                    "msg_es": f"¡Cuidado! El método '.{method_name}()' modifica la lista pero devuelve 'None'. No lo asignes a una variable.",
-                    "msg_eu": f"Kontuz! '.{method_name}()' metodoak zerrenda aldatzen du baina 'None' itzultzen du. Ez esleitu aldagai bati."
+                    "msg_es": f"¡Cuidado! '.{method_name}()' devuelve 'None'. No lo asignes a una variable.",
+                    "msg_eu": f"Kontuz! '.{method_name}()' metodoak 'None' itzultzen du. Ez esleitu aldagai bati."
                 })
 
-        # Caso: Tupla accidental (19,99) en asignación
+        # Sintaxis: Tupla accidental (19,99)
         if isinstance(node.value, ast.Tuple) and not isinstance(node.targets[0], ast.Tuple):
-             # Heuristic: Assigning tuple to single variable
-             # Check if elements are numbers
              if all(isinstance(elt, (ast.Constant, ast.Num)) for elt in node.value.elts):
                  self.warnings.append({
                      "code": "accidental_tuple",
-                     "msg_es": "Has asignado varios números separados por coma a una variable. ¿Querías usar decimales (punto)?",
-                     "msg_eu": "Zenbaki batzuk komaz bereizita esleitu dizkiozu aldagai bati. Hamartarrak (puntua) erabili nahi zenituen?"
+                     "msg_es": "Has creado una tupla con comas (ej: 1,5). Para decimales usa punto (1.5).",
+                     "msg_eu": "Tupla bat sortu duzu komekin (adib: 1,5). Hamartarretarako erabili puntua (1.5)."
                  })
+
+        # Listas: Multiplicación de listas anidadas [[0]*3]*3
+        if isinstance(node.value, ast.BinOp) and isinstance(node.value.op, ast.Mult):
+            # Detectar pattern: [list] * N
+            if isinstance(node.value.left, ast.List) and len(node.value.left.elts) == 1:
+                inner = node.value.left.elts[0]
+                # Si lo de dentro es otra lista o objeto mutable
+                if isinstance(inner, ast.List):
+                     self.warnings.append({
+                         "code": "list_mult_trap",
+                         "msg_es": "Peligro: '[[x]*n]*m' crea copias referenciadas. Si cambias una fila, cambian todas.",
+                         "msg_eu": "Arriskua: '[[x]*n]*m' erreferentziatutako kopiak sortzen ditu. Errenkada bat aldatzen baduzu, denak aldatzen dira."
+                     })
 
         self.generic_visit(node)
 
     def visit_Expr(self, node):
-        # Caso: Inmutabilidad de Strings (s.upper() sin asignar)
+        # Strings: Inmutabilidad (s.upper() sin asignar)
         if isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Attribute):
             method_name = node.value.func.attr
             if method_name in ['upper', 'lower', 'capitalize', 'replace', 'strip']:
                 self.warnings.append({
                     "code": "immutable_string",
-                    "msg_es": f"Llamas a '.{method_name}()' pero no guardas el resultado. Los strings no cambian in-place.",
-                    "msg_eu": "'.{method_name}()' deitzen duzu baina ez duzu emaitza gordetzen. String-ak ez dira in-place aldatzen."
+                    "msg_es": f"Llamas a '.{method_name}()' pero no guardas el resultado (los strings no cambian). Usa 'var = var.{method_name}()'.",
+                    "msg_eu": f"'.{method_name}()' deitzen duzu baina ez duzu emaitza gordetzen. Erabili 'var = var.{method_name}()'."
                 })
-        
-        # Caso: Función sin llamar (referencia a función en expresión suelta, raro pero posible en repl)
         self.generic_visit(node)
 
     def visit_For(self, node):
         self.stats["loops"] += 1
-        # Caso: Modificar lista iterada
+        # Bucles: Modificar lista iterada
         if isinstance(node.iter, ast.Name):
             iter_name = node.iter.id
             for child in ast.walk(node):
@@ -259,7 +282,7 @@ class ExpertLinter(ast.NodeVisitor):
     
     def visit_While(self, node):
         self.stats["loops"] += 1
-        # Caso: While True sin break
+        # Bucles: While True sin break
         if isinstance(node.test, ast.Constant) and node.test.value == True:
             has_break = any(isinstance(n, ast.Break) for n in ast.walk(node))
             if not has_break:
@@ -271,10 +294,9 @@ class ExpertLinter(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_Compare(self, node):
-        # Caso: Comparar floats (a == 0.3)
+        # Tipos: Comparar floats (a == 0.3)
         for op in node.ops:
             if isinstance(op, ast.Eq):
-                # Check operands for float literals
                 has_float = isinstance(node.left, ast.Constant) and isinstance(node.left.value, float)
                 if not has_float:
                     for comp in node.comparators:
@@ -287,10 +309,27 @@ class ExpertLinter(ast.NodeVisitor):
                         "msg_es": "Comparar floats con '==' es peligroso por precisión. Usa 'abs(a - b) < 0.0001'.",
                         "msg_eu": "Float-ak '=='-rekin konparatzea arriskutsua da doitasunagatik. Erabili 'abs(a - b) < 0.0001'."
                     })
+            
+            # Lógica: Uso incorrecto de 'is' con literales (x is 5)
+            if isinstance(op, (ast.Is, ast.IsNot)):
+                # Check if literal (Constant or Num/Str/etc in old python, but ast.Constant covers it in py3.8+)
+                literals = (node.left, *node.comparators)
+                for lit in literals:
+                    if isinstance(lit, (ast.Constant, ast.List, ast.Tuple, ast.Dict, ast.Set)):
+                        # Exceptions: None, True, False are OK with 'is'
+                        if isinstance(lit, ast.Constant) and lit.value in [None, True, False]:
+                            continue
+                        self.warnings.append({
+                            "code": "is_literal",
+                            "msg_es": "No uses 'is' para comparar números o textos. Usa '=='.",
+                            "msg_eu": "Ez erabili 'is' zenbakiak edo testuak konparatzeko. Erabili '=='."
+                        })
+                        break
+
         self.generic_visit(node)
 
     def visit_BoolOp(self, node):
-        # Caso: Trampa del OR (if x == 5 or 6)
+        # Lógica: Trampa del OR (if x == 5 or 6)
         if isinstance(node.op, ast.Or):
             for value in node.values:
                 if isinstance(value, ast.Constant) and value.value not in [True, False, None, 0, ""]:
@@ -300,27 +339,68 @@ class ExpertLinter(ast.NodeVisitor):
                          "msg_eu": f"Logika susmagarria: '... or {repr(value.value)}'. Hau beti da True."
                      })
         self.generic_visit(node)
+        
+    def visit_BinOp(self, node):
+        # Operadores: Confusión Bitwise (^) vs Potencia (**)
+        if isinstance(node.op, ast.BitXor):
+            self.warnings.append({
+                "code": "bitwise_xor",
+                "msg_es": "Has usado '^' (XOR binario). Para elevar al cuadrado/potencia usa '**'.",
+                "msg_eu": "'^' (XOR binarioa) erabili duzu. Berretzeko erabili '**'."
+            })
+        # Operadores: Confusión Bitwise (&, |) en lógica
+        if isinstance(node.op, (ast.BitOr, ast.BitAnd)):
+             # Heuristic: if operands look like booleans or comparisons? Hard to tell types statically.
+             # But usually beginners shouldn't use bitwise.
+             pass
+        self.generic_visit(node)
 
     def visit_Call(self, node):
-        # Caso: Olvidar paréntesis en función conocida (random.random) como argumento
-        # Esto es dificil de detectar en AST puro salvo que veamos el uso. 
-        # Pero podemos detectar si imprimimos una funcion.
+        # Archivos: open() sin with
+        if isinstance(node.func, ast.Name) and node.func.id == 'open':
+            # Check if this call is part of a With statement... hard to check parent in simple visitor.
+            # We assume warning if we see explicit open() call not inside context manager logic? 
+            # Actually, standard open() is fine if closed, but we prefer with.
+            # Let's advise 'with'.
+            self.warnings.append({
+                "code": "open_no_with",
+                "msg_es": "Recomendación: Usa 'with open(...) as f:' para manejar archivos de forma segura.",
+                "msg_eu": "Gomendioa: Erabili 'with open(...) as f:' fitxategiak segurtasunez kudeatzeko."
+            })
+
+        # Funciones: Print de función sin llamar
         if isinstance(node.func, ast.Name) and node.func.id == 'print':
             for arg in node.args:
                 if isinstance(arg, ast.Name) and arg.id in self.defined_funcs:
-                     # Imprimiendo nombre de funcion definida sin llamar
                      self.warnings.append({
                          "code": "print_func_ref",
                          "msg_es": f"Estás imprimiendo la función '{arg.id}' en vez de su resultado. ¿Faltan paréntesis '()'?",
                          "msg_eu": f"'{arg.id}' funtzioa inprimatzen ari zara emaitzaren ordez. Parentesiak '()' falta dira?"
                      })
                 elif isinstance(arg, ast.Attribute) and arg.attr == 'random':
-                     # Caso especifico random.random
                      self.warnings.append({
                          "code": "print_func_ref",
                          "msg_es": "Estás usando la referencia a la función. ¿Querías llamar a 'random.random()'?",
                          "msg_eu": "Funtzioaren erreferentzia erabiltzen ari zara. 'random.random()' deitu nahi zenuen?"
                      })
+        self.generic_visit(node)
+    
+    def visit_ExceptHandler(self, node):
+        # Excepciones: Bare except
+        if node.type is None:
+            self.warnings.append({
+                "code": "bare_except",
+                "msg_es": "No uses 'except:' vacío. Captura errores específicos (ej: 'except ValueError:').",
+                "msg_eu": "Ez erabili 'except:' hutsik. Errore zehatzak harrapatu (adib: 'except ValueError:')."
+            })
+        
+        # Excepciones: Pass en except
+        if len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
+             self.warnings.append({
+                "code": "except_pass",
+                "msg_es": "Silenciar errores con 'pass' es peligroso. Al menos imprime un mensaje.",
+                "msg_eu": "Erroreak 'pass'-ekin isiltzea arriskutsua da. Gutxienez mezu bat inprimatu."
+            })
         self.generic_visit(node)
 
     def visit_If(self, node):
@@ -388,10 +468,6 @@ def humanize_runtime_error(exc_type, exc_value, tb):
         if exc_name == "NameError":
             match = re.search(r"name '(.+?)' is not defined", error_msg)
             var_name = match.group(1) if match else "?"
-            
-            # Case sensitivity check heuristic
-            # We would need access to defined vars, but static analysis happens before.
-            # We provide general advice.
             if var_name[0].isupper():
                  advice_es = f"No existe '{var_name}'. Python distingue mayúsculas. ¿Quizás '{var_name.lower()}'?"
                  advice_eu = f"Ez da existitzen '{var_name}'. Pythonek maiuskulak bereizten ditu. Agian '{var_name.lower()}'?"

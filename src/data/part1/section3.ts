@@ -5,16 +5,16 @@ export const section3: CoursePage = {
   title: {
     ENG: `More about variables`,
     CAS: `Más sobre variables`,
-    EUS: `Aldagaiei buruz gehiago\`
+    EUS: `Aldagaiei buruz gehiago`
   },
   blocks: [
     {
       type: 'quiz',
-      title: { ENG: \`Pre-quiz\`, CAS: \`Pre-cuestionario\`, EUS: \`Aurretiazko galdetegia\` },
+      title: { ENG: `Pre-quiz`, CAS: `Pre-cuestionario`, EUS: `Aurretiazko galdetegia` },
       questions: [
         {
           id: 'q1',
-          prompt: { 
+          prompt: {
             ENG: 'Can the value of a variable change during the execution of a program?',
             CAS: '¿Puede cambiar el valor de una variable durante la ejecución de un programa?',
             EUS: 'Alda daiteke aldagai baten balioa programa baten exekuzioan zehar?'
@@ -29,117 +29,583 @@ export const section3: CoursePage = {
     {
       type: 'markdown',
       content: {
-        ENG: \`\n# More about variables\n\n## After this section:\n\n- You will be able to use variables in different contexts\n- You will know what kind of data can be stored in variables\n- You will understand the difference between strings, integers and floating point numbers\n\nVariables are needed for various purposes in programming. You can use variables to store any information that will be needed later in the program's execution.\n\nIn Python programming variables are created like so:\n\n\`variable_name = ...\`\n\nHere \`...\` means the value stored in the variable.\n\nFor example, when you used the \`input\` command to read a string from the user, you stored the string in a variable and then used the variable later in your program:\n\n\`\`\`python\nname = input(\"What is your name? \ கருவ\nprint(\"Hi, \" + name)
-\`\`\`\n\n<sample-output>\n\nWhat is your name? **Ghosty**\nHi, Ghosty\n\n</sample-output>\n\nThe value stored in a variable can also be defined using other variables:\n\n\`\`\`python\ngiven_name = \"Paul\"\nfamily_name = \"Python\"\n\nname = given_name + \" \" + family_name\n\nprint(name)\n\`\`\`\n\n<sample-output>\n\nPaul Python\n\n</sample-output>\n\nHere the values stored in the three variables are not obtained from user input. They remain the same every time the program is executed. This is called _hard-coding_ data into the program.\n\n## Changing the value of a variable\n\nAs implied by the name _variable_, the value stored in a variable can change. In the previous section we noticed that the new value replaces the old one.\n\nDuring the execution of the following program, the variable \`word\` will have three different values:\n\n\`\`\`python\nword = input(\"Please type in a word: \ கருவ\nprint(word)\n\nword = input(\"And another word: \ கருவ\nprint(word)\n\nword = \"third\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nPlease type in a word: **first**\nfirst\nAnd another word: **second**\nsecond\nthird\n\n</sample-output>\n\nThe value stored in the variable changes each time the variable is assigned a new value.\n\nThe new value of a variable can be derived from its old value. In the following example the variable \`word\` is first assigned a value based on user input. Then it is assigned a new value, which is the old value with three exclamation marks added to the end.\n\n\`\`\`python\nword = input(\"Please type in a word: \ கருவ\nprint(word)\n\nword = word + \"!!!\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nPlease type in a word: **test**\ntest\ntest!!!\n\n</sample-output>\n\n> **Choosing a good name for a variable**\n> \n> * It is often useful to name variables according to what they are used for. For example, if the variable contains a word, the name \`word\` is a better choice than, say, \`a\`.\n> * There is no set limit to the length of a variable name in Python, but there are some other limitations. A variable name should begin with a letter, and it can only contain letters, numbers and underscores \`_\`.\n> * Lowercase and uppercase letters are different characters. The variables \`name\`, \`Name\` and \`NAME\` are all different variables.\n> * It is a common programming practice in Python to use only lowercase characters in variable names. If the variable name consists of multiple words, use an underscore between the words (e.g., \`my_variable\`).\n`,
-        CAS: `\n# Más sobre variables\n\n## Después de esta sección:\n\n- Podrás usar variables en diferentes contextos\n- Sabrás qué tipo de datos se pueden almacenar en variables\n- Entenderás la diferencia entre cadenas, enteros y números de punto flotante\n\nLas variables son necesarias para varios propósitos en la programación. Puedes usar variables para almacenar cualquier información que se necesite más tarde en la ejecución del programa.\n\nEn la programación Python, las variables se crean así:\n\n\`variable_name = ...\`\n\nAquí \`...\` significa el valor almacenado en la variable.\n\nPor ejemplo, cuando usaste el comando \`input\` para leer una cadena del usuario, almacenaste la cadena en una variable y luego usaste la variable más tarde en tu programa:\n\n\`\`\`python\nname = input(\"¿Cómo te llamas? \ கருவ\nprint(\"Hola, \" + name)
-\`\`\`\n\n<sample-output>\n\n¿Cómo te llamas? **Ghosty**\nHola, Ghosty\n\n</sample-output>\n\nEl valor almacenado en una variable también se puede definir utilizando otras variables:\n\n\`\`\`python\ngiven_name = \"Paul\"\nfamily_name = \"Python\"\n\nname = given_name + \" \" + family_name\n\nprint(name)\n\`\`\`\n\n<sample-output>\n\nPaul Python\n\n</sample-output>\n\nAquí los valores almacenados en las tres variables no se obtienen de la entrada del usuario. Permanecen iguales cada vez que se ejecuta el programa. Esto se llama _hard-coding_ (codificación rígida) de datos en el programa.\n\n## Cambiando el valor de una variable\n\nComo implica el nombre _variable_, el valor almacenado en una variable puede cambiar. En la sección anterior notamos que el nuevo valor reemplaza al antiguo.\n\nDurante la ejecución del siguiente programa, la variable \`word\` tendrá tres valores diferentes:\n\n\`\`\`python\nword = input(\"Por favor escribe una palabra: \ கருவ\nprint(word)\n\nword = input(\"Y otra palabra: \ கருவ\nprint(word)\n\nword = \"tercera\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nPor favor escribe una palabra: **primera**\nprimera\nY otra palabra: **segunda**\nsegunda\ntercera\n\n</sample-output>\n\nEl valor almacenado en la variable cambia cada vez que se le asigna un nuevo valor.\n\nEl nuevo valor de una variable puede derivarse de su valor anterior. En el siguiente ejemplo, a la variable \`word\` se le asigna primero un valor basado en la entrada del usuario. Luego se le asigna un nuevo valor, que es el valor antiguo con tres signos de exclamación añadidos al final.\n\n\`\`\`python\nword = input(\"Por favor escribe una palabra: \ கருவ\nprint(word)\n\nword = word + \"!!!\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nPor favor escribe una palabra: **prueba**\nprueba\nprueba!!!\n\n</sample-output>\n\n> **Elegir un buen nombre para una variable**\n> \n> * A menudo es útil nombrar las variables según para qué se usan. Por ejemplo, si la variable contiene una palabra, el nombre \`word\` es una mejor opción que, digamos, \`a\`.\n> * No hay un límite establecido para la longitud del nombre de una variable en Python, pero hay otras limitaciones. Un nombre de variable debe comenzar con una letra y solo puede contener letras, números y guiones bajos \`_\`.\n> * Las letras mayúsculas y minúsculas son caracteres diferentes. Las variables \`name\`, \`Name\` y \`NAME\` son todas variables diferentes.\n> * Es una práctica común de programación en Python usar solo caracteres en minúscula en los nombres de variables. Si el nombre de la variable consta de varias palabras, usa un guion bajo entre las palabras (ej., \`mi_variable\`).\n`,
-        EUS: `\n# Aldagaiei buruz gehiago\n\n## Atal honen ondoren:\n\n- Aldagaiak testuinguru ezberdinetan erabiltzeko gai izango zara\n- Jakingo duzu zer motatako datuak gorde daitezkeen aldagailetan\n- Kateen, zenbaki osoen eta koma higikorreko zenbakien arteko aldea ulertuko duzu\n\nAldagaiak hainbat helburutarako beharrezkoak dira programazioan. Geroago programaren exekuzioan beharko den edozein informazio gordetzeko erabil ditzakezu aldagaiak.\n\nPython programazioan aldagaiak horrela sortzen dira:\n\n\`aldagai_izena = ...\`\n\nHemen \`...\` aldagaian gordetako balioa da.\n\nAdibidez, \`input\` komandoa erabili zenuenean erabiltzailearen kate bat irakurtzeko, katea aldagai batean gorde zenuen eta gero aldagaia erabili zenuen zure programan:\n\n\`\`\`python\nname = input(\"Nola duzu izena? \ கருவ\nprint(\"Kaixo, \" + name)
-\`\`\`\n\n<sample-output>\n\nNola duzu izena? **Ghosty**\nKaixo, Ghosty\n\n</sample-output>\n\nAldagai batean gordetako balioa beste aldagai batzuk erabiliz ere defini daiteke:\n\n\`\`\`python\ngiven_name = \"Paul\"\nfamily_name = \"Python\"\n\nname = given_name + \" \" + family_name\n\nprint(name)\n\`\`\`\n\n<sample-output>\n\nPaul Python\n\n</sample-output>\n\nHemen hiru aldagaietan gordetako balioak ez dira erabiltzailearen sarreratik lortzen. Programa exekutatzen den bakoitzean berdinak dira. Honi datuak programan _hard-coding_ (kodeketa zurruna) egitea deitzen zaio.\n\n## Aldagai baten balioa aldatzea\n\nIzenak iradokitzen duen bezala, _aldagai_ batean gordetako balioa alda daiteke. Aurreko atalean ikusi genuen balio berriak zaharra ordezkatzen duela.\n\nHurrengo programaren exekuzioan zehar, \`word\` aldagaiak hiru balio ezberdin izango ditu:\n\n\`\`\`python\nword = input(\"Mesedez idatzi hitz bat: \ கருவ\nprint(word)\n\nword = input(\"Eta beste hitz bat: \ கருவ\nprint(word)\n\nword = \"hirugarrena\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nMesedez idatzi hitz bat: **lehenengoa**\nlehenengoa\nEta beste hitz bat: **bigarrena**\nbigarrena\nhirugarrena\n\n</sample-output>\n\nAldagaian gordetako balioa aldatu egiten da aldagaiari balio berri bat esleitzen zaion bakoitzean.\n\nAldagai baten balio berria bere balio zaharretik erator daiteke. Hurrengo adibidean \`word\` aldagaiari lehenik erabiltzailearen sarreran oinarritutako balio bat esleitzen zaio. Ondoren, balio berri bat esleitzen zaio, zeina balio zaharra den amaieran hiru harridura-marka gehituta.\n\n\`\`\`python\nword = input(\"Mesedez idatzi hitz bat: \ கருவ\nprint(word)\n\nword = word + \"!!!\"\nprint(word)\n\`\`\`\n\n<sample-output>\n\nMesedez idatzi hitz bat: **proba**\nproba\nproba!!!\n\n</sample-output>\n\n> **Aldagai baterako izen on bat aukeratzea**\n> \n> * Askotan erabilgarria da aldagaiak zertarako erabiltzen diren kontuan hartuta izendatzea. Adibidez, aldagaiak hitz bat badu, \`word\` izena aukera hobea da \`a\` baino.\n> * Ez dago muga zehatzik Python-en aldagai baten izenaren luzeran, baina badira beste muga batzuk. Aldagai baten izenak letra batekin hasi behar du, eta letrak, zenbakiak eta azpimarrarrak \`_\` soilik izan ditzake.\n> * Letra larriak eta xeheak karaktere ezberdinak dira. \`name\`, \`Name\` eta \`NAME\` aldagaiak denak ezberdinak dira.\n> * Python-en ohiko programazio praktika da aldagai izenetan karaktere xeheak soilik erabiltzea. Aldagaiaren izena hitz anitzek osatzen badute, erabili azpimarra hitzen artean (adib., \`nire_aldagaia\`).\n\`
-      }
-    },
-    {
-      type: 'markdown',
-      content: {
-        ENG: \`\n## Integers\n\nThus far, we have only stored strings in variables, but there are also many other types of information we will want to store and access later. Let's have a look at integers first. Integers are numbers that do not have a decimal or fractional part, such as \` -15\`, \`0\` and \`1\`.\n\nThe following program creates the variable \`age\`, which contains an integer value.\n\n\`\`\`python\nage = 24\nprint(age)\n\`\`\`\n\nThe program prints out just this:\n\n<sample-output>\n\n24\n\n</sample-output>\n\nNotice the lack of quotation marks here. In fact, if we were to add quotation marks around the number, this would mean our variable would no longer be an integer, but a string instead. A string can contain numbers, but it is processed differently.\n\nSo, why does it matter that variables have a type, when the following program still prints out the same thing twice?\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1)\nprint(number2)\n\`\`\`\n\n<sample-output>\n\n100\n100\n\n</sample-output>\n\nVariable types matter because different operations affect different types of variables in different ways. Let's have a look at an example:\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1 + number1)\nprint(number2 + number2)\n\`\`\`\n\nThis prints out the following:\n\n<sample-output>\n\n200\n100100\n\n</sample-output>\n\nFor integer values the \`+\` operator means addition, but for string values it means concatenation, or \"stringing together\".\n\nNot all operators are available for all types of variables. While numbers can be divided using the division operator \`/\`, attempting to divide a string by a number causes an error:\n\n\`\`\`python\nnumber = \"100\"\nprint(number / 2)\n\`\`\`\n\n<sample-output>\nTypeError: unsupported operand type(s) for /: 'str' and 'int'\n</sample-output>\n\n## Combining values when printing\n\nSimilarly, the following program will not work, because \`"The result is "\` and \`result\` are of two different types:\n\n\`\`\`python\nresult = 10 * 25\n# the following line produces an error\nprint(\"The result is \" + result)\n\`\`\`\n\nThe program does not print out anything, but instead throws an error:\n\n<sample-output>\n\nTypeError: unsupported operand type(s) for +: 'str' and 'int'\n\n</sample-output>\n\nHere, Python tells us that combining two different types of values will not work just like that. In this case, \`"The result is "\` is of type string, while the value stored in \`result\` is of type integer.\n\nIf we do want to print out a string and an integer in a single command, the integer can be cast as a string with the \`str\` function, and the two strings can then be combined normally. For example, this would work:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"The result is \" + str(result))\n\`\`\`\n\n<sample-output>\n\nThe result is 250\n\n</sample-output>\n\nThe \`print\` command also has built-in functionalities that support combining different types of values. The simplest way is to add a comma between the values. All the values will be printed out regardless of their type:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"The result is\`, result)\n\`\`\`\n\n<sample-output>\n\nThe result is 250\n\n</sample-output>\n\nNotice that there is an automatically added whitespace character between the values separated by a comma here.\n",
-        CAS: \`\n## Enteros\n\nHasta ahora, solo hemos almacenado cadenas en variables, pero hay muchos otros tipos de información que querremos almacenar y acceder más tarde. Veamos primero los enteros. Los enteros son números que no tienen parte decimal o fraccionaria, como \` -15\`, \`0\` y \`1\`.\n\nEl siguiente programa crea la variable \`age\`, que contiene un valor entero.\n\n\`\`\`python\nage = 24\nprint(age)\n\`\`\`\n\nEl programa imprime solo esto:\n\n<sample-output>\n\n24\n\n</sample-output>\n\nNota la falta de comillas aquí. De hecho, si añadiéramos comillas alrededor del número, esto significaría que nuestra variable ya no sería un entero, sino una cadena. Una cadena puede contener números, pero se procesa de manera diferente.\n\nEntonces, ¿por qué importa que las variables tengan un tipo, cuando el siguiente programa imprime lo mismo dos veces?\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1)\nprint(number2)\n\`\`\`\n\n<sample-output>\n\n100\n100\n\n</sample-output>\n\nLos tipos de variables importan porque diferentes operaciones afectan a diferentes tipos de variables de diferentes maneras. Veamos un ejemplo:\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1 + number1)\nprint(number2 + number2)\n\`\`\`\n\nEsto imprime lo siguiente:\n\n<sample-output>\n\n200\n100100\n\n</sample-output>\n\nPara valores enteros el operador \`+\` significa suma, pero para valores de cadena significa concatenación, o \"unir cadenas\".\n\nNo todos los operadores están disponibles para todos los tipos de variables. Mientras que los números se pueden dividir usando el operador de división \`/\`, intentar dividir una cadena por un número causa un error:\n\n\`\`\`python\nnumber = \"100\"\nprint(number / 2)\n\`\`\`\n\n<sample-output>\nTypeError: unsupported operand type(s) for /: 'str' and 'int'\n</sample-output>\n\n## Combinando valores al imprimir\n\nDe manera similar, el siguiente programa no funcionará, porque \`"El resultado es "\` y \`result\` son de dos tipos diferentes:\n\n\`\`\`python\nresult = 10 * 25\n# la siguiente línea produce un error\nprint(\"El resultado es \" + result)\n\`\`\`\n\nEl programa no imprime nada, sino que lanza un error:\n\n<sample-output>\n\nTypeError: unsupported operand type(s) for +: 'str' and 'int'\n\n</sample-output>\n\nAquí, Python nos dice que combinar dos tipos diferentes de valores no funcionará así como así. En este caso, \`"El resultado es "\` es de tipo cadena, mientras que el valor almacenado en \`result\` es de tipo entero.\n\nSi queremos imprimir una cadena y un entero en un solo comando, el entero puede convertirse a cadena con la función \`str\`, y las dos cadenas se pueden combinar normalmente. Por ejemplo, esto funcionaría:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"El resultado es \" + str(result))\n\`\`\`\n\n<sample-output>\n\nEl resultado es 250\n\n</sample-output>\n\nEl comando \`print\` también tiene funcionalidades integradas que soportan combinar diferentes tipos de valores. La forma más simple es añadir una coma entre los valores. Todos los valores se imprimirán independientemente de su tipo:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"El resultado es\`, result)\n\`\`\`\n\n<sample-output>\n\nEl resultado es 250\n\n</sample-output>\n\nFíjate que hay un espacio en blanco añadido automáticamente entre los valores separados por una coma aquí.\n",
-        EUS: \`\n## Zenbaki osoak\n\nOrain arte, kateak bakarrik gorde ditugu aldagaietan, baina badaude beste informazio mota asko gorde eta geroago atzitu nahiko ditugunak. Ikus ditzagun lehenik zenbaki osoak. Zenbaki osoak zati dezimal edo zatiki gabeko zenbakiak dira, adibidez \` -15\`, \`0\` eta \`1\`.\n\nHurrengo programak \`age\` aldagaia sortzen du, balio oso bat duena.\n\n\`\`\`python\nage = 24\nprint(age)\n\`\`\`\n\nProgramak hau bakarrik inprimatzen du:\n\n<sample-output>\n\n24\n\n</sample-output>\n\nOhartu hemen komatxorik ez dagoela. Izan ere, zenbakiaren inguruan komatxoak jarriko bagenitu, horrek esan nahiko luke gure aldagaia ez litzatekeela zenbaki osoa izango, katea baizik. Kate batek zenbakiak izan ditzake, baina ezberdin prozesatzen da.\n\nBeraz, zergatik da garrantzitsua aldagaiek mota bat izatea, hurrengo programak gauza bera bi aldiz inprimatzen duenean?\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1)\nprint(number2)\n\`\`\`\n\n<sample-output>\n\n100\n100\n\n</sample-output>\n\nAldagai motak garrantzitsuak dira, eragiketa ezberdinek modu ezberdinean eragiten dietelako aldagai mota ezberdinei. Ikus dezagun adibide bat:\n\n\`\`\`python\nnumber1 = 100\nnumber2 = \"100\"\n\nprint(number1 + number1)\nprint(number2 + number2)\n\`\`\`\n\nHonek honako hau inprimatzen du:\n\n<sample-output>\n\n200\n100100\n\n</sample-output>\n\nZenbaki osoetarako \`+\` eragileak batuketa esan nahi du, baina kateetarako kateatzea esan nahi du, edo \"elkarrekin lotzea\".\n\nEragile guztiak ez daude erabilgarri aldagai mota guztietarako. Zenbakiak \`/\` zatiketa eragilea erabiliz zati daitezkeen bitartean, kate bat zenbaki batekin zatitzen saiatzeak errorea eragiten du:\n\n\`\`\`python\nnumber = \"100\"\nprint(number / 2)\n\`\`\`\n\n<sample-output>\nTypeError: unsupported operand type(s) for /: 'str' and 'int'\n</sample-output>\n\n## Balioak konbinatzen inprimatzean\n\nEra berean, hurrengo programak ez du funtzionatuko, \`"Emaitza da "\` eta \`result\` bi mota ezberdinekoak direlako:\n\n\`\`\`python\nresult = 10 * 25\n# hurrengo lerroak errore bat sortzen du\nprint(\"Emaitza da \" + result)\n\`\`\`\n\nProgramak ez du ezer inprimatzen, baina errore bat botatzen du:\n\n<sample-output>\n\nTypeError: unsupported operand type(s) for +: 'str' and 'int'\n\n</sample-output>\n\nHemen, Pythonek esaten digu bi balio mota ezberdin konbinatzeak ez duela funtzionatuko besterik gabe. Kasu honetan, \`"Emaitza da "\` kate motakoa da, eta \`result\` aldagaian gordetako balioa zenbaki oso motakoa da.\n\nKate bat eta zenbaki oso bat komando bakar batean inprimatu nahi baditugu, zenbaki osoa kate bihurtu daiteke \`str\` funtzioarekin, eta bi kateak normalean konbina daitezke. Adibidez, honek funtzionatuko luke:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"Emaitza da \" + str(result))\n\`\`\`\n\n<sample-output>\n\nEmaitza da 250\n\n</sample-output>\n\n\`print\` komandoak balio mota ezberdinak konbinatzea onartzen duten funtzionalitate integratuak ere baditu. Modurik errazena balioen artean koma bat gehitzea da. Balio guztiak inprimatuko dira, haien mota edozein dela ere:\n\n\`\`\`python\nresult = 10 * 25\nprint(\"Emaitza da\`, result)\n\`\`\`\n\n<sample-output>\n\nEmaitza da 250\n\n</sample-output>\n\nOhartu komaz bereizitako balioen artean zuriune bat gehitzen dela automatikoki.\n"
+        ENG: `
+# More about variables
+
+## After this section:
+
+- You will be able to use variables in different contexts
+- You will know what kind of data can be stored in variables
+- You will understand the difference between strings, integers and floating point numbers
+
+Variables are needed for various purposes in programming. You can use variables to store any information that will be needed later in the program's execution.
+
+In Python programming variables are created like so:
+
+`variable_name = ...`
+
+Here `...` means the value stored in the variable.
+
+For example, when you used the `input` command to read a string from the user, you stored the string in a variable and then used the variable later in your program:
+
+```python
+name = input("What is your name? ")
+print("Hi, " + name)
+```
+
+<sample-output>
+
+What is your name? **Ghosty**
+Hi, Ghosty
+
+</sample-output>
+
+The value stored in a variable can also be defined using other variables:
+
+```python
+given_name = "Paul"
+family_name = "Python"
+
+name = given_name + " " + family_name
+
+print(name)
+```
+
+<sample-output>
+
+Paul Python
+
+</sample-output>
+
+Here the values stored in the three variables are not obtained from user input. They remain the same every time the program is executed. This is called _hard-coding_ data into the program.
+
+## Changing the value of a variable
+
+As implied by the name _variable_, the value stored in a variable can change. In the previous section we noticed that the new value replaces the old one.
+
+During the execution of the following program, the variable `word` will have three different values:
+
+```python
+word = input("Please type in a word: ")
+print(word)
+
+word = input("And another word: ")
+print(word)
+
+word = "third"
+print(word)
+```
+
+<sample-output>
+
+Please type in a word: **first**
+first
+And another word: **second**
+second
+third
+
+</sample-output>
+
+The value stored in the variable changes each time the variable is assigned a new value.
+
+The new value of a variable can be derived from its old value. In the following example the variable `word` is first assigned a value based on user input. Then it is assigned a new value, which is the old value with three exclamation marks added to the end.
+
+```python
+word = input("Please type in a word: ")
+print(word)
+
+word = word + "!!!"
+print(word)
+```
+
+<sample-output>
+
+Please type in a word: **test**
+test
+test!!!
+
+</sample-output>
+
+> **Choosing a good name for a variable**
+> 
+> * It is often useful to name variables according to what they are used for. For example, if the variable contains a word, the name `word` is a better choice than, say, `a`.
+> * There is no set limit to the length of a variable name, but it is generally better to keep them short.
+
+## Integers
+
+Thus far, we have only stored strings in variables, but there are also many other types of information we will want to store and access later. Let's have a look at integers first. Integers are numbers that do not have a decimal or fractional part, such as ` -15`, `0` and `1`.
+
+The following program creates the variable `age`, which contains an integer value.
+
+```python
+age = 24
+print(age)
+```
+
+The program prints out just this:
+
+<sample-output>
+
+24
+
+</sample-output>
+
+Notice the lack of quotation marks here. In fact, if we were to add quotation marks around the number, this would mean our variable would no longer be an integer, but a string instead. A string can contain numbers, but it is processed differently.
+
+So, why does it matter that variables have a type, when the following program still prints out the same thing twice?
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1)
+print(number2)
+```
+
+<sample-output>
+
+100
+100
+
+</sample-output>
+
+Variable types matter because different operations affect different types of variables in different ways. Let's have a look at an example:
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1 + number1)
+print(number2 + number2)
+```
+
+This prints out the following:
+
+<sample-output>
+
+200
+100100
+
+</sample-output>
+
+For integer values the `+` operator means addition, but for string values it means concatenation, or "stringing together".
+
+Not all operators are available for all types of variables. While numbers can be divided using the division operator `/`, attempting to divide a string by a number causes an error:
+
+```python
+number = "100"
+print(number / 2)
+```
+
+<sample-output>
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+</sample-output>
+
+## ⚠️ CRITICAL WARNING: Input is always text!
+
+This is the most common mistake for beginners. When you use `input()`, Python **ALWAYS** reads it as a string (text), even if the user types a number.
+
+```python
+year = input("Year of birth: ") # User types 1990
+# age = 2024 - year  <-- ERROR! You cannot subtract a string from a number.
+```
+
+To fix this, you must convert the string to a number using `int()` (for whole numbers) or `float()` (for decimals).
+
+```python
+year_str = input("Year of birth: ")
+year = int(year_str) # Convert to integer
+age = 2024 - year
+print(f"You are {age} years old")
+```
+`, CAS: `
+# Más sobre variables
+
+## Después de esta sección:
+
+- Podrás usar variables en diferentes contextos
+- Sabrás qué tipo de datos se pueden almacenar en variables
+- Entenderás la diferencia entre cadenas, enteros y números de punto flotante
+
+Las variables son necesarias para varios propósitos en la programación. Puedes usar variables para almacenar cualquier información que se necesite más tarde en la ejecución del programa.
+
+En la programación Python, las variables se crean así:
+
+`variable_name = ...`
+
+Aquí `...` significa el valor almacenado en la variable.
+
+Por ejemplo, cuando usaste el comando `input` para leer una cadena del usuario, almacenaste la cadena en una variable y luego usaste la variable más tarde en tu programa:
+
+```python
+name = input("¿Cómo te llamas? ")
+print("Hola, " + name)
+```
+
+<sample-output>
+
+¿Cómo te llamas? **Ghosty**
+Hola, Ghosty
+
+</sample-output>
+
+El valor almacenado en una variable también se puede definir utilizando otras variables:
+
+```python
+given_name = "Paul"
+family_name = "Python"
+
+name = given_name + " " + family_name
+
+print(name)
+```
+
+<sample-output>
+
+Paul Python
+
+</sample-output>
+
+Aquí los valores almacenados en las tres variables no se obtienen de la entrada del usuario. Permanecen iguales cada vez que se ejecuta el programa. Esto se llama _hard-coding_ (codificación rígida) de datos en el programa.
+
+## Cambiando el valor de una variable
+
+Como implica el nombre _variable_, el valor almacenado en una variable puede cambiar. En la sección anterior notamos que el nuevo valor reemplaza al antiguo.
+
+Durante la ejecución del siguiente programa, la variable `word` tendrá tres valores diferentes:
+
+```python
+word = input("Por favor escribe una palabra: ")
+print(word)
+
+word = input("Y otra palabra: ")
+print(word)
+
+word = "tercera"
+print(word)
+```
+
+<sample-output>
+
+Por favor escribe una palabra: **primera**
+primera
+Y otra palabra: **segunda**
+segunda
+tercera
+
+</sample-output>
+
+El valor almacenado en la variable cambia cada vez que se le asigna un nuevo valor.
+
+El nuevo valor de una variable puede derivarse de su valor anterior. En el siguiente ejemplo, a la variable `word` se le asigna primero un valor basado en la entrada del usuario. Luego se le asigna un nuevo valor, que es el valor antiguo con tres signos de exclamación añadidos al final.
+
+```python
+word = input("Por favor escribe una palabra: ")
+print(word)
+
+word = word + "!!!"
+print(word)
+```
+
+<sample-output>
+
+Por favor escribe una palabra: **prueba**
+prueba
+prueba!!!
+
+</sample-output>
+
+> **Elegir un buen nombre para una variable**
+> 
+> * A menudo es útil nombrar las variables según para qué se usan. Por ejemplo, si la variable contiene una palabra, el nombre `word` es una mejor opción que, por ejemplo, `a`.
+> * No hay límite establecido para la longitud del nombre de una variable, pero generalmente es mejor mantenerlos cortos.
+
+## Enteros
+
+Hasta ahora, solo hemos almacenado cadenas en variables, pero hay muchos otros tipos de información que querremos almacenar y acceder más tarde. Veamos primero los enteros. Los enteros son números que no tienen parte decimal o fraccionaria, como ` -15`, `0` y `1`.
+
+El siguiente programa crea la variable `age`, que contiene un valor entero.
+
+```python
+age = 24
+print(age)
+```
+
+El programa imprime solo esto:
+
+<sample-output>
+
+24
+
+</sample-output>
+
+Nota la falta de comillas aquí. De hecho, si añadiéramos comillas alrededor del número, esto significaría que nuestra variable ya no sería un entero, sino una cadena. Una cadena puede contener números, pero se procesa de manera diferente.
+
+Entonces, ¿por qué importa que las variables tengan un tipo, cuando el siguiente programa imprime lo mismo dos veces?
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1)
+print(number2)
+```
+
+<sample-output>
+
+100
+100
+
+</sample-output>
+
+Los tipos de variables importan porque diferentes operaciones afectan a diferentes tipos de variables de diferentes maneras. Veamos un ejemplo:
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1 + number1)
+print(number2 + number2)
+```
+
+Esto imprime lo siguiente:
+
+<sample-output>
+
+200
+100100
+
+</sample-output>
+
+Para valores enteros el operador `+` significa suma, pero para valores de cadena significa concatenación, o "unir cadenas".
+
+No todos los operadores están disponibles para todos los tipos de variables. Mientras que los números se pueden dividir usando el operador de división `/`, intentar dividir una cadena por un número causa un error:
+
+```python
+number = "100"
+print(number / 2)
+```
+
+<sample-output>
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+</sample-output>
+
+## ⚠️ ADVERTENCIA CRÍTICA: ¡El input siempre es texto!
+
+Este es el error más común para principiantes. Cuando usas `input()`, Python **SIEMPRE** lo lee como cadena (texto), incluso si el usuario escribe un número.
+
+```python
+anio = input("Año de nacimiento: ") # Usuario escribe 1990
+# edad = 2024 - anio  <-- ¡ERROR! No puedes restar texto de un número.
+```
+
+Para arreglar esto, debes convertir la cadena a número usando `int()` (enteros) o `float()` (decimales).
+
+```python
+anio_str = input("Año de nacimiento: ")
+anio = int(anio_str) # Convertir a entero
+edad = 2024 - anio
+print(f"Tienes {edad} años")
+```
+`, EUS: `
+# Aldagaiei buruz gehiago
+
+## Atal honen ondoren:
+
+- Aldagaiak testuinguru ezberdinetan erabiltzeko gai izango zara
+- Jakingo duzu zer motatako datuak gorde daitezkeen aldagailetan
+- Kateen, zenbaki osoen eta koma higikorreko zenbakien arteko aldea ulertuko duzu
+
+Aldagaiak hainbat helburutarako beharrezkoak dira programazioan. Geroago programaren exekuzioan beharko den edozein informazio gordetzeko erabil ditzakezu aldagaiak.
+
+Python programazioan aldagaiak horrela sortzen dira:
+
+`aldagai_izena = ...`
+
+Hemen `...` aldagaian gordetako balioa da.
+
+Adibidez, `input` komandoa erabili zenuenean erabiltzailearen kate bat irakurtzeko, katea aldagai batean gorde zenuen eta gero aldagaia erabili zenuen zure programan:
+
+```python
+name = input("Nola duzu izena? ")
+print("Kaixo, " + name)
+```
+
+<sample-output>
+
+Nola duzu izena? **Ghosty**
+Kaixo, Ghosty
+
+</sample-output>
+
+Aldagai batean gordetako balioa beste aldagai batzuk erabiliz ere defini daiteke:
+
+```python
+given_name = "Paul"
+family_name = "Python"
+
+name = given_name + " " + family_name
+
+print(name)
+```
+
+<sample-output>
+
+Paul Python
+
+</sample-output>
+
+Hemen hiru aldagaietan gordetako balioak ez dira erabiltzailearen sarreratik lortzen. Programa exekutatzen den bakoitzean berdinak dira. Honi datuak programan _hard-coding_ (kodeketa zurruna) egitea deitzen zaio.
+
+## Aldagai baten balioa aldatzea
+
+Izenak iradokitzen duen bezala, _aldagai_ batean gordetako balioa alda daiteke. Aurreko atalean ikusi genuen balio berriak zaharra ordezkatzen duela.
+
+Hurrengo programaren exekuzioan zehar, `word` aldagaiak hiru balio ezberdin izango ditu:
+
+```python
+word = input("Mesedez idatzi hitz bat: ")
+print(word)
+
+word = input("Eta beste hitz bat: ")
+print(word)
+
+word = "hirugarrena"
+print(word)
+```
+
+<sample-output>
+
+Mesedez idatzi hitz bat: **lehenengoa**
+lehenengoa
+Eta beste hitz bat: **bigarrena**
+bigarrena
+hirugarrena
+
+</sample-output>
+
+Aldagaian gordetako balioa aldatu egiten da aldagaiari balio berri bat esleitzen zaion bakoitzean.
+
+Aldagai baten balio berria bere balio zaharretik erator daiteke. Hurrengo adibidean `word` aldagaiari lehenik erabiltzailearen sarreran oinarritutako balio bat esleitzen zaio. Ondoren, balio berri bat esleitzen zaio, zeina balio zaharra den amaieran hiru harridura-marka gehituta.
+
+```python
+word = input("Mesedez idatzi hitz bat: ")
+print(word)
+
+word = word + "!!!"
+print(word)
+```
+
+<sample-output>
+
+Mesedez idatzi hitz bat: **proba**
+proba
+proba!!!
+
+</sample-output>
+
+> **Aldagai baterako izen on bat aukeratzea**
+> 
+> * Askotan erabilgarria da aldagaiak zertarako erabiltzen diren kontuan hartuta izendatzea. Adibidez, aldagaiak hitz bat badu, `word` izena aukera hobea da `a` baino.
+> * Ez dago mugarik aldagai izen baten luzerarako, baina orokorrean hobe da labur mantentzea.
+
+## Zenbaki osoak
+
+Orain arte, kateak bakarrik gorde ditugu aldagaietan, baina badaude beste informazio mota asko gorde eta geroago atzitu nahiko ditugunak. Ikus ditzagun lehenik zenbaki osoak. Zenbaki osoak zati dezimal edo zatiki gabeko zenbakiak dira, adibidez ` -15`, `0` eta `1`.
+
+Hurrengo programak `age` aldagaia sortzen du, balio oso bat duena.
+
+```python
+age = 24
+print(age)
+```
+
+Programak hau bakarrik inprimatzen du:
+
+<sample-output>
+
+24
+
+</sample-output>
+
+Ohartu hemen komatxorik ez dagoela. Izan ere, zenbakiaren inguruan komatxoak jarriko bagenitu, horrek esan nahiko luke gure aldagaia ez litzatekeela zenbaki osoa izango, katea baizik. Kate batek zenbakiak izan ditzake, baina ezberdin prozesatzen da.
+
+Beraz, zergatik da garrantzitsua aldagaiek mota bat izatea, hurrengo programak gauza bera bi aldiz inprimatzen duenean?
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1)
+print(number2)
+```
+
+<sample-output>
+
+100
+100
+
+</sample-output>
+
+Aldagai motak garrantzitsuak dira, eragiketa ezberdinek modu ezberdinean eragiten dietelako aldagai mota ezberdinei. Ikus dezagun adibide bat:
+
+```python
+number1 = 100
+number2 = "100"
+
+print(number1 + number1)
+print(number2 + number2)
+```
+
+Honek honako hau inprimatzen du:
+
+<sample-output>
+
+200
+100100
+
+</sample-output>
+
+Zenbaki osoetarako `+` eragileak batuketa esan nahi du, baina kateetarako kateatzea esan nahi du, edo "elkarrekin lotzea".
+
+Eragile guztiak ez daude erabilgarri aldagai mota guztietarako. Zenbakiak `/` zatiketa eragilea erabiliz zati daitezkeen bitartean, kate bat zenbaki batekin zatitzen saiatzeak errorea eragiten du:
+
+```python
+number = "100"
+print(number / 2)
+```
+
+<sample-output>
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+</sample-output>
+
+## ⚠️ OHAR GARRANTZITSUA: Inputa beti da testua!
+
+Hasiberrien errorea ohikoena da. `input()` erabiltzen duzunean, Pythonek **BETI** kate (testu) gisa irakurtzen du, nahiz eta erabiltzaileak zenbaki bat idatzi.
+
+```python
+urtea = input("Jaiotze urtea: ") # Erabiltzaileak 1990 idazten du
+# adina = 2024 - urtea  <-- ERROREA! Ezin diozu zenbaki bati testua kendu.
+```
+
+Konpontzeko, katea zenbaki bihurtu behar duzu `int()` (osoak) edo `float()` (hamartarrak) erabiliz.
+
+```python
+urtea_str = input("Jaiotze urtea: ")
+urtea = int(urtea_str) # Bihurtu osora
+adina = 2024 - urtea
+print(f"{adina} urte dituzu")
+```
+`
       }
     },
     {
       type: 'exercise',
       exerciseId: 'part01-10b_extra_space',
-      title: { ENG: \`Extra space\`, CAS: \`Espacio extra\`, EUS: \`Espazio gehigarria\` },
+      title: { ENG: `Extra space`, CAS: `Espacio extra`, EUS: `Espazio gehigarria` },
       description: {
-        ENG: \`Please fix the code so that the printout looks right. Notice especially how the comma notation in the print command automatically inserts a space. The easiest way is to use f-strings.`,
-        CAS: `Por favor, arregla el código para que la salida se vea bien. Fíjate especialmente en cómo la coma en el comando print inserta un espacio automáticamente. La forma más fácil es usar f-strings.`,
-        EUS: `Mesedez, konpondu kodea irteera ondo ikus dadin. Erreparatu nola print komandoan komak espazio bat gehitzen duen automatikoki. Modurik errazena f-strings erabiltzea da.\`
+        ENG: `Please fix the code so that the printout looks right. Notice especially how the comma notation in the print command automatically inserts a space. The easiest way is to use f-strings.`, 
+        CAS: `Por favor, arregla el código para que la salida se vea bien. Fíjate especialmente en cómo la coma en el comando print inserta un espacio automáticamente. La forma más fácil es usar f-strings.`, 
+        EUS: `Mesedez, konpondu kodea irteera ondo ikus dadin. Erreparatu nola print komandoan komak espazio bat gehitzen duen automatikoki. Modurik errazena f-strings erabiltzea da.`
       },
-      initialCode: \`name = "Tim Tester"\nage = 20\nskill1 = "python"\nlevel1 = "beginner"\nskill2 = "java"\nlevel2 = "veteran"\nskill3 = "programming"\nlevel3 = "semiprofessional"\nlower = 2000\nupper = 3000\n\nprint("my name is ", name, " , I am ", age, "years old")\nprint("my skills are")\nprint(" - ", skill1, " (", level1, " )")\nprint(" - ", skill2, " (", level2, " )")\nprint(" - ", skill3, " (", level3, " )")\nprint("I am looking for a job with a salary of", lower, " - \`, upper, \"euros per month\")"
-      testCode: \`\nimport unittest\nclass TestSpace(unittest.TestCase):\n    def test_run(self):\n        output = run_student_code().strip()\n        if "my name is  Tim Tester" in output:\n            self.fail(tr("Extra space before 'Tim Tester'. Comma adds one automatically.", "Espacio extra antes de 'Tim Tester'. La coma añade uno automáticamente.", "Zuriune gehigarria 'Tim Tester' aurretik. Komak bat gehitzen du automatikoki."))\n        \n        if "( beginner )" in output:\n             self.fail(tr("Extra space inside parenthesis.", "Espacio extra dentro del paréntesis.", "Zuriune gehigarria parentesi artean."))\n             \n        if "2000 - 3000" in output:\n             self.fail(tr("Extra spaces around salary hyphen.", "Espacios extra alrededor del guion del salario.", "Zuriune gehigarriak soldataren gidoiaren inguruan."))\n        self.assertIn("my name is Tim Tester, I am 20 years old", output)\n        self.assertIn(" - python (beginner)", output)\n        self.assertIn("salary of 2000-3000 euros", output)"
-    }
-    ,
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "\n## Floating point numbers\n\n\`Floating point number\` or _float_ is a term you will come across often in programming. It refers to numbers with a decimal point. They can be used much in the same way as integer values.\n\nThis program calculates the mean of three floating point numbers:\n\n\\`\\`\\`python\nnumber1 = 2.5\nnumber2 = -1.25\nnumber3 = 3.62\n\nmean = (number1 + number2 + number3) / 3\nprint(f"Mean: {mean}")\n\\`\\`\\`\n\n<sample-output>\n\nMean: 1.6233333333333333\n\n</sample-output>\n",
-        "CAS": "\n## Números de punto flotante\n\n\`Número de punto flotante\` o _float_ es un término con el que te encontrarás a menudo en la programación. Se refiere a números con un punto decimal. Se pueden usar de la misma manera que los valores enteros.\n\nEste programa calcula la media de tres números de punto flotante:\n\n\\`\\`\\`python\nnumber1 = 2.5\nnumber2 = -1.25\nnumber3 = 3.62\n\nmean = (number1 + number2 + number3) / 3\nprint(f"Media: {mean}")\n\\`\\`\\`\n\n<sample-output>\n\nMedia: 1.6233333333333333\n\n</sample-output>\n",
-        "EUS": "\n## Koma higikorreko zenbakiak\n\n\`Koma higikorreko zenbakia\` edo _float_ programazioan askotan aurkituko duzun terminoa da. Puntu dezimala duten zenbakiei dagokie. Zenbaki osoen antzera erabil daitezke.\n\nPrograma honek koma higikorreko hiru zenbakiren batezbestekoa kalkulatzen du:\n\n\\`\\`\\`python\nnumber1 = 2.5\nnumber2 = -1.25\nnumber3 = 3.62\n\nmean = (number1 + number2 + number3) / 3\nprint(f"Batazbestekoa: {mean}")\n\\`\\`\\`\n\n<sample-output>\n\nBatazbestekoa: 1.6233333333333333\n\n</sample-output>\n"
-      }
-    },
-    {
-      type: 'exercise',
-      exerciseId: 'part01-11_arithmetics',
-      title: { ENG: \`Arithmetics\`, CAS: \`Aritmética\`, EUS: \`Aritmetika\` },
-      description: {
-        ENG: \`Complete the program. The program should print out the calculation and the result.`,
-        CAS: `Completa el programa. El programa debe imprimir el cálculo y el resultado.`,
-        EUS: `Osatu programa. Programak kalkulua eta emaitza inprimatu behar ditu.\`
-      },
-      initialCode: `x = 27\ny = 15\n# Write your solution here\n`
-      testCode: \`\nimport unittest\nclass TestArith(unittest.TestCase):\n    def test_run(self):\n        output = run_student_code()\n        self.assertIn("27 + 15 = 42\`, output)\n        self.assertIn("27 - 15 = 12", output)\n        self.assertIn("27 * 15 = 405", output)\n        self.assertIn("27 / 15 = 1.8", output)"
-    }
-    ],
-    {
-      type: 'exercise',
-      exerciseId: 'part01-12_print_a_single_line',
-      title: {
-        ENG: \`Fix the code: Print a single line`,
-        CAS: `Corrige el código: Imprimir una sola línea`,
-        EUS: `Konpondu kodea: Lerro bakarra inprimatu\`
-      },
-      description: {
-        ENG: \`Please fix this program so that the entire calculation, complete with result, is printed out on a single line. Do not change the number of \`print\` commands used. Hint: \`end=""\``,
-        CAS: `Por favor, arregla este programa para que todo el cálculo, incluido el resultado, se imprima en una sola línea. No cambies el número de comandos \`print\` usados. Pista: \`end=""\``,
-        EUS: `Mesedez konpondu programa hau kalkulu osoa, emaitzarekin batera, lerro bakar batean inprimatu dadin. Ez aldatu erabilitako \`print\` komando kopurua. Pista: \`end=""\``
-      },
-      initialCode: `print(5)\nprint(\" + \")\nprint(8)\nprint(\" - \")\nprint(4)\nprint(\" = \")\nprint(5 + 8 - 4)`
-      testCode: `\nimport unittest\nclass TestSingle(unittest.TestCase):\n    def test_run(self):\n        output = run_student_code()\n        if "\\n" in output.strip():\n             self.fail(tr("The output occupies multiple lines. You can use a single print() with commas, or use the argument end='' in each print.`, "La salida ocupa varias líneas. Puedes usar un solo print() con comas, o usar el argumento end='' en cada print.", "Irteerak lerro bat baino gehiago hartzen ditu. print() bakar bat erabili dezakezu komekin, edo end='' argumentua erabili print bakoitzean."))\n        \n        self.assertIn("5 + 8 - 4 = 9", output)"
-    }
-    ],
-    {
-      type: 'quiz',
-      title: { ENG: `Quiz`, CAS: `Cuestionario`, EUS: "Galdetegia` },
-      questions: [
-        {
-          id: 'q1',
-          prompt: { 
-            ENG: 'Which of the following creates a variable with an integer value?',
-            CAS: '¿Cuál de los siguientes crea una variable con un valor entero?',
-            EUS: 'Ondorengoetatik zeinek sortzen du zenbaki oso balioa duen aldagai bat?'
-          },
-          options: [
-            { id: 'o1', text: 'x = "10"', isCorrect: false },
-            { id: 'o2', text: 'x = 10', isCorrect: true },
-            { id: 'o3', text: 'x = 10.0', isCorrect: false }
-          ]
-        },
-        {
-          id: 'q2',
-          prompt: { 
-            ENG: 'What is the output of: print(f"Value: {5+5}")',
-            CAS: '¿Cuál es la salida de: print(f"Value: {5+5}")',
-            EUS: 'Zein da honen irteera: print(f"Value: {5+5}")'
-          },
-          options: [
-            { id: 'o1', text: 'Value: 5+5', isCorrect: false },
-            { id: 'o2', text: 'Value: 10', isCorrect: true },
-            { id: 'o3', text: 'Value: {10}', isCorrect: false }
-          ]
-        },
-        {
-          id: 'q3',
-          prompt: { 
-            ENG: 'Which operator works differently for strings and integers?',
-            CAS: '¿Qué operador funciona de manera diferente para cadenas y enteros?',
-            EUS: 'Zein eragilek funtzionatzen du ezberdin kateentzat eta zenbaki osoentzat?'
-          },
-          options: [
-            { id: 'o1', text: '+', isCorrect: true, feedback: { ENG: 'For integers it adds, for strings it concatenates.', CAS: 'Para enteros suma, para cadenas concatena.', EUS: 'Zenbaki osoentzat batu egiten du, kateentzat kateatu.' } },
-            { id: 'o2', text: 'print', isCorrect: false },
-            { id: 'o3', text: '=', isCorrect: false }
-          ]
-        }
-      ]
-    }
-  ]
-};
+      initialCode: `name =
