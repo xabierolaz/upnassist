@@ -31,20 +31,50 @@ Antes de dar por finalizada una sección, responde a estas preguntas:
 
 ### 4. Traducción y Enriquecimiento
 - Genera traducciones fieles para `CAS` (Castellano) y `EUS` (Euskera) de todo el contenido narrativo y descripciones de ejercicios.
-- **No traduzcas** el código Python ni las salidas de consola (a menos que sean cadenas de texto literales traducibles y pedagógicamente relevantes).
+- **TRADUCCIÓN DE CÓDIGO (NUEVO):
+    - **SÍ traducir:** Los strings literales dentro del código que son mensajes para el usuario (`input("What is your name?")` -> `input("¿Cómo te llamas?")`, `print("Hi")` -> `print("Hola")`).
+    - **NO traducir:** Palabras clave de Python (`print`, `input`, `def`, `if`), nombres de variables (`name`, `count`), ni nombres de funciones.
+    - **Objetivo:** Que el código de ejemplo sea comprensible en el idioma de destino sin romper la sintaxis.
 
 ### 5. Protocolo de Seguridad Técnica (Anti-Errores)
-**Lección aprendida:** La complejidad de escapar caracteres (Python dentro de JSON dentro de JS) causa errores de sintaxis recurrentes.
+**Lección aprendida:** Escribir JSON puro con saltos de línea (`\n`) es propenso a errores humanos. Escribir scripts de JS complejos con strings anidados causa errores de sintaxis (`SyntaxError`).
 
-1.  **Escritura Directa:** Al crear o reescribir archivos `.json`, usa `write_file` con el contenido JSON puro. **NUNCA** generes scripts intermedios (`.js`/`.cjs`) que contengan el JSON como string.
-2.  **Modificación Segura:** Si necesitas corregir un archivo existente:
-    *   Lee el archivo.
-    *   Usa un script con `JSON.parse()`.
-    *   Modifica el objeto en memoria.
-    *   Escribe con `JSON.stringify(data, null, 2)`.
-    *   **NUNCA** uses `replace()` sobre el texto crudo para bloques de código largos, ya que el espaciado o los caracteres invisibles harán que falle.
-3.  **Validación:** Tras cualquier escritura, ejecuta inmediatamente: `node -e "JSON.parse(require('fs').readFileSync('ruta/archivo.json'))"` para confirmar que el JSON es válido.
+**Método Obligatorio: Generación Programática por Bloques**
+Para crear o corregir archivos `.json` con contenido complejo (Markdown multilinea):
+
+1.  **Crea un script generador (`gen_section.cjs`):**
+    *   No escribas el objeto entero de una vez.
+    *   Declara un array `const blocks = [];`.
+    *   Añade bloque a bloque usando `blocks.push({...})`.
+    *   Usa **Template Literals** (`` ` ``) para el contenido Markdown/Python. 
+    *   **IMPORTANTE:** Si el contenido incluye backticks (ej: bloques de código markdown), ESCÁPALOS con barra invertida (`` \` ``) dentro del template literal de JS.
+    *   Usa `JSON.stringify(data, null, 2)` al final para generar el archivo.
+
+2.  **Ejemplo de Script Generador Seguro:**
+    ```javascript
+    const fs = require('fs');
+    const blocks = [];
+
+    // Bloque 1: Markdown complejo
+    blocks.push({
+      type: "markdown",
+      content: {
+        ENG: `Texto con código: 
+print("Hi")
+`,
+        CAS: `Texto traducido: 
+print("Hola")
+`
+      }
+    });
+
+    const section = { id: "...", title: {...}, blocks: blocks };
+    fs.writeFileSync('ruta/archivo.json', JSON.stringify(section, null, 2));
+    ```
+
+3.  **Ejecución:** Corre `node gen_section.cjs` y luego borra el script.
+4.  **Validación Final:** Verifica siempre con `node -e "JSON.parse(require('fs').readFileSync('...'))"` tras la generación.
 
 ---
 **Ejemplo de Comando:**
-"Audita la Sección 1-2. Extrae todo el contenido de la URL oficial. Compara línea por línea con el JSON local. Si falta una sola frase o un ejemplo de 'Sample output', añádelo siguiendo el protocolo de seguridad técnica."
+"Audita la Sección 1-3 usando el método de Generación Programática por Bloques definido en el protocolo."
