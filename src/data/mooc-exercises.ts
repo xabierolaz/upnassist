@@ -20,14 +20,26 @@ export interface Exercise {
   testCode: string;
 }
 
+export interface QuizQuestion {
+  id: string;
+  prompt: LocalizedString;
+  options: {
+    id: string;
+    text: LocalizedString;
+    isCorrect: boolean;
+    feedback?: LocalizedString;
+  }[];
+}
+
 export interface ContentBlock {
-  type: 'markdown' | 'exercise';
+  type: 'markdown' | 'exercise' | 'quiz';
   content?: LocalizedString; // Ahora soporta multi-idioma
   exerciseId?: string;
   title?: LocalizedString;
   description?: LocalizedString;
   initialCode?: string;
   testCode?: string;
+  questions?: QuizQuestion[];
 }
 
 export interface CoursePage {
@@ -43,6 +55,12 @@ export const coursePages: CoursePage[] = [
   section4,
   section5
 ];
+
+export const courseStructure = coursePages;
+
+export const loadSection = (id: string): CoursePage | undefined => {
+    return coursePages.find(p => p.id === id);
+};
 
 // Helper para extraer texto seguro según idioma
 export const getLocalizedText = (text: LocalizedString | undefined, lang: 'ENG' | 'CAS' | 'EUS'): string => {
