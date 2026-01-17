@@ -33,6 +33,18 @@ Antes de dar por finalizada una sección, responde a estas preguntas:
 - Genera traducciones fieles para `CAS` (Castellano) y `EUS` (Euskera) de todo el contenido narrativo y descripciones de ejercicios.
 - **No traduzcas** el código Python ni las salidas de consola (a menos que sean cadenas de texto literales traducibles y pedagógicamente relevantes).
 
+### 5. Protocolo de Seguridad Técnica (Anti-Errores)
+**Lección aprendida:** La complejidad de escapar caracteres (Python dentro de JSON dentro de JS) causa errores de sintaxis recurrentes.
+
+1.  **Escritura Directa:** Al crear o reescribir archivos `.json`, usa `write_file` con el contenido JSON puro. **NUNCA** generes scripts intermedios (`.js`/`.cjs`) que contengan el JSON como string.
+2.  **Modificación Segura:** Si necesitas corregir un archivo existente:
+    *   Lee el archivo.
+    *   Usa un script con `JSON.parse()`.
+    *   Modifica el objeto en memoria.
+    *   Escribe con `JSON.stringify(data, null, 2)`.
+    *   **NUNCA** uses `replace()` sobre el texto crudo para bloques de código largos, ya que el espaciado o los caracteres invisibles harán que falle.
+3.  **Validación:** Tras cualquier escritura, ejecuta inmediatamente: `node -e "JSON.parse(require('fs').readFileSync('ruta/archivo.json'))"` para confirmar que el JSON es válido.
+
 ---
 **Ejemplo de Comando:**
-"Audita la Sección 1-2. Extrae todo el contenido de la URL oficial. Compara línea por línea con el JSON local. Si falta una sola frase o un ejemplo de 'Sample output', añádelo."
+"Audita la Sección 1-2. Extrae todo el contenido de la URL oficial. Compara línea por línea con el JSON local. Si falta una sola frase o un ejemplo de 'Sample output', añádelo siguiendo el protocolo de seguridad técnica."
