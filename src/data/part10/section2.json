@@ -1,0 +1,34 @@
+{
+  "id": "part10-2",
+  "title": {
+    "ENG": "Access modifiers",
+    "CAS": "Modificadores de acceso",
+    "EUS": "Sarbide-aldatzaileak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Access modifiers\n\nIn Python, access modifiers control the visibility of class members.\n\n- **Public**: Accessible from anywhere (default).\n- **Protected** (`_name`): Accessible within the class and its subclasses (convention).\n- **Private** (`__name`): Accessible only within the class itself.\n\n```python\nclass Base:\n    def __init__(self):\n        self.public = \"Public\"\n        self._protected = \"Protected\"\n        self.__private = \"Private\"\n\nclass Derived(Base):\n    def test(self):\n        print(self.public)      # OK\n        print(self._protected)  # OK\n        # print(self.__private) # Error\n```\n",
+        "CAS": "\n# Modificadores de acceso\n\nEn Python, los modificadores de acceso controlan la visibilidad de los miembros de la clase.\n\n- **Público**: Accesible desde cualquier lugar (por defecto).\n- **Protegido** (`_nombre`): Accesible dentro de la clase y sus subclases (convención).\n- **Privado** (`__nombre`): Accesible solo dentro de la propia clase.\n\n```python\nclass Base:\n    def __init__(self):\n        self.publico = \"Público\"\n        self._protegido = \"Protegido\"\n        self.__privado = \"Privado\"\n\nclass Derivada(Base):\n    def test(self):\n        print(self.publico)      # OK\n        print(self._protegido)   # OK\n        # print(self.__privado)  # Error\n```\n",
+        "EUS": "\n# Sarbide-aldatzaileak\n\nPython-en, sarbide-aldatzaileek klaseko kideen ikusgarritasuna kontrolatzen dute.\n\n- **Publikoa**: Edonondik eskuragarri (lehenetsia).\n- **Babestua** (`_izena`): Klasearen barruan eta bere azpiklaseetan eskuragarri (hitzarmena).\n- **Pribatua** (`__izena`): Klasearen barruan bakarrik eskuragarri.\n\n```python\nclass Oinarria:\n    def __init__(self):\n        self.publikoa = \"Publikoa\"\n        self._babestua = \"Babestua\"\n        self.__pribatua = \"Pribatua\"\n\nclass Eratorria(Oinarria):\n    def test(self):\n        print(self.publikoa)      # OK\n        print(self._babestua)     # OK\n        # print(self.__pribatua)  # Errorea\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-04_word_game",
+      "title": {
+        "ENG": "Word game",
+        "CAS": "Juego de palabras",
+        "EUS": "Hitz-jokoa"
+      },
+      "description": {
+        "ENG": "Class WordGame is provided. Create subclasses LongestWord, MostVowels, and RockPaperScissors. Override play_round.",
+        "CAS": "Clase WordGame dada. Crea subclases LongestWord, MostVowels y RockPaperScissors. Sobrescribe play_round.",
+        "EUS": "WordGame klasea ematen da. Sortu azpiklaseak LongestWord, MostVowels eta RockPaperScissors. Gainidatzi play_round."
+      },
+      "initialCode": "import random\n\nclass WordGame:\n    def __init__(self, rounds: int):\n        self.wins1 = 0\n        self.wins2 = 0\n        self.rounds = rounds\n\n    def round_winner(self, player1_word: str, player2_word: str):\n        # draw\n        return 0\n\n    def play(self):\n        print(\"Word game:\")\n        for i in range(1, self.rounds+1):\n            print(f\"round {i}\")\n            answer1 = input(\"player1: \")\n            answer2 = input(\"player2: \")\n\n            if self.round_winner(answer1, answer2) == 1:\n                self.wins1 += 1\n                print(\"player 1 won\")\n            elif self.round_winner(answer1, answer2) == 2:\n                self.wins2 += 1\n                print(\"player 2 won\")\n            else:\n                pass # draw\n\n        print(\"game over, wins:\")\n        print(f\"player 1: {self.wins1}\")\n        print(f\"player 2: {self.wins2}\")\n\nclass LongestWord(WordGame):\n    def __init__(self, rounds: int):\n        super().__init__(rounds)\n\n    def round_winner(self, player1_word: str, player2_word: str):\n        # your code here\n        return 0\n\nclass MostVowels(WordGame):\n    def __init__(self, rounds: int):\n        super().__init__(rounds)\n\n    def round_winner(self, player1_word: str, player2_word: str):\n        # your code here\n        return 0\n\nclass RockPaperScissors(WordGame):\n    def __init__(self, rounds: int):\n        super().__init__(rounds)\n\n    def round_winner(self, player1_word: str, player2_word: str):\n        # your code here\n        return 0\n",
+      "testCode": "\nimport unittest\nclass TestWordGame(unittest.TestCase):\n    def test_longest(self):\n        g = LongestWord(1)\n        self.assertEqual(g.round_winner(\"long\", \"short\"), 1)\n        self.assertEqual(g.round_winner(\"a\", \"bb\"), 2)\n"
+    }
+  ]
+}

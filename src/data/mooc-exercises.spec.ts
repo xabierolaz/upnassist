@@ -1,60 +1,63 @@
 import { describe, it, expect } from 'vitest';
-import { courseStructure, loadSection, getLocalizedText } from './mooc-exercises';
+import { coursePages, exercisesDB, moocExercises } from './mooc-exercises';
 
 describe('MOOC Content Architecture', () => {
   
-  it('should include Part 1 sections in structure', () => {
-    const part1 = courseStructure.filter(p => p.id.startsWith('part1-'));
-    expect(part1.length).toBe(5);
-    expect(part1.map(p => getLocalizedText(p.title, 'ENG'))).toEqual([
-        "Getting started",
-        "Information from the user",
-        "More about variables",
-        "Arithmetic operations",
-        "Conditional statements"
+  it('should load all 5 sections of Part 1', () => {
+    expect(coursePages.length).toBe(5);
+    expect(coursePages.map(p => p.title)).toEqual([
+        "1. Getting Started",
+        "2. Information from the user",
+        "3. More about variables",
+        "4. Arithmetic operations",
+        "5. Conditional statements"
     ]);
   });
 
-  it('should have valid exercise links and content in all pages', async () => {
-    let checkedPages = 0;
-    
-    for (const pageInfo of courseStructure) {
-        const page = await loadSection(pageInfo.id);
-        expect(page).toBeDefined();
-        if (!page) continue;
+  it('should have a valid database of exercises', () => {
+    const exerciseCount = Object.keys(exercisesDB).length;
+    expect(exerciseCount).toBeGreaterThan(20); // Deberíamos tener ~30
+    console.log(`Audited ${exerciseCount} exercises in DB.`);
+  });
 
-        // Verify content existence
-        expect(page.blocks.length).toBeGreaterThan(0);
-
-        // Check exercises
-        const exerciseBlocks = page.blocks.filter(b => b.type === 'exercise');
-        
-        exerciseBlocks.forEach(block => {
-            const id = block.exerciseId;
-            expect(id, `Block in ${pageInfo.id} has no exerciseId`).toBeTruthy();
-
-            // Verify inline properties
-            expect(block.title, `Exercise ${id} missing title`).toBeTruthy();
-            expect(block.initialCode, `Exercise ${id} missing initialCode`).toBeDefined();
+  describe('Integrity Check (Links between Pages and Exercises)', () => {
+    coursePages.forEach(page => {
+        it(`Page "${page.title}" should have valid exercise links`, () => {
+            const exerciseBlocks = page.blocks.filter(b => b.type === 'exercise');
             
-            if (block.testCode && block.testCode !== 'pass') {
-                expect(block.testCode).toContain('import unittest');
-            }
-        });
+            // La página debe tener contenido
+            expect(page.blocks.length).toBeGreaterThan(0);
 
-        // Check markdown strings
-        const mdBlocks = page.blocks.filter(b => b.type === 'markdown');
-        mdBlocks.forEach(b => {
-             if (b.content) {
-                const content = getLocalizedText(b.content, 'ENG');
-                expect(content).not.toContain('\uFFFD'); 
-                expect(content.length).toBeGreaterThan(0);
-            }
+            exerciseBlocks.forEach(block => {
+                const id = block.exerciseId;
+                if (!id) throw new Error(`Block in ${page.title} has no exerciseId`);
+
+                // Verificar que el ID existe en la DB
+                const exercise = exercisesDB[id];
+                expect(exercise, `Exercise ID '${id}' found in page but missing in DB`).toBeDefined();
+                
+                // Verificar que el ejercicio tiene título y código
+                expect(exercise.title).toBeTruthy();
+                expect(exercise.initialCode).toBeDefined();
+                expect(exercise.testCode).toContain('import unittest');
+            });
         });
-        
-        checkedPages++;
-    }
-    
-    console.log(`Audited ${checkedPages} pages and their content.`);
-  }, 60000); // Increased timeout for reading all files
+    });
+  });
+
+  describe('Sanity Check for Strings', () => {
+    it('should not contain malformed unicode or escaped characters in descriptions', () => {
+        // Muestreo aleatorio de bloques markdown
+        coursePages.forEach(page => {
+            const mdBlocks = page.blocks.filter(b => b.type === 'markdown');
+            mdBlocks.forEach(b => {
+                if (b.content) {
+                    // Verificar que no haya caracteres de reemplazo unicode () que indican corrupción
+                    expect(b.content).not.toContain('\uFFFD'); 
+                    expect(b.content.length).toBeGreaterThan(10);
+                }
+            });
+        });
+    });
+  });
 });

@@ -1,0 +1,82 @@
+{
+  "id": "part13-1",
+  "title": {
+    "ENG": "Pygame",
+    "CAS": "Pygame",
+    "EUS": "Pygame"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Pygame\n\nIn these last two parts of this course material we will get to grips with the pygame library. It is a Python library for programming games. It helps you create graphical elements, handle events from the keyboard and the mouse, and implement other features necessary in games.\n\n## Installing pygame\n\n### Linux\n\nOpen a command line, type in `pip3 install pygame` an press `enter`.\n\n![Linux installation](/images/pygame_linux.png)\n\nThis should install the pygame library on your computer.\n\n### Windows\n\nOpen the Windows terminal by opening the menu, typing in `cmd` and pressing `enter`:\n\n![Windows cmd](/images/13_1_1.png)\n\nThe command line interpreter window should open. Type in `pip3 install pygame` and press `enter`.\n\nThis should install the pygame library on your computer.\n\n### Mac\n\nOpen the _Terminal_, for example through the magnifying glass symbol in the top right corner:\n\n![Mac spotlight](/images/13-1-2.png)\n\nThe search tool should open. Type in `terminal` and press `enter`:\n\n![Mac terminal search](/images/13-1-3.png)\n\nType in the following and press `enter`:\n\n`pip3 install pygame`\n\n![Mac install](/images/13-1-4.png)\n\nThis should install the pygame library on your computer.\n\n## Your first program\n\nHere is a simple program for checking your pygame installation works correctly:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nwindow.fill((0,0,0))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nWhen this program is run, it should display a window:\n\n![Pygame first window](/images/pygame_first.gif)\n\nThe program only consists of displaying a window, and it runs until the user closes the window.\n\n## Add an image\n\nLet's add an image to the window:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\nwindow.fill((0, 0, 0))\nwindow.blit(robot, (100, 50))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nThe program uses this image of a robot, which is stored in the file `robot.png`:\n\n![Robot](/images/robot.png)\n\nThe window should now look like this:\n\n![Pygame with robot](/images/pygame_pic.gif)\n\nThe function `pygame.image.load` loads the image. The method `blit` draws the image at the location `(100, 50)`.\n\nOnce you have loaded an image, you can use it many times within the same window. The following code draws the image of the robot at three different locations:\n\n```python\nwindow.blit(robot, (0, 0))\nwindow.blit(robot, (300, 0))\nwindow.blit(robot, (100, 200))\n```\n\nThe window should look like this as a result:\n\n![Pygame three robots](/images/pygame_pic2.gif)\n\nHere we set the location of the image so that it lies at the centre of the window:\n\n```python\nwidth = robot.get_width()\nheight = robot.get_height()\nwindow.blit(robot, (320-width/2, 240-height/2))\n```\n\nThe window should now look like this:\n\n![Pygame centered robot](/images/pygame_pic3.gif)\n",
+        "CAS": "\n# Pygame\n\nEn estas dos últimas partes del material del curso nos familiarizaremos con la biblioteca pygame. Es una biblioteca de Python para programar juegos.\n\n## Instalando pygame\n\n### Linux\n\nAbre una línea de comandos, escribe `pip3 install pygame` y presiona `enter`.\n\n![Instalación Linux](/images/pygame_linux.png)\n\n### Windows\n\nAbre la terminal de Windows abriendo el menú, escribiendo `cmd` y presionando `enter`:\n\n![Windows cmd](/images/13_1_1.png)\n\nEscribe `pip3 install pygame` y presiona `enter`.\n\n### Mac\n\nAbre la _Terminal_:\n\n![Mac spotlight](/images/13-1-2.png)\n\n![Mac terminal search](/images/13-1-3.png)\n\nEscribe lo siguiente y presiona `enter`:\n\n`pip3 install pygame`\n\n![Mac install](/images/13-1-4.png)\n\n## Tu primer programa\n\nHora tienes un programa simple para comprobar que tu instalación de pygame funciona correctamente:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nwindow.fill((0,0,0))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nCuando se ejecuta este programa, debería mostrar una ventana:\n\n![Primera ventana Pygame](/images/pygame_first.gif)\n\n## Añadir una imagen\n\nVamos a añadir una imagen a la ventana:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\nwindow.fill((0, 0, 0))\nwindow.blit(robot, (100, 50))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nEl programa usa esta imagen de un robot, que está almacenada en el archivo `robot.png`:\n\n![Robot](/images/robot.png)\n\nLa ventana debería verse ahora así:\n\n![Pygame con robot](/images/pygame_pic.gif)\n\nUna vez que has cargado una imagen, puedes usarla muchas veces dentro de la misma ventana.\n\n```python\nwindow.blit(robot, (0, 0))\nwindow.blit(robot, (300, 0))\nwindow.blit(robot, (100, 200))\n```\n\nLa ventana debería verse así como resultado:\n\n![Pygame tres robots](/images/pygame_pic2.gif)\n\nAquí establecemos la ubicación de la imagen para que se encuentre en el centro de la ventana:\n\n```python\nwidth = robot.get_width()\nheight = robot.get_height()\nwindow.blit(robot, (320-width/2, 240-height/2))\n```\n\nLa ventana debería verse ahora así:\n\n![Pygame robot centrado](/images/pygame_pic3.gif)\n",
+        "EUS": "\n# Pygame\n\nIkastaroaren azken bi zati hauetan pygame liburutegia ezagutuko dugu. Jokoak programatzeko Python liburutegia da.\n\n## Pygame instalatzen\n\n### Linux\n\nIreki komando-lerroa, idatzi `pip3 install pygame` eta sakatu `enter`.\n\n![Linux instalazioa](/images/pygame_linux.png)\n\n### Windows\n\nIreki Windows terminala menua irekiz, `cmd` idatziz eta `enter` sakatuz:\n\n![Windows cmd](/images/13_1_1.png)\n\nIdatzi `pip3 install pygame` eta sakatu `enter`.\n\n### Mac\n\nIreki _Terminala_:\n\n![Mac spotlight](/images/13-1-2.png)\n\n![Mac terminal search](/images/13-1-3.png)\n\nIdatzi hau eta sakatu `enter`:\n\n`pip3 install pygame`\n\n![Mac install](/images/13-1-4.png)\n\n## Zure lehen programa\n\nHona hemen programa sinple bat zure pygame instalazioak ondo funtzionatzen duen egiaztatzeko:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nwindow.fill((0,0,0))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nPrograma hau exekutatzen denean, leiho bat erakutsi beharko luke:\n\n![Pygame lehen leihoa](/images/pygame_first.gif)\n\n## Irudi bat gehitzen\n\nGehitu dezagun irudi bat leihora:\n\n```python\nimport pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\nwindow.fill((0, 0, 0))\nwindow.blit(robot, (100, 50))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nProgramak robot baten irudi hau erabiltzen du, `robot.png` fitxategian gordeta dagoena:\n\n![Robota](/images/robot.png)\n\nLeihoak orain honela beharko luke:\n\n![Pygame robotarekin](/images/pygame_pic.gif)\n\nIrudi bat kargatu ondoren, askotan erabil dezakezu leiho berean. \n\n```python\nwindow.blit(robot, (0, 0))\nwindow.blit(robot, (300, 0))\nwindow.blit(robot, (100, 200))\n```\n\nLeihoak honela beharko luke ondorioz:\n\n![Pygame hiru robot](/images/pygame_pic2.gif)\n\nHemen irudiaren kokapena ezartzen dugu leihoaren erdian egon dadin:\n\n```python\nwidth = robot.get_width()\nheight = robot.get_height()\nwindow.blit(robot, (320-width/2, 240-height/2))\n```\n\nLeihoak orain honela beharko luke:\n\n![Pygame robot zentratua](/images/pygame_pic3.gif)\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-01_four_robots",
+      "title": {
+        "ENG": "Four robots",
+        "CAS": "Cuatro robots",
+        "EUS": "Lau robot"
+      },
+      "description": {
+        "ENG": "Draw the robot image in the four corners of the window.",
+        "CAS": "Dibuja la imagen del robot en las cuatro esquinas de la ventana.",
+        "EUS": "Marraztu robotaren irudia leihoaren lau izkinetan."
+      },
+      "initialCode": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-02_robots_row",
+      "title": {
+        "ENG": "Robots in a row",
+        "CAS": "Robots en fila",
+        "EUS": "Robotak ilaran"
+      },
+      "description": {
+        "ENG": "Draw ten robots in a row.",
+        "CAS": "Dibuja diez robots en una fila.",
+        "EUS": "Marraztu hamar robot ilara batean."
+      },
+      "initialCode": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-03_hundred_robots",
+      "title": {
+        "ENG": "Hundred robots",
+        "CAS": "Cien robots",
+        "EUS": "Ehun robot"
+      },
+      "description": {
+        "ENG": "Draw a hundred robots in ten rows of ten.",
+        "CAS": "Dibuja cien robots en diez filas de diez.",
+        "EUS": "Marraztu ehun robot hamar ilaratan."
+      },
+      "initialCode": "import pygame\n\n# ...\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-04_random_robots",
+      "title": {
+        "ENG": "Random robots",
+        "CAS": "Robots aleatorios",
+        "EUS": "Ausazko robotak"
+      },
+      "description": {
+        "ENG": "Draw 1000 robots in random positions.",
+        "CAS": "Dibuja 1000 robots en posiciones aleatorias.",
+        "EUS": "Marraztu 1000 robot ausazko posizioetan."
+      },
+      "initialCode": "import pygame\nfrom random import randint\n# ...\n",
+      "testCode": "pass"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "part1-1",
+  "title": {
+    "ENG": "Getting started",
+    "CAS": "Comenzando",
+    "EUS": "Hasten"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Getting started\n\n## After this section:\n\n- You will have written and executed your first Python program\n- You will know how to use the print command\n\nLet's begin programming by getting familiar with the \nprint\n command. It prints text.\n\n```python\nprint(\"Hi there!\")\n```\n\nWhen you run this line of code, it will print the text \"Hi there!\".\n",
+        "CAS": "\n# Comenzando\n\n## Después de esta sección:\n\n- Habrás escrito y ejecutado tu primer programa en Python\n- Sabrás cómo usar el comando print\n\nEmpecemos a programar familiarizándonos con el comando \nprint\n. Imprime texto en pantalla.\n\n```python\nprint(\"¡Hola!\")\n```\n\nCuando ejecutes esta línea de código, imprimirá el texto \"¡Hola!\".\n",
+        "EUS": "\n# Hasten\n\n## Atal honen ondoren:\n\n- Zure lehen Python programa idatzi eta exekutatu izango duzu\n- Jakingo duzu nola erabili print komandoa\n\nHas gaitezen programatzen \nprint\n komandoarekin trebatuz. Testua inprimatzen du. \n\n```python\nprint(\"Kaixo!\")\n```\n\nKode lerro hau exekutatzen duzunean, \"Kaixo!\" testua inprimatuko du.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part01-01_emoticon",
+      "title": {
+        "ENG": "Emoticon",
+        "CAS": "Emoticono",
+        "EUS": "Emotikonoa"
+      },
+      "description": {
+        "ENG": "Please write a program which prints out an emoticon: :-)",
+        "CAS": "Por favor escribe un programa que imprima un emoticono: :-)",
+        "EUS": "Mesedez idatzi programa bat emotikono bat inprimatzen duena: :-)"
+      },
+      "initialCode": "# Write your code here\n",
+      "testCode": "\nimport unittest\nfrom unittest.mock import patch\nimport io\n\nclass TestEmoticon(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertEqual(output, \":-)\")\n"
+    }
+  ]
+}

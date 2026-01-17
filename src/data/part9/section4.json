@@ -1,0 +1,34 @@
+{
+  "id": "part9-4",
+  "title": {
+    "ENG": "Scope of methods",
+    "CAS": "Alcance de los métodos",
+    "EUS": "Metodoen esparrua"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Scope of methods\n\nJust like attributes, methods can be made private by prefixing them with two underscores `__`. These methods are not directly accessible from outside the class.\n\n```python\nclass Recipient:\n    def __init__(self, name, email):\n        self.__name = name\n        if self.__check_email(email):\n            self.__email = email\n        else:\n            raise ValueError(\"Invalid email\")\n\n    def __check_email(self, email):\n        return \"@\" in email and \".\" in email\n```\n",
+        "CAS": "\n# Alcance de los métodos\n\nAl igual que los atributos, los métodos pueden hacerse privados prefijándolos con dos guiones bajos `__`. Estos métodos no son directamente accesibles desde fuera de la clase.\n\n```python\nclass Destinatario:\n    def __init__(self, nombre, email):\n        self.__nombre = nombre\n        if self.__verificar_email(email):\n            self.__email = email\n        else:\n            raise ValueError(\"Email inválido\")\n\n    def __verificar_email(self, email):\n        return \"@\" in email and \".\" in email\n```\n",
+        "EUS": "\n# Metodoen esparrua\n\nAtributuak bezala, metodoak pribatu egin daitezke `__` aurrizkiarekin. Metodo hauek ez dira zuzenean eskuragarri klasetik kanpo.\n\n```python\nclass Hartzailea:\n    def __init__(self, izena, emaila):\n        self.__izena = izena\n        if self.__egiaztatu_emaila(emaila):\n            self.__emaila = emaila\n        else:\n            raise ValueError(\"Email baliogabea\")\n\n    def __egiaztatu_emaila(self, emaila):\n        return \"@\" in emaila and \".\" in emaila\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part09-12_service_charge",
+      "title": {
+        "ENG": "Service charge",
+        "CAS": "Cargo por servicio",
+        "EUS": "Zerbitzu kargua"
+      },
+      "description": {
+        "ENG": "Create class BankAccount with private attributes __owner, __account_number, __balance. Method deposit(amount) and withdraw(amount). withdraw calls private method __service_charge(), which subtracts 1% if amount > 0.",
+        "CAS": "Crea clase BankAccount con atributos privados. Métodos deposit y withdraw. withdraw llama a método privado __service_charge(), que resta 1% si amount > 0.",
+        "EUS": "Sortu BankAccount klasea atributu pribatuekin. deposit eta withdraw metodoak. withdraw-k __service_charge() metodo pribatua deitzen du, %1 kentzen duena amount > 0 bada."
+      },
+      "initialCode": "# Write your solution here\nclass BankAccount:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestAccount(unittest.TestCase):\n    def test_run(self):\n        a = BankAccount(\"Randy\", \"123\", 1000)\n        a.withdraw(100)\n        # 1000 - 100 - (100 * 0.01) = 899\n        self.assertAlmostEqual(a.balance, 899)\n"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "part14-4",
+  "title": {
+    "ENG": "Your own game",
+    "CAS": "Tu propio juego",
+    "EUS": "Zure jokoa"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Your own game\n\nCreate a game using Pygame.\n\n## Requirements\n- Moveable sprite.\n- Collectable items or enemies.\n- Clear goal.\n- Score/Counter.\n- Good code structure.\n",
+        "CAS": "\n# Tu propio juego\n\nCrea un juego usando Pygame.\n\n## Requisitos\n- Sprite movible.\n- Objetos coleccionables o enemigos.\n- Objetivo claro.\n- Puntuación/Contador.\n- Buena estructura de código.\n",
+        "EUS": "\n# Zure jokoa\n\nSortu joko bat Pygame erabiliz.\n\n## Baldintzak\n- Sprite mugikorra.\n- Biltzeko elementuak edo etsaiak.\n- Helburu argia.\n- Puntuazioa/Kontagailua.\n- Kode egitura ona.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part14-04_your_own_game",
+      "title": {
+        "ENG": "Own game",
+        "CAS": "Juego propio",
+        "EUS": "Joko propioa"
+      },
+      "description": {
+        "ENG": "Implement your own game following the requirements. Be creative!",
+        "CAS": "Implementa tu propio juego siguiendo los requisitos. ¡Sé creativo!",
+        "EUS": "Inplementatu zure joko propioa baldintzak jarraituz. Izan sortzailea!"
+      },
+      "initialCode": "import pygame\n\n# Write your game code here\n",
+      "testCode": "pass"
+    }
+  ]
+}

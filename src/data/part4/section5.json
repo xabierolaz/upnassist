@@ -1,0 +1,114 @@
+{
+  "id": "part4-5",
+  "title": {
+    "ENG": "More strings and lists",
+    "CAS": "Más cadenas y listas",
+    "EUS": "Kate eta zerrenda gehiago"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# More strings and lists\n\n## Slicing\n\nYou can slice strings and lists using the syntax `[start:end:step]`.\n\n```python\nword = \"exemplary\"\nprint(word[0:7:2])\n```\n\n```text\neepa\n```\n\nReversing a string:\n\n```python\nprint(word[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## String methods\n\n- `count(substring)`: counts occurrences\n- `replace(old, new)`: replaces substrings\n\n```python\nsentence = \"How much wood would a woodchuck chuck\"\nprint(sentence.count(\"wood\"))\nprint(sentence.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n",
+        "CAS": "\n# Más cadenas y listas\n\n## Rebanado (Slicing)\n\nPuedes rebanar cadenas y listas usando la sintaxis `[inicio:fin:paso]`.\n\n```python\npalabra = \"exemplary\"\nprint(palabra[0:7:2])\n```\n\n```text\neepa\n```\n\nInvirtiendo una cadena:\n\n```python\nprint(palabra[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## Métodos de cadena\n\n- `count(subcadena)`: cuenta ocurrencias\n- `replace(viejo, nuevo)`: reemplaza subcadenas\n\n```python\nfrase = \"How much wood would a woodchuck chuck\"\nprint(frase.count(\"wood\"))\nprint(frase.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n",
+        "EUS": "\n# Kate eta zerrenda gehiago\n\n## Slicing (Zatikatzea)\n\nKateak eta zerrendak zatikatu ditzakezu `[hasiera:amaiera:pausoa]` sintaxia erabiliz.\n\n```python\nhitza = \"exemplary\"\nprint(hitza[0:7:2])\n```\n\n```text\neepa\n```\n\nKate bat alderantzikatzea:\n\n```python\nprint(hitza[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## Kate metodoak\n\n- `count(azpikatea)`: agerraldiak zenbatzen ditu\n- `replace(zaharra, berria)`: azpikateak ordezkatzen ditu\n\n```python\nesaldia = \"How much wood would a woodchuck chuck\"\nprint(esaldia.count(\"wood\"))\nprint(esaldia.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-33_everything_reversed",
+      "title": {
+        "ENG": "Everything reversed",
+        "CAS": "Todo al revés",
+        "EUS": "Dena alderantziz"
+      },
+      "description": {
+        "ENG": "Write a function named everything_reversed, which takes a list of strings as its argument. The function returns a new list with all of the items on the original list reversed. Also the order of items should be reversed.",
+        "CAS": "Escribe una función llamada todo_al_reves, que tome una lista de cadenas. Devuelve una nueva lista con todos los elementos invertidos, y el orden de la lista también invertido.",
+        "EUS": "Idatzi dena_alderantziz izeneko funtzio bat. Zerrenda berri bat itzultzen du elementu guztiekin alderantzikatuta, eta zerrendaren ordena ere alderantzikatuta."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(everything_reversed([\"Anti\", \"Meto\", \"Tic\", \"Ice\", \"Po\", \"Hot\", \"Mag\", \"Net\", \"Ic\"]))",
+      "testCode": "\nimport unittest\nclass TestRev(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # \"Anti\" -> \"itnA\"\n        # List reversed -> \"Ic\" first -> \"cI\"\n        # Output should be ['cI', 'teN', 'gaM', 'toH', 'oP', 'ecI', 'ciT', 'oteM', 'itnA']\n        self.assertIn(\"cI\", out)\n        self.assertIn(\"itnA\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-34_most_common_character",
+      "title": {
+        "ENG": "Most common character",
+        "CAS": "Carácter más común",
+        "EUS": "Karaktere ohikoena"
+      },
+      "description": {
+        "ENG": "Write a function named most_common_character, which takes a string argument. The function returns the character which appears most often in the string.",
+        "CAS": "Escribe una función llamada caracter_mas_comun. Devuelve el carácter que aparece más a menudo.",
+        "EUS": "Idatzi karaktere_ohikoena izeneko funtzio bat. Katean gehien agertzen den karakterea itzultzen du."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(most_common_character(\"exemplary\"))",
+      "testCode": "\nimport unittest\nclass TestCommon(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # e appears 2 times, but 'x' 1, 'm' 1... wait\n        # e x e m p l a r y -> e:2\n        self.assertIn(\"e\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-35_no_vowels_allowed",
+      "title": {
+        "ENG": "No vowels allowed",
+        "CAS": "No se permiten vocales",
+        "EUS": "Bokalik ez"
+      },
+      "description": {
+        "ENG": "Write a function named no_vowels, which takes a string argument. The function returns a new string, which should be the same as the original but with all vowels removed.",
+        "CAS": "Escribe una función llamada sin_vocales. Devuelve una nueva cadena sin las vocales.",
+        "EUS": "Idatzi bokalik_gabe izeneko funtzio bat. Kate berri bat itzultzen du bokalik gabe."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_vowels(\"this is an example\"))",
+      "testCode": "\nimport unittest\nclass TestNoVowels(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # ths s n xmpl\n        self.assertIn(\"ths s n xmpl\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-36_no_shouting_allowed",
+      "title": {
+        "ENG": "No shouting allowed",
+        "CAS": "No se permite gritar",
+        "EUS": "Ez oihukatu"
+      },
+      "description": {
+        "ENG": "Write a function named no_shouting, which takes a list of strings as an argument. The function returns a new list, containing only those strings from the original which do not consist of all uppercase characters.",
+        "CAS": "Escribe una función llamada no_gritar. Devuelve una lista con las cadenas que no estén todo en mayúsculas.",
+        "EUS": "Idatzi ez_oihukatu izeneko funtzio bat. Zerrenda berri bat itzultzen du letra larriz idatzita ez dauden kateekin bakarrik."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_shouting([\"HI\", \"hello\", \"HEY\", \"there\"]))",
+      "testCode": "\nimport unittest\nclass TestNoShout(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # hello, there\n        self.assertIn(\"hello\", out)\n        self.assertIn(\"there\", out)\n        if \"HI\" in out: self.fail(\"Should remove uppercase strings\")\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-37_neighbours_in_list",
+      "title": {
+        "ENG": "Neighbours in a list",
+        "CAS": "Vecinos en una lista",
+        "EUS": "Auzokideak zerrenda batean"
+      },
+      "description": {
+        "ENG": "Write a function named longest_series_of_neighbours, which takes a list of integers as its argument. The function returns the length of the longest series of neighbours (values that differ by 1).",
+        "CAS": "Escribe una función llamada serie_vecinos_mas_larga. Devuelve la longitud de la serie más larga de vecinos (valores que difieren en 1).",
+        "EUS": "Idatzi auzokide_serie_luzeena izeneko funtzio bat. Auzokideen serie luzeenaren luzera itzultzen du (1eko aldea duten balioak)."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(longest_series_of_neighbours([1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]))",
+      "testCode": "\nimport unittest\nclass TestNeighbours(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 5, 7, 6, 5, 6 -> length 4? \n        # 1,2 (2)\n        # 5\n        # 7,6,5,6 (4)\n        # 3,4 (2)\n        # 1,0 (2)\n        # Max is 4\n        self.assertIn(\"4\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-38_grade_statistics",
+      "title": {
+        "ENG": "Grade statistics",
+        "CAS": "Estadísticas de notas",
+        "EUS": "Noten estatistikak"
+      },
+      "description": {
+        "ENG": "Write a program that asks the user for points and exam points, then prints statistics (average, pass percentage, grade distribution). Input terminates with empty line.",
+        "CAS": "Escribe un programa que pida puntos y puntos de examen, luego imprima estadísticas (media, porcentaje de aprobados, distribución de notas). La entrada termina con una línea vacía.",
+        "EUS": "Idatzi programa bat puntuak eta azterketa puntuak eskatzen dituena, eta gero estatistikak inprimatzen dituena (batezbestekoa, gainditze portzentajea, noten banaketa)."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        inputs = ['20 100', '15 80', '10 50', '']\n        out = run_student_code(inputs=inputs)\n        # Verify some output presence\n        self.assertIn(\"Statistics:\", out)\n        self.assertIn(\"Points average:\", out)\n        self.assertIn(\"Pass percentage:\", out)\n        self.assertIn(\"Grade distribution:\", out)\n"
+    }
+  ]
+}

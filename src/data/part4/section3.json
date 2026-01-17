@@ -1,0 +1,162 @@
+{
+  "id": "part4-3",
+  "title": {
+    "ENG": "Definite iteration",
+    "CAS": "Iteración definida",
+    "EUS": "Iterazio definitua"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Definite iteration\n\n## The for loop\n\nThe `for` loop iterates over a collection of items, such as a list or a string.\n\n```python\nmy_list = [3, 2, 4, 5, 2]\n\nfor item in my_list:\n    print(item)\n```\n\n```text\n3\n2\n4\n5\n2\n```\n\n## The range function\n\nThe `range` function generates a sequence of numbers.\n\n```python\nfor i in range(5):\n    print(i)\n```\n\n```text\n0\n1\n2\n3\n4\n```\n\nYou can specify start, end, and step: `range(start, end, step)`.\n",
+        "CAS": "\n# Iteración definida\n\n## El bucle for\n\nEl bucle `for` itera sobre una colección de elementos, como una lista o una cadena.\n\n```python\nmi_lista = [3, 2, 4, 5, 2]\n\nfor elemento in mi_lista:\n    print(elemento)\n```\n\n```text\n3\n2\n4\n5\n2\n```\n\n## La función range\n\nLa función `range` genera una secuencia de números.\n\n```python\nfor i in range(5):\n    print(i)\n```\n\n```text\n0\n1\n2\n3\n4\n```\n\nPuedes especificar inicio, fin y paso: `range(inicio, fin, paso)`.\n",
+        "EUS": "\n# Iterazio definitua\n\n## for begizta\n\n`for` begiztak elementu bilduma baten gainean iteratzen du, adibidez zerrenda bat edo kate bat.\n\n```python\nnire_zerrenda = [3, 2, 4, 5, 2]\n\nfor elementua in nire_zerrenda:\n    print(elementua)\n```\n\n```text\n3\n2\n4\n5\n2\n```\n\n## range funtzioa\n\n`range` funtzioak zenbaki sekuentzia bat sortzen du.\n\n```python\nfor i in range(5):\n    print(i)\n```\n\n```text\n0\n1\n2\n3\n4\n```\n\nHasiera, amaiera eta pausoa zehaztu dezakezu: `range(hasiera, amaiera, pausoa)`.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-23_list_of_stars",
+      "title": {
+        "ENG": "List of stars",
+        "CAS": "Lista de estrellas",
+        "EUS": "Izarren zerrenda"
+      },
+      "description": {
+        "ENG": "Write a function named list_of_stars, which takes a list of integers as its argument. The function should print out a line of stars for each value in the list. The length of the line should be the same as the value.",
+        "CAS": "Escribe una función llamada lista_de_estrellas, que tome una lista de enteros. La función debe imprimir una línea de estrellas por cada valor. La longitud de la línea debe ser igual al valor.",
+        "EUS": "Idatzi izarren_zerrenda izeneko funtzio bat, zenbaki osoen zerrenda bat hartzen duena. Funtzioak izar lerro bat inprimatu behar du zerrendako balio bakoitzeko. Lerroaren luzera balioaren berdina izan behar da."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    list_of_stars([3, 7, 1, 1, 2])",
+      "testCode": "\nimport unittest\nclass TestStars(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # ***\n*******\n*\n*\n**\n        self.assertIn(\"***\", out)\n        self.assertIn(\"*******\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-24_palindromes",
+      "title": {
+        "ENG": "Palindromes",
+        "CAS": "Palíndromos",
+        "EUS": "Palindromoak"
+      },
+      "description": {
+        "ENG": "Write a function named palindromes, which takes a string argument and returns True if the string is a palindrome and False otherwise. A palindrome is a string that is spelled the same forwards and backwards.",
+        "CAS": "Escribe una función llamada palindromos, que tome una cadena y devuelva True si es un palíndromo y False si no. Un palíndromo se lee igual al derecho y al revés.",
+        "EUS": "Idatzi palindromoak izeneko funtzio bat, kate bat hartu eta True itzultzen duena katea palindromoa bada, eta False bestela. Palindromoa berdin idazten da aurreraka eta atzeraka."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(palindromes(\"python\"))\n    print(palindromes(\"java\"))\n    print(palindromes(\"neveroddoreven\"))",
+      "testCode": "\nimport unittest\nclass TestPalindrome(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # python -> False\n        # java -> False\n        # neveroddoreven -> True\n        self.assertIn(\"False\", out)\n        self.assertIn(\"True\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-25_sum_of_positives",
+      "title": {
+        "ENG": "Sum of positive numbers",
+        "CAS": "Suma de números positivos",
+        "EUS": "Zenbaki positiboen batura"
+      },
+      "description": {
+        "ENG": "Write a function named sum_of_positives, which takes a list of integers as its argument. The function returns the sum of the positive values in the list.",
+        "CAS": "Escribe una función llamada suma_positivos, que tome una lista de enteros. La función devuelve la suma de los valores positivos.",
+        "EUS": "Idatzi positiboen_batura izeneko funtzio bat, zenbaki osoen zerrenda bat hartzen duena. Funtzioak zerrendako balio positiboen batura itzultzen du."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(sum_of_positives([1, -2, 3, -4, 5]))",
+      "testCode": "\nimport unittest\nclass TestPosSum(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 1 + 3 + 5 = 9\n        self.assertIn(\"9\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-26_even_numbers",
+      "title": {
+        "ENG": "Even numbers",
+        "CAS": "Números pares",
+        "EUS": "Zenbaki bikoitiak"
+      },
+      "description": {
+        "ENG": "Write a function named even_numbers, which takes a list of integers as its argument. The function returns a new list containing only the even numbers from the original list.",
+        "CAS": "Escribe una función llamada numeros_pares, que tome una lista de enteros. Devuelve una nueva lista solo con los pares.",
+        "EUS": "Idatzi zenbaki_bikoitiak izeneko funtzio bat, zenbaki osoen zerrenda bat hartzen duena. Funtzioak zerrenda berri bat itzultzen du jatorrizko zerrendako zenbaki bikoitiekin bakarrik."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(even_numbers([1, 2, 3, 4, 5]))",
+      "testCode": "\nimport unittest\nclass TestEven(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # [2, 4]\n        self.assertIn(\"[2, 4]\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-27_sum_of_lists",
+      "title": {
+        "ENG": "The sum of lists",
+        "CAS": "La suma de listas",
+        "EUS": "Zerrenden batura"
+      },
+      "description": {
+        "ENG": "Write a function named list_sum which takes two lists of integers as arguments. The function returns a new list containing the sum of items at each index.",
+        "CAS": "Escribe una función llamada suma_listas que tome dos listas de enteros. Devuelve una nueva lista con la suma de los elementos en cada índice.",
+        "EUS": "Idatzi zerrenda_batura izeneko funtzio bat, bi zenbaki oso zerrenda hartzen dituena. Funtzioak zerrenda berri bat itzultzen du indize bakoitzeko elementuen baturarekin."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(list_sum([1, 2], [3, 4]))",
+      "testCode": "\nimport unittest\nclass TestListSum(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # [4, 6]\n        self.assertIn(\"[4, 6]\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-28_distinct_numbers",
+      "title": {
+        "ENG": "Distinct numbers",
+        "CAS": "Números distintos",
+        "EUS": "Zenbaki ezberdinak"
+      },
+      "description": {
+        "ENG": "Write a function named distinct_numbers, which takes a list of integers as its argument. The function returns a new list containing the numbers from the original list in order of magnitude, with each number appearing only once.",
+        "CAS": "Escribe una función llamada numeros_distintos. Devuelve una nueva lista con los números de la original ordenados y sin duplicados.",
+        "EUS": "Idatzi zenbaki_ezberdinak izeneko funtzio bat. Zerrenda berri bat itzultzen du jatorrizko zenbakiekin ordenatuta eta errepikapenik gabe."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(distinct_numbers([3, 2, 2, 1, 3]))",
+      "testCode": "\nimport unittest\nclass TestDistinct(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # [1, 2, 3]\n        self.assertIn(\"[1, 2, 3]\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-29_length_of_longest",
+      "title": {
+        "ENG": "Length of longest string",
+        "CAS": "Longitud de la cadena más larga",
+        "EUS": "Kate luzeenaren luzera"
+      },
+      "description": {
+        "ENG": "Write a function named length_of_longest, which takes a list of strings as its argument. The function returns the length of the longest string.",
+        "CAS": "Escribe una función llamada longitud_mas_larga. Devuelve la longitud de la cadena más larga en la lista.",
+        "EUS": "Idatzi luzeenaren_luzera izeneko funtzio bat. Zerrendako kate luzeenaren luzera itzultzen du."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(length_of_longest([\"first\", \"second\", \"third\"]))",
+      "testCode": "\nimport unittest\nclass TestLongest(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 6\n        self.assertIn(\"6\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-30_shortest_string",
+      "title": {
+        "ENG": "Shortest string",
+        "CAS": "Cadena más corta",
+        "EUS": "Kate laburrena"
+      },
+      "description": {
+        "ENG": "Write a function named shortest, which takes a list of strings as its argument. The function returns the shortest string. If there are multiple, return the last one.",
+        "CAS": "Escribe una función llamada mas_corta. Devuelve la cadena más corta. Si hay varias, devuelve la última que encuentres.",
+        "EUS": "Idatzi laburrena izeneko funtzio bat. Kate laburrena itzultzen du. Hainbat badaude, itzuli azkena."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(shortest([\"first\", \"second\", \"third\"]))",
+      "testCode": "\nimport unittest\nclass TestShortest(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"third\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part04-31_all_longest_strings",
+      "title": {
+        "ENG": "All the longest strings",
+        "CAS": "Todas las cadenas más largas",
+        "EUS": "Kate luzeen guztiak"
+      },
+      "description": {
+        "ENG": "Write a function named all_the_longest, which takes a list of strings as its argument. The function returns a new list containing the longest string in the original list. If more than one string is equally long, the function should return all of them in a list.",
+        "CAS": "Escribe una función llamada todas_las_mas_largas. Devuelve una lista con la cadena más larga. Si hay varias igual de largas, devuélvelas todas.",
+        "EUS": "Idatzi luzeen_guztiak izeneko funtzio bat. Zerrenda berri bat itzultzen du kate luzeenarekin. Bat baino gehiago badira, denak itzuli."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(all_the_longest([\"adele\", \"mark\", \"dorothy\", \"tim\", \"hedy\", \"richard\"]))",
+      "testCode": "\nimport unittest\nclass TestAllLongest(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # dorothy, richard (7 chars)\n        self.assertIn(\"dorothy\", out)\n        self.assertIn(\"richard\", out)\n"
+    }
+  ]
+}

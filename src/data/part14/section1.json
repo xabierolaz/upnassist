@@ -1,0 +1,34 @@
+{
+  "id": "part14-1",
+  "title": {
+    "ENG": "Game project",
+    "CAS": "Proyecto de juego",
+    "EUS": "Joko proiektua"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Game project: Sokoban\n\nWe will build a Sokoban game.\n\n## The Map\n\nThe map is a 2D list.\n\nself.map = [[1, 1, 1],\n            [1, 0, 1],\n            [1, 1, 1]]\n\n## Images\n\nWe load images and map them to integers.\n0 = floor, 1 = wall, 2 = target, 3 = box, 4 = robot.\n",
+        "CAS": "\n# Proyecto de juego: Sokoban\n\nConstruiremos un juego de Sokoban.\n\n## El Mapa\n\nEl mapa es una lista 2D.\n\nself.map = [[1, 1, 1],\n            [1, 0, 1],\n            [1, 1, 1]]\n\n## Imágenes\n\nCargamos imágenes y las mapeamos a enteros.\n0 = suelo, 1 = pared, 2 = objetivo, 3 = caja, 4 = robot.\n",
+        "EUS": "\n# Joko proiektua: Sokoban\n\nSokoban joko bat eraikiko dugu.\n\n## Mapa\n\nMapa 2D zerrenda bat da.\n\nself.map = [[1, 1, 1],\n            [1, 0, 1],\n            [1, 1, 1]]\n\n## Irudiak\n\nIrudiak kargatzen ditugu eta zenbaki osoetara mapatzen ditugu.\n0 = lurra, 1 = horma, 2 = helburua, 3 = kutxa, 4 = robota.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part14-01_sokoban_grid",
+      "title": {
+        "ENG": "Sokoban grid",
+        "CAS": "Rejilla de Sokoban",
+        "EUS": "Sokoban sareta"
+      },
+      "description": {
+        "ENG": "Implement the Sokoban class that loads images and draws the initial map.",
+        "CAS": "Implementa la clase Sokoban que carga imágenes y dibuja el mapa inicial.",
+        "EUS": "Inplementatu Sokoban klasea, irudiak kargatzen dituena eta hasierako mapa marrazten duena."
+      },
+      "initialCode": "import pygame\n\nclass Sokoban:\n    def __init__(self):\n        pygame.init()\n        # ...\n",
+      "testCode": "pass"
+    }
+  ]
+}

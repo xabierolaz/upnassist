@@ -1,0 +1,82 @@
+{
+  "id": "part9-2",
+  "title": {
+    "ENG": "Objects as attributes",
+    "CAS": "Objetos como atributos",
+    "EUS": "Objektuak atributu gisa"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Objects as attributes\n\nAn object can have other objects as attributes.\n\n```python\nclass Date:\n    def __init__(self, d, m, y):\n        self.day = d\n        self.month = m\n        self.year = y\n\nclass Person:\n    def __init__(self, name, birthdate):\n        self.name = name\n        self.birthdate = birthdate # Date object\n\nd = Date(1, 1, 2000)\np = Person(\"John\", d)\nprint(p.birthdate.year) # 2000\n```\n\n## Lists of objects\n\nAn attribute can also be a list of objects.\n\n```python\nclass Team:\n    def __init__(self, name):\n        self.name = name\n        self.players = []\n\n    def add_player(self, player):\n        self.players.append(player)\n```\n",
+        "CAS": "\n# Objetos como atributos\n\nUn objeto puede tener otros objetos como atributos.\n\n```python\nclass Fecha:\n    def __init__(self, d, m, a):\n        self.dia = d\n        self.mes = m\n        self.anio = a\n\nclass Persona:\n    def __init__(self, nombre, nacimiento):\n        self.nombre = nombre\n        self.nacimiento = nacimiento # Objeto Fecha\n\nd = Fecha(1, 1, 2000)\np = Persona(\"Juan\", d)\nprint(p.nacimiento.anio) # 2000\n```\n\n## Listas de objetos\n\nUn atributo también puede ser una lista de objetos.\n\n```python\nclass Equipo:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.jugadores = []\n\n    def agregar_jugador(self, jugador):\n        self.jugadores.append(jugador)\n```\n",
+        "EUS": "\n# Objektuak atributu gisa\n\nObjektu batek beste objektu batzuk izan ditzake atributu gisa.\n\n```python\nclass Data:\n    def __init__(self, d, m, u):\n        self.eguna = d\n        self.hila = m\n        self.urtea = u\n\nclass Pertsona:\n    def __init__(self, izena, jaioteguna):\n        self.izena = izena\n        self.jaioteguna = jaioteguna # Data objektua\n\nd = Data(1, 1, 2000)\np = Pertsona(\"Jon\", d)\nprint(p.jaioteguna.urtea) # 2000\n```\n\n## Objektu zerrendak\n\nAtributu bat objektu zerrenda bat ere izan daiteke.\n\n```python\nclass Taldea:\n    def __init__(self, izena):\n        self.izena = izena\n        self.jokalariak = []\n\n    def jokalaria_gehitu(self, jokalaria):\n        self.jokalariak.append(jokalaria)\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part09-04_lunch_card_and_payment_terminal",
+      "title": {
+        "ENG": "Lunch card and payment terminal",
+        "CAS": "Tarjeta de almuerzo y terminal de pago",
+        "EUS": "Bazkari txartela eta ordainketa terminala"
+      },
+      "description": {
+        "ENG": "Implement classes LunchCard and PaymentTerminal. Terminal handles payments (cash/card) and lunches (regular/special).",
+        "CAS": "Implementa clases LunchCard y PaymentTerminal.",
+        "EUS": "Inplementatu LunchCard eta PaymentTerminal klaseak."
+      },
+      "initialCode": "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestLunch(unittest.TestCase):\n    def test_run(self):\n        card = LunchCard(10)\n        term = PaymentTerminal()\n        term.eat_lunch(card)\n        # assert balance changed\n        pass\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part09-05_comparing_properties",
+      "title": {
+        "ENG": "Comparing properties",
+        "CAS": "Comparando propiedades",
+        "EUS": "Propietateak konparatzen"
+      },
+      "description": {
+        "ENG": "Create class RealEstate. Methods: bigger(self, other), price_difference(self, other), more_expensive(self, other).",
+        "CAS": "Crea clase RealEstate con métodos de comparación.",
+        "EUS": "Sortu RealEstate klasea konparazio metodoekin."
+      },
+      "initialCode": "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
+      "testCode": "\nimport unittest\nclass TestRealEstate(unittest.TestCase):\n    def test_run(self):\n        r1 = RealEstate(1, 20, 100)\n        r2 = RealEstate(2, 40, 100)\n        self.assertTrue(r2.bigger(r1))\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part09-06_pets",
+      "title": {
+        "ENG": "Pets",
+        "CAS": "Mascotas",
+        "EUS": "Maskotak"
+      },
+      "description": {
+        "ENG": "Define class Pet and class Person. Person has a name and a pet attribute.",
+        "CAS": "Define clase Pet y Person. Person tiene nombre y mascota.",
+        "EUS": "Definitu Pet eta Person klaseak. Person-ek izena eta maskota ditu."
+      },
+      "initialCode": "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part09-07_box_of_presents",
+      "title": {
+        "ENG": "Box of presents",
+        "CAS": "Caja de regalos",
+        "EUS": "Opari kutxa"
+      },
+      "description": {
+        "ENG": "Create classes Present (name, weight) and Box (max_weight). Box has add_present and total_weight methods.",
+        "CAS": "Crea clases Present y Box.",
+        "EUS": "Sortu Present eta Box klaseak."
+      },
+      "initialCode": "class Present:\n    pass\n\nclass Box:\n    pass\n",
+      "testCode": "pass"
+    }
+  ]
+}

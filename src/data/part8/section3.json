@@ -1,0 +1,50 @@
+{
+  "id": "part8-3",
+  "title": {
+    "ENG": "Defining classes",
+    "CAS": "Definiendo clases",
+    "EUS": "Klaseak definitzen"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Defining classes\n\nA class is defined using the `class` keyword.\n\n```python\nclass BankAccount:\n    def __init__(self, owner, balance):\n        self.owner = owner\n        self.balance = balance\n```\n\n## The constructor\n\nThe `__init__` method is the constructor. It initializes the object. The first parameter is always `self`.\n\n```python\naccount = BankAccount(\"Peter\", 100)\nprint(account.owner)\n```\n",
+        "CAS": "\n# Definiendo clases\n\nUna clase se define usando la palabra clave `class`.\n\n```python\nclass CuentaBancaria:\n    def __init__(self, titular, saldo):\n        self.titular = titular\n        self.saldo = saldo\n```\n\n## El constructor\n\nEl método `__init__` es el constructor. Inicializa el objeto. El primer parámetro es siempre `self`.\n\n```python\ncuenta = CuentaBancaria(\"Peter\", 100)\nprint(cuenta.titular)\n```\n",
+        "EUS": "\n# Klaseak definitzen\n\nKlase bat `class` gako-hitza erabiliz definitzen da.\n\n```python\nclass BankuKontua:\n    def __init__(self, jabea, saldoa):\n        self.jabea = jabea\n        self.saldoa = saldoa\n```\n\n## Eraikitzailea\n\n`__init__` metodoa eraikitzailea da. Objektua hasieratzen du. Lehen parametroa beti `self` da.\n\n```python\nkontua = BankuKontua(\"Peter\", 100)\nprint(kontua.jabea)\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part08-04_book",
+      "title": {
+        "ENG": "Book",
+        "CAS": "Libro",
+        "EUS": "Liburua"
+      },
+      "description": {
+        "ENG": "Define a class named Book. It should have a constructor that takes the name, author, genre and year of publication as arguments.",
+        "CAS": "Define una clase Libro. Debe tener un constructor que tome nombre, autor, género y año como argumentos.",
+        "EUS": "Definitu Liburua izeneko klasea. Eraikitzaile bat izan behar du, izena, egilea, generoa eta urtea hartzen dituena."
+      },
+      "initialCode": "# Write your solution here\nclass Book:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestBook(unittest.TestCase):\n    def test_creation(self):\n        b = run_student_code(code_to_run=\"b = Book('Name', 'Author', 'Genre', 2000); print(b.author)\")\n        self.assertIn(\"Author\", b)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part08-05_three_classes",
+      "title": {
+        "ENG": "Three classes",
+        "CAS": "Tres clases",
+        "EUS": "Hiru klase"
+      },
+      "description": {
+        "ENG": "Write three classes: Checklist, Customer, and Cable. Checklist has header and entries. Customer has id, balance, discount. Cable has model, length, max_speed, bidirectional.",
+        "CAS": "Escribe tres clases: Checklist (encabezado, entradas), Customer (id, saldo, descuento), Cable (modelo, longitud, velocidad_max, bidireccional).",
+        "EUS": "Idatzi hiru klase: Checklist (goiburua, sarrerak), Customer (id, saldoa, deskontua), Cable (modeloa, luzera, abiadura_max, bidirekzionala)."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestClasses(unittest.TestCase):\n    def test_run(self):\n        # We assume student defines them correctly.\n        # Just check instantiation doesn't crash.\n        code = \"\"\"\nc = Checklist(\"Header\", \"Entries\")\ncust = Customer(\"1\", 100, 0.1)\ncab = Cable(\"M\", 10, 1000, True)\nprint(\"Done\")\n\"\"\"\n        out = run_student_code(code_to_run=code)\n        self.assertIn(\"Done\", out)\n"
+    }
+  ]
+}

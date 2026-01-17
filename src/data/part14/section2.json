@@ -1,0 +1,34 @@
+{
+  "id": "part14-2",
+  "title": {
+    "ENG": "Robot and boxes",
+    "CAS": "Robot y cajas",
+    "EUS": "Robota eta kutxak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Robot and boxes\n\nWe implement the movement logic.\n\n## Movement\n\nThe \n`move`\n method calculates new coordinates.\n\n```python\ndef move(self, move_y, move_x):\n    robot_old_y, robot_old_x = self.find_robot()\n    robot_new_y = robot_old_y + move_y\n    robot_new_x = robot_old_x + move_x\n```\n\n## Moving boxes\n\nIf the new position has a box, we check if the box can be moved.\n",
+        "CAS": "\n# Robot y cajas\n\nImplementamos la lógica de movimiento.\n\n## Movimiento\n\nEl método \n`move`\n calcula las nuevas coordenadas.\n\n## Mover cajas\n\nSi la nueva posición tiene una caja, comprobamos si la caja se puede mover.\n",
+        "EUS": "\n# Robota eta kutxak\n\nMugimenduaren logika inplementatzen dugu.\n\n## Mugimendua\n\n`move`\n metodoak koordenatu berriak kalkulatzen ditu.\n\n## Kutxak mugitzen\n\nPosizio berriak kutxa bat badu, kutxa mugitu daitekeen egiaztatzen dugu.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part14-02_robot_movement",
+      "title": {
+        "ENG": "Robot movement",
+        "CAS": "Movimiento del robot",
+        "EUS": "Robotaren mugimendua"
+      },
+      "description": {
+        "ENG": "Implement the move method to handle robot movement and box pushing.",
+        "CAS": "Implementa el método move para manejar el movimiento del robot y el empuje de cajas.",
+        "EUS": "Inplementatu move metodoa robotaren mugimendua eta kutxen bultzada kudeatzeko."
+      },
+      "initialCode": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Write your code here\n        pass\n",
+      "testCode": "pass"
+    }
+  ]
+}

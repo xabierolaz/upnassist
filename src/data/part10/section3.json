@@ -1,0 +1,66 @@
+{
+  "id": "part10-3",
+  "title": {
+    "ENG": "Object oriented programming techniques",
+    "CAS": "Técnicas de programación orientada a objetos",
+    "EUS": "Objektuetara bideratutako programazio-teknikak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Object oriented programming techniques\n\n## Operator Overloading\n\nYou can define how operators like `+`, `<\u0010`, `==` work for your classes by implementing special methods.\n\n- `__add__(self, other)`: `+`\n- `__sub__(self, other)`: `-`\n- `__lt__(self, other)`: `<`\n- `__gt__(self, other)`: `> `\n- `__eq__(self, other)`: `==`\n\n```python\nclass Money:\n    def __init__(self, euros, cents):\n        self.euros = euros\n        self.cents = cents\n\n    def __add__(self, other):\n        return Money(self.euros + other.euros, self.cents + other.cents)\n```\n\n## Iterators\n\nYou can make an object iterable (usable in a `for` loop) by implementing `__iter__` and `__next__`.\n\n```python\nclass Counter:\n    def __init__(self, limit):\n        self.limit = limit\n        self.value = 0\n\n    def __iter__(self):\n        self.value = 0\n        return self\n\n    def __next__(self):\n        if self.value < self.limit:\n            self.value += 1\n            return self.value\n        else:\n            raise StopIteration\n```\n",
+        "CAS": "\n# Técnicas de programación orientada a objetos\n\n## Sobrecarga de operadores\n\nPuedes definir cómo funcionan operadores como `+`, `<\u0010`, `==` para tus clases implementando métodos especiales.\n\n- `__add__(self, other)`: `+`\n- `__sub__(self, other)`: `-`\n- `__lt__(self, other)`: `<`\n- `__gt__(self, other)`: `> `\n- `__eq__(self, other)`: `==`\n\n## Iteradores\n\nPuedes hacer que un objeto sea iterable (utilizable en un bucle `for`) implementando `__iter__` y `__next__`.\n",
+        "EUS": "\n# Objektuetara bideratutako programazio-teknikak\n\n## Eragileen gainkarga\n\nZure klaseetarako `+`, `<\u0010`, `==` bezalako eragileek nola funtzionatzen duten defini dezakezu metodo bereziak inplementatuz.\n\n- `__add__(self, other)`: `+`\n- `__sub__(self, other)`: `-`\n- `__lt__(self, other)`: `<`\n- `__gt__(self, other)`: `> `\n- `__eq__(self, other)`: `==`\n\n## Iteratzaileak\n\nObjektu bat iteragarri egin dezakezu ( `for` begizta batean erabilgarria) `__iter__` eta `__next__` inplementatuz.\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-05_money",
+      "title": {
+        "ENG": "Money",
+        "CAS": "Dinero",
+        "EUS": "Dirua"
+      },
+      "description": {
+        "ENG": "Create class Money with euros and cents. Implement __str__, __eq__, __lt__, __gt__, __add__, __sub__. Handle cent overflow/underflow correctly.",
+        "CAS": "Crea clase Money con euros y céntimos. Implementa operadores. Maneja correctamente el desbordamiento de céntimos.",
+        "EUS": "Sortu Money klasea euro eta zentimoekin. Inplementatu eragileak. Kudeatu zentimoen gainezkatzea behar bezala."
+      },
+      "initialCode": "# Write your solution here\nclass Money:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestMoney(unittest.TestCase):\n    def test_add(self):\n        m1 = Money(1, 50)\n        m2 = Money(0, 60)\n        m3 = m1 + m2\n        self.assertEqual(str(m3), \"2.10e\")\n    def test_sub(self):\n        m1 = Money(10, 0)\n        m2 = Money(2, 50)\n        m3 = m1 - m2\n        self.assertEqual(str(m3), \"7.50e\")\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-07_simple_date",
+      "title": {
+        "ENG": "Simple Date",
+        "CAS": "Fecha simple",
+        "EUS": "Data sinplea"
+      },
+      "description": {
+        "ENG": "Create class SimpleDate (day, month, year). Implement <, >, !=, ==, +, -. Assume 30 days per month for simplicity.",
+        "CAS": "Crea clase SimpleDate. Implementa operadores. Asume 30 días por mes.",
+        "EUS": "Sortu SimpleDate klasea. Inplementatu eragileak. Onartu hilabeteko 30 egun."
+      },
+      "initialCode": "# Write your solution here\nclass SimpleDate:\n    pass\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-07_iterable_shopping_list",
+      "title": {
+        "ENG": "Iterable shopping list",
+        "CAS": "Lista de compras iterable",
+        "EUS": "Erosketa-zerrenda iteragarria"
+      },
+      "description": {
+        "ENG": "Create class ShoppingList. Make it iterable using __iter__ and __next__.",
+        "CAS": "Crea clase ShoppingList. Hazla iterable.",
+        "EUS": "Sortu ShoppingList klasea. Egin iteragarria."
+      },
+      "initialCode": "# Write your solution here\nclass ShoppingList:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestIterable(unittest.TestCase):\n    def test_iter(self):\n        sl = ShoppingList()\n        sl.add(\"Milk\", 1)\n        sl.add(\"Bread\", 2)\n        items = []\n        for item in sl:\n            items.append(item)\n        self.assertEqual(len(items), 2)\n"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "part6-3",
+  "title": {
+    "ENG": "Handling errors",
+    "CAS": "Manejando errores",
+    "EUS": "Erroreak kudeatzen"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Handling errors\n\nErrors that occur while the program is running are called _exceptions_. You can handle them using `try` and `except`.\n\n```python\ntry:\n    number = int(input(\"Give a number: \"))\nexcept ValueError:\n    print(\"That is not a number!\")\n```\n\n## Raising exceptions\n\nYou can raise exceptions using the `raise` command.\n\n```python\ndef factorial(n):\n    if n < 0:\n        raise ValueError(\"Factorial is not defined for negative numbers\")\n    # ...\n```\n",
+        "CAS": "\n# Manejando errores\n\nLos errores que ocurren mientras el programa se ejecuta se llaman _excepciones_. Puedes manejarlas usando `try` y `except`.\n\n```python\ntry:\n    numero = int(input(\"Dame un número: \"))\nexcept ValueError:\n    print(\"¡Eso no es un número!\")\n```\n\n## Lanzando excepciones\n\nPuedes lanzar excepciones usando el comando `raise`.\n\n```python\ndef factorial(n):\n    if n < 0:\n        raise ValueError(\"El factorial no está definido para números negativos\")\n    # ...\n```\n",
+        "EUS": "\n# Erroreak kudeatzen\n\nPrograma exekutatzen ari denean gertatzen diren erroreei _salbuespenak_ deitzen zaie. `try` eta `except` erabiliz kudea ditzakezu.\n\n```python\ntry:\n    zenbakia = int(input(\"Eman zenbaki bat: \"))\nexcept ValueError:\n    print(\"Hori ez da zenbaki bat!\")\n```\n\n## Salbuespenak jaurtitzen\n\nSalbuespenak jaurti ditzakezu `raise` komandoa erabiliz.\n\n```python\ndef faktoriala(n):\n    if n < 0:\n        raise ValueError(\"Faktoriala ez dago definituta zenbaki negatiboetarako\")\n    # ...\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part06-07_read_input",
+      "title": {
+        "ENG": "Reading input",
+        "CAS": "Leyendo entrada",
+        "EUS": "Sarrera irakurtzen"
+      },
+      "description": {
+        "ENG": "Write a function read_input(lower_limit, upper_limit) which asks the user for an integer. If the input is not an integer or is not within bounds, it prints an error and asks again.",
+        "CAS": "Escribe una función leer_entrada(limite_inferior, limite_superior) que pida un entero. Si no es válido o está fuera de rango, imprime error y pide de nuevo.",
+        "EUS": "Idatzi sarrera_irakurri(behe_muga, goi_muga) funtzio bat, zenbaki oso bat eskatzen duena. Sarrera ez bada zenbakia edo mugetatik kanpo badago, errorea inprimatu eta berriro eskatu."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nfrom unittest.mock import patch\n\nclass TestRead(unittest.TestCase):\n    def test_run(self):\n        # We need to simulate multiple inputs: \"a\" (fail), \"5\" (fail range?), \"10\" (ok)\n        pass\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part06-08_parameter_validation",
+      "title": {
+        "ENG": "Parameter validation",
+        "CAS": "Validación de parámetros",
+        "EUS": "Parametroen balidazioa"
+      },
+      "description": {
+        "ENG": "Write a function new_person(name, age). Raise ValueError if name is empty or split in two words is shorter than 2 items (no surname), or if age is < 0 or > 150.",
+        "CAS": "Escribe una función nueva_persona(nombre, edad). Lanza ValueError si el nombre está vacío, no tiene apellido, o la edad es < 0 o > 150.",
+        "EUS": "Idatzi pertsona_berria(izena, adina). Jaurti ValueError izena hutsik badago, abizenik ez badu, edo adina < 0 edo > 150 bada."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestParam(unittest.TestCase):\n    def test_run(self):\n        try:\n            run_student_code(code_to_run=\"new_person('', 20)\")\n            self.fail(\"Should raise ValueError for empty name\")\n        except ValueError:\n            pass\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part06-09_incorrect_lotto_numbers",
+      "title": {
+        "ENG": "Incorrect lotto numbers",
+        "CAS": "Números de lotería incorrectos",
+        "EUS": "Loteria zenbaki okerrak"
+      },
+      "description": {
+        "ENG": "Read 'lottery_numbers.csv'. Each line has 'week x;1,2,3...'. Filter out lines with invalid format (week number not int, numbers not ints, not 7 numbers, numbers not 1-39). Write correct lines to 'correct_numbers.csv'.",
+        "CAS": "Lee 'lottery_numbers.csv'. Filtra líneas con formato inválido. Escribe las líneas correctas en 'correct_numbers.csv'.",
+        "EUS": "Irakurri 'lottery_numbers.csv'. Iragazi formatu baliogabea duten lerroak. Idatzi lerro zuzenak 'correct_numbers.csv' fitxategian."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestLotto(unittest.TestCase):\n    pass\n"
+    }
+  ]
+}

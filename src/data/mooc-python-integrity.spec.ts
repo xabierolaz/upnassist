@@ -1,40 +1,34 @@
 import { describe, it, expect } from 'vitest';
-import { courseStructure, loadSection } from './mooc-exercises';
+import { moocExercises } from './mooc-exercises';
 
 describe('Python Snippet Integrity (Deep Audit)', () => {
   
-  it('should verify all python exercises for syntax integrity', async () => {
-      let checkedExercises = 0;
+  moocExercises.forEach((exercise) => {
+    describe(`Exercise: ${exercise.id}`, () => {
+      
+      it('should have balanced brackets/quotes in initialCode', () => {
+        const code = exercise.initialCode;
+        expect(isBalanced(code)).toBe(true);
+      });
 
-      for (const pageInfo of courseStructure) {
-          const page = await loadSection(pageInfo.id);
-          if (!page) continue;
+      it('should have balanced brackets/quotes in testCode', () => {
+        const code = exercise.testCode;
+        if (code) {
+            expect(isBalanced(code)).toBe(true);
+            expect(code).toContain('import unittest');
+        }
+      });
 
-          const exercises = page.blocks.filter(b => b.type === 'exercise');
-          
-          for (const exercise of exercises) {
-              const id = exercise.exerciseId || 'unknown';
-              
-              // Check Balanced Code
-              expect(isBalanced(exercise.initialCode || ''), `Unbalanced initialCode in ${id}`).toBe(true);
-              
-              if (exercise.testCode && exercise.testCode !== 'pass') {
-                  expect(isBalanced(exercise.testCode), `Unbalanced testCode in ${id}`).toBe(true);
-                  expect(exercise.testCode).toContain('import unittest');
-              }
-
-              // Check Suspicious Characters
-              const forbidden = ['\uFFFD', '\u0000', '\u0008'];
-              forbidden.forEach(char => {
-                  expect(exercise.initialCode).not.toContain(char);
-                  if(exercise.testCode) expect(exercise.testCode).not.toContain(char);
-              });
-
-              checkedExercises++;
-          }
-      } 
-      console.log(`Audited ${checkedExercises} Python exercises.`);
-  }, 60000);
+      it('should not contain suspicious control characters', () => {
+        // Buscamos caracteres que suelen indicar errores de pegado o codificación
+        const forbidden = ['\uFFFD', '\u0000', '\u0008'];
+        forbidden.forEach(char => {
+            expect(exercise.initialCode).not.toContain(char);
+            expect(exercise.testCode).not.toContain(char);
+        });
+      });
+    });
+  });
 });
 
 function isBalanced(code: string): boolean {
@@ -49,8 +43,7 @@ function isBalanced(code: string): boolean {
     for (let i = 0; i < code.length; i++) {
         const char = code[i];
         
-        // Simple string parsing logic
-        if ((char === "'" || char === '"') && (i === 0 || code[i-1] !== '\\')) {
+        if ((char === "'" || char === '"') && code[i-1] !== '\\') {
             if (!inString) {
                 inString = true;
                 stringChar = char;
@@ -65,7 +58,7 @@ function isBalanced(code: string): boolean {
         if (pairs[char]) {
             stack.push(char);
         } else if (closeToOpen[char]) {
-            if (stack.length === 0 || stack.pop() !== closeToOpen[char]) return false;
+            if (stack.pop() !== closeToOpen[char]) return false;
         }
     }
     return stack.length === 0;

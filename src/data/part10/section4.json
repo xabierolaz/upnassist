@@ -1,0 +1,50 @@
+{
+  "id": "part10-4",
+  "title": {
+    "ENG": "Developing a larger application",
+    "CAS": "Desarrollando una aplicación más grande",
+    "EUS": "Aplikazio handiago bat garatzen"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Developing a larger application\n\nWhen developing larger applications, it's important to separate responsibilities.\n\n- **Application Logic**: The core data and operations (e.g., `PhoneBook`).\n- **User Interface**: Handles user interaction (e.g., `PhoneBookApplication`).\n- **File Handling**: Manages data persistence (e.g., `FileHandler`).\n\n```python\nclass PhoneBook:\n    def __init__(self):\n        self.numbers = {}\n\n    def add(self, name, number):\n        self.numbers[name] = number\n\nclass PhoneBookUI:\n    def __init__(self):\n        self.book = PhoneBook()\n\n    def run(self):\n        # ... loop for commands ...\n        pass\n```\n",
+        "CAS": "\n# Desarrollando una aplicación más grande\n\nAl desarrollar aplicaciones grandes, es importante separar responsabilidades.\n\n- **Lógica de la aplicación**: Los datos y operaciones centrales (ej. `AgendaTelefonica`).\n- **Interfaz de usuario**: Maneja la interacción con el usuario (ej. `AplicacionAgenda`).\n- **Manejo de archivos**: Gestiona la persistencia de datos (ej. `ManejadorArchivos`).\n",
+        "EUS": "\n# Aplikazio handiago bat garatzen\n\nAplikazio handiagoak garatzerakoan, garrantzitsua da ardurak bereiztea.\n\n- **Aplikazioaren logika**: Datu nagusiak eta eragiketak (adib. `TelefonoGida`).\n- **Erabiltzaile-interfazea**: Erabiltzailearen interakzioa kudeatzen du (adib. `GidaAplikazioa`).\n- **Fitxategien kudeaketa**: Datuen iraunkortasuna kudeatzen du (adib. `FitxategiKudeatzailea`).\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-08_simple_phone_book",
+      "title": {
+        "ENG": "Simple Phone Book",
+        "CAS": "Agenda telefónica simple",
+        "EUS": "Telefono-gida sinplea"
+      },
+      "description": {
+        "ENG": "Create class PhoneBook with methods add_number(name, number) and get_number(name). Store data in a dictionary.",
+        "CAS": "Crea clase PhoneBook con métodos add_number y get_number.",
+        "EUS": "Sortu PhoneBook klasea add_number eta get_number metodoekin."
+      },
+      "initialCode": "# Write your solution here\nclass PhoneBook:\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestPhoneBook(unittest.TestCase):\n    def test_run(self):\n        pb = PhoneBook()\n        pb.add_number(\"Eric\", \"123\")\n        self.assertEqual(pb.get_number(\"Eric\"), \"123\")\n        self.assertIsNone(pb.get_number(\"Alice\"))\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part10-09_course_records",
+      "title": {
+        "ENG": "Course Records",
+        "CAS": "Registros de cursos",
+        "EUS": "Ikastaroen erregistroak"
+      },
+      "description": {
+        "ENG": "Create an application for tracking course statistics (name, grade, credits). Separate logic (CourseRecords) and UI (CourseRecordsUI). Support adding courses, getting stats for a course, and stats for all.",
+        "CAS": "Crea aplicación para rastrear estadísticas de cursos. Separa lógica y UI.",
+        "EUS": "Sortu ikastaroen estatistikak jarraitzeko aplikazioa. Bereizi logika eta UI."
+      },
+      "initialCode": "# Write your solution here\nclass CourseRecords:\n    pass\n\nclass CourseRecordsUI:\n    pass\n",
+      "testCode": "pass"
+    }
+  ]
+}

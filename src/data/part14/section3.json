@@ -1,0 +1,34 @@
+{
+  "id": "part14-3",
+  "title": {
+    "ENG": "Finishing the game",
+    "CAS": "Terminando el juego",
+    "EUS": "Jokoa amaitzen"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Finishing the game\n\nWe add a move counter, win condition, and controls to restart/exit.\n\n## Checking if solved\n\n```python\ndef game_solved(self):\n    for y in range(self.height):\n        for x in range(self.width):\n            if self.map[y][x] in [2, 6]: # Empty target or robot on target\n                return False\n    return True\n```\n",
+        "CAS": "\n# Terminando el juego\n\nAñadimos contador de movimientos, condición de victoria y controles.\n\n## Comprobar si está resuelto\n\n```python\ndef game_solved(self):\n    for y in range(self.height):\n        for x in range(self.width):\n            if self.map[y][x] in [2, 6]: # Objetivo vacío o robot en objetivo\n                return False\n    return True\n```\n",
+        "EUS": "\n# Jokoa amaitzen\n\nMugimendu kontagailua, irabazteko baldintza eta kontrolak gehitzen ditugu.\n\n## Ebatzita dagoen egiaztatzen\n\n```python\ndef game_solved(self):\n    for y in range(self.height):\n        for x in range(self.width):\n            if self.map[y][x] in [2, 6]: # Helburu hutsa edo robota helburuan\n                return False\n    return True\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part14-03_finished_sokoban",
+      "title": {
+        "ENG": "Finished Sokoban",
+        "CAS": "Sokoban terminado",
+        "EUS": "Sokoban amaituta"
+      },
+      "description": {
+        "ENG": "Implement the full Sokoban game with move counter, win check, and restart functionality.",
+        "CAS": "Implementa el juego Sokoban completo con contador, victoria y reinicio.",
+        "EUS": "Inplementatu Sokoban joko osoa kontagailuarekin, garaipenarekin eta berrabiaraztearekin."
+      },
+      "initialCode": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n",
+      "testCode": "pass"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "part7-4",
+  "title": {
+    "ENG": "Data processing",
+    "CAS": "Procesamiento de datos",
+    "EUS": "Datuen prozesamendua"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Data processing\n\n## Reading CSV files\n\nThe `csv` module helps processing CSV files.\n\n```python\nimport csv\n\nwith open(\"data.csv\") as f:\n    for line in csv.reader(f, delimiter=\";\"):\n        print(line)\n```\n\n## Reading JSON files\n\nThe `json` module allows reading and writing JSON data.\n\n```python\nimport json\n\ndata = '[{\"name\": \"Python\", \"year\": 1991}]'\nparsed = json.loads(data)\nprint(parsed[0][\"name\"])\n```\n",
+        "CAS": "\n# Procesamiento de datos\n\n## Leyendo archivos CSV\n\nEl módulo `csv` ayuda a procesar archivos CSV.\n\n```python\nimport csv\n\nwith open(\"datos.csv\") as f:\n    for linea in csv.reader(f, delimiter=\";\"):\n        print(linea)\n```\n\n## Leyendo archivos JSON\n\nEl módulo `json` permite leer y escribir datos JSON.\n\n```python\nimport json\n\ndatos = '[{\"nombre\": \"Python\", \"año\": 1991}]'\nprocesado = json.loads(datos)\nprint(procesado[0][\"nombre\"])\n```\n",
+        "EUS": "\n# Datuen prozesamendua\n\n## CSV fitxategiak irakurtzen\n\n`csv` moduluak CSV fitxategiak prozesatzen laguntzen du.\n\n```python\nimport csv\n\nwith open(\"datuak.csv\") as f:\n    for lerroa in csv.reader(f, delimiter=\";\"):\n        print(lerroa)\n```\n\n## JSON fitxategiak irakurtzen\n\n`json` moduluak JSON datuak irakurtzea eta idaztea ahalbidetzen du.\n\n```python\nimport json\n\ndatuak = '[{\"izena\": \"Python\", \"urtea\": 1991}]'\nprozesatua = json.loads(datuak)\nprint(prozesatua[0][\"izena\"])\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part07-09_json_files",
+      "title": {
+        "ENG": "Handling JSON files",
+        "CAS": "Manejando archivos JSON",
+        "EUS": "JSON fitxategiak kudeatzen"
+      },
+      "description": {
+        "ENG": "Write a function print_persons(filename), which reads a JSON file containing person data (name, age, hobbies) and prints it formatted.",
+        "CAS": "Escribe una función imprimir_personas(fichero), que lea un JSON con datos de personas (nombre, edad, aficiones) y lo imprima formateado.",
+        "EUS": "Idatzi inprimatu_pertsonak(fitxategia) funtzioa, pertsona datuak (izena, adina, zaletasunak) dituen JSON bat irakurri eta formateatuta inprimatzen duena."
+      },
+      "initialCode": "# Write your solution here\nimport json\n",
+      "testCode": "\nimport unittest\nfrom unittest.mock import patch, mock_open\n\nclass TestJson(unittest.TestCase):\n    def test_run(self):\n        json_data = '[{\"name\": \"Peter\", \"age\": 20, \"hobbies\": [\"football\"]}]'\n        with patch('builtins.open', mock_open(read_data=json_data)):\n            out = run_student_code(code_to_run=\"print_persons('file.json')\")\n            self.assertIn(\"Peter\", out)\n            self.assertIn(\"20\", out)\n            self.assertIn(\"football\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part07-10_course_statistics",
+      "title": {
+        "ENG": "Course statistics",
+        "CAS": "Estadísticas del curso",
+        "EUS": "Ikastaro estatistikak"
+      },
+      "description": {
+        "ENG": "Write a function retrieve_all() which retrieves course data from 'https://studies.cs.helsinki.fi/stats-mock/api/courses' using urllib. Return a list of active courses (enabled: true). This is a mock URL for the exercise.",
+        "CAS": "Escribe retrieve_all() que recupere datos de 'https://studies.cs.helsinki.fi/stats-mock/api/courses' usando urllib. Devuelve cursos activos.",
+        "EUS": "Idatzi retrieve_all() funtzioa, 'https://studies.cs.helsinki.fi/stats-mock/api/courses'-tik ikastaro datuak berreskuratzeko urllib erabiliz. Itzuli ikastaro aktiboak."
+      },
+      "initialCode": "# Write your solution here\nimport urllib.request\nimport json\n",
+      "testCode": "\nimport unittest\nfrom unittest.mock import MagicMock, patch\n\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        # We need to mock urllib.request.urlopen\n        mock_response = MagicMock()\n        mock_response.read.return_value = b'[{\"fullName\": \"Python\", \"enabled\": true}, {\"fullName\": \"Java\", \"enabled\": false}]'\n        \n        with patch('urllib.request.urlopen', return_value=mock_response):\n            out = run_student_code(code_to_run=\"print(retrieve_all())\")\n            self.assertIn(\"Python\", out)\n            self.assertNotIn(\"Java\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part07-11_who_cheated",
+      "title": {
+        "ENG": "Who cheated",
+        "CAS": "¿Quién hizo trampa?",
+        "EUS": "Nork egin du iruzur"
+      },
+      "description": {
+        "ENG": "Read 'start_times.csv' and 'submissions.csv'. Find students who spent more than 3 hours on tasks. Return a list of cheaters.",
+        "CAS": "Lee 'start_times.csv' y 'submissions.csv'. Encuentra estudiantes que tardaron más de 3 horas. Devuelve lista de tramposos.",
+        "EUS": "Irakurri 'start_times.csv' eta 'submissions.csv'. Aurkitu 3 ordu baino gehiago eman duten ikasleak. Itzuli iruzurgileen zerrenda."
+      },
+      "initialCode": "# Write your solution here\nimport csv\nfrom datetime import datetime, timedelta\n",
+      "testCode": "\nimport unittest\nclass TestCheaters(unittest.TestCase):\n    pass\n"
+    }
+  ]
+}

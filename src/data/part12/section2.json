@@ -1,0 +1,66 @@
+{
+  "id": "part12-2",
+  "title": {
+    "ENG": "Generators",
+    "CAS": "Generadores",
+    "EUS": "Sorgailuak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Generators\n\nGenerators allow you to declare a function that behaves like an iterator. Use the \n`yield` keyword to return data.\n\n```python\ndef count_up_to(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n```\n\n## Generator Comprehensions\n\nSimilar to list comprehensions, but with parentheses.\n\n```python\nsquares = (x*x for x in range(10))\n```\n",
+        "CAS": "\n# Generadores\n\nLos generadores permiten declarar una función que se comporta como un iterador. Usa la palabra clave \n`yield`.\n\n```python\ndef contar_hasta(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n```\n\n## Generadores por comprensión\n\nSimilar a las listas por comprensión, pero con paréntesis.\n\n```python\ncuadrados = (x*x for x in range(10))\n```\n",
+        "EUS": "\n# Sorgailuak\n\nSorgailuek iteratzaile baten moduan jokatzen duen funtzio bat deklaratzeko aukera ematen dute. Erabili \n`yield` gako-hitza.\n\n```python\nn_raino_zenbatu(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n```\n\n## Sorgailu-ulermenak\n\nZerrenda-ulermenen antzekoa, baina parentesiekin.\n\n```python\nkarratuak = (x*x for x in range(10))\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part12-05_even_numbers",
+      "title": {
+        "ENG": "Even numbers",
+        "CAS": "Números pares",
+        "EUS": "Zenbaki bikoitiak"
+      },
+      "description": {
+        "ENG": "Write a generator function even_numbers(beginning: int, maximum: int) that yields even numbers starting from beginning up to maximum.",
+        "CAS": "Escribe función generadora even_numbers.",
+        "EUS": "Idatzi even_numbers sorgailu funtzioa."
+      },
+      "initialCode": "def even_numbers(beginning: int, maximum: int):\n    # write your solution here\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestEven(unittest.TestCase):\n    def test_run(self):\n        gen = even_numbers(2, 6)\n        self.assertEqual(list(gen), [2, 4, 6])\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part12-06_prime_numbers",
+      "title": {
+        "ENG": "Prime numbers",
+        "CAS": "Números primos",
+        "EUS": "Zenbaki lehenak"
+      },
+      "description": {
+        "ENG": "Write a generator function prime_numbers() that yields prime numbers 2, 3, 5, 7, 11... infinitely.",
+        "CAS": "Escribe función generadora prime_numbers que genere primos infinitamente.",
+        "EUS": "Idatzi prime_numbers sorgailu funtzioa, zenbaki lehenak infinituki sortzen dituena."
+      },
+      "initialCode": "def prime_numbers():\n    # write your solution here\n    pass\n",
+      "testCode": "\nimport unittest\nclass TestPrimes(unittest.TestCase):\n    def test_run(self):\n        gen = prime_numbers()\n        primes = [next(gen) for _ in range(5)]\n        self.assertEqual(primes, [2, 3, 5, 7, 11])\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part12-07_random_words",
+      "title": {
+        "ENG": "Random words",
+        "CAS": "Palabras aleatorias",
+        "EUS": "Ausazko hitzak"
+      },
+      "description": {
+        "ENG": "Write a generator function word_generator(characters: str, length: int, amount: int) that yields 'amount' random words of length 'length' using 'characters'.",
+        "CAS": "Escribe generador de palabras aleatorias.",
+        "EUS": "Idatzi ausazko hitzen sorgailua."
+      },
+      "initialCode": "def word_generator(characters: str, length: int, amount: int):\n    # write your solution here\n    pass\n",
+      "testCode": "pass"
+    }
+  ]
+}

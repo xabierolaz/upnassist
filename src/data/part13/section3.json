@@ -1,0 +1,50 @@
+{
+  "id": "part13-3",
+  "title": {
+    "ENG": "Events",
+    "CAS": "Eventos",
+    "EUS": "Gertaerak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Events\n\nPygame handles inputs through events.\n\n```python\nfor event in pygame.event.get():\n    if event.type == pygame.KEYDOWN:\n        if event.key == pygame.K_LEFT:\n            print(\"Left\")\n    if event.type == pygame.MOUSEBUTTONDOWN:\n        print(event.pos)\n```\n",
+        "CAS": "\n# Eventos\n\nPygame maneja las entradas a través de eventos.\n\n```python\nfor evento in pygame.event.get():\n    if evento.type == pygame.KEYDOWN:\n        if evento.key == pygame.K_LEFT:\n            print(\"Izquierda\")\n    if evento.type == pygame.MOUSEBUTTONDOWN:\n        print(evento.pos)\n```\n",
+        "EUS": "\n# Gertaerak\n\nPygame-k sarrerak gertaeren bidez kudeatzen ditu.\n\n```python\nfor gertaera in pygame.event.get():\n    if gertaera.type == pygame.KEYDOWN:\n        if gertaera.key == pygame.K_LEFT:\n            print(\"Ezkerra\")\n    if gertaera.type == pygame.MOUSEBUTTONDOWN:\n        print(gertaera.pos)\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-09_four_directions",
+      "title": {
+        "ENG": "Four directions",
+        "CAS": "Cuatro direcciones",
+        "EUS": "Lau norabide"
+      },
+      "description": {
+        "ENG": "Make the robot move in four directions using arrow keys.",
+        "CAS": "Haz que el robot se mueva en cuatro direcciones usando las flechas.",
+        "EUS": "Egin robota lau norabidetan mugitu dadin gezi-teklekin."
+      },
+      "initialCode": "import pygame\n\n# ...\n",
+      "testCode": "pass"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-10_robot_location",
+      "title": {
+        "ENG": "Robot location",
+        "CAS": "Ubicación del robot",
+        "EUS": "Robotaren kokapena"
+      },
+      "description": {
+        "ENG": "Make the robot move to the location where the mouse is clicked.",
+        "CAS": "Haz que el robot se mueva a la ubicación donde se hace clic con el ratón.",
+        "EUS": "Egin robota saguarekin klik egindako lekura mugitu dadin."
+      },
+      "initialCode": "import pygame\n\n# ...\n",
+      "testCode": "pass"
+    }
+  ]
+}

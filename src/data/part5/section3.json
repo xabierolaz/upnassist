@@ -1,0 +1,138 @@
+{
+  "id": "part5-3",
+  "title": {
+    "ENG": "Dictionary",
+    "CAS": "Diccionario",
+    "EUS": "Hiztegia"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Dictionary\n\nA dictionary is a collection of key-value pairs.\n\n```python\nmy_dict = {\"name\": \"Peter\", \"age\": 35}\nprint(my_dict[\"name\"])\n```\n\n```text\nPeter\n```\n\n## Adding and changing values\n\n```python\nmy_dict[\"age\"] = 36\nmy_dict[\"height\"] = 180\nprint(my_dict)\n```\n\n```text\n{'name': 'Peter', 'age': 36, 'height': 180}\n```\n",
+        "CAS": "\n# Diccionario\n\nUn diccionario es una colección de pares clave-valor.\n\n```python\nmi_dicc = {\"nombre\": \"Peter\", \"edad\": 35}\nprint(mi_dicc[\"nombre\"])\n```\n\n```text\nPeter\n```\n\n## Añadir y cambiar valores\n\n```python\nmi_dicc[\"edad\"] = 36\nmi_dicc[\"altura\"] = 180\nprint(mi_dicc)\n```\n\n```text\n{'nombre': 'Peter', 'edad': 36, 'altura': 180}\n```\n",
+        "EUS": "\n# Hiztegia\n\nHiztegia gako-balio bikoteen bilduma bat da.\n\n```python\nnire_hiztegia = {\"izena\": \"Peter\", \"adina\": 35}\nprint(nire_hiztegia[\"izena\"])\n```\n\n```text\nPeter\n```\n\n## Balioak gehitu eta aldatu\n\n```python\nnire_hiztegia[\"adina\"] = 36\nnire_hiztegia[\"altuera\"] = 180\nprint(nire_hiztegia)\n```\n\n```text\n{'izena': 'Peter', 'adina': 36, 'altuera': 180}\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-13_times_ten",
+      "title": {
+        "ENG": "Times ten",
+        "CAS": "Por diez",
+        "EUS": "Hamar aldiz"
+      },
+      "description": {
+        "ENG": "Write a function named times_ten(start_index, end_index), which creates and returns a dictionary. The keys should be numbers between start and end (inclusive), and the value should be the key multiplied by ten.",
+        "CAS": "Escribe una función llamada por_diez(inicio, fin), que cree y devuelva un diccionario. Las claves son números entre inicio y fin, y el valor es la clave por diez.",
+        "EUS": "Idatzi hamar_aldiz(hasiera, amaiera) izeneko funtzio bat. Hiztegi bat sortu eta itzuli behar du. Gakoak hasiera eta amaiera arteko zenbakiak dira, eta balioa gakoa bider hamar."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    d = times_ten(1, 3)\n    print(d)",
+      "testCode": "\nimport unittest\nclass TestTen(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # {1: 10, 2: 20, 3: 30}\n        self.assertIn(\"1: 10\", out)\n        self.assertIn(\"3: 30\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-14_factorials",
+      "title": {
+        "ENG": "Factorials",
+        "CAS": "Factoriales",
+        "EUS": "Faktorialak"
+      },
+      "description": {
+        "ENG": "Write a function named factorials(n), which returns a dictionary. The dictionary should contain the factorials of numbers from 1 to n.",
+        "CAS": "Escribe una función llamada factoriales(n), que devuelva un diccionario con los factoriales de 1 a n.",
+        "EUS": "Idatzi faktorialak(n) izeneko funtzio bat. Hiztegi bat itzuli behar du 1etik n-rako zenbakien faktorialekin."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    k = factorials(5)\n    print(k[1])\n    print(k[3])\n    print(k[5])",
+      "testCode": "\nimport unittest\nclass TestFact(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 1, 6, 120\n        self.assertIn(\"120\", out)\n"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n## Traversing a dictionary\n\nYou can traverse keys using a \tfor\t loop:\n\n```python\nfor key in my_dict:\n    print(key, my_dict[key])\n```\n\nOr both keys and values using \t.items()\t:\n\n```python\nfor key, value in my_dict.items():\n    print(key, value)\n```\n",
+        "CAS": "\n## Recorriendo un diccionario\n\nPuedes recorrer las claves con un bucle \tfor\t:\n\n```python\nfor clave in mi_dicc:\n    print(clave, mi_dicc[clave])\n```\n\nO claves y valores usando \t.items()\t:\n\n```python\nfor clave, valor in mi_dicc.items():\n    print(clave, valor)\n```\n",
+        "EUS": "\n## Hiztegi bat zeharkatzen\n\nGakoak zeharka ditzakezu \tfor\t begizta erabiliz:\n\n```python\nfor gakoa in nire_hiztegia:\n    print(gakoa, nire_hiztegia[gakoa])\n```\n\nEdo gakoak eta balioak \t.items()\t erabiliz:\n\n```python\nfor gakoa, balioa in nire_hiztegia.items():\n    print(gakoa, balioa)\n```\n"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-15_histogram",
+      "title": {
+        "ENG": "Histogram",
+        "CAS": "Histograma",
+        "EUS": "Histograma"
+      },
+      "description": {
+        "ENG": "Write a function named histogram(string), which prints a histogram representing the number of times each letter appears in the string. Each occurrence is represented by a star.",
+        "CAS": "Escribe una función llamada histograma(cadena), que imprima un histograma de las letras. Cada aparición es una estrella.",
+        "EUS": "Idatzi histograma(katea) izeneko funtzio bat. Letra bakoitzaren agerraldi kopurua irudikatzen duen histograma inprimatu behar du. Agerraldi bakoitza izar bat da."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    histogram(\"abba\")",
+      "testCode": "\nimport unittest\nclass TestHist(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # a **\n        # b **\n        self.assertIn(\"a **\", out)\n        self.assertIn(\"b **\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-16_phone_book_v1",
+      "title": {
+        "ENG": "Phone book, version 1",
+        "CAS": "Agenda telefónica, versión 1",
+        "EUS": "Telefono gida, 1. bertsioa"
+      },
+      "description": {
+        "ENG": "Write a phone book program. Commands: 1 search, 2 add, 3 quit. Adding saves a name and number. Search prints the number or 'no number'.",
+        "CAS": "Escribe una agenda. Comandos: 1 buscar, 2 añadir, 3 salir. Añadir guarda nombre y número. Buscar imprime el número o 'no number'.",
+        "EUS": "Idatzi telefono gida bat. Komandoak: 1 bilatu, 2 gehitu, 3 irten. Gehitzeak izena eta zenbakia gordetzen ditu. Bilatzeak zenbakia edo 'no number' inprimatzen du."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestPhone1(unittest.TestCase):\n    def test_run(self):\n        # 2 -> Pekka -> 123\n        # 1 -> Pekka -> 123\n        # 3\n        out = run_student_code(inputs=['2', 'Pekka', '123', '1', 'Pekka', '3'])\n        self.assertIn(\"123\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-17_phone_book_v2",
+      "title": {
+        "ENG": "Phone book, version 2",
+        "CAS": "Agenda telefónica, versión 2",
+        "EUS": "Telefono gida, 2. bertsioa"
+      },
+      "description": {
+        "ENG": "Extend the phone book. Multiple numbers can be added for the same person.",
+        "CAS": "Extiende la agenda. Se pueden añadir múltiples números para la misma persona.",
+        "EUS": "Zabaldu telefono gida. Pertsona berarentzat zenbaki bat baino gehiago gehi daitezke."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestPhone2(unittest.TestCase):\n    def test_run(self):\n        # 2 -> Pekka -> 123\n        # 2 -> Pekka -> 456\n        # 1 -> Pekka\n        # 3\n        out = run_student_code(inputs=['2', 'Pekka', '123', '2', 'Pekka', '456', '1', 'Pekka', '3'])\n        self.assertIn(\"123\", out)\n        self.assertIn(\"456\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-18_invert_dictionary",
+      "title": {
+        "ENG": "Invert a dictionary",
+        "CAS": "Invertir un diccionario",
+        "EUS": "Hiztegia alderantzikatu"
+      },
+      "description": {
+        "ENG": "Write a function named invert(dictionary), which swaps keys and values in place. Assume values are unique and immutable.",
+        "CAS": "Escribe una función llamada invertir(diccionario), que intercambie claves y valores in-situ. Asume valores únicos.",
+        "EUS": "Idatzi alderantzikatu(hiztegia) izeneko funtzio bat. Gakoak eta balioak trukatzen ditu bertan. Onartu balio bakarrak direla."
+      },
+      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    s = {1: \"first\", 2: \"second\"}\n    invert(s)\n    print(s)",
+      "testCode": "\nimport unittest\nclass TestInvert(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # {'first': 1, 'second': 2}\n        self.assertIn(\"'first': 1\", out)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-19_numbers_to_names",
+      "title": {
+        "ENG": "Numbers to names",
+        "CAS": "Números a nombres",
+        "EUS": "Zenbakiak izenetara"
+      },
+      "description": {
+        "ENG": "Write a function which takes a dictionary {number: name} and returns a new dictionary {name: number}. Handle duplicate names by keeping the last one.",
+        "CAS": "Escribe una función que tome {numero: nombre} y devuelva {nombre: numero}. Si hay nombres duplicados, quédate con el último.",
+        "EUS": "Idatzi funtzio bat {zenbakia: izena} hartu eta {izena: zenbakia} itzultzen duena. Izen errepikatuak badaude, mantendu azkena."
+      },
+      "initialCode": "# Write your solution here\n",
+      "testCode": "\nimport unittest\nclass TestNumName(unittest.TestCase):\n    # Testing logic would be similar to invert but new dict return\n    pass\n"
+    }
+  ]
+}
