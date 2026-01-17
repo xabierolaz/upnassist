@@ -15,8 +15,41 @@ const MoocCoursePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // State for collapsible parts. Default Part 1 open.
+  const [openParts, setOpenParts] = useState<Record<number, boolean>>({ 1: true });
+  
   const completedExercises = useProgressStore(state => state.completedExercises);
   const { t, currentLang } = useLanguageStore();
+
+  // Group sections by part
+  const sectionsByPart = courseStructure.reduce((acc, section) => {
+    const part = section.part || 1;
+    if (!acc[part]) acc[part] = [];
+    acc[part].push(section);
+    return acc;
+  }, {} as Record<number, typeof courseStructure>);
+
+  // Auto-expand part when active page changes
+  useEffect(() => {
+    const activeSection = courseStructure.find(s => s.id === activePageId);
+    if (activeSection && activeSection.part) {
+        setOpenParts(prev => ({ ...prev, [activeSection.part]: true }));
+    }
+  }, [activePageId]);
+
+  const togglePart = (part: number) => {
+    setOpenParts(prev => ({ ...prev, [part]: !prev[part] }));
+  };
+
+  // Helper for Part Label
+  const getPartLabel = (part: number) => {
+      // Use existing translation for Part 1 if matches, otherwise generic
+      if (part === 1) return t.part1;
+      
+      const prefix = currentLang === 'EUS' ? '' : (currentLang === 'ENG' ? 'Part' : 'Parte');
+      const suffix = currentLang === 'EUS' ? '. Zatia' : '';
+      return `${prefix} ${part}${suffix}`.trim();
+  };
 
   // Load section data when ID changes
   useEffect(() => {
@@ -32,16 +65,6 @@ const MoocCoursePage: React.FC = () => {
     load();
     return () => { isMounted = false; };
   }, [activePageId]);
-
-  // Helper for progress (using structure, but we can't count exercises without loading them all... 
-  // Optimization tradeoff: We won't show 5/5 progress in sidebar unless we cache metadata.
-  // For now, we will check if the *current* page is completed based on loaded data, 
-  // or just show simple "viewed" status if we track that.
-  // Actually, we can check `completedExercises` against a known list of IDs if we had it.
-  // Since we lazy load, we don't know total exercises per section easily without loading.
-  // We will omit the "5/5" counter in sidebar for unloaded sections to save bandwidth, 
-  // or we could pre-calculate it in a separate metadata file. 
-  // For this implementation, we will simplify sidebar progress to just "active".
   
   return (
     <div className="flex h-screen bg-white font-sans overflow-hidden">
@@ -64,24 +87,43 @@ const MoocCoursePage: React.FC = () => {
           <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-bold">{t.university}</p>
         </div>
         
-        <div className="flex-1 overflow-y-auto p-4">
-            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 px-3 mt-4">{t.part1}</h3>
-            <ul className="space-y-1">
-                {courseStructure.map((page) => (
-                    <li key={page.id}>
+        <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-gray-600">
+            {Object.keys(sectionsByPart).map((partKey) => {
+                const part = Number(partKey);
+                const sections = sectionsByPart[part];
+                const isOpen = openParts[part];
+
+                return (
+                    <div key={part} className="mb-2">
                         <button
-                            onClick={() => setActivePageId(page.id)}
-                            className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex justify-between items-center ${
-                                activePageId === page.id
-                                ? 'bg-brand-blue text-white shadow-md transform scale-[1.02]'
-                                : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                            }`}
+                            onClick={() => togglePart(part)}
+                            className="w-full flex justify-between items-center px-4 py-3 bg-gray-800/50 hover:bg-gray-700 rounded-lg text-xs font-bold text-gray-300 uppercase tracking-wider transition-colors"
                         >
-                            <span>{getLocalizedText(page.title, currentLang)}</span>
+                            <span>{getPartLabel(part)}</span>
+                            <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
                         </button>
-                    </li>
-                ))}
-            </ul>
+                        
+                        {isOpen && (
+                            <ul className="mt-1 space-y-0.5 pl-2 border-l-2 border-gray-700 ml-4">
+                                {sections.map((page) => (
+                                    <li key={page.id}>
+                                        <button
+                                            onClick={() => setActivePageId(page.id)}
+                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                                activePageId === page.id
+                                                ? 'bg-brand-blue text-white shadow-sm'
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            }`}
+                                        >
+                                            {getLocalizedText(page.title, currentLang)}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                );
+            })}
         </div>
       </aside>
 
