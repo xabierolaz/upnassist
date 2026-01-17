@@ -44,7 +44,7 @@
         "EUS": "Idatzi lengths funtzioa, hiztegia itzultzen duena hitza:luzera."
       },
       "initialCode": "def lengths(strings: list):\n    # write your solution here\n    pass\n",
-      "testCode": "\nimport unittest\nclass TestLengths(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(lengths([\"a\", \"bb\"])), {\"a\": 1, \"bb\": 2})\n"
+      "testCode": "\nimport unittest\nclass TestLengths(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(lengths([\"a\", \"bb\"]), {\"a\": 1, \"bb\": 2})\n"
     },
     {
       "type": "exercise",

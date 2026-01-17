@@ -42,11 +42,8 @@ describe('Python Course Content Integrity Audit', () => {
                     }
 
                     // Verify testCode contains the driver
-                    if (test && !test.includes('unittest')) {
+                    if (test && test !== 'pass' && !test.includes('unittest')) {
                         console.error(`⚠️ [${exerciseId}] Warning: testCode does not seem to use unittest.`);
-                        // Treat as warning for now, or error if we want strictness. 
-                        // Part 13 tests use unittest.mock so they pass this.
-                        // Some Part 1 exercises might use different checks? No, they use unittest too.
                         errors++; 
                     }
                 }

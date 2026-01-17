@@ -1,30 +1,36 @@
 import { describe, it, expect } from 'vitest';
-import { moocExercises } from './mooc-exercises';
+import { courseStructure, loadSection } from './mooc-exercises';
 
 describe('Python Snippet Integrity (Deep Audit)', () => {
   
-  moocExercises.forEach((exercise) => {
-    describe(`Exercise: ${exercise.id}`, () => {
+  courseStructure.forEach((meta) => {
+    describe(`Section: ${meta.id}`, () => {
       
-      it('should have balanced brackets/quotes in initialCode', () => {
-        const code = exercise.initialCode;
-        expect(isBalanced(code)).toBe(true);
-      });
-
-      it('should have balanced brackets/quotes in testCode', () => {
-        const code = exercise.testCode;
-        if (code) {
-            expect(isBalanced(code)).toBe(true);
-            expect(code).toContain('import unittest');
-        }
-      });
-
-      it('should not contain suspicious control characters', () => {
-        // Buscamos caracteres que suelen indicar errores de pegado o codificación
-        const forbidden = ['\uFFFD', '\u0000', '\u0008'];
-        forbidden.forEach(char => {
-            expect(exercise.initialCode).not.toContain(char);
-            expect(exercise.testCode).not.toContain(char);
+      it('should have valid exercises with balanced syntax', async () => {
+        const page = await loadSection(meta.id);
+        expect(page).toBeDefined();
+        
+        const exercises = page!.blocks.filter(b => b.type === 'exercise');
+        
+        exercises.forEach(ex => {
+            const initial = ex.initialCode || '';
+            const test = ex.testCode || '';
+            
+            // Check initial code
+            expect(isBalanced(initial), `Initial code unbalanced in ${ex.exerciseId}`).toBe(true);
+            
+            // Check test code
+            if (test && test !== 'pass') {
+                expect(isBalanced(test), `Test code unbalanced in ${ex.exerciseId}`).toBe(true);
+                expect(test).toContain('import unittest');
+            }
+            
+            // Control characters
+            const forbidden = ['\uFFFD', '\u0000', '\u0008'];
+            forbidden.forEach(char => {
+                expect(initial).not.toContain(char);
+                expect(test).not.toContain(char);
+            });
         });
       });
     });

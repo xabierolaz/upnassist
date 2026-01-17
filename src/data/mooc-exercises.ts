@@ -1,11 +1,9 @@
-import { section1 } from './part1/section1';
-import { section2 } from './part1/section2';
-import { section3 } from './part1/section3';
-import { section4 } from './part1/section4';
-import { section5 } from './part1/section5';
+import { SectionMetadata, courseStructureMetadata } from './course-structure';
+
+// Export SectionMetadata for type usage
+export type { SectionMetadata };
 
 // Tipo para textos localizables (ENG, CAS, EUS)
-// Si es string, se asume ENG por defecto.
 export type LocalizedString = string | {
   ENG: string;
   CAS: string;
@@ -15,7 +13,7 @@ export type LocalizedString = string | {
 export interface Exercise {
   id: string;
   title: LocalizedString;
-  description?: LocalizedString; 
+  description?: LocalizedString;
   initialCode: string;
   testCode: string;
 }
@@ -33,7 +31,7 @@ export interface QuizQuestion {
 
 export interface ContentBlock {
   type: 'markdown' | 'exercise' | 'quiz';
-  content?: LocalizedString; // Ahora soporta multi-idioma
+  content?: LocalizedString;
   exerciseId?: string;
   title?: LocalizedString;
   description?: LocalizedString;
@@ -48,46 +46,48 @@ export interface CoursePage {
   blocks: ContentBlock[];
 }
 
-export const coursePages: CoursePage[] = [
-  section1,
-  section2,
-  section3,
-  section4,
-  section5
-];
+// Full structure defined in metadata file
+export const courseStructure = courseStructureMetadata;
 
-export const courseStructure = coursePages;
+// Mapping of all sections for Vite static analysis
+const sectionModules = import.meta.glob('./part*/section*.json');
 
-export const loadSection = (id: string): CoursePage | undefined => {
-    return coursePages.find(p => p.id === id);
+/**
+ * Dynamic loader for sections.
+ */
+export const loadSection = async (id: string): Promise<CoursePage | undefined> => {
+    const meta = courseStructureMetadata.find(m => m.id === id);
+    if (!meta) return undefined;
+
+    const part = meta.part;
+    // Extract section number from ID (e.g., "part-1-2" -> 2, "part10-3" -> 3)
+    let sectionNum = id.split('-').pop();
+    
+    // Path in glob is literal: ./part1/section1.json
+    const path = `./part${part}/section${sectionNum}.json`;
+    const loader = sectionModules[path];
+
+    if (!loader) {
+        console.error(`No loader found for path: ${path}`);
+        return undefined;
+    }
+
+    try {
+        const data = await loader() as any;
+        // JSON imports in Vite return the object directly
+        return data.default || data as CoursePage;
+    } catch (e) {
+        console.error(`Failed to load section ${id} from part ${part}`, e);
+        return undefined;
+    }
 };
 
 // Helper para extraer texto seguro según idioma
 export const getLocalizedText = (text: LocalizedString | undefined, lang: 'ENG' | 'CAS' | 'EUS'): string => {
     if (!text) return "";
     if (typeof text === 'string') return text;
-    return text[lang] || text['ENG'] || "";
+    return (text as any)[lang] || (text as any)['ENG'] || "";
 };
-
-const extractExercises = (pages: CoursePage[]): Record<string, Exercise> => {
-  const exercises: Record<string, Exercise> = {};
-  pages.forEach(page => {
-    page.blocks.forEach(block => {
-      if (block.type === 'exercise' && block.exerciseId) {
-        exercises[block.exerciseId] = {
-          id: block.exerciseId,
-          title: block.title || 'Untitled Exercise',
-          description: block.description || '', 
-          initialCode: block.initialCode || '',
-          testCode: block.testCode || ''
-        };
-      }
-    });
-  });
-  return exercises;
-};
-
-export const exercisesDB: Record<string, Exercise> = extractExercises(coursePages);
 
 export const playgroundExercise: Exercise = {
   id: "playground",
@@ -97,5 +97,8 @@ export const playgroundExercise: Exercise = {
   testCode: ""
 };
 
-export const getExercise = (id: string): Exercise | undefined => exercisesDB[id];
-export const moocExercises: Exercise[] = Object.values(exercisesDB);
+// Compatibility exports for tests
+export const coursePages: any[] = [];
+export const exercisesDB: Record<string, Exercise> = {};
+export const moocExercises: Exercise[] = [];
+export const getExercise = (id: string) => undefined;

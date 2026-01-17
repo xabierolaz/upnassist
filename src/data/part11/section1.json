@@ -108,7 +108,7 @@
         "EUS": "Idatzi begin_with_vowel(words: list) funtzioa."
       },
       "initialCode": "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n",
-      "testCode": "\nimport unittest\nclass TestVowel(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(begin_with_vowel([\"apple\", \"Banana\", \"Orange\"])), [\"apple\", \"Orange\"])\n"
+      "testCode": "\nimport unittest\nclass TestVowel(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(begin_with_vowel([\"apple\", \"Banana\", \"Orange\"]), [\"apple\", \"Orange\"])\n"
     },
     {
       "type": "exercise",

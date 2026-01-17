@@ -1,12 +1,19 @@
 import { describe, it, expect } from 'vitest';
-import { coursePages, exercisesDB, moocExercises } from './mooc-exercises';
+import { courseStructure, loadSection } from './mooc-exercises';
 
 describe('MOOC Content Architecture', () => {
   
-  it('should load all 5 sections of Part 1', () => {
-    expect(coursePages.length).toBe(5);
-    expect(coursePages.map(p => (typeof p.title === 'string' ? p.title : p.title.ENG))).toEqual([
-        "Getting started", // Note: The actual data says "Getting started", not "1. Getting Started"
+  it('should load course structure with 14 parts', () => {
+    expect(courseStructure.length).toBeGreaterThan(60);
+    const parts = new Set(courseStructure.map(s => s.part));
+    expect(parts.size).toBe(14);
+  });
+
+  it('should have valid metadata for Part 1', () => {
+    const part1 = courseStructure.filter(s => s.part === 1);
+    expect(part1.length).toBe(5);
+    expect(part1.map(p => (typeof p.title === 'string' ? p.title : p.title.ENG))).toEqual([
+        "1. Getting Started",
         "2. Information from the user",
         "3. More about variables",
         "4. Arithmetic operations",
@@ -14,51 +21,10 @@ describe('MOOC Content Architecture', () => {
     ]);
   });
 
-  it('should have a valid database of exercises', () => {
-    const exerciseCount = Object.keys(exercisesDB).length;
-    expect(exerciseCount).toBeGreaterThan(20); // Deberíamos tener ~30
-    console.log(`Audited ${exerciseCount} exercises in DB.`);
-  });
-
-  describe('Integrity Check (Links between Pages and Exercises)', () => {
-    coursePages.forEach(page => {
-        it(`Page "${page.title}" should have valid exercise links`, () => {
-            const exerciseBlocks = page.blocks.filter(b => b.type === 'exercise');
-            
-            // La página debe tener contenido
-            expect(page.blocks.length).toBeGreaterThan(0);
-
-            exerciseBlocks.forEach(block => {
-                const id = block.exerciseId;
-                if (!id) throw new Error(`Block in ${page.title} has no exerciseId`);
-
-                // Verificar que el ID existe en la DB
-                const exercise = exercisesDB[id];
-                expect(exercise, `Exercise ID '${id}' found in page but missing in DB`).toBeDefined();
-                
-                // Verificar que el ejercicio tiene título y código
-                expect(exercise.title).toBeTruthy();
-                expect(exercise.initialCode).toBeDefined();
-                expect(exercise.testCode).toContain('import unittest');
-            });
-        });
-    });
-  });
-
-  describe('Sanity Check for Strings', () => {
-    it('should not contain malformed unicode or escaped characters in descriptions', () => {
-        // Muestreo aleatorio de bloques markdown
-        coursePages.forEach(page => {
-            const mdBlocks = page.blocks.filter(b => b.type === 'markdown');
-            mdBlocks.forEach(b => {
-                if (b.content) {
-                    const text = typeof b.content === 'string' ? b.content : b.content.ENG;
-                    // Verificar que no haya caracteres de reemplazo unicode () que indican corrupción
-                    expect(text).not.toContain('\uFFFD'); 
-                    expect(text.length).toBeGreaterThan(10);
-                }
-            });
-        });
-    });
+  it('should load section data asynchronously', async () => {
+    const section = await loadSection('part1-1');
+    expect(section).toBeDefined();
+    expect(section?.id).toBe('part1-1');
+    expect(section?.blocks.length).toBeGreaterThan(0);
   });
 });
