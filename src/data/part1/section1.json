@@ -52,7 +52,7 @@
         "EUS": "\"Seitsemän veljestä\" finlandieraz idatzitako lehen eleberrietako bat da. Programa honek anaien izenak ordena alfabetikoan inprimatu beharko lituzke, baina ez dabil ondo. Konpondu ezazu."
       },
       "initialCode": "print(\"Simeoni\")\nprint(\"Juhani\")\nprint(\"Eero\")\nprint(\"Lauri\")\nprint(\"Aapo\")\nprint(\"Tuomas\")\nprint(\"Timo\")",
-      "testCode": "\nimport unittest\nclass TestSevenBrothers(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code().split('\n')\n        expected = [\"Aapo\", \"Eero\", \"Juhani\", \"Lauri\", \"Simeoni\", \"Timo\", \"Tuomas\"]\n        output = [line.strip() for line in output if line.strip()]\n        self.assertEqual(output, expected)\n"
+      "testCode": "\nimport unittest\nclass TestSevenBrothers(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code().split('\\n')\n        expected = [\"Aapo\", \"Eero\", \"Juhani\", \"Lauri\", \"Simeoni\", \"Timo\", \"Tuomas\"]\n        output = [line.strip() for line in output if line.strip()]\n        self.assertEqual(output, expected)\n"
     },
     {
       "type": "exercise",
