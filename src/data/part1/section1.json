@@ -29,6 +29,70 @@
       },
       "initialCode": "# Write your code here\n",
       "testCode": "\nimport unittest\nfrom unittest.mock import patch\nimport io\n\nclass TestEmoticon(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertEqual(output, \":-)\")\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part01-02_seven_brothers",
+      "title": {
+        "ENG": "Fix the code: Seven Brothers",
+        "CAS": "Arregla el código: Siete Hermanos",
+        "EUS": "Konpondu kodea: Zazpi Anaiak"
+      },
+      "description": {
+        "ENG": "\"Seitsemän veljestä\" is one of the first novels ever written in Finnish. This program is supposed to print out the names of the brothers in alphabetical order, but it's not working quite right yet. Please fix the program so that the names are printed in the correct order.",
+        "CAS": "\"Seitsemän veljestä\" es una de las primeras novelas escritas en finés. Este programa debería imprimir los nombres de los hermanos en orden alfabético, pero no funciona bien. Arréglalo.",
+        "EUS": "\"Seitsemän veljestä\" finlandieraz idatzitako lehen eleberrietako bat da. Programa honek anaien izenak ordena alfabetikoan inprimatu beharko lituzke, baina ez dabil ondo. Konpondu ezazu."
+      },
+      "initialCode": "print(\"Simeoni\")\nprint(\"Juhani\")\nprint(\"Eero\")\nprint(\"Lauri\")\nprint(\"Aapo\")\nprint(\"Tuomas\")\nprint(\"Timo\")",
+      "testCode": "\nimport unittest\nclass TestSevenBrothers(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code().split('\\n')\n        expected = [\"Aapo\", \"Eero\", \"Juhani\", \"Lauri\", \"Simeoni\", \"Timo\", \"Tuomas\"]\n        # Filter empty lines\n        output = [line for line in output if line.strip()]\n        self.assertEqual(output, expected)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part01-03_row_your_boat",
+      "title": {
+        "ENG": "Row, Row, Row Your Boat",
+        "CAS": "Rema, rema, rema tu bote",
+        "EUS": "Arraun, arraun, arraun zure txalupan"
+      },
+      "description": {
+        "ENG": "Please write a program which prints out the following lines exactly as they are written here:\nRow, row, row your boat,\nGently down the stream.\nMerrily, merrily, merrily, merrily,\nLife is but a dream.",
+        "CAS": "Escribe un programa que imprima las siguientes líneas exactamente:\nRow, row, row your boat,\nGently down the stream.\nMerrily, merrily, merrily, merrily,\nLife is but a dream.",
+        "EUS": "Idatzi programa bat lerro hauek zehatz-mehatz inprimatzen dituena:\nRow, row, row your boat,\nGently down the stream.\nMerrily, merrily, merrily, merrily,\nLife is but a dream."
+      },
+      "initialCode": "# Write your code here\n",
+      "testCode": "\nimport unittest\nclass TestRowBoat(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        expected = \"Row, row, row your boat,\\nGently down the stream.\\nMerrily, merrily, merrily, merrily,\\nLife is but a dream.\"\n        self.assertIn(expected, output)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part01-04_minutes_in_a_year",
+      "title": {
+        "ENG": "Minutes in a year",
+        "CAS": "Minutos en un año",
+        "EUS": "Minutuak urte batean"
+      },
+      "description": {
+        "ENG": "Please write a program which prints out the number of minutes in a year. Use Python code to perform the calculation.",
+        "CAS": "Escribe un programa que imprima el número de minutos en un año. Usa código Python para el cálculo.",
+        "EUS": "Idatzi urte bateko minutu kopurua inprimatzen duen programa. Erabili Python kodea kalkulua egiteko."
+      },
+      "initialCode": "# Write your code here\nprint(\"Minutes in a year:\")\n# print(365...)\n",
+      "testCode": "\nimport unittest\nclass TestMinutes(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        # 365 * 24 * 60 = 525600\n        self.assertIn(\"525600\", output)\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part01-05_print_some_code",
+      "title": {
+        "ENG": "Print some code",
+        "CAS": "Imprimir código",
+        "EUS": "Kodea inprimatu"
+      },
+      "description": {
+        "ENG": "Please write a program which prints out the following:\nprint(\"Hello there!\")",
+        "CAS": "Escribe un programa que imprima lo siguiente:\nprint(\"Hello there!\")",
+        "EUS": "Idatzi hurrengoa inprimatzen duen programa:\nprint(\"Hello there!\")"
+      },
+      "initialCode": "# Write your code here\n",
+      "testCode": "\nimport unittest\nclass TestPrintCode(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertIn('print(\"Hello there!\")', output)\n"
     }
   ]
 }
