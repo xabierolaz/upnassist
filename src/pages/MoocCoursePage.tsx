@@ -88,8 +88,61 @@ const MoocCoursePage: React.FC = () => {
         </div>
         
         <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-gray-600">
-            {Object.keys(sectionsByPart).map((partKey) => {
-                const part = Number(partKey);
+            {/* Intro Group */}
+            <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-2 px-3 mt-4 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                {t.introProg}
+            </h3>
+            {Object.keys(sectionsByPart)
+                .map(Number)
+                .filter(part => part <= 7)
+                .sort((a, b) => a - b)
+                .map((part) => {
+                const sections = sectionsByPart[part];
+                const isOpen = openParts[part];
+
+                return (
+                    <div key={part} className="mb-2">
+                        <button
+                            onClick={() => togglePart(part)}
+                            className="w-full flex justify-between items-center px-4 py-3 bg-gray-800/50 hover:bg-gray-700 rounded-lg text-xs font-bold text-gray-300 uppercase tracking-wider transition-colors"
+                        >
+                            <span>{getPartLabel(part)}</span>
+                            <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
+                        </button>
+                        
+                        {isOpen && (
+                            <ul className="mt-1 space-y-0.5 pl-2 border-l-2 border-gray-700 ml-4">
+                                {sections.map((page) => (
+                                    <li key={page.id}>
+                                        <button
+                                            onClick={() => setActivePageId(page.id)}
+                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                                activePageId === page.id
+                                                ? 'bg-brand-blue text-white shadow-sm'
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                            }`}
+                                        >
+                                            {getLocalizedText(page.title, currentLang)}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                );
+            })}
+
+            {/* Advanced Group */}
+            <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-2 px-3 mt-6 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                {t.advProg}
+            </h3>
+            {Object.keys(sectionsByPart)
+                .map(Number)
+                .filter(part => part > 7)
+                .sort((a, b) => a - b)
+                .map((part) => {
                 const sections = sectionsByPart[part];
                 const isOpen = openParts[part];
 

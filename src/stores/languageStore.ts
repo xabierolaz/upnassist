@@ -30,6 +30,8 @@ interface Translation {
   feedbackReview: string;
   testCount: string;
   feedbackFail: string;
+  introProg: string;
+  advProg: string;
 }
 
 const translations: Record<Language, Translation> = {
@@ -59,7 +61,9 @@ const translations: Record<Language, Translation> = {
     feedbackSuccess: "Excellent! All tests passed",
     feedbackReview: "Review needed",
     testCount: "Tests",
-    feedbackFail: "Some tests failed. Check details below."
+    feedbackFail: "Some tests failed. Check details below.",
+    introProg: "Introduction to Programming",
+    advProg: "Advanced Course"
   },
   CAS: {
     title: "Python 2026",
@@ -87,7 +91,9 @@ const translations: Record<Language, Translation> = {
     feedbackSuccess: "¡Excelente! Todo correcto",
     feedbackReview: "Revisión necesaria",
     testCount: "Pruebas",
-    feedbackFail: "Algunas pruebas fallaron. Revisa los detalles abajo."
+    feedbackFail: "Algunas pruebas fallaron. Revisa los detalles abajo.",
+    introProg: "Introducción a la Programación",
+    advProg: "Curso Avanzado"
   },
   EUS: {
     title: "Python 2026",
@@ -115,7 +121,9 @@ const translations: Record<Language, Translation> = {
     feedbackSuccess: "Bikain! Proba guztiak gainditu dira",
     feedbackReview: "Berrikusi beharra",
     testCount: "Probak",
-    feedbackFail: "Proba batzuek huts egin dute. Ikusi xehetasunak behean."
+    feedbackFail: "Proba batzuek huts egin dute. Ikusi xehetasunak behean.",
+    introProg: "Programazioaren Sarrera",
+    advProg: "Ikastaro Aurreratua"
   }
 };
 
