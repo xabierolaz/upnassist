@@ -27,7 +27,11 @@
         "CAS": "Dibuja la imagen del robot en las cuatro esquinas de la ventana.",
         "EUS": "Marraztu robotaren irudia leihoaren lau izkinetan."
       },
-      "initialCode": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+      "initialCode": {
+        "ENG": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+        "CAS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+        "EUS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n"
+      },
       "testCode": "pass"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Dibuja diez robots en una fila.",
         "EUS": "Marraztu hamar robot ilara batean."
       },
-      "initialCode": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+      "initialCode": {
+        "ENG": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+        "CAS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
+        "EUS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n"
+      },
       "testCode": "pass"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Dibuja cien robots en diez filas de diez.",
         "EUS": "Marraztu ehun robot hamar ilaratan."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Dibuja 1000 robots en posiciones aleatorias.",
         "EUS": "Marraztu 1000 robot ausazko posizioetan."
       },
-      "initialCode": "import pygame\nfrom random import randint\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\nfrom random import randint\n# ...\n",
+        "CAS": "import pygame\nfrom random import randint\n# ...\n",
+        "EUS": "import pygame\nfrom random import randint\n# ...\n"
+      },
       "testCode": "pass"
     }
   ]

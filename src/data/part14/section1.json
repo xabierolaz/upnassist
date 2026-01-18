@@ -27,7 +27,11 @@
         "CAS": "Implementa la clase Sokoban que carga imágenes y dibuja el mapa inicial.",
         "EUS": "Inplementatu Sokoban klasea, irudiak kargatzen dituena eta hasierako mapa marrazten duena."
       },
-      "initialCode": "import pygame\n\nclass Sokoban:\n    def __init__(self):\n        pygame.init()\n        # ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\nclass Sokoban:\n    def __init__(self):\n        pygame.init()\n        # ...\n",
+        "CAS": "import pygame\n\nclass Sokoban:\n    def __init__(self):\n        pygame.init()\n        # ...\n",
+        "EUS": "import pygame\n\nclass Sokoban:\n    def __init__(self):\n        pygame.init()\n        # ...\n"
+      },
       "testCode": "pass"
     }
   ]

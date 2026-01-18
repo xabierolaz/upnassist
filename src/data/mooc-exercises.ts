@@ -14,7 +14,7 @@ export interface Exercise {
   id: string;
   title: LocalizedString;
   description?: LocalizedString;
-  initialCode: string;
+  initialCode: LocalizedString;
   testCode: string;
 }
 
@@ -35,7 +35,7 @@ export interface ContentBlock {
   exerciseId?: string;
   title?: LocalizedString;
   description?: LocalizedString;
-  initialCode?: string;
+  initialCode?: LocalizedString;
   testCode?: string;
   questions?: QuizQuestion[];
 }

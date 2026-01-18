@@ -27,7 +27,11 @@
         "CAS": "Crea clase PhoneBook con métodos add_number y get_number.",
         "EUS": "Sortu PhoneBook klasea add_number eta get_number metodoekin."
       },
-      "initialCode": "# Write your solution here\nclass PhoneBook:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass PhoneBook:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass PhoneBook:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass PhoneBook:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestPhoneBook(unittest.TestCase):\n    def test_run(self):\n        pb = PhoneBook()\n        pb.add_number(\"Eric\", \"123\")\n        self.assertEqual(pb.get_number(\"Eric\"), \"123\")\n        self.assertIsNone(pb.get_number(\"Alice\"))\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea aplicación para rastrear estadísticas de cursos. Separa lógica y UI.",
         "EUS": "Sortu ikastaroen estatistikak jarraitzeko aplikazioa. Bereizi logika eta UI."
       },
-      "initialCode": "# Write your solution here\nclass CourseRecords:\n    pass\n\nclass CourseRecordsUI:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass CourseRecords:\n    pass\n\nclass CourseRecordsUI:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass CourseRecords:\n    pass\n\nclass CourseRecordsUI:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass CourseRecords:\n    pass\n\nclass CourseRecordsUI:\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

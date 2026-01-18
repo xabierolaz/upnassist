@@ -27,7 +27,11 @@
         "CAS": "Haz que el robot se mueva en cuatro direcciones usando las flechas.",
         "EUS": "Egin robota lau norabidetan mugitu dadin gezi-teklekin."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Haz que el robot se mueva a la ubicación donde se hace clic con el ratón.",
         "EUS": "Egin robota saguarekin klik egindako lekura mugitu dadin."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     }
   ]

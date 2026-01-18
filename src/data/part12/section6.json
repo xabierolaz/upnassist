@@ -27,7 +27,11 @@
         "CAS": "Crea app para leer JSON y buscar: por jugador, equipos, países, más puntos, más goles.",
         "EUS": "Sortu aplikazioa JSON irakurtzeko eta bilaketak egiteko: jokalari, talde, herrialde, puntu gehien, gol gehien."
       },
-      "initialCode": "# Write your solution here\nimport json\n\nclass HockeyApplication:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nimport json\n\nclass HockeyApplication:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nimport json\n\nclass HockeyApplication:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nimport json\n\nclass HockeyApplication:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestHockey(unittest.TestCase):\n    def test_run(self):\n        pass\n"
     }
   ]

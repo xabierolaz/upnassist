@@ -27,7 +27,11 @@
         "CAS": "Escribe una función lista_anos(fechas), que tome una lista de objetos date. Devuelve una lista con los años de las fechas.",
         "EUS": "Idatzi urteak_zerrendatu(datak) izeneko funtzio bat. Date objektuen zerrenda bat hartzen du. Daten urteen zerrenda berri bat itzuli behar du."
       },
-      "initialCode": "# Write your solution here\nfrom datetime import date\n\nif __name__ == \"__main__\":\n    date1 = date(2019, 2, 3)\n    date2 = date(2006, 10, 10)\n    date3 = date(1993, 5, 9)\n    years = list_years([date1, date2, date3])\n    print(years)",
+      "initialCode": {
+        "ENG": "# Write your solution here\nfrom datetime import date\n\nif __name__ == \"__main__\":\n    date1 = date(2019, 2, 3)\n    date2 = date(2006, 10, 10)\n    date3 = date(1993, 5, 9)\n    years = list_years([date1, date2, date3])\n    print(years)",
+        "CAS": "# Escribe tu solución aquí\nfrom datetime import date\n\nif __name__ == \"__main__\":\n    date1 = date(2019, 2, 3)\n    date2 = date(2006, 10, 10)\n    date3 = date(1993, 5, 9)\n    years = list_years([date1, date2, date3])\n    print(years)",
+        "EUS": "# Idatzi zure soluzioa hemen\nfrom datetime import date\n\nif __name__ == \"__main__\":\n    date1 = date(2019, 2, 3)\n    date2 = date(2006, 10, 10)\n    date3 = date(1993, 5, 9)\n    years = list_years([date1, date2, date3])\n    print(years)"
+      },
       "testCode": "\nimport unittest\nfrom datetime import date\n\nclass TestYears(unittest.TestCase):\n    def test_run(self):\n        d1 = date(2000, 1, 1)\n        d2 = date(2020, 1, 1)\n        out = run_student_code(code_to_run=\"print(list_years([\" + \"date(2000,1,1), date(2020,1,1)\" + \"]))\")\n        self.assertIn(\"2000\", out)\n        self.assertIn(\"2020\", out)\n"
     }
   ]

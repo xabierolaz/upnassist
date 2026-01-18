@@ -27,7 +27,11 @@
         "CAS": "Crea la clase Room. Métodos: add(person), is_empty(), print_contents(), shortest(), remove_shortest(). Se da la clase Person.",
         "EUS": "Sortu Room klasea. Metodoak: add(person), is_empty(), print_contents(), shortest(), remove_shortest(). Person klasea ematen da."
       },
-      "initialCode": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n    def __str__(self):\n        return f\"{self.name} ({self.height} cm)\"\n\nclass Room:\n    def __init__(self):\n        pass\n    # ...\n",
+      "initialCode": {
+        "ENG": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n    def __str__(self):\n        return f\"{self.name} ({self.height} cm)\"\n\nclass Room:\n    def __init__(self):\n        pass\n    # ...\n",
+        "CAS": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n    def __str__(self):\n        return f\"{self.name} ({self.height} cm)\"\n\nclass Room:\n    def __init__(self):\n        pass\n    # ...\n",
+        "EUS": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n    def __str__(self):\n        return f\"{self.name} ({self.height} cm)\"\n\nclass Room:\n    def __init__(self):\n        pass\n    # ...\n"
+      },
       "testCode": "\nimport unittest\nclass TestRoom(unittest.TestCase):\n    def test_run(self):\n        # We assume student fills Room\n        r = Room()\n        p1 = Person(\"A\", 100)\n        p2 = Person(\"B\", 200)\n        r.add(p1)\n        r.add(p2)\n        self.assertEqual(r.shortest().name, \"A\")\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea clase Car con atributos privados __petrol y __odometer. Métodos: fill_tank(), drive().",
         "EUS": "Sortu Car klasea atributu pribatuekin __petrol eta __odometer. Metodoak: fill_tank(), drive()."
       },
-      "initialCode": "# Write your solution here\nclass Car:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Car:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Car:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Car:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestCar(unittest.TestCase):\n    def test_run(self):\n        c = Car()\n        c.fill_tank()\n        c.drive(10)\n        # Check integrity if possible, or just absence of errors\n        pass\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Crea clase Recording con atributo privado __length. Usa @property para getter y setter. Setter lanza ValueError si length < 0.",
         "EUS": "Sortu Recording klasea atributu pribatuarekin __length. Erabili @property getter eta setter-erako. Setter-ak ValueError jaurtitzen du length < 0 bada."
       },
-      "initialCode": "# Write your solution here\nclass Recording:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Recording:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Recording:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Recording:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestRecording(unittest.TestCase):\n    def test_run(self):\n        r = Recording(10)\n        r.length = 20\n        self.assertEqual(r.length, 20)\n        try:\n            r.length = -1\n            self.fail(\"Should raise ValueError\")\n        except ValueError:\n            pass\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Crea clase WeatherStation. Métodos: add_observation, number_of_observations. Atributo __name en constructor. Lista de observaciones privada.",
         "EUS": "Sortu WeatherStation klasea. Metodoak: add_observation, number_of_observations. __name atributua eraikitzailean. Behaketa zerrenda pribatua."
       },
-      "initialCode": "# Write your solution here\nclass WeatherStation:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass WeatherStation:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass WeatherStation:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass WeatherStation:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestWeather(unittest.TestCase):\n    def test_run(self):\n        s = WeatherStation(\"Kumpula\")\n        s.add_observation(\"Sunny\")\n        self.assertEqual(s.number_of_observations(), 1)\n"
     }
   ]

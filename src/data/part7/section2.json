@@ -9,74 +9,134 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# Randomness\n\nThe `random` module contains tools for generating random numbers.\n\n## Generating a random number\n\n```python\nfrom random import randint\n\nprint(randint(1, 6))\n```\n\n## Other functions\n\n- `shuffle`: Shuffles a list in place.\n- `choice`: Picks a random element.\n- `sample`: Picks multiple unique elements.\n\n```python\nfrom random import shuffle, choice, sample\n\nmy_list = [1, 2, 3, 4, 5]\nshuffle(my_list)\nprint(my_list)\n\nprint(choice(my_list))\n\nprint(sample(my_list, 2))\n```\n",
-        "CAS": "\n# Aleatoriedad\n\nEl módulo `random` contiene herramientas para generar números aleatorios.\n\n## Generando un número aleatorio\n\n```python\nfrom random import randint\n\nprint(randint(1, 6))\n```\n\n## Otras funciones\n\n- `shuffle`: Baraja una lista in-situ.\n- `choice`: Elige un elemento aleatorio.\n- `sample`: Elige múltiples elementos únicos.\n\n```python\nfrom random import shuffle, choice, sample\n\nmi_lista = [1, 2, 3, 4, 5]\nshuffle(mi_lista)\nprint(mi_lista)\n\nprint(choice(mi_lista))\n\nprint(sample(mi_lista, 2))\n```\n",
-        "EUS": "\n# Ausazkotasuna\n\n`random` moduluak ausazko zenbakiak sortzeko tresnak ditu.\n\n## Ausazko zenbaki bat sortzen\n\n```python\nfrom random import randint\n\nprint(randint(1, 6))\n```\n\n## Beste funtzio batzuk\n\n- `shuffle`: Zerrenda bat nahasten du bertan.\n- `choice`: Ausazko elementu bat aukeratzen du.\n- `sample`: Hainbat elementu bakar aukeratzen ditu.\n\n```python\nfrom random import shuffle, choice, sample\n\nnire_zerrenda = [1, 2, 3, 4, 5]\nshuffle(nire_zerrenda)\nprint(nire_zerrenda)\n\nprint(choice(nire_zerrenda))\n\nprint(sample(nire_zerrenda, 2))\n```\n"
+        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will be familiar with some of the functions in the module `random`\n- You will be able to make use of random numbers in your programs",
+        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Estarás familiarizado con algunas de las funciones en el módulo `random`\n- Podrás hacer uso de números aleatorios en tus programas",
+        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- `random` moduluko funtzio batzuk ezagutuko dituzu\n- Zure programetan ausazko zenbakiak erabiltzeko gai izango zara"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "This section concentrates on the module `random` from the Python standard library. It contains tools for generating random numbers and other randomized functionality.\n\n## Generating a random number\n\nThe function `randint(a, b)` returns a random integer value between `a` and `b`, inclusive. For example, the following program works like a generic die:\n\n```python\nfrom random import randint\n\nprint(\"The result of the throw:\", randint(1, 6))\n```\n\n```text\nThe result of the throw: 4\n```\n\nThe following program throws the die ten times:\n\n```python\nfrom random import randint\n\nfor i in range(10):\n    print(\"The result of the throw:\", randint(1, 6))\n```\n\n```text\nThe result of the throw: 5\nThe result of the throw: 4\nThe result of the throw: 3\nThe result of the throw: 2\nThe result of the throw: 3\nThe result of the throw: 4\nThe result of the throw: 6\nThe result of the throw: 4\nThe result of the throw: 4\nThe result of the throw: 3\n```\n\nNB: it is worth remembering that the function `randint` works a bit differently when compared to, for example, slices, or the function `range`, which we've come across previously. The function call `randint(1, 6)` results in a number between 1 and 6 inclusive, but the function call `range(1, 6)` results in a range of numbers from 1 to 5.",
+        "CAS": "Esta sección se concentra en el módulo `random` de la biblioteca estándar de Python. Contiene herramientas para generar números aleatorios y otras funcionalidades aleatorias.\n\n## Generando un número aleatorio\n\nLa función `randint(a, b)` devuelve un valor entero aleatorio entre `a` y `b`, inclusive. Por ejemplo, el siguiente programa funciona como un dado genérico:\n\n```python\nfrom random import randint\n\nprint(\"El resultado del lanzamiento:\", randint(1, 6))\n```\n\n```text\nEl resultado del lanzamiento: 4\n```\n\nEl siguiente programa lanza el dado diez veces:\n\n```python\nfrom random import randint\n\nfor i in range(10):\n    print(\"El resultado del lanzamiento:\", randint(1, 6))\n```\n\n```text\nEl resultado del lanzamiento: 5\nEl resultado del lanzamiento: 4\nEl resultado del lanzamiento: 3\nEl resultado del lanzamiento: 2\nEl resultado del lanzamiento: 3\nEl resultado del lanzamiento: 4\nEl resultado del lanzamiento: 6\nEl resultado del lanzamiento: 4\nEl resultado del lanzamiento: 4\nEl resultado del lanzamiento: 3\n```\n\nNota: vale la pena recordar que la función `randint` funciona un poco diferente en comparación con, por ejemplo, las rebanadas, o la función `range`, que hemos visto anteriormente. La llamada a la función `randint(1, 6)` resulta en un número entre 1 y 6 inclusive, pero la llamada a la función `range(1, 6)` resulta en un rango de números del 1 al 5.",
+        "EUS": "Atal honek Python liburutegi estandarreko `random` moduluan jartzen du arreta. Ausazko zenbakiak sortzeko eta ausazko beste funtzionalitate batzuk lortzeko tresnak ditu.\n\n## Ausazko zenbaki bat sortzen\n\n`randint(a, b)` funtzioak ausazko balio oso bat itzultzen du `a` eta `b` artean, biak barne. Adibidez, hurrengo programak dado generiko baten antzera funtzionatzen du:\n\n```python\nfrom random import randint\n\nprint(\"Jaurtiketaren emaitza:\", randint(1, 6))\n```\n\n```text\nJaurtiketaren emaitza: 4\n```\n\nHurrengo programak hamar aldiz jaurtitzen du dadoa:\n\n```python\nfrom random import randint\n\nfor i in range(10):\n    print(\"Jaurtiketaren emaitza:\", randint(1, 6))\n```\n\n```text\nJaurtiketaren emaitza: 5\nJaurtiketaren emaitza: 4\nJaur tiketaren emaitza: 3\nJaur tiketaren emaitza: 2\nJaur tiketaren emaitza: 3\nJaur tiketaren emaitza: 4\nJaur tiketaren emaitza: 6\nJaur tiketaren emaitza: 4\nJaur tiketaren emaitza: 4\nJaur tiketaren emaitza: 3\n```\n\nOHARRA: merezi du gogoratzea `randint` funtzioak apur bat desberdin funtzionatzen duela, adibidez, zatiekin edo `range` funtzioarekin alderatuta, aurretik ikusi ditugunak. `randint(1, 6)` funtzio deiak 1 eta 6 arteko zenbaki bat ematen du biak barne, baina `range(1, 6)` funtzio deiak 1etik 5era bitarteko zenbaki sorta bat ematen du."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## More randomizing functions\n\nThe function `shuffle` will shuffle any data structure passed as an argument, in place. For example, the following program shuffles a list of words:\n\n```python\nfrom random import shuffle\n\nwords = [\"atlas\", \"banana\", \"carrot\"]\nshuffle(words)\nprint(words)\n```\n\n```text\n['banana', 'atlas', 'carrot']\n```\n\nThe function `choice` returns a randomly picked item from a data structure:\n\n```python\nfrom random import choice\n\nwords = [\"atlas\", \"banana\", \"carrot\"]\nprint(choice(words))\n```\n\n```text\n'carrot'\n```",
+        "CAS": "## Más funciones de aleatorización\n\nLa función `shuffle` barajará cualquier estructura de datos pasada como argumento, en su lugar. Por ejemplo, el siguiente programa baraja una lista de palabras:\n\n```python\nfrom random import shuffle\n\npalabras = [\"atlas\", \"banana\", \"zanahoria\"]\nshuffle(palabras)\nprint(palabras)\n```\n\n```text\n['banana', 'atlas', 'zanahoria']\n```\n\nLa función `choice` devuelve un elemento elegido aleatoriamente de una estructura de datos:\n\n```python\nfrom random import choice\n\npalabras = [\"atlas\", \"banana\", \"zanahoria\"]\nprint(choice(palabras))\n```\n\n```text\n'zanahoria'\n```",
+        "EUS": "## Ausazkotze funtzio gehiago\n\n`shuffle` funtzioak argumentu gisa pasatako edozein datu-egitura nahastuko du, bere horretan. Adibidez, hurrengo programak hitz zerrenda bat nahasten du:\n\n```python\nfrom random import shuffle\n\nhitzak = [\"atlas\", \"banana\", \"azenarioa\"]\nshuffle(hitzak)\nprint(hitzak)\n```\n\n```text\n['banana', 'atlas', 'azenarioa']\n```\n\n`choice` funtzioak datu-egitura batetik ausaz aukeratutako elementu bat itzultzen du:\n\n```python\nfrom random import choice\n\nhitzak = [\"atlas\", \"banana\", \"azenarioa\"]\nprint(choice(hitzak))\n```\n\n```text\n'azenarioa'\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## Lottery numbers\n\nA common example for studying randomness is the case of lottery numbers. Let's try and draw some lottery numbers. In Finland the national lottery consists of a pool of 40 numbers, 7 of which are chosen for each week's draw.\n\nA first attempt at drawing a set of numbers could look like this:\n\n```python\nfrom random import randint\n\nfor i in range(7):\n    print(randint(1, 40))\n```\n\nThis would not work in the long run, however, as the same number may appear twice in a single weekly draw of seven numbers. We need a way to make sure the numbers drawn are all unique.\n\nOne possibility is to store the drawn numbers in a list, and only add a number if it is not already on the list. This can be repeated until the length of the list is seven:\n\n```python\nfrom random import randint\n\nweekly_draw = []\nwhile len(weekly_draw) < 7:\n    new_rnd = randint(1, 40)\n    if new_rnd not in weekly_draw:\n        weekly_draw.append(new_rnd)\n\nprint(weekly_draw)\n```\n\nA more compact approach would be to use the `shuffle` function:\n\n```python\nfrom random import shuffle\n\nnumber_pool = list(range(1, 41))\nshuffle(number_pool)\nweekly_draw = number_pool[0:7]\nprint(weekly_draw)\n```\n\nHere the idea is that we first create a list containing the available numbers 1 to 40, rather like the balls in a lottery machine. The pool of numbers is then shuffled, and the first seven numbers chosen for the weekly draw. This saves us the trouble of writing a loop.\n\nIn fact, the `random` module contains an even easier way to select lottery numbers: the `sample` function. It returns a random selection of a specified size from a given data structure:\n\n```python\nfrom random import sample\n\nnumber_pool = list(range(1, 41))\nweekly_draw = sample(number_pool, 7)\nprint(weekly_draw)\n```",
+        "CAS": "## Números de lotería\n\nUn ejemplo común para estudiar la aleatoriedad es el caso de los números de lotería. Intentemos sacar algunos números de lotería. En Finlandia, la lotería nacional consiste en un grupo de 40 números, 7 de los cuales se eligen para el sorteo de cada semana.\n\nUn primer intento de sacar un conjunto de números podría verse así:\n\n```python\nfrom random import randint\n\nfor i in range(7):\n    print(randint(1, 40))\n```\n\nSin embargo, esto no funcionaría a largo plazo, ya que el mismo número puede aparecer dos veces en un solo sorteo semanal de siete números. Necesitamos una forma de asegurarnos de que los números extraídos sean todos únicos.\n\nUna posibilidad es almacenar los números extraídos en una lista y solo agregar un número si aún no está en la lista. Esto se puede repetir hasta que la longitud de la lista sea siete:\n\n```python\nfrom random import randint\n\nsorteo_semanal = []\nwhile len(sorteo_semanal) < 7:\n    nuevo_aleatorio = randint(1, 40)\n    if nuevo_aleatorio not in sorteo_semanal:\n        sorteo_semanal.append(nuevo_aleatorio)\n\nprint(sorteo_semanal)\n```\n\nUn enfoque más compacto sería usar la función `shuffle`:\n\n```python\nfrom random import shuffle\n\ngrupo_numeros = list(range(1, 41))\nshuffle(grupo_numeros)\nsorteo_semanal = grupo_numeros[0:7]\nprint(sorteo_semanal)\n```\n\nAquí la idea es que primero creamos una lista que contiene los números disponibles del 1 al 40, algo así como las bolas en una máquina de lotería. Luego se baraja el grupo de números y se eligen los primeros siete números para el sorteo semanal. Esto nos ahorra la molestia de escribir un bucle.\n\nDe hecho, el módulo `random` contiene una forma aún más fácil de seleccionar números de lotería: la función `sample`. Devuelve una selección aleatoria de un tamaño específico de una estructura de datos dada:\n\n```python\nfrom random import sample\n\ngrupo_numeros = list(range(1, 41))\nsorteo_semanal = sample(grupo_numeros, 7)\nprint(sorteo_semanal)\n```",
+        "EUS": "## Loteria zenbakiak\n\nAusazkotasuna aztertzeko adibide arrunt bat loteria zenbakien kasua da. Saia gaitezen loteria zenbaki batzuk ateratzen. Finlandian loteria nazionala 40 zenbakiko multzo batez osatuta dago, eta horietatik 7 aukeratzen dira asteko zozketarako.\n\nZenbaki multzo bat ateratzeko lehen saiakera bat honelakoa izan liteke:\n\n```python\nfrom random import randint\n\nfor i in range(7):\n    print(randint(1, 40))\n```\n\nHonek ez luke funtzionatuko epe luzera, ordea, zenbaki bera bi aldiz ager baitaiteke zazpi zenbakiko asteko zozketa batean. Ateratako zenbakiak bakarrak direla ziurtatzeko modu bat behar dugu.\n\nAukera bat ateratako zenbakiak zerrenda batean gordetzea da, eta zerrendan ez badago bakarrik gehitzea zenbakia. Hau errepikatu daiteke zerrendaren luzera zazpi izan arte:\n\n```python\nfrom random import randint\n\nasteko_zozketa = []\nwhile len(asteko_zozketa) < 7:\n    berria = randint(1, 40)\n    if berria not in asteko_zozketa:\n        asteko_zozketa.append(berria)\n\nprint(asteko_zozketa)\n```\n\nIkuspegi trinkoago bat `shuffle` funtzioa erabiltzea litzateke:\n\n```python\nfrom random import shuffle\n\nzenbaki_multzoa = list(range(1, 41))\nshuffle(zenbaki_multzoa)\nasteko_zozketa = zenbaki_multzoa[0:7]\nprint(asteko_zozketa)\n```\n\nHemen ideia da lehenik 1etik 40rako zenbaki erabilgarriak dituen zerrenda bat sortzen dugula, loteria makina bateko bolen antzera. Zenbaki multzoa nahasten da gero, eta lehenengo zazpi zenbakiak aukeratzen dira asteko zozketarako. Honek begizta bat idazteko lana aurrezten digu.\n\nIzan ere, `random` moduluak loteria zenbakiak hautatzeko modu are errazagoa du: `sample` funtzioa. Emandako datu-egitura batetik zehaztutako tamainako ausazko hautaketa bat itzultzen du:\n\n```python\nfrom random import sample\n\nzenbaki_multzoa = list(range(1, 41))\nasteko_zozketa = sample(zenbaki_multzoa, 7)\nprint(asteko_zozketa)\n```"
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-03_lottery_numbers",
+      "exerciseId": "part07-04_lottery_numbers",
       "title": {
         "ENG": "Lottery numbers",
         "CAS": "Números de lotería",
         "EUS": "Loteria zenbakiak"
       },
       "description": {
-        "ENG": "Write a function named lottery_numbers(amount, lower, upper), which returns a list of 'amount' random numbers between 'lower' and 'upper'. The numbers must be unique and in ascending order.",
-        "CAS": "Escribe una función llamada numeros_loteria(cantidad, inferior, superior), que devuelva una lista de 'cantidad' números aleatorios entre 'inferior' y 'superior'. Los números deben ser únicos y estar ordenados.",
-        "EUS": "Idatzi loteria_zenbakiak(kopurua, behe, goi) izeneko funtzio bat. 'behe' eta 'goi' arteko 'kopurua' ausazko zenbaki zerrenda itzuli behar du. Zenbakiek bakarrak eta ordenatuak izan behar dute."
+        "ENG": "Please write a function named `lottery_numbers(amount: int, lower: int, upper: int)`, which generates as many random numbers as specified by the first argument. All numbers should fall within the bounds `lower` to `upper`. The numbers should be stored in a list and returned. The numbers should be in ascending order in the returned list. As these are lottery numbers, no number should appear twice in the list.",
+        "CAS": "Por favor escribe una función llamada `lottery_numbers(amount: int, lower: int, upper: int)`, que genere tantos números aleatorios como especifique el primer argumento. Todos los números deben caer dentro de los límites `lower` a `upper`. Los números deben almacenarse en una lista y devolverse. Los números deben estar en orden ascendente en la lista devuelta. Como son números de lotería, ningún número debe aparecer dos veces en la lista.",
+        "EUS": "Mesedez idatzi `lottery_numbers(amount: int, lower: int, upper: int)` izeneko funtzio bat, lehenengo argumentuak zehazten duen adina ausazko zenbaki sortzen dituena. Zenbaki guztiek `lower` eta `upper` mugen barruan egon behar dute. Zenbakiak zerrenda batean gorde eta itzuli behar dira. Zenbakiak goranzko ordenan egon behar dira itzulitako zerrendan. Loteria zenbakiak direnez, zenbaki bat bera ere ez da bi aldiz agertu behar zerrendan."
       },
-      "initialCode": "# Write your solution here\nfrom random import sample\n",
-      "testCode": "\nimport unittest\nclass TestLotto(unittest.TestCase):\n    def test_run(self):\n        # We can't predict random, but we can check properties\n        out = run_student_code(code_to_run=\"print(lottery_numbers(7, 1, 40))\")\n        # Check if output looks like a list\n        self.assertIn(\"[ \", out)\n        self.assertIn(\"]\", out)\n        # We assume student logic is correct if it compiles and runs with sample\n"
+      "initialCode": {
+        "ENG": "from random import randint, sample\n\ndef lottery_numbers(amount: int, lower: int, upper: int):\n    # Write your solution here\n    pass",
+        "CAS": "from random import randint, sample\n\ndef lottery_numbers(cantidad: int, inferior: int, superior: int):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "from random import randint, sample\n\ndef lottery_numbers(kopurua: int, behekoa: int, goikoa: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-04_password_generator_1",
+      "exerciseId": "part07-05_password_generator_part_1",
       "title": {
         "ENG": "Password generator, part 1",
         "CAS": "Generador de contraseñas, parte 1",
         "EUS": "Pasahitz sortzailea, 1. zatia"
       },
       "description": {
-        "ENG": "Write a function generate_password(length) which returns a random string of the given length, consisting of lowercase letters a-z.",
-        "CAS": "Escribe una función generar_contrasena(longitud) que devuelva una cadena aleatoria de la longitud dada, con letras minúsculas a-z.",
-        "EUS": "Idatzi pasahitza_sortu(luzera) funtzioa, emandako luzerako ausazko kate bat itzultzen duena, a-z letra xeheekin."
+        "ENG": "Please write a function which creates passwords of a desired length, consisting of lowercase characters a to z.",
+        "CAS": "Por favor escribe una función que cree contraseñas de una longitud deseada, que consistan en caracteres minúsculos de la a a la z.",
+        "EUS": "Mesedez idatzi nahi den luzerako pasahitzak sortzen dituen funtzio bat, a-tik z-rako karaktere minuskulaz osatuta."
       },
-      "initialCode": "# Write your solution here\nfrom random import choice\nimport string\n",
-      "testCode": "\nimport unittest\nclass TestPass1(unittest.TestCase):\n    def test_len(self):\n        out = run_student_code(code_to_run=\"print(len(generate_password(8)))\")\n        self.assertIn(\"8\", out)\n"
+      "initialCode": {
+        "ENG": "import random\nimport string\n\ndef generate_password(length: int):\n    # Write your solution here\n    pass",
+        "CAS": "import random\nimport string\n\ndef generate_password(longitud: int):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "import random\nimport string\n\ndef generate_password(luzera: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-05_password_generator_2",
+      "exerciseId": "part07-06_password_generator_part_2",
       "title": {
         "ENG": "Password generator, part 2",
         "CAS": "Generador de contraseñas, parte 2",
         "EUS": "Pasahitz sortzailea, 2. zatia"
       },
       "description": {
-        "ENG": "Write a function generate_strong_password(length, include_numbers, include_special) which returns a password. Letters are always included. Numbers and special chars are optional.",
-        "CAS": "Escribe generar_contrasena_fuerte(longitud, incluir_numeros, incluir_especiales). Las letras siempre están. Números y especiales son opcionales.",
-        "EUS": "Idatzi pasahitz_sendoa_sortu(luzera, zenbakiak_sartu, bereziak_sartu). Letrak beti daude. Zenbakiak eta karaktere bereziak aukerakoak dira."
+        "ENG": "Please write an improved version of your password generator. The function now takes three arguments: length, whether to include numbers, and whether to include special characters. The password should always contain at least one lowercase letter.",
+        "CAS": "Por favor escribe una versión mejorada de tu generador de contraseñas. La función ahora toma tres argumentos: longitud, si incluir números y si incluir caracteres especiales. La contraseña siempre debe contener al menos una letra minúscula.",
+        "EUS": "Mesedez idatzi zure pasahitz sortzailearen bertsio hobetua. Funtzioak orain hiru argumentu hartzen ditu: luzera, zenbakiak sartu ala ez, eta karaktere bereziak sartu ala ez. Pasahitzak beti eduki behar du gutxienez letra minuskula bat."
       },
-      "initialCode": "# Write your solution here\nfrom random import choice, shuffle\nimport string\n",
-      "testCode": "\nimport unittest\nclass TestPass2(unittest.TestCase):\n    def test_len(self):\n        out = run_student_code(code_to_run=\"print(len(generate_strong_password(10, True, True)))\")\n        self.assertIn(\"10\", out)\n"
+      "initialCode": {
+        "ENG": "import random\nimport string\n\ndef generate_strong_password(length: int, use_numbers: bool, use_special: bool):\n    # Write your solution here\n    pass",
+        "CAS": "import random\nimport string\n\ndef generate_strong_password(longitud: int, usar_numeros: bool, usar_especiales: bool):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "import random\nimport string\n\ndef generate_strong_password(luzera: int, zenbakiak_erabili: bool, bereziak_erabili: bool):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-06_dice_roller",
+      "exerciseId": "part07-07_dice_roller",
       "title": {
         "ENG": "Dice roller",
         "CAS": "Lanzador de dados",
         "EUS": "Dado jaurtitzailea"
       },
       "description": {
-        "ENG": "Write a function play(die1, die2, times) which simulates rolling two dice 'times' times. Compare the sums. Return a tuple (die1_wins, die2_wins, ties). Dice are represented by strings e.g. 'A' or 'B'. (You define the die faces/logic inside or simplify). Wait, dice are usually objects or lists of faces. Let's assume standard dice.",
-        "CAS": "Escribe una función jugar(dado1, dado2, veces). Simula tirar dos dados. Compara sumas. Devuelve (gana1, gana2, empates).",
-        "EUS": "Idatzi jokatu(dado1, dado2, aldiz) funtzioa. Bi dado jaurtitzea simulatzen du. Baturak alderatu. Itzuli (dado1_irabazi, dado2_irabazi, berdinketak)."
+        "ENG": "In this exercise you will use non-transitive dice (A, B, C). Write a function `roll(die: str)` to roll a specific die, and `play(die1: str, die2: str, times: int)` to simulate a game between two dice.",
+        "CAS": "En este ejercicio usarás dados no transitivos (A, B, C). Escribe una función `roll(die: str)` para lanzar un dado específico, y `play(die1: str, die2: str, times: int)` para simular un juego entre dos dados.",
+        "EUS": "Ariketa honetan dado ez-trantsitiboak (A, B, C) erabiliko dituzu. Idatzi `roll(die: str)` funtzioa dado zehatz bat jaurtitzeko, eta `play(die1: str, die2: str, times: int)` bi dadoren arteko joko bat simulatzeko."
       },
-      "initialCode": "# Write your solution here\nfrom random import sample\n\ndef play(die1, die2, times):\n    pass\n",
-      "testCode": "\nimport unittest\nclass TestDice(unittest.TestCase):\n    pass\n"
+      "initialCode": {
+        "ENG": "from random import choice\n\ndef roll(die: str):\n    # Write your solution here\n    pass\n\ndef play(die1: str, die2: str, times: int):\n    # Write your solution here\n    pass",
+        "CAS": "from random import choice\n\ndef roll(dado: str):\n    # Escribe tu solución aquí\n    pass\n\ndef play(dado1: str, dado2: str, veces: int):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "from random import choice\n\ndef roll(dadoa: str):\n    # Idatzi zure soluzioa hemen\n    pass\n\ndef play(dadoa1: str, dadoa2: str, aldiz: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part07-08_random_words",
+      "title": {
+        "ENG": "Random words",
+        "CAS": "Palabras aleatorias",
+        "EUS": "Ausazko hitzak"
+      },
+      "description": {
+        "ENG": "Please write a function named `words(n: int, beginning: str)`, which returns a list containing `n` random words from `words.txt` that begin with the specified string. Raise `ValueError` if not enough words are found.",
+        "CAS": "Por favor escribe una función llamada `words(n: int, beginning: str)`, que devuelva una lista que contenga `n` palabras aleatorias de `words.txt` que comiencen con la cadena especificada. Lanza `ValueError` si no se encuentran suficientes palabras.",
+        "EUS": "Mesedez idatzi `words(n: int, beginning: str)` izeneko funtzio bat, `words.txt`-tik zehaztutako katearekin hasten diren `n` ausazko hitz dituen zerrenda bat itzultzen duena. Sortu `ValueError` ez bada nahikoa hitz aurkitzen."
+      },
+      "initialCode": {
+        "ENG": "import random\n\ndef words(n: int, beginning: str):\n    # Write your solution here\n    pass",
+        "CAS": "import random\n\ndef words(n: int, comienzo: str):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "import random\n\ndef words(n: int, hasiera: str):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     }
   ]
 }

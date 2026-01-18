@@ -27,7 +27,11 @@
         "CAS": "Implementa clases LunchCard y PaymentTerminal.",
         "EUS": "Inplementatu LunchCard eta PaymentTerminal klaseak."
       },
-      "initialCode": "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n",
+      "initialCode": {
+        "ENG": "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n",
+        "CAS": "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n",
+        "EUS": "class LunchCard:\n    pass\n\nclass PaymentTerminal:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestLunch(unittest.TestCase):\n    def test_run(self):\n        card = LunchCard(10)\n        term = PaymentTerminal()\n        term.eat_lunch(card)\n        # assert balance changed\n        pass\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea clase RealEstate con métodos de comparación.",
         "EUS": "Sortu RealEstate klasea konparazio metodoekin."
       },
-      "initialCode": "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
+      "initialCode": {
+        "ENG": "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
+        "CAS": "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n",
+        "EUS": "class RealEstate:\n    def __init__(self, rooms, square_metres, price_per_sqm):\n        self.rooms = rooms\n        self.square_metres = square_metres\n        self.price_per_sqm = price_per_sqm\n"
+      },
       "testCode": "\nimport unittest\nclass TestRealEstate(unittest.TestCase):\n    def test_run(self):\n        r1 = RealEstate(1, 20, 100)\n        r2 = RealEstate(2, 40, 100)\n        self.assertTrue(r2.bigger(r1))\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Define clase Pet y Person. Person tiene nombre y mascota.",
         "EUS": "Definitu Pet eta Person klaseak. Person-ek izena eta maskota ditu."
       },
-      "initialCode": "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n",
+      "initialCode": {
+        "ENG": "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n",
+        "CAS": "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n",
+        "EUS": "class Pet:\n    def __init__(self, name, description):\n        self.name = name\n        self.description = description\n\nclass Person:\n    pass\n"
+      },
       "testCode": "pass"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Crea clases Present y Box.",
         "EUS": "Sortu Present eta Box klaseak."
       },
-      "initialCode": "class Present:\n    pass\n\nclass Box:\n    pass\n",
+      "initialCode": {
+        "ENG": "class Present:\n    pass\n\nclass Box:\n    pass\n",
+        "CAS": "class Present:\n    pass\n\nclass Box:\n    pass\n",
+        "EUS": "class Present:\n    pass\n\nclass Box:\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

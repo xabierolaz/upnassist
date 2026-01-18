@@ -27,7 +27,11 @@
         "CAS": "Crea una función fastest_car(cars: list) que reciba una lista de objetos Car y devuelva el nombre del coche más rápido. La clase Car tiene atributos make y top_speed.",
         "EUS": "Sortu fastest_car(cars: list) funtzioa, Car objektuen zerrenda bat jasotzen duena eta auto azkarrenaren izena itzultzen duena. Car klaseak make eta top_speed atributuak ditu."
       },
-      "initialCode": "class Car:\n    def __init__(self, make: str, top_speed: int):\n        self.make = make\n        self.top_speed = top_speed\n\ndef fastest_car(cars: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "class Car:\n    def __init__(self, make: str, top_speed: int):\n        self.make = make\n        self.top_speed = top_speed\n\ndef fastest_car(cars: list):\n    # write your solution here\n    pass\n",
+        "CAS": "class Car:\n    def __init__(self, make: str, top_speed: int):\n        self.make = make\n        self.top_speed = top_speed\n\ndef fastest_car(cars: list):\n    # write your solution here\n    pass\n",
+        "EUS": "class Car:\n    def __init__(self, make: str, top_speed: int):\n        self.make = make\n        self.top_speed = top_speed\n\ndef fastest_car(cars: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestFastestCar(unittest.TestCase):\n    def test_run(self):\n        cars = [Car(\"A\", 100), Car(\"B\", 200), Car(\"C\", 150)]\n        self.assertEqual(fastest_car(cars), \"B\")\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "La plantilla tiene una clase Person. Crea una función analyze(people: list) que devuelva una tupla (cantidad, altura_promedio, nombre_mas_alto).",
         "EUS": "Txantiloiak Person klasea du. Sortu analyze(people: list) funtzioa, tupla bat itzultzen duena (kopurua, batez_besteko_altuera, altuenaren_izena)."
       },
-      "initialCode": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n\ndef analyze(people: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n\ndef analyze(people: list):\n    # write your solution here\n    pass\n",
+        "CAS": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n\ndef analyze(people: list):\n    # write your solution here\n    pass\n",
+        "EUS": "class Person:\n    def __init__(self, name: str, height: int):\n        self.name = name\n        self.height = height\n\ndef analyze(people: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestAnalyze(unittest.TestCase):\n    def test_run(self):\n        p = [Person(\"A\", 100), Person(\"B\", 200)]\n        res = analyze(p)\n        self.assertEqual(res, (2, 150, \"B\"))\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Crea clase Baby. (Quizás simple repaso de clases).",
         "EUS": "Sortu Baby klasea."
       },
-      "initialCode": "# Write your solution here\nclass Baby:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Baby:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Baby:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Baby:\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

@@ -27,7 +27,11 @@
         "CAS": "Escribe función generadora even_numbers.",
         "EUS": "Idatzi even_numbers sorgailu funtzioa."
       },
-      "initialCode": "def even_numbers(beginning: int, maximum: int):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def even_numbers(beginning: int, maximum: int):\n    # write your solution here\n    pass\n",
+        "CAS": "def even_numbers(beginning: int, maximum: int):\n    # write your solution here\n    pass\n",
+        "EUS": "def even_numbers(beginning: int, maximum: int):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestEven(unittest.TestCase):\n    def test_run(self):\n        gen = even_numbers(2, 6)\n        self.assertEqual(list(gen), [2, 4, 6])\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe función generadora prime_numbers que genere primos infinitamente.",
         "EUS": "Idatzi prime_numbers sorgailu funtzioa, zenbaki lehenak infinituki sortzen dituena."
       },
-      "initialCode": "def prime_numbers():\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def prime_numbers():\n    # write your solution here\n    pass\n",
+        "CAS": "def prime_numbers():\n    # write your solution here\n    pass\n",
+        "EUS": "def prime_numbers():\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestPrimes(unittest.TestCase):\n    def test_run(self):\n        gen = prime_numbers()\n        primes = [next(gen) for _ in range(5)]\n        self.assertEqual(primes, [2, 3, 5, 7, 11])\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe generador de palabras aleatorias.",
         "EUS": "Idatzi ausazko hitzen sorgailua."
       },
-      "initialCode": "def word_generator(characters: str, length: int, amount: int):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def word_generator(characters: str, length: int, amount: int):\n    # write your solution here\n    pass\n",
+        "CAS": "def word_generator(characters: str, length: int, amount: int):\n    # write your solution here\n    pass\n",
+        "EUS": "def word_generator(characters: str, length: int, amount: int):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

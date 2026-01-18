@@ -27,7 +27,11 @@
         "CAS": "Escribe función recursiva greatest_node que devuelva el valor del nodo más grande.",
         "EUS": "Idatzi greatest_node funtzio errekurtsiboa, zuhaitz bitarreko nodo handienaren balioa itzultzen duena."
       },
-      "initialCode": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef greatest_node(root: Node):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef greatest_node(root: Node):\n    # write your solution here\n    pass\n",
+        "CAS": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef greatest_node(root: Node):\n    # write your solution here\n    pass\n",
+        "EUS": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef greatest_node(root: Node):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestGreatest(unittest.TestCase):\n    def test_run(self):\n        tree = Node(2, Node(3, Node(5), Node(8)), Node(4))\n        self.assertEqual(greatest_node(tree), 8)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea clases Task y OrderBook. Gestiona tareas y programadores.",
         "EUS": "Sortu Task eta OrderBook klaseak. Kudeatu atazak eta programatzaileak."
       },
-      "initialCode": "# Write your solution here\nclass Task:\n    pass\n\nclass OrderBook:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Task:\n    pass\n\nclass OrderBook:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Task:\n    pass\n\nclass OrderBook:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Task:\n    pass\n\nclass OrderBook:\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

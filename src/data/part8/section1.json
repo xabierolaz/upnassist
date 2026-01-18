@@ -27,7 +27,11 @@
         "CAS": "Escribe una función smallest_average(persona1, persona2, persona3). Toma 3 diccionarios con nombre y tres resultados. Devuelve el diccionario de la persona con menor promedio.",
         "EUS": "Idatzi smallest_average(pertsona1, pertsona2, pertsona3) funtzioa. Hiru hiztegi hartzen ditu (izena, hiru emaitza). Batezbesteko txikiena duen pertsonaren hiztegia itzuli."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestAvg(unittest.TestCase):\n    def test_run(self):\n        p1 = {\"name\": \"A\", \"result1\": 2, \"result2\": 3, \"result3\": 3}\n        p2 = {\"name\": \"B\", \"result1\": 5, \"result2\": 5, \"result3\": 5}\n        p3 = {\"name\": \"C\", \"result1\": 1, \"result2\": 1, \"result3\": 1}\n        # C has smallest\n        out = run_student_code(code_to_run=\"print(smallest_average(\" + str(p1) + \",\" + str(p2) + \",\" + str(p3) + \")['name'])\")\n        self.assertIn(\"C\", out)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe una función sumas_filas(matriz). Añade a cada fila un nuevo elemento: la suma de esa fila. Modifica la matriz in-situ.",
         "EUS": "Idatzi errenkada_baturak(matrizea). Errenkada bakoitzari elementu berri bat gehitu: errenkada horren batura. Matrizea bertan aldatu."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestRowSums(unittest.TestCase):\n    def test_run(self):\n        m = [[1, 2], [3, 4]]\n        # -> [[1, 2, 3], [3, 4, 7]]\n        run_student_code(code_to_run=\"m=[[1,2],[3,4]]; row_sums(m); print(m)\")\n        # Check output or we can mock\n        # Just check output string contains 3 and 7\n        # We need to capture stdout\n        pass\n"
     }
   ]

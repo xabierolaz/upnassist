@@ -51,7 +51,11 @@
         "CAS": "Tu amiga está trabajando en una app para demandantes de empleo. Te envía este fragmento de código. El código funciona casi correctamente, pero no del todo. Este ejercicio tiene pruebas muy estrictas, que comprueban la salida de cada espacio en blanco. Por favor, corrige el código para que la impresión se vea bien. La forma más fácil de transformar el código para que cumpla con los requisitos es usar f-strings.",
         "EUS": "Zure laguna lana bilatzen dutenentzako aplikazio batean lanean ari da. Kode zati hau bidaltzen dizu. Kodeak ia ondo funtzionatzen du, baina ez erabat. Ariketa honek test oso zorrotzak ditu, zuriune bakoitza egiaztatzen dutenak. Mesedez, konpondu kodea inprimaketa zuzena izan dadin. Baldintzak betetzeko koderik aldatzeko modurik errazena f-kateak erabiltzea da."
       },
-      "initialCode": "name = \"Tim Tester\"\nage = 20\nskill1 = \"python\"\nlevel1 = \"beginner\"\nskill2 = \"java\"\nlevel2 = \"veteran\"\nskill3 = \"programming\"\nlevel3 = \"semiprofessional\"\nlower = 2000\nupper = 3000\n\nprint(\"my name is \", name, \" , I am \", age, \"years old\")\nprint(\"my skills are\")\nprint(\" - \", skill1, \" (\", level1, \" )\")\nprint(\" - \", skill2, \" (\", level2, \" )\")\nprint(\" - \", skill3, \" (\", level3, \" )\")\nprint(\"I am looking for a job with a salary of\", lower, \"-\", upper, \"euros per month\")",
+      "initialCode": {
+        "ENG": "name = \"Tim Tester\"\nage = 20\nskill1 = \"python\"\nlevel1 = \"beginner\"\nskill2 = \"java\"\nlevel2 = \"veteran\"\nskill3 = \"programming\"\nlevel3 = \"semiprofessional\"\nlower = 2000\nupper = 3000\n\nprint(\"my name is \", name, \" , I am \", age, \"years old\")\nprint(\"my skills are\")\nprint(\" - \", skill1, \" (\", level1, \" )\")\nprint(\" - \", skill2, \" (\", level2, \" )\")\nprint(\" - \", skill3, \" (\", level3, \" )\")\nprint(\"I am looking for a job with a salary of\", lower, \"-\", upper, \"euros per month\")",
+        "CAS": "name = \"Tim Tester\"\nage = 20\nskill1 = \"python\"\nlevel1 = \"beginner\"\nskill2 = \"java\"\nlevel2 = \"veteran\"\nskill3 = \"programming\"\nlevel3 = \"semiprofessional\"\nlower = 2000\nupper = 3000\n\nprint(\"my name is \", name, \" , I am \", age, \"years old\")\nprint(\"my skills are\")\nprint(\" - \", skill1, \" (\", level1, \" )\")\nprint(\" - \", skill2, \" (\", level2, \" )\")\nprint(\" - \", skill3, \" (\", level3, \" )\")\nprint(\"I am looking for a job with a salary of\", lower, \"-\", upper, \"euros per month\")",
+        "EUS": "name = \"Tim Tester\"\nage = 20\nskill1 = \"python\"\nlevel1 = \"beginner\"\nskill2 = \"java\"\nlevel2 = \"veteran\"\nskill3 = \"programming\"\nlevel3 = \"semiprofessional\"\nlower = 2000\nupper = 3000\n\nprint(\"my name is \", name, \" , I am \", age, \"years old\")\nprint(\"my skills are\")\nprint(\" - \", skill1, \" (\", level1, \" )\")\nprint(\" - \", skill2, \" (\", level2, \" )\")\nprint(\" - \", skill3, \" (\", level3, \" )\")\nprint(\"I am looking for a job with a salary of\", lower, \"-\", upper, \"euros per month\")"
+      },
       "testCode": "\nimport unittest\nclass TestExtraSpace(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        expected = \"my name is Tim Tester, I am 20 years old\\nmy skills are\\n- python (beginner)\\n- java (veteran)\\n- programming (semiprofessional)\\nI am looking for a job with a salary of 2000-3000 euros per month\"\n        self.assertEqual(output.strip(), expected.strip())\n"
     },
     {
@@ -75,7 +79,11 @@
         "CAS": "Este programa ya contiene dos variables enteras, x e y. Completa el programa para que imprima las operaciones aritméticas básicas (suma, diferencia, producto, división) como se muestra en el ejemplo.",
         "EUS": "Programa honek x eta y aldagai osoak ditu dagoeneko. Osatu programa oinarrizko eragiketa aritmetikoak (batuketa, kenketa, biderkadura, zatiketa) inprima ditzan, adibidean bezala."
       },
-      "initialCode": "x = 27\ny = 15\n# Write your code here\n",
+      "initialCode": {
+        "ENG": "x = 27\ny = 15\n# Write your code here\n",
+        "CAS": "x = 27\ny = 15\n# Escribe tu código aquí\n",
+        "EUS": "x = 27\ny = 15\n# Idatzi zure kodea hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestArithmetics(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertIn(\"27 + 15 = 42\", output)\n        self.assertIn(\"27 - 15 = 12\", output)\n        self.assertIn(\"27 * 15 = 405\", output)\n        self.assertIn(\"27 / 15 = 1.8\", output)"
     },
     {
@@ -91,7 +99,11 @@
         "CAS": "Cada comando print suele imprimir una línea propia. Sin embargo, si se le da el argumento adicional `end=\"\"`, no imprimirá el salto de línea. Arregla este programa para que todo el cálculo salga en una sola línea. No cambies el número de comandos print utilizados.",
         "EUS": "Print komando bakoitzak normalean bere lerroa inprimatzen du. Hala ere, `end=\"\"` argumentua ematen bazaio, ez du lerro-jauzirik inprimatuko. Konpondu programa kalkulu osoa lerro bakar batean inprimatzeko. Ez aldatu erabilitako print komando kopurua."
       },
-      "initialCode": "print(5)\nprint(\" + \")\nprint(8)\nprint(\" - \")\nprint(4)\nprint(\" = \")\nprint(5 + 8 - 4)",
+      "initialCode": {
+        "ENG": "print(5)\nprint(\" + \")\nprint(8)\nprint(\" - \")\nprint(4)\nprint(\" = \")\nprint(5 + 8 - 4)",
+        "CAS": "print(5)\nprint(\" + \")\nprint(8)\nprint(\" - \")\nprint(4)\nprint(\" = \")\nprint(5 + 8 - 4)",
+        "EUS": "print(5)\nprint(\" + \")\nprint(8)\nprint(\" - \")\nprint(4)\nprint(\" = \")\nprint(5 + 8 - 4)"
+      },
       "testCode": "\nimport unittest\nclass TestSingleLine(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertEqual(output.strip(), \"5 + 8 - 4 = 9\")\n"
     }
   ]

@@ -27,7 +27,11 @@
         "CAS": "Crea clases Item, Suitcase y CargoHold. Implementa métodos para añadir, verificar peso e imprimir contenido.",
         "EUS": "Sortu Item, Suitcase eta CargoHold klaseak. Inplementatu metodoak gehitzeko, pisua egiaztatzeko eta edukia inprimatzeko."
       },
-      "initialCode": "# Write your solution here\nclass Item:\n    pass\n\nclass Suitcase:\n    pass\n\nclass CargoHold:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Item:\n    pass\n\nclass Suitcase:\n    pass\n\nclass CargoHold:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Item:\n    pass\n\nclass Suitcase:\n    pass\n\nclass CargoHold:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Item:\n    pass\n\nclass Suitcase:\n    pass\n\nclass CargoHold:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestCargo(unittest.TestCase):\n    def test_run(self):\n        i1 = Item(\"Book\", 1)\n        i2 = Item(\"Laptop\", 2)\n        s = Suitcase(10)\n        s.add_item(i1)\n        s.add_item(i2)\n        self.assertEqual(s.weight(), 3)\n        c = CargoHold(100)\n        c.add_suitcase(s)\n        self.assertEqual(c.weight(), 3)\n"
     }
   ]

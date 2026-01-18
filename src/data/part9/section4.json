@@ -27,7 +27,11 @@
         "CAS": "Crea clase BankAccount con atributos privados. Métodos deposit y withdraw. withdraw llama a método privado __service_charge(), que resta 1% si amount > 0.",
         "EUS": "Sortu BankAccount klasea atributu pribatuekin. deposit eta withdraw metodoak. withdraw-k __service_charge() metodo pribatua deitzen du, %1 kentzen duena amount > 0 bada."
       },
-      "initialCode": "# Write your solution here\nclass BankAccount:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass BankAccount:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass BankAccount:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass BankAccount:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestAccount(unittest.TestCase):\n    def test_run(self):\n        a = BankAccount(\"Randy\", \"123\", 1000)\n        a.withdraw(100)\n        # 1000 - 100 - (100 * 0.01) = 899\n        self.assertAlmostEqual(a.balance, 899)\n"
     }
   ]

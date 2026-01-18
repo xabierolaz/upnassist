@@ -27,7 +27,11 @@
         "CAS": "Escribe función sort_by_remaining_stock que ordene tuplas (nombre, precio, stock) por stock.",
         "EUS": "Idatzi sort_by_remaining_stock funtzioa, tuplak (izena, prezioa, stocka) stock-aren arabera ordenatzen dituena."
       },
-      "initialCode": "def sort_by_remaining_stock(items: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def sort_by_remaining_stock(items: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def sort_by_remaining_stock(items: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def sort_by_remaining_stock(items: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestStock(unittest.TestCase):\n    def test_run(self):\n        items = [(\"A\", 10, 5), (\"B\", 10, 2), (\"C\", 10, 10)]\n        sort_by_remaining_stock(items)\n        self.assertEqual(items[0][0], \"B\")\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe función sort_by_seasons que ordene diccionarios por número de temporadas.",
         "EUS": "Idatzi sort_by_seasons funtzioa, hiztegiak denboraldi kopuruaren arabera ordenatzen dituena."
       },
-      "initialCode": "def sort_by_seasons(items: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def sort_by_seasons(items: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def sort_by_seasons(items: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def sort_by_seasons(items: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestSeasons(unittest.TestCase):\n    def test_run(self):\n        shows = [{\"name\": \"A\", \"seasons\": 5}, {\"name\": \"B\", \"seasons\": 2}]\n        result = sort_by_seasons(shows)\n        self.assertEqual(result[0][\"name\"], \"B\")\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe función sort_by_ratings que ordene por valoración (descendente).",
         "EUS": "Idatzi sort_by_ratings funtzioa, balorazioaren arabera ordenatzen dituena (beheraka)."
       },
-      "initialCode": "def sort_by_ratings(items: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def sort_by_ratings(items: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def sort_by_ratings(items: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def sort_by_ratings(items: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestRatings(unittest.TestCase):\n    def test_run(self):\n        shows = [{\"rating\": 8.5}, {\"rating\": 9.0}]\n        result = sort_by_ratings(shows)\n        self.assertEqual(result[0][\"rating\"], 9.0)\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Clase ClimbingRoute dada. Escribe funciones de ordenación.",
         "EUS": "ClimbingRoute klasea ematen da. Idatzi ordenazio funtzioak."
       },
-      "initialCode": "class ClimbingRoute:\n    def __init__(self, name: str, length: int, grade: str):\n        self.name = name\n        self.length = length\n        self.grade = grade\n    def __str__(self):\n        return f\"{self.name}, length {self.length} metres, grade {self.grade}\"\n\ndef sort_by_length(routes: list):\n    # ...\n    pass\n\ndef sort_by_difficulty(routes: list):\n    # ...\n    pass\n",
+      "initialCode": {
+        "ENG": "class ClimbingRoute:\n    def __init__(self, name: str, length: int, grade: str):\n        self.name = name\n        self.length = length\n        self.grade = grade\n    def __str__(self):\n        return f\"{self.name}, length {self.length} metres, grade {self.grade}\"\n\ndef sort_by_length(routes: list):\n    # ...\n    pass\n\ndef sort_by_difficulty(routes: list):\n    # ...\n    pass\n",
+        "CAS": "class ClimbingRoute:\n    def __init__(self, name: str, length: int, grade: str):\n        self.name = name\n        self.length = length\n        self.grade = grade\n    def __str__(self):\n        return f\"{self.name}, length {self.length} metres, grade {self.grade}\"\n\ndef sort_by_length(routes: list):\n    # ...\n    pass\n\ndef sort_by_difficulty(routes: list):\n    # ...\n    pass\n",
+        "EUS": "class ClimbingRoute:\n    def __init__(self, name: str, length: int, grade: str):\n        self.name = name\n        self.length = length\n        self.grade = grade\n    def __str__(self):\n        return f\"{self.name}, length {self.length} metres, grade {self.grade}\"\n\ndef sort_by_length(routes: list):\n    # ...\n    pass\n\ndef sort_by_difficulty(routes: list):\n    # ...\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

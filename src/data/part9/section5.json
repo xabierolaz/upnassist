@@ -27,7 +27,11 @@
         "CAS": "Añade atributo de clase postcodes a clase City. Debe ser un diccionario. Añade 'Helsinki': '00100', etc.",
         "EUS": "Gehitu postcodes klase-atributua City klaseari. Hiztegi bat izan behar du. Gehitu 'Helsinki': '00100', etab."
       },
-      "initialCode": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
+      "initialCode": {
+        "ENG": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
+        "CAS": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
+        "EUS": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n"
+      },
       "testCode": "\nimport unittest\nclass TestCity(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(City.postcodes['Helsinki'], '00100')\n        c = City(\"Test\", 100)\n        self.assertEqual(c.postcodes['Turku'], '20100')\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea clase ListHelper con métodos estáticos greatest_frequency y doubles.",
         "EUS": "Sortu ListHelper klasea metodo estatikoekin: greatest_frequency eta doubles."
       },
-      "initialCode": "# Write your solution here\nclass ListHelper:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass ListHelper:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass ListHelper:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass ListHelper:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestListHelper(unittest.TestCase):\n    def test_run(self):\n        l = [1, 1, 2, 3, 3, 3]\n        self.assertEqual(ListHelper.greatest_frequency(l), 3)\n        self.assertEqual(ListHelper.doubles(l), 2)\n"
     }
   ]

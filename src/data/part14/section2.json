@@ -27,7 +27,11 @@
         "CAS": "Implementa el método move para manejar el movimiento del robot y el empuje de cajas.",
         "EUS": "Inplementatu move metodoa robotaren mugimendua eta kutxen bultzada kudeatzeko."
       },
-      "initialCode": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Write your code here\n        pass\n",
+      "initialCode": {
+        "ENG": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Write your code here\n        pass\n",
+        "CAS": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Escribe tu código aquí\n        pass\n",
+        "EUS": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def move(self, move_y, move_x):\n        # Idatzi zure kodea hemen\n        pass\n"
+      },
       "testCode": "pass"
     }
   ]

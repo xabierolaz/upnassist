@@ -27,7 +27,11 @@
         "CAS": "Implementa tu propio juego siguiendo los requisitos. ¡Sé creativo!",
         "EUS": "Inplementatu zure joko propioa baldintzak jarraituz. Izan sortzailea!"
       },
-      "initialCode": "import pygame\n\n# Write your game code here\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# Write your game code here\n",
+        "CAS": "import pygame\n\n# Write your game code here\n",
+        "EUS": "import pygame\n\n# Write your game code here\n"
+      },
       "testCode": "pass"
     }
   ]

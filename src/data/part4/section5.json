@@ -1,114 +1,46 @@
 {
   "id": "part4-5",
   "title": {
-    "ENG": "More strings and lists",
-    "CAS": "Más cadenas y listas",
-    "EUS": "Kate eta zerrenda gehiago"
+    "ENG": "Print statement formatting",
+    "CAS": "Formato de declaraciones de impresión",
+    "EUS": "Inprimaketa sententziaren formateatzea"
   },
   "blocks": [
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# More strings and lists\n\n## Slicing\n\nYou can slice strings and lists using the syntax `[start:end:step]`.\n\n```python\nword = \"exemplary\"\nprint(word[0:7:2])\n```\n\n```text\neepa\n```\n\nReversing a string:\n\n```python\nprint(word[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## String methods\n\n- `count(substring)`: counts occurrences\n- `replace(old, new)`: replaces substrings\n\n```python\nsentence = \"How much wood would a woodchuck chuck\"\nprint(sentence.count(\"wood\"))\nprint(sentence.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n",
-        "CAS": "\n# Más cadenas y listas\n\n## Rebanado (Slicing)\n\nPuedes rebanar cadenas y listas usando la sintaxis `[inicio:fin:paso]`.\n\n```python\npalabra = \"exemplary\"\nprint(palabra[0:7:2])\n```\n\n```text\neepa\n```\n\nInvirtiendo una cadena:\n\n```python\nprint(palabra[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## Métodos de cadena\n\n- `count(subcadena)`: cuenta ocurrencias\n- `replace(viejo, nuevo)`: reemplaza subcadenas\n\n```python\nfrase = \"How much wood would a woodchuck chuck\"\nprint(frase.count(\"wood\"))\nprint(frase.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n",
-        "EUS": "\n# Kate eta zerrenda gehiago\n\n## Slicing (Zatikatzea)\n\nKateak eta zerrendak zatikatu ditzakezu `[hasiera:amaiera:pausoa]` sintaxia erabiliz.\n\n```python\nhitza = \"exemplary\"\nprint(hitza[0:7:2])\n```\n\n```text\neepa\n```\n\nKate bat alderantzikatzea:\n\n```python\nprint(hitza[::-1])\n```\n\n```text\nyralpmexe\n```\n\n## Kate metodoak\n\n- `count(azpikatea)`: agerraldiak zenbatzen ditu\n- `replace(zaharra, berria)`: azpikateak ordezkatzen ditu\n\n```python\nesaldia = \"How much wood would a woodchuck chuck\"\nprint(esaldia.count(\"wood\"))\nprint(esaldia.replace(\"wood\", \"ground\"))\n```\n\n```text\n2\nHow much ground would a groundchuck chuck\n```\n"
+        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will know how to use arguments to format the result of the `print` command\n- You will be able to use f-strings to format printouts",
+        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Sabrás cómo usar argumentos para formatear el resultado del comando `print`\n- Serás capaz de usar f-strings para formatear impresiones",
+        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- `print` komandoaren emaitza formateatzeko argumentuak nola erabili jakingo duzu\n- Inprimaketak formateatzeko f-kateak (f-strings) erabiltzeko gai izango zara"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "So far we have learnt three methods for formulating the argument given to the `print` command.\n\nThe first is the `+` operator for strings. It allows simple concatenation of string segments:\n\n```python\nname = \"Mark\"\nage = 37\nprint(\"Hi \" + name + \" your age is \" + str(age) + \" years\" )\n```\n\nThis method will not work if any of the segments are not strings. In the example above, the variable `age` has been converted into a string with the `str` function, since it is an integer and cannot be concatenated as is.\n\nThe second method is considering each segment of the argument as a separate argument, and splitting them up with commas:\n\n```python\nprint(\"Hi\", name, \"your age is\", age, \"years\" )\n```\n\nThis code produces the exact same result as the previous version. The `print` command normally adds a space character between each argument.The advantage here is that the segments can be of different types, so there is no need to convert anything into a string.\n\nIf you want to remove the automatically added spaces, you can add a special named argument `sep`:\n\n```python\nprint(\"Hi\", name, \"your age is\", age, \"years\", sep=\"\")\n```\n\nThis prints out\n\n```text\nHiMarkyour age is37years\n```\n\nThe argument `sep=\"\"` is a *keyword argument*, and its name is short for *separator*. It specifies that the other arguments should now be separated by an empty string. You can set the separator to any string you like. For example, if you wanted each argument on a separate line, you could set the separator to `\"\\n\"`, which is the newline character:\n\n```python\nprint(\"Hi\", name, \"your age is\", age, \"years\", sep=\"\\n\")\n```\n\n```text\nHi\nMark\nyour age is\n37\nyears\n```\n\nBy default, the print command always ends in a newline character, but you can change this as well. The keyword argument `end` specifies what is put at the end of a line. Setting `end` to an empty string means that there is no newline character at the end of the printout:\n\n```python\nprint(\"Hi \", end=\"\")\nprint(\"there!\")\n```\n\n```text\nHi there!\n```\n\n## f-strings\n\nThe third method to prepare strings is f-strings. The previous example with the name and the age would look like this formulated with f-strings:\n\n```python\nname = \"Erkki\"\nage = 39\nprint(f\"Hi {name} your age is {age} years\")\n```\n\nThus far we have only used very simple f-strings, but they can be very versatile in formatting string type content. One very common use case is setting the number of decimals that are printed out with a floating point number. By default the number is quite high:\n\n```python\nnumber = 1/3\nprint(f\"The number is {number}\")\n```\n\n```text\nThe number is 0.333333333333333\n```\n\nThe specific format we want the number to be displayed in can be set within the curly brackets of the variable expression. Let's add a colon character and a *format specifier* after the variable name:\n\n```python\nnumber = 1/3\nprint(f\"The number is {number:.2f}\")\n```\n\n```text\nThe number is 0.33\n```\n\nThe format specifier `.2f` states that we want to display 2 decimals. The letter *f* at the end means that we want the variable to be displayed as a `float`, i.e. a floating point number.\n\nHere's another example, where we specify the amount of whitespace reserved for the variable in the printout. Both times the variable `name` is included in the resulting string, it has a space of 15 characters reserved. First the names are justified to the left, and then they are justified to the right:\n\n```python\nnames =  [ \"Steve\", \"Jean\", \"Katherine\", \"Paul\" ]\nfor name in names:\n  print(f\"{name:15} centre {name:>15}\")\n```\n\n```text\nSteve           centre           Steve\nJean            centre            Jean\nKatherine       centre       Katherine\nPaul            centre            Paul\n```\n\nThe uses of f-strings are not restricted to `print` commands. They can be assigned to variables and combined with other strings:\n\n```python\nname = \"Larry\"\nage = 48\ncity = \"Palo Alto\"\ngreeting = f\"Hi {name}, you are {age} years of age\"\nprint(greeting + f\", and you live in {city}\")\n```\n\n```text\nHi Larry, you are 48 years of age, and you live in Palo Alto\n```\n\nYou can think of an f-string as a sort of function, which creates a normal string based on the \"arguments\" within the curly brackets.",
+        "CAS": "Hasta ahora hemos aprendido tres métodos para formular el argumento dado al comando `print`.\n\nEl primero es el operador `+` para cadenas. Permite la concatenación simple de segmentos de cadena:\n\n```python\nnombre = \"Mark\"\nedad = 37\nprint(\"Hola \" + nombre + \" tu edad es \" + str(edad) + \" años\" )\n```\n\nEste método no funcionará si alguno de los segmentos no son cadenas. En el ejemplo anterior, la variable `edad` se ha convertido en una cadena con la función `str`, ya que es un entero y no se puede concatenar tal cual.\n\nEl segundo método es considerar cada segmento del argumento como un argumento separado, y dividirlos con comas:\n\n```python\nprint(\"Hola\", nombre, \"tu edad es\", edad, \"años\" )\n```\n\nEste código produce exactamente el mismo resultado que la versión anterior. El comando `print` normalmente añade un carácter de espacio entre cada argumento. La ventaja aquí es que los segmentos pueden ser de diferentes tipos, por lo que no hay necesidad de convertir nada en una cadena.\n\nSi quieres eliminar los espacios añadidos automáticamente, puedes añadir un argumento especial llamado `sep`:\n\n```python\nprint(\"Hola\", nombre, \"tu edad es\", edad, \"años\", sep=\"\")\n```\n\nEsto imprime\n\n```text\nHolaMarktu edad es37años\n```\n\nEl argumento `sep=\"\"` es un *argumento de palabra clave*, y su nombre es una abreviatura de *separador*. Especifica que los otros argumentos ahora deben estar separados por una cadena vacía. Puedes establecer el separador en cualquier cadena que desees. Por ejemplo, si quisieras cada argumento en una línea separada, podrías establecer el separador en `\"\\n\"`, que es el carácter de nueva línea:\n\n```python\nprint(\"Hola\", nombre, \"tu edad es\", edad, \"años\", sep=\"\\n\")\n```\n\n```text\nHola\nMark\ntu edad es\n37\naños\n```\n\nPor defecto, el comando print siempre termina con un carácter de nueva línea, pero puedes cambiar esto también. El argumento de palabra clave `end` especifica qué se pone al final de una línea. Establecer `end` en una cadena vacía significa que no hay carácter de nueva línea al final de la impresión:\n\n```python\nprint(\"Hola \", end=\"\")\nprint(\"ahí!\")\n```\n\n```text\nHola ahí!\n```\n\n## f-strings\n\nEl tercer método para preparar cadenas son las f-strings (cadenas f). El ejemplo anterior con el nombre y la edad se vería así formulado con f-strings:\n\n```python\nnombre = \"Erkki\"\nedad = 39\nprint(f\"Hola {nombre} tu edad es {edad} años\")\n```\n\nHasta ahora solo hemos usado f-strings muy simples, pero pueden ser muy versátiles al formatear contenido de tipo cadena. Un caso de uso muy común es establecer el número de decimales que se imprimen con un número de punto flotante. Por defecto, el número es bastante alto:\n\n```python\nnumero = 1/3\nprint(f\"El número es {numero}\")\n```\n\n```text\nEl número es 0.333333333333333\n```\n\nEl formato específico en el que queremos que se muestre el número se puede establecer dentro de las llaves de la expresión variable. Vamos a añadir un carácter de dos puntos y un *especificador de formato* después del nombre de la variable:\n\n```python\nnumero = 1/3\nprint(f\"El número es {numero:.2f}\")\n```\n\n```text\nEl número es 0.33\n```\n\nEl especificador de formato `.2f` indica que queremos mostrar 2 decimales. La letra *f* al final significa que queremos que la variable se muestre como un `float`, es decir, un número de punto flotante.\n\nAquí hay otro ejemplo, donde especificamos la cantidad de espacio en blanco reservado para la variable en la impresión. Ambas veces que la variable `nombre` se incluye en la cadena resultante, tiene un espacio de 15 caracteres reservado. Primero los nombres se justifican a la izquierda, y luego se justifican a la derecha:\n\n```python\nnombres =  [ \"Steve\", \"Jean\", \"Katherine\", \"Paul\" ]\nfor nombre in nombres:\n  print(f\"{nombre:15} centro {nombre:>15}\")\n```\n\n```text\nSteve           centro           Steve\nJean            centro            Jean\nKatherine       centro       Katherine\nPaul            centro            Paul\n```\n\nLos usos de las f-strings no se limitan a los comandos `print`. Se pueden asignar a variables y combinar con otras cadenas:\n\n```python\nnombre = \"Larry\"\nedad = 48\nciudad = \"Palo Alto\"\nsaludo = f\"Hola {nombre}, tienes {edad} años de edad\"\nprint(saludo + f\", y vives en {ciudad}\")\n```\n\n```text\nHola Larry, tienes 48 años de edad, y vives en Palo Alto\n```\n\nPuedes pensar en una f-string como una especie de función, que crea una cadena normal basada en los \"argumentos\" dentro de las llaves.",
+        "EUS": "Orain arte hiru metodo ikasi ditugu `print` komandoari ematen zaion argumentua formulatzeko.\n\nLehenengoa kateentzako `+` eragilea da. Kate zatien elkarketa sinplea ahalbidetzen du:\n\n```python\nizena = \"Mark\"\nadina = 37\nprint(\"Kaixo \" + izena + \" zure adina da \" + str(adina) + \" urte\" )\n```\n\nMetodo honek ez du funtzionatuko zatietakoren bat kateak ez badira. Goiko adibidean, `adina` aldagaia kate bihurtu da `str` funtzioarekin, osoko zenbakia baita eta ezin baita bere horretan elkartu.\n\nBigarren metodoa argumentuaren zati bakoitza argumentu bereizi gisa hartzea da, eta komekin bereiztea:\n\n```python\nprint(\"Kaixo\", izena, \"zure adina da\", adina, \"urte\" )\n```\n\nKode honek aurreko bertsioaren emaitza zehatz bera sortzen du. `print` komandoak normalean espazio karaktere bat gehitzen du argumentu bakoitzaren artean. Hemen abantaila zatiak mota desberdinetakoak izan daitezkeela da, beraz, ez dago ezer kate bihurtu beharrik.\n\nAutomatikoki gehitutako espazioak kendu nahi badituzu, `sep` izeneko argumentu berezia gehi dezakezu:\n\n```python\nprint(\"Kaixo\", izena, \"zure adina da\", adina, \"urte\", sep=\"\")\n```\n\nHonek hau inprimatzen du\n\n```text\nKaixoMarkzure adina da37urte\n```\n\n`sep=\"\"` argumentua *hitz gako argumentua* da, eta bere izena *separator* (bereizle) hitzaren laburdura da. Beste argumentuak orain kate huts batekin bereizi behar direla zehazten du. Bereizlea nahi duzun edozein katetara ezar dezakezu. Adibidez, argumentu bakoitza lerro bereizi batean nahi bazenu, bereizlea `\"\\n\"`-ra ezar zenezake, hau da, lerro berri karakterea:\n\n```python\nprint(\"Kaixo\", izena, \"zure adina da\", adina, \"urte\", sep=\"\\n\")\n```\n\n```text\nKaixo\nMark\nzure adina da\n37\nurte\n```\n\nLehenespenez, print komandoa beti lerro berri karaktere batekin amaitzen da, baina hau ere alda dezakezu. `end` hitz gako argumentuak zehazten du zer jartzen den lerro baten amaieran. `end` kate huts batera ezartzeak esan nahi du ez dagoela lerro berri karaktererik inprimaketaren amaieran:\n\n```python\nprint(\"Kaixo \", end=\"\")\nprint(\"hor!\")\n```\n\n```text\nKaixo hor!\n```\n\n## f-strings\n\nKateak prestatzeko hirugarren metodoa f-strings (f-kateak) dira. Izena eta adinarekin aurreko adibidea horrela ikusiko litzateke f-string-ekin formulatuta:\n\n```python\nizena = \"Erkki\"\nadina = 39\nprint(f\"Kaixo {izena}, {adina} urte dituzu\" )\n```\n\nOrain arte f-kate oso sinpleak bakarrik erabili ditugu, baina oso moldakorrak izan daitezke kate motako edukia formateatzean. Erabilera kasu oso ohiko bat koma mugikorreko zenbaki batekin inprimatzen diren hamartar kopurua ezartzea da. Lehenespenez kopurua nahiko handia da:\n\n```python\nzenbakia = 1/3\nprint(f\"Zenbakia da {zenbakia}\")\n```\n\n```text\nZenbakia da 0.333333333333333\n```\n\nZenbakia bistaratzea nahi dugun formatu zehatza aldagai adierazpenaren giltzen barruan ezar daiteke. Gehi ditzagun bi puntu karaktere bat eta *formatu zehazle* bat aldagai izenaren ondoren:\n\n```python\nzenbakia = 1/3\nprint(f\"Zenbakia da {zenbakia:.2f}\")\n```\n\n```text\nZenbakia da 0.33\n```\n\n`.2f` formatu zehazleak 2 hamartar bistaratu nahi ditugula adierazten du. Amaierako *f* letrak aldagaia `float` gisa bistaratu nahi dugula esan nahi du, hau da, koma mugikorreko zenbaki gisa.\n\nHona hemen beste adibide bat, non aldagaiarentzat inprimaketan gordetako zuriune kopurua zehazten dugun. `izena` aldagaia ondoriozko katean sartzen den bi aldietan, 15 karaktereko espazioa du gordeta. Lehenik izenak ezkerretara justifikatzen dira, eta gero eskuinera justifikatzen dira:\n\n```python\nizenak =  [ \"Steve\", \"Jean\", \"Katherine\", \"Paul\" ]\nfor izena in izenak:\n  print(f\"{izena:15} zentroa {izena:>15}\")\n```\n\n```text\nSteve           zentroa           Steve\nJean            zentroa            Jean\nKatherine       zentroa       Katherine\nPaul            zentroa            Paul\n```\n\nf-kateen erabilerak ez daude `print` komandoetara mugatuta. Aldagaiei esleitu eta beste kate batzuekin konbina daitezke:\n\n```python\nizena = \"Larry\"\nadina = 48\nhiria = \"Palo Alto\"\nagurra = f\"Kaixo {izena}, {adina} urte dituzu\"\nprint(agurra + f\", eta {hiria}-n bizi zara\")\n```\n\n```text\nKaixo Larry, 48 urte dituzu, eta Palo Alto-n bizi zara\n```\n\nF-kate bat funtzio moduko bat bezala pentsa dezakezu, giltzen barruko \"argumentuetan\" oinarritutako kate normal bat sortzen duena."
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "part04-33_everything_reversed",
+      "exerciseId": "part04-32_integers_to_strings",
       "title": {
-        "ENG": "Everything reversed",
-        "CAS": "Todo al revés",
-        "EUS": "Dena alderantziz"
+        "ENG": "Integers to strings",
+        "CAS": "Enteros a cadenas",
+        "EUS": "Osokoak kateetara"
       },
       "description": {
-        "ENG": "Write a function named everything_reversed, which takes a list of strings as its argument. The function returns a new list with all of the items on the original list reversed. Also the order of items should be reversed.",
-        "CAS": "Escribe una función llamada todo_al_reves, que tome una lista de cadenas. Devuelve una nueva lista con todos los elementos invertidos, y el orden de la lista también invertido.",
-        "EUS": "Idatzi dena_alderantziz izeneko funtzio bat. Zerrenda berri bat itzultzen du elementu guztiekin alderantzikatuta, eta zerrendaren ordena ere alderantzikatuta."
+        "ENG": "Please write a function named `formatted`, which takes a list of floating point numbers as its argument. The function returns a new list, which contains each element of the original list in string format, rounded to two decimal points. The order of the items in the list should remain unchanged.",
+        "CAS": "Por favor escribe una función llamada `formatted`, que tome una lista de números de punto flotante como argumento. La función devuelve una nueva lista, que contiene cada elemento de la lista original en formato de cadena, redondeado a dos decimales. El orden de los elementos en la lista debe permanecer sin cambios.",
+        "EUS": "Mesedez idatzi `formatted` izeneko funtzio bat, koma mugikorreko zenbakien zerrenda bat argumentu gisa hartzen duena. Funtzioak zerrenda berri bat itzultzen du, jatorrizko zerrendako elementu bakoitza kate formatuan duena, bi dezimaletara biribilduz. Zerrendako elementuen ordenak aldatu gabe egon behar du."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(everything_reversed([\"Anti\", \"Meto\", \"Tic\", \"Ice\", \"Po\", \"Hot\", \"Mag\", \"Net\", \"Ic\"]))",
-      "testCode": "\nimport unittest\nclass TestRev(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # \"Anti\" -> \"itnA\"\n        # List reversed -> \"Ic\" first -> \"cI\"\n        # Output should be ['cI', 'teN', 'gaM', 'toH', 'oP', 'ecI', 'ciT', 'oteM', 'itnA']\n        self.assertIn(\"cI\", out)\n        self.assertIn(\"itnA\", out)\n"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part04-34_most_common_character",
-      "title": {
-        "ENG": "Most common character",
-        "CAS": "Carácter más común",
-        "EUS": "Karaktere ohikoena"
+      "initialCode": {
+        "ENG": "def formatted(my_list: list):\n    # Write your solution here\n    pass",
+        "CAS": "def formatted(mi_lista: list):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "def formatted(nire_zerrenda: list):\n    # Idatzi zure soluzioa hemen\n    pass"
       },
-      "description": {
-        "ENG": "Write a function named most_common_character, which takes a string argument. The function returns the character which appears most often in the string.",
-        "CAS": "Escribe una función llamada caracter_mas_comun. Devuelve el carácter que aparece más a menudo.",
-        "EUS": "Idatzi karaktere_ohikoena izeneko funtzio bat. Katean gehien agertzen den karakterea itzultzen du."
-      },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(most_common_character(\"exemplary\"))",
-      "testCode": "\nimport unittest\nclass TestCommon(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # e appears 2 times, but 'x' 1, 'm' 1... wait\n        # e x e m p l a r y -> e:2\n        self.assertIn(\"e\", out)\n"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part04-35_no_vowels_allowed",
-      "title": {
-        "ENG": "No vowels allowed",
-        "CAS": "No se permiten vocales",
-        "EUS": "Bokalik ez"
-      },
-      "description": {
-        "ENG": "Write a function named no_vowels, which takes a string argument. The function returns a new string, which should be the same as the original but with all vowels removed.",
-        "CAS": "Escribe una función llamada sin_vocales. Devuelve una nueva cadena sin las vocales.",
-        "EUS": "Idatzi bokalik_gabe izeneko funtzio bat. Kate berri bat itzultzen du bokalik gabe."
-      },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_vowels(\"this is an example\"))",
-      "testCode": "\nimport unittest\nclass TestNoVowels(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # ths s n xmpl\n        self.assertIn(\"ths s n xmpl\", out)\n"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part04-36_no_shouting_allowed",
-      "title": {
-        "ENG": "No shouting allowed",
-        "CAS": "No se permite gritar",
-        "EUS": "Ez oihukatu"
-      },
-      "description": {
-        "ENG": "Write a function named no_shouting, which takes a list of strings as an argument. The function returns a new list, containing only those strings from the original which do not consist of all uppercase characters.",
-        "CAS": "Escribe una función llamada no_gritar. Devuelve una lista con las cadenas que no estén todo en mayúsculas.",
-        "EUS": "Idatzi ez_oihukatu izeneko funtzio bat. Zerrenda berri bat itzultzen du letra larriz idatzita ez dauden kateekin bakarrik."
-      },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(no_shouting([\"HI\", \"hello\", \"HEY\", \"there\"]))",
-      "testCode": "\nimport unittest\nclass TestNoShout(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # hello, there\n        self.assertIn(\"hello\", out)\n        self.assertIn(\"there\", out)\n        if \"HI\" in out: self.fail(\"Should remove uppercase strings\")\n"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part04-37_neighbours_in_list",
-      "title": {
-        "ENG": "Neighbours in a list",
-        "CAS": "Vecinos en una lista",
-        "EUS": "Auzokideak zerrenda batean"
-      },
-      "description": {
-        "ENG": "Write a function named longest_series_of_neighbours, which takes a list of integers as its argument. The function returns the length of the longest series of neighbours (values that differ by 1).",
-        "CAS": "Escribe una función llamada serie_vecinos_mas_larga. Devuelve la longitud de la serie más larga de vecinos (valores que difieren en 1).",
-        "EUS": "Idatzi auzokide_serie_luzeena izeneko funtzio bat. Auzokideen serie luzeenaren luzera itzultzen du (1eko aldea duten balioak)."
-      },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(longest_series_of_neighbours([1, 2, 5, 7, 6, 5, 6, 3, 4, 1, 0]))",
-      "testCode": "\nimport unittest\nclass TestNeighbours(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 5, 7, 6, 5, 6 -> length 4? \n        # 1,2 (2)\n        # 5\n        # 7,6,5,6 (4)\n        # 3,4 (2)\n        # 1,0 (2)\n        # Max is 4\n        self.assertIn(\"4\", out)\n"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part04-38_grade_statistics",
-      "title": {
-        "ENG": "Grade statistics",
-        "CAS": "Estadísticas de notas",
-        "EUS": "Noten estatistikak"
-      },
-      "description": {
-        "ENG": "Write a program that asks the user for points and exam points, then prints statistics (average, pass percentage, grade distribution). Input terminates with empty line.",
-        "CAS": "Escribe un programa que pida puntos y puntos de examen, luego imprima estadísticas (media, porcentaje de aprobados, distribución de notas). La entrada termina con una línea vacía.",
-        "EUS": "Idatzi programa bat puntuak eta azterketa puntuak eskatzen dituena, eta gero estatistikak inprimatzen dituena (batezbestekoa, gainditze portzentajea, noten banaketa)."
-      },
-      "initialCode": "# Write your solution here\n",
-      "testCode": "\nimport unittest\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        inputs = ['20 100', '15 80', '10 50', '']\n        out = run_student_code(inputs=inputs)\n        # Verify some output presence\n        self.assertIn(\"Statistics:\", out)\n        self.assertIn(\"Points average:\", out)\n        self.assertIn(\"Pass percentage:\", out)\n        self.assertIn(\"Grade distribution:\", out)\n"
+      "testCode": ""
     }
   ]
 }

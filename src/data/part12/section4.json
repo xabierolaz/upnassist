@@ -27,7 +27,11 @@
         "CAS": "Escribe funciones is_dotw, all_vowels y time_of_day usando re.search.",
         "EUS": "Idatzi is_dotw, all_vowels eta time_of_day funtzioak re.search erabiliz."
       },
-      "initialCode": "import re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+      "initialCode": {
+        "ENG": "import re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+        "CAS": "import re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+        "EUS": "import re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestRegex(unittest.TestCase):\n    def test_time(self):\n        self.assertTrue(time_of_day(\"12:00:00\"))\n        self.assertFalse(time_of_day(\"25:00:00\"))\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea aplicación de estadísticas de hockey. Comandos: buscar, listar equipos, países, jugadores por equipo/país, más puntos, más goles.",
         "EUS": "Sortu hockey estatistiken aplikazioa. Komandoak: bilatu, taldeak zerrendatu, herrialdeak zerrendatu, jokalariak taldeka/herrialdeka, puntu gehien, gol gehien."
       },
-      "initialCode": "# Write your solution here\nclass HockeyApp:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass HockeyApp:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass HockeyApp:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass HockeyApp:\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

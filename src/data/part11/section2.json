@@ -27,7 +27,11 @@
         "CAS": "Escribe función filter_forbidden que elimine palabras prohibidas. Usa lista por comprensión.",
         "EUS": "Idatzi filter_forbidden funtzioa, debekatutako zerrendan dauden hitzak katetik kentzen dituena. Erabili zerrenda-ulermena."
       },
-      "initialCode": "def filter_forbidden(string: str, forbidden: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def filter_forbidden(string: str, forbidden: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def filter_forbidden(string: str, forbidden: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def filter_forbidden(string: str, forbidden: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestFilter(unittest.TestCase):\n    def test_run(self):\n        sentence = \"I like apples and bananas\"\n        forbidden = [\"bananas\"]\n        self.assertEqual(filter_forbidden(sentence, forbidden), \"I like apples and\")\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe función lengths que devuelva diccionario palabra:longitud.",
         "EUS": "Idatzi lengths funtzioa, hiztegia itzultzen duena hitza:luzera."
       },
-      "initialCode": "def lengths(strings: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def lengths(strings: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def lengths(strings: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def lengths(strings: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestLengths(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(lengths([\"a\", \"bb\"]), {\"a\": 1, \"bb\": 2})\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe función most_common_words que devuelva diccionario de palabras frecuentes.",
         "EUS": "Idatzi most_common_words funtzioa, hitz ohikoenak dituen hiztegia itzultzen duena."
       },
-      "initialCode": "def most_common_words(filename: str, lower_limit: int):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def most_common_words(filename: str, lower_limit: int):\n    # write your solution here\n    pass\n",
+        "CAS": "def most_common_words(filename: str, lower_limit: int):\n    # write your solution here\n    pass\n",
+        "EUS": "def most_common_words(filename: str, lower_limit: int):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

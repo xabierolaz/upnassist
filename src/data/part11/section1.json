@@ -27,7 +27,11 @@
         "CAS": "Escribe una función square_roots(numbers: list) que devuelva una nueva lista con las raíces cuadradas. Usa lista por comprensión.",
         "EUS": "Idatzi square_roots(numbers: list) funtzioa, jatorrizko zenbakien erro karratuak dituen zerrenda berria itzultzen duena. Erabili zerrenda-ulermena."
       },
-      "initialCode": "from math import sqrt\ndef square_roots(numbers: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "from math import sqrt\ndef square_roots(numbers: list):\n    # write your solution here\n    pass\n",
+        "CAS": "from math import sqrt\ndef square_roots(numbers: list):\n    # write your solution here\n    pass\n",
+        "EUS": "from math import sqrt\ndef square_roots(numbers: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nfrom math import sqrt\nclass TestSquareRoots(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(square_roots([1, 4, 9]), [1, 2, 3])\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe una función rows_of_stars(numbers: list) que devuelva una lista de cadenas con estrellas.",
         "EUS": "Idatzi rows_of_stars(numbers: list) funtzioa, izarrak dituzten kateen zerrenda bat itzultzen duena."
       },
-      "initialCode": "def rows_of_stars(numbers: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def rows_of_stars(numbers: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def rows_of_stars(numbers: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def rows_of_stars(numbers: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestStars(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(rows_of_stars([1, 2]), [\"*\", \"**\"])\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Clase ExamResult dada. Escribe función best_results(results: list) que devuelva solo los resultados con nota 5.",
         "EUS": "ExamResult klasea ematen da. Idatzi best_results(results: list) funtzioa, 5 nota duten emaitzak bakarrik itzultzen dituena."
       },
-      "initialCode": "class ExamResult:\n    def __init__(self, name: str, grade: int):\n        self.name = name\n        self.grade = grade\n\ndef best_results(results: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "class ExamResult:\n    def __init__(self, name: str, grade: int):\n        self.name = name\n        self.grade = grade\n\ndef best_results(results: list):\n    # write your solution here\n    pass\n",
+        "CAS": "class ExamResult:\n    def __init__(self, name: str, grade: int):\n        self.name = name\n        self.grade = grade\n\ndef best_results(results: list):\n    # write your solution here\n    pass\n",
+        "EUS": "class ExamResult:\n    def __init__(self, name: str, grade: int):\n        self.name = name\n        self.grade = grade\n\ndef best_results(results: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestBest(unittest.TestCase):\n    def test_run(self):\n        r1 = ExamResult(\"A\", 5)\n        r2 = ExamResult(\"B\", 3)\n        self.assertEqual(len(best_results([r1, r2])), 1)\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Escribe función lengths(lists: list) que reciba lista de listas y devuelva sus longitudes.",
         "EUS": "Idatzi lengths(lists: list) funtzioa, zerrenda-zerrenda bat jaso eta barneko zerrenden luzerak itzultzen dituena."
       },
-      "initialCode": "def lengths(lists: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def lengths(lists: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def lengths(lists: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def lengths(lists: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestLengths(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(lengths([[1,2], [3], []]), [2, 1, 0])\n"
     },
     {
@@ -91,7 +107,11 @@
         "CAS": "Escribe función remove_smaller_than(numbers: list, limit: int).\n",
         "EUS": "Idatzi remove_smaller_than(numbers: list, limit: int) funtzioa."
       },
-      "initialCode": "def remove_smaller_than(numbers: list, limit: int):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def remove_smaller_than(numbers: list, limit: int):\n    # write your solution here\n    pass\n",
+        "CAS": "def remove_smaller_than(numbers: list, limit: int):\n    # write your solution here\n    pass\n",
+        "EUS": "def remove_smaller_than(numbers: list, limit: int):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestRemove(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(remove_smaller_than([1, 2, 3, 4], 3), [3, 4])\n"
     },
     {
@@ -107,7 +127,11 @@
         "CAS": "Escribe función begin_with_vowel(words: list).\n",
         "EUS": "Idatzi begin_with_vowel(words: list) funtzioa."
       },
-      "initialCode": "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n",
+        "CAS": "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n",
+        "EUS": "def begin_with_vowel(words: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestVowel(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(begin_with_vowel([\"apple\", \"Banana\", \"Orange\"]), [\"apple\", \"Orange\"])\n"
     },
     {
@@ -123,7 +147,11 @@
         "CAS": "Clase LotteryNumbers dada. Escribe método correct_numbers que devuelva los números coincidentes.",
         "EUS": "LotteryNumbers klasea ematen da. Idatzi correct_numbers metodoa, zenbaki irabazleekin bat datozenak itzultzen dituena."
       },
-      "initialCode": "class LotteryNumbers:\n    def __init__(self, week: int, numbers: list):\n        self.week = week\n        self.numbers = numbers\n\n    def number_of_hits(self, numbers: list):\n        return [n for n in numbers if n in self.numbers]\n\n    def hits_in_place(self, numbers: list):\n        return [n if n in self.numbers else -1 for n in numbers]\n",
+      "initialCode": {
+        "ENG": "class LotteryNumbers:\n    def __init__(self, week: int, numbers: list):\n        self.week = week\n        self.numbers = numbers\n\n    def number_of_hits(self, numbers: list):\n        return [n for n in numbers if n in self.numbers]\n\n    def hits_in_place(self, numbers: list):\n        return [n if n in self.numbers else -1 for n in numbers]\n",
+        "CAS": "class LotteryNumbers:\n    def __init__(self, week: int, numbers: list):\n        self.week = week\n        self.numbers = numbers\n\n    def number_of_hits(self, numbers: list):\n        return [n for n in numbers if n in self.numbers]\n\n    def hits_in_place(self, numbers: list):\n        return [n if n in self.numbers else -1 for n in numbers]\n",
+        "EUS": "class LotteryNumbers:\n    def __init__(self, week: int, numbers: list):\n        self.week = week\n        self.numbers = numbers\n\n    def number_of_hits(self, numbers: list):\n        return [n for n in numbers if n in self.numbers]\n\n    def hits_in_place(self, numbers: list):\n        return [n if n in self.numbers else -1 for n in numbers]\n"
+      },
       "testCode": "pass"
     }
   ]

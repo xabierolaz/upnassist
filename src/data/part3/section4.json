@@ -27,7 +27,11 @@
         "CAS": "Escribe una función llamada siete_hermanos. Cuando se llame a la función, debe imprimir los nombres de los siete hermanos en orden alfabético.",
         "EUS": "Idatzi zazpi_anaiak izeneko funtzio bat. Funtzioa deitzen denean, zazpi anaien izenak inprimatu beharko ditu ordena alfabetikoan."
       },
-      "initialCode": "# Write your solution here\n# You can test your function by calling it within the following block\nif __name__ == \"__main__\":\n    seven_brothers()",
+      "initialCode": {
+        "ENG": "# Write your solution here\n# You can test your function by calling it within the following block\nif __name__ == \"__main__\":\n    seven_brothers()",
+        "CAS": "# Escribe tu solución aquí\n# You can test your function by calling it within the following block\nif __name__ == \"__main__\":\n    seven_brothers()",
+        "EUS": "# Idatzi zure soluzioa hemen\n# You can test your function by calling it within the following block\nif __name__ == \"__main__\":\n    seven_brothers()"
+      },
       "testCode": "\nimport unittest\nfrom unittest.mock import patch\n\nclass TestSevenBrothers(unittest.TestCase):\n    def test_run(self):\n        # We need to mock stdout to capture print\n        out = run_student_code()\n        expected = [\"Aapo\", \"Eero\", \"Juhani\", \"Lauri\", \"Simeoni\", \"Timo\", \"Tuomas\"]\n        for name in expected:\n            self.assertIn(name, out)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe una función llamada primer_caracter. La función toma una cadena como argumento e imprime el primer carácter de esa cadena.",
         "EUS": "Idatzi lehen_karakterea izeneko funtzio bat. Funtzioak kate bat hartzen du argumentu gisa eta kate horren lehen karakterea inprimatzen du."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    first_character('python')",
+      "initialCode": {
+        "ENG": "# Write your solution here\nif __name__ == \"__main__\":\n    first_character('python')",
+        "CAS": "# Escribe tu solución aquí\nif __name__ == \"__main__\":\n    first_character('python')",
+        "EUS": "# Idatzi zure soluzioa hemen\nif __name__ == \"__main__\":\n    first_character('python')"
+      },
       "testCode": "\nimport unittest\nclass TestFirst(unittest.TestCase):\n    def test_python(self):\n        # We call the user's function in the test wrapper provided by run_student_code env\n        # Actually run_student_code executes the whole file. \n        # The user creates the function.\n        # To test specific function logic with different inputs, we might need a more advanced runner.\n        # For now, we rely on the user's main block or inject calls.\n        \n        # BUT run_student_code typically runs the file.\n        # If we want to test function isolated, we need to inspect the definitions.\n        # Our current simple runner executes the code.\n        # We can append code to call the function with specific args.\n        \n        # NOTE: The current simple runner only runs the code as is.\n        # To test 'first_character(\"python\")', we rely on the student having it in their main block or we fail?\n        # A better approach for this platform: Append test calls to the code.\n        \n        # Let's verify if the output contains 'p' given the default main block.\n        out = run_student_code()\n        self.assertIn(\"p\", out)\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe una función llamada media, que tome tres argumentos enteros. La función debe imprimir la media aritmética de los tres argumentos.",
         "EUS": "Idatzi batezbestekoa izeneko funtzio bat, hiru argumentu oso hartzen dituena. Funtzioak hiru argumentuen batezbesteko aritmetikoa inprimatu behar du."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    mean(1, 2, 3)",
+      "initialCode": {
+        "ENG": "# Write your solution here\nif __name__ == \"__main__\":\n    mean(1, 2, 3)",
+        "CAS": "# Escribe tu solución aquí\nif __name__ == \"__main__\":\n    mean(1, 2, 3)",
+        "EUS": "# Idatzi zure soluzioa hemen\nif __name__ == \"__main__\":\n    mean(1, 2, 3)"
+      },
       "testCode": "\nimport unittest\nclass TestMean(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"2.0\", out)\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Escribe una función llamada imprimir_muchas_veces(texto, veces), que imprima el texto tantas veces como se especifique.",
         "EUS": "Idatzi inprimatu_askotan(testua, aldiz) izeneko funtzio bat, testua zehaztutako aldiz inprimatzen duena."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print_many_times(\"hi\", 5)",
+      "initialCode": {
+        "ENG": "# Write your solution here\nif __name__ == \"__main__\":\n    print_many_times(\"hi\", 5)",
+        "CAS": "# Escribe tu solución aquí\nif __name__ == \"__main__\":\n    print_many_times(\"hi\", 5)",
+        "EUS": "# Idatzi zure soluzioa hemen\nif __name__ == \"__main__\":\n    print_many_times(\"hi\", 5)"
+      },
       "testCode": "\nimport unittest\nclass TestMany(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        if out.count(\"hi\") < 5:\n             self.fail(\"Should print 'hi' 5 times. \")\n"
     },
     {
@@ -91,7 +107,11 @@
         "CAS": "Escribe una función llamada cuadrado_almohadillas(longitud), que imprima un cuadrado de almohadillas.",
         "EUS": "Idatzi traola_karratua(luzera) izeneko funtzio bat, traola karratu bat inprimatzen duena."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    hash_square(3)",
+      "initialCode": {
+        "ENG": "# Write your solution here\nif __name__ == \"__main__\":\n    hash_square(3)",
+        "CAS": "# Escribe tu solución aquí\nif __name__ == \"__main__\":\n    hash_square(3)",
+        "EUS": "# Idatzi zure soluzioa hemen\nif __name__ == \"__main__\":\n    hash_square(3)"
+      },
       "testCode": "\nimport unittest\nclass TestHashSq(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # ###\n###\n###\n        if out.count(\"###\") < 3:\n             self.fail(\"Should print 3 lines of hashes. \")\n"
     },
     {
@@ -107,7 +127,11 @@
         "CAS": "Escribe una función llamada tablero_ajedrez(longitud), que imprima un tablero de ajedrez de la longitud dada usando 1s y 0s.",
         "EUS": "Idatzi xake_taula(luzera) izeneko funtzio bat, emandako luzerako xake-taula bat inprimatzen duena 1 eta 0ak erabiliz."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    chessboard(3)",
+      "initialCode": {
+        "ENG": "# Write your solution here\nif __name__ == \"__main__\":\n    chessboard(3)",
+        "CAS": "# Escribe tu solución aquí\nif __name__ == \"__main__\":\n    chessboard(3)",
+        "EUS": "# Idatzi zure soluzioa hemen\nif __name__ == \"__main__\":\n    chessboard(3)"
+      },
       "testCode": "\nimport unittest\nclass TestChess(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"101\", out)\n        self.assertIn(\"010\", out)\n"
     }
   ]

@@ -9,9 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Conditional statements\n\nUsing `if` to control flow.\n\n![Conditional Logic](/assets/mooc/part-1/1_5_1.png)\n\nIn a conditional statement the keyword `if` is followed by a condition.",
-        "CAS": "# Sentencias condicionales\n\nUsando `if` para controlar el flujo.\n\n![Lógica Condicional](/assets/mooc/part-1/1_5_1.png)\n\nEn una sentencia condicional, la palabra clave `if` va seguida de una condición.",
-        "EUS": "# Baldintzazko sententziak\n\n`if` erabiltzen fluxua kontrolatzeko.\n\n![Lógica Condicional](/assets/mooc/part-1/1_5_1.png)\n\nBaldintzazko sententzia batean, `if` gako-hitzaren ondoren baldintza bat dator."
+        "ENG": "# Conditional statements\n\n## Learning objectives\n\nAfter this section:\n- You will be able to use a simple conditional statement in programming\n- You will know what a Boolean value is\n- You will be able to express conditionals with comparison operators\n\nThus far, every program we have written has been executed line by line in order. Instead of executing every line of code every single time a program is run, it is often useful to create sections of the program which are only executed in certain situations.\n\nFor example, the following code checks whether the user is of age:\n\n```python\nage = int(input(\"How old are you? \"))\n\nif age > 17:\n    print(\"You are of age!\")\n    print(\"Here's a copy of GTA6 for you.\")\n\nprint(\"Next customer, please!\")\n```\n\nWhen the user is over the age of 17, the execution of the program should look like this:\n\n```text\nHow old are you? 18\nYou are of age!\nHere's a copy of GTA6 for you.\nNext customer, please!\n```\n\nIf the user is 17 or under, only this is printed out:\n\n```text\nHow old are you? 16\nNext customer, please!\n```\n\nThese examples show us that the value given as input affects which parts of the program are executed. The program contains a *conditional statement* with a block of code which is executed only if the condition in the statement is true.\n\n![Conditional Logic](/assets/mooc/part-1/1_5_1.png)\n\nIn a conditional statement the keyword `if` is followed by a *condition*, such as a comparison of two values. The code block following this header line is only executed if the condition is true.\n\nNotice the colon character following the `if` header. In the following code there is no colon:\n\n```python\nage = 10\n\n# no colon at the end of the following line\nif age > 17\n    print(\"You are of age.\")\n```\n\nUpon execution this causes an error:\n\n```text\nFile \"program.py\", line 3\n  if age > 17\n            ^\nSyntaxError: invalid syntax\n```\n\n## Comparison operators\n\nVery typically conditions consist of comparing two values. Here is a table with the most common comparison operators used in Python:\n\n| Operator | Purpose | Example |\n| :--- | :--- | :--- |\n| `==` | Equal to | `a == b` |\n| `!= ` | Not equal to | `a != b` |\n| `>` | Greater than | `a > b` |\n| `<` | Less than | `a < b` |\n| `>= ` | Greater than or equal to | `a >= b` |\n| `<= ` | Less than or equal to | `a <= b` |\n\nThe condition `a == b` is true if `a` and `b` have the same value.\n\nThe condition `a != b` is true if `a` and `b` do not have the same value.\n\nThe condition `a > b` is true if `a` is greater than `b`.\n\nThe condition `a <= b` is true if `a` is smaller than or equal to `b`.\n\nIt is then possible to check the value of a variable using these operators:\n\n```python\nnumber = int(input(\"Please type in a number: \"))\n\nif number < 0:\n    print(\"The number is negative.\")\n\nif number > 0:\n    print(\"The number is positive.\")\n\nif number == 0:\n    print(\"The number is zero.\")\n```\n\nExamples of how the program functions with three different inputs:\n\n```text\nPlease type in a number: 15\nThe number is positive.\n```\n\n```text\nPlease type in a number: -18\nThe number is negative.\n```\n\n```text\nPlease type in a number: 0\nThe number is zero.\n```\n\n## Indentation\n\nPython recognises that a block of code is part of a conditional statement if each line of code in the block is *indented* the same. That is, there should be a bit of whitespace at the beginning of every line of code within the code block. Each line should have the same amount of whitespace.\n\nFor example:\n\n```python\npassword = input(\"Please type in a password: \")\n\nif password == \"kittycat\":\n    print(\"You knew the password!\")\n    print(\"You must be either the intended user...\")\n    print(\"...or quite an accomplished hacker.\")\n\nprint(\"The program has finished its execution. Thanks and bye!\")\n```\n\nYou can use the Tab key, short for *tabulator* key, to insert a set amount of whitespace.\n\n![Keyboard Tab](/assets/mooc/part-1/1_5_keyboard.png)\n\nMany text editors will automatically indent the following line when the Enter key is pressed after a colon character. When you want to end an indented code block you can use the `Backspace` key to return to the beginning of the line.\n\n![Keyboard Backspace](/assets/mooc/part-1/1_5_keyboard2.png)\n\n## Boolean values and Boolean expressions\n\nThe value of a condition is a *Boolean value*. A Boolean value can be either `True` or `False`.\n\n```python\na = 4\nprint(a < 5)\nprint(a > 5)\n```\n\n```text\nTrue\nFalse\n```\n\nAny expression which evaluates to a Boolean value is called a Boolean expression. The condition in a conditional statement is a Boolean expression.\n\nFor example:\n\n```python\na = 4\ncondition = a < 5\nprint(condition)\nif condition:\n    print(\"a is less than 5\")\n```\n\n```text\nTrue\na is less than 5\n```\n\nThe Python keywords `True` and `False` can also be used directly. In the following example the `print` command is executed every time, because the value of the condition is `True`:\n\n```python\ncondition = True\nif condition:\n    print(\"This is printed every time.\")\n```\n\n```text\nThis is printed every time.\n```\n\nA program like this is not very useful, but later on during the course you will see examples of Boolean variables coming in very handy.",
+        "CAS": "# Sentencias condicionales\n\n## Objetivos de aprendizaje\n\nDespués de esta sección:\n- Podrás usar una sentencia condicional simple en programación\n- Sabrás qué es un valor booleano\n- Podrás expresar condicionales con operadores de comparación\n\nHasta ahora, todos los programas que hemos escrito se han ejecutado línea por línea en orden. En lugar de ejecutar cada línea de código cada vez que se ejecuta un programa, a menudo es útil crear secciones del programa que solo se ejecutan en ciertas situaciones.\n\nPor ejemplo, el siguiente código comprueba si el usuario es mayor de edad:\n\n```python\nedad = int(input(\"¿Cuántos años tienes? \"))\n\nif edad > 17:\n    print(\"¡Eres mayor de edad!\")\n    print(\"Aquí tienes una copia de GTA6 para ti.\")\n\nprint(\"¡Siguiente cliente, por favor!\")\n```\n\nCuando el usuario tiene más de 17 años, la ejecución del programa debería verse así:\n\n```text\n¿Cuántos años tienes? 18\n¡Eres mayor de edad!\nAquí tienes una copia de GTA6 para ti.\n¡Siguiente cliente, por favor!\n```\n\nSi el usuario tiene 17 años o menos, solo se imprime esto:\n\n```text\n¿Cuántos años tienes? 16\n¡Siguiente cliente, por favor!\n```\n\nEstos ejemplos nos muestran que el valor dado como entrada afecta qué partes del programa se ejecutan. El programa contiene una *sentencia condicional* con un bloque de código que se ejecuta solo si la condición en la sentencia es verdadera.\n\n![Lógica Condicional](/assets/mooc/part-1/1_5_1.png)\n\nEn una sentencia condicional, la palabra clave `if` va seguida de una *condición*, como una comparación de dos valores. El bloque de código que sigue a esta línea de cabecera solo se ejecuta si la condición es verdadera.\n\nObserva el carácter de dos puntos después de la cabecera `if`. En el siguiente código no hay dos puntos:\n\n```python\nedad = 10\n\n# sin dos puntos al final de la siguiente línea\nif edad > 17\n    print(\"Eres mayor de edad.\")\n```\n\nAl ejecutarlo, esto causa un error:\n\n```text\nFile \"program.py\", line 3\n  if edad > 17\n            ^\nSyntaxError: invalid syntax\n```\n\n## Operadores de comparación\n\nMuy típicamente las condiciones consisten en comparar dos valores. Aquí hay una tabla con los operadores de comparación más comunes usados en Python:\n\n| Operador | Propósito | Ejemplo |\n| :--- | :--- | :--- |\n| `==` | Igual a | `a == b` |\n| `!= ` | No igual a | `a != b` |\n| `>` | Mayor que | `a > b` |\n| `<` | Menor que | `a < b` |\n| `>= ` | Mayor o igual que | `a >= b` |\n| `<= ` | Menor o igual que | `a <= b` |\n\nLa condición `a == b` es verdadera si `a` y `b` tienen el mismo valor.\n\nLa condición `a != b` es verdadera si `a` y `b` no tienen el mismo valor.\n\nLa condición `a > b` es verdadera si `a` es mayor que `b`.\n\nLa condición `a <= b` es verdadera si `a` es menor o igual que `b`.\n\nEntonces es posible comprobar el valor de una variable usando estos operadores:\n\n```python\nnumero = int(input(\"Por favor, escribe un número: \"))\n\nif numero < 0:\n    print(\"El número es negativo.\")\n\nif numero > 0:\n    print(\"El número es positivo.\")\n\nif numero == 0:\n    print(\"El número es cero.\")\n```\n\nEjemplos de cómo funciona el programa con tres entradas diferentes:\n\n```text\nPor favor, escribe un número: 15\nEl número es positivo.\n```\n\n```text\nPor favor, escribe un número: -18\nEl número es negativo.\n```\n\n```text\nPor favor, escribe un número: 0\nEl número es cero.\n```\n\n## Indentación\n\nPython reconoce que un bloque de código es parte de una sentencia condicional si cada línea de código en el bloque está *indentada* igual. Es decir, debe haber un poco de espacio en blanco al comienzo de cada línea de código dentro del bloque de código. Cada línea debe tener la misma cantidad de espacio en blanco.\n\nPor ejemplo:\n\n```python\ncontrasena = input(\"Por favor, escribe una contraseña: \")\n\nif contrasena == \"gatito\":\n    print(\"¡Sabías la contraseña!\")\n    print(\"Debes ser el usuario previsto...\")\n    print(\"...o un hacker bastante consumado.\")\n\nprint(\"El programa ha terminado su ejecución. ¡Gracias y adiós!\")\n```\n\nPuedes usar la tecla Tab, abreviatura de la tecla *tabulador*, para insertar una cantidad fija de espacio en blanco.\n\n![Teclado Tab](/assets/mooc/part-1/1_5_keyboard.png)\n\nMuchos editores de texto indentarán automáticamente la línea siguiente cuando se presione la tecla Enter después de un carácter de dos puntos. Cuando quieras terminar un bloque de código indentado, puedes usar la tecla `Backspace` (Retroceso) para volver al comienzo de la línea.\n\n![Teclado Backspace](/assets/mooc/part-1/1_5_keyboard2.png)\n\n## Valores booleanos y expresiones booleanas\n\nEl valor de una condición es un *valor booleano*. Un valor booleano puede ser `True` (Verdadero) o `False` (Falso).\n\n```python\na = 4\nprint(a < 5)\nprint(a > 5)\n```\n\n```text\nTrue\nFalse\n```\n\nCualquier expresión que se evalúe a un valor booleano se llama expresión booleana. La condición en una sentencia condicional es una expresión booleana.\n\nPor ejemplo:\n\n```python\na = 4\ncondicion = a < 5\nprint(condicion)\nif condicion:\n    print(\"a es menor que 5\")\n```\n\n```text\nTrue\na es menor que 5\n```\n\nLas palabras clave de Python `True` y `False` también se pueden usar directamente. En el siguiente ejemplo, el comando `print` se ejecuta cada vez, porque el valor de la condición es `True`:\n\n```python\ncondicion = True\nif condicion:\n    print(\"Esto se imprime siempre.\")\n```\n\n```text\nEsto se imprime siempre.\n```\n\nUn programa como este no es muy útil, pero más adelante en el curso verás ejemplos de variables booleanas que resultan muy útiles.",
+        "EUS": "# Baldintzazko sententziak\n\n## Ikaskuntza-helburuak\n\nAtal honen ondoren:\n- Programazioan baldintzazko sententzia sinple bat erabiltzeko gai izango zara\n- Jakingo duzu zer den balio Boolearra\n- Konparazio-eragileekin baldintzak adierazteko gai izango zara\n\nOrain arte, idatzi dugun programa bakoitza lerroz lerro exekutatu da ordenan. Programa bat exekutatzen den bakoitzean kode-lerro bakoitza exekutatu beharrean, askotan erabilgarria da egoera jakin batzuetan bakarrik exekutatzen diren programa-atalak sortzea.\n\nAdibidez, honako kode honek erabiltzailea adin nagusikoa den egiaztatzen du:\n\n```python\nadina = int(input(\"Zenbat urte dituzu? \"))\n\nif adina > 17:\n    print(\"Adin nagusikoa zara!\")\n    print(\"Hona hemen GTA6-ren kopia bat zuretzat.\")\n\nprint(\"Hurrengo bezeroa, mesedez!\")\n```\n\nErabiltzaileak 17 urte baino gehiago dituenean, programaren exekuzioak honelakoa izan beharko luke:\n\n```text\nZenbat urte dituzu? 18\nAdin nagusikoa zara!\nHona hemen GTA6-ren kopia bat zuretzat.\nHurrengo bezeroa, mesedez!\n```\n\nErabiltzaileak 17 urte edo gutxiago baditu, hau bakarrik inprimatzen da:\n\n```text\nZenbat urte dituzu? 16\nHurrengo bezeroa, mesedez!\n```\n\nAdibide hauek erakusten digute sarrera gisa emandako balioak eragina duela programaren zein atal exekutatzen diren. Programak *baldintzazko sententzia* bat dauka, kode-bloke batekin, sententziako baldintza egia bada bakarrik exekutatzen dena.\n\n![Lógica Condicional](/assets/mooc/part-1/1_5_1.png)\n\nBaldintzazko sententzia batean `if` gako-hitzaren ondoren *baldintza* bat dator, adibidez, bi balioren arteko konparazioa. Goiburu-lerro honen ondorengo kode-blokea baldintza egia bada bakarrik exekutatzen da.\n\nErreparatu `if` goiburuaren ondorengo bi puntu karaktereari. Hurrengo kodean ez dago bi punturik:\n\n```python\nadina = 10\n\n# bi punturik ez hurrengo lerroaren amaieran\nif adina > 17\n    print(\"Adin nagusikoa zara.\")\n```\n\nExekutatzean honek errorea eragiten du:\n\n```text\nFile \"program.py\", line 3\n  if adina > 17\n            ^\nSyntaxError: invalid syntax\n```\n\n## Konparazio-eragileak\n\nOso ohikoa da baldintzak bi balioren konparazioan oinarritzea. Hona hemen Pythonen gehien erabiltzen diren konparazio-eragileen taula:\n\n| Eragilea | Helburua | Adibidea |\n| :--- | :--- | :--- |\n| `==` | Berdin | `a == b` |\n| `!= ` | Ez berdin | `a != b` |\n| `>` | Handiagoa | `a > b` |\n| `<` | Txikiagoa | `a < b` |\n| `>= ` | Handiagoa edo berdina | `a >= b` |\n| `<= ` | Txikiagoa edo berdina | `a <= b` |\n\n`a == b` baldintza egia da `a` eta `b` balio bera badute.\n\n`a != b` baldintza egia da `a` eta `b` ez badute balio bera.\n\n`a > b` baldintza egia da `a` `b` baino handiagoa bada.\n\n`a <= b` baldintza egia da `a` `b` baino txikiagoa edo berdina bada.\n\nOrduan posible da aldagai baten balioa egiaztatzea eragile hauek erabiliz:\n\n```python\nzenbakia = int(input(\"Mesedez, idatzi zenbaki bat: \"))\n\nif zenbakia < 0:\n    print(\"Zenbakia negatiboa da.\")\n\nif zenbakia > 0:\n    print(\"Zenbakia positiboa da.\")\n\nif zenbakia == 0:\n    print(\"Zenbakia zero da.\")\n```\n\nProgramak hiru sarrera ezberdinekin nola funtzionatzen duen erakusten duten adibideak:\n\n```text\nMesedez, idatzi zenbaki bat: 15\nZenbakia positiboa da.\n```\n\n```text\nMesedez, idatzi zenbaki bat: -18\nZenbakia negatiboa da.\n```\n\n```text\nMesedez, idatzi zenbaki bat: 0\nZenbakia zero da.\n```\n\n## Koskak (Indentation)\n\nPythonek kode-bloke bat baldintzazko sententzia baten parte dela antzematen du, blokeko kode-lerro bakoitzak *koska* bera badu. Hau da, zuriune pixka bat egon behar da kode-lerro bakoitzaren hasieran kode-blokearen barruan. Lerro bakoitzak zuriune kopuru bera izan behar du.\n\nAdibidez:\n\n```python\npasahitza = input(\"Mesedez, idatzi pasahitz bat: \")\n\nif pasahitza == \"kittycat\":\n    print(\"¡Sabías la contraseña!\")\n    print(\"Debes ser el usuario previsto...\")\n    print(\"...o un hacker bastante consumado.\")\n\nprint(\"El programa ha terminado su ejecución. ¡Gracias y adiós!\")\n```\n\nTab tekla erabil dezakezu, *tabuladore* teklaren laburdura, zuriune kopuru finko bat txertatzeko.\n\n![Teclado Tab](/assets/mooc/part-1/1_5_keyboard.png)\n\nTestu-editore askok automatikoki sartuko dute hurrengo lerroa bi puntu karaktere baten ondoren Enter tekla sakatzen denean. Koska duen kode-bloke bat amaitu nahi duzunean, `Backspace` (Atzera) tekla erabil dezakezu lerroaren hasierara itzultzeko.\n\n![Teclado Backspace](/assets/mooc/part-1/1_5_keyboard2.png)\n\n## Balio Boolearrak eta adierazpen Boolearrak\n\nBaldintza baten balioa *balio Boolear* bat da. Balio Boolear bat `True` (Egia) edo `False` (Gezurra) izan daiteke.\n\n```python\na = 4\nprint(a < 5)\nprint(a > 5)\n```\n\n```text\nTrue\nFalse\n```\n\nBalio Boolear batera ebaluatzen den edozein adierazpen adierazpen Boolearra deitzen da. Baldintzazko sententzia bateko baldintza adierazpen Boolearra da.\n\nAdibidez:\n\n```python\na = 4\nbaldintza = a < 5\nprint(baldintza)\nif baldintza:\n    print(\"a 5 baino txikiagoa da\")\n```\n\n```text\nTrue\na 5 baino txikiagoa da\n```\n\nPythonen `True` eta `False` gako-hitzak zuzenean ere erabil daitezke. Hurrengo adibidean `print` komandoa aldiro exekutatzen da, baldintzaren balioa `True` delako:\n\n```python\nbaldintza = True\nif baldintza:\n    print(\"Hau beti inprimatzen da.\")\n```\n\n```text\nHau beti inprimatzen da.\n```\n\nHonelako programa bat ez da oso erabilgarria, baina ikastaroan aurrerago aldagai Boolearrak oso erabilgarriak diren adibideak ikusiko dituzu."
       }
     },
     {
@@ -27,7 +27,11 @@
         "CAS": "Imprime 'Orwell' si el número es exactamente 1984.",
         "EUS": "Inprimatu 'Orwell' zenbakia zehazki 1984 bada."
       },
-      "initialCode": "# Write code here\n",
+      "initialCode": {
+        "ENG": "# Write code here\n",
+        "CAS": "# Write code here\n",
+        "EUS": "# Write code here\n"
+      },
       "testCode": "import unittest\nclass TestOrwell(unittest.TestCase):\n    def test_1984(self):\n        self.assertIn('Orwell', run_student_code(inputs=['1984']))\n    def test_2020(self):\n        out = run_student_code(inputs=['2020'])\n        if \"Orwell\" in out:\n             self.fail(\"❌ El programa imprimió 'Orwell' para el año 2020. Solo debe hacerlo para 1984.\")"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe un programa que pida un número entero. Si el número es menor que cero, imprime el número multiplicado por -1.",
         "EUS": "Idatzi programa bat zenbaki oso bat eskatzen duena. Zenbakia zero baino txikiagoa bada, inprimatu zenbakia -1ekin biderkatuta."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestAbs(unittest.TestCase):\n    def test_neg(self):\n        out = run_student_code(inputs=['-7'])\n        if \"-7\" in out and \"7\" not in out:\n             self.fail(\"❌ Imprimiste -7. El valor absoluto debe ser positivo (7).\")\n        self.assertIn('7', out)"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe un programa que pida el nombre. Si el nombre es cualquier cosa excepto 'Jerry', pide las porciones e imprime el coste total.",
         "EUS": "Idatzi programa bat izena eskatzen duena. Izena 'Jerry' ez den beste edozein bada, eskatu zatiak eta inprimatu kostu totala."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestSoup(unittest.TestCase):\n    def test_kramer(self):\n        out = run_student_code(inputs=['Kramer', '2'])\n        self.assertIn('11.8', out)\n    def test_jerry(self):\n        # Jerry no debe preguntar por porciones\n        try:\n            out = run_student_code(inputs=['Jerry'])\n        except StopIteration:\n             self.fail(\"❌ El programa pidió un input extra (porciones) a Jerry. Jerry no come sopa.\")\n        \n        self.assertNotIn(\"cost\", out)"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Escribe un programa que pida un número entero. El programa debe imprimir la magnitud del número (si es menor que 1000, 100, 10).",
         "EUS": "Idatzi programa bat zenbaki oso bat eskatzen duena. Programak zenbakiaren magnitudea inprimatu behar du."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestMag(unittest.TestCase):\n    def test_950(self):\n        out = run_student_code(inputs=['950'])\n        self.assertIn('smaller than 1000', out)\n        if \"smaller than 100\" in out:\n             self.fail(\"❌ 950 NO es menor que 100.\")"
     },
     {
@@ -91,7 +107,11 @@
         "CAS": "Escribe un programa que pida dos números y una operación (suma, resta...).",
         "EUS": "Idatzi programa bat bi zenbaki eta eragiketa bat eskatzen dituena."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestCalc(unittest.TestCase):\n    def test_add(self):\n        out = run_student_code(inputs=['10', '17', 'add'])\n        if \"27\" not in out: self.fail(\"❌ Suma incorrecta.\")\n    def test_sub(self):\n        out = run_student_code(inputs=['4', '6', 'subtract'])\n        if \"-2\" not in out: self.fail(\"❌ Resta incorrecta.\")"
     },
     {
@@ -107,7 +127,11 @@
         "CAS": "Escribe un programa que pida una temperatura en Fahrenheit e imprima su equivalente en Celsius.",
         "EUS": "Idatzi programa bat tenperatura bat Fahrenheit gradutan eskatzen duena eta Celsius gradutan inprimatzen duena."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestTemp(unittest.TestCase):\n    def test_101(self):\n        out = run_student_code(inputs=['101'])\n        self.assertIn('38.3', out)\n    def test_21(self):\n        out = run_student_code(inputs=['21'])\n        if \"Brr\" not in out:\n             self.fail(\"❌ Faltó imprimir 'Brr! It's cold in here!' para temperaturas bajo cero.\")"
     },
     {
@@ -123,7 +147,11 @@
         "CAS": "Escribe un programa que pida el salario por hora, horas trabajadas y día de la semana. Los domingos se paga doble.",
         "EUS": "Idatzi programa bat orduko soldata, lan egindako orduak eta asteko eguna eskatzen dituena. Igandeetan bikoitza ordaintzen da."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestWage(unittest.TestCase):\n    def test_mon(self):\n        out = run_student_code(inputs=['8.5', '3', 'Monday'])\n        self.assertIn('25.5', out)\n    def test_sun(self):\n        out = run_student_code(inputs=['12.5', '10', 'Sunday'])\n        if \"125\" in out:\n             self.fail(\"❌ No aplicaste el pago doble de los domingos.\")\n        self.assertIn('250.0', out)"
     },
     {
@@ -139,7 +167,11 @@
         "CAS": "Arregla el cálculo del bono.",
         "EUS": "Konpondu bonuaren kalkulua."
       },
-      "initialCode": "points = int(input(\"Points: \"))\nif points < 100:\n    points *= 1.1\n    print(\"Bonus 10%\")\nif points >= 100:\n    points *= 1.15\n    print(\"Bonus 15%\")",
+      "initialCode": {
+        "ENG": "points = int(input(\"Points: \"))\nif points < 100:\n    points *= 1.1\n    print(\"Bonus 10%\")\nif points >= 100:\n    points *= 1.15\n    print(\"Bonus 15%\")",
+        "CAS": "points = int(input(\"Points: \"))\nif points < 100:\n    points *= 1.1\n    print(\"Bonus 10%\")\nif points >= 100:\n    points *= 1.15\n    print(\"Bonus 15%\")",
+        "EUS": "points = int(input(\"Points: \"))\nif points < 100:\n    points *= 1.1\n    print(\"Bonus 10%\")\nif points >= 100:\n    points *= 1.15\n    print(\"Bonus 15%\")"
+      },
       "testCode": "import unittest\nclass TestLoyalty(unittest.TestCase):\n    def test_95(self):\n        out = run_student_code(inputs=['95'])\n        if out.count('Bonus') > 1:\n             self.fail(\"❌ Tu programa imprimió el bono DOS veces (error lógico).\")\n        self.assertTrue(out.count('Bonus') == 1)"
     },
     {
@@ -155,7 +187,11 @@
         "CAS": "Escribe un programa que pregunte la previsión del tiempo para mañana y sugiera ropa adecuada.",
         "EUS": "Idatzi programa bat biharko eguraldi iragarpena galdetzen duena eta eguraldiari dagokion arropa iradokitzen duena."
       },
-      "initialCode": "# Write your code here\n",
+      "initialCode": {
+        "ENG": "# Write your code here\n",
+        "CAS": "# Escribe tu código aquí\n",
+        "EUS": "# Idatzi zure kodea hemen\n"
+      },
       "testCode": "import unittest\nclass TestWear(unittest.TestCase):\n    def test_21_no(self):\n        out = run_student_code(inputs=['21', 'no'])\n        self.assertIn('Wear jeans', out)\n        if \"jumper\" in out: self.fail(\"❌ Con 21 grados no hace falta jumper.\")"
     },
     {
@@ -171,7 +207,11 @@
         "CAS": "Escribe un programa para resolver una ecuación cuadrática de la forma ax²+bx+c.",
         "EUS": "Idatzi programa bat ax²+bx+c formako ekuazio koadratiko bat ebazteko."
       },
-      "initialCode": "# Write your code here\nfrom math import sqrt\n",
+      "initialCode": {
+        "ENG": "# Write your code here\nfrom math import sqrt\n",
+        "CAS": "# Escribe tu código aquí\nfrom math import sqrt\n",
+        "EUS": "# Idatzi zure kodea hemen\nfrom math import sqrt\n"
+      },
       "testCode": "import unittest\nclass TestQuad(unittest.TestCase):\n    def test_roots(self):\n        out = run_student_code(inputs=['1', '2', '-8'])\n        self.assertIn('2.0', out)\n        self.assertIn('-4.0', out)"
     }
   ]

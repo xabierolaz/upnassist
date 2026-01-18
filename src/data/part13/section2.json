@@ -27,7 +27,11 @@
         "CAS": "Haz que el robot se mueva verticalmente de arriba a abajo.",
         "EUS": "Egin robota bertikalki mugitu dadin goitik behera."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Haz que el robot rebote en las paredes de la ventana.",
         "EUS": "Egin robotak leihoaren paretetan errebotatu dezan."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Crea dos robots moviéndose a diferentes velocidades/direcciones, rebotando.",
         "EUS": "Sortu bi robot abiadura/norabide desberdinetan mugitzen, errebotatzen."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Haz que 10 robots roten en círculo alrededor del centro.",
         "EUS": "Egin 10 robot zirkuluan biratu daitezen zentroaren inguruan."
       },
-      "initialCode": "import pygame\nimport math\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\nimport math\n\n# ...\n",
+        "CAS": "import pygame\nimport math\n\n# ...\n",
+        "EUS": "import pygame\nimport math\n\n# ...\n"
+      },
       "testCode": "pass"
     }
   ]

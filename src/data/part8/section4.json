@@ -27,7 +27,11 @@
         "CAS": "Implementa DecreasingCounter con métodos: print_value(), decrease(), set_to_zero(), reset_original_value(). El constructor toma el valor inicial.",
         "EUS": "Inplementatu DecreasingCounter klasea metodo hauekin: print_value(), decrease(), set_to_zero(), reset_original_value(). Eraikitzaileak hasierako balioa hartzen du."
       },
-      "initialCode": "class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print(\"value:\", self.value)\n\n    def decrease(self):\n        pass\n\n    # ...",
+      "initialCode": {
+        "ENG": "class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print(\"value:\", self.value)\n\n    def decrease(self):\n        pass\n\n    # ...",
+        "CAS": "class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print(\"value:\", self.value)\n\n    def decrease(self):\n        pass\n\n    # ...",
+        "EUS": "class DecreasingCounter:\n    def __init__(self, initial_value: int):\n        self.value = initial_value\n        # ...\n\n    def print_value(self):\n        print(\"value:\", self.value)\n\n    def decrease(self):\n        pass\n\n    # ..."
+      },
       "testCode": "\nimport unittest\nfrom unittest.mock import patch\nfrom io import StringIO\n\nclass TestCounter(unittest.TestCase):\n    def test_run(self):\n        c = DecreasingCounter(10)\n        c.decrease()\n        self.assertEqual(c.value, 9)\n        c.set_to_zero()\n        self.assertEqual(c.value, 0)\n        c.reset_original_value()\n        self.assertEqual(c.value, 10)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Crea una clase NumberStats con add_number(number), count_numbers(), get_sum(), average().",
         "EUS": "Sortu NumberStats klasea add_number(number), count_numbers(), get_sum(), average() metodoekin."
       },
-      "initialCode": "# Write your solution here\nclass NumberStats:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass NumberStats:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass NumberStats:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass NumberStats:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestStats(unittest.TestCase):\n    def test_run(self):\n        s = NumberStats()\n        s.add_number(3)\n        s.add_number(5)\n        s.add_number(1)\n        s.add_number(2)\n        # count: 4, sum: 11, avg: 2.75\n        self.assertEqual(s.count_numbers(), 4)\n        self.assertEqual(s.get_sum(), 11)\n        self.assertEqual(s.average(), 2.75)\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Crea una clase Clock con horas, minutos, segundos. Métodos: tick() (avanza 1s), __str__() (devuelve HH:MM:SS).",
         "EUS": "Sortu Clock klasea ordu, minutu, segunduekin. Metodoak: tick() (1s aurreratu), __str__() (HH:MM:SS itzuli)."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestClock(unittest.TestCase):\n    def test_run(self):\n        c = Clock(23, 59, 59)\n        c.tick()\n        self.assertEqual(str(c), \"00:00:00\")\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Crea LunchCard con saldo. Métodos: eat_cheap(), eat_special(), deposit_money(). Evita saldo negativo.",
         "EUS": "Sortu LunchCard klasea saldoarekin. Metodoak: eat_cheap(), eat_special(), deposit_money(). Saihestu saldo negatiboa."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestLunch(unittest.TestCase):\n    def test_run(self):\n        card = LunchCard(10)\n        card.eat_cheap()\n        # Assume cheap is e.g. 2.95 (check exercise specs usually, usually 2.50 or similar)\n        # We accept if balance decreased.\n        self.assertTrue(card.balance < 10)\n"
     }
   ]

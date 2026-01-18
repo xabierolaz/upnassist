@@ -27,7 +27,11 @@
         "CAS": "Escribe funciones para verificar día de la semana, si solo tiene vocales, y formato de hora HH:MM:SS. Usa `re`.",
         "EUS": "Idatzi funtzioak asteko eguna, bokalak bakarrik dituen, eta HH:MM:SS ordu formatua egiaztatzeko. Erabili `re`."
       },
-      "initialCode": "# Write your solution here\nimport re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nimport re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nimport re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nimport re\n\ndef is_dotw(my_string: str):\n    pass\n\ndef all_vowels(my_string: str):\n    pass\n\ndef time_of_day(my_string: str):\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestRegex(unittest.TestCase):\n    def test_run(self):\n        pass\n"
     }
   ]

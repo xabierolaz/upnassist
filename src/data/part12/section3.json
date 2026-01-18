@@ -27,7 +27,11 @@
         "CAS": "Escribe funciones names_of_students y course_names usando map.",
         "EUS": "Idatzi names_of_students eta course_names funtzioak map erabiliz."
       },
-      "initialCode": "class CourseAttempt:\n    def __init__(self, student_name: str, course_name: str, grade: int):\n        self.student_name = student_name\n        self.course_name = course_name\n        self.grade = grade\n\ndef names_of_students(attempts: list):\n    # write your solution here\n    pass\n\ndef course_names(attempts: list):\n    # write your solution here\n    pass\n",
+      "initialCode": {
+        "ENG": "class CourseAttempt:\n    def __init__(self, student_name: str, course_name: str, grade: int):\n        self.student_name = student_name\n        self.course_name = course_name\n        self.grade = grade\n\ndef names_of_students(attempts: list):\n    # write your solution here\n    pass\n\ndef course_names(attempts: list):\n    # write your solution here\n    pass\n",
+        "CAS": "class CourseAttempt:\n    def __init__(self, student_name: str, course_name: str, grade: int):\n        self.student_name = student_name\n        self.course_name = course_name\n        self.grade = grade\n\ndef names_of_students(attempts: list):\n    # write your solution here\n    pass\n\ndef course_names(attempts: list):\n    # write your solution here\n    pass\n",
+        "EUS": "class CourseAttempt:\n    def __init__(self, student_name: str, course_name: str, grade: int):\n        self.student_name = student_name\n        self.course_name = course_name\n        self.grade = grade\n\ndef names_of_students(attempts: list):\n    # write your solution here\n    pass\n\ndef course_names(attempts: list):\n    # write your solution here\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestAttempts(unittest.TestCase):\n    def test_run(self):\n        a1 = CourseAttempt(\"Peter\", \"Python\", 3)\n        a2 = CourseAttempt(\"Paula\", \"Java\", 5)\n        self.assertEqual(list(names_of_students([a1, a2])), [\"Peter\", \"Paula\"])\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe funciones de suma y promedio de créditos usando filter, map y reduce.",
         "EUS": "Idatzi kredituen batura eta batez besteko funtzioak filter, map eta reduce erabiliz."
       },
-      "initialCode": "from functools import reduce\n\nclass CourseAttempt:\n    def __init__(self, course_name: str, grade: int, credits: int):\n        self.course_name = course_name\n        self.grade = grade\n        self.credits = credits\n\ndef sum_of_all_credits(attempts: list):\n    pass\n\ndef sum_of_passed_credits(attempts: list):\n    pass\n\ndef average_grade_of_passed(attempts: list):\n    pass\n",
+      "initialCode": {
+        "ENG": "from functools import reduce\n\nclass CourseAttempt:\n    def __init__(self, course_name: str, grade: int, credits: int):\n        self.course_name = course_name\n        self.grade = grade\n        self.credits = credits\n\ndef sum_of_all_credits(attempts: list):\n    pass\n\ndef sum_of_passed_credits(attempts: list):\n    pass\n\ndef average_grade_of_passed(attempts: list):\n    pass\n",
+        "CAS": "from functools import reduce\n\nclass CourseAttempt:\n    def __init__(self, course_name: str, grade: int, credits: int):\n        self.course_name = course_name\n        self.grade = grade\n        self.credits = credits\n\ndef sum_of_all_credits(attempts: list):\n    pass\n\ndef sum_of_passed_credits(attempts: list):\n    pass\n\ndef average_grade_of_passed(attempts: list):\n    pass\n",
+        "EUS": "from functools import reduce\n\nclass CourseAttempt:\n    def __init__(self, course_name: str, grade: int, credits: int):\n        self.course_name = course_name\n        self.grade = grade\n        self.credits = credits\n\ndef sum_of_all_credits(attempts: list):\n    pass\n\ndef sum_of_passed_credits(attempts: list):\n    pass\n\ndef average_grade_of_passed(attempts: list):\n    pass\n"
+      },
       "testCode": "pass"
     }
   ]

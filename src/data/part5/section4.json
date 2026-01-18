@@ -9,74 +9,126 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# Tuple\n\nA tuple is an immutable list. It is defined using parentheses `()`.\n\n```python\npoint = (10, 20)\nprint(point[0]) # 10\n```\n\nTuples are useful when you want to ensure the data cannot be changed, or when you want to use a sequence as a dictionary key.\n\n## Returning multiple values\n\nFunctions can return multiple values using a tuple.\n\n```python\ndef minmax(my_list):\n    return min(my_list), max(my_list)\n\nminimum, maximum = minmax([1, 5, 2])\nprint(f\"Min: {minimum}, Max: {maximum}\")\n```\n",
-        "CAS": "\n# Tupla\n\nUna tupla es una lista inmutable. Se define usando paréntesis `()`.\n\n```python\npunto = (10, 20)\nprint(punto[0]) # 10\n```\n\nLas tuplas son útiles cuando quieres asegurarte de que los datos no cambien, o cuando quieres usar una secuencia como clave de un diccionario.\n\n## Retornando múltiples valores\n\nLas funciones pueden devolver múltiples valores usando una tupla.\n\n```python\ndef minmax(lista):\n    return min(lista), max(lista)\n\nminimo, maximo = minmax([1, 5, 2])\nprint(f\"Min: {minimo}, Max: {maximo}\")\n```\n",
-        "EUS": "\n# Tupla\n\nTupla bat zerrenda aldaezin bat da. Parentesiak `()` erabiliz definitzen da.\n\n```python\npuntua = (10, 20)\nprint(puntua[0]) # 10\n```\n\nTuplak erabilgarriak dira datuak aldatu ezin direla ziurtatu nahi duzunean, edo sekuentzia bat hiztegi-gako gisa erabili nahi duzunean.\n\n## Balio anitz itzultzen\n\nFuntzioek balio anitz itzul ditzakete tupla bat erabiliz.\n\n```python\ndef minmax(zerrenda):\n    return min(zerrenda), max(zerrenda)\n\nminimoa, maximoa = minmax([1, 5, 2])\nprint(f\"Min: {minimoa}, Max: {maximoa}\")\n```\n"
+        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will be familiar with the tuple data type\n- You will be able to create tuples from various types of values\n- You will know the difference between a tuple and a list\n- You will be able to name some typical use cases for tuples",
+        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Estarás familiarizado con el tipo de datos tupla\n- Podrás crear tuplas a partir de varios tipos de valores\n- Conocerás la diferencia entre una tupla y una lista\n- Podrás nombrar algunos casos de uso típicos para tuplas",
+        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- Tupla datu-mota ezagutuko duzu\n- Hainbat balio motatatik tuplak sortzeko gai izango zara\n- Tupla baten eta zerrenda baten arteko aldea jakingo duzu\n- Tupletarako ohiko erabilera-kasu batzuk izendatzeko gai izango zara"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "Tuple is a data structure which is, in many ways, similar to a list. The most important differences between the two are:\n\n* Tuples are enclosed in parentheses `()`, while lists are enclosed in square brackets `[]`\n* Tuples are *immutable*, while the contents of a list may change\n\nThe following bit of code creates a tuple containing the coordinates of a point:\n\n```python\npoint = (10, 20)\n```\n\nThe items stored in a tuple are accessed by index, just like the items stored in a list:\n\n```python\npoint = (10, 20)\nprint(\"x coordinate:\", point[0])\nprint(\"y coordinate:\", point[1])\n```\n\n```text\nx coordinate: 10\ny coordinate: 20\n```\n\nThe values stored in a tuple cannot be changed after the tuple has been defined. The following will *not* work:\n\n```python\npoint = (10, 20)\npoint[0] = 15\n```\n\n```text\nTypeError: 'tuple' object does not support item assignment\n```",
+        "CAS": "La tupla es una estructura de datos que es, en muchos aspectos, similar a una lista. Las diferencias más importantes entre las dos son:\n\n* Las tuplas están encerradas entre paréntesis `()`, mientras que las listas están encerradas entre corchetes `[]`\n* Las tuplas son *inmutables*, mientras que el contenido de una lista puede cambiar\n\nEl siguiente fragmento de código crea una tupla que contiene las coordenadas de un punto:\n\n```python\npunto = (10, 20)\n```\n\nSe accede a los elementos almacenados en una tupla por índice, al igual que los elementos almacenados en una lista:\n\n```python\npunto = (10, 20)\nprint(\"coordenada x:\", punto[0])\nprint(\"coordenada y:\", punto[1])\n```\n\n```text\ncoordenada x: 10\ncoordenada y: 20\n```\n\nLos valores almacenados en una tupla no se pueden cambiar después de que se haya definido la tupla. Lo siguiente *no* funcionará:\n\n```python\npunto = (10, 20)\npunto[0] = 15\n```\n\n```text\nTypeError: 'tuple' object does not support item assignment\n```",
+        "EUS": "Tupla datu-egitura bat da, modu askotan, zerrenda baten antzekoa. Bien arteko desberdintasun garrantzitsuenak hauek dira:\n\n* Tuplak parentesi artean `()` sartzen dira, eta zerrendak kortxete artean `[]`\n* Tuplak *aldaezinak* dira, eta zerrenda baten edukia alda daiteke\n\nHurrengo kode zatiak puntu baten koordenatuak dituen tupla bat sortzen du:\n\n```python\npuntua = (10, 20)\n```\n\nTupla batean gordetako elementuetara indize bidez sartzen da, zerrenda batean gordetako elementuetara bezala:\n\n```python\npuntua = (10, 20)\nprint(\"x koordenatua:\", puntua[0])\nprint(\"y koordenatua:\", puntua[1])\n```\n\n```text\nx koordenatua: 10\ny koordenatua: 20\n```\n\nTupla batean gordetako balioak ezin dira aldatu tupla definitu ondoren. Hurrengoak *ez* du funtzionatuko:\n\n```python\npuntua = (10, 20)\npuntua[0] = 15\n```\n\n```text\nTypeError: 'tuple' object does not support item assignment\n```"
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "part05-20_create_tuple",
+      "exerciseId": "part05-23_create_tuple",
       "title": {
         "ENG": "Create a tuple",
         "CAS": "Crear una tupla",
         "EUS": "Tupla bat sortu"
       },
       "description": {
-        "ENG": "Write a function named create_tuple(x, y, z), which takes three arguments and returns them as a tuple.",
-        "CAS": "Escribe una función llamada crear_tupla(x, y, z), que tome tres argumentos y los devuelva como una tupla.",
-        "EUS": "Idatzi tupla_sortu(x, y, z) izeneko funtzio bat, hiru argumentu hartu eta tupla gisa itzultzen dituena."
+        "ENG": "Please write a function named `create_tuple(x: int, y: int, z: int)`, which takes three integers as its arguments, and creates and returns a tuple based on the following criteria: The first element is the smallest of the arguments, the second is the greatest, and the third is the sum of the arguments.",
+        "CAS": "Por favor escribe una función llamada `create_tuple(x: int, y: int, z: int)`, que tome tres enteros como argumentos, y cree y devuelva una tupla basada en los siguientes criterios: El primer elemento es el más pequeño de los argumentos, el segundo es el más grande, y el tercero es la suma de los argumentos.",
+        "EUS": "Mesedez idatzi `create_tuple(x: int, y: int, z: int)` izeneko funtzio bat, hiru osoko zenbaki argumentu gisa hartzen dituena, eta tupla bat sortu eta itzultzen duena irizpide hauetan oinarrituta: Lehenengo elementua argumentuen txikiena da, bigarrena handiena, eta hirugarrena argumentuen batura."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    print(create_tuple(1, \"two\", 3))",
-      "testCode": "\nimport unittest\nclass TestTuple(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        self.assertIn(\"(1, 'two', 3)\", out)\n"
+      "initialCode": {
+        "ENG": "def create_tuple(x: int, y: int, z: int):\n    # Write your solution here\n    pass",
+        "CAS": "def create_tuple(x: int, y: int, z: int):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "def create_tuple(x: int, y: int, z: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part05-21_oldest_person",
+      "exerciseId": "part05-24_oldest_person",
       "title": {
         "ENG": "The oldest person",
-        "CAS": "La persona más vieja",
+        "CAS": "La persona más mayor",
         "EUS": "Pertsona zaharrena"
       },
       "description": {
-        "ENG": "Write a function named oldest_person(people), which takes a list of tuples as an argument. Each tuple contains a name and a year of birth (e.g. (\"Arthur\", 1977)). The function should return the name of the oldest person.",
-        "CAS": "Escribe una función llamada persona_mas_vieja(personas), que tome una lista de tuplas. Cada tupla tiene nombre y año (ej. (\"Arthur\", 1977)). Devuelve el nombre del más viejo.",
-        "EUS": "Idatzi pertsona_zaharrena(pertsonak) izeneko funtzio bat. Tupla zerrenda bat hartzen du (izena, urtea). Pertsona zaharrenaren izena itzuli behar du."
+        "ENG": "Please write a function named `oldest_person(people: list)`, which takes a list of tuples as its argument. In each tuple, the first element is the name of a person, and the second element is their year of birth. The function should find the oldest person on the list and return their name.",
+        "CAS": "Por favor escribe una función llamada `oldest_person(people: list)`, que tome una lista de tuplas como argumento. En cada tupla, el primer elemento es el nombre de una persona, y el segundo elemento es su año de nacimiento. La función debe encontrar a la persona más mayor en la lista y devolver su nombre.",
+        "EUS": "Mesedez idatzi `oldest_person(people: list)` izeneko funtzio bat, tupla zerrenda bat argumentu gisa hartzen duena. Tupla bakoitzean, lehenengo elementua pertsona baten izena da, eta bigarren elementua bere jaiotze-urtea. Funtzioak zerrendako pertsona zaharrena aurkitu eta bere izena itzuli behar du."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    p = [(\"Arthur\", 1977), (\"Emily\", 2014)]\n    print(oldest_person(p))",
-      "testCode": "\nimport unittest\nclass TestOldest(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # 1977 < 2014 so Arthur is older\n        self.assertIn(\"Arthur\", out)\n"
+      "initialCode": {
+        "ENG": "def oldest_person(people: list):\n    # Write your solution here\n    pass",
+        "CAS": "def oldest_person(people: list):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "def oldest_person(people: list):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part05-22_older_people",
+      "exerciseId": "part05-25_older_people",
       "title": {
         "ENG": "Older people",
         "CAS": "Personas mayores",
         "EUS": "Pertsona zaharragoak"
       },
       "description": {
-        "ENG": "Write a function named older_people(people, year), which takes a list of tuples and a year. It returns a list of names of people born before that year.",
-        "CAS": "Escribe una función llamada personas_mayores(personas, ano). Devuelve una lista de nombres de personas nacidas antes de ese año.",
-        "EUS": "Idatzi pertsona_zaharragoak(pertsonak, urtea). Urte hori baino lehen jaiotako pertsonen izenen zerrenda itzultzen du."
+        "ENG": "Please write a function named `older_people(people: list, year: int)`, which selects all those people on the list who were born *before* the year given as an argument. The function should return the names of these people in a new list.",
+        "CAS": "Por favor escribe una función llamada `older_people(people: list, year: int)`, que seleccione a todas las personas en la lista que nacieron *antes* del año dado como argumento. La función debe devolver los nombres de estas personas en una nueva lista.",
+        "EUS": "Mesedez idatzi `older_people(people: list, year: int)` izeneko funtzio bat, argumentu gisa emandako urtea baino *lehen* jaiotako zerrendako pertsona guztiak hautatzen dituena. Funtzioak pertsona horien izenak zerrenda berri batean itzuli behar ditu."
       },
-      "initialCode": "# Write your solution here\nif __name__ == \"__main__\":\n    p = [(\"Arthur\", 1977), (\"Emily\", 2014)]\n    print(older_people(p, 2000))",
-      "testCode": "\nimport unittest\nclass TestOlder(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code()\n        # Arthur 1977 < 2000\n        self.assertIn(\"Arthur\", out)\n        self.assertNotIn(\"Emily\", out)\n"
+      "initialCode": {
+        "ENG": "def older_people(people: list, year: int):\n    # Write your solution here\n    pass",
+        "CAS": "def older_people(people: list, year: int):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "def older_people(people: list, year: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## What is the purpose of a tuple?\n\nTuples are ideal for when there is a set collection of values which are in some way connected. For example, when there is a need to handle the x and y coordinates of a point, a tuple is a natural choice, because coordinates will always consist of two values:\n\n```python\npoint = (10, 20)\n```\n\nTechnically it is of course possible to also use a list to store these:\n\n```python\npoint = [10, 20]\n```\n\nA list is a collection of consecutive items in a certain order. The size of a list may also change. When we are storing the coordinates of a point, we want to store the x and y coordinates specifically, not an arbitrary list containing those values.\n\nBecause tuples are immutable, unlike lists, they can be used as keys in a dictionary. The following bit of code creates a dictionary, where the keys are coordinate points:\n\n```python\npoints = {}\npoints[(3, 5)] = \"monkey\"\npoints[(5, 0)] = \"banana\"\npoints[(1, 2)] = \"harpsichord\"\nprint(points[(3, 5)])\n```\n\n```text\nmonkey\n```\n\nAttempting a similar dictionary definition using lists would *not* work:\n\n```python\npoints = {}\npoints[[3, 5]] = \"monkey\"\npoints[[5, 0]] = \"banana\"\npoints[[1, 2]] = \"harpsichord\"\nprint(points[[3, 5]])\n```\n\n```text\nTypeError: unhashable type: 'list'\n```\n\n## Tuples without parentheses\n\nThe parentheses are not strictly necessary when defining tuples. The following two variable assignments are identical in their results:\n\n```python\nnumbers = (1, 2, 3)\n```\n\n```python\nnumbers = 1, 2, 3\n```\n\nThis means we can also easily return multiple values using tuples. Let's have a look at the following example:\n\n```python\ndef minmax(my_list):\n  return min(my_list), max(my_list)\n\nmy_list = [33, 5, 21, 7, 88, 312, 5]\n\nmin_value, max_value = minmax(my_list)\nprint(f\"The smallest item is {min_value} and the greatest item is {max_value}\")\n```\n\n```text\nThe smallest item is 5 and the greatest item is 312\n```",
+        "CAS": "## ¿Cuál es el propósito de una tupla?\n\nLas tuplas son ideales para cuando hay una colección fija de valores que están conectados de alguna manera. Por ejemplo, cuando es necesario manejar las coordenadas x e y de un punto, una tupla es una opción natural, porque las coordenadas siempre consistirán en dos valores:\n\n```python\npunto = (10, 20)\n```\n\nTécnicamente, por supuesto, también es posible usar una lista para almacenar estos:\n\n```python\npunto = [10, 20]\n```\n\nUna lista es una colección de elementos consecutivos en un cierto orden. El tamaño de una lista también puede cambiar. Cuando almacenamos las coordenadas de un punto, queremos almacenar las coordenadas x e y específicamente, no una lista arbitraria que contenga esos valores.\n\nDebido a que las tuplas son inmutables, a diferencia de las listas, se pueden usar como claves en un diccionario. El siguiente fragmento de código crea un diccionario, donde las claves son puntos de coordenadas:\n\n```python\npuntos = {}\npuntos[(3, 5)] = \"mono\"\npuntos[(5, 0)] = \"banana\"\npuntos[(1, 2)] = \"clave\"\nprint(puntos[(3, 5)])\n```\n\n```text\nmono\n```\n\nIntentar una definición de diccionario similar usando listas *no* funcionaría:\n\n```python\npuntos = {}\npuntos[[3, 5]] = \"mono\"\npuntos[[5, 0]] = \"banana\"\npuntos[[1, 2]] = \"clave\"\nprint(puntos[[3, 5]])\n```\n\n```text\nTypeError: unhashable type: 'list'\n```\n\n## Tuplas sin paréntesis\n\nLos paréntesis no son estrictamente necesarios al definir tuplas. Las siguientes dos asignaciones de variables son idénticas en sus resultados:\n\n```python\nnumeros = (1, 2, 3)\n```\n\n```python\nnumeros = 1, 2, 3\n```\n\nEsto significa que también podemos devolver fácilmente múltiples valores usando tuplas. Echemos un vistazo al siguiente ejemplo:\n\n```python\ndef minmax(mi_lista):\n  return min(mi_lista), max(mi_lista)\n\nmi_lista = [33, 5, 21, 7, 88, 312, 5]\n\nvalor_min, valor_max = minmax(mi_lista)\nprint(f\"El elemento más pequeño es {valor_min} y el elemento más grande es {valor_max}\")\n```\n\n```text\nEl elemento más pequeño es 5 y el elemento más grande es 312\n```",
+        "EUS": "## Zein da tupla baten helburua?\n\nTuplak idealak dira nolabait konektatuta dauden balio bilduma finko bat dagoenerako. Adibidez, puntu baten x eta y koordenatuak maneiatzeko beharra dagoenean, tupla bat aukera naturala da, koordenatuek beti bi balio izango baitituzte:\n\n```python\npuntua = (10, 20)\n```\n\nTeknikoki, noski, zerrenda bat ere erabil daiteke hauek gordetzeko:\n\n```python\npuntua = [10, 20]\n```\n\nZerrenda bat ordena jakin bateko ondoz ondoko elementuen bilduma da. Zerrenda baten tamaina ere alda daiteke. Puntu baten koordenatuak gordetzen ari garenean, x eta y koordenatuak berariaz gorde nahi ditugu, ez balio horiek dituen ausazko zerrenda bat.\n\nTuplak aldaezinak direnez, zerrendak ez bezala, hiztegi batean gako gisa erabil daitezke. Hurrengo kode zatiak hiztegi bat sortzen du, non gakoak koordenatu puntuak diren:\n\n```python\npuntuak = {}\npuntuak[(3, 5)] = \"tximinoa\"\npuntuak[(5, 0)] = \"banana\"\npuntuak[(1, 2)] = \"klabezina\"\nprint(puntuak[(3, 5)])\n```\n\n```text\ntximinoa\n```\n\nZerrendak erabiliz antzeko hiztegi definizio bat saiatzeak *ez* luke funtzionatuko:\n\n```python\npuntuak = {}\npuntuak[[3, 5]] = \"tximinoa\"\npuntuak[[5, 0]] = \"banana\"\npuntuak[[1, 2]] = \"klabezina\"\nprint(puntuak[[3, 5]])\n```\n\n```text\nTypeError: unhashable type: 'list'\n```\n\n## Parentesirik gabeko tuplak\n\nParentesiak ez dira guztiz beharrezkoak tuplak definitzean. Hurrengo bi aldagai esleipenak berdin-berdinak dira emaitzetan:\n\n```python\nzenbakiak = (1, 2, 3)\n```\n\n```python\nzenbakiak = 1, 2, 3\n```\n\nHonek esan nahi du balio anitz erraz itzul ditzakegula tuplak erabiliz. Ikus dezagun hurrengo adibidea:\n\n```python\ndef minmax(nire_zerrenda):\n  return min(nire_zerrenda), max(nire_zerrenda)\n\nnire_zerrenda = [33, 5, 21, 7, 88, 312, 5]\n\nmin_balioa, max_balioa = minmax(nire_zerrenda)\nprint(f\"Elementurik txikiena {min_balioa} da eta handiena {max_balioa}\")\n```\n\n```text\nElementurik txikiena 5 da eta handiena 312\n```"
+      }
     },
     {
       "type": "exercise",
-      "exerciseId": "part05-23_student_database",
+      "exerciseId": "part05-26_student_database",
       "title": {
         "ENG": "Student database",
         "CAS": "Base de datos de estudiantes",
         "EUS": "Ikasleen datu-basea"
       },
       "description": {
-        "ENG": "Write a program to manage a student database (a dictionary). Functions needed: add_student, print_student, add_course, summary. Courses are tuples (name, grade).",
-        "CAS": "Escribe un programa para gestionar una base de datos de estudiantes (diccionario). Funciones: agregar_estudiante, imprimir_estudiante, agregar_curso, resumen. Cursos son tuplas (nombre, nota).",
-        "EUS": "Idatzi ikasleen datu-base bat kudeatzeko programa (hiztegia). Beharrezko funtzioak: ikaslea_gehitu, ikaslea_inprimatu, ikastaroa_gehitu, laburpena. Ikastaroak tuplak dira (izena, nota)."
+        "ENG": "In this series of exercises you will create a simple student database. You will write functions `add_student`, `print_student`, `add_course`, and `summary`. See the detailed instructions in the course material for how each function should behave, including handling completed courses and grades.",
+        "CAS": "En esta serie de ejercicios crearás una base de datos de estudiantes simple. Escribirás las funciones `add_student`, `print_student`, `add_course` y `summary`. Consulta las instrucciones detalladas en el material del curso sobre cómo debe comportarse cada función, incluido el manejo de cursos completados y calificaciones.",
+        "EUS": "Ariketa sorta honetan ikasleen datu-base sinple bat sortuko duzu. `add_student`, `print_student`, `add_course` eta `summary` funtzioak idatziko dituzu. Ikusi ikastaroko materialeko argibide zehatzak funtzio bakoitzak nola jokatu behar duen jakiteko, osatutako ikastaroak eta kalifikazioak kudeatzea barne."
       },
-      "initialCode": "students = {}\ndef add_student(database, name):\n    # implementation\n    pass\n\ndef print_student(database, name):\n    # implementation\n    pass\n\ndef add_course(database, name, course):\n    # implementation\n    pass\n\ndef summary(database):\n    # implementation\n    pass\n\nif __name__ == \"__main__\":\n    add_student(students, \"Peter\")\n    add_course(students, \"Peter\", (\"Introduction to Programming\", 3))\n    print_student(students, \"Peter\")",
-      "testCode": "\nimport unittest\nclass TestDB(unittest.TestCase):\n    def test_run(self):\n        # We assume the user implements the logic.\n        # This is a complex exercise to test fully via stdout string matching without stricter structure.\n        # But we check for basic output.\n        out = run_student_code()\n        self.assertIn(\"Peter\", out)\n        self.assertIn(\"Introduction to Programming\", out)\n        self.assertIn(\"3\", out)\n"
+      "initialCode": {
+        "ENG": "def add_student(students: dict, name: str):\n    # Write your solution here\n    pass\n\ndef print_student(students: dict, name: str):\n    # Write your solution here\n    pass\n\ndef add_course(students: dict, name: str, course: tuple):\n    # Write your solution here\n    pass\n\ndef summary(students: dict):\n    # Write your solution here\n    pass",
+        "CAS": "def add_student(students: dict, name: str):\n    # Escribe tu solución aquí\n    pass\n\ndef print_student(students: dict, name: str):\n    # Escribe tu solución aquí\n    pass\n\ndef add_course(students: dict, name: str, course: tuple):\n    # Escribe tu solución aquí\n    pass\n\ndef summary(students: dict):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "def add_student(students: dict, name: str):\n    # Idatzi zure soluzioa hemen\n    pass\n\ndef print_student(students: dict, name: str):\n    # Idatzi zure soluzioa hemen\n    pass\n\ndef add_course(students: dict, name: str, course: tuple):\n    # Idatzi zure soluzioa hemen\n    pass\n\ndef summary(students: dict):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part05-27_letter_square",
+      "title": {
+        "ENG": "A square of letters",
+        "CAS": "Un cuadrado de letras",
+        "EUS": "Letra karratu bat"
+      },
+      "description": {
+        "ENG": "Please write a program which prints out a square of letters as specified in the examples. The program asks for the number of layers. You may assume there will be at most 26 layers.",
+        "CAS": "Por favor escribe un programa que imprima un cuadrado de letras como se especifica en los ejemplos. El programa pide el número de capas. Puedes asumir que habrá como máximo 26 capas.",
+        "EUS": "Mesedez idatzi programa bat letra karratu bat inprimatzen duena adibideetan zehazten den bezala. Programak geruza kopurua eskatzen du. Suposa dezakezu gehienez 26 geruza egongo direla."
+      },
+      "initialCode": {
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure soluzioa hemen"
+      },
+      "testCode": ""
     }
   ]
 }

@@ -2,49 +2,101 @@
   "id": "part7-3",
   "title": {
     "ENG": "Times and dates",
-    "CAS": "Fechas y horas",
+    "CAS": "Horas y fechas",
     "EUS": "Orduak eta datak"
   },
   "blocks": [
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# Times and dates\n\nThe `datetime` module allows handling dates and times.\n\n```python\nfrom datetime import datetime\n\nnow = datetime.now()\nprint(now)\n```\n\n## Creating dates\n\n```python\nmy_birthday = datetime(1995, 1, 25)\nprint(my_birthday)\n```\n\n## Calculating differences\n\nSubtracting two datetime objects results in a `timedelta` object.\n\n```python\ndiff = now - my_birthday\nprint(diff.days)\n```\n",
-        "CAS": "\n# Fechas y horas\n\nEl módulo `datetime` permite manejar fechas y horas.\n\n```python\nfrom datetime import datetime\n\nahora = datetime.now()\nprint(ahora)\n```\n\n## Creando fechas\n\n```python\nmi_cumple = datetime(1995, 1, 25)\nprint(mi_cumple)\n```\n\n## Calculando diferencias\n\nRestar dos objetos datetime resulta en un objeto `timedelta`.\n\n```python\ndif = ahora - mi_cumple\nprint(dif.days)\n```\n",
-        "EUS": "\n# Orduak eta datak\n\n`datetime` moduluak datak eta orduak kudeatzea ahalbidetzen du.\n\n```python\nfrom datetime import datetime\n\norain = datetime.now()\nprint(orain)\n```\n\n## Datak sortzen\n\n```python\nnire_urtebetetzea = datetime(1995, 1, 25)\nprint(nire_urtebetetzea)\n```\n\n## Ezberdintasunak kalkulatzen\n\nBi datetime objektu kentzeak `timedelta` objektu bat ematen du.\n\n```python\naldea = orain - nire_urtebetetzea\nprint(aldea.days)\n```\n"
+        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will know how to handle dates and times in Python code\n- You will be able to create and use `datetime` objects\n- You will know how to compare and calculate differences between two dates or times",
+        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Sabrás cómo manejar fechas y horas en código Python\n- Podrás crear y usar objetos `datetime`\n- Sabrás cómo comparar y calcular diferencias entre dos fechas u horas",
+        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- Python kodean datak eta orduak nola kudeatu jakingo duzu\n- `datetime` objektuak sortzeko eta erabiltzeko gai izango zara\n- Bi data edo orduren arteko aldeak nola konparatu eta kalkulatu jakingo duzu"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## The datetime object\n\nThe Python `datetime` module includes the function `now`, which returns a datetime object containing the current date and time. The default printout of a datetime object looks like this:\n\n```python\nfrom datetime import datetime\n\nmy_time = datetime.now()\nprint(my_time)\n```\n\n```text\n2021-10-19 08:46:49.311393\n```\n\nYou can also define the object yourself:\n\n```python\nfrom datetime import datetime\n\nmy_time = datetime(1952, 12, 24)\nprint(my_time)\n```\n\n```text\n1952-12-24 00:00:00\n```\n\nBy default, the time is set to midnight, as we did not give a time of day in the example above.\n\nDifferent elements of the datetime object can be accessed in the following manner:\n\n```python\nfrom datetime import datetime\n\nmy_time = datetime(1952, 12, 24)\nprint(\"Day:\", my_time.day)\nprint(\"Month:\", my_time.month)\nprint(\"Year:\", my_time.year)\n```\n\n```text\nDay: 24\nMonth: 12\nYear: 1952\n```\n\nA time of day can also be specified. The precision can vary, as you can see below:\n\n```python\nfrom datetime import datetime\n\npv1 = datetime(2021, 6, 30, 13)     # 30.6.2021 at 1PM\npv2 = datetime(2021, 6, 30, 18, 45) # 30.6.2021 at 6.45PM\n```",
+        "CAS": "## El objeto datetime\n\nEl módulo `datetime` de Python incluye la función `now`, que devuelve un objeto datetime que contiene la fecha y hora actuales. La impresión predeterminada de un objeto datetime se ve así:\n\n```python\nfrom datetime import datetime\n\nmi_tiempo = datetime.now()\nprint(mi_tiempo)\n```\n\n```text\n2021-10-19 08:46:49.311393\n```\n\nTambién puedes definir el objeto tú mismo:\n\n```python\nfrom datetime import datetime\n\nmi_tiempo = datetime(1952, 12, 24)\nprint(mi_tiempo)\n```\n\n```text\n1952-12-24 00:00:00\n```\n\nPor defecto, la hora se establece en medianoche, ya que no dimos una hora del día en el ejemplo anterior.\n\nSe puede acceder a diferentes elementos del objeto datetime de la siguiente manera:\n\n```python\nfrom datetime import datetime\n\nmi_tiempo = datetime(1952, 12, 24)\nprint(\"Día:\", mi_tiempo.day)\nprint(\"Mes:\", mi_tiempo.month)\nprint(\"Año:\", mi_tiempo.year)\n```\n\n```text\nDía: 24\nMes: 12\nAño: 1952\n```\n\nTambién se puede especificar una hora del día. La precisión puede variar, como puedes ver a continuación:\n\n```python\nfrom datetime import datetime\n\npv1 = datetime(2021, 6, 30, 13)     # 30.6.2021 a la 1PM\npv2 = datetime(2021, 6, 30, 18, 45) # 30.6.2021 a las 6.45PM\n```",
+        "EUS": "## Datetime objektua\n\nPython `datetime` moduluak `now` funtzioa barne hartzen du, uneko data eta ordua dituen datetime objektu bat itzultzen duena. Datetime objektu baten inprimaketa lehenetsia honelakoa da:\n\n```python\nfrom datetime import datetime\n\nnire_ordua = datetime.now()\nprint(nire_ordua)\n```\n\n```text\n2021-10-19 08:46:49.311393\n```\n\nObjektua zuk zeuk ere defini dezakezu:\n\n```python\nfrom datetime import datetime\n\nnire_ordua = datetime(1952, 12, 24)\nprint(nire_ordua)\n```\n\n```text\n1952-12-24 00:00:00\n```\n\nLehenespenez, ordua gauerdian ezartzen da, goiko adibidean ez baitugu eguneko ordurik eman.\n\nDatetime objektuaren elementu desberdinetara honela sar daiteke:\n\n```python\nfrom datetime import datetime\n\nnire_ordua = datetime(1952, 12, 24)\nprint(\"Eguna:\", nire_ordua.day)\nprint(\"Hilabetea:\", nire_ordua.month)\nprint(\"Urtea:\", nire_ordua.year)\n```\n\n```text\nEguna: 24\nHilabetea: 12\nUrtea: 1952\n```\n\nEguneko ordu bat ere zehaztu daiteke. Zehaztasuna alda daiteke, behean ikus dezakezun bezala:\n\n```python\nfrom datetime import datetime\n\npv1 = datetime(2021, 6, 30, 13)     # 2021.6.30, 13:00etan\npv2 = datetime(2021, 6, 30, 18, 45) # 2021.6.30, 18:45ean\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## Compare times and calculate differences between them\n\nThe familiar comparison operators work also on datetime objects:\n\n```python\nfrom datetime import datetime\n\ntime_now = datetime.now()\nmidsummer = datetime(2021, 6, 26)\n\nif time_now < midsummer:\n    print(\"It is not yet Midsummer\")\nelif time_now == midsummer:\n    print(\"Happy Midsummer!\")\nelif time_now > midsummer:\n    print(\"It is past Midsummer\")\n```\n\nThe difference between two datetime objects can be calculated simply with the subtraction operator:\n\n```python\nfrom datetime import datetime\n\ntime_now = datetime.now()\nmidsummer = datetime(2021, 6, 26)\n\ndifference = midsummer - time_now\nprint(\"Midsummer is\", difference.days, \"days away\")\n```\n\nNB: the result of the datetime subtraction is a `timedelta` object. It is less versatile than the `datetime` object. For instance, you can access the number of days in a `timedelta` object, but not the number of years, as the length of a year varies. A `timedelta` object contains the attributes `days`, `seconds` and `microseconds`.",
+        "CAS": "## Comparar horas y calcular diferencias entre ellas\n\nLos operadores de comparación familiares funcionan también en objetos datetime:\n\n```python\nfrom datetime import datetime\n\nhora_actual = datetime.now()\nsanjuan = datetime(2021, 6, 26)\n\nif hora_actual < sanjuan:\n    print(\"Todavía no es San Juan\")\nelif hora_actual == sanjuan:\n    print(\"¡Feliz San Juan!\")\nelif hora_actual > sanjuan:\n    print(\"Ya pasó San Juan\")\n```\n\nLa diferencia entre dos objetos datetime se puede calcular simplemente con el operador de resta:\n\n```python\nfrom datetime import datetime\n\nhora_actual = datetime.now()\nsanjuan = datetime(2021, 6, 26)\n\ndiferencia = sanjuan - hora_actual\nprint(\"Faltan\", diferencia.days, \"días para San Juan\")\n```\n\nNota: el resultado de la resta de datetime es un objeto `timedelta`. Es menos versátil que el objeto `datetime`. Por ejemplo, puedes acceder al número de días en un objeto `timedelta`, pero no al número de años, ya que la duración de un año varía. Un objeto `timedelta` contiene los atributos `days`, `seconds` y `microseconds`.",
+        "EUS": "## Orduak konparatu eta haien arteko aldeak kalkulatu\n\nKonparazio eragile ezagunek datetime objektuekin ere funtzionatzen dute:\n\n```python\nfrom datetime import datetime\n\nordu_oraina = datetime.now()\nsan_juan = datetime(2021, 6, 26)\n\nif ordu_oraina < san_juan:\n    print(\"Oraindik ez da San Juan\")\nelif ordu_oraina == san_juan:\n    print(\"San Juan zoriontsua!\")\nelif ordu_oraina > san_juan:\n    print(\"San Juan igaro da\")\n```\n\nBi datetime objekturen arteko aldea kenketa eragilearekin kalkula daiteke:\n\n```python\nfrom datetime import datetime\n\nordu_oraina = datetime.now()\nsan_juan = datetime(2021, 6, 26)\n\naldea = san_juan - ordu_oraina\nprint(\"San Juanera\", aldea.days, \"egun falta dira\")\n```\n\nOHARRA: datetime kenketaren emaitza `timedelta` objektu bat da. `datetime` objektua baino gutxiago moldakorra da. Adibidez, `timedelta` objektu bateko egun kopurura sar zaitezke, baina ez urte kopurura, urte baten luzera aldatzen delako. `timedelta` objektu batek `days`, `seconds` eta `microseconds` atributuak ditu."
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-07_how_old",
+      "exerciseId": "part07-09_how_old",
       "title": {
         "ENG": "How old",
-        "CAS": "¿Qué edad tienes?",
+        "CAS": "Cuántos años",
         "EUS": "Zenbat urte"
       },
       "description": {
-        "ENG": "Write a program that asks for the user's birthdate (day, month, year) and prints their age in days on the eve of the new millennium (30.12.1999). If they were born later, print nothing.",
-        "CAS": "Escribe un programa que pida la fecha de nacimiento (día, mes, año) e imprima la edad en días en la víspera del nuevo milenio (30.12.1999). Si nació después, no imprimas nada.",
-        "EUS": "Idatzi programa bat erabiltzailearen jaioteguna eskatzen duena (eguna, hila, urtea) eta milurteko berriaren bezperan (1999.12.30) zuen adina egunetan inprimatzen duena. Geroago jaio bazen, ez inprimatu ezer."
+        "ENG": "Please write a program which asks the user for their date of birth, and then prints out how old the user was on the eve of the new millennium (31.12.1999). The age should be printed in days.",
+        "CAS": "Por favor escribe un programa que pida al usuario su fecha de nacimiento y luego imprima cuántos años tenía el usuario en la víspera del nuevo milenio (31.12.1999). La edad debe imprimirse en días.",
+        "EUS": "Mesedez idatzi programa bat erabiltzaileari bere jaiotze-data eskatzen diona, eta ondoren inprimatzen duena erabiltzaileak zenbat urte zituen milurteko berriaren bezperan (1999.12.31). Adina egunetan inprimatu behar da."
       },
-      "initialCode": "# Write your solution here\nfrom datetime import datetime\n",
-      "testCode": "\nimport unittest\nfrom unittest.mock import patch\n\nclass TestAge(unittest.TestCase):\n    def test_run(self):\n        # 10, 9, 1999 -> days until 30.12.1999\n        pass\n"
+      "initialCode": {
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure soluzioa hemen"
+      },
+      "testCode": ""
     },
     {
       "type": "exercise",
-      "exerciseId": "part07-08_screen_time",
+      "exerciseId": "part07-10_valid_pic",
+      "title": {
+        "ENG": "Valid PIC?",
+        "CAS": "¿PIC válido?",
+        "EUS": "PIC baliozkoa?"
+      },
+      "description": {
+        "ENG": "Please write a function named `is_it_valid(pic: str)`, which returns `True` or `False` based on whether the Finnish Personal Identity Code (PIC) given as an argument is valid or not. Validate date, century marker (+, -, A), and control character.",
+        "CAS": "Por favor escribe una función llamada `is_it_valid(pic: str)`, que devuelva `True` o `False` basándose en si el Código de Identidad Personal (PIC) finlandés dado como argumento es válido o no. Valida la fecha, el marcador de siglo (+, -, A) y el carácter de control.",
+        "EUS": "Mesedez idatzi `is_it_valid(pic: str)` izeneko funtzio bat, `True` edo `False` itzultzen duena argumentu gisa emandako Finlandiako Identitate Pertsonaleko Kodea (PIC) baliozkoa den ala ez oinarritzat hartuta. Baliozkotu data, mendearen markatzailea (+, -, A) eta kontrol-karakterea."
+      },
+      "initialCode": {
+        "ENG": "from datetime import datetime\n\ndef is_it_valid(pic: str):\n    # Write your solution here\n    pass",
+        "CAS": "from datetime import datetime\n\ndef is_it_valid(pic: str):\n    # Escribe tu solución aquí\n    pass",
+        "EUS": "from datetime import datetime\n\ndef is_it_valid(pic: str):\n    # Idatzi zure soluzioa hemen\n    pass"
+      },
+      "testCode": ""
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## Formatting times and dates\n\nThe `datetime` module contains a handy method `strftime` for formatting the string representation of a datetime object. For example, the following code will print the current date in the format `dd.mm.yyyy`, and then the date and time in a different format:\n\n```python\nfrom datetime import datetime\n\nmy_time = datetime.now()\nprint(my_time.strftime(\" %d.%m.%Y\"))\nprint(my_time.strftime(\" %d/%m/%Y %H:%M\"))\n```\n\nDatetime formatting works in the reverse direction as well, in case you need to parse a datetime object from a string given by the user. The method `strptime` will do just that:\n\n```python\nfrom datetime import datetime\n\nbirthday = input(\"Please type in your birthday in the format dd.mm.yyyy: \")\nmy_time = datetime.strptime(birthday, \" %d.%m.%Y\")\n\nif my_time < datetime(2000, 1, 1):\n    print(\"You were born in the previous millennium\")\nelse:\n    print(\"You were born during this millennium\")\n```",
+        "CAS": "## Formateando horas y fechas\n\nEl módulo `datetime` contiene un método útil `strftime` para formatear la representación de cadena de un objeto datetime. Por ejemplo, el siguiente código imprimirá la fecha actual en el formato `dd.mm.yyyy`, y luego la fecha y la hora en un formato diferente:\n\n```python\nfrom datetime import datetime\n\nmi_tiempo = datetime.now()\nprint(mi_tiempo.strftime(\" %d.%m.%Y\"))\nprint(mi_tiempo.strftime(\" %d/%m/%Y %H:%M\"))\n```\n\nEl formateo de datetime funciona también en la dirección inversa, en caso de que necesites analizar un objeto datetime de una cadena dada por el usuario. El método `strptime` hará exactamente eso:\n\n```python\nfrom datetime import datetime\n\ncumpleanos = input(\"Por favor escribe tu cumpleaños en el formato dd.mm.yyyy: \")\nmi_tiempo = datetime.strptime(cumpleanos, \" %d.%m.%Y\")\n\nif mi_tiempo < datetime(2000, 1, 1):\n    print(\"Naciste en el milenio anterior\")\nelse:\n    print(\"Naciste durante este milenio\")\n```",
+        "EUS": "## Orduak eta datak formateatzen\n\n`datetime` moduluak `strftime` metodo erabilgarria du datetime objektu baten kate irudikapena formateatzeko. Adibidez, hurrengo kodeak uneko data `dd.mm.yyyy` formatuan inprimatuko du, eta gero data eta ordua formatu desberdin batean:\n\n```python\nfrom datetime import datetime\n\nnire_ordua = datetime.now()\nprint(nire_ordua.strftime(\" %d.%m.%Y\"))\nprint(nire_ordua.strftime(\" %d/%m/%Y %H:%M\"))\n```\n\nDatetime formateatzeak alderantzizko noranzkoan ere funtzionatzen du, erabiltzaileak emandako kate batetik datetime objektu bat analizatu behar baduzu. `strptime` metodoak horixe egingo du:\n\n```python\nfrom datetime import datetime\n\nurtebetetzea = input(\"Mesedez idatzi zure urtebetetzea dd.mm.yyyy formatuan: \")\nnire_ordua = datetime.strptime(urtebetetzea, \" %d.%m.%Y\")\n\nif nire_ordua < datetime(2000, 1, 1):\n    print(\"Aurreko milurtekoan jaio zinen\")\nelse:\n    print(\"Milurteko honetan jaio zinen\")\n```"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part07-11_screen_time",
       "title": {
         "ENG": "Screen time",
         "CAS": "Tiempo de pantalla",
         "EUS": "Pantaila denbora"
       },
       "description": {
-        "ENG": "Write a program that asks for a start date and how many days to track. Then ask for screen time minutes for each day. Print start date, total duration, total minutes and average minutes. Save this to a file named by the start date (e.g. 'late_june.txt' if input was that? No, file name usually depends on exercise spec). Let's say filename is hardcoded or based on date.",
-        "CAS": "Escribe un programa que pida una fecha de inicio y cuántos días rastrear. Luego pide minutos de pantalla por día. Imprime estadísticas y guarda en un fichero.",
-        "EUS": "Idatzi programa bat hasiera data eta zenbat egun jarraitu galdetzen duena. Gero galdetu pantaila denbora minutuak egun bakoitzeko. Inprimatu estatistikak eta gorde fitxategi batean."
+        "ENG": "Please write a program for recording screen time. It should ask for a starting date and how many days to record. Then it asks for screen time in minutes for each day. Finally, it saves the data to a file.",
+        "CAS": "Por favor escribe un programa para registrar el tiempo de pantalla. Debe pedir una fecha de inicio y cuántos días registrar. Luego pide el tiempo de pantalla en minutos para cada día. Finalmente, guarda los datos en un archivo.",
+        "EUS": "Mesedez idatzi pantaila denbora grabatzeko programa bat. Hasiera data bat eta zenbat egun grabatu behar diren galdetu behar du. Ondoren, egun bakoitzerako pantaila denbora minututan eskatzen du. Azkenik, datuak fitxategi batean gordetzen ditu."
       },
-      "initialCode": "# Write your solution here\nfrom datetime import datetime, timedelta\n",
-      "testCode": "\nimport unittest\nclass TestScreen(unittest.TestCase):\n    pass\n"
+      "initialCode": {
+        "ENG": "from datetime import datetime, timedelta\n\n# Write your solution here",
+        "CAS": "from datetime import datetime, timedelta\n\n# Escribe tu solución aquí",
+        "EUS": "from datetime import datetime, timedelta\n\n# Idatzi zure soluzioa hemen"
+      },
+      "testCode": ""
     }
   ]
 }

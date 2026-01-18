@@ -27,7 +27,11 @@
         "CAS": "Implementa el juego Sokoban completo con contador, victoria y reinicio.",
         "EUS": "Inplementatu Sokoban joko osoa kontagailuarekin, garaipenarekin eta berrabiaraztearekin."
       },
-      "initialCode": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n",
+        "CAS": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n",
+        "EUS": "import pygame\n\nclass Sokoban:\n    # ... previous code ...\n    def game_solved(self):\n        # ...\n"
+      },
       "testCode": "pass"
     }
   ]

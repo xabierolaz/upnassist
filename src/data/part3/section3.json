@@ -27,7 +27,11 @@
         "CAS": "Escribe un programa que pida un entero positivo. El programa imprime una lista de multiplicaciones hasta que ambos operandos alcanzan el número dado.",
         "EUS": "Idatzi programa bat erabiltzaileari zenbaki oso positibo bat eskatzen diona. Programak biderketa eragiketen zerrenda inprimatzen du bi operandoek emandako zenbakira iritsi arte."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestMult(unittest.TestCase):\n    def test_2(self):\n        out = run_student_code(inputs=['2'])\n        # 1*1=1\n        # 1*2=2\n        # 2*1=2\n        # 2*2=4\n        self.assertIn(\"1 * 1 = 1\", out)\n        self.assertIn(\"2 * 2 = 4\", out)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe un programa que pida un entero. Si es negativo, imprime \"Thanks and bye!\" y para. Si no, imprime el factorial del número.",
         "EUS": "Idatzi programa bat zenbaki oso bat eskatzen duena. Negatiboa bada, \"Thanks and bye!\" inprimatu eta gelditu. Bestela, zenbakiaren faktoriala inprimatu."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestFact(unittest.TestCase):\n    def test_3(self):\n        out = run_student_code(inputs=['3', '-1'])\n        self.assertIn(\"factorial of the number 3 is 6\", out)\n    def test_5(self):\n        out = run_student_code(inputs=['5', '-1'])\n        self.assertIn(\"factorial of the number 5 is 120\", out)\n"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Escribe un programa que pida un número. Luego imprime los números del 1 a ese número, intercambiando cada par. Si es impar, el último queda igual.",
         "EUS": "Idatzi programa bat zenbaki bat eskatzen duena. Gero 1etik zenbaki horretara dauden zenbaki oso guztiak inprimatzen ditu, baina bikote bakoitza trukatuta. Bakoitia bada, azkena bere horretan geratzen da."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestFlip(unittest.TestCase):\n    def test_5(self):\n        out = run_student_code(inputs=['5'])\n        # 2 1 4 3 5\n        lines = out.strip().split('\\n')\n        nums = [l.strip() for l in lines if l.strip().isdigit()]\n        expected = ['2', '1', '4', '3', '5']\n        # Check subset\n        for e in expected:\n            self.assertIn(e, nums)\n"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Escribe un programa que pida un número. Luego imprime los enteros entre 1 y ese número, empezando por los extremos y yendo hacia el medio.",
         "EUS": "Idatzi programa bat zenbaki bat eskatzen duena. Gero 1 eta zenbaki horren arteko zenbaki oso positiboak inprimatzen ditu, muturretatik hasi eta erdira joanez."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestTurns(unittest.TestCase):\n    def test_5(self):\n        out = run_student_code(inputs=['5'])\n        # 1 5 2 4 3\n        lines = out.strip().split('\\n')\n        nums = [l.strip() for l in lines if l.strip().isdigit()]\n        # Simple check for presence\n        self.assertIn('1', nums)\n        self.assertIn('5', nums)\n"
     }
   ]

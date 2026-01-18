@@ -27,7 +27,11 @@
         "CAS": "Haz que el robot se mueva con flechas pero se detenga en las paredes.",
         "EUS": "Egin robota gezi-teklekin mugitu dadin baina paretetan gelditu dadin."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Haz que el robot siga al cursor del ratón.",
         "EUS": "Egin robotak saguaren kurtsorea jarraitu dezan."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -59,7 +67,11 @@
         "CAS": "Crea dos robots controlados por teclas diferentes (flechas vs WASD).",
         "EUS": "Sortu bi robot tekla desberdinek kontrolatuta (geziak vs WASD)."
       },
-      "initialCode": "import pygame\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\n\n# ...\n",
+        "CAS": "import pygame\n\n# ...\n",
+        "EUS": "import pygame\n\n# ...\n"
+      },
       "testCode": "pass"
     },
     {
@@ -75,7 +87,11 @@
         "CAS": "Dibuja un reloj que muestre la hora actual.",
         "EUS": "Marraztu uneko ordua erakusten duen erloju bat."
       },
-      "initialCode": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
+      "initialCode": {
+        "ENG": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
+        "CAS": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
+        "EUS": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n"
+      },
       "testCode": "pass"
     }
   ]

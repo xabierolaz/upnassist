@@ -27,7 +27,11 @@
         "CAS": "Define una clase Libro. Debe tener un constructor que tome nombre, autor, género y año como argumentos.",
         "EUS": "Definitu Liburua izeneko klasea. Eraikitzaile bat izan behar du, izena, egilea, generoa eta urtea hartzen dituena."
       },
-      "initialCode": "# Write your solution here\nclass Book:\n    pass\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\nclass Book:\n    pass\n",
+        "CAS": "# Escribe tu solución aquí\nclass Book:\n    pass\n",
+        "EUS": "# Idatzi zure soluzioa hemen\nclass Book:\n    pass\n"
+      },
       "testCode": "\nimport unittest\nclass TestBook(unittest.TestCase):\n    def test_creation(self):\n        b = run_student_code(code_to_run=\"b = Book('Name', 'Author', 'Genre', 2000); print(b.author)\")\n        self.assertIn(\"Author\", b)\n"
     },
     {
@@ -43,7 +47,11 @@
         "CAS": "Escribe tres clases: Checklist (encabezado, entradas), Customer (id, saldo, descuento), Cable (modelo, longitud, velocidad_max, bidireccional).",
         "EUS": "Idatzi hiru klase: Checklist (goiburua, sarrerak), Customer (id, saldoa, deskontua), Cable (modeloa, luzera, abiadura_max, bidirekzionala)."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestClasses(unittest.TestCase):\n    def test_run(self):\n        # We assume student defines them correctly.\n        # Just check instantiation doesn't crash.\n        code = \"\"\"\nc = Checklist(\"Header\", \"Entries\")\ncust = Customer(\"1\", 100, 0.1)\ncab = Cable(\"M\", 10, 1000, True)\nprint(\"Done\")\n\"\"\"\n        out = run_student_code(code_to_run=code)\n        self.assertIn(\"Done\", out)\n"
     }
   ]

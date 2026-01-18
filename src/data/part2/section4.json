@@ -9,9 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# Simple loops\n\nA loop allows sections of code to be repeated multiple times. The \n`while` loop is one of the most common loop structures.\n\n## The while True loop\n\nThe structure \n`while True:` creates a loop that continues forever, unless it is interrupted. The command \n`break` is used to exit the loop.\n\n```python\nwhile True:\n    number = int(input(\"Please type in a number, -1 to quit: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"Thanks and bye!\")\n```\n\n```text\nPlease type in a number, -1 to quit: **2**\n4\nPlease type in a number, -1 to quit: **-1**\nThanks and bye!\n```\n",
-        "CAS": "\n# Bucles simples\n\nUn bucle permite repetir secciones de código múltiples veces. El bucle \n`while` (mientras) es una de las estructuras de bucle más comunes.\n\n## El bucle while True\n\nLa estructura \n`while True:` crea un bucle que continúa para siempre, a menos que sea interrumpido. El comando \n`break` se usa para salir del bucle.\n\n```python\nwhile True:\n    number = int(input(\"Por favor escribe un número, -1 para salir: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"¡Gracias y adiós!\")\n```\n\n```text\nPor favor escribe un número, -1 para salir: **2**\n4\nPor favor escribe un número, -1 para salir: **-1**\n¡Gracias y adiós!\n```\n",
-        "EUS": "\n# Begizta sinpleak\n\nBegizta batek kode zatiak hainbat aldiz errepikatzeko aukera ematen du. \n`while` begizta da egitura ohikoenetako bat.\n\n## while True begizta\n\n`while True:` egiturak betirako jarraitzen duen begizta bat sortzen du, eten ezean. \n`break` komandoa begiztatik irteteko erabiltzen da.\n\n```python\nwhile True:\n    number = int(input(\"Mesedez idatzi zenbaki bat, -1 irteteko: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"Eskerrik asko eta agur!\")\n```\n\n```text\nMesedez idatzi zenbaki bat, -1 irteteko: **2**\n4\nMesedez idatzi zenbaki bat, -1 irteteko: **-1**\nEskerrik asko eta agur!\n```\n"
+        "ENG": "\n# Simple loops\n\n## After this section:\n\n- You will know what a loop means in programming\n- You will be able to use a `while True` loop in your programs\n- You will know how to use the `break` command to break out of a loop\n\n\nA loop allows sections of code to be repeated multiple times. The \n`while` loop is one of the most common loop structures.\n\n## The while True loop\n\nThe structure \n`while True:` creates a loop that continues forever, unless it is interrupted. The command \n`break` is used to exit the loop.\n\n```python\nwhile True:\n    number = int(input(\"Please type in a number, -1 to quit: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"Thanks and bye!\")\n```\n\n```text\nPlease type in a number, -1 to quit: **2**\n4\nPlease type in a number, -1 to quit: **-1**\nThanks and bye!\n```\n",
+        "CAS": "\n# Bucles simples\n\n## Después de esta sección:\n\n- Sabrás qué significa un bucle en programación\n- Podrás usar un bucle `while True` en tus programas\n- Sabrás cómo usar el comando `break` para salir de un bucle\n\n\nUn bucle permite repetir secciones de código múltiples veces. El bucle \n`while` (mientras) es una de las estructuras de bucle más comunes.\n\n## El bucle while True\n\nLa estructura \n`while True:` crea un bucle que continúa para siempre, a menos que sea interrumpido. El comando \n`break` se usa para salir del bucle.\n\n```python\nwhile True:\n    number = int(input(\"Por favor escribe un número, -1 para salir: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"¡Gracias y adiós!\")\n```\n\n```text\nPor favor escribe un número, -1 para salir: **2**\n4\nPor favor escribe un número, -1 para salir: **-1**\n¡Gracias y adiós!\n```\n",
+        "EUS": "\n# Begizta sinpleak\n\n## Atal honen ondoren:\n\n- Jakingo duzu zer esan nahi duen begizta batek programazioan\n- `while True` begizta bat erabili ahal izango duzu zure programetan\n- Jakingo duzu nola erabili `break` komandoa begizta batetik irteteko\n\n\nBegizta batek kode zatiak hainbat aldiz errepikatzeko aukera ematen du. \n`while` begizta da egitura ohikoenetako bat.\n\n## while True begizta\n\n`while True:` egiturak betirako jarraitzen duen begizta bat sortzen du, eten ezean. \n`break` komandoa begiztatik irteteko erabiltzen da.\n\n```python\nwhile True:\n    number = int(input(\"Mesedez idatzi zenbaki bat, -1 irteteko: \"))\n\n    if number == -1:\n        break\n\n    print(number ** 2)\n\nprint(\"Eskerrik asko eta agur!\")\n```\n\n```text\nMesedez idatzi zenbaki bat, -1 irteteko: **2**\n4\nMesedez idatzi zenbaki bat, -1 irteteko: **-1**\nEskerrik asko eta agur!\n```\n"
       }
     },
     {
@@ -27,7 +27,11 @@
         "CAS": "Escribe un programa que diga 'hi' y pregunte 'shall we continue?' hasta que el usuario escriba 'no'. Entonces imprime 'okay then'.",
         "EUS": "Idatzi programa bat 'hi' esan eta 'shall we continue?' galdetzen duena erabiltzaileak 'no' idatzi arte. Orduan inprimatu 'okay then'."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nfrom unittest.mock import patch\n\nclass TestContinue(unittest.TestCase):\n    def test_run(self):\n        # inputs: yes, yes, no\n        out = run_student_code(inputs=['yes', 'yes', 'no'])\n        # Should print hi 3 times (initial + 2 loops)\n        # Actually logic:\n        # Loop: print hi, ask input. If no break.\n        # So inputs: yes -> hi, ask. yes -> hi, ask. no -> hi, ask, break.\n        # Wait, description says: asks user 'hi' and then 'shall we continue?'.\n        # Let's assume structure:\n        # while True:\n        #   print(\"hi\")\n        #   res = input(\"shall we continue? \")\n        #   if res == \"no\": break\n        # print(\"okay then\")\n        \n        self.assertIn(\"okay then\", out)\n        if out.count(\"hi\") < 1:\n             self.fail(\"Should print 'hi' inside the loop.\")\n"
     },
     {
@@ -51,7 +55,11 @@
         "CAS": "Escribe un programa que pida un código PIN. Sigue pidiendo hasta que el usuario introduzca '4321'. Cuando sea correcto, imprime 'Correct! It took you X attempts'.",
         "EUS": "Idatzi PIN kodea eskatzen duen programa bat. Jarraitu galdetzen erabiltzaileak '4321' sartu arte. Zuzena denean, inprimatu 'Correct! It took you X attempts'."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestPin(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['1111', '2222', '4321'])\n        self.assertIn(\"Correct!\", out)\n        self.assertIn(\"3 attempts\", out)\n"
     },
     {
@@ -67,7 +75,11 @@
         "CAS": "Escribe un programa que pida un número e imprima una cuenta atrás desde ese número hasta 1. Luego imprime 'Now!'.",
         "EUS": "Idatzi programa bat zenbaki bat eskatzen duena eta zenbaki horretatik 1era atzerako kontaketa inprimatzen duena. Gero inprimatu 'Now!'."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestCountdown(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['3'])\n        self.assertIn(\"3\", out)\n        self.assertIn(\"2\", out)\n        self.assertIn(\"1\", out)\n        self.assertIn(\"Now!\", out)\n"
     },
     {
@@ -91,7 +103,11 @@
         "CAS": "Escribe un programa que pida una contraseña y luego pida repetirla. Sigue preguntando hasta que coincidan. Entonces imprime 'User account created!'.",
         "EUS": "Idatzi pasahitza eskatu eta gero errepikatzeko eskatzen duen programa. Jarraitu galdetzen bat etorri arte. Orduan inprimatu 'User account created!'."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestPass(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['secret', 'wrong', 'secret'])\n        self.assertIn(\"User account created!\", out)\n"
     },
     {
@@ -107,7 +123,11 @@
         "CAS": "Escribe un programa que siga pidiendo palabras y las añada a una historia. Si el usuario escribe 'end', el programa imprime la historia. Además, si el usuario escribe la misma palabra dos veces seguidas, el programa se detiene e imprime la historia.",
         "EUS": "Idatzi hitzak etengabe eskatu eta istorio bati gehitzen dizkion programa. Erabiltzaileak 'end' idazten badu, programak istorioa inprimatzen du. Gainera, erabiltzaileak hitz bera bi aldiz jarraian idazten badu, programa gelditu eta istorioa inprimatzen du."
       },
-      "initialCode": "# Write your solution here\n",
+      "initialCode": {
+        "ENG": "# Write your solution here\n",
+        "CAS": "# Escribe tu solución aquí\n",
+        "EUS": "# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestStory(unittest.TestCase):\n    def test_end(self):\n        out = run_student_code(inputs=['Once', 'upon', 'a', 'time', 'end'])\n        self.assertIn(\"Once upon a time\", out)\n        \n    def test_repeat(self):\n        out = run_student_code(inputs=['It', 'was', 'a', 'dark', 'dark', 'night'])\n        self.assertIn(\"It was a dark\", out)\n        if \"dark dark\" in out:\n             self.fail(\"Should stop before adding the second repeated word.\")\n"
     },
     {
@@ -123,7 +143,11 @@
         "CAS": "Escribe un programa que pida números. Si el usuario introduce 0, el programa se detiene. Luego imprime la cuenta, suma, media, y cuenta de positivos y negativos.",
         "EUS": "Idatzi zenbakiak eskatzen dituen programa bat. Erabiltzaileak 0 sartzen badu, programa gelditu egiten da. Gero inprimatu zenbakien kopurua, batura, batezbestekoa, eta positibo eta negatiboen kopurua."
       },
-      "initialCode": "print(\"Please type in integer numbers. Type in 0 to finish.\")\n# Write your solution here\n",
+      "initialCode": {
+        "ENG": "print(\"Please type in integer numbers. Type in 0 to finish.\")\n# Write your solution here\n",
+        "CAS": "print(\"Please type in integer numbers. Type in 0 to finish.\")\n# Escribe tu solución aquí\n",
+        "EUS": "print(\"Please type in integer numbers. Type in 0 to finish.\")\n# Idatzi zure soluzioa hemen\n"
+      },
       "testCode": "\nimport unittest\nclass TestNumbers(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['5', '2', '-1', '0'])\n        self.assertIn(\"Count: 3\", out)\n        self.assertIn(\"Sum: 6\", out)\n        self.assertIn(\"Mean: 2.0\", out)\n        self.assertIn(\"Positive: 2\", out)\n        self.assertIn(\"Negative: 1\", out)\n"
     }
   ]
