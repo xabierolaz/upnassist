@@ -4,6 +4,7 @@
 // Esperar a recibir el SharedArrayBuffer del hilo principal
 let sharedBuffer = null;
 let sharedArray = null;
+let pyodide = null;
 
 async function loadPyodideAndPackages() {
   // Use dynamic import to avoid Vite bundling issues with remote URLs
