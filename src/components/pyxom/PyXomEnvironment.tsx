@@ -38,10 +38,12 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
   const [isWaitingInput, setIsWaitingInput] = useState(false);
   const [inputPrompt, setInputPrompt] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (terminalContainerRef.current) {
+        terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+    }
   }, [history, isWaitingInput]);
 
   useEffect(() => {
@@ -175,7 +177,7 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
                 </button>
             </div>
             
-            <div className="flex-1 overflow-auto p-4 font-mono text-sm relative bg-gray-50/30">
+            <div ref={terminalContainerRef} className="flex-1 overflow-auto p-4 font-mono text-sm relative bg-gray-50/30">
                 {activeTab === 'console' && (
                     <>
                         <div className="whitespace-pre-wrap break-words">
@@ -201,7 +203,7 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
                                 </form>
                             </div>
                         )}
-                        <div ref={terminalEndRef} />
+
                     </>
                 )}
                 

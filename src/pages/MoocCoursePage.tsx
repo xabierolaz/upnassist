@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText, getExercise } from '../data/mooc-exercises';
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
@@ -9,6 +9,7 @@ import { useLanguageStore } from '../stores/languageStore';
 import { LanguageSwitcher } from '../components/common/LanguageSwitcher';
 
 const MoocCoursePage: React.FC = () => {
+  const mainRef = useRef<HTMLDivElement>(null);
   // Use courseStructure for initial ID
   const [activePageId, setActivePageId] = useState<string>(courseStructure[0].id);
   const [activePageData, setActivePageData] = useState<CoursePage | null>(null);
@@ -53,6 +54,7 @@ const MoocCoursePage: React.FC = () => {
 
   // Load section data when ID changes
   useEffect(() => {
+    if (mainRef.current) mainRef.current.scrollTo(0, 0);
     let isMounted = true;
     const load = async () => {
         setIsLoading(true);
@@ -181,7 +183,7 @@ const MoocCoursePage: React.FC = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-white scroll-smooth relative">
+      <main ref={mainRef} className="flex-1 overflow-y-auto bg-white scroll-smooth relative">
         <div className="max-w-4xl mx-auto px-4 md:px-12 py-10 pb-32">
             
             <div className="flex justify-end mb-6">
