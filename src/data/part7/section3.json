@@ -9,25 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Learning objectives\n\n- You will know how to handle dates and times in Python code\n- You will be able to create and use `datetime` objects",
-        "CAS": "# Objetivos de aprendizaje\n\n- Sabrás cómo manejar fechas y horas en código Python\n- Podrás crear y usar objetos `datetime`",
-        "EUS": "# Ikas-helburuak\n\n- Python kodean datak eta orduak nola kudeatu jakingo duzu\n- `datetime` objektuak sortzeko eta erabiltzeko gai izango zara"
-      }
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## The datetime object\n\nThe Python `datetime` module includes the function `now`...",
-        "CAS": "## El objeto datetime\n\nEl módulo `datetime` de Python incluye la función `now`...",
-        "EUS": "## Datetime objektua\n\nPython `datetime` moduluak `now` funtzioa barne hartzen du..."
-      }
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Compare times\n\nThe familiar comparison operators work also on datetime objects...",
-        "CAS": "## Comparar horas\n\nLos operadores de comparación familiares funcionan también en objetos datetime...",
-        "EUS": "## Orduak konparatu\n\nKonparazio eragile ezagunek datetime objektuekin ere funtzionatzen dute..."
+        "ENG": "```text\nLearning objectivesAfter this section\nYou will know how to handle dates and times in Python code\nYou will be able to create and use datetime objects\nYou will know how to compare and calculate differences between two dates or times\nThe datetime objectThe Python datetime module includes the function now, which returns a datetime object containing the current date and time. The default printout of a datetime object looks like this:from datetime import datetime\n\nmy_time = datetime.now()\nprint(my_time)2021-10-19 08:46:49.311393You can also define the object yourself:from datetime import datetime\n\nmy_time = datetime(1952, 12, 24)\nprint(my_time)Sample output1952-12-24 00:00:00By default, the time is set to midnight, as we did not give a time of day in the example above.Different elements of the datetime object can be accessed in the following manner:from datetime import datetime\n\nmy_time = datetime(1952, 12, 24)\nprint(\"Day:\", my_time.day)\nprint(\"Month:\", my_time.month)\nprint(\"Year:\", my_time.year)Sample outputDay: 24\nMonth: 12\nYear: 1952A time of day can also be specified. The precision can vary, as you can see below:from datetime import datetime\n\npv1 = datetime(2021, 6, 30, 13)     # 30.6.2021 at 1PM\npv2 = datetime(2021, 6, 30, 18, 45) # 30.6.2021 at 6.45PMCompare times and calculate differences between themThe familiar comparison operators work also on datetime objects:from datetime import datetime\n\ntime_now = datetime.now()\nmidsummer = datetime(2021, 6, 26)\n\nif time_now < midsummer:\n    print(\"It is not yet Midsummer\")\nelif time_now == midsummer:\n    print(\"Happy Midsummer!\")\nelif time_now > midsummer:\n    print(\"It is past Midsummer\")Sample outputIt is past MidsummerThe difference between two datetime objects can be calculated simply with the subtraction operator:from datetime import datetime\n\ntime_now = datetime.now()\nmidsummer = datetime(2021, 6, 26)\n\ndifference = midsummer - time_now\nprint(\"Midsummer is\", difference.days, \"days away\")Sample outputMidsummer is -116 days awayNB: the result of the datetime subtraction is a timedelta object. It is less versatile than the datetime object. For instance, you can access the number of days in a timedelta object, but not the number of years, as the length of a year varies. A timedelta object contains the attributes days, seconds and microseconds. Other measures can be passed as arguments, but they will be converted internally.Similarly, addition is available between datetime and timedelta objects. The result will be the datetime produced when the specified number of days (or weeks, seconds, etc) is added to a datetime object:from datetime import datetime, timedelta\nmidsummer = datetime(2021, 6, 26)\n\none_week = timedelta(days=7)\nweek_from_date = midsummer + one_week\n\nprint(\"A week after Midsummer it will be\", week_from_date)\n\nlong_time = timedelta(weeks=32, days=15)\n\nprint(\"32 weeks and 15 days after Midsummer it will be\", midsummer + long_time)Sample outputA week after Midsummer it will be 2021-07-03 00:00:00\n32 weeks and 15 days after Midsummer it will be 2022-02-20 00:00:00Let's see how a higher precision works:time_now = datetime.now()\nmidnight = datetime(2021, 6, 30)\ndifference = midnight - time_now\nprint(f\"Midnight is still {difference.seconds} seconds away\")Sample outputMidnight is still 8188 seconds awayLoadingLoadingFormatting times and datesThe datetime module contains a handy method strftime for formatting the string representation of a datetime object. For example, the following code will print the current date in the format dd.mm.yyyy, and then the date and time in a different format:from datetime import datetime\n\nmy_time = datetime.now()\nprint(my_time.strftime(\"%d.%m.%Y\"))\nprint(my_time.strftime(\"%d/%m/%Y %H:%M\"))Sample output19.10.2021\n19/10/2021 09:31Time formatting uses specific characters to signify specific formats. The following is a list of a few of them (please see the Python documentation for a complete list):\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotationSignificance%dday (01–31)%mmonth (01–12)%Yyear in 4 digit format%Hhours in 24 hour format%Mminutes (00–59)%Sseconds (00–59)You can also specify the delimiter between the different elements, as seen in the examples above.Datetime formatting works in the reverse direction as well, in case you need to parse a datetime object from a string given by the user. The method strptime will do just that:from datetime import datetime\n\nbirthday = input(\"Please type in your birthday in the format dd.mm.yyyy: \")\nmy_time = datetime.strptime(birthday, \"%d.%m.%Y\")\n\nif my_time < datetime(2000, 1, 1):\n    print(\"You were born in the previous millennium\")\nelse:\n    print(\"You were born during this millennium\")Sample outputPlease type in your birthday in the format dd.mm.yyyy: 5.11.1986\nYou were born in the previous millenniumLoading\n```\n\n",
+        "CAS": "",
+        "EUS": ""
       }
     },
     {
@@ -69,14 +53,6 @@
         "EUS": "def is_it_valid(pic): pass"
       },
       "testCode": "import unittest\nclass TestPic(unittest.TestCase):\n    def test_run(self):\n        self.assertTrue(is_it_valid('230827-906F'), 'Should be valid | Debería ser válido | Baliozkoa izan beharko litzateke')\n        self.assertFalse(is_it_valid('120488+246A'), 'Invalid control char | Carácter de control inválido | Kontrol-karaktere baliogabea')"
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Formatting times and dates\n\nThe `datetime` module contains a handy method `strftime`...",
-        "CAS": "## Formateando horas y fechas\n\nEl módulo `datetime` contiene un método útil `strftime`...",
-        "EUS": "## Orduak eta datak formateatzen\n\n`datetime` moduluak `strftime` metodo erabilgarria du..."
-      }
     },
     {
       "type": "exercise",

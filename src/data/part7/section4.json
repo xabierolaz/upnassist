@@ -9,25 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Learning objectives\n\n- You will know how to use a module to process CSV files\n- You will know how to use a module to process JSON files\n- You will be able to retrieve and read files from the internet",
-        "CAS": "# Objetivos de aprendizaje\n\n- Sabrás cómo usar un módulo para procesar archivos CSV\n- Sabrás cómo usar un módulo para procesar archivos JSON\n- Podrás recuperar y leer archivos de internet",
-        "EUS": "# Ikas-helburuak\n\n- Modulu bat CSV fitxategiak prozesatzeko nola erabili jakingo duzu\n- Modulu bat JSON fitxategiak prozesatzeko nola erabili jakingo duzu\n- Internetetik fitxategiak berreskuratu eta irakurtzeko gai izango zara"
-      }
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Reading CSV files\n\nCSV is such a simple format that so far we have accessed the with hand-written code...",
-        "CAS": "## Leyendo archivos CSV\n\nCSV es un formato tan simple que hasta ahora hemos accedido a él con código escrito a mano...",
-        "EUS": "## CSV fitxategiak irakurtzen\n\nCSV hain formatu sinplea denez, orain arte eskuz idatzitako kodearekin atzitu dugu..."
-      }
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Reading JSON files\n\nCSV is just one of many machine-readable data formats. JSON is another...",
-        "CAS": "## Leyendo archivos JSON\n\nCSV es solo uno de los muchos formatos de datos legibles por máquina. JSON es otro...",
-        "EUS": "## JSON fitxategiak irakurtzen\n\nCSV makinek irakurtzeko moduko datu formatu askotako bat besterik ez da. JSON beste bat da..."
+        "ENG": "```text\nLearning objectivesAfter this section\nYou will know how to use a module to process CSV files\nYou will know how to use a module to process JSON files\nYou will be able to retrieve and read files from the internet\nReading CSV filesCSV is such a simple format that so far we have accessed the with hand-written code. There is, however, a ready-made module in the Python standard library for working with CSV files: csv. It works like this:import csv\n\nwith open(\"test.csv\") as my_file:\n    for line in csv.reader(my_file, delimiter=\";\"):\n        print(line)The above code reads all lines in the CSV file test.csv, separates the contents of each line into a list using the delimiter ;, and prints each list. So, assuming the contents of the line are as follows:012121212;5\n012345678;2\n015151515;4The code would print out this:['012121212', '5']\n['012345678', '2']\n['015151515', '4']Since the CSV format is so simple, what's the use of having a separate module when we can just as well use the split function? Well, for one, the way the module is built, it will also work correctly if the values in the file are strings, which may also contain the delimiter character. If some line in the file looked like this\"aaa;bbb\";\"ccc;ddd\"the above code would produce this:Sample output['aaa;bbb', 'ccc;ddd']Using the split function would also split within the strings, which would likely break the data, and our program in the process.Reading JSON filesCSV is just one of many machine-readable data formats. JSON is another, and it is used often when data has to be transferred between applications.JSON files are text files with a strict format, which is perhaps a little less accessible to the human eye than the CSV format. The following example uses the file courses.json, which contains information about some courses:[\n    {\n        \"name\": \"Introduction to Programming\",\n        \"abbreviation\": \"ItP\",\n        \"periods\": [1, 3]\n    },\n    {\n        \"name\": \"Advanced Course in Programming\",\n        \"abbreviation\": \"ACiP\",\n        \"periods\": [2, 4]\n    },\n    {\n        \"name\": \"Database Application\",\n        \"abbreviation\": \"DbApp\",\n        \"periods\": [1, 2, 3, 4]\n    }\n]The structure of a JSON file might look quite familiar to you by now. The JSON file above looks exactly like a Python list, which contains three Python dictionaries.The standard library has a module for working with JSON files: json. The function loads takes any argument passed in a JSON format and transforms it into a Python data structure. So, processing the courses.json file with the code belowimport json\n\nwith open(\"courses.json\") as my_file:\n    data = my_file.read()\n\ncourses = json.loads(data)\nprint(courses)would print out the following:Sample output[{'name': 'Introduction to Programming', 'abbreviation': 'ItP', 'periods': [1, 3]}, {'name': 'Advanced Course in Programming', 'abbreviation': 'ACiP', 'periods': [2, 4]}, {'name': 'Database Application', 'abbreviation': 'DbApp', 'periods': [1, 2, 3, 4]}]If we also wanted to print out the name of each course, we could expand our program with a for loop:for course in courses:\n    print(course[\"name\"])Sample outputIntroduction to Programming\nAdvanced Course in Programming\nDatabase ApplicationLoadingRetrieving a file from the internetThe Python standard library also contains modules for dealing with online content, and one useful function is urllib.request.urlopen. You are encouraged to have a look at the entire module, but the following example should be enough for you to get to grips with the function. It can be used to retrieve content from the internet, so it can be processed in your programs.The following code would print out the contents of the University of Helsinki front page:import urllib.request\n\nmy_request = urllib.request.urlopen(\"https://helsinki.fi\")\nprint(my_request.read())Pages intended for human eyes do not usually look very pretty when their code is printed out. In the following examples, however, we will work with machine-readable data from an online source. Much of the machine-readable data available online is in JSON format.LoadingLoadingLoadingLooking for modulesThe official Python documentation contains information on all modules available in the standard library:\nhttps://docs.python.org/3/library/\nIn addition to the standard library, the internet is full of freely available Python modules for different purposes. Some commonly used modules are listed here:\nhttps://wiki.python.org/moin/UsefulModules\nLoading\n```\n\n",
+        "CAS": "",
+        "EUS": ""
       }
     },
     {
@@ -49,14 +33,6 @@
         "EUS": "def print_persons(f): pass"
       },
       "testCode": "import unittest\nclass TestJson(unittest.TestCase):\n    def test_run(self):\n        pass"
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Retrieving a file from the internet\n\nThe Python standard library also contains modules for dealing with online content...",
-        "CAS": "## Recuperando un archivo de internet\n\nLa biblioteca estándar de Python también contiene módulos para tratar con contenido en línea...",
-        "EUS": "## Fitxategi bat internetetik berreskuratzen\n\nPython liburutegi estandarrak lineako edukiarekin aritzeko moduluak ere baditu..."
-      }
     },
     {
       "type": "exercise",

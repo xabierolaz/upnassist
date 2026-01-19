@@ -9,17 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will know the difference between definite and indefinite iteration\n- You will know how a Python `for` loop works\n- You will be able to use a `for` loop to iterate through lists and strings",
-        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Sabrás la diferencia entre iteración definida e indefinida\n- Sabrás cómo funciona un bucle `for` en Python\n- Serás capaz de usar un bucle `for` para iterar a través de listas y cadenas",
-        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- Iterazio definituaren eta mugagabearen arteko aldea ezagutuko duzu\n- Python `for` begizta batek nola funtzionatzen duen jakingo duzu\n- `for` begizta bat erabiltzeko gai izango zara zerrendak eta kateak iteratzeko"
-      }
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "You can use a `while` loop to go through the items in a list... [Theory content about for loops] ...",
-        "CAS": "Puedes usar un bucle `while` para recorrer los elementos de una lista... [Contenido teórico sobre bucles for] ...",
-        "EUS": "`while` begizta bat erabil dezakezu zerrenda bateko elementuak zeharkatzeko... [for begiztei buruzko eduki teorikoa] ..."
+        "ENG": "```text\nLearning objectivesAfter this section\nYou will know the difference between definite and indefinite iteration\nYou will know how a Python for loop works\nYou will be able to use a for loop to iterate through lists and strings\nYou can use a while loop to go through the items in a list, just like we used while loops to go through strings. The following program prints out the items in the list, each on a separate line:my_list = [3, 2, 4, 5, 2]\n\nindex = 0\nwhile index < len(my_list):\n    print(my_list[index])\n    index += 13\n2\n4\n5\n2This obviously works, but it is a rather complicated way of going through a list, as you have to use a helper variable index to remember which item in the list you're at. Fortunately, Python offers a more intuitive way of traversing through lists, strings and other similar structures.The for loopWhen you want to go through some ready collection of items, the Python for loop will do this for you. For instance, the loop can go through all items in a list from first to last.When using a while loop the program doesn't \"know\" beforehand how many iterations the loop will perform. It will repeat until the condition becomes false, or the loop is otherwise broken out of. That is why it falls under indefinite iteration. With a for loop the number of iterations is determined when the loop is set up, and so it falls under definite iteration.The idea is that the for loop takes the items in the collection one by one and performs the same actions on each. The programmer does not have to worry about which item is being handled when. The syntax of the for loop is as follows:for <variable> in <collection>:\n    <block>The for loop takes an item in the collection, assigns it to the variable, processes the block of code, and moves on to the next item. When all items in the collection have been processed, execution of the program continues from the line after the loop.\n      \n    \n  \n          \n          \n          \n        \n  \n    The following program prints out all the items in a list using a for loop:my_list = [3, 2, 4, 5, 2]\n\nfor item in my_list:\n    print(item)Sample output3\n2\n4\n5\n2Compared to the example at the beginning of this section, the structure is much easier to understand. A for loop makes straightforward traversal through a collection of items very simple.The same principle applies to characters in a string:name = input(\"Please type in your name: \")\n\nfor character in name:\n    print(character)Sample outputPlease type in your name: Grace\nG\nr\na\nc\neLoadingThe function rangeOften you know how many times you want to repeat a certain bit of code. You might, for example, wish to go through all the numbers between 1 and 100. The range function plugged into a for loop will do this for you.There are a few different ways to call the range function. The simplest way is to give the function just one argument, which signifies the end-point of the range. The end-point itself is excluded, just like with string slices. In other words, the function call range(n) provides a loop with a range from 0 to n-1:for i in range(5):\n    print(i)Sample output0\n1\n2\n3\n4With two arguments, the function will return a range between the two numbers. The function range(a,b) provides a range starting from a and ending at b-1:for i in range(3, 7):\n    print(i)Sample output3\n4\n5\n6Finally, with a third argument you can also specify the size of the step the range takes between each value. The function call range(a, b, c) provides a range starting from a, ending at b-1, and changing by c with every step:for i in range(1, 9, 2):\n    print(i)Sample output1\n3\n5\n7A step can also be negative. Then the range will be in reversed orded. Notice the first two arguments are also flipped here:for i in range(6, 2, -1):\n    print(i)Sample output6\n5\n4\n3LoadingFrom a range to a listThe function range returns a range object, which in many ways behaves like a list, but isn't actually one. If you try printing out the value the function returns, you will only see a description of a range object:numbers = range(2, 7)\nprint(numbers)Sample outputrange(2, 7)The function list will convert a range into a list. The list will contain all the values that are in the range. The Advanced Course in Programming course, which follows this one, will shed more light on this subject.numbers = list(range(2, 7))\nprint(numbers)Sample output[2, 3, 4, 5, 6]A reminder of the demands of the automatic testsSo far, when the exercises have asked you to write functions, the templates have looked like this:# Write your solution here\n# You can test your function by calling it within the following block\nif __name__ == \"__main__\":\n    sentence = \"it was a dark and stormy python\"\n    print(first_word(sentence))\n    print(second_word(sentence))\n    print(last_word(sentence))From now on there will be no more reminders in the templates to use the if __name__ == \"__main__\" block. However, the automatic tests will still demand its use, so you will have to add the block yourself when you test your function within the main function of your program.NB: some exercises, like the Palindromes exercise coming up in this section, expect you to also write code which calls the function you wrote. This code should not be placed within an if __name__ == \"__main__\" block. The automatic tests will not execute any code within that block, so your solution will not be complete if you place your function calls there.LoadingLoadingLoadingLoadingIn these exercises we will be using lists as arguments and return values. This was covered in the previous section, if you need a refresher.LoadingLoadingLoadingFinding the best or the worst item in a listA very common programming task is finding the best or worst item in a list, according to some criteria. A simple solution is using a helper variable to \"remember\" which of the items processed so far was the most suitable. This temporary best choice is then compared to each item in turn, and at the end of the iteration the variable contains the best of the bunch.A rough draft which doesn't quite compile yet:best = initial_value # The initial value depends on the situation\nfor item in my_list:\n    if item is better than best:\n        best = item\n\n# We now have the best one figured out!The details of the final program code depend on the type of the items in the list, and also on the criteria for choosing the best (or worst) item. Sometimes you may need more than one helper variable.Let's practice this method a little.LoadingLoadingLoading\n```\n\n",
+        "CAS": "",
+        "EUS": ""
       }
     },
     {
@@ -43,14 +35,6 @@
       "testCode": "import unittest\nfrom unittest.mock import patch\nclass TestStarStudded(unittest.TestCase):\n    def test_run(self):\n        with patch('builtins.input', return_value='Hi'), patch('builtins.print') as mock_print:\n            run_student_code()\n            # Expected: H, *, i, *\n            if mock_print.call_count < 4:\n                self.fail('Should print at least 4 lines for input \"Hi\" | Debería imprimir al menos 4 líneas para la entrada \"Hi\" | Gutxienez 4 lerro inprimatu beharko lituzke \"Hi\" sarrerarako')\n            args = [c[0][0] for c in mock_print.call_args_list]\n            if '*' not in args:\n                self.fail('Output should contain stars | La salida debe contener estrellas | Irteerak izarrak izan behar ditu')"
     },
     {
-      "type": "markdown",
-      "content": {
-        "ENG": "## The function `range`\n\nOften you know how many times you want to repeat a certain bit of code...",
-        "CAS": "## La función `range`\n\nA menudo sabes cuántas veces quieres repetir un cierto fragmento de código...",
-        "EUS": "## `range` funtzioa\n\nAskotan badakizu zenbat aldiz errepikatu nahi duzun kode zati jakin bat..."
-      }
-    },
-    {
       "type": "exercise",
       "exerciseId": "part04-21_negative_to_positive",
       "title": {
@@ -69,14 +53,6 @@
         "EUS": "# Idatzi zure soluzioa hemen"
       },
       "testCode": "import unittest\nfrom unittest.mock import patch\nclass TestNegToPos(unittest.TestCase):\n    def test_run(self):\n        with patch('builtins.input', return_value='2'), patch('builtins.print') as mock_print:\n            run_student_code()\n            args = [str(c[0][0]) for c in mock_print.call_args_list]\n            expected = ['-2', '-1', '1', '2']\n            for e in expected:\n                if e not in args:\n                    self.fail(f'Should print {e} | Debería imprimir {e} | {e} inprimatu beharko luke')\n            if '0' in args:\n                self.fail('Should not print 0 | No debería imprimir 0 | Ez luke 0 inprimatu behar')"
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## From a range to a list\n\nThe function `range` returns a range object...",
-        "CAS": "## De un rango a una lista\n\nLa función `range` devuelve un objeto rango...",
-        "EUS": "## Barrutitik zerrendara\n\n`range` funtzioak range objektu bat itzultzen du..."
-      }
     },
     {
       "type": "exercise",
@@ -217,14 +193,6 @@
         "EUS": "def distinct_numbers(nire_zerrenda): pass"
       },
       "testCode": "import unittest\nclass TestDistinct(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(distinct_numbers([3, 2, 2, 1, 3]), [1, 2, 3], 'Should return sorted unique numbers | Debería devolver números únicos ordenados | Zenbaki bakar ordenatuak itzuli beharko lituzke')\n        self.assertEqual(distinct_numbers([1, 1, 1]), [1], 'Should handle duplicates | Debería manejar duplicados | Bikoiztuak kudeatu beharko lituzke')"
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## Finding the best or the worst item in a list\n\nA very common programming task is finding the best or worst item in a list...",
-        "CAS": "## Encontrando el mejor o el peor elemento en una lista\n\nUna tarea de programación muy común es encontrar el mejor o el peor elemento en una lista...",
-        "EUS": "## Zerrenda bateko elementurik onena edo txarrena aurkitzen\n\nProgramazio-zeregin oso ohikoa da zerrenda bateko elementurik onena edo txarrena aurkitzea..."
-      }
     },
     {
       "type": "exercise",
