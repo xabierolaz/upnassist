@@ -1,17 +1,13 @@
 /* eslint-disable no-restricted-globals */
 // @ts-nocheck
 
-// Importar Pyodide (ES Module para Worker tipo modulo)
-import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.mjs";
-
-let pyodide = null;
-let pythonInputCallback = null;
-
 // Esperar a recibir el SharedArrayBuffer del hilo principal
 let sharedBuffer = null;
 let sharedArray = null;
 
 async function loadPyodideAndPackages() {
+  // Use dynamic import to avoid Vite bundling issues with remote URLs
+  const { loadPyodide } = await import("https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.mjs" /* @vite-ignore */);
   pyodide = await loadPyodide();
   await pyodide.loadPackage("micropip");
   
