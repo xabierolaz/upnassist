@@ -9,90 +9,58 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "### Learning objectives\n\nAfter this section\n\n- You will know how the title of the pygame window\n- You will be able to draw shapes with pygame\n- You will know how to display text in your window\n\n## The window title\n\nYour programs will look more professional if instead of \"pygame window\" the window title contains the actual name of the program.The title is set with the pygame.display.set_caption function:\n\n```python\npygame.display.set_caption(\"Great Adventure\")\n```\n\n## Drawing shapes\n\nThe following program draws a rectangle, a circle and a line on the screen:\n\n```python\nimport pygame\n\npygame.init()\ndisplay = pygame.display.set_mode((640, 480))\ndisplay.fill((0, 0, 0))\n\npygame.draw.rect(display, (0, 255, 0), (50, 100, 200, 250))\npygame.draw.circle(display, (255, 0, 0), (200, 150), 40)\npygame.draw.line(display, (0, 0, 255), (80, 120), (300, 160), 2)\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nRunning the above code should look like this:\n\n\n\n## Drawing text\n\nText in pygame is drawn in two steps: first we create an image containing the desired text, and then this image is drawn on the screen. It works like this:\n\n```python\nimport pygame\n\npygame.init()\ndisplay = pygame.display.set_mode((640, 480))\ndisplay.fill((0, 0, 0))\n\ngame_font = pygame.font.SysFont(\"Arial\", 24)\ntext = game_font.render(\"Moikka!\", True, (255, 0, 0))\ndisplay.blit(text, (100, 50))\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n```\n\nRunning the above code should look like this:\n\n\n\nHere the method pygame.font.SysFont creates a font object, which uses the system font Arial in size 24. The the method render creates an image of the specified text in the given colour. This image is drawn on the window with the blit method, just as before.\n\nNB: different systems will have different fonts available. If the system this program is exeuted on doesn't have the Arial font, even though Arial is a very common font available on most systems, the default system font is used instead. If you need to have a specific font available for your game, you can include the font file in the game directory and specify its location for the pygame.font.Font method.\n\n## Exercises\n\nHere are some more advanced exercises for practicing what you have learned in this part of the course material.\n\nPlease respond to a quick questionnaire on this part of the course.\n\nLog in to view the quiz\n\n",
+        "ENG": "<text-box variant='learningObjectives' name=\"Learning objectives\">\r\n\r\nAfter this section\r\n\r\n- You will know how the title of the pygame window\r\n- You will be able to draw shapes with pygame\r\n- You will know how to display text in your window\r\n\r\n</text-box>\r\n\r\n## The window title\r\n\r\nYour programs will look more professional if instead of \"pygame window\" the window title contains the actual name of the program.The title is set with the `pygame.display.set_caption` function:\r\n\r\n```python\r\npygame.display.set_caption(\"Great Adventure\")\r\n```\r\n\r\n## Drawing shapes\r\n\r\nThe following program draws a rectangle, a circle and a line on the screen:\r\n\r\n```python\r\nimport pygame\r\n\r\npygame.init()\r\ndisplay = pygame.display.set_mode((640, 480))\r\ndisplay.fill((0, 0, 0))\r\n\r\npygame.draw.rect(display, (0, 255, 0), (50, 100, 200, 250))\r\npygame.draw.circle(display, (255, 0, 0), (200, 150), 40)\r\npygame.draw.line(display, (0, 0, 255), (80, 120), (300, 160), 2)\r\n\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n```\r\n\r\nRunning the above code should look like this:\r\n\r\n<img src=\"pygame_shapes.gif\">\r\n\r\n## Drawing text\r\n\r\nText in pygame is drawn in two steps: first we create an image containing the desired text, and then this image is drawn on the screen. It works like this:\r\n\r\n```python\r\nimport pygame\r\n\r\npygame.init()\r\ndisplay = pygame.display.set_mode((640, 480))\r\ndisplay.fill((0, 0, 0))\r\n\r\ngame_font = pygame.font.SysFont(\"Arial\", 24)\r\ntext = game_font.render(\"Moikka!\", True, (255, 0, 0))\r\ndisplay.blit(text, (100, 50))\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n```\r\n\r\nRunning the above code should look like this:\r\n\r\n<img src=\"pygame_text.gif\">\r\n\r\nHere the method `pygame.font.SysFont` creates a font object, which uses the system font Arial in size 24. The the method `render` creates an image of the specified text in the given colour. This image is drawn on the window with the `blit` method, just as before.\r\n\r\nNB: different systems will have different fonts available. If the system this program is exeuted on doesn't have the Arial font, even though Arial is a very common font available on most systems, the default system font is used instead. If you need to have a specific font available for your game, you can include the font file in the game directory and specify its location for the `pygame.font.Font` method.\r\n\r\n## Exercises\r\n\r\nHere are some more advanced exercises for practicing what you have learned in this part of the course material.",
         "CAS": "",
         "EUS": ""
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "part13-11_four_walls",
-      "title": {
-        "ENG": "Four walls",
-        "CAS": "Cuatro paredes",
-        "EUS": "Lau pareta"
-      },
-      "description": {
-        "ENG": "Make the robot move with arrow keys but stop at the walls (do not go off-screen).",
-        "CAS": "Haz que el robot se mueva con flechas pero se detenga en las paredes.",
-        "EUS": "Egin robota gezi-teklekin mugitu dadin baina paretetan gelditu dadin."
-      },
-      "initialCode": {
-        "ENG": "import pygame\n\n# ...\n",
-        "CAS": "import pygame\n\n# ...\n",
-        "EUS": "import pygame\n\n# ...\n"
-      },
-      "testCode": "pass"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part13-12_robot_and_mouse",
-      "title": {
-        "ENG": "Robot and mouse",
-        "CAS": "Robot y ratón",
-        "EUS": "Robota eta sagua"
-      },
-      "description": {
-        "ENG": "Make the robot follow the mouse cursor.",
-        "CAS": "Haz que el robot siga al cursor del ratón.",
-        "EUS": "Egin robotak saguaren kurtsorea jarraitu dezan."
-      },
-      "initialCode": {
-        "ENG": "import pygame\n\n# ...\n",
-        "CAS": "import pygame\n\n# ...\n",
-        "EUS": "import pygame\n\n# ...\n"
-      },
-      "testCode": "pass"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part13-13_two_players",
-      "title": {
-        "ENG": "Two players",
-        "CAS": "Dos jugadores",
-        "EUS": "Bi jokalari"
-      },
-      "description": {
-        "ENG": "Create two robots controlled by different keys (arrows vs WASD).",
-        "CAS": "Crea dos robots controlados por teclas diferentes (flechas vs WASD).",
-        "EUS": "Sortu bi robot tekla desberdinek kontrolatuta (geziak vs WASD)."
-      },
-      "initialCode": {
-        "ENG": "import pygame\n\n# ...\n",
-        "CAS": "import pygame\n\n# ...\n",
-        "EUS": "import pygame\n\n# ...\n"
-      },
-      "testCode": "pass"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "part13-14_clock",
+      "exerciseId": "part13-16_clock",
       "title": {
         "ENG": "Clock",
-        "CAS": "Reloj",
-        "EUS": "Erlojua"
+        "CAS": "",
+        "EUS": ""
       },
       "description": {
-        "ENG": "Draw a clock showing the current time. Use math.sin/cos for hands.",
-        "CAS": "Dibuja un reloj que muestre la hora actual.",
-        "EUS": "Marraztu uneko ordua erakusten duen erloju bat."
+        "ENG": "Please write a program which displays a clock face which displays the system time. The end result should look like this:\r\n\r\n<img src=\"pygame_clock.gif\">",
+        "CAS": "",
+        "EUS": ""
       },
       "initialCode": {
-        "ENG": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
-        "CAS": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n",
-        "EUS": "import pygame\nimport math\nfrom datetime import datetime\n\n# ...\n"
+        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\nimport math\r\nfrom datetime import datetime\r\n \r\npygame.init()\r\nwidth, height = 640, 480\r\nscreen = pygame.display.set_mode((width, height))\r\n \r\ndef circle(color: int, radius: int):\r\n    pygame.draw.circle(screen, color, (middle_x, middle_y), radius)\r\n \r\ndef hand(length: int, thickness: int, proportion: float):\r\n    angle = 2*math.pi*proportion-math.pi/2\r\n    end_x = middle_x+math.cos(angle)*length\r\n    end_y = middle_y+math.sin(angle)*length\r\n \r\n    pygame.draw.line(screen, (0, 0, 255), (middle_x, middle_y), (end_x, end_y), thickness)\r\n \r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n \r\n    hours = datetime.now().hour%12\r\n    minutes = datetime.now().minute\r\n    seconds = datetime.now().second\r\n \r\n    pygame.display.set_caption(str(datetime.now().time())[:8])\r\n \r\n    screen.fill((0, 0, 0))\r\n \r\n    middle_x = width/2\r\n    middle_y = height/2\r\n \r\n    circle((255, 0, 0), 200)\r\n    circle((0, 0, 0), 195)\r\n    circle((255, 0, 0), 10)\r\n \r\n    hand(185, 1, seconds/60)\r\n    hand(180, 2, (minutes+seconds/60)/60)\r\n    hand(150, 5, (hours+minutes/60+seconds/3600)/12)\r\n \r\n    pygame.display.flip()",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
-      "testCode": "pass"
+      "testCode": "import unittest\r\nfrom unittest.mock import patch\r\n\r\nfrom tmc import points, reflect\r\nfrom tmc.utils import load, load_module, reload_module, get_stdout, check_source\r\n\r\n@points('13.clock')\r\nclass Part13Test(unittest.TestCase):\r\n    def test_1_pygame(self):\r\n        pass\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part13-17_asteroids",
+      "title": {
+        "ENG": "Asteroids",
+        "CAS": "",
+        "EUS": ""
+      },
+      "description": {
+        "ENG": "Please create a game where asteroids fall from the sky. The player moves a robot left and right and tries to collect the falling rocks. The player gets a point for each asteroid collected, and the points total is shown at the top of the window. The game ends when the player misses an asteroid. The end result should look like this:\r\n\r\n<img src=\"pygame_asteroids.gif\">\r\n\r\nNB: the above animation is from the Finnish version of the course. You may use the word \"Points\" instead of the Finnish equivalent \"Pisteet\" depicted above.\r\n\r\nThe exercise template contains the image `rock.png` for the asteroid.",
+        "CAS": "",
+        "EUS": ""
+      },
+      "initialCode": {
+        "ENG": "import pygame\r\nfrom random import randint\r\n \r\npygame.init()\r\npygame.display.set_caption(\"Asteroids\")\r\n\r\nwindow_width, window_height = 640, 480\r\nscreen = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\nrock = pygame.image.load(\"rock.png\")\r\n\r\nrobot_width = robot.get_width()\r\nrobot_height = robot.get_height()\r\n\r\nrock_width = rock.get_width()\r\nrock_height = rock.get_height()\r\n\r\nx = window_width/2 - robot_width/2\r\ny = window_height - robot_height\r\nvelocity = 3 \r\npoints = 0\r\n \r\nnumber = 5\r\npositions = []\r\nfor i in range(number):\r\n    positions.append([randint(0,window_width-rock_width),-randint(100,1000)])\r\n \r\nto_right = False\r\nto_left = False\r\n \r\nclock = pygame.time.Clock()\r\nfont = pygame.font.SysFont(\"Arial\", 24)\r\n \r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.KEYDOWN:\r\n            if event.key == pygame.K_LEFT:\r\n                to_left = True\r\n            if event.key == pygame.K_RIGHT:\r\n                to_right = True\r\n \r\n        if event.type == pygame.KEYUP:\r\n            if event.key == pygame.K_LEFT:\r\n                to_left = False\r\n            if event.key == pygame.K_RIGHT:\r\n                to_right = False\r\n \r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n \r\n    if to_right:\r\n        if x + robot_width < window_width:\r\n            x += velocity\r\n    if to_left:\r\n        if x > 0:\r\n            x -= velocity \r\n \r\n    for i in range(number):\r\n        positions[i][1] += 1\r\n        if positions[i][1] + rock_width >= window_height:\r\n            # game ends\r\n            exit()\r\n        if positions[i][1] + rock_height >= y:\r\n            robot_middle = x + robot_width/2\r\n            rock_middle = positions[i][0] + rock_width/2\r\n            if abs(robot_middle-rock_middle) <= (robot_width + rock_width)/2:\r\n                # the robot caught an asteroid\r\n                positions[i][0] = randint(0, window_width - rock_width)\r\n                positions[i][1] = -randint(100,1000)\r\n                points += 1\r\n \r\n    screen.fill((0, 0, 0))\r\n    screen.blit(robot, (x, y))\r\n\r\n    for i in range(number):\r\n        screen.blit(rock, (positions[i][0], positions[i][1]))\r\n \r\n    text = font.render(\"Points: \" + str(points), True, (255, 0, 0))\r\n    screen.blit(text, (window_width-150, 10))\r\n \r\n    pygame.display.flip()\r\n \r\n    clock.tick(60)",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
+      },
+      "testCode": "import unittest\r\nfrom unittest.mock import patch\r\n\r\nfrom tmc import points, reflect\r\nfrom tmc.utils import load, load_module, reload_module, get_stdout, check_source\r\n\r\n@points('13.asteroids')\r\nclass Part13Test(unittest.TestCase):\r\n    def test_1_pygame(self):\r\n        pass\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "Please respond to a quick questionnaire on this part of the course.\r\n\r\n<quiz id=\"f191a4ab-73b8-5c08-af6c-b19d75a8f8fc\"></quiz>",
+        "CAS": "",
+        "EUS": ""
+      }
     }
   ]
 }

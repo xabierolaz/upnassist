@@ -54,7 +54,8 @@ function audit() {
 
             // Analyze MD
             const mdContent = fs.readFileSync(mdPath, 'utf8');
-            const expectedExercises = (mdContent.match(/<in-browser-programming-exercise/g) || []).length;
+            // Regex matching the rebuild script's logic: <(in-browser-programming-exercise|programming-exercise)
+            const expectedExercises = (mdContent.match(/<(in-browser-programming-exercise|programming-exercise)/g) || []).length;
 
             // Analyze JSON
             let jsonData;

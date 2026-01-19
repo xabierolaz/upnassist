@@ -35,6 +35,7 @@ export const courseStructureMetadata: SectionMetadata[] = [
     { id: "part4-3", title: { ENG: "3. Lists", CAS: "3. Listas", EUS: "3. Zerrendak" }, part: 4 },
     { id: "part4-4", title: { ENG: "4. Definite iteration", CAS: "4. Iteración definida", EUS: "4. Iterazio definitua" }, part: 4 },
     { id: "part4-5", title: { ENG: "5. Print statement formatting", CAS: "5. Formateo de impresión", EUS: "5. Inprimatze-formateatzea" }, part: 4 },
+    { id: "part4-6", title: { ENG: "6. Strings and lists", CAS: "6. Cadenas y listas", EUS: "6. Kateak eta zerrendak" }, part: 4 },
 
     // Part 5
     { id: "part5-1", title: { ENG: "1. More lists", CAS: "1. Más listas", EUS: "1. Zerrenda gehiago" }, part: 5 },
@@ -88,8 +89,6 @@ export const courseStructureMetadata: SectionMetadata[] = [
     { id: "part12-2", title: { ENG: "2. Generators", CAS: "2. Generadores", EUS: "2. Sortzaileak" }, part: 12 },
     { id: "part12-3", title: { ENG: "3. Functional programming", CAS: "3. Programación funcional", EUS: "3. Programazio funtzionala" }, part: 12 },
     { id: "part12-4", title: { ENG: "4. Regular expressions", CAS: "4. Expresiones regulares", EUS: "4. Adierazpen erregularrak" }, part: 12 },
-    { id: "part12-5", title: { ENG: "5. Custom modules", CAS: "5. Módulos personalizados", EUS: "5. Modulu pertsonalizatuak" }, part: 12 },
-    { id: "part12-6", title: { ENG: "6. Advanced recursion", CAS: "6. Recursividad avanzada", EUS: "6. Errekurtsibitate aurreratua" }, part: 12 },
 
     // Part 13
     { id: "part13-1", title: { ENG: "1. Pygame", CAS: "1. Pygame", EUS: "1. Pygame" }, part: 13 },

@@ -19,8 +19,15 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
     // 1. Resolve Paths
     // Text Repo uses 'part-1', 'part-2'...
     const textPartDir = path.join(textRepoPath, `part-${partNum}`);
+    
+    // Code Repo Logic: Part 1-7 in Repo I, Part 8-14 in Repo II
+    let currentCodeRepo = path.join(projectRoot, 'external_resources/Python_Programming_MOOC_2026_I');
+    if (partNum >= 8) {
+        currentCodeRepo = path.join(projectRoot, 'external_resources/Python_Programming_MOOC_2026_II');
+    }
+    
     // Code Repo uses 'part01', 'part02'... (Zero padded)
-    const codePartDir = path.join(codeRepoPath, `part${String(partNum).padStart(2, '0')}`);
+    const codePartDir = path.join(currentCodeRepo, `part${String(partNum).padStart(2, '0')}`);
     // Target Dir uses 'part1', 'part2'...
     const targetDir = path.join(srcDataPath, `part${partNum}`);
 
@@ -29,13 +36,11 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
         return;
     }
 
-    // Find the correct Markdown file for this section
-    // They usually start with the section number: "1-getting-started.md", "2-..."
     const mdFiles = fs.readdirSync(textPartDir)
         .filter(f => f.endsWith('.md') && /^[0-9]+-/.test(f))
         .sort((a, b) => parseInt(a) - parseInt(b));
 
-    const mdFilename = mdFiles[sectionNum - 1]; // Array is 0-indexed, sections 1-indexed
+    const mdFilename = mdFiles[sectionNum - 1]; 
     if (!mdFilename) {
         console.error(`❌ Markdown source not found for Section ${sectionNum} in ${textPartDir}`);
         return;
@@ -44,7 +49,6 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
     const mdPath = path.join(textPartDir, mdFilename);
     const targetPath = path.join(targetDir, `section${sectionNum}.json`);
 
-    // 2. Load Existing JSON (to salvage translations)
     let existingData = {};
     try {
         if (fs.existsSync(targetPath)) {
@@ -54,18 +58,17 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
         console.warn(`⚠️ Could not read existing JSON for translations: ${e.message}`);
     }
 
-    // 3. Process Content
     const markdownContent = fs.readFileSync(mdPath, 'utf8');
     
     // Improved Regex to capture any attribute order and robust content matching
-    // Matches <in-browser-programming-exercise\s+([^>]+)>([\s\S]*?)<\/in-browser-programming-exercise>
-    // Captures: 1=attributes, 2=content
-    const exerciseBlockRegex = /<in-browser-programming-exercise\s+([^>]+)>([\s\S]*?)<\/in-browser-programming-exercise>/g;
+    // Supports both <in-browser-programming-exercise> and <programming-exercise>
+    // Captures: 1=tag name, 2=attributes, 3=content
+    const exerciseBlockRegex = /<(in-browser-programming-exercise|programming-exercise)\s+([^>]+)>([\s\S]*?)<\/\1>/g;
     
-    // Attribute parsers
+    // Attribute parsers - Supports both double and single quotes
     const getAttr = (attrs, name) => {
-        const match = attrs.match(new RegExp(`${name}=\"([^\"]+)\"`));
-        return match ? match[1] : null;
+        const match = attrs.match(new RegExp(`${name}=["']([^"']+)["']`));
+        return match ? match[1].trim() : null;
     };
 
     const blocks = [];
@@ -76,25 +79,25 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
         // --- TEXT BLOCK BEFORE EXERCISE ---
         const textSegment = markdownContent.substring(lastIndex, match.index).trim();
         if (textSegment) {
-            // Clean Frontmatter if it's the very first block
             let cleanText = textSegment;
             if (lastIndex === 0) {
-                cleanText = cleanText.replace(/^---[\s\S]*?---\s*/, '').trim();
+                cleanText = cleanText.replace(/^\s*---[\s\S]*?---\s*/, '').trim();
             }
 
             blocks.push({
                 type: 'markdown',
                 content: {
                     ENG: cleanText,
-                    CAS: "", // Translations will be filled later
+                    CAS: "",
                     EUS: ""
                 }
             });
         }
 
         // --- EXERCISE BLOCK ---
-        const attributes = match[1];
-        const innerContent = match[2].trim(); // Usually the description
+        const tagName = match[1];
+        const attributes = match[2];
+        const innerContent = match[3].trim(); 
         
         const name = getAttr(attributes, 'name');
         const tmcname = getAttr(attributes, 'tmcname');
@@ -105,13 +108,11 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
             continue;
         }
 
-        // Fetch Code from Source 2
         let initialCode = "# Write your solution here";
         let testCode = "";
 
         const exerciseDir = path.join(codePartDir, tmcname);
         if (fs.existsSync(exerciseDir)) {
-            // SRC
             const srcDir = path.join(exerciseDir, 'src');
             if (fs.existsSync(srcDir)) {
                 const pyFiles = fs.readdirSync(srcDir).filter(f => f.endsWith('.py') && !f.startsWith('__'));
@@ -120,7 +121,6 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
                 }
             }
 
-            // TEST
             const testDir = path.join(exerciseDir, 'test');
             if (fs.existsSync(testDir)) {
                 const testFiles = fs.readdirSync(testDir).filter(f => f.endsWith('.py') && !f.startsWith('__'));
@@ -132,7 +132,6 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
             console.error(`❌ Exercise code not found: ${tmcname}`);
         }
 
-        // Salvage Translations
         let oldBlock = null;
         if (existingData.blocks) {
             oldBlock = existingData.blocks.find(b => b.exerciseId === tmcname);
@@ -162,10 +161,9 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
         lastIndex = match.index + match[0].length;
     }
 
-    // --- FINAL TEXT BLOCK ---
     const remainingText = markdownContent.substring(lastIndex).trim();
     if (remainingText) {
-        const cleanRemaining = remainingText.replace(/<!--[\s\S]*?-->/, '').trim(); // Remove HTML comments
+        const cleanRemaining = remainingText.replace(/<!--[\s\S]*?-->/, '').trim(); 
         if (cleanRemaining) {
             blocks.push({
                 type: 'markdown',
@@ -178,29 +176,24 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
         }
     }
 
-    // 4. Match Translations for Text Blocks (Heuristic)
-    // We try to match text blocks by index. It's imperfect but saves work.
     const oldTextBlocks = existingData.blocks ? existingData.blocks.filter(b => b.type === 'markdown') : [];
     const newTextBlocks = blocks.filter(b => b.type === 'markdown');
 
     newTextBlocks.forEach((block, i) => {
         if (oldTextBlocks[i]) {
-            // Simple heuristic: If the ENG content starts similarly, assume it's the same block
             const oldEng = oldTextBlocks[i].content.ENG.substring(0, 50);
             const newEng = block.content.ENG.substring(0, 50);
             
-            // Or just blindly copy if count matches to preserve manual work
-            if (oldEng === newEng || true) { // Trust index for now
+            if (oldEng === newEng || true) { 
                 block.content.CAS = oldTextBlocks[i].content.CAS || "";
                 block.content.EUS = oldTextBlocks[i].content.EUS || "";
             }
         }
     });
 
-    // 5. Write Result
     const newData = {
         id: `part${partNum}-${sectionNum}`,
-        title: existingData.title || { ENG: "Title", CAS: "Título", EUS: "Izenburua" }, // Improve title extraction later
+        title: existingData.title || { ENG: "Title", CAS: "Título", EUS: "Izenburua" }, 
         blocks: blocks
     };
 
@@ -212,7 +205,6 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
     console.log(`✅ Successfully rebuilt ${targetPath} with ${blocks.length} blocks.`);
 }
 
-// CLI Args
 const args = process.argv.slice(2);
 if (args.length === 2) {
     rebuildSection(parseInt(args[0]), parseInt(args[1]));

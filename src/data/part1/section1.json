@@ -57,8 +57,8 @@
       },
       "initialCode": {
         "ENG": "# Fix the code\r\nprint(\"Aapo\")\r\nprint(\"Eero\")\r\nprint(\"Juhani\")\r\nprint(\"Lauri\")\r\nprint(\"Simeoni\")\r\nprint(\"Timo\")\r\nprint(\"Tuomas\")\r\n\r\n\r\n\r\n\r\n",
-        "CAS": "# Fix the code\r\nprint(\"Aapo\")\r\nprint(\"Eero\")\r\nprint(\"Juhani\")\r\nprint(\"Lauri\")\r\nprint(\"Simeoni\")\r\nprint(\"Timo\")\r\nprint(\"Tuomas\")\r\n\r\n\r\n\r\n\r\n",
-        "EUS": "# Fix the code\r\nprint(\"Aapo\")\r\nprint(\"Eero\")\r\nprint(\"Juhani\")\r\nprint(\"Lauri\")\r\nprint(\"Simeoni\")\r\nprint(\"Timo\")\r\nprint(\"Tuomas\")\r\n\r\n\r\n\r\n\r\n"
+        "CAS": "# Arregla el código\r\nprint(\"Aapo\")\r\nprint(\"Eero\")\r\nprint(\"Juhani\")\r\nprint(\"Lauri\")\r\nprint(\"Simeoni\")\r\nprint(\"Timo\")\r\nprint(\"Tuomas\")\r\n\r\n\r\n\r\n\r\n",
+        "EUS": "# Konpondu kodea\r\nprint(\"Aapo\")\r\nprint(\"Eero\")\r\nprint(\"Juhani\")\r\nprint(\"Lauri\")\r\nprint(\"Simeoni\")\r\nprint(\"Timo\")\r\nprint(\"Tuomas\")\r\n\r\n\r\n\r\n\r\n"
       },
       "testCode": "import unittest\r\n\r\nfrom tmc import points\r\nfrom tmc.utils import load_module, reload_module, get_stdout\r\n\r\nexercise = 'src.seven_brothers'\r\n@points('1.seven_brothers')\r\nclass SevenBrothersTest(unittest.TestCase):\r\n    @classmethod\r\n    def setUpClass(cls):\r\n        cls.module = load_module(exercise, 'en')\r\n\r\n    def test_content(self):\r\n        reload_module(self.module)\r\n        split_output = get_stdout().split('\\n')\r\n        self.assertEqual(len(split_output), 7, 'Output was expected to have {0} lines, your program\\'s output is now in {1} lines.'.format(7, len(split_output)))\r\n        correct = \"Aapo Eero Juhani Lauri Simeoni Timo Tuomas\".split()\r\n        for i in range(7):\r\n            self.assertEqual(split_output[i], correct[i], \"Line {0} in output is incorrect.\".format(i + 1))\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n    "
     },
@@ -77,8 +77,8 @@
       },
       "initialCode": {
         "ENG": "# Write your solution here\\\r\nprint(\"Row, row, row your boat,\")\r\nprint(\"Gently down the stream.\")\r\nprint(\"Merrily, merrily, merrily, merrily,\")\r\nprint(\"Life is but a dream.\")",
-        "CAS": "# Write your solution here\\\r\nprint(\"Row, row, row your boat,\")\r\nprint(\"Gently down the stream.\")\r\nprint(\"Merrily, merrily, merrily, merrily,\")\r\nprint(\"Life is but a dream.\")",
-        "EUS": "# Write your solution here\\\r\nprint(\"Row, row, row your boat,\")\r\nprint(\"Gently down the stream.\")\r\nprint(\"Merrily, merrily, merrily, merrily,\")\r\nprint(\"Life is but a dream.\")"
+        "CAS": "# Escribe tu solución aquí\\\r\nprint(\"Row, row, row your boat,\")\r\nprint(\"Gently down the stream.\")\r\nprint(\"Merrily, merrily, merrily, merrily,\")\r\nprint(\"Life is but a dream.\")",
+        "EUS": "# Idatzi zure soluzioa hemen\\\r\nprint(\"Row, row, row your boat,\")\r\nprint(\"Gently down the stream.\")\r\nprint(\"Merrily, merrily, merrily, merrily,\")\r\nprint(\"Life is but a dream.\")"
       },
       "testCode": "import unittest\r\nunittest.TestLoader.sortTestMethodsUsing = None\r\n\r\nfrom tmc import points\r\n\r\nfrom tmc.utils import get_stdout, load_module, reload_module, assert_ignore_ws, sanitize\r\n\r\nexercise = 'src.row_your_boat'\r\n@points('1.row_your_boat')\r\nclass RowYourBoatTest(unittest.TestCase):\r\n    @classmethod\r\n    def setUpClass(cls):\r\n        cls.module = load_module(exercise, 'en')\r\n        \r\n    def test_content(self):\r\n        reload_module(self.module)\r\n        out = get_stdout()\r\n        self.assertTrue(len(out)>0, 'Your code does not print anything')\r\n        split_output = sanitize(out).split('\\n')\r\n\r\n        self.assertFalse(len(split_output) != 4, 'Output was expected to have {0} lines, your program\\'s output is now in {1} lines.'.format(4, len(split_output)))\r\n        assert_ignore_ws(self, split_output[0], 'Row, row, row your boat,', 'The print out on the first line is incorrect.', 'en')\r\n        assert_ignore_ws(self, split_output[1], 'Gently down the stream.', 'The print out on the second line is incorrect.', 'en')\r\n        assert_ignore_ws(self, split_output[2], 'Merrily, merrily, merrily, merrily,', 'The print out on the third line is incorrect.', 'en')\r\n        assert_ignore_ws(self, split_output[3], 'Life is but a dream.', 'The print out on the fourth line is incorrect.', 'en')\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()"
     },
@@ -105,8 +105,8 @@
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\nprint(365*24*60)",
-        "CAS": "# Write your solution here\r\nprint(365*24*60)",
-        "EUS": "# Write your solution here\r\nprint(365*24*60)"
+        "CAS": "# Escribe tu solución aquí\r\nprint(365*24*60)",
+        "EUS": "# Idatzi zure soluzioa hemen\r\nprint(365*24*60)"
       },
       "testCode": "import unittest\r\n\r\nfrom tmc import points\r\nfrom tmc.utils import load_module, reload_module, get_stdout\r\n\r\nexercise = 'src.minutes_in_a_year'\r\n\r\n@points('1.minutes_in_a_year')\r\nclass MinutesInAYearTest(unittest.TestCase):\r\n    @classmethod\r\n    def setUpClass(cls):\r\n        cls.module = load_module(exercise, 'en')\r\n\r\n    def test_output(self):\r\n        reload_module(self.module)\r\n        output = get_stdout()\r\n        split_output = output.split('\\n')\r\n\r\n        # self.assertEqual(len(split_output), 1, \"Output contains extra lines.\")\r\n        self.assertTrue(output.find(\"525600\") > -1, \"Output does not contain correct amount of minutes.\")\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"
     },
@@ -125,8 +125,8 @@
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\nprint('print(\"Hello there!\")')",
-        "CAS": "# Write your solution here\r\nprint('print(\"Hello there!\")')",
-        "EUS": "# Write your solution here\r\nprint('print(\"Hello there!\")')"
+        "CAS": "# Escribe tu solución aquí\r\nprint('print(\"Hello there!\")')",
+        "EUS": "# Idatzi zure soluzioa hemen\r\nprint('print(\"Hello there!\")')"
       },
       "testCode": "import unittest\r\n\r\nfrom tmc import points\r\nfrom tmc.utils import load_module, reload_module, get_stdout\r\n\r\nexercise = 'src.print_code'\r\n\r\n@points('1.print_code')\r\nclass PrintCodeTest(unittest.TestCase):\r\n    @classmethod\r\n    def setUpClass(cls):\r\n        cls.module = load_module(exercise, 'en')\r\n\r\n    def test_output(self):\r\n        reload_module(self.module)\r\n        output = get_stdout()\r\n        split_output = output.split('\\n')\r\n        correct = 'print(\"Hello there!\")'\r\n\r\n        self.assertFalse(len(output) == 0, \"Your code does not print anything :(\")\r\n        self.assertEqual(len(split_output), 1, \"Output contains extra lines.\")\r\n        self.assertTrue(output.count('print') == 1, f\"Output is missing print command. Output was\\n{output}\\nExpected output is\\n{correct}\")\r\n        self.assertTrue(output.count('\"') == 2, f\"Output does not contain quotation marks. Output was\\n{output}\\nExpected output is\\n{correct}\")\r\n        self.assertEqual(output, correct, f\"Output is incorrect. Output was\\n{output}\\nExpected output is\\n{correct}\")\r\n\r\nif __name__ == '__main__':\r\n    unittest.main()\r\n"
     }
