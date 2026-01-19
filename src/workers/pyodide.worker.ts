@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-globals */
 // @ts-nocheck
 
-// Importar Pyodide (esto funciona en el worker)
-importScripts("https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js");
+// Importar Pyodide (ES Module para Worker tipo modulo)
+import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.mjs";
 
 let pyodide = null;
 let pythonInputCallback = null;
