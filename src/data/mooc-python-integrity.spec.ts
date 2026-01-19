@@ -13,24 +13,36 @@ describe('Python Snippet Integrity (Deep Audit)', () => {
         const exercises = page!.blocks.filter(b => b.type === 'exercise');
         
         exercises.forEach(ex => {
-            const initial = ex.initialCode || '';
+            const initialVersions: string[] = [];
+            if (typeof ex.initialCode === 'string') {
+                initialVersions.push(ex.initialCode);
+            } else if (ex.initialCode) {
+                initialVersions.push(...Object.values(ex.initialCode));
+            }
+
             const test = ex.testCode || '';
             
             // Check initial code
-            expect(isBalanced(initial), `Initial code unbalanced in ${ex.exerciseId}`).toBe(true);
+            initialVersions.forEach(initial => {
+                expect(isBalanced(initial), `Initial code unbalanced in ${ex.exerciseId}`).toBe(true);
+                
+                // Control characters
+                const forbidden = ['\uFFFD', '\u0000', '\u0008'];
+                forbidden.forEach(char => {
+                    expect(initial).not.toContain(char);
+                });
+            });
             
             // Check test code
             if (test && test !== 'pass') {
                 expect(isBalanced(test), `Test code unbalanced in ${ex.exerciseId}`).toBe(true);
                 expect(test).toContain('import unittest');
+                
+                const forbidden = ['\uFFFD', '\u0000', '\u0008'];
+                forbidden.forEach(char => {
+                    expect(test).not.toContain(char);
+                });
             }
-            
-            // Control characters
-            const forbidden = ['\uFFFD', '\u0000', '\u0008'];
-            forbidden.forEach(char => {
-                expect(initial).not.toContain(char);
-                expect(test).not.toContain(char);
-            });
         });
       });
     });

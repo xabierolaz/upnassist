@@ -28,14 +28,23 @@ describe('Python Course Content Integrity Audit', () => {
                 if (block.type === 'exercise') {
                     total++;
                     const exerciseId = block.exerciseId || 'unknown';
-                    const initial = block.initialCode || '';
+                    
+                    const initialVersions: string[] = [];
+                    if (typeof block.initialCode === 'string') {
+                        initialVersions.push(block.initialCode);
+                    } else if (block.initialCode) {
+                        initialVersions.push(...Object.values(block.initialCode));
+                    }
+
                     const test = block.testCode || '';
 
                     // Basic Syntax Validation (Bracket Balancing)
-                    if (!checkBalance(initial)) {
-                        console.error(`❌ [${exerciseId}] Error: initialCode has unbalanced brackets/braces.`);
-                        errors++;
-                    }
+                    initialVersions.forEach(initial => {
+                        if (!checkBalance(initial)) {
+                            console.error(`❌ [${exerciseId}] Error: initialCode has unbalanced brackets/braces.`);
+                            errors++;
+                        }
+                    });
                     if (!checkBalance(test)) {
                         console.error(`❌ [${exerciseId}] Error: testCode has unbalanced brackets/braces.`);
                         errors++;

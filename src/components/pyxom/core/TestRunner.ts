@@ -128,11 +128,20 @@ else:
 
             def addFailure(self, test, err):
                 super().addFailure(test, err)
-                msg = str(err[1]).replace("AssertionError: ", "")
+                raw_msg = str(err[1]).replace("AssertionError: ", "")
+                
+                # Logic to select language part if formatted as "ENG | CAS | EUS"
+                parts = raw_msg.split(" | ")
+                final_msg = raw_msg
+                if len(parts) == 3:
+                    if CURRENT_LANG == 'ENG': final_msg = parts[0]
+                    elif CURRENT_LANG == 'CAS': final_msg = parts[1]
+                    elif CURRENT_LANG == 'EUS': final_msg = parts[2]
+                
                 self.results_data.append({
                     "name": test.shortDescription() or test._testMethodName,
                     "status": "fail",
-                    "message": msg
+                    "message": final_msg
                 })
 
             def addError(self, test, err):

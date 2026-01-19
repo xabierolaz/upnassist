@@ -361,7 +361,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                 <div className="h-[500px]">
                     <PyXomEnvironment 
                         exerciseId={block.exerciseId}
-                        initialCode={block.initialCode || ''}
+                        initialCode={getLocalizedText(block.initialCode, currentLang) || ''}
                         testCode={block.testCode || ''}
                         className="h-full border-0 rounded-none"
                     />
