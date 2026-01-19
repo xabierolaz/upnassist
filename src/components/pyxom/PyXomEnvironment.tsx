@@ -5,6 +5,7 @@ import { TestRunner, TestSuiteResult } from './core/TestRunner';
 import FeedbackPanel from './feedback/FeedbackPanel';
 import { useProgressStore } from '../../stores/progressStore';
 import { useLanguageStore } from '../../stores/languageStore';
+import { translatePythonError } from './analysis/ErrorTranslator';
 
 interface LogEntry {
   type: 'stdout' | 'stdin';
@@ -72,7 +73,8 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
           setHistory(prev => [...prev, { type: 'stdout', text }]);
       });
       if (!result.success && result.error) {
-        setHistory(prev => [...prev, { type: 'stdout', text: `${t.errorPrefix}${result.error}` }]);
+        const friendlyError = translatePythonError(result.error, currentLang);
+        setHistory(prev => [...prev, { type: 'stdout', text: `\n⚠️ ${friendlyError}\n\n${result.error}` }]);
       }
     } catch (e) {
       setHistory(prev => [...prev, { type: 'stdout', text: `${t.criticalError}${(e as Error).message}` }]);
