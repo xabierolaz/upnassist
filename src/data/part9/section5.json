@@ -23,16 +23,16 @@
         "EUS": "Posta kodeak"
       },
       "description": {
-        "ENG": "Add class attribute postcodes to class City. It should be a dictionary. Add locations 'Helsinki': '00100', 'Turku': '20100', etc.",
-        "CAS": "Añade atributo de clase postcodes a clase City. Debe ser un diccionario. Añade 'Helsinki': '00100', etc.",
-        "EUS": "Gehitu postcodes klase-atributua City klaseari. Hiztegi bat izan behar du. Gehitu 'Helsinki': '00100', etab."
+        "ENG": "Add class attribute postcodes to class City. It should be a dictionary. Add locations 'Pamplona': '31001', 'Tudela': '31500', etc.",
+        "CAS": "Añade atributo de clase postcodes a clase City. Debe ser un diccionario. Añade 'Pamplona': '31001', etc.",
+        "EUS": "Gehitu postcodes klase-atributua City klaseari. Hiztegi bat izan behar du. Gehitu 'Pamplona': '31001', etab."
       },
       "initialCode": {
-        "ENG": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
-        "CAS": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
-        "EUS": "class City:\n    postcodes = {'Helsinki': '00100', 'Turku': '20100', 'Tampere': '33100', 'Jyväskylä': '40100', 'Oulu': '40100'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n"
+        "ENG": "class City:\n    postcodes = {'Pamplona': '31001', 'Tudela': '31500', 'Estella': '31200', 'Tafalla': '31300', 'Sangüesa': '31400'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
+        "CAS": "class City:\n    postcodes = {'Pamplona': '31001', 'Tudela': '31500', 'Estella': '31200', 'Tafalla': '31300', 'Sangüesa': '31400'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n",
+        "EUS": "class City:\n    postcodes = {'Pamplona': '31001', 'Tudela': '31500', 'Estella': '31200', 'Tafalla': '31300', 'Sangüesa': '31400'}\n\n    def __init__(self, name: str, population: int):\n        self.name = name\n        self.population = population\n\n    def __str__(self):\n        return f\"{self.name} ({self.population})\"\n"
       },
-      "testCode": "\nimport unittest\nclass TestCity(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(City.postcodes['Helsinki'], '00100')\n        c = City(\"Test\", 100)\n        self.assertEqual(c.postcodes['Turku'], '20100')\n"
+      "testCode": "\nimport unittest\nclass TestCity(unittest.TestCase):\n    def test_run(self):\n        self.assertEqual(City.postcodes['Pamplona'], '31001')\n        c = City(\"Test\", 100)\n        self.assertEqual(c.postcodes['Tudela'], '31500')\n"
     },
     {
       "type": "exercise",

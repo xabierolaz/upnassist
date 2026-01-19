@@ -100,5 +100,5 @@ export const playgroundExercise: Exercise = {
 // Compatibility exports for tests
 export const coursePages: any[] = [];
 export const exercisesDB: Record<string, Exercise> = {};
-export const moocExercises: Exercise[] = [];
+export const upnaExercises: Exercise[] = [];
 export const getExercise = (id: string) => undefined;
