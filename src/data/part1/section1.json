@@ -32,7 +32,7 @@
         "CAS": "# Escribe tu código aquí\n",
         "EUS": "# Idatzi zure kodea hemen\n"
       },
-      "testCode": "\nimport unittest\nclass TestEmoticon(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertEqual(output.strip(), \":-)\")\n"
+      "testCode": "import unittest\nclass TestEmoticon(unittest.TestCase):\n    def test_output(self):\n        output = run_student_code()\n        self.assertEqual(output.strip(), ':-)', 'Output should be :-) | La salida debería ser :-) | Irteerak :-) izan beharko luke')"
     }
   ]
 }

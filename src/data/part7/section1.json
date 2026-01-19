@@ -9,25 +9,25 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will know what a Python module is\n- You will be able to include a module in your program with the `import` statement\n- You will know how to look for more information on the contents of modules",
-        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Sabrás qué es un módulo de Python\n- Podrás incluir un módulo en tu programa con la declaración `import`\n- Sabrás cómo buscar más información sobre el contenido de los módulos",
-        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- Python modulu bat zer den jakingo duzu\n- Modulu bat zure programan sartzeko gai izango zara `import` sententziarekin\n- Moduluen edukiari buruzko informazio gehiago nola bilatu jakingo duzu"
+        "ENG": "# Learning objectives\n\n- You will know what a Python module is\n- You will be able to include a module in your program with the `import` statement",
+        "CAS": "# Objetivos de aprendizaje\n\n- Sabrás qué es un módulo de Python\n- Podrás incluir un módulo en tu programa con la declaración `import`",
+        "EUS": "# Ikas-helburuak\n\n- Python modulu bat zer den jakingo duzu\n- Modulu bat zure programan sartzeko gai izango zara `import` sententziarekin"
       }
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## Debugging revisited\n\nWe have already come across quite a few debugging methods on this course. The [visualisation tool](http://www.pythontutor.com/visualize.html#mode=edit) should now be familiar to you, and debugging print outs are a good old staple by now. You have possibly also tried the Visual Studio Code [built-in debugger](/part-4/1-vscode#the-built-in-debugger).\n\nIn Python version 3.7 brought yet another easy and useful tool for debugging programs: the `breakpoint()` command.\n\nYou can add this command to any point in your code (within normal syntactic rules, of course). When the program is run, the execution halts at the point where you inserted the `breakpoint` command.\n\nWhen the execution halts at the `breakpoint` command, an interactive console window is opened. Here you can write any code just as you would in a normal Python console, and see how the code works at exactly that point in the program.\n\nThe `breakpoint` command is especially useful when you know that some line of code causes an error, but you are not quite sure why that is. Add a breakpoint just before the problematic line of code and run your program. Now you can try out different options in the interactive console window, and figure out the correct commands to include in your program.\n\nIt is also possible to continue execution from where it halted. The command `continue`, or the shorthand `c`, typed into the debugging console will resume execution until the next breakpoint is reached.\n\nThe command `exit` finishes the execution of the program.\n\nWhen you are done debugging, remember to remove the `breakpoint` commands from your code!",
-        "CAS": "## Depuración revisada\n\nYa hemos encontrado bastantes métodos de depuración en este curso. La [herramienta de visualización](http://www.pythontutor.com/visualize.html#mode=edit) ya debería serte familiar, y las impresiones de depuración son un viejo elemento básico a estas alturas. Posiblemente también hayas probado el [depurador integrado](/part-4/1-vscode#the-built-in-debugger) de Visual Studio Code.\n\nEn la versión 3.7 de Python se introdujo otra herramienta fácil y útil para depurar programas: el comando `breakpoint()`.\n\nPuedes agregar este comando en cualquier punto de tu código (dentro de las reglas sintácticas normales, por supuesto). Cuando se ejecuta el programa, la ejecución se detiene en el punto donde insertaste el comando `breakpoint`.\n\nCuando la ejecución se detiene en el comando `breakpoint`, se abre una ventana de consola interactiva. Aquí puedes escribir cualquier código tal como lo harías en una consola de Python normal, y ver cómo funciona el código exactamente en ese punto del programa.\n\nEl comando `breakpoint` es especialmente útil cuando sabes que alguna línea de código causa un error, pero no estás muy seguro de por qué. Agrega un punto de interrupción justo antes de la línea de código problemática y ejecuta tu programa. Ahora puedes probar diferentes opciones en la ventana de consola interactiva y averiguar los comandos correctos para incluir en tu programa.\n\nTambién es posible continuar la ejecución desde donde se detuvo. El comando `continue`, o la abreviatura `c`, escrito en la consola de depuración reanudará la ejecución hasta que se alcance el siguiente punto de interrupción.\n\nEl comando `exit` finaliza la ejecución del programa.\n\n¡Cuando termines de depurar, recuerda eliminar los comandos `breakpoint` de tu código!",
-        "EUS": "## Arazketa berrikusia\n\nIkastaro honetan arazketa metodo dezente topatu ditugu dagoeneko. [Bistaratze tresna](http://www.pythontutor.com/visualize.html#mode=edit) ezaguna izan beharko litzateke zuretzat orain, eta arazketa inprimaketak oinarrizko zahar onak dira dagoeneko. Visual Studio Code-ren [araztaile integratua](/part-4/1-vscode#the-built-in-debugger) ere probatu zenuen beharbada.\n\nPython 3.7 bertsioan programak arazteko beste tresna erraz eta erabilgarri bat ekarri zuen: `breakpoint()` komandoa.\n\nKomando hau zure kodeko edozein puntutan gehi dezakezu (arau sintaktiko normalen barruan, noski). Programa exekutatzen denean, exekuzioa `breakpoint` komandoa sartu zenuen puntuan gelditzen da.\n\nExekuzioa `breakpoint` komandoan gelditzen denean, kontsola leiho interaktibo bat irekitzen da. Hemen edozein kode idatz dezakezu Python kontsola arrunt batean egingo zenukeen bezala, eta kodeak programako puntu horretan zehazki nola funtzionatzen duen ikusi.\n\n`breakpoint` komandoa bereziki erabilgarria da kode lerro batek errore bat eragiten duela dakizunean, baina zergatik den ziur ez zaudenean. Gehitu etendura-puntu bat kode lerro problematikoaren aurretik eta exekutatu zure programa. Orain aukera desberdinak proba ditzakezu kontsola leiho interaktiboan, eta zure programan sartu beharreko komando zuzenak asmatu.\n\nGelditu den tokitik exekuzioa jarraitzea ere posible da. `continue` komandoak, edo `c` laburdurak, arazketa kontsolan idatzita, exekuzioa berrekingo du hurrengo etendura-puntura iritsi arte.\n\n`exit` komandoak programaren exekuzioa amaitzen du.\n\nArazketa amaitzean, gogoratu `breakpoint` komandoak zure kodetik kentzea!"
+        "ENG": "## Debugging revisited\n\nWe have already come across quite a few debugging methods on this course...",
+        "CAS": "## Depuración revisada\n\nYa hemos encontrado bastantes métodos de depuración en este curso...",
+        "EUS": "## Arazketa berrikusia\n\nIkastaro honetan arazketa metodo dezente topatu ditugu dagoeneko..."
       }
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## Using modules\n\nThe Python language definition already contains some useful functions, such as the `len` function which returns the length of a string or a list, or the `sum` function which returns the sum of items in a data structure, but they will only get a programmer so far. The Python *standard library* is a collection of standardised functions and objects, which can be used to expand the expressive power of Python in many ways.\n\nThe standard library is comprised of *modules*, which contain functions and classes grouped around different themes and functionalities. In this part of the course we will familiarize ourselves with some useful Python modules. We will also learn to write our own modules.\n\nThe command `import` makes the contents of the given module accessible in the current program. Let's have a closer look at working with the `math` module. It contains the definitions of some mathematical functions, such as `sqrt` for square root and `log` for logarithm.\n\n```python\nimport math\n\n# The square root of the number 5\nprint(math.sqrt(5))\n# the base 2 logarithm of the number 8\nprint(math.log(8, 2))\n```\n\n```text\n2.23606797749979\n3.0\n```\n\nThe functions are defined in the `math` module, so they must be referred to as `math.sqrt` and `math.log` in the program code.\n\n## Selecting distinct sections from a module\n\nAnother way to use modules is to select a distinct entity from the module with the `from` command. In case we want to use just the functions `sqrt` and `log` from the module `math`, we can do the following:\n\n```python\nfrom math import sqrt, log\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nAs you can see above, we do not need the `math` prefix when using the functions imported in this manner.\n\nSometimes a handy shortcut is to import *all* the contents of a module with the star notation:\n\n```python\nfrom math import *\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nImporting modules with the star notation can be useful when testing and in some smaller projects, but it can pose some new problems, too. We will come across these later.",
-        "CAS": "## Usando módulos\n\nLa definición del lenguaje Python ya contiene algunas funciones útiles, como la función `len` que devuelve la longitud de una cadena o una lista, o la función `sum` que devuelve la suma de elementos en una estructura de datos, pero solo llevarán al programador hasta cierto punto. La *biblioteca estándar* de Python es una colección de funciones y objetos estandarizados, que se pueden utilizar para expandir el poder expresivo de Python de muchas maneras.\n\nLa biblioteca estándar está compuesta por *módulos*, que contienen funciones y clases agrupadas en torno a diferentes temas y funcionalidades. En esta parte del curso nos familiarizaremos con algunos módulos útiles de Python. También aprenderemos a escribir nuestros propios módulos.\n\nEl comando `import` hace que el contenido del módulo dado sea accesible en el programa actual. Echemos un vistazo más de cerca al trabajo con el módulo `math`. Contiene las definiciones de algunas funciones matemáticas, como `sqrt` para la raíz cuadrada y `log` para el logaritmo.\n\n```python\nimport math\n\n# La raíz cuadrada del número 5\nprint(math.sqrt(5))\n# el logaritmo base 2 del número 8\nprint(math.log(8, 2))\n```\n\n```text\n2.23606797749979\n3.0\n```\n\nLas funciones se definen en el módulo `math`, por lo que deben referirse como `math.sqrt` y `math.log` en el código del programa.\n\n## Seleccionando secciones distintas de un módulo\n\nOtra forma de usar módulos es seleccionar una entidad distinta del módulo con el comando `from`. En caso de que queramos usar solo las funciones `sqrt` y `log` del módulo `math`, podemos hacer lo siguiente:\n\n```python\nfrom math import sqrt, log\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nComo puedes ver arriba, no necesitamos el prefijo `math` al usar las funciones importadas de esta manera.\n\nA veces, un atajo útil es importar *todo* el contenido de un módulo con la notación de estrella:\n\n```python\nfrom math import *\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nImportar módulos con la notación de estrella puede ser útil al probar y en algunos proyectos más pequeños, pero también puede plantear algunos problemas nuevos. Nos encontraremos con estos más tarde.",
-        "EUS": "## Moduluak erabiltzen\n\nLa definición del lenguaje Python ya contiene algunas funciones útiles, como la función `len` que devuelve la longitud de una cadena o una lista, o la función `sum` que devuelve la suma de elementos en una estructura de datos, pero solo llevarán al programador hasta cierto punto. La *biblioteca estándar* de Python es una colección de funciones y objetos estandarizados, que se pueden utilizar para expandir el poder expresivo de Python de muchas maneras.\n\nLa biblioteca estándar está compuesta por *módulos*, que contienen funciones y clases agrupadas en torno a diferentes temas y funcionalidades. En esta parte del curso nos familiarizaremos con algunos módulos útiles de Python. También aprenderemos a escribir nuestros propios módulos.\n\nEl comando `import` hace que el contenido del módulo dado sea accesible en el programa actual. Echemos un vistazo más de cerca al trabajo con el módulo `math`. Contiene las definiciones de algunas funciones matemáticas, como `sqrt` para la raíz cuadrada y `log` para el logaritmo.\n\n```python\nimport math\n\n# 5 zenbakiaren erro karratua\nprint(math.sqrt(5))\n# 8 zenbakiaren 2 oinarriko logaritmoa\nprint(math.log(8, 2))\n```\n\n```text\n2.23606797749979\n3.0\n```\n\nFuntzioak `math` moduluan definituta daude, beraz, `math.sqrt` eta `math.log` gisa aipatu behar dira programa kodean.\n\n## Atal bereiziak hautatzen modulu batetik\n\nModuluak erabiltzeko beste modu bat modulutik entitate bereizi bat hautatzea da `from` komandoarekin. `math` modulutik `sqrt` eta `log` funtzioak bakarrik erabili nahi baditugu, honako hau egin dezakegu:\n\n```python\nfrom math import sqrt, log\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nGoian ikus dezakezunez, ez dugu `math` aurrizkia behar modu honetan inportatutako funtzioak erabiltzean.\n\nBatzuetan lasterbide erabilgarria da modulu baten eduki *guztia* izar notazioarekin inportatzea:\n\n```python\nfrom math import *\n\nprint(sqrt(5))\nprint(log(5,2))\n```\n\nIzar notazioarekin moduluak inportatzea erabilgarria izan daiteke probatzean eta proiektu txikiago batzuetan, baina arazo berri batzuk ere sor ditzake. Geroago topatuko ditugu hauek."
+        "ENG": "## Using modules\n\nThe Python language definition already contains some useful functions...",
+        "CAS": "## Usando módulos\n\nLa definición del lenguaje Python ya contiene algunas funciones útiles...",
+        "EUS": "## Moduluak erabiltzen\n\nPython lengoaiaren definizioak dagoeneko baditu funtzio erabilgarri batzuk..."
       }
     },
     {
@@ -39,23 +39,23 @@
         "EUS": "Hipotenusa"
       },
       "description": {
-        "ENG": "Please write a function named `hypotenuse(leg1: float, leg2: float)`, which takes the lengths of the two sides adjacent to the right angle of an orthogonal triangle. The function should return the length of the hypotenuse.",
-        "CAS": "Por favor escribe una función llamada `hypotenuse(leg1: float, leg2: float)`, que tome las longitudes de los dos lados adyacentes al ángulo recto de un triángulo rectángulo. La función debe devolver la longitud de la hipotenusa.",
-        "EUS": "Mesedez idatzi `hypotenuse(leg1: float, leg2: float)` izeneko funtzio bat, triangelu angeluzuzen baten angelu zuzenaren ondoko bi aldeen luzerak hartzen dituena. Funtzioak hipotenusaren luzera itzuli behar du."
+        "ENG": "Please write a function named `hypotenuse(leg1, leg2)` which returns the length of the hypotenuse.",
+        "CAS": "Por favor escribe una función llamada `hypotenuse(leg1, leg2)` que devuelva la longitud de la hipotenusa.",
+        "EUS": "Mesedez idatzi `hypotenuse(leg1, leg2)` funtzioa, hipotenusaren luzera itzultzen duena."
       },
       "initialCode": {
-        "ENG": "import math\n\ndef hypotenuse(leg1: float, leg2: float):\n    # Write your solution here\n    pass",
-        "CAS": "import math\n\ndef hypotenuse(cateto1: float, cateto2: float):\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "import math\n\ndef hypotenuse(kateto1: float, kateto2: float):\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "import math\ndef hypotenuse(l1, l2): pass",
+        "CAS": "import math\ndef hypotenuse(l1, l2): pass",
+        "EUS": "import math\ndef hypotenuse(l1, l2): pass"
       },
-      "testCode": ""
+      "testCode": "import unittest\nclass TestHypotenuse(unittest.TestCase):\n    def test_run(self):\n        res = hypotenuse(3, 4)\n        self.assertEqual(res, 5.0, 'Should be 5.0 for 3 and 4 | Debería ser 5.0 para 3 y 4 | 5.0 izan beharko litzateke 3 eta 4-rako')"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## The contents of a module\n\nThe Python documentation has extensive resources on each module in the Python standard library. The documentation contains information on the functions and methods defined in the module, and how the module can be used. For example, here is the link to the documentation for the `math` module:\n\n* https://docs.python.org/3/library/math.html\n\nWe can also have a look at the contents of the module with the function `dir`:\n\n```python\nimport math\n\nprint(dir(math))\n```\n\nThe function returns a list of names defined by the module. These may be, for example, names of classes, constant values or functions.",
-        "CAS": "## El contenido de un módulo\n\nLa documentación de Python tiene amplios recursos sobre cada módulo en la biblioteca estándar de Python. La documentación contiene información sobre las funciones y métodos definidos en el módulo, y cómo se puede utilizar el módulo. Por ejemplo, aquí está el enlace a la documentación del módulo `math`:\n\n* https://docs.python.org/3/library/math.html\n\nTambién podemos echar un vistazo al contenido del módulo con la función `dir`:\n\n```python\nimport math\n\nprint(dir(math))\n```\n\nLa función devuelve una lista de nombres definidos por el módulo. Estos pueden ser, por ejemplo, nombres de clases, valores constantes o funciones.",
-        "EUS": "## Modulu baten edukia\n\nPython dokumentazioak baliabide zabalak ditu Python liburutegi estandarreko modulu bakoitzari buruz. Dokumentazioak moduluan definitutako funtzio eta metodoei buruzko informazioa du, eta modulua nola erabil daitekeen. Adibidez, hemen `math` modulurako dokumentaziorako esteka:\n\n* https://docs.python.org/3/library/math.html\n\nModuluaren edukiari ere begiratu diezaiekegu `dir` funtzioarekin:\n\n```python\nimport math\n\nprint(dir(math))\n```\n\nFuntzioak moduluak definitutako izen zerrenda bat itzultzen du. Hauek izan daitezke, adibidez, klaseen izenak, balio konstanteak edo funtzioak."
+        "ENG": "## The contents of a module\n\nThe Python documentation has extensive resources on each module...",
+        "CAS": "## El contenido de un módulo\n\nLa documentación de Python tiene amplios recursos sobre cada módulo...",
+        "EUS": "## Modulu baten edukia\n\nPython dokumentazioak baliabide zabalak ditu modulu bakoitzari buruz..."
       }
     },
     {
@@ -67,16 +67,16 @@
         "EUS": "Karaktere bereziak"
       },
       "description": {
-        "ENG": "The Python module `string` contains some string constants. Please write a function named `separate_characters(my_string: str)`. The function should separate the characters in the string into three other strings (ascii letters, punctuation, others) and return these in a tuple.",
-        "CAS": "El módulo `string` de Python contiene algunas constantes de cadena. Por favor escribe una función llamada `separate_characters(my_string: str)`. La función debe separar los caracteres en la cadena en otras tres cadenas (letras ascii, puntuación, otros) y devolverlas en una tupla.",
-        "EUS": "Python-eko `string` moduluak kate konstante batzuk ditu. Mesedez idatzi `separate_characters(my_string: str)` izeneko funtzio bat. Funtzioak kateko karaktereak beste hiru katetan bereizi behar ditu (ascii letrak, puntuazioa, besteak) eta hauek tupla batean itzuli."
+        "ENG": "Write `separate_characters(my_string)` using `string` module to separate ascii letters, punctuation, and others.",
+        "CAS": "Escribe `separate_characters(my_string)` usando el módulo `string` para separar letras ascii, puntuación y otros.",
+        "EUS": "Idatzi `separate_characters(nire_katea)` `string` modulua erabiliz ascii letrak, puntuazioa eta beste batzuk bereizteko."
       },
       "initialCode": {
-        "ENG": "import string\n\ndef separate_characters(my_string: str):\n    # Write your solution here\n    pass",
-        "CAS": "import string\n\ndef separate_characters(mi_cadena: str):\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "import string\n\ndef separate_characters(nire_katea: str):\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "import string\ndef separate_characters(s): pass",
+        "CAS": "import string\ndef separate_characters(s): pass",
+        "EUS": "import string\ndef separate_characters(s): pass"
       },
-      "testCode": ""
+      "testCode": "import unittest\nclass TestSpecialChars(unittest.TestCase):\n    def test_run(self):\n        parts = separate_characters('abc.!123')\n        self.assertEqual(parts, ('abc', '.!', '123'), 'Should separate correctly | Debería separar correctamente | Behar bezala bereizi beharko luke Август')"
     },
     {
       "type": "exercise",
@@ -87,16 +87,16 @@
         "EUS": "Zatikiak"
       },
       "description": {
-        "ENG": "Please familiarize yourself with the Python module `fractions`. Use it to write a function named `fractionate(amount: int)`. The function should divide the number 1 into as many equal sized fractions as is specified by the argument, and return these in a list.",
-        "CAS": "Por favor familiarízate con el módulo `fractions` de Python. Úsalo para escribir una función llamada `fractionate(amount: int)`. La función debe dividir el número 1 en tantas fracciones de igual tamaño como se especifique en el argumento, y devolverlas en una lista.",
-        "EUS": "Mesedez ezagutu Python-eko `fractions` modulua. Erabili ezazu `fractionate(amount: int)` izeneko funtzio bat idazteko. Funtzioak 1 zenbakia argumentuak zehazten duen beste zatiki berdinatan banatu behar du, eta hauek zerrenda batean itzuli."
+        "ENG": "Write `fractionate(amount)` using `fractions` module.",
+        "CAS": "Escribe `fractionate(amount)` usando el módulo `fractions`.",
+        "EUS": "Idatzi `fractionate(amount)` `fractions` modulua erabiliz."
       },
       "initialCode": {
-        "ENG": "import fractions\n\ndef fractionate(amount: int):\n    # Write your solution here\n    pass",
-        "CAS": "import fractions\n\ndef fractionate(cantidad: int):\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "import fractions\n\ndef fractionate(kopurua: int):\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "import fractions\ndef fractionate(n): pass",
+        "CAS": "import fractions\ndef fractionate(n): pass",
+        "EUS": "import fractions\ndef fractionate(n): pass"
       },
-      "testCode": ""
+      "testCode": "import unittest\nfrom fractions import Fraction\nclass TestFractions(unittest.TestCase):\n    def test_run(self):\n        res = fractionate(3)\n        self.assertEqual(len(res), 3, 'Should return 3 fractions | Debería devolver 3 fracciones | 3 zatiki itzuli beharko lituzke')\n        self.assertEqual(res[0], Fraction(1, 3), 'Should be 1/3 | Debería ser 1/3 | 1/3 izan beharko litzateke')"
     }
   ]
 }

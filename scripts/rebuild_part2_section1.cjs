@@ -1,0 +1,93 @@
+const fs = require('fs');
+const path = require('path');
+
+const section1 = {
+  id: "part2-1",
+  title: {
+    ENG: "Programming terminology",
+    CAS: "Terminología de programación",
+    EUS: "Programazio terminologia"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n# Programming terminology\n\n## After this section:\n\n- You will be familiar with some essential terminology in programming...",
+        "CAS": "\n# Terminología de programación\n\n## Después de esta sección:\n\n- Te familiarizarás con terminología esencial en programación...",
+        "EUS": "\n# Programazio terminologia\n\n## Atal honen ondoren:\n\n- Programazioko oinarrizko terminologiarekin ohituko zara..."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n## Syntax\n\nThe _syntax_ of a programming language determines how the code of a program should be written...",
+        "CAS": "\n## Sintaxis\n\nLa _sintaxis_ de un lenguaje de programación determina cómo debe escribirse el código de un programa...",
+        "EUS": "\n## Sintaxia\n\nProgramazio-lengoaia baten _sintaxiak_ zehazten du nola idatzi behar den programa baten kodea..."
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part02-01_fix_syntax",
+      "title": {
+        "ENG": "Fix the syntax",
+        "CAS": "Corrige la sintaxis",
+        "EUS": "Konpondu sintaxia"
+      },
+      "description": {
+        "ENG": "The following program contains a syntax error. Please fix it.",
+        "CAS": "El siguiente programa contiene un error de sintaxis. Por favor, corrígelo.",
+        "EUS": "Hurrengo programak sintaxi errorea du. Mesedez konpondu ezazu."
+      },
+      "initialCode": {
+        "ENG": "number = int(input('Please type in a number: '}}\nif number > 100\n    print('The number was greater than one hundred')\n    number = number - 100\n    print('Now its value has decreased by one hundred')\n\nprint(f'Its value is now {number}')",
+        "CAS": "number = int(input('Por favor, escribe un número: '}}\nif number > 100\n    print('The number was greater than one hundred')\n    number = number - 100\n    print('Now its value has decreased by one hundred')\n\nprint(f'Its value is now {number}')",
+        "EUS": "number = int(input('Mesedez, idatzi zenbaki bat: '}}\nif number > 100\n    print('The number was greater than one hundred')\n    number = number - 100\n    print('Now its value has decreased by one hundred')\n\nprint(f'Its value is now {number}')"
+      },
+      "testCode": "import unittest\nclass TestSyntax(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['150'])\n        self.assertIn('value is now 50', out, 'Should subtract 100 | Debería restar 100 | 100 kendu beharko luke')\n        out2 = run_student_code(inputs=['10'])\n        self.assertIn('value is now 10', out2, 'Should not change | No debería cambiar | Ez luke aldatu behar')"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "\n## Debugging\n\nIf the syntax of the program is correct but the program still doesn't function as intended...",
+        "CAS": "\n## Depuración\n\nSi la sintaxis del programa es correcta pero el programa no funciona como se esperaba...",
+        "EUS": "\n## Arazketa\n\nProgramaren sintaxia zuzena bada baina programak ez badu espero bezala funtzionatzen..."
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part02-02_number_of_characters",
+      "title": {
+        "ENG": "Number of characters",
+        "CAS": "Número de caracteres",
+        "EUS": "Karaktere kopurua"
+      },
+      "description": {
+        "ENG": "Write a program using len() to print length of a word.",
+        "CAS": "Escribe un programa usando len() para imprimir la longitud de una palabra.",
+        "EUS": "Idatzi programa bat len() erabiliz hitz baten luzera inprimatzeko."
+      },
+      "initialCode": { "ENG": "# Write code here", "CAS": "# Escribe código aquí", "EUS": "# Idatzi kodea hemen" },
+      "testCode": "import unittest\nclass TestLen(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['banana'])\n        self.assertIn('6', out, 'Length of banana is 6 | La longitud de banana es 6 | Bananaren luzera 6 da')\n        if 'greater' in out:\n             self.fail('Print only the length | Imprime solo la longitud | Inprimatu luzera bakarrik')"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part02-03_typecasting",
+      "title": {
+        "ENG": "Typecasting",
+        "CAS": "Conversión de tipos",
+        "EUS": "Mota bihurketa"
+      },
+      "description": {
+        "ENG": "Write a program that prints integer and decimal parts of a float.",
+        "CAS": "Escribe un programa que imprima las partes entera y decimal de un flotante.",
+        "EUS": "Idatzi programa bat flotatzaile baten zati osoa eta hamartarra inprimatzen dituena."
+      },
+      "initialCode": { "ENG": "# Write code here", "CAS": "# Escribe código aquí", "EUS": "# Idatzi kodea hemen" },
+      "testCode": "import unittest\nclass TestTypecasting(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['1.34'])\n        self.assertIn('Integer part: 1', out, 'Integer part incorrect | Parte entera incorrecta | Zati osoa okerra')\n        self.assertIn('Decimal part: 0.34', out, 'Decimal part incorrect | Parte decimal incorrecta | Zati hamartarra okerra')"
+    }
+  ]
+};
+
+const outputPath = path.join(__dirname, '../src/data/part2/section1.json');
+fs.writeFileSync(outputPath, JSON.stringify(section1, null, 2), 'utf-8');
+console.log(`Successfully created ${outputPath}`);

@@ -9,9 +9,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n# Working with strings\n\nStrings can be combined with the `+` operator and repeated with the `*` operator.\n\n```python\nword = \"banana\"\nprint(word * 3)\n```\n\n```text\nbananabananabanana\n```\n\n## The length and index of a string\n\nThe function `len` returns the number of characters in a string. Characters can be accessed with the `[]` operator (0-based index).\n\n```python\nword = \"python\"\nprint(word[0])\nprint(word[-1]) # Last character\n```\n\n```text\np\nn\n```\n",
-        "CAS": "\n# Trabajando con cadenas\n\nLas cadenas se pueden combinar con el operador `+` y repetir con el operador `*`.\n\n```python\npalabra = \"banana\"\nprint(palabra * 3)\n```\n\n```text\nbananabananabanana\n```\n\n## Longitud e índice de una cadena\n\nLa función `len` devuelve el número de caracteres en una cadena. Se puede acceder a los caracteres con el operador `[]` (índice basado en 0).\n\n```python\npalabra = \"python\"\nprint(palabra[0])\nprint(palabra[-1]) # Último carácter\n```\n\n```text\np\nn\n```\n",
-        "EUS": "\n# Kateekin lanean\n\nKateak `+` eragilearekin konbina daitezke eta `*` eragilearekin errepikatu.\n\n```python\nhitza = \"banana\"\nprint(hitza * 3)\n```\n\n```text\nbananabananabanana\n```\n\n## Kate baten luzera eta indizea\n\n`len` funtzioak kate bateko karaktere kopurua itzultzen du. Karaktereetara `[]` eragilearekin sar daiteke (0-n oinarritutako indizea).\n\n```python\nhitza = \"python\"\nprint(hitza[0])\nprint(hitza[-1]) # Azken karakterea\n```\n\n```text\np\nn\n```\n"
+        "ENG": "# Working with strings\n\nStrings can be combined...",
+        "CAS": "# Trabajando con cadenas\n\nLas cadenas se pueden combinar...",
+        "EUS": "# Kateekin lanean\n\nKateak konbina daitezke..."
       }
     },
     {
@@ -23,16 +23,16 @@
         "EUS": "Katea biderkatuta"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string and an amount. The program then prints out the string as many times as specified by the amount. The string should be printed out all on the same line.",
-        "CAS": "Escribe un programa que pida una cadena y una cantidad. El programa debe imprimir la cadena tantas veces como se especifique, todo en la misma línea.",
-        "EUS": "Idatzi programa bat kate bat eta kopuru bat eskatzen dituena. Programak katea kopuru horretan inprimatu behar du, dena lerro berean."
+        "ENG": "Ask for string and amount, print string repeated amount times.",
+        "CAS": "Pide cadena y cantidad, imprime cadena repetida.",
+        "EUS": "Eskatu katea eta kopurua, inprimatu katea errepikatuta."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestMult(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['hi', '3'])\n        self.assertIn(\"hihihi\", out)\n"
+      "testCode": "import unittest\nclass TestMult(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['hi', '3'])\n        self.assertIn('hihihi', out, 'Should print hihihi')"
     },
     {
       "type": "exercise",
@@ -43,16 +43,16 @@
         "EUS": "Kate luzeagoa"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for two strings and then prints out the longer of the two.",
-        "CAS": "Escribe un programa que pida dos cadenas y luego imprima la más larga de las dos.",
-        "EUS": "Idatzi programa bat bi kate eskatzen dituena eta gero bietako luzeena inprimatzen duena."
+        "ENG": "Ask for two strings, print the longer one.",
+        "CAS": "Pide dos cadenas, imprime la más larga.",
+        "EUS": "Eskatu bi kate, inprimatu luzeena."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestLonger(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['short', 'loooong'])\n        self.assertIn(\"loooong\", out)\n"
+      "testCode": "import unittest\nclass TestLonger(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['short', 'loooong'])\n        self.assertIn('loooong', out, 'Should print loooong')"
     },
     {
       "type": "exercise",
@@ -63,84 +63,84 @@
         "EUS": "Amaieratik hasierara"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string. The program then prints out the input string in reverse order, from end to beginning. Each character should be on a separate line.",
-        "CAS": "Escribe un programa que pida una cadena. Luego imprime la cadena en orden inverso, carácter por carácter en líneas separadas.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena. Gero katea alderantzizko ordenan inprimatu behar du, karaktere bakoitza lerro bereizi batean."
+        "ENG": "Print input string in reverse order, one char per line.",
+        "CAS": "Imprime cadena en orden inverso, un carácter por línea.",
+        "EUS": "Inprimatu katea alderantziz."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestReverse(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['abc'])\n        # c \n b \n a\n        self.assertIn(\"c\", out)\n        self.assertIn(\"b\", out)\n        self.assertIn(\"a\", out)\n        # Simple check for order could be checking indices in output string but handled simply here\n"
+      "testCode": "import unittest\nclass TestReverse(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['abc'])\n        self.assertIn('c', out)\n        self.assertIn('b', out)\n        self.assertIn('a', out)"
     },
     {
       "type": "exercise",
       "exerciseId": "part03-11_second_and_second_to_last",
       "title": {
-        "ENG": "Second and second to last characters",
-        "CAS": "Segundo y penúltimo carácter",
-        "EUS": "Bigarren eta azkenaurreko karakterea"
+        "ENG": "2nd and 2nd last",
+        "CAS": "2do y penúltimo",
+        "EUS": "2. eta azkenaurrekoa"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string. The program then prints out a message based on whether the second character and the second to last character are the same or not.",
-        "CAS": "Escribe un programa que pida una cadena. Debe imprimir un mensaje dependiendo de si el segundo carácter y el penúltimo son iguales o no.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena. Gero mezu bat inprimatu behar du bigarren eta azkenaurreko karaktereak berdinak diren ala ez oinarrituta."
+        "ENG": "Check if 2nd and 2nd to last chars match.",
+        "CAS": "Comprueba si el 2do y penúltimo carácter coinciden.",
+        "EUS": "Egiaztatu 2. eta azkenaurreko karaktereak bat datozen."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestSecLast(unittest.TestCase):\n    def test_same(self):\n        out = run_student_code(inputs=['python'])\n        # y != o\n        self.assertIn(\"different\", out)\n        \n    def test_diff(self):\n        out = run_student_code(inputs=['pascals'])\n        # a == l ? no wait\n        # p a s c a l s\n        # 2nd: a. 2nd to last: l. different.\n        pass\n        \n    def test_match(self):\n        out = run_student_code(inputs=['abba'])\n        # b == b\n        self.assertIn(\"same\", out)\n"
+      "testCode": "import unittest\nclass TestSecLast(unittest.TestCase):\n    def test_same(self):\n        out = run_student_code(inputs=['python'])\n        self.assertIn('different', out)\n    def test_match(self):\n        out = run_student_code(inputs=['abba'])\n        self.assertIn('same', out)"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n## Substrings (Slicing)\n\nYou can slice strings using the syntax `[start:end]`.\n\n```python\nword = \"banana\"\nprint(word[0:3])\n```\n\n```text\nban\n```\n",
-        "CAS": "\n## Subcadenas (Slicing)\n\nPuedes cortar cadenas usando la sintaxis `[inicio:fin]`.\n\n```python\nword = \"banana\"\nprint(word[0:3])\n```\n\n```text\nban\n```\n",
-        "EUS": "\n## Azpikateak (Slicing)\n\nKateak ebaki ditzakezu `[hasiera:amaiera]` sintaxia erabiliz.\n\n```python\nword = \"banana\"\nprint(word[0:3])\n```\n\n```text\nban\n```\n"
+        "ENG": "## Substrings (Slicing)\n\nYou can slice strings using the syntax `[start:end]`...",
+        "CAS": "## Subcadenas (Slicing)\n\nPuedes cortar cadenas usando la sintaxis `[inicio:fin]`...",
+        "EUS": "## Azpikateak (Slicing)\n\nKateak ebaki ditzakezu `[hasiera:amaiera]`..."
       }
     },
     {
       "type": "exercise",
       "exerciseId": "part03-12_line_of_hashes",
       "title": {
-        "ENG": "A line of hashes",
-        "CAS": "Una línea de almohadillas",
-        "EUS": "Traola lerro bat"
+        "ENG": "Line of hashes",
+        "CAS": "Línea de almohadillas",
+        "EUS": "Traola lerroa"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a width and then prints out a line of hashes which is as long as the specified width.",
-        "CAS": "Escribe un programa que pida un ancho y luego imprima una línea de almohadillas (#) de ese ancho.",
-        "EUS": "Idatzi programa bat zabalera bat eskatzen duena eta gero zabalera horretako traola (#) lerro bat inprimatzen duena."
+        "ENG": "Print line of hashes of given width.",
+        "CAS": "Imprime línea de almohadillas del ancho dado.",
+        "EUS": "Inprimatu emandako zabalerako traola lerroa."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestHash(unittest.TestCase):\n    def test_3(self):\n        out = run_student_code(inputs=['3'])\n        self.assertIn(\"###\", out)\n"
+      "testCode": "import unittest\nclass TestHash(unittest.TestCase):\n    def test_3(self):\n        out = run_student_code(inputs=['3'])\n        self.assertIn('###', out, 'Should print ### | Debería imprimir ### | ### inprimatu beharko luke')"
     },
     {
       "type": "exercise",
       "exerciseId": "part03-13_rectangle_of_hashes",
       "title": {
-        "ENG": "A rectangle of hashes",
-        "CAS": "Un rectángulo de almohadillas",
-        "EUS": "Traola laukizuzen bat"
+        "ENG": "Rectangle of hashes",
+        "CAS": "Rectángulo de almohadillas",
+        "EUS": "Traola laukizuzena"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for width and height and prints a rectangle of hashes.",
-        "CAS": "Escribe un programa que pida ancho y alto e imprima un rectángulo de almohadillas.",
-        "EUS": "Idatzi programa bat zabalera eta altuera eskatzen dituena eta traola laukizuzen bat inprimatzen duena."
+        "ENG": "Print rectangle of hashes.",
+        "CAS": "Imprime rectángulo de almohadillas.",
+        "EUS": "Inprimatu traola laukizuzena."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestRect(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['3', '2'])\n        # ###\n        # ###\n        if out.count(\"###\") < 2:\n             self.fail(\"Should print 2 lines of 3 hashes.\")\n"
+      "testCode": "import unittest\nclass TestRect(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['3', '2'])\n        if out.count('###') < 2:\n             self.fail('Should print 2 lines of 3 hashes | Debería imprimir 2 líneas de 3 almohadillas | 3 traolako 2 lerro inprimatu beharko lituzke')"
     },
     {
       "type": "exercise",
@@ -151,16 +151,16 @@
         "EUS": "Azpimarratua"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string and then prints it out underlined.",
-        "CAS": "Escribe un programa que pida una cadena y la imprima subrayada.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena eta azpimarratuta inprimatzen duena."
+        "ENG": "Print string underlined.",
+        "CAS": "Imprime cadena subrayada.",
+        "EUS": "Inprimatu katea azpimarratuta."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestUnderline(unittest.TestCase):\n    def test_hi(self):\n        out = run_student_code(inputs=['Hi'])\n        self.assertIn(\"Hi\", out)\n        self.assertIn(\"--\", out)\n"
+      "testCode": "import unittest\nclass TestUnderline(unittest.TestCase):\n    def test_hi(self):\n        out = run_student_code(inputs=['Hi'])\n        self.assertIn('Hi', out)\n        self.assertIn('--', out, 'Should be underlined | Debería estar subrayado | Azpimarratuta egon beharko litzateke')"
     },
     {
       "type": "exercise",
@@ -171,104 +171,104 @@
         "EUS": "Eskuinean lerrokatuta"
       },
       "description": {
-        "ENG": "Please write a program which asks for a string and then prints it out a line of length 20. If the input string is shorter than length 20, the string should be padded with stars (*) to the left.",
-        "CAS": "Escribe un programa que pida una cadena y la imprima en una línea de longitud 20. Si la cadena es más corta, debe rellenarse con asteriscos (*) a la izquierda.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena eta 20 luzerako lerro batean inprimatzen duena. Katea laburragoa bada, ezkerrean izartxoekin (*) bete behar da."
+        "ENG": "Right align string to length 20 using stars.",
+        "CAS": "Alinea a la derecha la cadena a longitud 20 usando estrellas.",
+        "EUS": "Lerrokatu katea eskuinera 20ko luzerarekin izarrak erabiliz."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestRight(unittest.TestCase):\n    def test_python(self):\n        out = run_student_code(inputs=['python'])\n        # python is 6 chars. 14 stars needed.\n        self.assertIn(\"**************python\", out)\n"
+      "testCode": "import unittest\nclass TestRight(unittest.TestCase):\n    def test_python(self):\n        out = run_student_code(inputs=['python'])\n        self.assertIn('**************python', out, 'Should be padded with 14 stars | Debería tener 14 estrellas de relleno | 14 izarrekin bete beharko litzateke')"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "\n## Searching\n\nThe `in` operator checks if a substring exists. The `find` method returns the index.\n\n```python\nprint(\"a\" in \"banana\") # True\nprint(\"banana\".find(\"na\")) # 2\n```\n",
-        "CAS": "\n## Búsqueda\n\nEl operador `in` comprueba si existe una subcadena. El método `find` devuelve el índice.\n\n```python\nprint(\"a\" in \"banana\") # True\nprint(\"banana\".find(\"na\")) # 2\n```\n",
-        "EUS": "\n## Bilaketa\n\n`in` eragileak azpikaterik badagoen egiaztatzen du. `find` metodoak indizea itzultzen du.\n\n```python\nprint(\"a\" in \"banana\") # True\nprint(\"banana\".find(\"na\")) # 2\n```\n"
+        "ENG": "## Searching\n\nThe `in` operator checks if a substring exists...",
+        "CAS": "## Búsqueda\n\nEl operador `in` comprueba si existe una subcadena...",
+        "EUS": "## Bilaketa\n\n`in` eragileak azpikaterik badagoen egiaztatzen du..."
       }
     },
     {
       "type": "exercise",
       "exerciseId": "part03-16_find_first_substring",
       "title": {
-        "ENG": "Find the first substring",
-        "CAS": "Encontrar la primera subcadena",
+        "ENG": "Find first substring",
+        "CAS": "Encontrar primera subcadena",
         "EUS": "Aurkitu lehenengo azpikatea"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string and a character. The program then prints the first three characters of the string which begin with the character specified by the user.",
-        "CAS": "Escribe un programa que pida una cadena y un carácter. El programa debe imprimir los tres primeros caracteres de la cadena que comiencen con el carácter especificado.",
-        "EUS": "Idatzi programa bat kate bat eta karaktere bat eskatzen dituena. Programak erabiltzaileak zehaztutako karakterez hasten diren kateko lehen hiru karaktereak inprimatzen ditu."
+        "ENG": "Print first 3 chars starting with given char.",
+        "CAS": "Imprime los primeros 3 caracteres que comienzan con el carácter dado.",
+        "EUS": "Inprimatu emandako karakterez hasten diren lehen 3 karaktereak."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestFindSub(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['mammoth', 'm'])\n        # mam\n        self.assertIn(\"mam\", out)\n"
+      "testCode": "import unittest\nclass TestFindSub(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['mammoth', 'm'])\n        self.assertIn('mam', out, 'Should print mam | Debería imprimir mam | mam inprimatu beharko luke')"
     },
     {
       "type": "exercise",
       "exerciseId": "part03-17_substrings_part_1",
       "title": {
-        "ENG": "Substrings, part 1",
-        "CAS": "Subcadenas, parte 1",
-        "EUS": "Azpikateak, 1. zatia"
+        "ENG": "Substrings 1",
+        "CAS": "Subcadenas 1",
+        "EUS": "Azpikateak 1"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string. The program then prints out all the substrings which begin with the first character of the string.",
-        "CAS": "Escribe un programa que pida una cadena. Luego imprime todas las subcadenas que empiezan con el primer carácter.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena. Gero kateko lehen karakterez hasten diren azpikate guztiak inprimatzen ditu."
+        "ENG": "Print substrings starting with first char.",
+        "CAS": "Imprime subcadenas que empiezan con el primer carácter.",
+        "EUS": "Inprimatu lehen karakterez hasten diren azpikateak."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestSub1(unittest.TestCase):\n    def test_test(self):\n        out = run_student_code(inputs=['test'])\n        # t\n        # te\n        # tes\n        # test\n        self.assertIn(\"tes\", out)\n"
+      "testCode": "import unittest\nclass TestSub1(unittest.TestCase):\n    def test_test(self):\n        out = run_student_code(inputs=['test'])\n        self.assertIn('tes', out, 'Should print tes | Debería imprimir tes | tes inprimatu beharko luke')"
     },
     {
       "type": "exercise",
       "exerciseId": "part03-18_substrings_part_2",
       "title": {
-        "ENG": "Substrings, part 2",
-        "CAS": "Subcadenas, parte 2",
-        "EUS": "Azpikateak, 2. zatia"
+        "ENG": "Substrings 2",
+        "CAS": "Subcadenas 2",
+        "EUS": "Azpikateak 2"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string. The program then prints out all the substrings which end with the last character of the string.",
-        "CAS": "Escribe un programa que pida una cadena. Luego imprime todas las subcadenas que terminan con el último carácter.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena. Gero kateko azken karakterez amaitzen diren azpikate guztiak inprimatzen ditu."
+        "ENG": "Print substrings ending with last char.",
+        "CAS": "Imprime subcadenas que terminan con el último carácter.",
+        "EUS": "Inprimatu azken karakterez amaitzen diren azpikateak."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestSub2(unittest.TestCase):\n    def test_test(self):\n        out = run_student_code(inputs=['test'])\n        # t\n        # st\n        # est\n        # test\n        self.assertIn(\"st\", out)\n"
+      "testCode": "import unittest\nclass TestSub2(unittest.TestCase):\n    def test_test(self):\n        out = run_student_code(inputs=['test'])\n        self.assertIn('st', out, 'Should print st | Debería imprimir st | st inprimatu beharko luke')"
     },
     {
       "type": "exercise",
       "exerciseId": "part03-19_does_it_contain_vowels",
       "title": {
-        "ENG": "Does it contain vowels",
+        "ENG": "Contains vowels?",
         "CAS": "¿Contiene vocales?",
         "EUS": "Bokalik ba al du?"
       },
       "description": {
-        "ENG": "Please write a program which asks the user for a string and then prints out a message based on whether the string contains the vowels a, e or o.",
-        "CAS": "Escribe un programa que pida una cadena y luego imprima un mensaje si la cadena contiene las vocales a, e, u o.",
-        "EUS": "Idatzi programa bat kate bat eskatzen duena eta gero mezu bat inprimatzen duena kateak a, e edo o bokalak dituen ala ez kontuan hartuta."
+        "ENG": "Check for a, e, o.",
+        "CAS": "Comprueba a, e, o.",
+        "EUS": "Egiaztatu a, e, o."
       },
       "initialCode": {
-        "ENG": "# Write your solution here\n",
-        "CAS": "# Escribe tu solución aquí\n",
-        "EUS": "# Idatzi zure soluzioa hemen\n"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": "\nimport unittest\nclass TestVowels(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['hello'])\n        self.assertIn(\"a not found\", out)\n        self.assertIn(\"e found\", out)\n        self.assertIn(\"o found\", out)\n"
+      "testCode": "import unittest\nclass TestVowels(unittest.TestCase):\n    def test_run(self):\n        out = run_student_code(inputs=['hello'])\n        self.assertIn('a not found', out, 'a not found message missing | Falta mensaje a no encontrada | a ez da aurkitu mezua falta da')\n        self.assertIn('e found', out, 'e found message missing | Falta mensaje e encontrada | e aurkitu da mezua falta da')"
     }
   ]
 }

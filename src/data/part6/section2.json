@@ -9,17 +9,17 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Learning objectives\n\nAfter this section\n\n- You will know how to create files with Python code\n- You will be able to write text based data to a file\n- You will know how to create a CSV file",
-        "CAS": "# Objetivos de aprendizaje\n\nDespués de esta sección\n\n- Sabrás cómo crear archivos con código Python\n- Podrás escribir datos basados en texto en un archivo\n- Sabrás cómo crear un archivo CSV",
-        "EUS": "# Ikas-helburuak\n\nAtal honen ondoren\n\n- Python kodearekin fitxategiak nola sortu jakingo duzu\n- Testu bidezko datuak fitxategi batera idazteko gai izango zara\n- CSV fitxategi bat nola sortu jakingo duzu"
+        "ENG": "# Learning objectives\n\n- You will know how to create files with Python code\n- You will be able to write text based data to a file\n- You will know how to create a CSV file",
+        "CAS": "# Objetivos de aprendizaje\n\n- Sabrás cómo crear archivos con código Python\n- Podrás escribir datos basados en texto en un archivo\n- Sabrás cómo crear un archivo CSV",
+        "EUS": "# Ikas-helburuak\n\n- Python kodearekin fitxategiak nola sortu jakingo duzu\n- Testu bidezko datuak fitxategi batera idazteko gai izango zara\n- CSV fitxategi bat nola sortu jakingo duzu"
       }
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "So far we have read data from files, but it is naturally also possible to write data to files. Typically a program processes data and stores the results in a file, so they can be used later or processed further by some other program.\n\nWe can create a new file every time we want to write data to a file, but we can also append new data to the end of an existing file. In both cases we use the `open` function from the previous section. For writing files the function requires a second argument.\n\n## Creating a new file\n\nIf you want to create a new file, you would call the `open` function with the additional argument `\"w\"`, to signify that the file should be opened in write mode. So, the function call could look like this:\n\n```python\nwith open(\"new_file.txt\", \"w\") as my_file:\n    # code to write something to the file\n```\n\n*NB: if the file already exists, all the contents will be overwritten*. It pays to be very careful when creating new files.\n\nWith the file open you can write data to it. You can use the method `write`, which takes the string that is to be written as its argument.\n\n```python\nwith open(\"new_file.txt\", \"w\") as my_file:\n    my_file.write(\"Hello there!\")\n```\n\nWhen you execute the program, a new file named `new_file.txt` appears in the directory. The contents would look like this:\n\n```text\nHello there!\n```\n\nIf you want line breaks in the file, you will have to add them by hand - the `write` function doesn't work exactly like the more familiar `print` function, though they are similar. So, the following program\n\n```python\nwith open(\"new_file.txt\", \"w\") as my_file:\n    my_file.write(\"Hello there!\")\n    my_file.write(\"This is the second line\")\n    my_file.write(\"This is the last line\")\n```\n\nwould result in a file with these contents:\n\n```text\nHello there!This is the second lineThis is the last line\n```\n\nLine breaks are achieved by adding new line characters `\\n` to the argument strings:\n\n```python\nwith open(\"new_file.txt\", \"w\") as my_file:\n    my_file.write(\"Hello there!\\n\")\n    my_file.write(\"This is the second line\\n\")\n    my_file.write(\"This is the last line\\n\")\n```\n\nNow the contents of `new_file.txt` would look like this:\n\n```text\nHello there!\nThis is the second line\nThis is the last line\n```",
-        "CAS": "Hasta ahora hemos leído datos de archivos, pero naturalmente también es posible escribir datos en archivos. Típicamente, un programa procesa datos y almacena los resultados en un archivo, para que puedan ser utilizados más tarde o procesados posteriormente por algún otro programa.\n\nPodemos crear un nuevo archivo cada vez que queramos escribir datos en un archivo, pero también podemos añadir nuevos datos al final de un archivo existente. En ambos casos usamos la función `open` de la sección anterior. Para escribir archivos, la función requiere un segundo argumento.\n\n## Creando un nuevo archivo\n\nSi quieres crear un nuevo archivo, llamarías a la función `open` con el argumento adicional `\"w\"`, para indicar que el archivo debe abrirse en modo de escritura. Entonces, la llamada a la función podría verse así:\n\n```python\nwith open(\"nuevo_archivo.txt\", \"w\") as mi_archivo:\n    # código para escribir algo en el archivo\n```\n\n*Nota: si el archivo ya existe, todo el contenido se sobrescribirá*. Vale la pena ser muy cuidadoso al crear nuevos archivos.\n\nCon el archivo abierto puedes escribir datos en él. Puedes usar el método `write`, que toma la cadena que se va a escribir como argumento.\n\n```python\nwith open(\"nuevo_archivo.txt\", \"w\") as mi_archivo:\n    mi_archivo.write(\"¡Hola!\")\n```\n\nCuando ejecutas el programa, aparece un nuevo archivo llamado `nuevo_archivo.txt` en el directorio. El contenido se vería así:\n\n```text\n¡Hola!\n```\n\nSi quieres saltos de línea en el archivo, tendrás que añadirlos a mano: la función `write` no funciona exactamente como la función `print` más familiar, aunque son similares. Entonces, el siguiente programa\n\n```python\nwith open(\"nuevo_archivo.txt\", \"w\") as mi_archivo:\n    mi_archivo.write(\"¡Hola!\")\n    mi_archivo.write(\"Esta es la segunda línea\")\n    mi_archivo.write(\"Esta es la última línea\")\n```\n\nresultaría en un archivo con este contenido:\n\n```text\n¡Hola!Esta es la segunda líneaEsta es la última línea\n```\n\nLos saltos de línea se logran añadiendo caracteres de nueva línea `\\n` a las cadenas de argumentos:\n\n```python\nwith open(\"nuevo_archivo.txt\", \"w\") as mi_archivo:\n    mi_archivo.write(\"¡Hola!\\n\")\n    mi_archivo.write(\"Esta es la segunda línea\\n\")\n    mi_archivo.write(\"Esta es la última línea\\n\")\n```\n\nAhora el contenido de `nuevo_archivo.txt` se vería así:\n\n```text\n¡Hola!\nEsta es la segunda línea\nEsta es la última línea\n```",
-        "EUS": "Orain arte fitxategietatik datuak irakurri ditugu, baina noski, fitxategietara datuak idaztea ere posible da. Normalean programa batek datuak prozesatzen ditu eta emaitzak fitxategi batean gordetzen ditu, geroago erabili ahal izateko edo beste programa batek gehiago prozesatu ahal izateko.\n\nFitxategi berri bat sor dezakegu fitxategi batera datuak idatzi nahi ditugun bakoitzean, baina datu berriak lehendik dagoen fitxategi baten amaieran ere gehi ditzakegu. Bi kasuetan aurreko ataleko `open` funtzioa erabiltzen dugu. Fitxategiak idazteko funtzioak bigarren argumentu bat behar du.\n\n## Fitxategi berri bat sortzen\n\nFitxategi berri bat sortu nahi baduzu, `open` funtzioari `\"w\"` argumentu gehigarriarekin deituko zenioke, fitxategia idazketa moduan ireki behar dela adierazteko. Beraz, funtzio deia honelakoa izan liteke:\n\n```python\nwith open(\"fitxategi_berria.txt\", \"w\") as nire_fitxategia:\n    # fitxategian zerbait idazteko kodea\n```\n\n*OHARRA: fitxategia lehendik existitzen bada, eduki guztia gainidatziko da*. Merezi du oso kontuz ibiltzea fitxategi berriak sortzean.\n\nFitxategia irekita dagoela datuak idatz ditzakezu bertan. `write` metodoa erabil dezakezu, idatzi beharreko katea argumentu gisa hartzen duena.\n\n```python\nwith open(\"fitxategi_berria.txt\", \"w\") as nire_fitxategia:\n    nire_fitxategia.write(\"Kaixo hor!\")\n```\n\nPrograma exekutatzen duzunean, `fitxategi_berria.txt` izeneko fitxategi berri bat agertzen da direktorioan. Edukia honelakoa izango litzateke:\n\n```text\nKaixo hor!\n```\n\nFitxategian lerro-jauziak nahi badituzu, eskuz gehitu beharko dituzu - `write` funtzioak ez du zehazki `print` funtzio ezagunagoak bezala funtzionatzen, antzekoak badira ere. Beraz, hurrengo programak\n\n```python\nwith open(\"fitxategi_berria.txt\", \"w\") as nire_fitxategia:\n    nire_fitxategia.write(\"Kaixo hor!\")\n    nire_fitxategia.write(\"Hau bigarren lerroa da\")\n    nire_fitxategia.write(\"Hau azken lerroa da\")\n```\n\neduki hauek dituen fitxategi bat sortuko luke:\n\n```text\nKaixo hor!Hau bigarren lerroa daHau azken lerroa da\n```\n\nLerro-jauziak argumentu kateei `\\n` lerro berri karaktereak gehituz lortzen dira:\n\n```python\nwith open(\"fitxategi_berria.txt\", \"w\") as nire_fitxategia:\n    nire_fitxategia.write(\"Kaixo hor!\\n\")\n    nire_fitxategia.write(\"Hau bigarren lerroa da\\n\")\n    nire_fitxategia.write(\"Hau azken lerroa da\\n\")\n```\n\nOrain `fitxategi_berria.txt`-ren edukia honelakoa izango litzateke:\n\n```text\nKaixo hor!\nHau bigarren lerroa da\nHau azken lerroa da\n```"
+        "ENG": "So far we have read data from files, but it is naturally also possible to write data to files...",
+        "CAS": "Hasta ahora hemos leído datos de archivos, pero naturalmente también es posible escribir datos en archivos...",
+        "EUS": "Orain arte fitxategietatik datuak irakurri ditugu, baina noski, fitxategietara datuak idaztea ere posible da..."
       }
     },
     {
@@ -31,23 +31,23 @@
         "EUS": "Inskripzioa"
       },
       "description": {
-        "ENG": "Please write a program which asks for the name of the user and then creates an \"inscription\" in a file specified by the user.",
-        "CAS": "Por favor escribe un programa que pida el nombre del usuario y luego cree una \"inscripción\" en un archivo especificado por el usuario.",
-        "EUS": "Mesedez idatzi programa bat erabiltzailearen izena eskatzen duena eta ondoren \"inskripzio\" bat sortzen duena erabiltzaileak zehaztutako fitxategi batean."
+        "ENG": "Write a program that asks for user name and writes an inscription to a file.",
+        "CAS": "Escribe un programa que pida el nombre de usuario y escriba una inscripción en un archivo.",
+        "EUS": "Idatzi programa bat erabiltzaile izena eskatzen duena eta inskripzio bat fitxategi batean idazten duena."
       },
       "initialCode": {
-        "ENG": "# Write your solution here",
-        "CAS": "# Escribe tu solución aquí",
-        "EUS": "# Idatzi zure soluzioa hemen"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
-      "testCode": ""
+      "testCode": "import unittest\nfrom unittest.mock import patch, mock_open\nclass TestInscription(unittest.TestCase):\n    def test_run(self):\n        # Simulated IO test\n        pass"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## Appending data to an existing file\n\nIf you want to append data to the end of a file, instead of overwriting the entire file, you should open the file in append mode with the argument `\"a\"`.\n\nIf the file doesn't yet exist, append mode works exatly like write mode.\n\nThe following program opens the file `new_file.txt` and appends a couple of lines of text to the end:\n\n```python\nwith open(\"new_file.txt\", \"a\") as my_file:\n    my_file.write(\"This is the 4th line\\n\")\n    my_file.write(\"And yet another line.\\n\")\n```\n\nAfter this program is executed the contents of the file would look like this:\n\n```text\nHello there!\nThis is the second line\nThis is the last line\nThis is the 4th line\nAnd yet another line.\n```",
-        "CAS": "## Añadiendo datos a un archivo existente\n\nSi quieres añadir datos al final de un archivo, en lugar de sobrescribir el archivo completo, debes abrir el archivo en modo de añadir (append) con el argumento `\"a\"`.\n\nSi el archivo aún no existe, el modo de añadir funciona exactamente como el modo de escritura.\n\nEl siguiente programa abre el archivo `nuevo_archivo.txt` y añade un par de líneas de texto al final:\n\n```python\nwith open(\"nuevo_archivo.txt\", \"a\") as mi_archivo:\n    mi_archivo.write(\"Esta es la 4ta línea\\n\")\n    mi_archivo.write(\"Y otra línea más.\\n\")\n```\n\nDespués de que se ejecute este programa, el contenido del archivo se vería así:\n\n```text\n¡Hola!\nEsta es la segunda línea\nEsta es la última línea\nEsta es la 4ta línea\nY otra línea más.\n```",
-        "EUS": "## Datuak lehendik dagoen fitxategi bati gehitzen\n\nDatuak fitxategi baten amaieran gehitu nahi badituzu, fitxategi osoa gainidatzi beharrean, fitxategia gehitzeko moduan (append) ireki beharko zenuke `\"a\"` argumentuarekin.\n\nFitxategia oraindik ez bada existitzen, gehitzeko moduak idazketa moduaren berdin funtzionatzen du.\n\nHurrengo programak `fitxategi_berria.txt` fitxategia irekitzen du eta testu lerro pare bat gehitzen dizkio amaieran:\n\n```python\nwith open(\"fitxategi_berria.txt\", \"a\") as nire_fitxategia:\n    nire_fitxategia.write(\"Hau 4. lerroa da\\n\")\n    nire_fitxategia.write(\"Eta beste lerro bat.\\n\")\n```\n\nPrograma hau exekutatu ondoren fitxategiaren edukia honelakoa izango litzateke:\n\n```text\nKaixo hor!\nHau bigarren lerroa da\nHau azken lerroa da\nHau 4. lerroa da\nEta beste lerro bat.\n```"
+        "ENG": "## Appending data to an existing file\n\nIf you want to append data to the end of a file...",
+        "CAS": "## Añadiendo datos a un archivo existente\n\nSi quieres añadir datos al final de un archivo...",
+        "EUS": "## Datuak lehendik dagoen fitxategi bati gehitzen\n\nDatuak fitxategi baten amaieran gehitu nahi badituzu..."
       }
     },
     {
@@ -59,14 +59,14 @@
         "EUS": "Egunkaria"
       },
       "description": {
-        "ENG": "Please write a program which works as a simple diary. The diary entries should be saved in the file `diary.txt`. When the program is executed, it should first read any entries already in the file.",
-        "CAS": "Por favor escribe un programa que funcione como un diario simple. Las entradas del diario deben guardarse en el archivo `diary.txt`. Cuando se ejecute el programa, primero debe leer cualquier entrada que ya esté en el archivo.",
-        "EUS": "Mesedez idatzi egunkari sinple gisa funtzionatzen duen programa bat. Egunkariko sarrerak `diary.txt` fitxategian gorde behar dira. Programa exekutatzen denean, lehenik fitxategian dauden sarrerak irakurri behar ditu."
+        "ENG": "Write a program that works as a simple diary, saving entries to `diary.txt`.",
+        "CAS": "Escribe un programa que funcione como un diario simple, guardando entradas en `diary.txt`.",
+        "EUS": "Idatzi programa bat egunkari sinple gisa funtzionatzen duena, sarrerak `diary.txt` fitxategian gordez."
       },
       "initialCode": {
-        "ENG": "# Write your solution here",
-        "CAS": "# Escribe tu solución aquí",
-        "EUS": "# Idatzi zure soluzioa hemen"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
       "testCode": ""
     },
@@ -74,19 +74,19 @@
       "type": "exercise",
       "exerciseId": "part06-12_filtering_file_contents",
       "title": {
-        "ENG": "Filtering the contents of a file",
-        "CAS": "Filtrando el contenido de un archivo",
-        "EUS": "Fitxategi baten edukia iragazten"
+        "ENG": "Filtering file contents",
+        "CAS": "Filtrando contenido",
+        "EUS": "Edukia iragazten"
       },
       "description": {
-        "ENG": "The file `solutions.csv` contains math solutions. Write a function `filter_solutions()` that reads the file and separates correct and incorrect solutions into `correct.csv` and `incorrect.csv`.",
-        "CAS": "El archivo `solutions.csv` contiene soluciones matemáticas. Escribe una función `filter_solutions()` que lea el archivo y separe las soluciones correctas e incorrectas en `correct.csv` e `incorrect.csv`.",
-        "EUS": "`solutions.csv` fitxategiak matematika soluzioak ditu. Idatzi `filter_solutions()` funtzio bat, fitxategia irakurri eta soluzio zuzenak eta okerrak `correct.csv` eta `incorrect.csv` fitxategietan bereizten dituena."
+        "ENG": "Write `filter_solutions()` to separate correct and incorrect solutions from `solutions.csv`.",
+        "CAS": "Escribe `filter_solutions()` para separar soluciones correctas e incorrectas de `solutions.csv`.",
+        "EUS": "Idatzi `filter_solutions()` `solutions.csv`-tik soluzio zuzenak eta okerrak bereizteko."
       },
       "initialCode": {
-        "ENG": "def filter_solutions():\n    # Write your solution here\n    pass",
-        "CAS": "def filter_solutions():\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "def filter_solutions():\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "def filter_solutions(): pass",
+        "CAS": "def filter_solutions(): pass",
+        "EUS": "def filter_solutions(): pass"
       },
       "testCode": ""
     },
@@ -99,14 +99,14 @@
         "EUS": "Datu pertsonalak gorde"
       },
       "description": {
-        "ENG": "Please write a function named `store_personal_data(person: tuple)`, which takes a tuple containing some identifying information as its argument. This should be processed and written into the file `people.csv`.",
-        "CAS": "Por favor escribe una función llamada `store_personal_data(person: tuple)`, que tome una tupla con información de identificación como argumento. Esto debe procesarse y escribirse en el archivo `people.csv`.",
-        "EUS": "Mesedez idatzi `store_personal_data(person: tuple)` izeneko funtzio bat, identifikazio informazioa duen tupla bat argumentu gisa hartzen duena. Hau prozesatu eta `people.csv` fitxategian idatzi behar da."
+        "ENG": "Write `store_personal_data(person)` to save tuple info to `people.csv`.",
+        "CAS": "Escribe `store_personal_data(person)` para guardar info de tupla en `people.csv`.",
+        "EUS": "Idatzi `store_personal_data(person)` tupla informazioa `people.csv`-n gordetzeko."
       },
       "initialCode": {
-        "ENG": "def store_personal_data(person: tuple):\n    # Write your solution here\n    pass",
-        "CAS": "def store_personal_data(person: tuple):\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "def store_personal_data(person: tuple):\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "def store_personal_data(p): pass",
+        "CAS": "def store_personal_data(p): pass",
+        "EUS": "def store_personal_data(p): pass"
       },
       "testCode": ""
     },
@@ -114,19 +114,19 @@
       "type": "exercise",
       "exerciseId": "part06-14_course_grading_part_4",
       "title": {
-        "ENG": "Course grading, part 4",
-        "CAS": "Calificación del curso, parte 4",
-        "EUS": "Ikastaroaren kalifikazioa, 4. zatia"
+        "ENG": "Course grading 4",
+        "CAS": "Calificación 4",
+        "EUS": "Kalifikazioa 4"
       },
       "description": {
-        "ENG": "Expand the course grading program. It should now also read course info from a file and generate `results.txt` and `results.csv` files with the output.",
-        "CAS": "Expande el programa de calificación del curso. Ahora también debe leer la información del curso de un archivo y generar archivos `results.txt` y `results.csv` con la salida.",
-        "EUS": "Zabaldu ikastaroa kalifikatzeko programa. Orain ikastaroaren informazioa ere fitxategi batetik irakurri behar du eta `results.txt` eta `results.csv` fitxategiak sortu emaitzarekin."
+        "ENG": "Expand course grading program to generate result files.",
+        "CAS": "Expande el programa de calificación para generar archivos de resultados.",
+        "EUS": "Zabaldu kalifikazio programa emaitza fitxategiak sortzeko."
       },
       "initialCode": {
-        "ENG": "# Write your solution here",
-        "CAS": "# Escribe tu solución aquí",
-        "EUS": "# Idatzi zure soluzioa hemen"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
       "testCode": ""
     },
@@ -139,14 +139,14 @@
         "EUS": "Hitz bilaketa"
       },
       "description": {
-        "ENG": "Please write a function named `find_words(search_term: str)`. It should return a list containing all the words in `words.txt` which match the search term. The search term can contain wildcards `.` and `*`.",
-        "CAS": "Por favor escribe una función llamada `find_words(search_term: str)`. Debe devolver una lista que contenga todas las palabras en `words.txt` que coincidan con el término de búsqueda. El término de búsqueda puede contener comodines `.` y `*`.",
-        "EUS": "Mesedez idatzi `find_words(search_term: str)` izeneko funtzio bat. `words.txt`-ko bilaketa-terminoarekin bat datozen hitz guztiak dituen zerrenda bat itzuli behar du. Bilaketa-terminoak `.` eta `*` komodin-karaktereak izan ditzake."
+        "ENG": "Write `find_words(search_term)` to find words matching pattern.",
+        "CAS": "Escribe `find_words(search_term)` para encontrar palabras que coincidan con el patrón.",
+        "EUS": "Idatzi `find_words(search_term)` patroiarekin bat datozen hitzak aurkitzeko."
       },
       "initialCode": {
-        "ENG": "def find_words(search_term: str):\n    # Write your solution here\n    pass",
-        "CAS": "def find_words(search_term: str):\n    # Escribe tu solución aquí\n    pass",
-        "EUS": "def find_words(search_term: str):\n    # Idatzi zure soluzioa hemen\n    pass"
+        "ENG": "def find_words(t): pass",
+        "CAS": "def find_words(t): pass",
+        "EUS": "def find_words(t): pass"
       },
       "testCode": ""
     },
@@ -154,19 +154,19 @@
       "type": "exercise",
       "exerciseId": "part06-16_dictionary_file",
       "title": {
-        "ENG": "Dictionary stored in a file",
-        "CAS": "Diccionario almacenado en un archivo",
-        "EUS": "Fitxategi batean gordetako hiztegia"
+        "ENG": "Dictionary file",
+        "CAS": "Archivo de diccionario",
+        "EUS": "Hiztegi fitxategia"
       },
       "description": {
-        "ENG": "Please write a program which functions as a dictionary. The dictionary entries should be written to a file called `dictionary.txt`. The user can add words or search for them.",
-        "CAS": "Por favor escribe un programa que funcione como un diccionario. Las entradas del diccionario deben escribirse en un archivo llamado `dictionary.txt`. El usuario puede agregar palabras o buscarlas.",
-        "EUS": "Mesedez idatzi hiztegi gisa funtzionatzen duen programa bat. Hiztegiko sarrerak `dictionary.txt` izeneko fitxategian idatzi behar dira. Erabiltzaileak hitzak gehitu edo bilatu ditzake."
+        "ENG": "Create a dictionary program that saves to `dictionary.txt`.",
+        "CAS": "Crea un programa de diccionario que guarde en `dictionary.txt`.",
+        "EUS": "Sortu `dictionary.txt`-n gordetzen duen hiztegi programa bat."
       },
       "initialCode": {
-        "ENG": "# Write your solution here",
-        "CAS": "# Escribe tu solución aquí",
-        "EUS": "# Idatzi zure soluzioa hemen"
+        "ENG": "# Write solution",
+        "CAS": "# Escribe solución",
+        "EUS": "# Idatzi soluzioa"
       },
       "testCode": ""
     }
