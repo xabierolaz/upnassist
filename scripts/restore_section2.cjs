@@ -2,9 +2,17 @@ const fs = require('fs');
 const path = require('path');
 
 // --- READ CONTENT ---
-const introText = fs.readFileSync(path.join(__dirname, 'data/s2_intro.md'), 'utf-8');
-const referencingText = fs.readFileSync(path.join(__dirname, 'data/s2_ref.md'), 'utf-8');
-const moreInputsText = fs.readFileSync(path.join(__dirname, 'data/s2_more.md'), 'utf-8');
+const introTextENG = fs.readFileSync(path.join(__dirname, 'data/s2_intro.md'), 'utf-8');
+const introTextCAS = fs.readFileSync(path.join(__dirname, 'data/s2_intro_cas.md'), 'utf-8');
+const introTextEUS = fs.readFileSync(path.join(__dirname, 'data/s2_intro_eus.md'), 'utf-8');
+
+const referencingTextENG = fs.readFileSync(path.join(__dirname, 'data/s2_ref.md'), 'utf-8');
+const referencingTextCAS = fs.readFileSync(path.join(__dirname, 'data/s2_ref_cas.md'), 'utf-8');
+const referencingTextEUS = fs.readFileSync(path.join(__dirname, 'data/s2_ref_eus.md'), 'utf-8');
+
+const moreInputsTextENG = fs.readFileSync(path.join(__dirname, 'data/s2_more.md'), 'utf-8');
+const moreInputsTextCAS = fs.readFileSync(path.join(__dirname, 'data/s2_more_cas.md'), 'utf-8');
+const moreInputsTextEUS = fs.readFileSync(path.join(__dirname, 'data/s2_more_eus.md'), 'utf-8');
 
 // --- EXERCISES (Copied/Adapted) ---
 const exerciseNameTwice = {
@@ -116,10 +124,10 @@ const section2 = {
     EUS: "Erabiltzailearen informazioa"
   },
   blocks: [
-    { type: 'markdown', content: { ENG: introText, CAS: "", EUS: "" } },
+    { type: 'markdown', content: { ENG: introTextENG, CAS: introTextCAS, EUS: introTextEUS } },
     exerciseNameTwice,
-    { type: 'markdown', content: { ENG: referencingText, CAS: "", EUS: "" } },
-    { type: 'markdown', content: { ENG: moreInputsText, CAS: "", EUS: "" } },
+    { type: 'markdown', content: { ENG: referencingTextENG, CAS: referencingTextCAS, EUS: referencingTextEUS } },
+    { type: 'markdown', content: { ENG: moreInputsTextENG, CAS: moreInputsTextCAS, EUS: moreInputsTextEUS } },
     exerciseNameAndAddress,
     exerciseUtterances,
     exerciseStory
@@ -128,4 +136,4 @@ const section2 = {
 
 const outputPath = path.join(__dirname, '../src/data/part1/section2.json');
 fs.writeFileSync(outputPath, JSON.stringify(section2, null, 2), 'utf-8');
-console.log(`Successfully restored ${outputPath}`);
+console.log(`Successfully restored and translated ${outputPath}`);
