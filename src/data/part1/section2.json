@@ -47,13 +47,13 @@
       "exerciseId": "part01-07_name_and_exclamation_marks",
       "title": {
         "ENG": "Name and exclamation marks",
-        "CAS": "",
-        "EUS": ""
+        "CAS": "Name and exclamation marks",
+        "EUS": "Name and exclamation marks"
       },
       "description": {
         "ENG": "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.\r\n\r\nThe program should function as follows:\r\n\r\n<sample-output>\r\n\r\nWhat is your name? **Paul**\r\n!Paul!Paul!\r\n\r\n</sample-output>",
-        "CAS": "",
-        "EUS": ""
+        "CAS": "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.\r\n\r\nThe program should function as follows:\r\n\r\n<sample-output>\r\n\r\nWhat is your name? **Paul**\r\n!Paul!Paul!\r\n\r\n</sample-output>",
+        "EUS": "Please write a program which asks for the user's name and then prints it out twice on a single line so that there is an exclamation mark at the beginning of the line, another between the two names and a third one at the end of the line.\r\n\r\nThe program should function as follows:\r\n\r\n<sample-output>\r\n\r\nWhat is your name? **Paul**\r\n!Paul!Paul!\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\nname = input(\"What is your name? \")\r\nprint(\"!\" + name + \"!\" + name + \"!\")",
