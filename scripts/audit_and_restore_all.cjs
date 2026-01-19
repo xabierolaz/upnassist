@@ -74,33 +74,65 @@ const courseStructureMetadata = [
     { id: "part14-4", title: { ENG: "Your own game" }, part: 14 }
 ];
 
-function elToMd(el) {
-    let text = el.textContent.trim();
-    if (!text && el.tagName !== 'DIV') return "";
+const manualMapping = {
+    "part2-2": "2-else-elif.html",
+    "part3-3": "3-more-loops.html",
+    "part4-1": "1-vscode.html",
+    "part6-3": "3-errors.html",
+    "part7-5": "5-creating-modules.html",
+    "part7-6": "6-more-features.html",
+    "part10-4": "4-application-development.html"
+};
 
-    if (el.tagName === 'H1') return `# ${text}\n\n`;
-    if (el.tagName === 'H2') return `## ${text}\n\n`;
-    if (el.tagName === 'H3') return `### ${text}\n\n`;
-    if (el.tagName === 'P') return `${text}\n\n`;
+function elToMd(el) {
+    if (!el) return "";
     
-    // Code blocks
+    // Skip
+    if (['SCRIPT', 'STYLE', 'SVG', 'NOSCRIPT'].includes(el.tagName)) return "";
+    // Skip navigation elements
+    if (el.classList && (el.classList.contains('EndOfSubSection__ButtonWrapper-ees48a-2') || el.classList.contains('CoursePageFooter__CoursePageFooterWrapper-sc-1wp274x-0'))) return "";
+
+    // Headers
+    if (el.tagName === 'H1') return `# ${el.textContent.trim()}\n\n`;
+    if (el.tagName === 'H2') return `## ${el.textContent.trim()}\n\n`;
+    if (el.tagName === 'H3') return `### ${el.textContent.trim()}\n\n`;
+    if (el.tagName === 'H4') return `#### ${el.textContent.trim()}\n\n`;
+    
+    // Paragraphs
+    if (el.tagName === 'P') {
+        return el.textContent.trim() + "\n\n";
+    }
+
+    // Lists
+    if (el.tagName === 'UL') {
+        return Array.from(el.children).map(li => `- ${li.textContent.trim()}`).join('\n') + "\n\n";
+    }
+    if (el.tagName === 'OL') {
+        return Array.from(el.children).map((li, i) => `${i+1}. ${li.textContent.trim()}`).join('\n') + "\n\n";
+    }
+
+    // Code Blocks
     if (el.tagName === 'PRE' || (el.tagName === 'DIV' && el.classList.contains('gatsby-highlight'))) {
         return "```python\n" + el.textContent + "\n```\n\n";
     }
 
-    if (el.tagName === 'UL') {
-        return Array.from(el.querySelectorAll('li')).map(li => `- ${li.textContent.trim()}`).join('\n') + "\n\n";
-    }
-    
-    if (el.tagName === 'OL') {
-        return Array.from(el.querySelectorAll('li')).map((li, i) => `${i+1}. ${li.textContent.trim()}`).join('\n') + "\n\n";
-    }
-
-    if (el.textContent.includes('Sample output') || (el.className && typeof el.className === 'string' && el.className.includes('SampleOutput'))) {
+    // Sample Output (Strict Class Check)
+    if (el.className && typeof el.className === 'string' && el.className.includes('SampleOutput__Wrapper')) {
          return "```text\n" + el.textContent.replace("Sample output", "").trim() + "\n```\n\n";
     }
 
-    return text + "\n\n";
+    // Recursive Traversal for wrappers
+    if (['DIV', 'ASIDE', 'SECTION', 'ARTICLE', 'BLOCKQUOTE', 'MAIN'].includes(el.tagName)) {
+        return Array.from(el.children).map(child => elToMd(child)).join('');
+    }
+
+    // Fallback for leaf nodes like SPAN, B, I if top level, or text nodes
+    if (el.nodeType === 3) return el.textContent; // Text node
+    
+    // If element has no children but has text content (e.g. unknown tag or B/I), return text
+    if (el.children && el.children.length === 0) return el.textContent.trim() + "\n\n";
+
+    return "";
 }
 
 function parseHtml(htmlContent, sectionTitle) {
@@ -111,10 +143,12 @@ function parseHtml(htmlContent, sectionTitle) {
     let h1 = h1s.find(el => el.textContent.trim().toLowerCase().includes(sectionTitle.toLowerCase()));
     
     if (!h1) {
-        // Remove numbering "1. "
         const cleanTitle = sectionTitle.replace(/^\d+\.\s*/, '');
         h1 = h1s.find(el => el.textContent.trim().toLowerCase().includes(cleanTitle.toLowerCase()));
     }
+    
+    // Fallback
+    if (!h1 && h1s.length > 0) h1 = h1s[0];
     
     if (!h1) return null;
 
@@ -137,8 +171,7 @@ function parseHtml(htmlContent, sectionTitle) {
         
         // Stop markers
         if (el.textContent && el.textContent.includes("You have reached the end of this section")) break;
-        if (el.querySelector && el.querySelector('a[href*=".html"]')) {
-             // Often prev/next links
+        if (el.querySelector && el.querySelector('a[href*=\".html\"]')) {
              if (el.textContent.includes('Continue to the next section')) break;
         }
 
@@ -155,35 +188,25 @@ function parseHtml(htmlContent, sectionTitle) {
     return contentMap;
 }
 
-function findHtmlFile(title, partIndex, sectionIndex) {
-    // 1. Try index.html for Part 1 Section 1
-    if (partIndex === 1 && sectionIndex === 1 && title.toLowerCase().includes("getting started")) {
+function findHtmlFile(id, title, partIndex, sectionIndex) {
+    if (manualMapping[id]) return path.join(WEBSITE_DIR, manualMapping[id]);
+
+    if (partIndex === 1 && sectionIndex === 1) {
         const p = path.join(WEBSITE_DIR, 'index.html');
         if (fs.existsSync(p)) return p;
     }
 
-    // 2. Try file with matching title slug
     const files = fs.readdirSync(WEBSITE_DIR).filter(f => f.endsWith('.html'));
-    
-    // Normalize title to slug words
-    const titleWords = title.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 3);
-    
-    // Exact match on filename?
-    // Filename format: INDEX-slug.html
-    // e.g. 2-information-from-the-user.html
-    // Try to match slug
     const slug = title.toLowerCase().replace(/[^\w]+/g, '-');
     let match = files.find(f => f.includes(slug));
     
     if (match) return path.join(WEBSITE_DIR, match);
     
-    // Heuristic match: Filename contains most words
+    const titleWords = title.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 3);
     match = files.find(f => {
         let hits = 0;
-        titleWords.forEach(w => {
-            if (f.includes(w)) hits++;
-        });
-        return hits >= Math.min(titleWords.length, 2); // At least 2 words or all words
+        titleWords.forEach(w => { if (f.includes(w)) hits++; });
+        return hits >= Math.min(titleWords.length, 2);
     });
     
     if (match) return path.join(WEBSITE_DIR, match);
@@ -193,32 +216,25 @@ function findHtmlFile(title, partIndex, sectionIndex) {
 
 async function restore() {
     for (const section of courseStructureMetadata) {
-        // 1. Resolve JSON path
         const sectionNum = section.id.split('-').pop();
         const jsonPath = path.join(DATA_DIR, `part${section.part}/section${sectionNum}.json`);
         
-        if (!fs.existsSync(jsonPath)) {
-            console.log(`[SKIP] JSON missing: ${jsonPath}`);
+        if (!fs.existsSync(jsonPath)) continue; 
+        
+        const htmlPath = findHtmlFile(section.id, section.title.ENG, section.part, parseInt(sectionNum));
+        if (!htmlPath || !fs.existsSync(htmlPath)) {
+            console.log(`[WARN] No HTML found for ${section.id}`);
             continue;
         }
         
-        // 2. Find HTML
-        const htmlPath = findHtmlFile(section.title.ENG, section.part, parseInt(sectionNum));
-        if (!htmlPath) {
-            console.log(`[WARN] No HTML found for ${section.id} (${section.title.ENG})`);
-            continue;
-        }
-        
-        // 3. Parse Content
         const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
         const parsedBlocks = parseHtml(htmlContent, section.title.ENG);
         
         if (!parsedBlocks || parsedBlocks.length === 0) {
-            console.log(`[WARN] No content parsed for ${section.id} from ${htmlPath}`);
+            console.log(`[WARN] No content parsed for ${section.id} from ${path.basename(htmlPath)}`);
             continue;
         }
         
-        // 4. Merge
         const json = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
         const exercises = json.blocks.filter(b => b.type === 'exercise');
         
@@ -231,8 +247,6 @@ async function restore() {
                     type: 'markdown',
                     content: {
                         ENG: item.content,
-                        // Preserve existing CAS/EUS if possible? No, structure changed.
-                        // We set CAS/EUS empty/placeholder, UI falls back to ENG.
                         CAS: "", 
                         EUS: ""
                     }
@@ -245,17 +259,14 @@ async function restore() {
             }
         }
         
-        // Append remaining exercises if any (mismatch)
         while (exerciseIndex < exercises.length) {
             newBlocks.push(exercises[exerciseIndex]);
             exerciseIndex++;
         }
         
-        // 5. Save
-        // Preserve title/id from original JSON
         json.blocks = newBlocks;
         fs.writeFileSync(jsonPath, JSON.stringify(json, null, 2), 'utf-8');
-        console.log(`[RESTORED] ${section.id} from ${path.basename(htmlPath)} (${newBlocks.length} blocks)`);
+        console.log(`[RESTORED] ${section.id}`);
     }
 }
 
