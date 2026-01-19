@@ -64,6 +64,28 @@ syntax_error = None
 if "error" in analysis_result and analysis_result["error"] == "syntax":
     syntax_error = analysis_result
 
+def translate_assertion(msg):
+    if CURRENT_LANG == 'ENG': return msg
+    try:
+        # String equality 'A' != 'B'
+        match = re.search(r"^'(.+)' != '(.+)'$", msg)
+        if match:
+            actual = match.group(1)
+            expected = match.group(2)
+            if CURRENT_LANG == 'CAS': return f"Se esperaba '{expected}', pero se obtuvo '{actual}'"
+            if CURRENT_LANG == 'EUS': return f"'{expected}' espero zen, baina '{actual}' lortu da"
+        
+        # Number equality 1 != 2
+        match = re.search(r"^(\\d+(\\.\\d+)?) != (\\d+(\\.\\d+)?)$", msg)
+        if match:
+            actual = match.group(1)
+            expected = match.group(3)
+            if CURRENT_LANG == 'CAS': return f"Se esperaba {expected}, pero se obtuvo {actual}"
+            if CURRENT_LANG == 'EUS': return f"{expected} espero zen, baina {actual} lortu da"
+    except:
+        pass
+    return msg
+
 # 2. DEFINIR HELPER RUNNER
 def run_student_code(inputs=None):
     if inputs is None: inputs = []
@@ -137,6 +159,8 @@ else:
                     if CURRENT_LANG == 'ENG': final_msg = parts[0]
                     elif CURRENT_LANG == 'CAS': final_msg = parts[1]
                     elif CURRENT_LANG == 'EUS': final_msg = parts[2]
+                else:
+                    final_msg = translate_assertion(raw_msg)
                 
                 self.results_data.append({
                     "name": test.shortDescription() or test._testMethodName,
