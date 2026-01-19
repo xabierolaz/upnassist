@@ -83,32 +83,22 @@ self.onmessage = async (event) => {
       
       try {
         const lines = formattedError.split('\n');
-        const filteredLines = [];
-        let capturing = false;
+        // Buscar donde empieza el código del usuario
+        const startIndex = lines.findIndex(line => line.includes('File "<exec>"') || line.includes('File "<console>"'));
         
-        for (const line of lines) {
-          // Empezar a capturar desde la primera referencia al código del usuario (<exec> o <console>)
-          // O si es la línea final del error (el tipo de excepción)
-          if (line.includes('File "<exec>"') || line.includes('File "<console>"')) {
-            capturing = true;
-          }
-          
-          // Si ya estamos capturando, o si es la línea del error final (ej: SyntaxError: ...)
-          // Las líneas de error final no suelen empezar con "  File"
-          if (capturing || (!line.trim().startsWith("File \"") && !line.includes("Traceback") && !line.includes("PythonError:"))) {
-             // Evitar líneas vacías al inicio de la captura
-             if (capturing || line.trim().length > 0) {
-                 filteredLines.push(line);
-             }
-          }
-        }
-        
-        // Si logramos filtrar algo razonable, lo usamos. Si no, fallback al error original pero limpio de 'PythonError:'
-        if (filteredLines.length > 0 && capturing) {
-            formattedError = filteredLines.join('\n');
+        if (startIndex !== -1) {
+            // Mantener solo desde la línea del usuario hacia abajo
+            formattedError = lines.slice(startIndex).join('\n');
         } else {
-            // Fallback simple: eliminar líneas con /lib/python
-            formattedError = lines.filter(l => !l.includes("/lib/python") && !l.includes("_pyodide")).join('\n');
+            // Fallback: Si no hay referencia a <exec>, intentar limpiar rutas internas conocidas
+            // Esto sucede en errores raros de sistema o importación
+            formattedError = lines.filter(l => 
+                !l.includes("/lib/python") && 
+                !l.includes("_pyodide") &&
+                !l.includes("CodeRunner") &&
+                !l.trim().startsWith("await") && 
+                !l.trim().startsWith("^")
+            ).join('\n');
         }
         
         // Limpiar prefijo común
