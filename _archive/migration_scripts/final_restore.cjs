@@ -5,7 +5,6 @@ const { JSDOM } = require('jsdom');
 const WEBSITE_DIR = path.join(__dirname, '../external_resources/mooc-website');
 const DATA_DIR = path.join(__dirname, '../src/data');
 
-// Full Metadata
 const courseStructureMetadata = [
     { id: "part1-1", title: { ENG: "Getting started" }, part: 1 },
     { id: "part1-2", title: { ENG: "Information from the user" }, part: 1 },
@@ -86,51 +85,33 @@ const manualMapping = {
 
 function elToMd(el) {
     if (!el) return "";
-    
-    // Skip
     if (['SCRIPT', 'STYLE', 'SVG', 'NOSCRIPT'].includes(el.tagName)) return "";
-    // Skip navigation elements
     if (el.classList && (el.classList.contains('EndOfSubSection__ButtonWrapper-ees48a-2') || el.classList.contains('CoursePageFooter__CoursePageFooterWrapper-sc-1wp274x-0'))) return "";
 
-    // Headers
     if (el.tagName === 'H1') return `# ${el.textContent.trim()}\n\n`;
     if (el.tagName === 'H2') return `## ${el.textContent.trim()}\n\n`;
     if (el.tagName === 'H3') return `### ${el.textContent.trim()}\n\n`;
     if (el.tagName === 'H4') return `#### ${el.textContent.trim()}\n\n`;
     
-    // Paragraphs
-    if (el.tagName === 'P') {
-        return el.textContent.trim() + "\n\n";
-    }
+    if (el.tagName === 'P') return el.textContent.trim() + "\n\n";
 
-    // Lists
-    if (el.tagName === 'UL') {
-        return Array.from(el.children).map(li => `- ${li.textContent.trim()}`).join('\n') + "\n\n";
-    }
-    if (el.tagName === 'OL') {
-        return Array.from(el.children).map((li, i) => `${i+1}. ${li.textContent.trim()}`).join('\n') + "\n\n";
-    }
+    if (el.tagName === 'UL') return Array.from(el.children).map(li => `- ${li.textContent.trim()}`).join('\n') + "\n\n";
+    if (el.tagName === 'OL') return Array.from(el.children).map((li, i) => `${i+1}. ${li.textContent.trim()}`).join('\n') + "\n\n";
 
-    // Code Blocks
     if (el.tagName === 'PRE' || (el.tagName === 'DIV' && el.classList.contains('gatsby-highlight'))) {
         return "```python\n" + el.textContent + "\n```\n\n";
     }
 
-    // Sample Output (Strict Class Check)
     if (el.className && typeof el.className === 'string' && el.className.includes('SampleOutput__Wrapper')) {
          return "```text\n" + el.textContent.replace("Sample output", "").trim() + "\n```\n\n";
     }
 
-    // Recursive Traversal for wrappers
     if (['DIV', 'ASIDE', 'SECTION', 'ARTICLE', 'BLOCKQUOTE', 'MAIN'].includes(el.tagName)) {
         return Array.from(el.children).map(child => elToMd(child)).join('');
     }
 
-    // Fallback for leaf nodes like SPAN, B, I if top level, or text nodes
-    if (el.nodeType === 3) return el.textContent; // Text node
-    
-    // If element has no children but has text content (e.g. unknown tag or B/I), return text
-    if (el.children && el.children.length === 0) return el.textContent.trim() + "\n\n";
+    if (el.nodeType === 3) return el.textContent;
+    if (el.children.length === 0) return el.textContent.trim() + "\n\n";
 
     return "";
 }
@@ -138,18 +119,10 @@ function elToMd(el) {
 function parseHtml(htmlContent, sectionTitle) {
     const dom = new JSDOM(htmlContent);
     const doc = dom.window.document;
-    
     const h1s = Array.from(doc.querySelectorAll('h1'));
     let h1 = h1s.find(el => el.textContent.trim().toLowerCase().includes(sectionTitle.toLowerCase()));
-    
-    if (!h1) {
-        const cleanTitle = sectionTitle.replace(/^\d+\.\s*/, '');
-        h1 = h1s.find(el => el.textContent.trim().toLowerCase().includes(cleanTitle.toLowerCase()));
-    }
-    
-    // Fallback
+    if (!h1) h1 = h1s.find(el => el.textContent.trim().toLowerCase().includes(sectionTitle.replace(/^\d+\.\s*/, '').toLowerCase()));
     if (!h1 && h1s.length > 0) h1 = h1s[0];
-    
     if (!h1) return null;
 
     const container = h1.parentElement;
@@ -159,23 +132,13 @@ function parseHtml(htmlContent, sectionTitle) {
     const contentMap = [];
     let currentText = "";
 
-    function flush() {
-        if (currentText.trim()) {
-            contentMap.push({ type: 'text', content: currentText });
-            currentText = "";
-        }
-    }
+    function flush() { if (currentText.trim()) contentMap.push({ type: 'text', content: currentText }); currentText = ""; }
 
     for (let i = startIndex; i < children.length; i++) {
         const el = children[i];
-        
-        // Stop markers
         if (el.textContent && el.textContent.includes("You have reached the end of this section")) break;
-        if (el.querySelector && el.querySelector('a[href*=\".html\"]')) {
-             if (el.textContent.includes('Continue to the next section')) break;
-        }
+        if (el.querySelector && el.querySelector('a[href*=".html"]') && el.textContent.includes('Continue to the next section')) break;
 
-        // Exercise Placeholder
         if (el.className && typeof el.className === 'string' && el.className.includes('Loading__LoadingWrapper')) {
             flush();
             contentMap.push({ type: 'exercise_placeholder' });
@@ -184,73 +147,42 @@ function parseHtml(htmlContent, sectionTitle) {
         }
     }
     flush();
-    
     return contentMap;
 }
 
 function findHtmlFile(id, title, partIndex, sectionIndex) {
     if (manualMapping[id]) return path.join(WEBSITE_DIR, manualMapping[id]);
-
-    if (partIndex === 1 && sectionIndex === 1) {
-        const p = path.join(WEBSITE_DIR, 'index.html');
-        if (fs.existsSync(p)) return p;
-    }
-
+    if (partIndex === 1 && sectionIndex === 1) return path.join(WEBSITE_DIR, 'index.html');
     const files = fs.readdirSync(WEBSITE_DIR).filter(f => f.endsWith('.html'));
     const slug = title.toLowerCase().replace(/[^\w]+/g, '-');
     let match = files.find(f => f.includes(slug));
-    
     if (match) return path.join(WEBSITE_DIR, match);
-    
     const titleWords = title.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/).filter(w => w.length > 3);
     match = files.find(f => {
         let hits = 0;
         titleWords.forEach(w => { if (f.includes(w)) hits++; });
         return hits >= Math.min(titleWords.length, 2);
     });
-    
-    if (match) return path.join(WEBSITE_DIR, match);
-    
-    return null;
+    return match ? path.join(WEBSITE_DIR, match) : null;
 }
 
 async function restore() {
     for (const section of courseStructureMetadata) {
         const sectionNum = section.id.split('-').pop();
         const jsonPath = path.join(DATA_DIR, `part${section.part}/section${sectionNum}.json`);
-        
-        if (!fs.existsSync(jsonPath)) continue; 
-        
+        if (!fs.existsSync(jsonPath)) continue;
         const htmlPath = findHtmlFile(section.id, section.title.ENG, section.part, parseInt(sectionNum));
-        if (!htmlPath || !fs.existsSync(htmlPath)) {
-            console.log(`[WARN] No HTML found for ${section.id}`);
-            continue;
-        }
-        
+        if (!htmlPath || !fs.existsSync(htmlPath)) continue;
         const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
         const parsedBlocks = parseHtml(htmlContent, section.title.ENG);
-        
-        if (!parsedBlocks || parsedBlocks.length === 0) {
-            console.log(`[WARN] No content parsed for ${section.id} from ${path.basename(htmlPath)}`);
-            continue;
-        }
-        
+        if (!parsedBlocks || parsedBlocks.length === 0) continue;
         const json = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
         const exercises = json.blocks.filter(b => b.type === 'exercise');
-        
         const newBlocks = [];
         let exerciseIndex = 0;
-        
         for (const item of parsedBlocks) {
             if (item.type === 'text') {
-                newBlocks.push({
-                    type: 'markdown',
-                    content: {
-                        ENG: item.content,
-                        CAS: "", 
-                        EUS: ""
-                    }
-                });
+                newBlocks.push({ type: 'markdown', content: { ENG: item.content, CAS: "", EUS: "" } });
             } else if (item.type === 'exercise_placeholder') {
                 if (exerciseIndex < exercises.length) {
                     newBlocks.push(exercises[exerciseIndex]);
@@ -258,15 +190,13 @@ async function restore() {
                 }
             }
         }
-        
         while (exerciseIndex < exercises.length) {
             newBlocks.push(exercises[exerciseIndex]);
             exerciseIndex++;
         }
-        
         json.blocks = newBlocks;
         fs.writeFileSync(jsonPath, JSON.stringify(json, null, 2), 'utf-8');
-        console.log(`[RESTORED] ${section.id}`);
+        console.log(`[OK] ${section.id}`);
     }
 }
 

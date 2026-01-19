@@ -29,9 +29,9 @@ export interface InteractiveComponentProps extends BaseComponentProps {
   loading?: boolean;
 }
 
-export interface FormComponentProps extends BaseComponentProps {
-  value?: any;
-  onChange?: (value: any) => void;
+export interface FormComponentProps<T = any> extends BaseComponentProps {
+  value?: T;
+  onChange?: (value: T) => void;
   onBlur?: () => void;
   onFocus?: () => void;
   error?: string;

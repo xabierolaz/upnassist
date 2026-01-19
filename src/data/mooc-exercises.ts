@@ -50,7 +50,8 @@ export interface CoursePage {
 export const courseStructure = courseStructureMetadata;
 
 // Mapping of all sections for Vite static analysis
-const sectionModules = import.meta.glob('./part*/section*.json');
+// Use generic to type the module import
+const sectionModules = import.meta.glob<CoursePage>('./part*/section*.json', { import: 'default' });
 
 /**
  * Dynamic loader for sections.
@@ -73,9 +74,8 @@ export const loadSection = async (id: string): Promise<CoursePage | undefined> =
     }
 
     try {
-        const data = await loader() as any;
-        // JSON imports in Vite return the object directly
-        return data.default || data as CoursePage;
+        const data = await loader();
+        return data;
     } catch (e) {
         console.error(`Failed to load section ${id} from part ${part}`, e);
         return undefined;
@@ -86,7 +86,7 @@ export const loadSection = async (id: string): Promise<CoursePage | undefined> =
 export const getLocalizedText = (text: LocalizedString | undefined, lang: 'ENG' | 'CAS' | 'EUS'): string => {
     if (!text) return "";
     if (typeof text === 'string') return text;
-    return (text as any)[lang] || (text as any)['ENG'] || "";
+    return text[lang] || text['ENG'] || "";
 };
 
 export const playgroundExercise: Exercise = {
@@ -96,9 +96,3 @@ export const playgroundExercise: Exercise = {
   initialCode: "# Sandbox\nprint(\"Hola\")\n",
   testCode: ""
 };
-
-// Compatibility exports for tests
-export const coursePages: any[] = [];
-export const exercisesDB: Record<string, Exercise> = {};
-export const upnaExercises: Exercise[] = [];
-export const getExercise = (id: string) => undefined;

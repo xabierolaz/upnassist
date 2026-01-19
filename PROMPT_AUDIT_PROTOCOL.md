@@ -1,80 +1,45 @@
-# Protocolo de Auditoría y Migración de Contenido MOOC (Clínico)
+# Protocolo de Auditoría y Generación de Contenido (Pyxom-vNext)
 
-**Objetivo:** Garantizar que cada sección del curso sea una réplica **EXACTA 1:1** de la fuente original (mooc.fi), sin omitir ni una sola línea de texto, código, salida de terminal o ejercicio.
+**Objetivo:** Garantizar la fidelidad absoluta del curso fusionando las fuentes locales disponibles.
 
-## Instrucciones para el Agente (Prompt Maestro)
+## 🚨 Regla de Oro: NO INVENTAR, NO SCRAPEAR
+Todo el contenido ya existe en tu disco duro.
+*   **Texto:** `external_resources/programming-25-repo/data/`
+*   **Código:** `external_resources/Python_Programming_MOOC_2026_I/`
 
-Al migrar o revisar una sección del curso, DEBES seguir estrictamente este algoritmo:
+## Procedimiento Estándar de Generación
 
-### 1. Extracción Exhaustiva (Web Scraping)
-No resumas. No interpretes. Extrae TODO el contenido crudo en orden secuencial.
-- **Narrativa:** Captura cada párrafo de introducción, transición y explicación.
-- **Bloques de Código (Inputs):** Captura todos los ejemplos de código (`python`).
-- **Salidas de Consola (Outputs):** Captura todos los bloques de "Sample output" o resultados de ejecución.
-- **Errores:** Captura los ejemplos de trazas de error (`SyntaxError`, etc.) tal cual aparecen.
-- **Ejercicios:** Captura el enunciado completo, código inicial y pistas.
+Para crear o reparar una sección (`src/data/partX/sectionY.json`), sigue este algoritmo estrictamente:
 
-### 2. Estructura de Datos (JSON)
-El archivo JSON resultante debe reflejar la secuencia lineal de la página web.
-- Usa bloques `markdown` para texto, código de ejemplo y salidas.
-- Usa bloques `exercise` **solo** para los ejercicios interactivos donde el alumno escribe código.
-- **Formato de Salidas:** Las salidas de consola deben ir en bloques de código con lenguaje `text` para que se rendericen como terminales grises.
+### 1. Lectura del Markdown (Fuente 1)
+Lee el archivo `.md` correspondiente en `external_resources/programming-25-repo`.
+*   Este archivo dicta el **ORDEN**.
+*   Todo texto fuera de las etiquetas `<in-browser-programming-exercise>` es un bloque `markdown`.
+*   Las etiquetas `<in-browser-programming-exercise>` indican dónde va un bloque `exercise`.
 
-### 3. Verificación Cruzada (Checklist)
-Antes de dar por finalizada una sección, responde a estas preguntas:
-- [ ] ¿Empieza con los "Learning Objectives" (si los hay)?
-- [ ] ¿Están todos los párrafos de texto entre los ejemplos de código?
-- [ ] ¿Coincide el número de bloques de código de ejemplo con la web?
-- [ ] ¿Coincide el número de bloques de "Sample output" con la web?
-- [ ] ¿Están todos los ejercicios (incluyendo los pequeños de "Fix the code")?
-- [ ] ¿Se han preservado los comentarios `#` dentro de los ejemplos de código?
+### 2. Inyección de Código (Fuente 2)
+Cuando encuentres un ejercicio, extrae su atributo `tmcname` (ej: `part01-01_emoticon`).
+*   Ve a `external_resources/Python_Programming_MOOC_2026_I/partX/{tmcname}`.
+*   **Initial Code:** Lee `src/{archivo}.py`. Si hay varios, busca el principal.
+*   **Test Code:** Lee `test/test_{archivo}.py`.
 
-### 4. Traducción y Enriquecimiento
-- Genera traducciones fieles para `CAS` (Castellano) y `EUS` (Euskera) de todo el contenido narrativo y descripciones de ejercicios.
-- **TRADUCCIÓN DE CÓDIGO (NUEVO):
-    - **SÍ traducir:** Los strings literales dentro del código que son mensajes para el usuario (`input("What is your name?")` -> `input("¿Cómo te llamas?")`, `print("Hi")` -> `print("Hola")`).
-    - **NO traducir:** Palabras clave de Python (`print`, `input`, `def`, `if`), nombres de variables (`name`, `count`), ni nombres de funciones.
-    - **Objetivo:** Que el código de ejemplo sea comprensible en el idioma de destino sin romper la sintaxis.
-
-### 5. Protocolo de Seguridad Técnica (Anti-Errores)
-**Lección aprendida:** Escribir JSON puro con saltos de línea (`\n`) es propenso a errores humanos. Escribir scripts de JS complejos con strings anidados causa errores de sintaxis (`SyntaxError`).
-
-**Método Obligatorio: Generación Programática por Bloques**
-Para crear o corregir archivos `.json` con contenido complejo (Markdown multilinea):
-
-1.  **Crea un script generador (`gen_section.cjs`):**
-    *   No escribas el objeto entero de una vez.
-    *   Declara un array `const blocks = [];`.
-    *   Añade bloque a bloque usando `blocks.push({...})`.
-    *   Usa **Template Literals** (`` ` ``) para el contenido Markdown/Python. 
-    *   **IMPORTANTE:** Si el contenido incluye backticks (ej: bloques de código markdown), ESCÁPALOS con barra invertida (`` \` ``) dentro del template literal de JS.
-    *   Usa `JSON.stringify(data, null, 2)` al final para generar el archivo.
-
-2.  **Ejemplo de Script Generador Seguro:**
-    ```javascript
-    const fs = require('fs');
-    const blocks = [];
-
-    // Bloque 1: Markdown complejo
-    blocks.push({
-      type: "markdown",
-      content: {
-        ENG: `Texto con código: 
-print("Hi")
-`,
-        CAS: `Texto traducido: 
-print("Hola")
-`
-      }
-    });
-
-    const section = { id: "...", title: {...}, blocks: blocks };
-    fs.writeFileSync('ruta/archivo.json', JSON.stringify(section, null, 2));
+### 3. Generación del JSON
+Crea un script `.cjs` temporal que use `fs` para leer ambos archivos y escribir el JSON.
+*   **Estructura:**
+    ```typescript
+    {
+      type: 'markdown' | 'exercise',
+      content: { ENG, CAS, EUS }, // Para markdown
+      initialCode: { ENG, CAS, EUS }, // Para exercise
+      testCode: string // Solo string, no localizable
+    }
     ```
+*   **Traducción:** Si generas traducciones automáticas para CAS/EUS, asegúrate de mantener las palabras clave de Python en inglés.
 
-3.  **Ejecución:** Corre `node gen_section.cjs` y luego borra el script.
-4.  **Validación Final:** Verifica siempre con `node -e "JSON.parse(require('fs').readFileSync('...'))"` tras la generación.
+### 4. Verificación de Intercalado (Interleaving)
+El error más común es agrupar todo el texto al principio y los ejercicios al final.
+*   **Correcto:** Texto -> Ejercicio -> Texto -> Ejercicio.
+*   **Incorrecto:** Texto (Intro + Aritmética) -> Ejercicio (Intro) -> Ejercicio (Aritmética).
 
----
-**Ejemplo de Comando:**
-"Audita la Sección 1-3 usando el método de Generación Programática por Bloques definido en el protocolo."
+## Herramientas
+Usa scripts en Node.js (`.cjs`) para realizar esta tarea de forma programática y reproducible. No edites los JSONs gigantes a mano.

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText, getExercise } from '../data/mooc-exercises';
+import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText } from '../data/mooc-exercises';
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
 import { useProgressStore } from '../stores/progressStore';
 import { QuizPlaceholder } from '../components/mooc/QuizPlaceholder';
