@@ -19,7 +19,6 @@ const MoocCoursePage: React.FC = () => {
   // State for collapsible parts. Default Part 1 open.
   const [openParts, setOpenParts] = useState<Record<number, boolean>>({ 1: true });
   
-  const completedExercises = useProgressStore(state => state.completedExercises);
   const { t, currentLang } = useLanguageStore();
 
   // Group sections by part
@@ -267,6 +266,7 @@ const MoocCoursePage: React.FC = () => {
 
 const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     const { t, currentLang } = useLanguageStore();
+    const completedExercises = useProgressStore(state => state.completedExercises);
     
     // Quiz
     if (block.type === 'quiz' && block.questions) {
@@ -280,15 +280,15 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
             <div className="prose prose-slate prose-lg max-w-none font-serif mb-8 text-gray-800">
                 <ReactMarkdown
                     components={{
-                        h1: ({node, ...props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {...props} />,
-                        h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {...props} />,
-                        p: ({node, children, ...props}: any) => {
+                        h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {..._props} />,
+                        h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {..._props} />,
+                        p: ({node: _node, children, ...props}: any) => {
                             if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
                                 return <QuizPlaceholder />;
                             }
                             return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
                         },
-                        code: ({node, inline, className, children, ...props}: any) => {
+                        code: ({node: _node, inline, className, children, ..._props}: any) => {
                             if (inline) {
                                 return <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded font-mono text-sm font-bold">{children}</code>;
                             }
@@ -308,7 +308,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                             );
                         },
                         // Ensure images resolve from public/
-                        img: ({node, src, ...props}: any) => {
+                        img: ({node: _node, src, ...props}: any) => {
                             // If src is "images/...", and we are at root, it works.
                             // But if we want to be safe, we can prepend a slash if missing
                             let finalSrc = src;
@@ -319,7 +319,13 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
                         }
                     }}
                 >
-                    {content.replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')}
+                    {content
+                        .replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')
+                        .replace(/<text-box.*?name=['"](.*?)['"].*?>/g, '\n### $1\n')
+                        .replace(/<\/text-box>/g, '')
+                        .replace(/<sample-output>/g, '\n```text\n')
+                        .replace(/<\/sample-output>/g, '\n```\n')
+                    }
                 </ReactMarkdown>
             </div>
         );
@@ -339,7 +345,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
         // My generator script for `sectionX.ts` put full details in the block.
         // So we can use `block` directly! We don't need `getExercise`.
         
-        const isCompleted = useProgressStore(state => state.completedExercises[block.exerciseId!]);
+        const isCompleted = completedExercises[block.exerciseId!];
 
         return (
             <div className={`my-10 border rounded-lg overflow-hidden shadow-lg ring-1 transition-all duration-500 ${isCompleted ? 'border-green-200 ring-green-100 bg-green-50/10' : 'border-gray-300 ring-black/5 bg-white'}`}>

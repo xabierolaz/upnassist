@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
 import { useLanguageStore } from '../stores/languageStore';

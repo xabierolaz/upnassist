@@ -80,14 +80,14 @@ ADVICE_DB = {
         "eu": "Funtzioa ez den aldagai bati deitzen '()' saiatzen ari zara. (Adib: x=5; x())."
     },
     "arg_count": {
-        "pattern": r"takes \d+ positional arguments but \d+ were given|missing \d+ required positional argument",
+        "pattern": r"takes \\d+ positional arguments but \\d+ were given|missing \\d+ required positional argument",
         "es": "Número incorrecto de argumentos al llamar a la función.",
         "eu": "Argumentu kopuru okerra funtzioari deitzean."
     },
 
     # --- VALUE & INDEX ERRORS ---
     "value_error_int": {
-        "pattern": r"invalid literal for int\(\)",
+        "pattern": r"invalid literal for int\\(\\)",
         "es": "Intentas convertir a número (int) un texto que no es un número válido (ej: 'hola').",
         "eu": "Zenbaki baliozkoa ez den testu bat zenbaki (int) bihurtzen saiatzen ari zara (adib: 'kaixo')."
     },

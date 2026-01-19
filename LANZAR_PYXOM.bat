@@ -1,30 +1,23 @@
 @echo off
-title Pyxom MOOC - Lanzamiento Rapido
-echo ========================================
-echo    INICIANDO PLATAFORMA PYXOM (MOOC)
-echo ========================================
-echo.
-
+title INICIANDO PYXOM...
 cd /d "%~dp0"
 
-:: Iniciar el servidor dev en una nueva ventana minimizada o segundo plano
-echo [1/2] Arrancando servidor local...
-start /b cmd /c "npm run dev"
+:: 1. Verifica si hay que instalar (solo la primera vez o si falta algo)
+if not exist "node_modules" (
+    echo [INFO] Instalando dependencias necesarias...
+    call npm install >nul 2>&1
+)
 
-:: Esperar a que Vite este listo
-echo Esperando a que cargue el entorno...
-timeout /t 5 > nul
+:: 2. Mata procesos viejos por si acaso (limpieza silenciosa)
+taskkill /f /im node.exe >nul 2>&1
 
-echo [2/2] Abriendo el Curso MOOC...
-:: Intentamos abrir en el puerto 5173 (default)
-start http://localhost:5173/mooc
-:: Por si acaso el puerto estaba ocupado y se abrio en el 5174 (como paso antes)
-start http://localhost:5174/mooc
+:: 3. Lanza el servidor minimizado (para que no moleste)
+echo [INFO] Arrancando sistema...
+start /min cmd /c "npm run dev"
 
-echo.
-echo ========================================
-echo    SISTEMA LISTO
-echo ========================================
-echo Puedes cerrar esta ventana cuando termines.
-echo.
-pause
+:: 4. Espera 2 segundos y abre la web
+timeout /t 2 >nul
+start http://localhost:5173
+
+:: 5. Se cierra solo
+exit

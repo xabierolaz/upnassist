@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   ExclamationTriangleIcon, 
   CheckCircleIcon,
@@ -31,13 +31,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
   const [analysis, setAnalysis] = useState<AnalysisResult[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  useEffect(() => {
-    if (code.trim()) {
-      analyzeCode();
-    }
-  }, [code]);
-
-  const analyzeCode = async () => {
+  const analyzeCode = useCallback(async () => {
     setIsAnalyzing(true);
     
     // Simulate analysis delay
@@ -227,7 +221,13 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
     setAnalysis(results);
     onAnalysisComplete(results);
     setIsAnalyzing(false);
-  };
+  }, [code, language, onAnalysisComplete]);
+
+  useEffect(() => {
+    if (code.trim()) {
+      analyzeCode();
+    }
+  }, [code, analyzeCode]);
 
   const getIcon = (type: AnalysisResult['type']) => {
     switch (type) {

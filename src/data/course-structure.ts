@@ -1,4 +1,4 @@
-import { CoursePage, LocalizedString, Exercise } from './mooc-exercises';
+import { LocalizedString } from './mooc-exercises';
 
 // This is a placeholder for the types, we'll re-export everything from the main file
 // but we need a central place to define the STRUCTURE without loading all JSONs at once.

@@ -62,7 +62,7 @@ export const loadSection = async (id: string): Promise<CoursePage | undefined> =
 
     const part = meta.part;
     // Extract section number from ID (e.g., "part-1-2" -> 2, "part10-3" -> 3)
-    let sectionNum = id.split('-').pop();
+    const sectionNum = id.split('-').pop();
     
     // Path in glob is literal: ./part1/section1.json
     const path = `./part${part}/section${sectionNum}.json`;

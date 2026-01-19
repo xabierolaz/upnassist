@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-globals */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
 // Esperar a recibir el SharedArrayBuffer del hilo principal
@@ -104,7 +105,7 @@ self.onmessage = async (event) => {
         // Limpiar prefijo común
         formattedError = formattedError.replace("PythonError: ", "").trim();
         
-      } catch (e) {
+      } catch (_e) {
         // Si falla el formateo, enviar original
       }
 

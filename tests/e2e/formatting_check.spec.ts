@@ -36,8 +36,8 @@ test.describe('Content Formatting Verification', () => {
     await expect(p1).toBeVisible();
 
     // 5. Verify Code Blocks
-    // Should have a pre/code tag (implementation doesn't add class to code, but pre has styles)
-    const codeBlock = page.locator('pre code').first();
+    // Target the specific python code block
+    const codeBlock = page.locator('pre code').filter({ hasText: 'name =' }).first();
     await expect(codeBlock).toBeVisible();
     const codeText = await codeBlock.textContent();
     expect(codeText).toContain('input');

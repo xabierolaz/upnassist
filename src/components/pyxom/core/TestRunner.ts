@@ -31,11 +31,11 @@ export class TestRunner {
     // Escapar código
     const safeStudentCode = studentCode
         .replace(/\\/g, '\\\\')
-        .replace(/"""/g, '\"""');
+        .replace(/"""/g, '"""');
 
     const safeTestCode = testCode
         .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\"');
+        .replace(/"/g, '"');
 
     const driverCode = `
 import unittest
@@ -226,7 +226,7 @@ print(json.dumps(output_json))
           const lines = result.output.trim().split('\n');
           const lastLine = lines[lines.length - 1];
           return JSON.parse(lastLine);
-      } catch (parseError) {
+      } catch (_parseError) {
           console.error("JSON Parse Error. Output:", result.output);
           return {
              passed: 0, 

@@ -16,7 +16,6 @@ describe('Navigation Logic', () => {
 
   it('should handle last page', () => {
     const lastIndex = courseStructure.length - 1;
-    const lastPage = courseStructure[lastIndex];
     
     // El siguiente debe ser undefined
     const nextPage = courseStructure[lastIndex + 1];
