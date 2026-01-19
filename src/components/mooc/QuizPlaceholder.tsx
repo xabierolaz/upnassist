@@ -10,7 +10,7 @@ export const QuizPlaceholder: React.FC = () => {
                 En la plataforma original, aquí hay un cuestionario de opción múltiple para verificar tu comprensión.
                 <br/>
                 <span className="italic text-purple-600 text-xs mt-2 block">
-                    (Esta funcionalidad interactiva está en desarrollo para Pyxom vNext)
+                    (Esta funcionalidad interactiva está en desarrollo para UpnAssist 2026)
                 </span>
             </p>
         </div>

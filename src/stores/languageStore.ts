@@ -36,7 +36,7 @@ interface Translation {
 
 const translations: Record<Language, Translation> = {
   ENG: {
-    title: "Python 2026",
+    title: "UpnAssist 2026",
     university: "UPNA - Public University of Navarre",
     sandbox: "Free Playground",
     part1: "Part 1",
@@ -66,7 +66,7 @@ const translations: Record<Language, Translation> = {
     advProg: "Advanced Course"
   },
   CAS: {
-    title: "Python 2026",
+    title: "UpnAssist 2026",
     university: "UPNA - Universidad Pública de Navarra",
     sandbox: "Zona de Pruebas",
     part1: "Parte 1",
@@ -96,7 +96,7 @@ const translations: Record<Language, Translation> = {
     advProg: "Curso Avanzado"
   },
   EUS: {
-    title: "Python 2026",
+    title: "UpnAssist 2026",
     university: "NUP - Nafarroako Unibertsitate Publikoa",
     sandbox: "Proba Eremua",
     part1: "1. Zatia",

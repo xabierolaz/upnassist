@@ -1,5 +1,5 @@
 @echo off
-title Pyxom MOOC - Verificación de Despliegue
+title UpnAssist - Verificación de Despliegue
 echo ========================================
 echo    VERIFICANDO CONFIGURACIÓN DE DEPLOY
 echo ========================================

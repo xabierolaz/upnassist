@@ -1,4 +1,4 @@
-# UpnAssist (Pyxom-vNext)
+# UpnAssist 2026
 
 <div align="center">
   <img src="public/logo.png" alt="UpnAssist Logo" width="200" />
