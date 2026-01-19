@@ -78,7 +78,47 @@ self.onmessage = async (event) => {
       self.postMessage({ type: "DONE" });
       
     } catch (error) {
-      self.postMessage({ type: "ERROR", error: error.toString() });
+      // Filtrar el traceback para eliminar ruido interno de Pyodide
+      let formattedError = error.toString();
+      
+      try {
+        const lines = formattedError.split('\n');
+        const filteredLines = [];
+        let capturing = false;
+        
+        for (const line of lines) {
+          // Empezar a capturar desde la primera referencia al código del usuario (<exec> o <console>)
+          // O si es la línea final del error (el tipo de excepción)
+          if (line.includes('File "<exec>"') || line.includes('File "<console>"')) {
+            capturing = true;
+          }
+          
+          // Si ya estamos capturando, o si es la línea del error final (ej: SyntaxError: ...)
+          // Las líneas de error final no suelen empezar con "  File"
+          if (capturing || (!line.trim().startsWith("File \"") && !line.includes("Traceback") && !line.includes("PythonError:"))) {
+             // Evitar líneas vacías al inicio de la captura
+             if (capturing || line.trim().length > 0) {
+                 filteredLines.push(line);
+             }
+          }
+        }
+        
+        // Si logramos filtrar algo razonable, lo usamos. Si no, fallback al error original pero limpio de 'PythonError:'
+        if (filteredLines.length > 0 && capturing) {
+            formattedError = filteredLines.join('\n');
+        } else {
+            // Fallback simple: eliminar líneas con /lib/python
+            formattedError = lines.filter(l => !l.includes("/lib/python") && !l.includes("_pyodide")).join('\n');
+        }
+        
+        // Limpiar prefijo común
+        formattedError = formattedError.replace("PythonError: ", "").trim();
+        
+      } catch (e) {
+        // Si falla el formateo, enviar original
+      }
+
+      self.postMessage({ type: "ERROR", error: formattedError });
     }
   }
 };
