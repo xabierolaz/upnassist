@@ -31,7 +31,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
 }) => {
   const [analysis, setAnalysis] = useState<AnalysisResult[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const { t } = useLanguageStore();
+  const { t, currentLang } = useLanguageStore();
 
   const analyzeCode = useCallback(async () => {
     setIsAnalyzing(true);
@@ -298,7 +298,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
         {analysis.length === 0 && !isAnalyzing ? (
           <div className="text-center py-8 text-gray-500">
             <CheckCircleIcon className="h-12 w-12 mx-auto mb-2 text-green-500" />
-            <p>{t.currentLang === 'EUS' ? 'Kode bikaina! Ez da arazorik aurkitu.' : t.currentLang === 'CAS' ? '¡Gran código! No se han encontrado problemas.' : 'Great code! No issues found.'}</p>
+            <p>{currentLang === 'EUS' ? 'Kode bikaina! Ez da arazorik aurkitu.' : currentLang === 'CAS' ? '¡Gran código! No se han encontrado problemas.' : 'Great code! No issues found.'}</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -311,8 +311,8 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
                 <div className="space-y-2">
                   {results.map((result, index) => {
                     // Logic to select the localized message
-                    const displayMessage = t.currentLang === 'EUS' ? (result as any).msg_eu || result.message :
-                                         t.currentLang === 'CAS' ? (result as any).msg_es || result.message :
+                    const displayMessage = currentLang === 'EUS' ? (result as any).msg_eu || result.message :
+                                         currentLang === 'CAS' ? (result as any).msg_es || result.message :
                                          result.message;
 
                     return (

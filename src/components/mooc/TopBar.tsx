@@ -1,10 +1,8 @@
 import React from 'react';
-import { useAuthStore } from '../../stores/authStore';
 import { useLanguageStore } from '../../stores/languageStore';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 export const TopBar: React.FC = () => {
-  const { user, logout } = useAuthStore();
   const { t } = useLanguageStore();
 
   return (
@@ -20,21 +18,6 @@ export const TopBar: React.FC = () => {
       
       <div className="flex items-center space-x-4">
         <LanguageSwitcher />
-        
-        {user && (
-          <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
-            <div className="text-right hidden sm:block">
-              <div className="text-sm font-bold text-gray-800 leading-tight">{user.name}</div>
-              <div className="text-xs text-gray-500">{user.email}</div>
-            </div>
-            <button 
-              onClick={logout}
-              className="text-gray-500 hover:text-[#c0392b] transition-colors text-sm font-medium"
-            >
-              {t.logOut}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
