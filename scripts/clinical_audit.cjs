@@ -1,137 +1,90 @@
 const fs = require('fs');
 const path = require('path');
 
-const projectRoot = path.resolve(__dirname, '..');
-const repoPath = path.join(projectRoot, 'external_resources/programming-25-repo/data');
-const jsonPath = path.join(projectRoot, 'src/data');
-const metaPath = path.join(projectRoot, 'src/data/course-structure.ts');
+const baseDir = path.join(__dirname, '../src/data');
+const report = {};
+let totalMissingBlocks = 0;
 
-console.log("🏥 INICIANDO AUDITORÍA CLÍNICA...\n");
+function isTranslated(textObj) {
+    if (!textObj) return false;
+    
+    // Check CAS
+    const cas = textObj.CAS;
+    const eng = textObj.ENG;
+    
+    if (!cas || typeof cas !== 'string' || cas.trim().length === 0) return false;
+    if (cas === eng && eng.trim().length > 0 && !isCodeOnly(eng)) return false; // Identical to English (and not just code)
 
-// 1. Cargar Mapa de UI (Course Structure)
-let uiMap = new Set();
-try {
-    const metaContent = fs.readFileSync(metaPath, 'utf8');
-    const matches = metaContent.match(/id:\s*["']part(\d+)-(\d+)["']/g);
-    if (matches) {
-        matches.forEach(m => {
-            const clean = m.replace(/id:\s*["']/, '').replace(/["']/,"");
-            uiMap.add(clean);
-        });
-    }
-} catch (e) {
-    console.error("🔥 CRITICAL: No se pudo leer course-structure.ts");
+    // Check EUS
+    const eus = textObj.EUS;
+    if (!eus || typeof eus !== 'string' || eus.trim().length === 0) return false;
+    if (eus === eng && eng.trim().length > 0 && !isCodeOnly(eng)) return false;
+
+    return true;
 }
 
-console.log(`📋 UI Map cargado: ${uiMap.size} secciones registradas.\n`);
+// Helper to ignore blocks that are just code blocks or images, which might be identical
+function isCodeOnly(text) {
+    const trimmed = text.trim();
+    // Simple heuristic: if it looks like just a code block or image
+    if (trimmed.startsWith('```') && trimmed.endsWith('```')) return true;
+    if (trimmed.startsWith('<img') && trimmed.endsWith('>')) return true;
+    return false;
+}
 
-const report = [];
+function auditPart(partNum) {
+    const partDir = path.join(baseDir, `part${partNum}`);
+    if (!fs.existsSync(partDir)) return;
 
-// Iterar Partes 1 a 14 (Rango teórico)
-for (let p = 1; p <= 14; p++) {
-    const partDirRepo = path.join(repoPath, `part-${p}`);
-    
-    // Si no existe la carpeta en el Repo, ¿debería existir?
-    // Asumimos que el Repo es la "Verdad A". Si no está ahí, no existe.
-    if (!fs.existsSync(partDirRepo)) {
-        continue;
-    }
+    const files = fs.readdirSync(partDir).filter(f => f.endsWith('.json'));
 
-    // Buscar archivos Markdown (Verdad A)
-    const mdFiles = fs.readdirSync(partDirRepo)
-        .filter(f => f.endsWith('.md') && /^[0-9]+-/.test(f))
-        .sort((a, b) => parseInt(a) - parseInt(b));
+    files.forEach(file => {
+        const filePath = path.join(partDir, file);
+        const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        const missingInFile = [];
 
-    mdFiles.forEach((mdFile, index) => {
-        const sectionNum = index + 1;
-        const sectionId = `part${p}-${sectionNum}`;
-        const diagnosis = {
-            id: sectionId,
-            src: true,
-            json: false,
-            jsonValid: false,
-            blocks: 0,
-            exercises: 0,
-            brokenCode: 0,
-            ui: false,
-            status: 'UNKNOWN'
-        };
+        if (content.blocks) {
+            content.blocks.forEach((block, index) => {
+                let missing = false;
+                let reason = "";
 
-        // Chequeo UI
-        if (uiMap.has(sectionId)) diagnosis.ui = true;
+                if (block.type === 'markdown') {
+                    if (!isTranslated(block.content)) {
+                        missing = true;
+                        reason = "Markdown untranslated";
+                    }
+                } else if (block.type === 'exercise') {
+                    if (!isTranslated(block.title)) {
+                        missing = true;
+                        reason = "Exercise Title untranslated";
+                    } else if (!isTranslated(block.description)) {
+                        missing = true;
+                        reason = "Exercise Description untranslated";
+                    }
+                }
 
-        // Chequeo JSON (Verdad B)
-        const jsonFile = path.join(jsonPath, `part${p}`, `section${sectionNum}.json`);
-        if (fs.existsSync(jsonFile)) {
-            diagnosis.json = true;
-            try {
-                const content = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
-                diagnosis.jsonValid = true;
-                diagnosis.blocks = content.blocks ? content.blocks.length : 0;
-                
-                if (content.blocks) {
-                    content.blocks.forEach(b => {
-                        if (b.type === 'exercise') {
-                            diagnosis.exercises++;
-                            // Chequeo de Código (Verdad D)
-                            // Si el código es muy corto o es el default "pass", es sospechoso
-                            const code = b.initialCode?.ENG || b.initialCode || "";
-                            if (!code || code.length < 10 || code.includes("# Write your solution here") && code.length < 50) {
-                                // Esto es subjetivo, pero útil para encontrar ejercicios vacíos
-                                // diagnosis.brokenCode++; 
-                            }
-                            if (code.trim() === "pass" || code.trim() === "") {
-                                diagnosis.brokenCode++;
-                            }
-                        }
+                if (missing) {
+                    missingInFile.push({
+                        index: index,
+                        type: block.type,
+                        reason: reason,
+                        preview: block.type === 'exercise' ? block.title?.ENG : (block.content?.ENG?.substring(0, 30) + "...")
                     });
                 }
-            } catch (e) {
-                diagnosis.jsonValid = false;
-            }
+            });
         }
 
-        // Juicio Final
-        if (diagnosis.src && diagnosis.json && diagnosis.jsonValid && diagnosis.ui) {
-            diagnosis.status = 'HEALTHY';
-            if (diagnosis.brokenCode > 0) diagnosis.status = 'SICK_CODE';
-        } else if (!diagnosis.json) {
-            diagnosis.status = 'MISSING_BUILD';
-        } else if (!diagnosis.ui) {
-            diagnosis.status = 'GHOST_UI'; // Existe data pero no se ve
-        } else {
-            diagnosis.status = 'CORRUPT';
+        if (missingInFile.length > 0) {
+            report[`part${partNum}/${file}`] = missingInFile;
+            totalMissingBlocks += missingInFile.length;
         }
-
-        report.push(diagnosis);
     });
 }
 
-// Imprimir Reporte
-console.log("ID".padEnd(12) + "SRC".padEnd(5) + "JSON".padEnd(6) + "UI".padEnd(5) + "EXER".padEnd(6) + "STATUS");
-console.log("-".repeat(50));
-
-const sick = [];
-
-report.forEach(r => {
-    const statusColor = r.status === 'HEALTHY' ? 'OK' : 'FAIL';
-    if (r.status !== 'HEALTHY') sick.push(r);
-    
-    console.log(
-        r.id.padEnd(12) + 
-        (r.src ? "Yes" : "No ").padEnd(5) + 
-        (r.json ? "Yes" : "No ").padEnd(6) + 
-        (r.ui ? "Yes" : "No ").padEnd(5) + 
-        String(r.exercises).padEnd(6) + 
-        r.status
-    );
-});
-
-console.log("\n" + "=".repeat(50));
-console.log(`RESULTADO FINAL: ${report.length} Secciones analizadas.`);
-if (sick.length === 0) {
-    console.log("✅ EL PACIENTE ESTÁ EN PERFECTO ESTADO DE SALUD.");
-} else {
-    console.log(`⚠️ SE ENCONTRARON ${sick.length} PATOLOGÍAS:`);
-    sick.forEach(s => console.log(`   - ${s.id}: ${s.status}`));
+// Audit all parts 1 to 14
+for (let i = 1; i <= 14; i++) {
+    auditPart(i);
 }
+
+console.log(JSON.stringify(report, null, 2));
+console.error(`Total missing/untranslated blocks found: ${totalMissingBlocks}`);

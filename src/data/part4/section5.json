@@ -1,9 +1,9 @@
 {
   "id": "part4-5",
   "title": {
-    "ENG": "Title",
-    "CAS": "Título",
-    "EUS": "Izenburua"
+    "ENG": "Print statement formatting",
+    "CAS": "Print statement formatting",
+    "EUS": "Print statement formatting"
   },
   "blocks": [
     {
@@ -24,8 +24,8 @@
       },
       "description": {
         "ENG": "Please write a function named `formatted`, which takes a list of floating point numbers as its argument. The function returns a new list, which contains each element of the original list in string format, rounded to two decimal points. The order of the items in the list should remain unchanged.\r\n\r\n_Hint: use f-strings to format the floating point numbers into suitable strings._\r\n\r\nAn example of expected beahviour:\r\n\r\n```python\r\nmy_list = [1.234, 0.3333, 0.11111, 3.446]\r\nnew_list = formatted(my_list)\r\nprint(new_list)\r\n```\r\n\r\n<sample-output>\r\n\r\n['1.23', '0.33', '0.11', '3.45']\r\n\r\n</sample-output>",
-        "CAS": "Por favor escribe una función llamada `formatted`, que tome una lista de números de punto flotante como su argumento. La función devuelve una nueva lista, que contiene cada elemento de la lista original en formato de cadena, redondeado a dos puntos decimales. El orden de los elementos en la lista debe permanecer inalterado.\n\n_Pista: usa f-strings para formatear los números de punto flotante en cadenas adecuadas._",
-        "EUS": "Mesedez idatzi `formatted` izeneko funtzio bat, koma mugikorreko zenbakien zerrenda bat argumentu gisa hartzen duena. Funtzioak zerrenda berri bat itzultzen du, jatorrizko zerrendako elementu bakoitza kate formatuan duena, bi puntu dezimaletara biribildua. Zerrendako elementuen ordenak aldatu gabe egon behar du.\n\n_Pista: erabili f-strings koma mugikorreko zenbakiak kate egokietan formateatzeko._"
+        "CAS": "Please write a function named `formatted`, which takes a list of floating point numbers as its argument. The function returns a new list, which contains each element of the original list in string format, rounded to two decimal points. The order of the items in the list should remain unchanged.\r\n\r\n_Hint: use f-strings to format the floating point numbers into suitable strings._\r\n\r\nAn example of expected beahviour:\r\n\r\n```python\r\nmy_list = [1.234, 0.3333, 0.11111, 3.446]\r\nnew_list = formatted(my_list)\r\nprint(new_list)\r\n```\r\n\r\n<sample-output>\r\n\r\n['1.23', '0.33', '0.11', '3.45']\r\n\r\n</sample-output>",
+        "EUS": "Please write a function named `formatted`, which takes a list of floating point numbers as its argument. The function returns a new list, which contains each element of the original list in string format, rounded to two decimal points. The order of the items in the list should remain unchanged.\r\n\r\n_Hint: use f-strings to format the floating point numbers into suitable strings._\r\n\r\nAn example of expected beahviour:\r\n\r\n```python\r\nmy_list = [1.234, 0.3333, 0.11111, 3.446]\r\nnew_list = formatted(my_list)\r\nprint(new_list)\r\n```\r\n\r\n<sample-output>\r\n\r\n['1.23', '0.33', '0.11', '3.45']\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\n\r\ndef formatted(my_list):\r\n    newList = []\r\n    for i in my_list:\r\n        num = \"{:.2f}\".format(i)\r\n        newList.append(num)\r\n    return newList\r\n\r\nif __name__ == \"__main__\":\r\n    my_list = [1.234, 0.3333, 0.11111, 3.446]\r\n    new_list = formatted(my_list)\r\n    print(new_list)",

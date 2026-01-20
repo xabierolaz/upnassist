@@ -1,9 +1,9 @@
 {
   "id": "part3-1",
   "title": {
-    "ENG": "Title",
-    "CAS": "Título",
-    "EUS": "Izenburua"
+    "ENG": "Loops with conditions",
+    "CAS": "Loops with conditions",
+    "EUS": "Loops with conditions"
   },
   "blocks": [
     {
@@ -24,8 +24,8 @@
       },
       "description": {
         "ENG": "Please write a program which prints out all the even numbers between two and thirty, using a loop. Print each number on a separate line.\r\n\r\nThe beginning of your output should look like this:\r\n\r\n<sample-output>\r\n2\r\n4\r\n6\r\n8\r\netc...\r\n</sample-output>",
-        "CAS": "Por favor escribe un programa que imprima todos los números pares entre dos y treinta, usando un bucle. Imprime cada número en una línea separada.",
-        "EUS": "Mesedez idatzi programa bat zenbaki bikoiti guztiak inprimatzen dituena bi eta hogeita hamar artean, begizta bat erabiliz. Inprimatu zenbaki bakoitza lerro berezi batean."
+        "CAS": "Please write a program which prints out all the even numbers between two and thirty, using a loop. Print each number on a separate line.\r\n\r\nThe beginning of your output should look like this:\r\n\r\n<sample-output>\r\n2\r\n4\r\n6\r\n8\r\netc...\r\n</sample-output>",
+        "EUS": "Please write a program which prints out all the even numbers between two and thirty, using a loop. Print each number on a separate line.\r\n\r\nThe beginning of your output should look like this:\r\n\r\n<sample-output>\r\n2\r\n4\r\n6\r\n8\r\netc...\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\nnumber = 2\r\nwhile number <= 30:\r\n    if number % 2 == 0:\r\n        print(number)\r\n    number += 1",
@@ -44,8 +44,8 @@
       },
       "description": {
         "ENG": "The program below has some syntactic issues:\r\n\r\n```python\r\nprint(\"Are you ready?\")\r\nnumber = int(input(\"Please type in a number: \"))\r\nwhile number = 0:\r\nprint(number)\r\nprint(\"Now!\")\r\n```\r\n\r\nPlease fix it so that it prints out the following:\r\n\r\n<sample-output>\r\n\r\nAre you ready?\r\nPlease type in a number: **5**\r\n5\r\n4\r\n3\r\n2\r\n1\r\nNow!\r\n\r\n</sample-output>\r\n\r\nThis exercise is similar to the countdown exercise in the last section, but please don't use a `while True` loop this time round!",
-        "CAS": "El programa de abajo tiene algunos problemas sintácticos:\n\n...\n\nPor favor arréglalo para que imprima lo siguiente:\n\n...\n\nEste ejercicio es similar al ejercicio de cuenta atrás en la última sección, ¡pero por favor no uses un bucle `while True` esta vez!",
-        "EUS": "Beheko programak arazo sintaktiko batzuk ditu:\n\n...\n\nMesedez konpondu ezazu honako hau inprimatu dezan:\n\n...\n\nAriketa hau azken ataleko atzerako kontaketa ariketaren antzekoa da, baina mesedez ez erabili `while True` begizta bat oraingoan!"
+        "CAS": "The program below has some syntactic issues:\r\n\r\n```python\r\nprint(\"Are you ready?\")\r\nnumber = int(input(\"Please type in a number: \"))\r\nwhile number = 0:\r\nprint(number)\r\nprint(\"Now!\")\r\n```\r\n\r\nPlease fix it so that it prints out the following:\r\n\r\n<sample-output>\r\n\r\nAre you ready?\r\nPlease type in a number: **5**\r\n5\r\n4\r\n3\r\n2\r\n1\r\nNow!\r\n\r\n</sample-output>\r\n\r\nThis exercise is similar to the countdown exercise in the last section, but please don't use a `while True` loop this time round!",
+        "EUS": "The program below has some syntactic issues:\r\n\r\n```python\r\nprint(\"Are you ready?\")\r\nnumber = int(input(\"Please type in a number: \"))\r\nwhile number = 0:\r\nprint(number)\r\nprint(\"Now!\")\r\n```\r\n\r\nPlease fix it so that it prints out the following:\r\n\r\n<sample-output>\r\n\r\nAre you ready?\r\nPlease type in a number: **5**\r\n5\r\n4\r\n3\r\n2\r\n1\r\nNow!\r\n\r\n</sample-output>\r\n\r\nThis exercise is similar to the countdown exercise in the last section, but please don't use a `while True` loop this time round!"
       },
       "initialCode": {
         "ENG": "# Fix the program\r\nprint(\"Are you ready?\")\r\nnumber = int(input(\"Please type in a number: \"))\r\nwhile number != 0:\r\n    print(number)\r\n    number -= 1\r\nprint(\"Now!\")",
@@ -72,8 +72,8 @@
       },
       "description": {
         "ENG": "Please write a program which asks the user for a number. The program then prints out all integer numbers greater than zero but smaller than the input.\r\n\r\n<sample-output>\r\n\r\nUpper limit: **5**\r\n1\r\n2\r\n3\r\n4\r\n\r\n</sample-output>\r\n\r\nPlease don't use the value `True` as the condition of your `while` loop in this exercise!",
-        "CAS": "Por favor escribe un programa que pida al usuario un número. El programa luego imprime todos los números enteros mayores que cero pero menores que la entrada.\n\n¡Por favor no uses el valor `True` como la condición de tu bucle `while` en este ejercicio!",
-        "EUS": "Mesedez idatzi programa bat erabiltzaileari zenbaki bat eskatzen diona. Programak ondoren zero baino handiagoak baina sarrera baino txikiagoak diren zenbaki oso guztiak inprimatzen ditu.\n\nMesedez ez erabili `True` balioa zure `while` begiztaren baldintza gisa ariketa honetan!"
+        "CAS": "Please write a program which asks the user for a number. The program then prints out all integer numbers greater than zero but smaller than the input.\r\n\r\n<sample-output>\r\n\r\nUpper limit: **5**\r\n1\r\n2\r\n3\r\n4\r\n\r\n</sample-output>\r\n\r\nPlease don't use the value `True` as the condition of your `while` loop in this exercise!",
+        "EUS": "Please write a program which asks the user for a number. The program then prints out all integer numbers greater than zero but smaller than the input.\r\n\r\n<sample-output>\r\n\r\nUpper limit: **5**\r\n1\r\n2\r\n3\r\n4\r\n\r\n</sample-output>\r\n\r\nPlease don't use the value `True` as the condition of your `while` loop in this exercise!"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\n\r\nlimit = int(input(\"Upper limit: \"))\r\ni = 1\r\nwhile i < limit:\r\n    print(i)\r\n    i += 1\r\n",
@@ -115,8 +115,8 @@
       "exerciseId": "part03-05_powers_of_base_n",
       "title": {
         "ENG": "Powers of base n",
-        "CAS": "Powers of base n",
-        "EUS": "Powers of base n"
+        "CAS": "Potencias de base n",
+        "EUS": "n oinarriko berreturak"
       },
       "description": {
         "ENG": "Please change the program from the previous exercise so that the user gets to input also the base which is multiplied (in the previous program the base was always 2). \r\n\r\n<sample-output>\r\n\r\nUpper limit: **27**\r\nBase: **3**\r\n1\r\n3\r\n9\r\n27\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nUpper limit: **1234567**\r\nBase: **10**\r\n1\r\n10\r\n100\r\n1000\r\n10000\r\n100000\r\n1000000\r\n\r\n</sample-output>\r\n\r\nPlease don't use the value `True` as the condition of your `while` loop in this exercise!",
@@ -135,8 +135,8 @@
       "exerciseId": "part03-06_consecutive_sum_v1",
       "title": {
         "ENG": "The sum of consecutive numbers, version 1",
-        "CAS": "The sum of consecutive numbers, version 1",
-        "EUS": "The sum of consecutive numbers, version 1"
+        "CAS": "La suma de números consecutivos, versión 1",
+        "EUS": "Ondoz ondoko zenbakien batura, 1. bertsioa"
       },
       "description": {
         "ENG": "Please write a program which asks the user to type in a limit. The program then calculates the sum of consecutive numbers (1 + 2 + 3 + ...) until the sum is at least equal to the limit set by the user. The program should function as follows:\r\n\r\n<sample-output>\r\n\r\nLimit: **2**\r\n3\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nLimit: **10**\r\n10\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nLimit: **18**\r\n21\r\n\r\n</sample-output>\r\n\r\nIf you have trouble understanding how the desired output is calculated, the sample outputs in the next exercise may help. You may assume the number typed in by the user is always equal to 2 or higher.",
@@ -154,8 +154,8 @@
       "type": "markdown",
       "content": {
         "ENG": "## Building strings\r\n\r\nIn the very [first week of the course](/part-1/2-information-from-the-user) we learnt that it is possible to \"build\" strings out of shorter strings with the `+` operator. For example, this is valid Python code:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords = words + \", prejudice\"\r\nwords = words + \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\n<sample-output>\r\n\r\npride, prejudice and python\r\n\r\n</sample-output>\r\n\r\nThe `+=` operator allows us to write this a little more compactly:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords += \", prejudice\"\r\nwords += \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\nThis also applies to f-strings, which may come in handy if values stored in variables are needed as parts of the resulting string. For example this would work:\r\n\r\n```python\r\ncourse = \"Introduction to Programming\"\r\ngrade = 4\r\n\r\nverdict = \"You have received \"\r\nverdict += f\"the grade {grade} \"\r\nverdict += f\"from the course {course}\"\r\n\r\nprint(verdict)\r\n```\r\n\r\n<sample-output>\r\n\r\nYou have received the grade 4 from the course Introduction to Programming\r\n\r\n</sample-output>\r\n\r\nIn the previous exercise you calculated the sum of consecutive numbers by always adding a new value inside a loop.\r\n\r\nThe exact same idea applies to strings as well: you can add new parts to a string within a loop. This technique should be useful in the following exercise.",
-        "CAS": "## Building strings\r\n\r\nIn the very [first week of the course](/part-1/2-information-from-the-user) we learnt that it is possible to \"build\" strings out of shorter strings with the `+` operator. For example, this is valid Python code:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords = words + \", prejudice\"\r\nwords = words + \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\n<sample-output>\r\n\r\npride, prejudice and python\r\n\r\n</sample-output>\r\n\r\nThe `+=` operator allows us to write this a little more compactly:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords += \", prejudice\"\r\nwords += \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\nThis also applies to f-strings, which may come in handy if values stored in variables are needed as parts of the resulting string. For example this would work:\r\n\r\n```python\r\ncourse = \"Introduction to Programming\"\r\ngrade = 4\r\n\r\nverdict = \"You have received \"\r\nverdict += f\"the grade {grade} \"\r\nverdict += f\"from the course {course}\"\r\n\r\nprint(verdict)\r\n```\r\n\r\n<sample-output>\r\n\r\nYou have received the grade 4 from the course Introduction to Programming\r\n\r\n</sample-output>\r\n\r\nIn the previous exercise you calculated the sum of consecutive numbers by always adding a new value inside a loop.\r\n\r\nThe exact same idea applies to strings as well: you can add new parts to a string within a loop. This technique should be useful in the following exercise.",
-        "EUS": "## Building strings\r\n\r\nIn the very [first week of the course](/part-1/2-information-from-the-user) we learnt that it is possible to \"build\" strings out of shorter strings with the `+` operator. For example, this is valid Python code:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords = words + \", prejudice\"\r\nwords = words + \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\n<sample-output>\r\n\r\npride, prejudice and python\r\n\r\n</sample-output>\r\n\r\nThe `+=` operator allows us to write this a little more compactly:\r\n\r\n```python\r\nwords = \"pride\"\r\nwords += \", prejudice\"\r\nwords += \" and python\"\r\n\r\nprint(words)\r\n```\r\n\r\nThis also applies to f-strings, which may come in handy if values stored in variables are needed as parts of the resulting string. For example this would work:\r\n\r\n```python\r\ncourse = \"Introduction to Programming\"\r\ngrade = 4\r\n\r\nverdict = \"You have received \"\r\nverdict += f\"the grade {grade} \"\r\nverdict += f\"from the course {course}\"\r\n\r\nprint(verdict)\r\n```\r\n\r\n<sample-output>\r\n\r\nYou have received the grade 4 from the course Introduction to Programming\r\n\r\n</sample-output>\r\n\r\nIn the previous exercise you calculated the sum of consecutive numbers by always adding a new value inside a loop.\r\n\r\nThe exact same idea applies to strings as well: you can add new parts to a string within a loop. This technique should be useful in the following exercise."
+        "CAS": "## Construyendo cadenas\n\nEn la mismísima primera semana del curso aprendimos que es posible \"construir\" cadenas a partir de cadenas más cortas con el operador `+`. Por ejemplo, este es código Python válido:\n\n```python\nwords = \"pride\"\nwords = words + \", prejudice\"\nwords = words + \" and python\"\n\nprint(words)\n```\n\n<sample-output>\n\npride, prejudice and python\n\n</sample-output>\n\nEl operador `+=` nos permite escribir esto de forma un poco más compacta:\n\n```python\nwords = \"pride\"\nwords += \", prejudice\"\nwords += \" and python\"\n\nprint(words)\n```\n\nEsto también se aplica a las f-strings, que pueden ser útiles si se necesitan valores almacenados en variables como partes de la cadena resultante. Por ejemplo esto funcionaría:\n\n```python\ncourse = \"Introduction to Programming\"\ngrade = 4\n\nverdict = \"You have received \"\nverdict += f\"the grade {grade} \"\nverdict += f\"from the course {course}\"\n\nprint(verdict)\n```\n\n<sample-output>\n\nYou have received the grade 4 from the course Introduction to Programming\n\n</sample-output>\n\nEn el ejercicio anterior calculaste la suma de números consecutivos añadiendo siempre un nuevo valor dentro de un bucle.\n\nLa misma idea exacta se aplica a las cadenas también: puedes añadir nuevas partes a una cadena dentro de un bucle. Esta técnica debería ser útil en el siguiente ejercicio.",
+        "EUS": "## Kateak eraikitzen\n\nIkastaroaren lehenengo astean bertan ikasi genuen posible dela kateak \"eraikitzea\" kate laburragoetatik `+` eragilearekin. Adibidez, hau baliozko Python kodea da:\n\n```python\nwords = \"pride\"\nwords = words + \", prejudice\"\nwords = words + \" and python\"\n\nprint(words)\n```\n\n<sample-output>\n\npride, prejudice and python\n\n</sample-output>\n\n`+=` eragileak hau apur bat trinkoago idazteko aukera ematen digu:\n\n```python\nwords = \"pride\"\nwords += \", prejudice\"\nwords += \" and python\"\n\nprint(words)\n```\n\nHau f-string-ei ere aplikatzen zaie, erabilgarriak izan daitezkeenak aldagaiekin gordetako balioak behar badira ondoriozko katearen zati gisa. Adibidez honek funtzionatuko luke:\n\n```python\ncourse = \"Introduction to Programming\"\ngrade = 4\n\nverdict = \"You have received \"\nverdict += f\"the grade {grade} \"\nverdict += f\"from the course {course}\"\n\nprint(verdict)\n```\n\n<sample-output>\n\nYou have received the grade 4 from the course Introduction to Programming\n\n</sample-output>\n\nAurreko ariketan ondoz ondoko zenbakien batura kalkulatu zenuen beti balio berri bat gehituz begizta baten barruan.\n\nIdeia zehatz bera aplikatzen da kateetara ere: kate bati zati berriak gehi diezazkiokezu begizta baten barruan. Teknika hau erabilgarria izan beharko litzateke hurrengo ariketan."
       }
     },
     {
@@ -163,8 +163,8 @@
       "exerciseId": "part03-07_consecutive_sum_v2",
       "title": {
         "ENG": "The sum of consecutive numbers, version 2",
-        "CAS": "The sum of consecutive numbers, version 2",
-        "EUS": "The sum of consecutive numbers, version 2"
+        "CAS": "La suma de números consecutivos, versión 2",
+        "EUS": "Ondoz ondoko zenbakien batura, 2. bertsioa"
       },
       "description": {
         "ENG": "Please write a new version of the program in the previous exercise. In addition to the result it should also print out the calculation performed:\r\n\r\n<sample-output>\r\n\r\nLimit: **2**\r\nThe consecutive sum: 1 + 2 = 3\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nLimit: **10**\r\nThe consecutive sum: 1 + 2 + 3 + 4 = 10\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nLimit: **18**\r\nThe consecutive sum: 1 + 2 + 3 + 4 + 5 + 6 = 21\r\n\r\n</sample-output>\r\n\r\nYou may assume the number typed in by the user is always equal to 2 or higher.",

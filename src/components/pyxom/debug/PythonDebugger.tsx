@@ -6,6 +6,7 @@ import {
   EyeIcon,
   BugAntIcon
 } from '@heroicons/react/24/outline';
+import { useLanguageStore } from '../../../stores/languageStore';
 // import { PythonRunner } from '../core/PythonRunner';
 
 interface DebugState {
@@ -36,6 +37,7 @@ export const PythonDebugger: React.FC<PythonDebuggerProps> = ({
     output: [],
     error: null
   });
+  const { t } = useLanguageStore();
 
   const [breakpoints] = useState<Set<number>>(new Set());
 
@@ -237,7 +239,7 @@ export const PythonDebugger: React.FC<PythonDebuggerProps> = ({
               className="flex items-center gap-1 px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
             >
               <PlayIcon className="h-4 w-4" />
-              Debug
+              {t.debug}
             </button>
           ) : (
             <>
@@ -248,25 +250,25 @@ export const PythonDebugger: React.FC<PythonDebuggerProps> = ({
                     className="flex items-center gap-1 px-2 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
                   >
                     <ArrowRightIcon className="h-4 w-4" />
-                    Step
+                    {t.step}
                   </button>
                   <button
                     onClick={continueExecution}
                     className="flex items-center gap-1 px-2 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
                   >
                     <PlayIcon className="h-4 w-4" />
-                    Continue
+                    {t.continue}
                   </button>
                 </>
               ) : (
-                <div className="text-sm text-blue-600 animate-pulse">Ejecutando...</div>
+                <div className="text-sm text-blue-600 animate-pulse">{t.executing}</div>
               )}
               <button
                 onClick={stopDebugging}
                 className="flex items-center gap-1 px-2 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700"
               >
                 <StopIcon className="h-4 w-4" />
-                Stop
+                {t.stop}
               </button>
             </>
           )}
@@ -278,11 +280,11 @@ export const PythonDebugger: React.FC<PythonDebuggerProps> = ({
         <div>
           <h3 className="font-medium text-sm mb-2 flex items-center gap-2">
             <EyeIcon className="h-4 w-4" />
-            Variables
+            {t.variables}
           </h3>
           <div className="bg-gray-50 rounded p-3 text-sm">
             {Object.keys(debugState.variables).length === 0 ? (
-              <span className="text-gray-500">No variables defined</span>
+              <span className="text-gray-500">{t.noVariables}</span>
             ) : (
               <div className="space-y-1">
                 {Object.entries(debugState.variables).map(([name, value]) => (

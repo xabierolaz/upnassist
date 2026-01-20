@@ -13,7 +13,7 @@ interface LogEntry {
 }
 
 export interface PyXomEnvironmentProps {
-  exerciseId?: string; // Nuevo prop
+  exerciseId?: string; 
   initialCode?: string;
   testCode?: string;
   onSuccess?: () => void;
@@ -28,7 +28,7 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
   className = ''
 }) => {
   const markAsCompleted = useProgressStore(state => state.markAsCompleted);
-  const { t, currentLang } = useLanguageStore(); // Hook de idioma
+  const { t, currentLang } = useLanguageStore(); 
   const [code, setCode] = useState(initialCode);
   const [history, setHistory] = useState<LogEntry[]>([]);
   const [isRunning, setIsRunning] = useState(false);
@@ -111,47 +111,12 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
 
   return (
     <div className={`flex flex-col h-full border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm ${className}`}>
+      {/* Header: Title only, no buttons */}
       <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-200 flex-shrink-0">
         <div className="flex items-center space-x-2">
           <span className="text-sm font-bold text-gray-700 tracking-tight font-heading uppercase">{t.editorTitle}</span>
         </div>
-        <div className="flex space-x-2">
-          <button 
-            onClick={() => {
-                if (confirm(t.resetConfirm)) {
-                    setCode(initialCode);
-                    setHistory([]);
-                }
-            }}
-            disabled={isRunning}
-            className="flex items-center px-3 py-1.5 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded hover:bg-gray-50 hover:text-red-600 transition-colors shadow-sm disabled:opacity-50"
-            title={t.reset}
-          >
-            ↺
-          </button>
-          
-          {isRunning ? (
-            <button 
-                onClick={() => {
-                    PythonRunner.interrupt();
-                    setIsRunning(false);
-                    setIsWaitingInput(false);
-                    setHistory(prev => [...prev, { type: 'stdout', text: t.interrupted }]);
-                }} 
-                className="flex items-center px-3 py-1.5 text-sm font-bold text-white bg-red-600 border border-red-600 rounded hover:bg-red-700 shadow-sm transition-colors animate-pulse"
-            >
-                ⏹️ {t.stop}
-            </button>
-          ) : (
-            <button onClick={handleRun} className="flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition-colors shadow-sm">
-                <span className="mr-1.5 text-green-600">▶</span> {t.run}
-            </button>
-          )}
-
-          <button onClick={handleSubmit} disabled={isRunning} className="flex items-center px-3 py-1.5 text-sm font-medium text-white bg-[#c0392b] border border-[#c0392b] rounded hover:bg-[#a93226] disabled:opacity-50 shadow-md transition-colors">
-            <span className="mr-1.5 text-white">✓</span> {t.submit}
-          </button>
-        </div>
+        {/* Spinner or Status could go here if needed */}
       </div>
 
       <div className="flex-1 min-h-0 flex flex-col">
@@ -214,6 +179,47 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
                 )}
             </div>
         </div>
+      </div>
+
+      {/* Footer: Buttons Area (MOOC.fi Style) */}
+      <div className="bg-gray-100 border-t border-gray-200 p-3 flex items-center space-x-3">
+          
+          {isRunning ? (
+            <button 
+                onClick={() => {
+                    PythonRunner.interrupt();
+                    setIsRunning(false);
+                    setIsWaitingInput(false);
+                    setHistory(prev => [...prev, { type: 'stdout', text: t.interrupted }]);
+                }} 
+                className="flex items-center px-4 py-2 text-sm font-bold text-white bg-red-600 rounded hover:bg-red-700 shadow-sm transition-colors animate-pulse"
+            >
+                ⏹️ {t.stop}
+            </button>
+          ) : (
+            <button onClick={handleRun} className="flex items-center px-4 py-2 text-sm font-bold text-white bg-blue-600 rounded hover:bg-blue-700 shadow-sm transition-transform active:scale-95">
+                <span className="mr-2">▶</span> {t.run}
+            </button>
+          )}
+
+          <button onClick={handleSubmit} disabled={isRunning} className="flex items-center px-4 py-2 text-sm font-bold text-orange-700 bg-white border border-gray-300 rounded hover:bg-orange-50 disabled:opacity-50 shadow-sm transition-colors">
+            <span className="mr-2">👁</span> {t.submit} {/* Using Eye icon to match MOOC.fi 'TEST' look */}
+          </button>
+
+          <div className="flex-1"></div> {/* Spacer */}
+
+          <button 
+            onClick={() => {
+                if (confirm(t.resetConfirm)) {
+                    setCode(initialCode);
+                    setHistory([]);
+                }
+            }}
+            disabled={isRunning}
+            className="flex items-center px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-300 rounded hover:bg-gray-100 transition-colors shadow-sm disabled:opacity-50"
+          >
+            {t.reset}
+          </button>
       </div>
     </div>
   );

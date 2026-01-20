@@ -32,31 +32,31 @@ export const Quiz: React.FC<QuizProps> = ({ questions }) => {
         const isCorrect = selectedOption?.isCorrect;
 
         return (
-          <div key={q.id} className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-            <div className="bg-brand-dark/5 p-4 border-b border-gray-200">
+          <div key={q.id} className="bg-white rounded-2xl shadow-xl overflow-hidden mb-10 border border-gray-100">
+            <div className="bg-gray-50 p-6 border-b border-gray-200">
                 <h4 className="font-bold text-gray-800 text-lg">
                     {index + 1}. {getLocalizedText(q.prompt, currentLang)}
                 </h4>
             </div>
             
-            <div className="p-4 space-y-2">
+            <div className="p-6 space-y-3">
                 {q.options.map((opt) => {
                     const isSelected = selectedOptionId === opt.id;
-                    let optionClass = "w-full text-left p-3 rounded border transition-colors flex items-center justify-between ";
+                    let optionClass = "w-full text-left p-4 rounded-lg border transition-all duration-200 flex items-center justify-between ";
                     
                     if (isChecked) {
                         if (opt.isCorrect) {
-                            optionClass += "bg-green-100 border-green-500 text-green-900";
+                            optionClass += "bg-green-50 border-green-500 text-green-900 ring-1 ring-green-500";
                         } else if (isSelected && !opt.isCorrect) {
-                            optionClass += "bg-red-100 border-red-500 text-red-900";
+                            optionClass += "bg-red-50 border-red-500 text-red-900 ring-1 ring-red-500";
                         } else {
-                            optionClass += "bg-gray-50 border-gray-200 text-gray-400";
+                            optionClass += "bg-white border-gray-200 text-gray-400 opacity-60";
                         }
                     } else {
                         if (isSelected) {
-                            optionClass += "bg-blue-50 border-blue-500 text-blue-900 shadow-sm";
+                            optionClass += "bg-blue-50 border-blue-500 text-blue-900 shadow-md transform scale-[1.01]";
                         } else {
-                            optionClass += "bg-white border-gray-200 text-gray-700 hover:bg-gray-50";
+                            optionClass += "bg-white border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300";
                         }
                     }
 
@@ -68,31 +68,31 @@ export const Quiz: React.FC<QuizProps> = ({ questions }) => {
                             className={optionClass}
                         >
                             <span>{getLocalizedText(opt.text, currentLang)}</span>
-                            {isChecked && opt.isCorrect && <span className="text-green-600 font-bold">✓</span>}
-                            {isChecked && isSelected && !opt.isCorrect && <span className="text-red-600 font-bold">✗</span>}
+                            {isChecked && opt.isCorrect && <span className="text-green-600 font-bold text-xl">✓</span>}
+                            {isChecked && isSelected && !opt.isCorrect && <span className="text-red-600 font-bold text-xl">✗</span>}
                         </button>
                     );
                 })}
             </div>
 
-            <div className="p-4 pt-0 flex justify-end">
+            <div className="p-6 pt-0 flex justify-end">
                 {!isChecked ? (
                     <button
                         onClick={() => handleCheck(q.id)}
                         disabled={!selectedOptionId}
-                        className={`px-4 py-2 rounded font-medium transition-colors ${
+                        className={`px-6 py-2.5 rounded-lg font-bold uppercase tracking-wide transition-colors ${
                             selectedOptionId 
-                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm' 
+                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5' 
                             : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                         }`}
                     >
                         {currentLang === 'ENG' ? 'Check' : (currentLang === 'CAS' ? 'Comprobar' : 'Egiaztatu')}
                     </button>
                 ) : (
-                    <div className={`text-sm p-3 rounded w-full ${isCorrect ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                    <div className={`text-base p-4 rounded-lg w-full border ${isCorrect ? 'bg-green-50 border-green-200 text-green-900' : 'bg-red-50 border-red-200 text-red-900'}`}>
                         <strong>{isCorrect ? (currentLang === 'ENG' ? 'Correct!' : '¡Correcto!') : (currentLang === 'ENG' ? 'Incorrect' : 'Incorrecto')}</strong>
                         {selectedOption?.feedback && (
-                            <p className="mt-1">{getLocalizedText(selectedOption.feedback, currentLang)}</p>
+                            <p className="mt-2">{getLocalizedText(selectedOption.feedback, currentLang)}</p>
                         )}
                     </div>
                 )}

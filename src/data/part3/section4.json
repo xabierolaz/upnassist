@@ -1,9 +1,9 @@
 {
   "id": "part3-4",
   "title": {
-    "ENG": "Title",
-    "CAS": "Título",
-    "EUS": "Izenburua"
+    "ENG": "Defining functions",
+    "CAS": "Defining functions",
+    "EUS": "Defining functions"
   },
   "blocks": [
     {
@@ -24,8 +24,8 @@
       },
       "description": {
         "ENG": "Please write a function named `seven_brothers`. When the function is called, it should print out the names of the seven brothers in alphabetical order, as in the example below. See the [similarly named exercise in part 1](/part-1/1-getting-started#programming-exercise-fix-the-code-seven-brothers) for more details about the brothers.\r\n\r\n\r\n<sample-output>\r\n\r\nAapo\r\nEero\r\nJuhani\r\nLauri\r\nSimeoni\r\nTimo\r\nTuomas\r\n\r\n</sample-output>",
-        "CAS": "Por favor escribe una función llamada `seven_brothers`. Cuando se llame a la función, debería imprimir los nombres de los siete hermanos en orden alfabético.",
-        "EUS": "Mesedez idatzi `seven_brothers` izeneko funtzio bat. Funtzioari deitzen zaionean, zazpi anaien izenak inprimatu beharko lituzke ordena alfabetikoan."
+        "CAS": "Please write a function named `seven_brothers`. When the function is called, it should print out the names of the seven brothers in alphabetical order, as in the example below. See the [similarly named exercise in part 1](/part-1/1-getting-started#programming-exercise-fix-the-code-seven-brothers) for more details about the brothers.\r\n\r\n\r\n<sample-output>\r\n\r\nAapo\r\nEero\r\nJuhani\r\nLauri\r\nSimeoni\r\nTimo\r\nTuomas\r\n\r\n</sample-output>",
+        "EUS": "Please write a function named `seven_brothers`. When the function is called, it should print out the names of the seven brothers in alphabetical order, as in the example below. See the [similarly named exercise in part 1](/part-1/1-getting-started#programming-exercise-fix-the-code-seven-brothers) for more details about the brothers.\r\n\r\n\r\n<sample-output>\r\n\r\nAapo\r\nEero\r\nJuhani\r\nLauri\r\nSimeoni\r\nTimo\r\nTuomas\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\n# You can test your function by calling it within the following block\r\n# if __name__ == \"__main__\":\r\n#   seven_brothers()\r\n\r\ndef seven_brothers():\r\n    print(\"Aapo\")\r\n    print(\"Eero\")\r\n    print(\"Juhani\")\r\n    print(\"Lauri\")\r\n    print(\"Simeoni\")\r\n    print(\"Timo\")\r\n    print(\"Tuomas\")\r\n\r\n\r\nif __name__ == \"__main__\":\r\n    seven_brothers()\r\n",
@@ -52,8 +52,8 @@
       },
       "description": {
         "ENG": "The exercise contains the outline of the function `first_character`. Please complete it so that it prints out the first character of the string it takes as its argument.\r\n\r\n```python\r\ndef first_character(text):\r\n     # write your code here\r\n\r\n# testing the function:\r\nif __name__ == \"__main__\":\r\n    first_character('python')\r\n    first_character('yellow')\r\n    first_character('tomorrow')\r\n    first_character('heliotrope')\r\n    first_character('open')\r\n    first_character('night')\r\n```\r\n\r\n<sample-output>\r\n\r\np\r\ny\r\nt\r\nh\r\no\r\nn\r\n\r\n</sample-output>",
-        "CAS": "El ejercicio contiene el esquema de la función `first_character`. Por favor complétalo para que imprima el primer carácter de la cadena que toma como argumento.",
-        "EUS": "Ariketak `first_character` funtzioaren eskema dauka. Mesedez osatu ezazu argumentu gisa hartzen duen katearen lehen karakterea inprimatu dezan."
+        "CAS": "The exercise contains the outline of the function `first_character`. Please complete it so that it prints out the first character of the string it takes as its argument.\r\n\r\n```python\r\ndef first_character(text):\r\n     # write your code here\r\n\r\n# testing the function:\r\nif __name__ == \"__main__\":\r\n    first_character('python')\r\n    first_character('yellow')\r\n    first_character('tomorrow')\r\n    first_character('heliotrope')\r\n    first_character('open')\r\n    first_character('night')\r\n```\r\n\r\n<sample-output>\r\n\r\np\r\ny\r\nt\r\nh\r\no\r\nn\r\n\r\n</sample-output>",
+        "EUS": "The exercise contains the outline of the function `first_character`. Please complete it so that it prints out the first character of the string it takes as its argument.\r\n\r\n```python\r\ndef first_character(text):\r\n     # write your code here\r\n\r\n# testing the function:\r\nif __name__ == \"__main__\":\r\n    first_character('python')\r\n    first_character('yellow')\r\n    first_character('tomorrow')\r\n    first_character('heliotrope')\r\n    first_character('open')\r\n    first_character('night')\r\n```\r\n\r\n<sample-output>\r\n\r\np\r\ny\r\nt\r\nh\r\no\r\nn\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "def first_character(text):\r\n    print(text[0])\r\n\r\nif __name__ == \"__main__\":\r\n    first_character('python')\r\n    first_character('yellow')\r\n    first_character('tomorrow')\r\n    first_character('heliotrope')\r\n    first_character('open')\r\n    first_character('night')",
@@ -80,8 +80,8 @@
       },
       "description": {
         "ENG": "Please write a function named `mean`, which takes three integer arguments. The function should print out the arithmetic mean of the three arguments.\r\n\r\n```python\r\nmean(5, 3, 1)\r\nmean(10, 1, 1)\r\n```\r\n\r\n<sample-output>\r\n\r\n3.0\r\n4.0\r\n\r\n</sample-output>",
-        "CAS": "Por favor escribe una función llamada `mean`, que tome tres argumentos enteros. La función debería imprimir la media aritmética de los tres argumentos.",
-        "EUS": "Mesedez idatzi `mean` izeneko funtzio bat, hiru argumentu oso hartzen dituena. Funtzioak hiru argumentuen batezbesteko aritmetikoa inprimatu beharko luke."
+        "CAS": "Please write a function named `mean`, which takes three integer arguments. The function should print out the arithmetic mean of the three arguments.\r\n\r\n```python\r\nmean(5, 3, 1)\r\nmean(10, 1, 1)\r\n```\r\n\r\n<sample-output>\r\n\r\n3.0\r\n4.0\r\n\r\n</sample-output>",
+        "EUS": "Please write a function named `mean`, which takes three integer arguments. The function should print out the arithmetic mean of the three arguments.\r\n\r\n```python\r\nmean(5, 3, 1)\r\nmean(10, 1, 1)\r\n```\r\n\r\n<sample-output>\r\n\r\n3.0\r\n4.0\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your code here\r\ndef mean(num1, num2, num3):\r\n    sum = num1 + num2 + num3\r\n    mean = sum / 3\r\n    print(mean)\r\n\r\n# Testing the function\r\nif __name__ == \"__main__\":\r\n    mean(1, 2, 3)",
@@ -100,8 +100,8 @@
       },
       "description": {
         "ENG": "Please write a function named `print_many_times(text, times)`, which takes a string and an integer as arguments. The integer argument specifies how many times the string argument should be printed out:\r\n\r\n```python\r\nprint_many_times(\"hi\", 5)\r\n\r\nprint()\r\n\r\ntext = \"All Pythons, except one, grow up\"\r\ntimes = 3\r\nprint_many_times(text, times)\r\n```\r\n<sample-output>\r\n\r\nhi\r\nhi\r\nhi\r\nhi\r\nhi\r\n\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\n\r\n</sample-output>",
-        "CAS": "Por favor escribe una función llamada `print_many_times(text, times)`, que tome una cadena y un entero como argumentos. La función debería imprimir la cadena el número de veces especificado por el argumento entero.",
-        "EUS": "Mesedez idatzi `print_many_times(text, times)` izeneko funtzio bat, kate bat eta zenbaki oso bat argumentu gisa hartzen dituena. Funtzioak katea inprimatu beharko luke zenbaki oso argumentuak zehaztutako aldiz."
+        "CAS": "Please write a function named `print_many_times(text, times)`, which takes a string and an integer as arguments. The integer argument specifies how many times the string argument should be printed out:\r\n\r\n```python\r\nprint_many_times(\"hi\", 5)\r\n\r\nprint()\r\n\r\ntext = \"All Pythons, except one, grow up\"\r\ntimes = 3\r\nprint_many_times(text, times)\r\n```\r\n<sample-output>\r\n\r\nhi\r\nhi\r\nhi\r\nhi\r\nhi\r\n\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\n\r\n</sample-output>",
+        "EUS": "Please write a function named `print_many_times(text, times)`, which takes a string and an integer as arguments. The integer argument specifies how many times the string argument should be printed out:\r\n\r\n```python\r\nprint_many_times(\"hi\", 5)\r\n\r\nprint()\r\n\r\ntext = \"All Pythons, except one, grow up\"\r\ntimes = 3\r\nprint_many_times(text, times)\r\n```\r\n<sample-output>\r\n\r\nhi\r\nhi\r\nhi\r\nhi\r\nhi\r\n\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\nAll Pythons, except one, grow up.\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\ndef print_many_times(string, times):\r\n    i = 1\r\n    while i <= times:  \r\n        print(string)\r\n        i += 1\r\n\r\n# You can test your function by calling it within the following block\r\nif __name__ == \"__main__\":\r\n    print_many_times(\"python\", 5)",
@@ -115,8 +115,8 @@
       "exerciseId": "part03-32_square_of_hashes",
       "title": {
         "ENG": "A square of hashes",
-        "CAS": "A square of hashes",
-        "EUS": "A square of hashes"
+        "CAS": "Un cuadrado de almohadillas",
+        "EUS": "Traola karratu bat"
       },
       "description": {
         "ENG": "Please write a function named `hash_square(length)`, which takes an integer argument. The function prints out a square of hash characters, and the argument specifies the length of the side of the square.\r\n\r\n```python\r\nhash_square(3)\r\nprint()\r\nhash_square(5)\r\n```\r\n\r\n<sample-output>\r\n\r\n<pre>\r\n###\r\n###\r\n###\r\n\r\n#####\r\n#####\r\n#####\r\n#####\r\n#####\r\n</pre>\r\n\r\n</sample-output>",
@@ -135,8 +135,8 @@
       "exerciseId": "part03-33_chessboard",
       "title": {
         "ENG": "Chessboard",
-        "CAS": "Chessboard",
-        "EUS": "Chessboard"
+        "CAS": "Tablero de ajedrez",
+        "EUS": "Xake-taula"
       },
       "description": {
         "ENG": "Please write a function named `chessboard`, which prints out a chessboard made out of ones and zeroes. The function takes an integer argument, which specifies the length of the side of the board. See the examples below for details:\r\n\r\n```python\r\nchessboard(3)\r\nprint()\r\nchessboard(6)\r\n```\r\n\r\n<sample-output>\r\n\r\n<pre>\r\n101\r\n010\r\n101\r\n\r\n101010\r\n010101\r\n101010\r\n010101\r\n101010\r\n010101\r\n</pre>\r\n\r\n</sample-output>",
@@ -155,8 +155,8 @@
       "exerciseId": "part03-34_word_squared",
       "title": {
         "ENG": "A word squared",
-        "CAS": "A word squared",
-        "EUS": "A word squared"
+        "CAS": "Una palabra al cuadrado",
+        "EUS": "Hitz bat karratuan"
       },
       "description": {
         "ENG": "Please write a function named `squared`, which takes a string argument and an integer argument, and prints out a square of characters as specified by the examples below.\r\n\r\n```python\r\nsquared(\"ab\", 3)\r\nprint()\r\nsquared(\"aybabtu\", 5)\r\n```\r\n\r\n<sample-output>\r\n\r\n<pre>\r\naba\r\nbab\r\naba\r\n\r\naybab\r\ntuayb\r\nabtua\r\nybabt\r\nuayba\r\n</pre>\r\n\r\n</sample-output>",
@@ -174,8 +174,8 @@
       "type": "markdown",
       "content": {
         "ENG": "Please respond to a quick questionnaire on this week's materials.\r\n\r\n<quiz id=\"59f2a9b1-9713-5fcf-bbaf-285b4fbf008a\"></quiz>",
-        "CAS": "Please respond to a quick questionnaire on this week's materials.\r\n\r\n<quiz id=\"59f2a9b1-9713-5fcf-bbaf-285b4fbf008a\"></quiz>",
-        "EUS": "Please respond to a quick questionnaire on this week's materials.\r\n\r\n<quiz id=\"59f2a9b1-9713-5fcf-bbaf-285b4fbf008a\"></quiz>"
+        "CAS": "Por favor responde a un cuestionario rápido sobre los materiales de esta semana.\n\n<quiz id=\"59f2a9b1-9713-5fcf-bbaf-285b4fbf008a\"></quiz>",
+        "EUS": "Mesedez erantzun aste honetako materialei buruzko galdetegi azkar bati.\n\n<quiz id=\"59f2a9b1-9713-5fcf-bbaf-285b4fbf008a\"></quiz>"
       }
     }
   ]

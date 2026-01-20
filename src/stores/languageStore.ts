@@ -32,6 +32,28 @@ interface Translation {
   feedbackFail: string;
   introProg: string;
   advProg: string;
+  // New additions
+  logOut: string;
+  analyzing: string;
+  debug: string;
+  step: string;
+  continue: string;
+  executing: string;
+  variables: string;
+  noVariables: string;
+  hints: string;
+  hide: string;
+  show: string;
+  allHintsUsed: string;
+  // Dynamic hint strings (simplified for now)
+  hintsAvailable: string; // "Available hints: "
+  hintLabel: string; // "Hint"
+  useNextHint: string; // "Use next hint"
+  remaining: string; // "remaining"
+  qualityScore: string;
+  lineLabel: string;
+  codeAnalysisTitle: string;
+  points: string;
 }
 
 const translations: Record<Language, Translation> = {
@@ -63,7 +85,27 @@ const translations: Record<Language, Translation> = {
     testCount: "Tests",
     feedbackFail: "Some tests failed. Check details below.",
     introProg: "Introduction to Programming",
-    advProg: "Advanced Course"
+    advProg: "Advanced Course",
+    logOut: "Log out",
+    analyzing: "Analyzing...",
+    debug: "Debug",
+    step: "Step",
+    continue: "Continue",
+    executing: "Running...",
+    variables: "Variables",
+    noVariables: "No variables defined",
+    hints: "Hints",
+    hide: "Hide",
+    show: "Show",
+    allHintsUsed: "You have used all available hints",
+    hintsAvailable: "Available hints:",
+    hintLabel: "Hint",
+    useNextHint: "Use next hint",
+    remaining: "remaining",
+    qualityScore: "Quality Score",
+    lineLabel: "Line",
+    codeAnalysisTitle: "Code Analysis",
+    points: "Points"
   },
   CAS: {
     title: "UpnAssist 2026",
@@ -93,7 +135,27 @@ const translations: Record<Language, Translation> = {
     testCount: "Pruebas",
     feedbackFail: "Algunas pruebas fallaron. Revisa los detalles abajo.",
     introProg: "Introducción a la Programación",
-    advProg: "Curso Avanzado"
+    advProg: "Curso Avanzado",
+    logOut: "Cerrar sesión",
+    analyzing: "Analizando...",
+    debug: "Depurar",
+    step: "Paso",
+    continue: "Continuar",
+    executing: "Ejecutando...",
+    variables: "Variables",
+    noVariables: "No hay variables definidas",
+    hints: "Pistas",
+    hide: "Ocultar",
+    show: "Mostrar",
+    allHintsUsed: "Has usado todas las pistas disponibles",
+    hintsAvailable: "Pistas disponibles:",
+    hintLabel: "Pista",
+    useNextHint: "Usar siguiente pista",
+    remaining: "restantes",
+    qualityScore: "Calidad del Código",
+    lineLabel: "Línea",
+    codeAnalysisTitle: "Análisis de Código",
+    points: "Puntos"
   },
   EUS: {
     title: "UpnAssist 2026",
@@ -123,7 +185,27 @@ const translations: Record<Language, Translation> = {
     testCount: "Probak",
     feedbackFail: "Proba batzuek huts egin dute. Ikusi xehetasunak behean.",
     introProg: "Programazioaren Sarrera",
-    advProg: "Ikastaro Aurreratua"
+    advProg: "Ikastaro Aurreratua",
+    logOut: "Saioa itxi",
+    analyzing: "Aztertzen...",
+    debug: "Araztu",
+    step: "Urratsa",
+    continue: "Jarraitu",
+    executing: "Exekutatzen...",
+    variables: "Aldagaiak",
+    noVariables: "Ez dago aldagairik definituta",
+    hints: "Pistak",
+    hide: "Ezkutatu",
+    show: "Erakutsi",
+    allHintsUsed: "Erabilgarri dauden pista guztiak erabili dituzu",
+    hintsAvailable: "Erabilgarri dauden pistak:",
+    hintLabel: "Pista",
+    useNextHint: "Erabili hurrengo pista",
+    remaining: "geratzen dira",
+    qualityScore: "Kodearen Kalitatea",
+    lineLabel: "Lerroa",
+    codeAnalysisTitle: "Kodearen Analisia",
+    points: "Puntuak"
   }
 };
 

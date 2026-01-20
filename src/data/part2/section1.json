@@ -1,9 +1,9 @@
 {
   "id": "part2-1",
   "title": {
-    "ENG": "Title",
-    "CAS": "Título",
-    "EUS": "Izenburua"
+    "ENG": "Programming terminology",
+    "CAS": "Programming terminology",
+    "EUS": "Programming terminology"
   },
   "blocks": [
     {
@@ -19,8 +19,8 @@
       "exerciseId": "part02-01_fix_syntax",
       "title": {
         "ENG": "Fix the syntax",
-        "CAS": "Fix the syntax",
-        "EUS": "Fix the syntax"
+        "CAS": "Arregla la sintaxis",
+        "EUS": "Konpondu sintaxia"
       },
       "description": {
         "ENG": "The following program contains several _syntactic errors_. Please fix the program so that the syntax is in order and the program works as specified by the examples below.\r\n\r\n```python\r\n  number = input(\"Please type in a number: \")\r\n  if number>100\r\n    print(\"The number was greater than one hundred\")\r\n    number - 100\r\n    print(\"Now its value has decreased by one hundred)\r\n     print(\"Its value is now\"+ number)\r\n print(number + \" must be my lucky number!\")\r\n print(\"Have a nice day!)\r\n```\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **13**\r\n13 must be my lucky number!\r\nHave a nice day!\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **101**\r\nThe number was greater than one hundred\r\nNow its value has decreased by one hundred\r\nIts value is now 1\r\n1 must be my lucky number!\r\nHave a nice day!\r\n\r\n</sample-output>",
@@ -39,8 +39,8 @@
       "exerciseId": "part02-02_number_of_characters",
       "title": {
         "ENG": "Number of characters",
-        "CAS": "Number of characters",
-        "EUS": "Number of characters"
+        "CAS": "Número de caracteres",
+        "EUS": "Karaktere kopurua"
       },
       "description": {
         "ENG": "The function `len` can be used to find out the length of a string, among other things. The function returns the number of characters in a string.\r\n\r\nSome examples of how this works:\r\n\r\n```python\r\nword = \"abcd\"\r\nprint(len(word))\r\n\r\nprint(len(\"hi there\"))\r\n\r\nword2 = \"howdydoody\"\r\nlength = len(word2)\r\nprint(length)\r\n\r\nempty_string = \"\"\r\nlength = len(empty_string)\r\nprint(length)\r\n```\r\n\r\n<sample-output>\r\n\r\n4\r\n8\r\n10\r\n0\r\n\r\n</sample-output>\r\n\r\nPlease write a program which asks the user for a word and then prints out the number of characters, if there was more than one typed in.\r\n\r\nExamples of expected behaviour:\r\n\r\n<sample-output>\r\n\r\nPlease type in a word: **hey**\r\nThere are 3 letters in the word hey\r\nThank you!\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nPlease type in a word: **banana**\r\nThere are 6 letters in the word banana\r\nThank you!\r\n\r\n</sample-output>\r\n\r\n<sample-output>\r\n\r\nPlease type in a word: **b**\r\nThank you!\r\n\r\n</sample-output>",
@@ -64,8 +64,8 @@
       },
       "description": {
         "ENG": "When programming in Python, often we need to change the data type of a value. For example, a floating point number can be converted into an integer with the function `int`:\r\n\r\n```python\r\n\r\ntemperature = float(input(\"Please type in a temperature: \"))\r\n\r\nprint(\"The temperature is\", temperature)\r\n\r\nprint(\"...and rounded down it is\", int(temperature))\r\n\r\n```\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **5.15**\r\nThe temperature is 5.15\r\n...and rounded down it is 5\r\n\r\n</sample-output>\r\n\r\nNotice the function always rounds down, and not according to the rounding rules in mathematics. This is an example of a _floor function_.\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **8.99**\r\nThe temperature is 8.99\r\n...and rounded down it is 8\r\n\r\n</sample-output>\r\n\r\nPlease write a program which asks the user for a floating point number and then prints out the integer part and the decimal part separately. Use the Python `int` function.\r\n\r\nYou can assume the number given by the user is always greater than zero.\r\n\r\nAn example of expected behaviour:\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **1.34**\r\nInteger part: 1\r\nDecimal part: 0.34\r\n\r\n</sample-output>",
-        "CAS": "El siguiente programa contiene varios _errores sintácticos_. Por favor arregla el programa para que la sintaxis esté en orden y el programa funcione como se especifica en los ejemplos a continuación.",
-        "EUS": "Hurrengo programak hainbat _errore sintaktiko_ ditu. Mesedez konpondu programa sintaxia ordenan egon dadin eta programak beheko adibideetan zehaztutako moduan funtziona dezan."
+        "CAS": "When programming in Python, often we need to change the data type of a value. For example, a floating point number can be converted into an integer with the function `int`:\r\n\r\n```python\r\n\r\ntemperature = float(input(\"Please type in a temperature: \"))\r\n\r\nprint(\"The temperature is\", temperature)\r\n\r\nprint(\"...and rounded down it is\", int(temperature))\r\n\r\n```\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **5.15**\r\nThe temperature is 5.15\r\n...and rounded down it is 5\r\n\r\n</sample-output>\r\n\r\nNotice the function always rounds down, and not according to the rounding rules in mathematics. This is an example of a _floor function_.\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **8.99**\r\nThe temperature is 8.99\r\n...and rounded down it is 8\r\n\r\n</sample-output>\r\n\r\nPlease write a program which asks the user for a floating point number and then prints out the integer part and the decimal part separately. Use the Python `int` function.\r\n\r\nYou can assume the number given by the user is always greater than zero.\r\n\r\nAn example of expected behaviour:\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **1.34**\r\nInteger part: 1\r\nDecimal part: 0.34\r\n\r\n</sample-output>",
+        "EUS": "When programming in Python, often we need to change the data type of a value. For example, a floating point number can be converted into an integer with the function `int`:\r\n\r\n```python\r\n\r\ntemperature = float(input(\"Please type in a temperature: \"))\r\n\r\nprint(\"The temperature is\", temperature)\r\n\r\nprint(\"...and rounded down it is\", int(temperature))\r\n\r\n```\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **5.15**\r\nThe temperature is 5.15\r\n...and rounded down it is 5\r\n\r\n</sample-output>\r\n\r\nNotice the function always rounds down, and not according to the rounding rules in mathematics. This is an example of a _floor function_.\r\n\r\n<sample-output>\r\n\r\nPlease type in a temperature: **8.99**\r\nThe temperature is 8.99\r\n...and rounded down it is 8\r\n\r\n</sample-output>\r\n\r\nPlease write a program which asks the user for a floating point number and then prints out the integer part and the decimal part separately. Use the Python `int` function.\r\n\r\nYou can assume the number given by the user is always greater than zero.\r\n\r\nAn example of expected behaviour:\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **1.34**\r\nInteger part: 1\r\nDecimal part: 0.34\r\n\r\n</sample-output>"
       },
       "initialCode": {
         "ENG": "# Write your solution here\r\nnumber = float(input(\"Please type in a number: \"))\r\ninteger = int(number)\r\ndecimal = number - integer\r\nprint(\"Integer part: \",integer)\r\nprint(\"Decimal part: \",decimal)",

@@ -1,9 +1,9 @@
 {
   "id": "part1-4",
   "title": {
-    "ENG": "Title",
-    "CAS": "Título",
-    "EUS": "Izenburua"
+    "ENG": "Arithmetic operations",
+    "CAS": "Arithmetic operations",
+    "EUS": "Arithmetic operations"
   },
   "blocks": [
     {
@@ -19,8 +19,8 @@
       "exerciseId": "part01-13_times_five",
       "title": {
         "ENG": "Times five",
-        "CAS": "Times five",
-        "EUS": "Times five"
+        "CAS": "Multiplicado por cinco",
+        "EUS": "Bost aldiz"
       },
       "description": {
         "ENG": "Please write a program which asks the user for a number. The program then prints out the number multiplied by five.\r\n\r\nThe program should function as follows:\r\n\r\n<sample-output>\r\n\r\nPlease type in a number: **3**\r\n3 times 5 is 15\r\n\r\n</sample-output>",
@@ -39,8 +39,8 @@
       "exerciseId": "part01-14_name_and_age",
       "title": {
         "ENG": "Name and age",
-        "CAS": "Name and age",
-        "EUS": "Name and age"
+        "CAS": "Nombre y edad",
+        "EUS": "Izena eta adina"
       },
       "description": {
         "ENG": "Please write a program which asks the user for their name and year of birth. The program then prints out a message as follows:\r\n\r\n<sample-output>\r\n\r\nWhat is your name? **Frances Fictitious**\r\nWhich year were you born? **1990**\r\nHi Frances Fictitious, you will be 31 years old at the end of the year 2021\r\n\r\n</sample-output>",

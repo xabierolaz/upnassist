@@ -1,0 +1,258 @@
+[
+  {
+    "id": "part1-1",
+    "title": "Getting started"
+  },
+  {
+    "id": "part1-2",
+    "title": "Information from the user"
+  },
+  {
+    "id": "part1-3",
+    "title": "More about variables"
+  },
+  {
+    "id": "part1-4",
+    "title": "Arithmetic operations"
+  },
+  {
+    "id": "part1-5",
+    "title": "Conditional statements"
+  },
+  {
+    "id": "part2-1",
+    "title": "Programming terminology"
+  },
+  {
+    "id": "part2-2",
+    "title": "More conditionals"
+  },
+  {
+    "id": "part2-3",
+    "title": "Combining conditions"
+  },
+  {
+    "id": "part2-4",
+    "title": "Simple loops"
+  },
+  {
+    "id": "part3-1",
+    "title": "Loops with conditions"
+  },
+  {
+    "id": "part3-2",
+    "title": "Working with strings"
+  },
+  {
+    "id": "part3-3",
+    "title": "More loops"
+  },
+  {
+    "id": "part3-4",
+    "title": "Defining functions"
+  },
+  {
+    "id": "part4-1",
+    "title": "The Visual Studio Code editor, Python interpreter and built-in debugging tool"
+  },
+  {
+    "id": "part4-2",
+    "title": "More functions"
+  },
+  {
+    "id": "part4-3",
+    "title": "Lists"
+  },
+  {
+    "id": "part4-4",
+    "title": "Definite iteration"
+  },
+  {
+    "id": "part4-5",
+    "title": "Print statement formatting"
+  },
+  {
+    "id": "part4-6",
+    "title": "More strings and lists"
+  },
+  {
+    "id": "part5-1",
+    "title": "More lists"
+  },
+  {
+    "id": "part5-2",
+    "title": "References"
+  },
+  {
+    "id": "part5-3",
+    "title": "Dictionary"
+  },
+  {
+    "id": "part5-4",
+    "title": "Tuple"
+  },
+  {
+    "id": "part6-1",
+    "title": "Reading files"
+  },
+  {
+    "id": "part6-2",
+    "title": "Writing files"
+  },
+  {
+    "id": "part6-3",
+    "title": "Handling errors"
+  },
+  {
+    "id": "part6-4",
+    "title": "Local and global variables"
+  },
+  {
+    "id": "part7-1",
+    "title": "Modules"
+  },
+  {
+    "id": "part7-2",
+    "title": "Randomness"
+  },
+  {
+    "id": "part7-3",
+    "title": "Times and dates"
+  },
+  {
+    "id": "part7-4",
+    "title": "Data processing"
+  },
+  {
+    "id": "part7-5",
+    "title": "Creating your own modules"
+  },
+  {
+    "id": "part7-6",
+    "title": "More Python features"
+  },
+  {
+    "id": "part8-1",
+    "title": "Objects and methods"
+  },
+  {
+    "id": "part8-2",
+    "title": "Classes and objects"
+  },
+  {
+    "id": "part8-3",
+    "title": "Defining classes"
+  },
+  {
+    "id": "part8-4",
+    "title": "Defining methods"
+  },
+  {
+    "id": "part8-5",
+    "title": "More examples of classes"
+  },
+  {
+    "id": "part9-1",
+    "title": "Objects and references"
+  },
+  {
+    "id": "part9-2",
+    "title": "Objects as attributes"
+  },
+  {
+    "id": "part9-3",
+    "title": "Encapsulation"
+  },
+  {
+    "id": "part9-4",
+    "title": "Scope of methods"
+  },
+  {
+    "id": "part9-5",
+    "title": "Class attributes"
+  },
+  {
+    "id": "part9-6",
+    "title": "More examples with classes"
+  },
+  {
+    "id": "part10-1",
+    "title": "Class hierarchies"
+  },
+  {
+    "id": "part10-2",
+    "title": "Access modifiers"
+  },
+  {
+    "id": "part10-3",
+    "title": "Object oriented programming techniques"
+  },
+  {
+    "id": "part10-4",
+    "title": "Developing a larger application"
+  },
+  {
+    "id": "part11-1",
+    "title": "List comprehensions"
+  },
+  {
+    "id": "part11-2",
+    "title": "More comprehensions"
+  },
+  {
+    "id": "part11-3",
+    "title": "Recursion"
+  },
+  {
+    "id": "part11-4",
+    "title": "More recursion examples"
+  },
+  {
+    "id": "part12-1",
+    "title": "Functions as arguments"
+  },
+  {
+    "id": "part12-2",
+    "title": "Generators"
+  },
+  {
+    "id": "part12-3",
+    "title": "Functional programming"
+  },
+  {
+    "id": "part12-4",
+    "title": "Regular expressions"
+  },
+  {
+    "id": "part13-1",
+    "title": "Pygame"
+  },
+  {
+    "id": "part13-2",
+    "title": "Animation"
+  },
+  {
+    "id": "part13-3",
+    "title": "Events"
+  },
+  {
+    "id": "part13-4",
+    "title": "More pygame techniques"
+  },
+  {
+    "id": "part14-1",
+    "title": "Game project"
+  },
+  {
+    "id": "part14-2",
+    "title": "Robot and boxes"
+  },
+  {
+    "id": "part14-3",
+    "title": "Finishing the game"
+  },
+  {
+    "id": "part14-4",
+    "title": "Your own game"
+  }
+]

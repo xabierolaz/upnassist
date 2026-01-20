@@ -1,0 +1,346 @@
+{
+  "part5/section1.json": {
+    "0": {
+      "cas": {
+        "text": "<text-box variant='learningObjectives' name=\"Objetivos de aprendizaje\">
+
+Después de esta sección
+
+- Podrás crear listas con diferentes tipos de elementos
+- Sabrás cómo usar listas para organizar datos
+- Podrás almacenar una matriz como una lista bidimensional
+
+</text-box>
+
+<!--the same text is in sections 3-1, 5-1 and 6-1, check them all if you're changing this-->
+<text-box variant='hint' name=\"Acerca de los ejercicios de este curso\">
+
+Convertirse en un programador competente requiere mucha práctica, a veces incluso una práctica bastante mecánica. También implica desarrollar habilidades de resolución de problemas y aplicar la intuición. Es por esto que hay muchos ejercicios de diferentes tipos en este curso. Algunos de ellos te piden aplicar de manera bastante directa lo que has aprendido en el material, pero algunos de ellos son intencionalmente más desafiantes y abiertos.
+
+Algunos de los ejercicios pueden parecer abrumadores al principio, pero esto no es nada de qué preocuparse. Ninguno de los ejercicios es estrictamente obligatorio y, de hecho, _solo se requiere el 25 % de los puntos de cada parte para aprobar el curso._ Puedes encontrar más detalles sobre la aprobación del curso en la [página sobre calificación](/grading-and-exams).
+
+**Los ejercicios no están en ningún orden específico de dificultad.** Cada sección suele introducir algunos conceptos nuevos de programación, y estos se practican luego con ejercicios tanto más simples como más complicados. **Si te encuentras con un ejercicio que te parece demasiado difícil, pasa al siguiente.** Siempre puedes volver a los ejercicios más difíciles si tienes tiempo más tarde.
+
+Cuando las cosas inevitablemente se pongan difíciles, una palabra de consuelo: una tarea que parece imposiblemente difícil esta semana probablemente se sentirá bastante fácil en unas cuatro semanas.
+
+</text-box>
+
+## Listas con diferentes tipos de datos
+
+En la parte anterior manejamos principalmente listas con elementos enteros, pero cualquier tipo de valor se puede almacenar en listas. Una lista de cadenas podría verse así:
+
+```python
+my_list = [\"Hola\", \"allí\", \"amigo\"]
+print(my_list[2])
+```
+
+<sample-output>
+
+amigo
+
+</sample-output>
+
+La función `len` también funciona en listas que contienen otros valores:
+
+```python
+my_list = [\"Hola\", \"allí\", \"amigo\"]
+print(len(my_list))
+```
+
+<sample-output>
+
+3
+
+</sample-output>
+
+Los tipos de elementos en la lista también pueden variar. La misma lista podría contener enteros, cadenas y números de punto flotante:
+
+```python
+my_list = [1, \"Hola\", 3.14]
+```
+
+Normalmente esto no tiene mucho sentido, sin embargo. Es más probable que el programa se rompa si se espera que los elementos de una lista sean de un cierto tipo de datos y no lo son."
+      },
+      "eus": {
+        "text": "<text-box variant='learningObjectives' name=\"Helburuak\">
+
+Atal honen ondoren
+
+- Elementu mota ezberdinekin zerrendak sortu ahal izango dituzu
+- Datuak antolatzeko zerrendak nola erabili jakingo duzu
+- Matrize bat bi dimentsioko zerrenda gisa gorde ahal izango duzu
+
+</text-box>
+
+<!--the same text is in sections 3-1, 5-1 and 6-1, check them all if you're changing this-->
+<text-box variant='hint' name=\"Ikastaro honetako ariketei buruz\">
+
+Programatzaile trebea bihurtzeak praktika asko eskatzen du, batzuetan praktika mekaniko samarra ere bai. Arazoak konpontzeko gaitasunak garatzea eta intuizioa aplikatzea ere eskatzen du. Horregatik daude mota askotako ariketak ikastaro honetan. Horietako batzuek materialean ikasitakoa nahiko modu zuzenean aplikatzeko eskatzen dizute, baina horietako batzuk nahita erronka handiagoak eta irekiagoak dira.
+
+Ariketa batzuk hasieran beldurgarriak eman dezakete, baina hori ez da kezkatu beharreko zerbait. Ariketetako bat ere ez da hertsiki derrigorrezkoa, eta, egiaz, _zati bakoitzeko puntuen % 25 baino ez da beharrezkoa ikastaroa gainditzeko._ Ikastaroa gainditzeari buruzko xehetasun gehiago aurki ditzakezu [kalifikazioari buruzko orrian](/grading-and-exams).
+
+**Ariketak ez daude zailtasun-ordena espezifiko batean.** Atal bakoitzak programazio-kontzeptu berri batzuk sartu ohi ditu, eta hauek ariketa sinpleagoekin zein konplikatuagoekin lantzen dira. **Zailagoa iruditzen zaizun ariketa batekin topo egiten baduzu, joan hurrengora.** Beti itzul zaitezke ariketa zailagoetara geroago denbora baduzu.
+
+Gauzak nahitaez gogortzen direnean, kontsolamendu-hitz bat: aste honetan ezinezkoa dirudien zeregin bat ziurrenik nahiko erraza irudituko zaizu lau aste barru.
+
+</text-box>
+
+## Datu mota ezberdineko zerrendak
+
+Aurreko zatian batez ere osoko elementuak zituzten zerrendak kudeatu genituen, baina edozein balio mota gorde daiteke zerrendetan. Kate zerrenda bat honelakoa izan daiteke:
+
+```python
+my_list = ["Kaixo", "han", "laguna"]
+print(my_list[2])
+```
+
+<sample-output>
+
+laguna
+
+</sample-output>
+
+`len` funtzioak beste balio batzuk dituzten zerrendetan ere funtzionatzen du:
+
+```python
+my_list = ["Kaixo", "han", "laguna"]
+print(len(my_list))
+```
+
+<sample-output>
+
+3
+
+</sample-output>
+
+Zerrendako elementu motak ere alda daitezke. Zerrenda berak osoko zenbakiak, kateak eta koma mugikorreko zenbakiak izan ditzake:
+
+```python
+my_list = [1, "Kaixo", 3.14]
+```
+
+Normalean honek ez du zentzu handirik, ordea. Litekeena da programa apurtzea zerrenda bateko elementuak datu mota jakin batekoak izatea espero bada eta ez badira."
+      }
+    },
+    "2": {
+      "cas": {
+        "text": "## Zerrendak zerrenden barruan
+
+Zerrenda bateko elementuak zerrendak izan daitezke beraiek ere:
+
+```python
+my_list = [[5, 2, 3], [4, 1], [2, 2, 5, 1]]
+print(my_list)
+print(my_list[1])
+print(my_list[1][0])
+```
+<sample-output>
+
+[[5, 2, 3], [4, 1], [2, 2, 5, 1]]
+[4, 1]
+4
+
+</sample-output>
+
+Zergatik izango lirateke erabilgarriak zerrendak zerrenden barruan?
+
+Gogoratu zerrendek mota ezberdineko elementuak izan ditzaketela. Pertsona bati buruzko informazioa zerrenda batean gorde dezakezu. Adibidez, bere izena lehen elementu gisa sar zenezake, bere adina bigarren elementu gisa, eta bere altuera metrotan hirugarren elementu gisa:
+
+```python
+["Anne", 12, 1.45]
+```
+
+Pertsonen datu-base bat zerrenda bat izan daiteke orduan, non elementuak pertsona bakar bati buruzko informazioa duten zerrendak diren:
+
+```python
+persons = [["Betty", 10, 1.37], ["Peter", 7, 1.25], ["Emily", 32, 1.64], ["Alan", 39, 1.78]]
+
+for person in persons:
+  name = person[0]
+  age = person[1]
+  height = person[2]
+  print(f"{name}: age {age} years, height {height} meters")
+```
+
+<sample-output>
+
+Betty: age 10 years, height 1.37 meters
+Peter: age 7 years, height 1.25 meters
+Emily: age 32 years, height 1.64 meters
+Alan: age 39 years, height 1.78 meters
+
+</sample-output>
+
+`for` begizta kanpoko zerrendako elementuetan zehar mugitzen da banan-banan. Hau da, pertsona bakar bati buruzko informazioa duen zerrenda bakoitza, txandaka, `person` aldagaiari esleitzen zaio.
+
+Zerrendak ez dira beti datuak aurkezteko modurik onena, pertsona bati buruzko informazioa adibidez. Laster Python _hiztegiak_ topatuko ditugu, askotan horrelako egoeretarako egokiagoak direnak.
+
+## Matrizeak
+
+Bi dimentsioko array bat, edo _matrize_ bat, zerrenda baten barruko zerrenda baten aplicación naturala ere bada.
+
+Adibidez, hurrengo matrizea
+
+<img src="5_1_1.png">
+
+honela aurkez daiteke bi dimentsioko zerrenda gisa Python-en:
+
+```python
+my_matrix = [[1, 2, 3], [3, 2, 1], [2, 2, 5]]
+```"
+      },
+      "eus": {
+        "text": "## Zerrendak zerrenden barruan
+
+Zerrenda bateko elementuak zerrendak izan daitezke beraiek ere:
+
+```python
+my_list = [[5, 2, 3], [4, 1], [2, 2, 5, 1]]
+print(my_list)
+print(my_list[1])
+print(my_list[1][0])
+```
+<sample-output>
+
+[[5, 2, 3], [4, 1], [2, 2, 5, 1]]
+[4, 1]
+4
+
+</sample-output>
+
+Zergatik izango lirateke erabilgarriak zerrendak zerrenden barruan?
+
+Gogoratu zerrendek mota ezberdineko elementuak izan ditzaketela. Pertsona bati buruzko informazioa zerrenda batean gorde dezakezu. Adibidez, bere izena lehen elementu gisa sar zenezake, bere adina bigarren elementu gisa, eta bere altuera metrotan hirugarren elementu gisa:
+
+```python
+["Anne", 12, 1.45]
+```
+
+Pertsonen datu-base bat zerrenda bat izan daiteke orduan, non elementuak pertsona bakar bati buruzko informazioa duten zerrendak diren:
+
+```python
+persons = [["Betty", 10, 1.37], ["Peter", 7, 1.25], ["Emily", 32, 1.64], ["Alan", 39, 1.78]]
+
+for person in persons:
+  name = person[0]
+  age = person[1]
+  height = person[2]
+  print(f"{name}: age {age} years, height {height} meters")
+```
+
+<sample-output>
+
+Betty: age 10 years, height 1.37 meters
+Peter: age 7 years, height 1.25 meters
+Emily: age 32 years, height 1.64 meters
+Alan: age 39 years, height 1.78 meters
+
+</sample-output>
+
+`for` begizta kanpoko zerrendako elementuetan zehar mugitzen da banan-banan. Hau da, pertsona bakar bati buruzko informazioa duen zerrenda bakoitza, txandaka, `person` aldagaiari esleitzen zaio.
+
+Zerrendak ez dira beti datuak aurkezteko modurik onena, pertsona bati buruzko informazioa adibidez. Laster Python _hiztegiak_ topatuko ditugu, askotan horrelako egoeretarako egokiagoak direnak.
+
+## Matrizeak
+
+Bi dimentsioko array bat, edo _matrize_ bat, zerrenda baten barruko zerrenda baten aplicación naturala ere bada.
+
+Adibidez, hurrengo matrizea
+
+<img src="5_1_1.png">
+
+honela aurkez daiteke bi dimentsioko zerrenda gisa Python-en:
+
+```python
+my_matrix = [[1, 2, 3], [3, 2, 1], [2, 2, 5]]
+```"
+      }
+    },
+    "4": {
+      "cas": {
+        "text": "## Bi dimentsioko array bat joko bateko datu-egitura gisa
+
+Matrize bat datu-egitura oso erabilgarria izan daiteke joko ezberdin askotan. Adibidez, beheko irudiko sudoku joko baten sareta
+
+<img src="5_1_3.png">
+
+matrize moduan irudika daiteke honela:
+
+```python
+sudoku = [
+  [9, 0, 0, 0, 8, 0, 3, 0, 0],
+  [0, 0, 0, 2, 5, 0, 7, 0, 0],
+  [0, 2, 0, 3, 0, 0, 0, 0, 4],
+  [0, 9, 4, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 7, 3, 0, 5, 6, 0],
+  [7, 0, 5, 0, 6, 0, 4, 0, 0],
+  [0, 0, 7, 8, 0, 3, 9, 0, 0],
+  [0, 0, 1, 0, 0, 0, 0, 0, 3],
+  [3, 0, 0, 0, 0, 0, 0, 0, 2]
+]
+```
+
+Hemen zero balioak karratu huts bat adierazten du, zero ez baita onargarria den balio bat amaitutako sudoku puzzle batean.
+
+Hemen goiko sudoku sareta inprimatzeko funtzio sinple bat:
+
+```python
+def print_grid(sudoku):
+    for row in sudoku:
+        for square in row:
+            if square > 0:
+                print(f" {square}", end="")
+            else:
+                print(" _", end="")
+        print()
+
+print_grid(sudoku)
+```
+
+Joko-taula diseinua duen edozein joko arrunt antzeko moduan modelatu daiteke. Besteak beste, xakea, Dragoi-meatzea, Ontzi-urperatzea edo Mastermind guztiak bi dimentsioko sareta batean oinarritzen dira. Sudokurako, naturala da zenbakiak erabiltzea jokoaren egoera irudikatzeko, baina beste jokoetarako, metodo ezberdinak hobeak izan daitezke."
+      },
+      "eus": {
+        "text": "## Bi dimentsioko array bat joko bateko datu-egitura gisa
+
+Matrize bat datu-egitura oso erabilgarria izan daiteke joko ezberdin askotan. Adibidez, beheko irudiko sudoku joko baten sareta
+
+<img src="5_1_3.png">
+
+matrize moduan irudika daiteke honela:
+
+```python
+sudoku = [
+  [9, 0, 0, 0, 8, 0, 3, 0, 0],
+  [0, 0, 0, 2, 5, 0, 7, 0, 0],
+  [0, 2, 0, 3, 0, 0, 0, 0, 4],
+  [0, 9, 4, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 7, 3, 0, 5, 6, 0],
+  [7, 0, 5, 0, 6, 0, 4, 0, 0],
+  [0, 0, 7, 8, 0, 3, 9, 0, 0],
+  [0, 0, 1, 0, 0, 0, 0, 0, 3],
+  [3, 0, 0, 0, 0, 0, 0, 0, 2]
+]
+```
+
+Hemen zero balioak karratu huts bat adierazten du, zero ez baita onargarria den balio bat amaitutako sudoku puzzle batean.
+
+Hemen goiko sudoku sareta inprimatzeko funtzio sinple bat:
+
+```python
+def print_grid(sudoku):
+    for row in sudoku:
+        for square in row:
+            if square > 0:
+                print(f" {square}", end="")
+            else:
+                print(" _", end="")
+        print()
+
+print_grid(sudoku)
+```
+
+Joko-taula diseinua duen edozein joko arrunt antzeko moduan modelatu daiteke. Besteak beste, xakea, Dragoi-meatzea, Ontzi-urperatzea edo Mastermind guztiak bi dimentsioko sareta batean oinarritzen dira. Sudokurako, naturala da zenbakiak erabiltzea jokoaren egoera irudikatzeko, baina beste jokoetarako, metodo ezberdinak hobeak izan daitezke."
+      }
+    }
+  }
+}

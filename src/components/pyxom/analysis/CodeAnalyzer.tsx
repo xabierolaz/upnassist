@@ -7,6 +7,7 @@ import {
   ClockIcon,
   CogIcon
 } from '@heroicons/react/24/outline';
+import { useLanguageStore } from '../../../stores/languageStore';
 
 interface AnalysisResult {
   type: 'error' | 'warning' | 'info' | 'suggestion';
@@ -30,6 +31,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
 }) => {
   const [analysis, setAnalysis] = useState<AnalysisResult[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const { t } = useLanguageStore();
 
   const analyzeCode = useCallback(async () => {
     setIsAnalyzing(true);
@@ -282,13 +284,13 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
       <div className="bg-gray-50 px-4 py-2 border-b flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CogIcon className="h-5 w-5 text-purple-600" />
-          <span className="font-medium text-sm">Code Analysis</span>
+          <span className="font-medium text-sm">{t.codeAnalysisTitle}</span>
         </div>
         <div className="flex items-center gap-3">
           <div className="text-sm">
-            Quality Score: <span className={`font-bold ${getScoreColor(score)}`}>{score}/100</span>
+            {t.qualityScore}: <span className={`font-bold ${getScoreColor(score)}`}>{score}/100</span>
           </div>
-          {isAnalyzing && <div className="text-xs text-blue-600 animate-pulse">Analyzing...</div>}
+          {isAnalyzing && <div className="text-xs text-blue-600 animate-pulse">{t.analyzing}</div>}
         </div>
       </div>
 
@@ -296,7 +298,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
         {analysis.length === 0 && !isAnalyzing ? (
           <div className="text-center py-8 text-gray-500">
             <CheckCircleIcon className="h-12 w-12 mx-auto mb-2 text-green-500" />
-            <p>Great code! No issues found.</p>
+            <p>{t.currentLang === 'EUS' ? 'Kode bikaina! Ez da arazorik aurkitu.' : t.currentLang === 'CAS' ? '¡Gran código! No se han encontrado problemas.' : 'Great code! No issues found.'}</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -307,36 +309,43 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
                   {category.replace('-', ' ')} ({results.length})
                 </h3>
                 <div className="space-y-2">
-                  {results.map((result, index) => (
-                    <div key={index} className={`p-3 rounded border-l-4 ${
-                      result.type === 'error' ? 'bg-red-50 border-red-400' :
-                      result.type === 'warning' ? 'bg-yellow-50 border-yellow-400' :
-                      result.type === 'info' ? 'bg-blue-50 border-blue-400' :
-                      'bg-green-50 border-green-400'
-                    }`}>
-                      <div className="flex items-start gap-2">
-                        {getIcon(result.type)}
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium">Line {result.line}</span>
-                            <span className={`text-xs px-2 py-1 rounded ${
-                              result.severity === 'high' ? 'bg-red-100 text-red-700' :
-                              result.severity === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                              'bg-gray-100 text-gray-700'
-                            }`}>
-                              {result.severity}
-                            </span>
+                  {results.map((result, index) => {
+                    // Logic to select the localized message
+                    const displayMessage = t.currentLang === 'EUS' ? (result as any).msg_eu || result.message :
+                                         t.currentLang === 'CAS' ? (result as any).msg_es || result.message :
+                                         result.message;
+
+                    return (
+                      <div key={index} className={`p-3 rounded border-l-4 ${
+                        result.type === 'error' ? 'bg-red-50 border-red-400' :
+                        result.type === 'warning' ? 'bg-yellow-50 border-yellow-400' :
+                        result.type === 'info' ? 'bg-blue-50 border-blue-400' :
+                        'bg-green-50 border-green-400'
+                      }`}>
+                        <div className="flex items-start gap-2">
+                          {getIcon(result.type)}
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium">{t.lineLabel} {result.line}</span>
+                              <span className={`text-xs px-2 py-1 rounded ${
+                                result.severity === 'high' ? 'bg-red-100 text-red-700' :
+                                result.severity === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                                'bg-gray-100 text-gray-700'
+                              }`}>
+                                {result.severity}
+                              </span>
+                            </div>
+                            <p className="text-sm mt-1">{displayMessage}</p>
+                            {result.suggestion && (
+                              <p className="text-xs text-gray-600 mt-1">
+                                💡 {result.suggestion}
+                              </p>
+                            )}
                           </div>
-                          <p className="text-sm mt-1">{result.message}</p>
-                          {result.suggestion && (
-                            <p className="text-xs text-gray-600 mt-1">
-                              💡 {result.suggestion}
-                            </p>
-                          )}
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}

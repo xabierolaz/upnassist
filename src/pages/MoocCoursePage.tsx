@@ -118,7 +118,7 @@ const MoocCoursePage: React.FC = () => {
                                     <li key={page.id}>
                                         <button
                                             onClick={() => setActivePageId(page.id)}
-                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${ 
                                                 activePageId === page.id
                                                 ? 'bg-brand-blue text-white shadow-sm'
                                                 : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -163,7 +163,7 @@ const MoocCoursePage: React.FC = () => {
                                     <li key={page.id}>
                                         <button
                                             onClick={() => setActivePageId(page.id)}
-                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${ 
                                                 activePageId === page.id
                                                 ? 'bg-brand-blue text-white shadow-sm'
                                                 : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -264,6 +264,58 @@ const MoocCoursePage: React.FC = () => {
   );
 };
 
+// Reusable Markdown Renderer with Custom Components
+const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
+    return (
+        <ReactMarkdown
+            components={{
+                h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {..._props} />,
+                h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {..._props} />,
+                p: ({node: _node, children, ...props}: any) => {
+                    if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
+                        return <QuizPlaceholder />;
+                    }
+                    return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
+                },
+                code: ({node: _node, inline, className, children, ..._props}: any) => {
+                    if (inline) {
+                        return <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded font-mono text-sm font-bold">{children}</code>;
+                    }
+                    if (className && className.includes('language-text')) {
+                        const content = String(children);
+                        return (
+                            <div className="my-6 p-4 pt-2 border-l-4 border-gray-300 bg-white shadow-sm rounded-r-md">
+                                <div className="w-full text-right text-xs text-gray-400 mb-1 font-sans">Sample output</div>
+                                <div className="font-mono text-sm whitespace-pre-wrap text-gray-800">{content}</div>
+                            </div>
+                        );
+                    }
+                    return (
+                        <pre className="bg-gray-900 text-gray-50 p-4 rounded-lg overflow-x-auto text-sm my-6 font-mono border border-gray-700 shadow-sm">
+                            <code>{children}</code>
+                        </pre>
+                    );
+                },
+                img: ({node: _node, src, ...props}: any) => {
+                    let finalSrc = src;
+                    if (src && !src.startsWith('http') && !src.startsWith('/')) {
+                        finalSrc = '/' + src;
+                    }
+                    return <img className="max-w-full h-auto rounded-lg shadow-md my-6 border border-gray-200" src={finalSrc} {...props} />;
+                }
+            }}
+        >
+            {content
+                .replace(/<quiz id=".*?"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')
+                .replace(/<text-box.*?name=['"](.*?)['"].*?>/g, '\n### $1\n')
+                .replace(/<\/text-box>/g, '')
+                .replace(/<sample-output>/g, '\n```text\n')
+                .replace(/<\/sample-output>/g, '\n```\n')
+            }
+        </ReactMarkdown>
+    );
+};
+
 const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     const { t, currentLang } = useLanguageStore();
     const completedExercises = useProgressStore(state => state.completedExercises);
@@ -278,100 +330,63 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
         const content = getLocalizedText(block.content, currentLang);
         return (
             <div className="prose prose-slate prose-lg max-w-none font-serif mb-8 text-gray-800">
-                <ReactMarkdown
-                    components={{
-                        h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {..._props} />,
-                        h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {..._props} />,
-                        p: ({node: _node, children, ...props}: any) => {
-                            if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
-                                return <QuizPlaceholder />;
-                            }
-                            return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
-                        },
-                        code: ({node: _node, inline, className, children, ..._props}: any) => {
-                            if (inline) {
-                                return <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded font-mono text-sm font-bold">{children}</code>;
-                            }
-                            if (className && className.includes('language-text')) {
-                                const content = String(children);
-                                return (
-                                    <div className="my-6 p-4 pt-2 border-l-4 border-gray-300 bg-white shadow-sm rounded-r-md">
-                                        <div className="w-full text-right text-xs text-gray-400 mb-1 font-sans">Sample output</div>
-                                        <div className="font-mono text-sm whitespace-pre-wrap text-gray-800">{content}</div>
-                                    </div>
-                                );
-                            }
-                            return (
-                                <pre className="bg-gray-900 text-gray-50 p-4 rounded-lg overflow-x-auto text-sm my-6 font-mono border border-gray-700 shadow-sm">
-                                    <code>{children}</code>
-                                </pre>
-                            );
-                        },
-                        // Ensure images resolve from public/
-                        img: ({node: _node, src, ...props}: any) => {
-                            // If src is "images/...", and we are at root, it works.
-                            // But if we want to be safe, we can prepend a slash if missing
-                            let finalSrc = src;
-                            if (src && !src.startsWith('http') && !src.startsWith('/')) {
-                                finalSrc = '/' + src;
-                            }
-                            return <img className="max-w-full h-auto rounded-lg shadow-md my-6 border border-gray-200" src={finalSrc} {...props} />;
-                        }
-                    }}
-                >
-                    {content
-                        .replace(/<quiz id=".*"><\/quiz>/g, '[[QUIZ_PLACEHOLDER]]')
-                        .replace(/<text-box.*?name=['"](.*?)['"].*?>/g, '\n### $1\n')
-                        .replace(/<\/text-box>/g, '')
-                        .replace(/<sample-output>/g, '\n```text\n')
-                        .replace(/<\/sample-output>/g, '\n```\n')
-                    }
-                </ReactMarkdown>
+                <MarkdownRenderer content={content} />
             </div>
         );
     }
 
     // Exercise
     if (block.type === 'exercise' && block.exerciseId) {
-        // We need to look up the exercise details. 
-        // In the lazy loading model, `getExercise` might not find it if we haven't loaded the data?
-        // Actually `exercisesDB` in `mooc-exercises.ts` is constructed from `coursePages` which is now NOT fully populated statically.
-        // **CRITICAL FIX**: `exercisesDB` will be empty or partial. 
-        // We must rely on the data inside the `activePageData` block itself or refactor how exercises are stored.
-        // In the original file I wrote, `exercisesDB` was built from `coursePages` array. 
-        // Since `coursePages` array is gone (replaced by `courseStructure` + dynamic imports), `exercisesDB` is gone.
-        
-        // Solution: The `block` object inside `activePageData` MUST contain all exercise details (title, description, initialCode).
-        // My generator script for `sectionX.ts` put full details in the block.
-        // So we can use `block` directly! We don't need `getExercise`.
-        
         const isCompleted = completedExercises[block.exerciseId!];
+        const headerColor = isCompleted ? '#13B559' : '#D23D48';
 
         return (
-            <div className={`my-10 border rounded-lg overflow-hidden shadow-lg ring-1 transition-all duration-500 ${isCompleted ? 'border-green-200 ring-green-100 bg-green-50/10' : 'border-gray-300 ring-black/5 bg-white'}`}>
-                <div className={`px-4 py-3 border-b flex justify-between items-center ${isCompleted ? 'bg-green-50 border-green-100' : 'bg-gray-50 border-gray-200'}`}>
-                    <div className="flex justify-between items-center mb-2 w-full">
-                        <div className="flex items-center gap-2">
-                            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide ${isCompleted ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
-                                {isCompleted ? t.completed : t.exercise}
-                            </span>
-                            <h4 className={`font-bold text-sm ${isCompleted ? 'text-green-900' : 'text-gray-800'}`}>{getLocalizedText(block.title, currentLang)}</h4>
+            <div className="my-14 rounded-2xl shadow-xl overflow-hidden bg-white">
+                {/* Header matching original ProgrammingExerciseCard.js styling */}
+                <div 
+                    className="flex flex-row items-center px-6 py-5 text-white"
+                    style={{ backgroundColor: headerColor }}
+                >
+                    {/* Pencil Icon (FontAwesome faPencilAlt equivalent) */}
+                    <div className="mr-6 text-3xl opacity-90">
+                        <svg aria-hidden="true" focusable="false" data-icon="pencil-alt" className="h-8 w-8" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"></path>
+                        </svg>
+                    </div>
+
+                    {/* Title Container */}
+                    <div className="flex-1">
+                        <div className="text-lg opacity-90 font-normal leading-tight mb-1">
+                            {t.exercise} 
                         </div>
-                        {isCompleted && <span className="text-green-600 text-xl animate-bounce">✓</span>}
+                        <h3 className="text-2xl font-medium m-0 leading-tight">
+                            {getLocalizedText(block.title, currentLang)}
+                        </h3>
+                    </div>
+
+                    {/* Points Wrapper */}
+                    <div className="ml-4 flex flex-col text-right">
+                        <span className="text-lg opacity-90">{t.points}:</span>
+                        <div className="text-2xl font-bold leading-none mt-1">
+                            {isCompleted ? "1" : "0"}<span className="text-xl mx-1 font-normal">/</span>1
+                        </div>
                     </div>
                 </div>
+
+                {/* Description - Now using MarkdownRenderer for rich content inside the card! */}
                 {block.description && (
-                    <div className="px-4 py-2 text-sm text-gray-600 font-serif italic border-b border-gray-100">
-                        {getLocalizedText(block.description, currentLang)}
+                    <div className="px-8 py-6 text-base text-gray-800 font-sans border-b border-gray-100 bg-white leading-relaxed">
+                        <MarkdownRenderer content={getLocalizedText(block.description, currentLang)} />
                     </div>
                 )}
                 
-                <div className="h-[500px]">
+                {/* Environment */}
+                <div className="h-[550px] border-t border-gray-100">
                     <PyXomEnvironment 
                         exerciseId={block.exerciseId}
                         initialCode={getLocalizedText(block.initialCode, currentLang) || ''}
                         testCode={block.testCode || ''}
-                        className="h-full border-0 rounded-none"
+                        className="h-full border-0 rounded-none shadow-none"
                     />
                 </div>
             </div>

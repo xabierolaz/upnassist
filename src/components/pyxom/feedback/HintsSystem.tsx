@@ -1,5 +1,6 @@
 import React from 'react';
 import { LightBulbIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { useLanguageStore } from '../../../stores/languageStore';
 
 interface HintsSystemProps {
   hints: string[];
@@ -16,6 +17,7 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
   onUseHint,
   onToggleHints
 }) => {
+  const { t } = useLanguageStore();
   const hasMoreHints = hintsUsed < hints.length;
   const visibleHints = hints.slice(0, hintsUsed);
 
@@ -24,7 +26,7 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-semibold text-lg flex items-center gap-2">
           <LightBulbIcon className="h-5 w-5 text-yellow-500" />
-          Pistas
+          {t.hints}
         </h3>
         {hintsUsed > 0 && (
           <button
@@ -34,12 +36,12 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
             {showHints ? (
               <>
                 <EyeSlashIcon className="h-4 w-4" />
-                Ocultar
+                {t.hide}
               </>
             ) : (
               <>
                 <EyeIcon className="h-4 w-4" />
-                Mostrar
+                {t.show}
               </>
             )}
           </button>
@@ -49,7 +51,7 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
       {/* Hint counter */}
       <div className="mb-3">
         <p className="text-sm text-gray-600">
-          Pistas disponibles: {hints.length - hintsUsed} de {hints.length}
+          {t.hintsAvailable} {hints.length - hintsUsed} / {hints.length}
         </p>
       </div>
 
@@ -61,7 +63,7 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
               key={index}
               className="bg-yellow-50 border border-yellow-200 rounded p-3 text-sm"
             >
-              <p className="font-medium text-yellow-800 mb-1">Pista {index + 1}:</p>
+              <p className="font-medium text-yellow-800 mb-1">{t.hintLabel} {index + 1}:</p>
               <p className="text-yellow-700">{hint}</p>
             </div>
           ))}
@@ -74,14 +76,14 @@ export const HintsSystem: React.FC<HintsSystemProps> = ({
           onClick={onUseHint}
           className="w-full py-2 px-4 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors text-sm font-medium"
         >
-          Usar siguiente pista ({hints.length - hintsUsed} restantes)
+          {t.useNextHint} ({hints.length - hintsUsed} {t.remaining})
         </button>
       )}
 
       {/* No more hints message */}
       {!hasMoreHints && hintsUsed > 0 && (
         <p className="text-sm text-gray-500 text-center">
-          Has usado todas las pistas disponibles
+          {t.allHintsUsed}
         </p>
       )}
     </div>
