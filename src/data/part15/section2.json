@@ -7,11 +7,20 @@
   },
   "blocks": [
     {
+      "type": "pdf-viewer",
+      "src": "/slides/15.2_sparse_matrices.pdf",
+      "title": {
+        "ENG": "Lab Instructions: Sparse Matrices",
+        "CAS": "Instrucciones de la Práctica: Matrices Dispersas",
+        "EUS": "Praktikaren Jarraibideak: Matrize Sakabanatuak"
+      }
+    },
+    {
       "type": "text",
       "content": {
-        "ENG": "<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.2_sparse_matrices.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Download Lab PDF\n  </a>\n</div>\n\n## Sparse Matrices\n\nIn numerical analysis and scientific computing, a **sparse matrix** is a matrix in which most of the elements are zero.",
-        "CAS": "<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.2_sparse_matrices.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Descargar PDF de Práctica\n  </a>\n</div>\n\n## Matrices Dispersas\n\nEn análisis numérico y computación científica, una **matriz dispersa** (o matriz rala) es una matriz en la que la mayoría de los elementos son cero.",
-        "EUS": "<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.2_sparse_matrices.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Deskargatu Praktika PDF-a\n  </a>\n</div>\n\n## Matrize Sakabanatuak\n\nZenbakizko analisian eta konputazio zientifikoan, **matrize sakabanatua** (edo matrize rala) elementu gehienak zero dituen matrizea da."
+        "ENG": "## Sparse Matrices\n\nIn numerical analysis and scientific computing, a **sparse matrix** is a matrix in which most of the elements are zero.",
+        "CAS": "## Matrices Dispersas\n\nEn análisis numérico y computación científica, una **matriz dispersa** (o matriz rala) es una matriz en la que la mayoría de los elementos son cero.",
+        "EUS": "## Matrize Sakabanatuak\n\nZenbakizko analisian eta konputazio zientifikoan, **matrize sakabanatua** (edo matrize rala) elementu gehienak zero dituen matrizea da."
       }
     },
     {

@@ -14,6 +14,7 @@ import { FStringVisualizer } from '../components/FStringVisualizer';
 import { MainGuardVisualizer } from '../components/MainGuardVisualizer';
 import { SparseMatrixVisualizer } from '../components/SparseMatrixVisualizer';
 import { OOPVisualizer } from '../components/OOPVisualizer';
+import { PDFViewer } from '../components/common/PDFViewer';
 
 const MoocCoursePage: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -237,6 +238,11 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     // OOP Visualizer
     if (block.type === 'interactive-oop') {
         return <OOPVisualizer />;
+    }
+
+    // PDF Viewer
+    if (block.type === 'pdf-viewer' && block.src) {
+        return <PDFViewer src={block.src} title={block.title as any} />;
     }
 
     // Markdown

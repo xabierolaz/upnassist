@@ -8,11 +8,20 @@
   },
   "blocks": [
     {
+      "type": "pdf-viewer",
+      "src": "/slides/15.1_intro_python.pdf",
+      "title": {
+        "ENG": "Original Slides: Intro Python",
+        "CAS": "Diapositivas Originales: Intro Python",
+        "EUS": "Jatorrizko Diapositibak: Intro Python"
+      }
+    },
+    {
       "type": "markdown",
       "content": {
-        "ENG": "## 0. Development Environment (IDEs)\n\n<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.1_intro_python.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Download Original Slides (PDF)\n  </a>\n</div>\n\nBefore writing code, you need a tool. While Notepad++ is an option, modern developers use powerful IDEs (Integrated Development Environments).",
-        "CAS": "## 0. Entorno de Desarrollo (IDEs)\n\n<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.1_intro_python.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Descargar Diapositivas Originales (PDF)\n  </a>\n</div>\n\nAntes de escribir código, necesitas una herramienta. Aunque Notepad++ es una opción, los desarrolladores modernos usan IDEs potentes.",
-        "EUS": "## 0. Garapen Ingurunea (IDEak)\n\n<div class=\"flex justify-center my-6\">\n  <a href=\"/slides/15.1_intro_python.pdf\" target=\"_blank\" class=\"flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 transition-colors shadow-md\">\n    <svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path></svg>\n    Jatorrizko Diapositibak Deskargatu (PDF)\n  </a>\n</div>\n\nKodea idatzi aurretik, tresna bat behar duzu. Notepad++ aukera bat bada ere, garatzaile modernoek IDE indartsuak erabiltzen dituzte."
+        "ENG": "## 0. Development Environment (IDEs)\n\nBefore writing code, you need a tool. While Notepad++ is an option, modern developers use powerful IDEs (Integrated Development Environments).",
+        "CAS": "## 0. Entorno de Desarrollo (IDEs)\n\nAntes de escribir código, necesitas una herramienta. Aunque Notepad++ es una opción, los desarrolladores modernos usan IDEs potentes.",
+        "EUS": "## 0. Garapen Ingurunea (IDEak)\n\nKodea idatzi aurretik, tresna bat behar duzu. Notepad++ aukera bat bada ere, garatzaile modernoek IDE indartsuak erabiltzen dituzte."
       }
     },
     {

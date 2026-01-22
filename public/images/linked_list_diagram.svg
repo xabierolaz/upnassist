@@ -1,0 +1,43 @@
+<svg width="600" height="150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Styles -->
+  <style>
+    .node-box { fill: #f8d7da; stroke: #dc3545; stroke-width: 2; }
+    .pointer-box { fill: #cce5ff; stroke: #004085; stroke-width: 2; }
+    .text { font-family: monospace; font-size: 20px; text-anchor: middle; dominant-baseline: middle; }
+    .arrow { stroke: #333; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    .null-box { fill: #ffc107; stroke: #333; stroke-width: 2; }
+  </style>
+
+  <!-- Marker for arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- Node 1 -->
+  <rect x="50" y="50" width="80" height="50" rx="5" ry="5" class="node-box" />
+  <rect x="130" y="50" width="40" height="50" rx="5" ry="5" class="pointer-box" />
+  <text x="90" y="75" class="text">12</text>
+  <circle cx="150" cy="75" r="4" fill="#004085" />
+  <line x1="150" y1="75" x2="190" y2="75" class="arrow" />
+
+  <!-- Node 2 -->
+  <rect x="200" y="50" width="80" height="50" rx="5" ry="5" class="node-box" />
+  <rect x="280" y="50" width="40" height="50" rx="5" ry="5" class="pointer-box" />
+  <text x="240" y="75" class="text">99</text>
+  <circle cx="300" cy="75" r="4" fill="#004085" />
+  <line x1="300" y1="75" x2="340" y2="75" class="arrow" />
+
+  <!-- Node 3 -->
+  <rect x="350" y="50" width="80" height="50" rx="5" ry="5" class="node-box" />
+  <rect x="430" y="50" width="40" height="50" rx="5" ry="5" class="pointer-box" />
+  <text x="390" y="75" class="text">37</text>
+  <circle cx="450" cy="75" r="4" fill="#004085" />
+  <line x1="450" y1="75" x2="490" y2="75" class="arrow" />
+
+  <!-- Null / End -->
+  <rect x="500" y="50" width="50" height="50" class="null-box" />
+  <line x1="500" y1="50" x2="550" y2="100" stroke="#333" stroke-width="2" />
+  <line x1="550" y1="50" x2="500" y2="100" stroke="#333" stroke-width="2" />
+</svg>
