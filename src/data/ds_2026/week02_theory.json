@@ -62,6 +62,14 @@
     {
       "type": "markdown",
       "content": {
+        "ENG": "### 1.4 Warning: Aliasing (References)\n\nIn Data Structures, this is the **#1 source of bugs**. Python variables are references (pointers) to objects, not boxes containing values.\n\n```python\na = [1, 2, 3]\nb = a # b POINTS to the same list as a\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! 'a' changed too!\n```\n\n✅ **The Fix**: If you want a separate copy, use `.copy()` or slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Unchanged\n```",
+        "CAS": "### 1.4 Advertencia: Aliasing (Referencias)\n\nEn Estructura de Datos, esta es la **fuente de bugs nº1**. Las variables en Python son referencias (punteros) a objetos, no cajas con valores.\n\n```python\na = [1, 2, 3]\nb = a # b APUNTA a la misma lista que a\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! ¡'a' también cambió!\n```\n\n✅ **La Solución**: Si quieres una copia separada, usa `.copy()` o slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Sin cambios\n```",
+        "EUS": "### 1.4 Oharra: Aliasing (Erreferentziak)\n\nDatu Egituretan, hau da **bug iturri nagusia**. Python aldagaiak objektuetarako erreferentziak (erakusleak) dira, ez balioak dituzten kaxak.\n\n```python\na = [1, 2, 3]\nb = a # b-k a-ren zerrenda BERDINERA apuntatzen du\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! 'a' ere aldatu da!\n```\n\n✅ **Konponbidea**: Kopia bereizi bat nahi baduzu, erabili `.copy()` edo slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Aldaketarik gabe\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
         "ENG": "## 2. Working with Files\n\nFiles provide persistence. However, paths are the #1 source of errors. Always code defensively.\n\n### Reading Methods\nIterating (`for line in f`) is efficient, but sometimes you need specific methods:\n*   `f.read()`: Reads the **entire file** into a single string.\n*   `f.readline()`: Reads just **one line** (moves the cursor).\n*   `f.readlines()`: Reads all lines into a **list of strings**.\n\n### File Modes Cheat Sheet\n| Mode | Behavior | Pointer | Truncates? |\n| :--- | :--- | :--- | :--- |\n| `r` | Read only. Error if missing. | Start | No |\n| `w` | Write. Creates if missing. | Start | **Yes** |\n| `a` | Append. Creates if missing. | End | No |\n| `r+` | **Read & Write**. Error if missing. | Start | No |\n| `w+` | **Read & Write**. Creates new. | Start | **Yes** |\n| `a+` | **Read & Append**. Creates new. | End | No |\n\n### Path Theory: Absolute vs Relative\n*   **Absolute Path**: The full address from the root (e.g., `C:\\Users\\Data\\file.txt` or `/home/user/file.txt`). Rigid and breaks on other computers.\n*   **Relative Path**: The path relative to where the script is running (e.g., `data/file.txt`). Flexible.\n\n#### Current Working Directory (CWD)\nThe \"starting point\" for relative paths. Use `os.getcwd()` to check it.\n\n> ⚠️ **Common Error**: Running a script from the wrong folder changes the CWD, causing `FileNotFoundError`.\n\n### Defensive Opening\n```python\nimport os\nfilename = \"data.txt\"\n\nif os.path.exists(filename):\n    with open(filename, mode=\"r\") as f:\n        print(f.read()) # Read everything\nelse:\n    print(f\"Error: {filename} not found in {os.getcwd()}\")\n```",
         "CAS": "## 2. Trabajando con Ficheros\n\nLos ficheros dan persistencia. Sin embargo, las rutas son la fuente nº1 de errores. Programa siempre a la defensiva.\n\n### Métodos de Lectura\nIterar (`for linea in f`) es eficiente, pero a veces necesitas métodos específicos:\n*   `f.read()`: Lee el **archivo completo** en un solo string.\n*   `f.readline()`: Lee solo **una línea** (mueve el cursor).\n*   `f.readlines()`: Lee todas las líneas en una **lista de strings**.\n\n### Chuleta de Modos\n| Modo | Comportamiento | Puntero | ¿Vacía? |\n| :--- | :--- | :--- | :--- |\n| `r` | Solo lectura. Error si falta. | Inicio | No |\n| `w` | Escritura. Crea si falta. | Inicio | **Sí** |\n| `a` | Adjuntar. Crea si falta. | Final | No |\n| `r+` | **Leer y Escribir**. Error si falta. | Inicio | No |\n| `w+` | **Leer y Escribir**. Crea nuevo. | Inicio | **Sí** |\n| `a+` | **Leer y Adjuntar**. Crea nuevo. | Final | No |\n\n### Teoría de Rutas: Absoluta vs Relativa\n*   **Ruta Absoluta**: La dirección completa desde la raíz (ej., `C:\\Users\\Data\\file.txt`). Rígida y falla en otros ordenadores.\n*   **Ruta Relativa**: La ruta relativa a donde se ejecuta el script (ej., `data/file.txt`). Flexible.\n\n#### Directorio de Trabajo Actual (CWD)\nEl \"punto de partida\" para rutas relativas. Usa `os.getcwd()` para verlo.\n\n> ⚠️ **Error Común**: Ejecutar un script desde la carpeta incorrecta cambia el CWD, causando `FileNotFoundError`.\n\n### Apertura Defensiva\n```python\nimport os\nnombre = \"data.txt\"\n\nif os.path.exists(nombre):\n    with open(nombre, mode=\"r\") as f:\n        print(f.read()) # Lee todo\nelse:\n    print(f\"Error: {nombre} no encontrado en {os.getcwd()}\")\n```",
         "EUS": "## 2. Fitxategiekin Lanean\n\nFitxategiek persistentzia ematen dute. Hala ere, bideak dira erroreen 1. iturria. Programatu beti defentsan.\n\n### Irakurketa Metodoak\nIteratzea (`for lerroa in f`) eraginkorra da, baina batzuetan metodo zehatzak behar dituzu:\n*   `f.read()`: Fitxategi **osoa** string bakar batean irakurtzen du.\n*   `f.readline()`: Lerro **bakar bat** irakurtzen du (kurtsorea mugitzen du).\n*   `f.readlines()`: Lerro guztiak **string zerrenda** batean irakurtzen ditu.\n\n### Moduen Txuleta\n| Modua | Portaera | Erakuslea | Hustu? |\n| :--- | :--- | :--- | :--- |\n| `r` | Irakurri soilik. Errorea faltan bada. | Hasiera | Ez |\n| `w` | Idatzi. Sortu faltan bada. | Hasiera | **Bai** |\n| `a` | Erantsi. Sortu faltan bada. | Amaiera | Ez |\n| `r+` | **Irakurri eta Idatzi**. Errorea faltan bada. | Hasiera | Ez |\n| `w+` | **Irakurri eta Idatzi**. Berria sortu. | Hasiera | **Bai** |\n| `a+` | **Irakurri eta Erantsi**. Berria sortu. | Amaiera | Ez |\n\n### Bideen Teoria: Absolutua vs Erlatiboa\n*   **Bide Absolutua**: Errotik hasitako helbide osoa (adib., `/home/user/file.txt`). Zurruna eta beste ordenagailuetan huts egiten du.\n*   **Bide Erlatiboa**: Script-a exekutatzen den lekutik hasten den bidea (adib., `data/file.txt`). Malgua.\n\n#### Uneko Laneko Direktorioa (CWD)\nBide erlatiboetarako \"hasiera puntua\". Erabili `os.getcwd()` ikusteko.\n\n> ⚠️ **Errore Ohikoa**: Script bat okerreko karpetatik exekutatzeak CWD aldatzen du, `FileNotFoundError` eraginez.\n\n### Irekiera Defentsiboa\n```python\nimport os\nizena = \"data.txt\"\n\nif os.path.exists(izena):\n    with open(izena, mode=\"r\") as f:\n        print(f.read()) # Dena irakurri\nelse:\n    print(f\"Errorea: {izena} ez da aurkitu hemen: {os.getcwd()}\")\n```"
@@ -94,6 +102,21 @@
         "CAS": "## 4. Anotaciones de Tipo (Type Hinting)\n\nPython es dinámico, pero las pistas ayudan a tu IDE a ver bugs. Desde Python 3.9, puedes anidar tipos nativos.\n\n### Pistas Básicas\n```python\nedad: int = 25\nnombre: str = \"Alicia\"\n```\n\n### Estructuras Complejas (El Poder Real)\nEn Estructura de Datos, usas datos anidados. Sé específico:\n\n```python\n# Matriz: Una lista de listas de enteros\nmatriz: list[list[int]] = [[1, 0], [0, 1]]\n\n# Tabla de Búsqueda: Claves string a valores float\nprecios: dict[str, float] = {\"Manzana\": 1.20, \"Plátano\": 0.80}\n\n# Anidación Profunda: Un diccionario donde los valores son listas de listas\nmapa_complejo: dict[str, list[list[int]]] = ...\n```",
         "EUS": "## 4. Mota Anotazioak (Type Hinting)\n\nPython dinamikoa da, baina iradokizunek IDEari erroreak harrapatzen laguntzen diote. Python 3.9tik aurrera, jatorrizko motak habiaratu ditzakezu.\n\n### Oinarrizko Iradokizunak\n```python\nadina: int = 25\nizena: str = \"Ane\"\n```\n\n### Egitura Konplexuak (Benetako Boterea)\nDatu Egituretan, habiaratutako datuekin lan egiten duzu. Izan zehatza:\n\n```python\n# Matrizea: Osoko zenbakien zerrenden zerrenda\nmatrizea: list[list[int]] = [[1, 0], [0, 1]]\n\n# Bilaketa Taula: String gakoak float balioetara\nprezioak: dict[str, float] = {\"Sagarra\": 1.20, \"Banana\": 0.80}\n\n# Habiaratze Sakona: Balioak zerrenden zerrendak dituen hiztegia\nmapa_konplexua: dict[str, list[list[int]]] = ...\n```"
       }
+    },
+    {
+      "type": "quiz",
+      "id": "ds-w02-q1",
+      "question": {
+        "ENG": "What is the correct type hint for this variable? `data = {'grades': [9.5, 8.0], 'names': ['Ana']}`",
+        "CAS": "¿Cuál es la pista de tipo correcta para esta variable? `datos = {'notas': [9.5, 8.0], 'nombres': ['Ana']}`",
+        "EUS": "Zein da mota-iradokizun zuzena aldagai honetarako? `datuak = {'notak': [9.5, 8.0], 'izenak': ['Ane']}`"
+      },
+      "options": [
+        { "text": "dict[str, list]", "correct": false },
+        { "text": "dict[str, list[float | str]]", "correct": true },
+        { "text": "dict[str, list[float]]", "correct": false },
+        { "text": "list[dict[str, any]]", "correct": false }
+      ]
     },
     {
       "type": "markdown",
@@ -156,6 +179,22 @@
         "EUS": "class Ikaslea:\n    def __init__(self, izena, adina):\n        # TODO: Esleitu self.izena eta self.adina\n        pass\n\ni1 = Ikaslea(\"Ane\", 20)\nprint(i1.izena)"
       },
       "testCode": "assert \"self.\" in code"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-ex2",
+      "title": { "ENG": "Add a Method", "CAS": "Añade un Método", "EUS": "Gehitu Metodo bat" },
+      "description": {
+        "ENG": "Add a method `is_adult(self)` that returns `True` if `age >= 18`. Call it for `s1`.",
+        "CAS": "Añade un método `es_adulto(self)` que retorne `True` si `edad >= 18`. Llámalo para `e1`.",
+        "EUS": "Gehitu `heldua_da(self)` metodoa, `True` itzultzen duena `adina >= 18` bada. Deitu `i1`-entzat."
+      },
+      "initialCode": {
+        "ENG": "class Student:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n    \n    # TODO: Define is_adult(self)\n\ns1 = Student(\"Bob\", 17)\n# print(s1.is_adult())",
+        "CAS": "class Estudiante:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n    \n    # TODO: Define es_adulto(self)\n\ne1 = Estudiante(\"Bob\", 17)\n# print(e1.es_adulto())",
+        "EUS": "class Ikaslea:\n    def __init__(self, izena, adina):\n        self.izena = izena\n        self.adina = adina\n    \n    # TODO: Definitu heldua_da(self)\n\ni1 = Ikaslea(\"Bob\", 17)\n# print(i1.heldua_da())"
+      },
+      "testCode": "assert \"def\" in code and \">=\" in code"
     }
   ]
 }
