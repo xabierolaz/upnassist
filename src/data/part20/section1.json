@@ -1,0 +1,18 @@
+{
+    "id": "part20-1",
+    "title": {
+        "ENG": "Linked Lists I (Monday 09/03/2026)",
+        "CAS": "Listas Enlazadas I (Lunes 09/03/2026)",
+        "EUS": "Zerrenda Estekatuak I (Astelehena 09/03/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Linked Lists I (Monday 09/03/2026)\n\nTheoretical Class - Monday 09/03/2026\n\nContent coming soon...",
+                "CAS": "# Listas Enlazadas I (Lunes 09/03/2026)\n\nClase Teórica - Lunes 09/03/2026\n\nContenido próximamente...",
+                "EUS": "# Zerrenda Estekatuak I (Astelehena 09/03/2026)\n\nKlase Teorikoa - Astelehena 09/03/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}

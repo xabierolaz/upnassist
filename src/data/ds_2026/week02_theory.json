@@ -1,0 +1,109 @@
+{
+  "id": "ds-w02-intro",
+  "part": 15,
+  "title": {
+    "ENG": "Review: Python Tips & Tricks",
+    "CAS": "Repaso: Trucos y Básicos de Python",
+    "EUS": "Berrikuspena: Python Trikimailuak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 0. Development Environment (IDEs)\n\nBefore writing code, you need a tool. While Notepad++ is an option, modern developers use powerful IDEs (Integrated Development Environments).\n\n*   **IDLE**: Comes with Python. Simple.\n*   **Spyder**: Great for scientific usage (Anaconda).\n*   **PyCharm**: The industry standard for large Python projects.\n*   **Jupyter Notebooks**: Excellent for data analysis and step-by-step execution.\n\n## 1. Advanced Lists & Iteration\n\nLists are the most common data structure. They store items in a given order and are dynamic in length.\n\n![Python List Structure (Array)](/images/array_list_diagram.svg)",
+        "CAS": "## 0. Entorno de Desarrollo (IDEs)\n\nAntes de escribir código, necesitas una herramienta. Aunque Notepad++ es una opción, los desarrolladores modernos usan IDEs potentes.\n\n*   **IDLE**: Viene con Python. Simple.\n*   **Spyder**: Genial para uso científico (Anaconda).\n*   **PyCharm**: El estándar de la industria para grandes proyectos.\n*   **Jupyter Notebooks**: Excelente para análisis de datos y ejecución paso a paso.\n\n## 1. Listas Avanzadas e Iteración\n\nLa lista es uno de los TAD más comunes. Almacena puntos de datos en un orden dado y su longitud suele ser dinámica.\n\n![Estructura de Lista Python (Array)](/images/array_list_diagram_cas.svg)",
+        "EUS": "## 0. Garapen Ingurunea (IDEak)\n\nKodea idatzi aurretik, tresna bat behar duzu. Notepad++ aukera bat bada ere, garatzaile modernoek IDE indartsuak erabiltzen dituzte.\n\n*   **IDLE**: Pythonekin dator. Sinplea.\n*   **Spyder**: Erabilera zientifikorako bikaina (Anaconda).\n*   **PyCharm**: Proiektu handietarako industriako estandarra.\n*   **Jupyter Notebooks**: Datuen analisirako eta pausoz pauso exekutatzeko bikaina.\n\n## 1. Zerrenda Aurreratuak eta Iterazioa\n\nZerrenda DAT ohikoenetako bat da. Datu-puntuak ordena jakin batean gordetzen ditu eta bere luzera dinamikoa izan ohi da.\n\n![Python Zerrenda Egitura (Array)](/images/array_list_diagram_eus.svg)"
+      }
+    },
+    {
+      "type": "interactive-list"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.1 Iterating with *enumerate*\nSometimes you need **both** the element and its index. Don't iterate by range `len(lst)`. Use `enumerate`.\n\n❌ **Avoid**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Use**: `for index, value in enumerate(lst): ...`\n\n```python\nnames = [\"Ana\", \"Bob\", \"Charlie\"]\nfor index, name in enumerate(names):\n    print(f\"{index}: {name}\")\n```",
+        "CAS": "### 1.1 Iterando con *enumerate*\nA veces necesitas **ambos**: el elemento y su índice. No iteres por rango `len(lst)`. Usa `enumerate`.\n\n❌ **Evita**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Usa**: `for indice, valor in enumerate(lst): ...`\n\n```python\nnombres = [\"Ana\", \"Bob\", \"Charlie\"]\nfor indice, nombre in enumerate(nombres):\n    print(f\"{indice}: {nombre}\")\n```",
+        "EUS": "### 1.1 Iteratzen *enumerate* erabiliz\nBatzuetan elementua **eta** bere indizea behar dituzu. Ez iteratu `len(lst)` eremua erabiliz. Erabili `enumerate`.\n\n❌ **Saihestu**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Erabili**: `for indizea, balioa in enumerate(lst): ...`\n\n```python\nizenak = [\"Ana\", \"Bob\", \"Charlie\"]\nfor indizea, izena in enumerate(izenak):\n    print(f\"{indizea}: {izena}\")\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.2 Unpacking & The Asterisk (*)\n\nPython allows assignments of multiple variables at once. You can use `*` to capture \"the rest\" of the list, or to unpack a list into arguments.\n\n```python\n# Variable unpacking\nvalues = [1, 2, 3, 4, 5]\nfirst, *middle, last = values\nprint(first)   # 1\nprint(middle)  # [2, 3, 4]\nprint(last)    # 5\n\n# Argument unpacking\nlst = [\"one\", \"two\", \"three\"]\nprint(*lst) # Equivalent to print(lst[0], lst[1], lst[2])\n```",
+        "CAS": "### 1.2 Desempaquetado y el Asterisco (*)\n\nPython permite asignar múltiples variables a la vez. Puedes usar `*` para capturar \"el resto\" de la lista, o para desempaquetar una lista en argumentos.\n\n```python\n# Desempaquetado de variables\nvalores = [1, 2, 3, 4, 5]\nprimero, *medio, ultimo = valores\nprint(primero) # 1\nprint(medio)   # [2, 3, 4]\nprint(ultimo)  # 5\n\n# Desempaquetado de argumentos\nlst = [\"uno\", \"dos\", \"tres\"]\nprint(*lst) # Equivalente a print(lst[0], lst[1], lst[2])\n```",
+        "EUS": "### 1.2 Desempaquetado eta Izartxoa (*)\n\nPython-ek aldagai anitz batera esleitzeko aukera ematen du. `*` erabil dezakezu zerrendaren \"gainerakoa\" harrapatzeko, edo zerrenda bat argumentuetan desempaquetatzeko.\n\n```python\n# Aldagaien desempaquetatzea\nbalioak = [1, 2, 3, 4, 5]\nlehena, *erdikoa, azkena = balioak\nprint(lehena)  # 1\nprint(erdikoa) # [2, 3, 4]\nprint(azkena)  # 5\n\n# Argumentuen desempaquetatzea\nlst = [\"bat\", \"bi\", \"hiru\"]\nprint(*lst) # print(lst[0], lst[1], lst[2])-ren baliokidea\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. Working with Files\n\nFiles provide persistence. However, paths are the #1 source of errors. Always code defensively.\n\n### Debugging Paths\nIf Python says \"File not found\", ask: *\"Where does Python think I am?\"*\n\n```python\nimport os\nprint(os.getcwd()) # Prints Current Working Directory\n```\n\n### Defensive Opening\nBefore opening, check if the file exists. This prevents crashes.\n\n```python\nimport os\n\nfilename = \"data/data.txt\"\n\nif os.path.exists(filename):\n    # Safe to open\n    with open(filename, mode=\"r\") as f:\n        for line in f:\n            print(line.strip())\nelse:\n    print(f\"Error: {filename} not found in {os.getcwd()}\")\n```\n\n### File Modes Cheat Sheet\n| Mode | Behavior |\n| :--- | :--- |\n| `r` | **Read**. Default. Crashes if missing. |\n| `w` | **Write**. Empties file if exists. Creates if missing. |\n| `a` | **Append**. Adds to end. Creates if missing. |\n| `r+` | **Read/Write**. No truncation. |",
+        "CAS": "## 2. Trabajando con Ficheros\n\nLos ficheros dan persistencia. Sin embargo, las rutas son la fuente nº1 de errores. Programa siempre a la defensiva.\n\n### Depurando Rutas\nSi Python dice \"File not found\", pregúntate: *\"¿Dónde cree Python que estoy?\"*\n\n```python\nimport os\nprint(os.getcwd()) # Imprime el Directorio de Trabajo Actual\n```\n\n### Apertura Defensiva\nAntes de abrir, comprueba si existe. Esto evita caídas.\n\n```python\nimport os\n\nnombre = \"datos/data.txt\"\n\nif os.path.exists(nombre):\n    # Seguro para abrir\n    with open(nombre, mode=\"r\") as f:\n        for linea in f:\n            print(linea.strip())\nelse:\n    print(f\"Error: {nombre} no encontrado en {os.getcwd()}\")\n```\n\n### Chuleta de Modos\n| Modo | Comportamiento |\n| :--- | :--- |\n| `r` | **Leer**. Defecto. Falla si falta. |\n| `w` | **Escribir**. Vacía si existe. Crea si falta. |\n| `a` | **Adjuntar**. Añade al final. Crea si falta. |\n| `r+` | **Leer/Escribir**. Sin vaciado. |",
+        "EUS": "## 2. Fitxategiekin Lanean\n\nFitxategiek persistentzia ematen dute. Hala ere, bideak dira erroreen 1. iturria. Programatu beti defentsan.\n\n### Bideak Arazten\nPython-ek \"File not found\" esaten badu, galdetu: *\"Non uste du Python-ek nagoela?\"*\n\n```python\nimport os\nprint(os.getcwd()) # Uneko Lan Direktorioa inprimatzen du\n```\n\n### Irekiera Defentsiboa\nIreki aurretik, egiaztatu existitzen den. Honek kraskadurak saihesten ditu.\n\n```python\nimport os\n\nizena = \"datuak/data.txt\"\n\nif os.path.exists(izena):\n    # Irekitzeko segurua\n    with open(izena, mode=\"r\") as f:\n        for lerroa in f:\n            print(lerroa.strip())\nelse:\n    print(f\"Errorea: {izena} ez da aurkitu hemen: {os.getcwd()}\")\n```\n\n### Moduen Txuleta\n| Modua | Portaera |\n| :--- | :--- |\n| `r` | **Irakurri**. Lehenetsia. Huts egiten du faltan bada. |\n| `w` | **Idatzi**. Hustu existitzen bada. Sortu faltan bada. |\n| `a` | **Erantsi**. Amaieran gehitu. Sortu faltan bada. |\n| `r+` | **Irakurri/Idatzi**. Hustuketarik ez. |"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 3. F-Strings Formatting\n\nF-Strings are fast and readable. You can format numbers directly inside them.\nStructure: `{value:[fill][align][width][.precision][type]}`\n\n*   `: .2f` -> 2 decimal float.\n*   `: >10` -> Align right, 10 spaces width.\n\n```python\npi = 3.14159265\nprint(f\"Pi is approx {pi:.2f}\")       # 3.14\nprint(f\"Pi aligned: {pi:>10.2f}\")     # \"      3.14\"\n```",
+        "CAS": "## 3. Formato con F-Strings\n\nLas F-Strings son rápidas y legibles. Puedes formatear números directamente dentro.\nEstructura: `{valor:[relleno][alineacion][ancho][.precision][tipo]}`\n\n*   `: .2f` -> float con 2 decimales.\n*   `: >10` -> Alinear derecha, ancho 10.\n\n```python\npi = 3.14159265\nprint(f\"Pi es aprox {pi:.2f}\")        # 3.14\nprint(f\"Pi alineado: {pi:>10.2f}\")    # \"      3.14\"\n```",
+        "EUS": "## 3. F-Strings Formateatzea\n\nF-String-ak azkarrak eta irakurgarriak dira. Zenbakiak zuzenean formateatu ditzakezu `{balioa:formatua}` sintaxiarekin.\n\n### Formatu Espezifikatzaileak\nSintaxi osoa honakoa da: `:[betegarria][lerrokatu][zabalera][.zehaztasuna][mota]`\n\n1.  **Zehaztasuna (`.2f`)**: Float baterako dezimal kopurua.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Zabalera (`10`)**: Eremuaren gutxieneko tamaina (zutabeetarako erabilgarria).\n    *   `f\"{izena:10}\"` -> `\"Ane       \"` (10eko zabalera bermatzen du)\n3.  **Lerrokatzea (`<`, `>`, `^`)**: Testua nola kokatu eremuan.\n    *   `>`: Eskuinean (Zenbakietarako lehentsia). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Ezkerrean (Testurako lehentsia). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Erdian. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Betegarria**: Hutsunea betetzeko karakterea (espazioa da lehentsia).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Zeroekin bete)\n\nErabili beheko laborategia konbinazio hauekin esperimentatzeko."
+      },
+      "blocks": [
+          {
+              "type": "markdown",
+              "content": {
+                  "ENG": "### Format Specifiers Breakdown\n\nThe syntax `:[fill][align][width][.precision][type]` allows precise control:\n\n1.  **Precision (`.2f`)**: Digits after the decimal point.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Width (`10`)**: Minimum field length (great for columns).\n    *   `f\"{name:10}\"` -> `\"Alice     \"` (pads to 10 chars)\n3.  **Alignment (`<`, `>`, `^`)**: Where to place the text.\n    *   `>`: Right (Default for numbers). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Left (Default for strings). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Center. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Fill**: Character to fill empty space (default is space).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Pad with zeros)\n\nUse the interactive lab below to test these combinations.",
+                  "CAS": "### Desglose de Especificadores\n\nLa sintaxis `:[relleno][alineación][ancho][.precisión][tipo]` permite control total:\n\n1.  **Precisión (`.2f`)**: Dígitos después del punto decimal.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Ancho (`10`)**: Tamaño mínimo del campo (útil para columnas).\n    *   `f\"{nombre:10}\"` -> `\"Ana       \"` (rellena hasta 10 caracteres)\n3.  **Alineación (`<`, `>`, `^`)**: Dónde colocar el texto.\n    *   `>`: Derecha (Por defecto en números). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Izquierda (Por defecto en texto). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Centro. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Relleno**: Carácter para llenar el espacio (por defecto es espacio).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Rellenar con ceros)\n\nUsa el laboratorio interactivo de abajo para probar estas combinaciones."
+              }
+          }
+      ]
+    },
+    {
+      "type": "interactive-fstring"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 4. Type Hinting (Python 3.9+)\n\nPython is dynamic, but hints help your IDE catch bugs. Since Python 3.9, you can nest built-in types.\n\n### Basic Hints\n```python\nage: int = 25\nname: str = \"Alice\"\n```\n\n### Complex Structures (The Real Power)\nIn Data Structures, you deal with nested data. Be specific:\n\n```python\n# Matrix: A list of lists of integers\nmatrix: list[list[int]] = [[1, 0], [0, 1]]\n\n# Lookup Table: String keys to float values\nprices: dict[str, float] = {\"Apple\": 1.20, \"Banana\": 0.80}\n\n# Deep Nesting: A dictionary where values are lists of lists\ncomplex_map: dict[str, list[list[int]]] = ...\n```",
+        "CAS": "## 4. Tipado (Type Hinting) (Python 3.9+)\n\nPython es dinámico, pero las pistas ayudan a tu IDE a ver bugs. Desde Python 3.9, puedes anidar tipos nativos.\n\n### Pistas Básicas\n```python\nedad: int = 25\nnombre: str = \"Alicia\"\n```\n\n### Estructuras Complejas (El Poder Real)\nEn Estructura de Datos, usas datos anidados. Sé específico:\n\n```python\n# Matriz: Una lista de listas de enteros\nmatriz: list[list[int]] = [[1, 0], [0, 1]]\n\n# Tabla de Búsqueda: Claves string a valores float\nprecios: dict[str, float] = {\"Manzana\": 1.20, \"Plátano\": 0.80}\n\n# Anidación Profunda: Un diccionario donde los valores son listas de listas\nmapa_complejo: dict[str, list[list[int]]] = ...\n```",
+        "EUS": "## 4. Mota Iradokizunak (Type Hinting) (Python 3.9+)\n\nPython dinamikoa da, baina iradokizunek IDEari erroreak harrapatzen laguntzen diote. Python 3.9tik aurrera, jatorrizko motak habiaratu ditzakezu.\n\n### Oinarrizko Iradokizunak\n```python\nadina: int = 25\nizena: str = \"Ane\"\n```\n\n### Egitura Konplexuak (Benetako Boterea)\nDatu Egituretan, habiaratutako datuekin lan egiten duzu. Izan zehatza:\n\n```python\n# Matrizea: Osoko zenbakien zerrenden zerrenda\nmatrizea: list[list[int]] = [[1, 0], [0, 1]]\n\n# Bilaketa Taula: String gakoak float balioetara\nprezioak: dict[str, float] = {\"Sagarra\": 1.20, \"Banana\": 0.80}\n\n# Habiaratze Sakona: Balioak zerrenden zerrendak dituen hiztegia\nmapa_konplexua: dict[str, list[list[int]]] = ...\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 5. Good Practices: The Main Guard\n\nWhy do we write `if __name__ == \"__main__\":`? It's not just a habit. It controls **context**.\n\nUse the simulator below to understand the two modes of running a Python file.",
+        "CAS": "## 5. Buenas Prácticas: El Guardián Main\n\n¿Por qué escribimos `if __name__ == \"__main__\":`? No es solo una manía. Controla el **contexto**.\n\nUsa el simulador de abajo para entender los dos modos de ejecución de un archivo Python.",
+        "EUS": "## 5. Jardunbide Egokiak: Main Zaindaria\n\nZergatik idazten dugu `if __name__ == \"__main__\":`? Ez da ohitura bat bakarrik. **Testuingurua** kontrolatzen du.\n\nErabili beheko simuladorea Python fitxategi bat exekutatzeko bi moduak ulertzeko."
+      }
+    },
+    {
+      "type": "interactive-mainguard"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 6. Classes & Objects\n\nClasses are blueprints for creating objects. In Data Structures, we use them to define ADTs (Abstract Data Types) like Nodes, Stacks, or Trees.\n\n### Attributes vs Methods\n*   **Attributes**: Variables stored inside the object (the state).\n*   **Methods**: Functions defined inside the class (the behavior).\n\n### Access Modifiers (The '_' Convention)\nUnlike Java or C++, Python doesn't have strict `private` keywords. We use underscores to signal intent:\n\n| Level | Prefix | Meaning |\n| :--- | :--- | :--- |\n| **Public** | `None` | Anyone can access or modify it. |\n| **Protected** | `_` | Internal use, but still accessible. |\n| **Private** | `__` | Name is mangled (e.g., `_Class__attr`) to prevent accidental access. |\n\n### The 'self' Mystery\nWhen you call `obj.method(5)`, Python secretly converts it to `Class.method(obj, 5)`. It passes the object instance as the first argument (`self`) for you.\n\n```python\nclass Box:\n    def __init__(self, content):\n        self.__content = content # Private attribute\n\n    def reveal(self):\n        return self.__content\n\nb = Box(\"Gold\")\nprint(b.reveal()) # Correct: calls Box.reveal(b)\n```",
+        "CAS": "## 6. Clases y Objetos\n\nLas clases son planos para crear objetos. En Estructura de Datos, las usamos para definir TADs (Tipos Abstractos de Datos) como Nodos, Pilas o Árboles.\n\n### Atributos vs Métodos\n*   **Atributos**: Variables guardadas dentro del objeto (el estado).\n*   **Métodos**: Funciones definidas dentro de la clase (el comportamiento).\n\n### Modificadores de Acceso (La convención del '_')\nA diferencia de Java o C++, Python no tiene palabras clave `private` estrictas. Usamos guiones bajos para señalizar la intención:\n\n| Nivel | Prefijo | Significado |\n| :--- | :--- | :--- |\n| **Público** | `Ninguno` | Cualquiera puede acceder o modificarlo. |\n| **Protegido** | `_` | Uso interno, pero sigue siendo accesible. |\n| **Privado** | `__` | El nombre se oculta (ej., `_Clase__attr`) para evitar acceso accidental. |\n\n### El Misterio de 'self'\nCuando llamas a `obj.metodo(5)`, Python lo convierte secretamente en `Clase.metodo(obj, 5)`. Pasa la instancia del objeto como primer argumento (`self`) por ti.\n\n```python\nclass Caja:\n    def __init__(self, contenido):\n        self.__contenido = contenido # Atributo privado\n\n    def revelar(self):\n        return self.__contenido\n\nc = Caja(\"Oro\")\nprint(c.revelar()) # Correcto: llama a Caja.revelar(c)\n```",
+        "EUS": "## 6. Klaseak eta Objektuak\n\nKlaseak objektuak sortzeko planoak dira. Datu Egituretan, DATak (Datu Mota Abstraktuak) definitzeko erabiltzen ditugu, hala nola Nodoak, Pilak edo Zuhaitzak.\n\n### Atributuak vs Metodoak\n*   **Atributuak**: Objektuaren barruan gordetako aldagaiak (egoera).\n*   **Metodoak**: Klasearen barruan definitutako funtzioak (portaera).\n\n### Sarbide Aldatzaileak ('_' konbentzioa)\nJava edo C++ ez bezala, Python-ek ez du `private` hitz gako zorrotzik. Azpimarrak erabiltzen ditugu asmoa adierazteko:\n\n| Maila | Aurrizkia | Esanahia |\n| :--- | :--- | :--- |\n| **Publikoa** | `Batere ez` | Edonork atzitu edo aldatu dezake. |\n| **Babestua** | `_` | Barne erabilera, baina oraindik atzigarria. |\n| **Pribatua** | `__` | Izena ezkutatzen da (adib., `_Klasea__attr`) istripuzko atzipenak saihesteko. |\n\n### 'self' Misterioa\n`obj.metodoa(5)` deitzen duzunean, Python-ek ezkutuan `Klasea.metodoa(obj, 5)` bihurtzen du. Objektuaren instantzia lehen argumentu gisa (`self`) pasatzen du zure ordez.\n\n```python\nclass Kutxa:\n    def __init__(self, edukia):\n        self.__edukia = edukia # Atributu pribatua\n\n    def erakutsi(self):\n        return self.__edukia\n\nk = Kutxa(\"Urrea\")\nprint(k.erakutsi()) # Zuzena: Box.reveal(k) deitzen du\n```"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-ex1",
+      "title": { "ENG": "Create a Class", "CAS": "Crea una Clase", "EUS": "Sortu Klase bat" },
+      "description": {
+        "ENG": "Define a class `Student` with `name` and `age` (use `self`). Create an instance `s1`.",
+        "CAS": "Define una clase `Estudiante` con `nombre` y `edad` (usa `self`). Crea una instancia `e1`.",
+        "EUS": "Definitu `Ikaslea` klasea `izena` eta `adina`-rekin (erabili `self`). Sortu `i1` instantzia."
+      },
+      "initialCode": {
+        "ENG": "class Student:\n    def __init__(self, name, age):\n        # TODO: Assign self.name and self.age\n        pass\n\ns1 = Student(\"Alice\", 20)\nprint(s1.name)",
+        "CAS": "class Estudiante:\n    def __init__(self, nombre, edad):\n        # TODO: Asigna self.nombre y self.edad\n        pass\n\ne1 = Estudiante(\"Alicia\", 20)\nprint(e1.nombre)",
+        "EUS": "class Ikaslea:\n    def __init__(self, izena, adina):\n        # TODO: Esleitu self.izena eta self.adina\n        pass\n\ni1 = Ikaslea(\"Ane\", 20)\nprint(i1.izena)"
+      },
+      "testCode": "assert \"self.\" in code"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "part16-2",
+  "title": {
+    "ENG": "Working with Files (Lab)",
+    "CAS": "Trabajando con Archivos (Lab)",
+    "EUS": "Fitxategiekin Lanean (Lab)"
+  },
+  "blocks": [
+    {
+      "type": "text",
+      "content": {
+        "ENG": "## Lab: Server Log Analysis\n\nIn this session, we will process a server log file to identify critical issues. The file format is CSV-like:\n\n`TIMESTAMP,LEVEL,MESSAGE`\n\nExample:\n`2026-01-21 10:00:01,INFO,System started`\n`2026-01-21 10:05:23,ERROR,Connection timeout`\n\nOur goal is to extract and analyze only the errors.",
+        "CAS": "## Lab: Análisis de Logs del Servidor\n\nEn esta sesión, procesaremos un archivo de registro (log) del servidor para identificar problemas críticos. El formato es tipo CSV:\n\n`TIMESTAMP,LEVEL,MESSAGE`\n\nEjemplo:\n`2026-01-21 10:00:01,INFO,Sistema iniciado`\n`2026-01-21 10:05:23,ERROR,Tiempo de espera agotado`\n\nNuestro objetivo es extraer y analizar solo los errores.",
+        "EUS": "## Lab: Zerbitzariaren Log Analisia\n\nSaio honetan, zerbitzari baten log fitxategia prozesatuko dugu arazo kritikoak identifikatzeko. Formatua CSV antzekoa da:\n\n`TIMESTAMP,LEVEL,MESSAGE`\n\nAdibidea:\n`2026-01-21 10:00:01,INFO,Sistema hasita`\n`2026-01-21 10:05:23,ERROR,Konexio denbora agortuta`\n\nGure helburua erroreak soilik atera eta aztertzea da."
+      }
+    },
+    {
+      "type": "exercise",
+      "id": "part16-2-ex1",
+      "title": {
+        "ENG": "Step 1: The LogEntry Class",
+        "CAS": "Paso 1: La Clase LogEntry",
+        "EUS": "1. Urratsa: LogEntry Klasea"
+      },
+      "description": {
+        "ENG": "Create a class `LogEntry`.\n1. The constructor `__init__` takes a log line (string).\n2. Parse the line to extract: `timestamp` (str), `level` (str), and `message` (str).\n3. Use `strip()` to remove whitespace.",
+        "CAS": "Crea una clase `LogEntry`.\n1. El constructor `__init__` recibe una línea de log (string).\n2. Parsea la línea para extraer: `timestamp` (str), `level` (str), y `message` (str).\n3. Usa `strip()` para limpiar espacios.",
+        "EUS": "Sortu `LogEntry` klasea.\n1. `__init__` eraikitzaileak log lerro bat (string) hartzen du.\n2. Parseatu lerroa ateratzeko: `timestamp` (str), `level` (str), eta `message` (str).\n3. Erabili `strip()` espazioak garbitzeko."
+      },
+      "initialCode": "class LogEntry:\n    def __init__(self, log_line):\n        # TODO: Split by ','\n        # Assign self.timestamp, self.level, self.message\n        pass\n\n# Test logic\nline = \"2026-01-01 12:00,ERROR,Disk full\"\nentry = LogEntry(line)\nprint(entry.level)   # ERROR",
+      "testCode": "import unittest\n\nclass LogEntry:\n    def __init__(self, log_line):\n        parts = log_line.strip().split(',')\n        self.timestamp = parts[0]\n        self.level = parts[1]\n        self.message = parts[2]\n\nclass TestLogEntry(unittest.TestCase):\n    def test_parsing(self):\n        line = \"2026-05-20 14:00:00,WARNING,High memory usage\"\n        e = LogEntry(line)\n        self.assertEqual(e.timestamp, \"2026-05-20 14:00:00\")\n        self.assertEqual(e.level, \"WARNING\")\n        self.assertEqual(e.message, \"High memory usage\")\n\nif __name__ == '__main__':\n    unittest.main()"
+    },
+    {
+      "type": "exercise",
+      "id": "part16-2-ex2",
+      "title": {
+        "ENG": "Step 2: Filter Errors",
+        "CAS": "Paso 2: Filtrar Errores",
+        "EUS": "2. Urratsa: Erroreak Iragazi"
+      },
+      "description": {
+        "ENG": "Implement `get_errors(file_content)` which takes the content of a log file.\nIt should return a list of `LogEntry` objects where the level is exactly \"ERROR\".",
+        "CAS": "Implementa `get_errors(file_content)` que toma el contenido de un archivo de log.\nDebe devolver una lista de objetos `LogEntry` donde el nivel sea exactamente \"ERROR\".",
+        "EUS": "Inplementatu `get_errors(file_content)`, log fitxategi baten edukia hartzen duena.\nNivela \"ERROR\" duten `LogEntry` objektuen zerrenda itzuli behar du."
+      },
+      "initialCode": "class LogEntry:\n    def __init__(self, log_line):\n        parts = log_line.strip().split(',')\n        self.timestamp = parts[0]\n        self.level = parts[1]\n        self.message = parts[2]\n\ndef get_errors(file_content):\n    # TODO: Split content by lines\n    # Parse each line\n    # Return only ERRORs\n    return []",
+      "testCode": "import unittest\n\nclass LogEntry:\n    def __init__(self, log_line):\n        parts = log_line.strip().split(',')\n        if len(parts) >= 3:\n            self.timestamp = parts[0]\n            self.level = parts[1]\n            self.message = parts[2]\n        else:\n            self.level = \"UNKNOWN\"\n\ndef get_errors(file_content):\n    errors = []\n    lines = file_content.strip().split('\\n')\n    for line in lines:\n        if not line.strip(): continue\n        entry = LogEntry(line)\n        if entry.level == \"ERROR\":\n            errors.append(entry)\n    return errors\n\nclass TestFilter(unittest.TestCase):\n    def test_filter(self):\n        data = \"2026-01-01,INFO,Start\\n2026-01-01,ERROR,Crash\\n2026-01-01,DEBUG,Test\"\n        results = get_errors(data)\n        self.assertEqual(len(results), 1)\n        self.assertEqual(results[0].message, \"Crash\")\n\nif __name__ == '__main__':\n    unittest.main()"
+    }
+  ]
+}

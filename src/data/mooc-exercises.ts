@@ -30,7 +30,7 @@ export interface QuizQuestion {
 }
 
 export interface ContentBlock {
-  type: 'markdown' | 'exercise' | 'quiz';
+  type: 'markdown' | 'exercise' | 'quiz' | 'interactive-list' | 'interactive-fstring' | 'interactive-mainguard';
   content?: LocalizedString;
   exerciseId?: string;
   title?: LocalizedString;
@@ -52,6 +52,7 @@ export const courseStructure = courseStructureMetadata;
 // Mapping of all sections for Vite static analysis
 // Use generic to type the module import
 const sectionModules = import.meta.glob<CoursePage>('./part*/section*.json', { import: 'default' });
+const dsModules = import.meta.glob<any>('./ds_2026/*.json', { import: 'default' });
 
 /**
  * Dynamic loader for sections.
@@ -59,6 +60,27 @@ const sectionModules = import.meta.glob<CoursePage>('./part*/section*.json', { i
 export const loadSection = async (id: string): Promise<CoursePage | undefined> => {
     const meta = courseStructureMetadata.find(m => m.id === id);
     if (!meta) return undefined;
+
+    // Special handling for Data Structures (ds-*)
+    if (id.startsWith('ds-')) {
+        // Map ID to filename key: 'ds-w02-intro' -> './ds_2026/week02_theory.json'
+        let path = '';
+        if (id === 'ds-w02-intro') path = './ds_2026/week02_theory.json';
+        
+        const loader = dsModules[path];
+        if (!loader) {
+            console.error(`No loader found for DS path: ${path}`);
+            return undefined;
+        }
+        
+        try {
+            const data = await loader();
+            return data;
+        } catch (e) {
+            console.error(`Failed to load DS section ${id}`, e);
+            return undefined;
+        }
+    }
 
     const part = meta.part;
     // Extract section number from ID (e.g., "part-1-2" -> 2, "part10-3" -> 3)

@@ -1,0 +1,18 @@
+{
+    "id": "part18-1",
+    "title": {
+        "ENG": "Queues and Dequeues (Monday 23/02/2026)",
+        "CAS": "Colas y Doble Colas (Lunes 23/02/2026)",
+        "EUS": "Ilarak eta Ilara Bikoitzak (Astelehena 23/02/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Queues and Dequeues (Monday 23/02/2026)\n\nTheoretical Class - Monday 23/02/2026\n\nContent coming soon...",
+                "CAS": "# Colas y Doble Colas (Lunes 23/02/2026)\n\nClase Teórica - Lunes 23/02/2026\n\nContenido próximamente...",
+                "EUS": "# Ilarak eta Ilara Bikoitzak (Astelehena 23/02/2026)\n\nKlase Teorikoa - Astelehena 23/02/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}

@@ -1,0 +1,142 @@
+{
+  "id": "ds-syllabus",
+  "title": {
+    "ENG": "Review Python Basics",
+    "CAS": "Review Python Basics",
+    "EUS": "Review Python Basics"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "# 1-Presentation of the Subject\n\nWelcome to the Data Structures course.\n\n**Start Date:** Monday, January 26th, 2026.\n\nIn this session we will cover:\n* Course Syllabus\n* Evaluation Criteria\n* Tools & Environment Setup (VS Code, Python)\n\nPlease review the syllabus document for full details.",
+        "CAS": "# 1-Presentacion Asignatura\n\nBienvenidos al curso de Estructura de Datos.\n\n**Fecha de Inicio:** Lunes 26 de Enero de 2026.\n\nEn esta sesión cubriremos:\n* Guía Docente (Syllabus)\n* Criterios de Evaluación\n* Configuración del Entorno y Herramientas (VS Code, Python)\n\nPor favor revisa el documento de la guía docente para más detalles.",
+        "EUS": "# 1-Ikasgaiaren Aurkezpena\n\nOngi etorri Datu Egiturak ikastarora.\n\n**Hasiera Data:** 2026ko Urtarrilaren 26a, Astelehena.\n\nSaio honetan honako hau landuko dugu:\n* Irakasgai-gida (Syllabus)\n* Ebaluazio Irizpideak\n* Ingurune eta Tresnen Konfigurazioa (VS Code, Python)\n\nMesedez, berrikusi irakasgai-gida dokumentua xehetasun gehiagorako."
+      }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "## Introduction\n\nWelcome to Data Structures. Before diving into complex structures like Trees or Graphs, we need to ensure our Python foundation is solid and **idiomatic**.\n\nThis section covers advanced basics that will make your code cleaner, faster, and less bug-prone.",
+                        "CAS":  "## Introducción\n\nBienvenidos a Estructura de Datos. Antes de sumergirnos en estructuras complejas como Árboles o Grafos, necesitamos asegurar que nuestra base de Python es sólida e **idiomática**.\n\nEsta sección cubre conceptos básicos avanzados que harán tu código más limpio, rápido y con menos errores.",
+                        "EUS":  "## Sarrera\n\nOngi etorri Datu Egituretara. Zuhaitzak edo Grafoak bezalako egitura konplexuetan murgildu aurretik, gure Python oinarria sendoa eta **idiomatikoa** dela ziurtatu behar dugu.\n\nAtal honek oinarrizko kontzeptu aurreratuak lantzen ditu, zure kodea garbiagoa, azkarragoa eta akats gutxiagokoa izan dadin."
+                    }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "### 1. Iterating Like a Pro: `enumerate`\n\nIn languages like C or Java, it\u0027s common to iterate using an index variable. In Python, lists are directly iterable.\n\nHowever, sometimes you need **both** the element and its index.\n❌ **Avoid** `range(len(list))`.\n✅ **Use** `enumerate()`.",
+                        "CAS":  "### 1. Iterando como un Pro: `enumerate`\n\nEn lenguajes como C o Java, es común iterar usando una variable índice. En Python, las listas son iterables directamente.\n\nSin embargo, a veces necesitas **ambos**: el elemento y su índice.\n❌ **Evita** `range(len(lista))`.\n✅ **Usa** `enumerate()`.",
+                        "EUS":  "### 1. Pro baten moduan iteratzen: `enumerate`\n\nC edo Java bezalako lengoaietan ohikoa da indize-aldagai bat erabiltzea. Python-en, zerrendak zuzenean iteragarriak dira.\n\nHala ere, batzuetan elementua **eta** bere indizea behar dituzu.\n❌ **Saihestu** `range(len(zerrenda))`.\n✅ **Erabili** `enumerate()`."
+                    }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "```python\nnames = [\"Ana\", \"Bob\", \"Charlie\"]\n\n# ❌ The \"C-Style\" way (Non-Pythonic)\nfor i in range(len(names)):\n    print(f\"{i}: {names[i]}\")\n\n# ✅ The Pythonic way\nfor index, name in enumerate(names):\n    print(f\"{index}: {name}\")\n```",
+                        "CAS":  "```python\nnombres = [\"Ana\", \"Bob\", \"Charlie\"]\n\n# ❌ Estilo \"C\" (No Pythonico)\nfor i in range(len(nombres)):\n    print(f\"{i}: {nombres[i]}\")\n\n# ✅ Estilo Pythonico\nfor indice, nombre in enumerate(nombres):\n    print(f\"{indice}: {nombre}\")\n```",
+                        "EUS":  "```python\nizenak = [\"Ana\", \"Bob\", \"Charlie\"]\n\n# ❌ \"C\" estiloa (Ez Pythonikoa)\nfor i in range(len(izenak)):\n    print(f\"{i}: {izenak[i]}\")\n\n# ✅ Estilo Pythonikoa\nfor indizea, izena in enumerate(izenak):\n    print(f\"{indizea}: {izena}\")\n```"
+                    }
+    },
+    {
+        "type":  "exercise",
+        "title":  {
+                      "ENG":  "Mini-Challenge: Fix the Loop",
+                      "CAS":  "Mini-Reto: Arregla el Bucle",
+                      "EUS":  "Mini-Erronka: Konpondu begizta"
+                  },
+        "description":  {
+                            "ENG":  "Rewrite the loop below using `enumerate` to make it cleaner. The output must remain the same.",
+                            "CAS":  "Reescribe el bucle de abajo usando `enumerate` para limpiarlo. La salida debe ser idéntica.",
+                            "EUS":  "Berridatzi beheko begizta `enumerate` erabiliz garbiagoa izateko. Irteerak berdina izan behar du."
+                        },
+        "exerciseId":  "ds-w02-intro-1",
+        "initialCode":  {
+                            "ENG":  "colors = [\"Red\", \"Green\", \"Blue\"]\n\n# TODO: Refactor this using enumerate()\ni = 0\nfor c in colors:\n    print(f\"Color {i} is {c}\")\n    i += 1",
+                            "CAS":  "colores = [\"Rojo\", \"Verde\", \"Azul\"]\n\n# TODO: Refactoriza esto usando enumerate()\ni = 0\nfor c in colores:\n    print(f\"Color {i} es {c}\")\n    i += 1",
+                            "EUS":  "koloreak = [\"Gorria\", \"Berdea\", \"Urdina\"]\n\n# TODO: Berregituratu hau enumerate() erabiliz\ni = 0\nfor k in koloreak:\n    print(f\"Kolorea {i}: {k}\")\n    i += 1"
+                        },
+        "testCode":  "assert \"enumerate\" in code, \"You must use the enumerate() function / Debes usar la función enumerate()\""
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "### 2. Unpacking \u0026 The Asterisk `*` operator\n\nPython allows you to assign multiple variables at once from a list. You can also use `*` to capture \"the rest\" of the items.",
+                        "CAS":  "### 2. Desempaquetado y el operador Asterisco `*`\n\nPython permite asignar múltiples variables a la vez desde una lista. También puedes usar `*` para capturar \"el resto\" de los elementos.",
+                        "EUS":  "### 2. Desempaquetado eta `*` operadorea\n\nPython-ek zerrenda batetik aldagai anitz esleitzeko aukera ematen du. `*` erabil dezakezu elementuen \"gainerakoa\" harrapatzeko."
+                    }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "```python\nvalues = [1, 2, 3, 4, 5]\n\n# Simple unpacking\na, b, c, d, e = values\n\n# Extended unpacking using *\nfirst, *middle, last = values\n\nprint(first)   # 1\nprint(middle)  # [2, 3, 4] -\u003e It\u0027s a list!\nprint(last)    # 5\n```",
+                        "CAS":  "```python\nvalores = [1, 2, 3, 4, 5]\n\n# Desempaquetado simple\na, b, c, d, e = valores\n\n# Desempaquetado extendido usando *\nprimero, *medio, ultimo = valores\n\nprint(primero) # 1\nprint(medio)   # [2, 3, 4] -\u003e ¡Es una lista!\nprint(ultimo)  # 5\n```",
+                        "EUS":  "```python\nbalioak = [1, 2, 3, 4, 5]\n\n# Desempaquetado sinplea\na, b, c, d, e = balioak\n\n# Desempaquetado hedatua * erabiliz\nlehena, *erdikoa, azkena = balioak\n\nprint(lehena)  # 1\nprint(erdikoa) # [2, 3, 4] -\u003e Zerrenda bat da!\nprint(azkena)  # 5\n```"
+                    }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "### 3. F-Strings: Formatting Output\n\nStop using `+` to concatenate strings. F-Strings (introduced in Python 3.6) are faster and more readable. You can even put expressions inside the `{}`.",
+                        "CAS":  "### 3. F-Strings: Formateando Salida\n\nDeja de usar `+` para concatenar textos. Las F-Strings (introducidas en Python 3.6) son más rápidas y legibles. Incluso puedes poner expresiones dentro de las `{}`.",
+                        "EUS":  "### 3. F-Strings: Irteera Formateatzen\n\nUtzi `+` erabiltzeari testuak kateatzeko. F-Strings (Python 3.6-n sartuak) azkarragoak eta irakurgarriagoak dira. Adierazpenak ere jar ditzakezu `{}` barruan."
+                    }
+    },
+    {
+        "type":  "exercise",
+        "title":  {
+                      "ENG":  "Practice F-Strings",
+                      "CAS":  "Practica F-Strings",
+                      "EUS":  "Praktikatu F-Strings"
+                  },
+        "description":  {
+                            "ENG":  "Use an f-string to print the message \"The item Laptop costs 1200.5 euros\". You must use the variables provided.",
+                            "CAS":  "Usa una f-string para imprimir el mensaje \"El artículo Portátil cuesta 1200.5 euros\". Debes usar las variables dadas.",
+                            "EUS":  "Erabili f-string bat \"Portátil artikuluak 1200.5 euro balio du\" mezua inprimatzeko. Emandako aldagaiak erabili behar dituzu."
+                        },
+        "exerciseId":  "ds-w02-intro-2",
+        "initialCode":  {
+                            "ENG":  "item = \"Laptop\"\nprice = 1200.50\n\n# Print using an f-string:\nprint(...)",
+                            "CAS":  "articulo = \"Portátil\"\nprecio = 1200.50\n\n# Imprime usando una f-string:\nprint(...)",
+                            "EUS":  "artikulua = \"Portátil\"\nprezioa = 1200.50\n\n# Inprimatu f-string erabiliz:\nprint(...)"
+                        },
+        "testCode":  "assert \"f\u0027\" in code or \u0027f\"\u0027 in code, \"Please use an f-string (e.g., f\u0027text {var}\u0027) / Por favor usa una f-string (ej. f\u0027texto {var}\u0027)\""
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "### 4. Introduction to Classes (OOP)\n\nIn Data Structures, we define our own types (Nodes, Lists, Trees). We use **Classes** for this.\n\n*   `class Name:`: Defines the blueprint.\n*   `__init__(self, ...)`: The constructor. Runs when you create an object.\n*   `self`: Refers to *this* specific object instance.",
+                        "CAS":  "### 4. Introducción a Clases (POO)\n\nEn Estructura de Datos, definimos nuestros propios tipos (Nodos, Listas, Árboles). Usamos **Clases** para esto.\n\n*   `class Nombre:`: Define el plano (blueprint).\n*   `__init__(self, ...)`: El constructor. Se ejecuta al crear un objeto.\n*   `self`: Se refiere a *esta* instancia específica del objeto.",
+                        "EUS":  "### 4. Klaseen Sarrera (POO)\n\nDatu Egituretan, gure mota propioak definitzen ditugu (Nodoak, Zerrendak, Zuhaitzak). Horretarako **Klaseak** erabiltzen ditugu.\n\n*   `class Izena:`: Planoa definitzen du.\n*   `__init__(self, ...)`: Eraikitzailea. Objektu bat sortzean exekutatzen da.\n*   `self`: Objektuaren instantzia espezifiko *honi* egiten dio erreferentzia."
+                    }
+    },
+    {
+        "type":  "markdown",
+        "content":  {
+                        "ENG":  "```python\nclass Dog:\n    def __init__(self, name):\n        self.name = name  # Store data in the object\n\n    def bark(self):\n        print(f\"{self.name} says Woof!\")\n\n# Create an object (Instance)\nmy_dog = Dog(\"Rex\")\nmy_dog.bark()\n```",
+                        "CAS":  "```python\nclass Perro:\n    def __init__(self, nombre):\n        self.nombre = nombre  # Guardar datos en el objeto\n\n    def ladrar(self):\n        print(f\"{self.nombre} dice Guau!\")\n\n# Crear un objeto (Instancia)\nmi_perro = Perro(\"Rex\")\nmi_perro.ladrar()\n```",
+                        "EUS":  "```python\nclass Txakurra:\n    def __init__(self, izena):\n        self.izena = izena  # Datuak objektuan gorde\n\n    def zaunka(self):\n        print(f\"{self.izena}-k Zaunka!\")\n\n# Objektu bat sortu (Instantzia)\nnire_txakurra = Txakurra(\"Rex\")\nnire_txakurra.zaunka()\n```"
+                    }
+    },
+    {
+        "type":  "exercise",
+        "title":  {
+                      "ENG":  "Create a Student Class",
+                      "CAS":  "Crea una Clase Estudiante",
+                      "EUS":  "Ikasle Klasea Sortu"
+                  },
+        "description":  {
+                            "ENG":  "Define a class `Student` with an `__init__` method that takes `name` and `age`, and stores them in `self.name` and `self.age`.",
+                            "CAS":  "Define una clase `Estudiante` con un método `__init__` que acepte `nombre` y `edad`, y los guarde en `self.nombre` y `self.edad`.",
+                            "EUS":  "Definitu `Ikaslea` klase bat `__init__` metodoarekin, `izena` eta `adina` hartu eta `self.izena` eta `self.adina` bezala gordetzen dituena."
+                        },
+        "exerciseId":  "ds-w02-intro-3",
+        "initialCode":  {
+                            "ENG":  "# Define your class here:\nclass Student:\n    def __init__(self, name, age):\n        pass # TODO: Assign variables\n\n# Test your class\ns1 = Student(\"Alice\", 20)\nprint(s1.name, s1.age)",
+                            "CAS":  "# Define tu clase aquí:\nclass Estudiante:\n    def __init__(self, nombre, edad):\n        pass # TODO: Asigna las variables\n\n# Prueba tu clase\ne1 = Estudiante(\"Alicia\", 20)\nprint(e1.nombre, e1.edad)",
+                            "EUS":  "# Definitu zure klasea hemen:\nclass Ikaslea:\n    def __init__(self, izena, adina):\n        pass # TODO: Aldagaiak esleitu\n\n# Probatu zure klasea\ni1 = Ikaslea(\"Ane\", 20)\nprint(i1.izena, i1.adina)"
+                        },
+        "testCode":  "assert \"self.\" in code, \"Use self.variable = value / Usa self.variable = valor\""
+    }
+  ]
+}

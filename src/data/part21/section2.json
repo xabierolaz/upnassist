@@ -1,0 +1,18 @@
+{
+    "id": "part21-2",
+    "title": {
+        "ENG": "No Class (Father's Day) (Thursday 19/03/2026)",
+        "CAS": "No hay clase (Día del Padre) (Jueves 19/03/2026)",
+        "EUS": "Ez dago klaserik (Aitaren Eguna) (Osteguna 19/03/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# No Class (Father's Day) (Thursday 19/03/2026)\n\nPractical Class - Thursday 19/03/2026",
+                "CAS": "# No hay clase (Día del Padre) (Jueves 19/03/2026)\n\nClase Práctica - Jueves 19/03/2026",
+                "EUS": "# Ez dago klaserik (Aitaren Eguna) (Osteguna 19/03/2026)\n\nKlase Praktikoa - Osteguna 19/03/2026"
+            }
+        }
+    ]
+}

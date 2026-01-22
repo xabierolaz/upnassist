@@ -54,6 +54,7 @@ interface Translation {
   lineLabel: string;
   codeAnalysisTitle: string;
   points: string;
+  dataStruct: string;
 }
 
 const translations: Record<Language, Translation> = {
@@ -105,7 +106,8 @@ const translations: Record<Language, Translation> = {
     qualityScore: "Quality Score",
     lineLabel: "Line",
     codeAnalysisTitle: "Code Analysis",
-    points: "Points"
+    points: "Points",
+    dataStruct: "Data Structures (Python)"
   },
   CAS: {
     title: "UpnAssist 2026",
@@ -155,7 +157,8 @@ const translations: Record<Language, Translation> = {
     qualityScore: "Calidad del Código",
     lineLabel: "Línea",
     codeAnalysisTitle: "Análisis de Código",
-    points: "Puntos"
+    points: "Puntos",
+    dataStruct: "Estructura de Datos (Python)"
   },
   EUS: {
     title: "UpnAssist 2026",
@@ -205,7 +208,8 @@ const translations: Record<Language, Translation> = {
     qualityScore: "Kodearen Kalitatea",
     lineLabel: "Lerroa",
     codeAnalysisTitle: "Kodearen Analisia",
-    points: "Puntuak"
+    points: "Puntuak",
+    dataStruct: "Datu Egiturak (Python)"
   }
 };
 

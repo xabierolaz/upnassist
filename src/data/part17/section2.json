@@ -1,0 +1,18 @@
+{
+    "id": "part17-2",
+    "title": {
+        "ENG": "Postfix Calculator (Thursday 19/02/2026)",
+        "CAS": "Calculadora Postfija (Jueves 19/02/2026)",
+        "EUS": "Postfix Kalkulagailua (Osteguna 19/02/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Postfix Calculator (Thursday 19/02/2026)\n\nPractical Class - Thursday 19/02/2026\n\nContent coming soon...",
+                "CAS": "# Calculadora Postfija (Jueves 19/02/2026)\n\nClase Práctica - Jueves 19/02/2026\n\nContenido próximamente...",
+                "EUS": "# Postfix Kalkulagailua (Osteguna 19/02/2026)\n\nKlase Praktikoa - Osteguna 19/02/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}

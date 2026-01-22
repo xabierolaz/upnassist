@@ -1,0 +1,18 @@
+{
+    "id": "part23-1",
+    "title": {
+        "ENG": "Recursion and Computational Complexity (Monday 30/03/2026)",
+        "CAS": "Recursividad y Complejidad (Lunes 30/03/2026)",
+        "EUS": "Errekurtsibitatea eta Konplexutasuna (Astelehena 30/03/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Recursion and Computational Complexity (Monday 30/03/2026)\n\nTheoretical Class - Monday 30/03/2026\n\nContent coming soon...",
+                "CAS": "# Recursividad y Complejidad (Lunes 30/03/2026)\n\nClase Teórica - Lunes 30/03/2026\n\nContenido próximamente...",
+                "EUS": "# Errekurtsibitatea eta Konplexutasuna (Astelehena 30/03/2026)\n\nKlase Teorikoa - Astelehena 30/03/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}

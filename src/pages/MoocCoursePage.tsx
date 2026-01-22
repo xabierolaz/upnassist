@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText } from '../data/mooc-exercises';
 import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
 import { useProgressStore } from '../stores/progressStore';
@@ -7,6 +8,10 @@ import { QuizPlaceholder } from '../components/mooc/QuizPlaceholder';
 import { Quiz } from '../components/mooc/Quiz';
 import { useLanguageStore } from '../stores/languageStore';
 import { LanguageSwitcher } from '../components/common/LanguageSwitcher';
+import { GlobalSidebar } from '../components/common/GlobalSidebar';
+import { InteractiveListVisualizer } from '../components/InteractiveListVisualizer';
+import { FStringVisualizer } from '../components/FStringVisualizer';
+import { MainGuardVisualizer } from '../components/MainGuardVisualizer';
 
 const MoocCoursePage: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -16,40 +21,8 @@ const MoocCoursePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  // State for collapsible parts. Default Part 1 open.
-  const [openParts, setOpenParts] = useState<Record<number, boolean>>({ 1: true });
   
   const { t, currentLang } = useLanguageStore();
-
-  // Group sections by part
-  const sectionsByPart = courseStructure.reduce((acc, section) => {
-    const part = section.part || 1;
-    if (!acc[part]) acc[part] = [];
-    acc[part].push(section);
-    return acc;
-  }, {} as Record<number, typeof courseStructure>);
-
-  // Auto-expand part when active page changes
-  useEffect(() => {
-    const activeSection = courseStructure.find(s => s.id === activePageId);
-    if (activeSection && activeSection.part) {
-        setOpenParts(prev => ({ ...prev, [activeSection.part]: true }));
-    }
-  }, [activePageId]);
-
-  const togglePart = (part: number) => {
-    setOpenParts(prev => ({ ...prev, [part]: !prev[part] }));
-  };
-
-  // Helper for Part Label
-  const getPartLabel = (part: number) => {
-      // Use existing translation for Part 1 if matches, otherwise generic
-      if (part === 1) return t.part1;
-      
-      const prefix = currentLang === 'EUS' ? '' : (currentLang === 'ENG' ? 'Part' : 'Parte');
-      const suffix = currentLang === 'EUS' ? '. Zatia' : '';
-      return `${prefix} ${part}${suffix}`.trim();
-  };
 
   // Load section data when ID changes
   useEffect(() => {
@@ -78,108 +51,13 @@ const MoocCoursePage: React.FC = () => {
         {isSidebarOpen ? '✕' : '☰'}
       </button>
 
-      {/* Sidebar */}
-      <aside className={`
-        fixed md:relative z-20 h-full w-72 bg-brand-dark text-white flex-shrink-0 flex flex-col transition-transform duration-300 shadow-xl
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-      `}>
-        <div className="p-6 border-b border-gray-700 bg-brand-dark">
-          <h1 className="text-2xl font-black text-white tracking-tight">{t.title}</h1>
-          <p className="text-xs text-gray-400 mt-1 uppercase tracking-wider font-bold">{t.university}</p>
-        </div>
-        
-        <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-gray-600">
-            {/* Intro Group */}
-            <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-2 px-3 mt-4 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                {t.introProg}
-            </h3>
-            {Object.keys(sectionsByPart)
-                .map(Number)
-                .filter(part => part <= 7)
-                .sort((a, b) => a - b)
-                .map((part) => {
-                const sections = sectionsByPart[part];
-                const isOpen = openParts[part];
-
-                return (
-                    <div key={part} className="mb-2">
-                        <button
-                            onClick={() => togglePart(part)}
-                            className="w-full flex justify-between items-center px-4 py-3 bg-gray-800/50 hover:bg-gray-700 rounded-lg text-xs font-bold text-gray-300 uppercase tracking-wider transition-colors"
-                        >
-                            <span>{getPartLabel(part)}</span>
-                            <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
-                        </button>
-                        
-                        {isOpen && (
-                            <ul className="mt-1 space-y-0.5 pl-2 border-l-2 border-gray-700 ml-4">
-                                {sections.map((page) => (
-                                    <li key={page.id}>
-                                        <button
-                                            onClick={() => setActivePageId(page.id)}
-                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${ 
-                                                activePageId === page.id
-                                                ? 'bg-brand-blue text-white shadow-sm'
-                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
-                                            }`}
-                                        >
-                                            {getLocalizedText(page.title, currentLang)}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                );
-            })}
-
-            {/* Advanced Group */}
-            <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-2 px-3 mt-6 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                {t.advProg}
-            </h3>
-            {Object.keys(sectionsByPart)
-                .map(Number)
-                .filter(part => part > 7)
-                .sort((a, b) => a - b)
-                .map((part) => {
-                const sections = sectionsByPart[part];
-                const isOpen = openParts[part];
-
-                return (
-                    <div key={part} className="mb-2">
-                        <button
-                            onClick={() => togglePart(part)}
-                            className="w-full flex justify-between items-center px-4 py-3 bg-gray-800/50 hover:bg-gray-700 rounded-lg text-xs font-bold text-gray-300 uppercase tracking-wider transition-colors"
-                        >
-                            <span>{getPartLabel(part)}</span>
-                            <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
-                        </button>
-                        
-                        {isOpen && (
-                            <ul className="mt-1 space-y-0.5 pl-2 border-l-2 border-gray-700 ml-4">
-                                {sections.map((page) => (
-                                    <li key={page.id}>
-                                        <button
-                                            onClick={() => setActivePageId(page.id)}
-                                            className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${ 
-                                                activePageId === page.id
-                                                ? 'bg-brand-blue text-white shadow-sm'
-                                                : 'text-gray-400 hover:text-white hover:bg-white/5'
-                                            }`}
-                                        >
-                                            {getLocalizedText(page.title, currentLang)}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                );
-            })}
-        </div>
-      </aside>
+      {/* Global Sidebar */}
+      <GlobalSidebar 
+        isOpen={isSidebarOpen} 
+        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
+        activePageId={activePageId}
+        onPageSelect={setActivePageId}
+      />
 
       {/* Main Content */}
       <main ref={mainRef} className="flex-1 overflow-y-auto bg-white scroll-smooth relative">
@@ -268,7 +146,9 @@ const MoocCoursePage: React.FC = () => {
 const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
     return (
         <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
             components={{
+                pre: ({children}: any) => <>{children}</>,
                 h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {..._props} />,
                 h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {..._props} />,
                 p: ({node: _node, children, ...props}: any) => {
@@ -278,11 +158,18 @@ const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
                     return <p className="mb-4 leading-relaxed" {...props}>{children}</p>;
                 },
                 code: ({node: _node, inline, className, children, ..._props}: any) => {
-                    if (inline) {
+                    // Fix for react-markdown v10: inline prop is no longer passed.
+                    // We infer it: if there is a language class OR newlines, it's a block.
+                    const match = /language-(\w+)/.exec(className || '');
+                    const hasNewlines = String(children).includes('\n');
+                    const isBlock = !!match || hasNewlines;
+
+                    if (!isBlock) {
                         return <code className="bg-gray-100 text-red-600 px-1 py-0.5 rounded font-mono text-sm font-bold">{children}</code>;
                     }
+
                     if (className && className.includes('language-text')) {
-                        const content = String(children);
+                        const content = String(children).trim();
                         return (
                             <div className="my-6 p-4 pt-2 border-l-4 border-gray-300 bg-white shadow-sm rounded-r-md">
                                 <div className="w-full text-right text-xs text-gray-400 mb-1 font-sans">Sample output</div>
@@ -323,6 +210,21 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     // Quiz
     if (block.type === 'quiz' && block.questions) {
         return <Quiz questions={block.questions} />;
+    }
+
+    // Interactive List Component
+    if (block.type === 'interactive-list') {
+        return <InteractiveListVisualizer />;
+    }
+
+    // F-String Visualizer
+    if (block.type === 'interactive-fstring') {
+        return <FStringVisualizer />;
+    }
+
+    // Main Guard Visualizer
+    if (block.type === 'interactive-mainguard') {
+        return <MainGuardVisualizer />;
     }
 
     // Markdown

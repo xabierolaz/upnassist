@@ -1,49 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Source+Code+Pro:wght@400;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
-  color-scheme: light;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f8f9fa; /* Gris muy suave de fondo */
-  color: #212529;
 }
 
-/* Scrollbar personalizada fina */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+/* Markdown Table Styles */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  font-size: 0.875em;
 }
 
-/* Ajustes de tipografía para código */
-code, pre {
-  font-family: 'Source Code Pro', monospace;
+.prose th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.prose td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prose tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Fix for dark mode if needed, though MoocPage uses light theme mostly */
+@media (prefers-color-scheme: dark) {
+    /* Since the app seems to force light mode for the content area (bg-white), we keep these light. 
+       If the app supports full dark mode toggling, these would need specific dark classes. 
+       Currently observing the screenshots and code, the content area is white. */
 }

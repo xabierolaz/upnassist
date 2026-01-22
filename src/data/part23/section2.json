@@ -1,0 +1,18 @@
+{
+    "id": "part23-2",
+    "title": {
+        "ENG": "No Class (Easter) (Thursday 02/04/2026)",
+        "CAS": "No hay clase (Pascua) (Jueves 02/04/2026)",
+        "EUS": "Ez dago klaserik (Pazkoa) (Osteguna 02/04/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# No Class (Easter) (Thursday 02/04/2026)\n\nPractical Class - Thursday 02/04/2026",
+                "CAS": "# No hay clase (Pascua) (Jueves 02/04/2026)\n\nClase Práctica - Jueves 02/04/2026",
+                "EUS": "# Ez dago klaserik (Pazkoa) (Osteguna 02/04/2026)\n\nKlase Praktikoa - Osteguna 02/04/2026"
+            }
+        }
+    ]
+}

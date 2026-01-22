@@ -1,0 +1,18 @@
+{
+    "id": "part27-1",
+    "title": {
+        "ENG": "Review (Monday 11/05/2026)",
+        "CAS": "Repaso (Lunes 11/05/2026)",
+        "EUS": "Errepasoa (Astelehena 11/05/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Review (Monday 11/05/2026)\n\nTheoretical Class - Monday 11/05/2026\n\nContent coming soon...",
+                "CAS": "# Repaso (Lunes 11/05/2026)\n\nClase Teórica - Lunes 11/05/2026\n\nContenido próximamente...",
+                "EUS": "# Errepasoa (Astelehena 11/05/2026)\n\nKlase Teorikoa - Astelehena 11/05/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}

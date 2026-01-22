@@ -1,0 +1,18 @@
+{
+    "id": "part17-1",
+    "title": {
+        "ENG": "Lists, Dictionaries, Stacks (Monday 16/02/2026)",
+        "CAS": "Listas, Diccionarios, Pilas (Lunes 16/02/2026)",
+        "EUS": "Zerrendak, Hiztegiak, Pilak (Astelehena 16/02/2026)"
+    },
+    "blocks": [
+        {
+            "type": "markdown",
+            "content": {
+                "ENG": "# Lists, Dictionaries, Stacks (Monday 16/02/2026)\n\nTheoretical Class - Monday 16/02/2026\n\nContent coming soon...",
+                "CAS": "# Listas, Diccionarios, Pilas (Lunes 16/02/2026)\n\nClase Teórica - Lunes 16/02/2026\n\nContenido próximamente...",
+                "EUS": "# Zerrendak, Hiztegiak, Pilak (Astelehena 16/02/2026)\n\nKlase Teorikoa - Astelehena 16/02/2026\n\nEdukia laster..."
+            }
+        }
+    ]
+}
