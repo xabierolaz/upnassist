@@ -4,16 +4,18 @@ import { useLanguageStore } from '../../stores/languageStore';
 interface PDFViewerProps {
     src: string;
     title?: { ENG: string; CAS: string; EUS: string };
+    className?: string;
+    fullHeight?: boolean;
 }
 
-export const PDFViewer: React.FC<PDFViewerProps> = ({ src, title }) => {
+export const PDFViewer: React.FC<PDFViewerProps> = ({ src, title, className = "", fullHeight = false }) => {
     const { currentLang } = useLanguageStore();
 
     const displayTitle = title ? title[currentLang] : (currentLang === 'EUS' ? 'Dokumentua' : currentLang === 'CAS' ? 'Documento' : 'Document');
 
     return (
-        <div className="my-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden flex flex-col">
-            <div className="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
+        <div className={`bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden flex flex-col ${fullHeight ? 'h-full' : 'my-10'} ${className}`}>
+            <div className="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center flex-shrink-0">
                 <h3 className="font-bold text-gray-700 text-lg flex items-center gap-2">
                     <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
@@ -40,9 +42,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ src, title }) => {
                     </a>
                 </div>
             </div>
-            <div className="w-full h-[600px] bg-gray-100">
+            <div className={`w-full bg-gray-100 ${fullHeight ? 'flex-1' : 'h-[600px]'}`}>
                 <iframe 
-                    src={`${src}#toolbar=0&navpanes=0`} 
+                    src={`${src}#view=FitH&toolbar=0&navpanes=0`} 
                     className="w-full h-full border-none"
                     title={displayTitle}
                 />
