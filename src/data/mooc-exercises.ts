@@ -30,7 +30,7 @@ export interface QuizQuestion {
 }
 
 export interface ContentBlock {
-  type: 'markdown' | 'exercise' | 'quiz' | 'interactive-list' | 'interactive-fstring' | 'interactive-mainguard';
+  type: 'markdown' | 'exercise' | 'quiz' | 'interactive-list' | 'interactive-fstring' | 'interactive-mainguard' | 'interactive-sparse-matrix';
   content?: LocalizedString;
   exerciseId?: string;
   title?: LocalizedString;

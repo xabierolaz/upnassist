@@ -12,6 +12,7 @@ import { GlobalSidebar } from '../components/common/GlobalSidebar';
 import { InteractiveListVisualizer } from '../components/InteractiveListVisualizer';
 import { FStringVisualizer } from '../components/FStringVisualizer';
 import { MainGuardVisualizer } from '../components/MainGuardVisualizer';
+import { SparseMatrixVisualizer } from '../components/SparseMatrixVisualizer';
 
 const MoocCoursePage: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -225,6 +226,11 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     // Main Guard Visualizer
     if (block.type === 'interactive-mainguard') {
         return <MainGuardVisualizer />;
+    }
+
+    // Sparse Matrix Visualizer
+    if (block.type === 'interactive-sparse-matrix') {
+        return <SparseMatrixVisualizer />;
     }
 
     // Markdown

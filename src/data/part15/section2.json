@@ -23,6 +23,41 @@
       }
     },
     {
+      "type": "interactive-sparse-matrix"
+    },
+    {
+        "type": "quiz",
+        "questions": [
+            {
+                "id": "coo-mapping-1",
+                "prompt": {
+                    "ENG": "Given the matrix `[[0, 7], [4, 0]]`, what would be the 'Values' list in COO format?",
+                    "CAS": "Dada la matriz `[[0, 7], [4, 0]]`, ¿cuál sería la lista de 'Valores' en formato COO?",
+                    "EUS": "`[[0, 7], [4, 0]]` matrizea emanda, zein litzateke 'Balioak' zerrenda COO formatuan?"
+                },
+                "options": [
+                    { "id": "o1", "text": "[0, 7, 4, 0]", "isCorrect": false },
+                    { "id": "o2", "text": "[7, 4]", "isCorrect": true },
+                    { "id": "o3", "text": "[4, 7]", "isCorrect": true, "feedback": { "ENG": "Correct, order depends on how you iterate (by row or by column).", "CAS": "Correcto, el orden depende de cómo iteres (por fila o columna).", "EUS": "Zuzena, ordena iterazio moduaren araberakoa da (errenkadaka edo zutabekaka)." } },
+                    { "id": "o4", "text": "[0, 0]", "isCorrect": false }
+                ]
+            },
+            {
+                "id": "coo-index-logic",
+                "prompt": {
+                    "ENG": "If `values[k]` is 9, `rows[k]` is 2, and `cols[k]` is 5, where is the number 9 located in the original matrix?",
+                    "CAS": "Si `values[k]` es 9, `rows[k]` es 2 y `cols[k]` es 5, ¿dónde está el número 9 en la matriz original?",
+                    "EUS": "`values[k]` 9 bada, `rows[k]` 2 eta `cols[k]` 5, non dago 9 zenbakia jatorrizko matrizean?"
+                },
+                "options": [
+                    { "id": "o1", "text": { "ENG": "Row 5, Column 2", "CAS": "Fila 5, Columna 2", "EUS": "5. Errenkada, 2. Zutabea" }, "isCorrect": false },
+                    { "id": "o2", "text": { "ENG": "Row 2, Column 5", "CAS": "Fila 2, Columna 5", "EUS": "2. Errenkada, 5. Zutabea" }, "isCorrect": true },
+                    { "id": "o3", "text": { "ENG": "It's at index 9", "CAS": "Está en el índice 9", "EUS": "9 indizean dago" }, "isCorrect": false }
+                ]
+            }
+        ]
+    },
+    {
       "type": "exercise",
       "id": "part15-2-ex1",
       "title": {
