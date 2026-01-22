@@ -104,7 +104,7 @@ export const courseStructureMetadata: SectionMetadata[] = [
 
     // 2. PYTHON BASICS
     { id: "ds-w02-intro", title: { ENG: "Review: Python Tips & Tricks", CAS: "Repaso: Trucos y Básicos de Python", EUS: "Berrikuspena: Python Trikimailuak" }, part: 15 },
-    { id: "part15-2", title: { ENG: "Sparse Matrices (Thursday 05/02/2026)", CAS: "Matrices Dispersas (Jueves 05/02/2026)", EUS: "Matrize Sakabanatuak (Osteguna 05/02/2026)" }, part: 15 },
+    { id: "ds-w02-sparse", title: { ENG: "Sparse Matrices (Thursday 05/02/2026)", CAS: "Matrices Dispersas (Jueves 05/02/2026)", EUS: "Matrize Sakabanatuak (Osteguna 05/02/2026)" }, part: 15 },
     { id: "part16-1", title: { ENG: "Object-Oriented Python (Monday 09/02/2026)", CAS: "Python Orientado a Objetos (Lunes 09/02/2026)", EUS: "Objektuetara Bideratutako Python (Astelehena 09/02/2026)" }, part: 16 },
     { id: "part16-2", title: { ENG: "Working with Files (Thursday 12/02/2026)", CAS: "Trabajando con Archivos (Jueves 12/02/2026)", EUS: "Fitxategiekin Lanean (Osteguna 12/02/2026)" }, part: 16 },
     { id: "part17-1", title: { ENG: "Lists, Dictionaries, Stacks (Monday 16/02/2026)", CAS: "Listas, Diccionarios, Pilas (Lunes 16/02/2026)", EUS: "Zerrendak, Hiztegiak, Pilak (Astelehena 16/02/2026)" }, part: 17 },

@@ -1,0 +1,130 @@
+{
+  "id": "ds-w02-sparse",
+  "part": 15,
+  "title": {
+    "ENG": "Sparse Matrices: The Mechanics",
+    "CAS": "Matrices Dispersas: La Mecánica",
+    "EUS": "Matrize Sakabanatuak: Mekanika"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. Introduction: The Strategy\n\nBefore tackling the full lab, we must master the **5 atomic movements** of Sparse Matrices. These are the building blocks you will need to implement functions like `normal_to_coo` or `sum_sparse`.\n\nWe work with **COO Format**: 3 parallel lists (Values, Rows, Columns).",
+        "CAS": "## 1. Introducción: La Estrategia\n\nAntes de afrontar la práctica completa, debemos dominar los **5 movimientos atómicos** de las Matrices Dispersas. Estos son los bloques de construcción que necesitarás para implementar funciones como `normal_a_coo` o `suma_dispersas`.\n\nTrabajamos con **Formato COO**: 3 listas paralelas (Valores, Filas, Columnas).",
+        "EUS": "## 1. Sarrera: Estrategia\n\nLaborategi osoari ekin aurretik, Matrize Sakabanatuen **5 mugimendu atomikoak** menperatu behar ditugu. Hauek dira `normal_a_coo` edo `suma_dispersas` bezalako funtzioak inplementatzeko beharko dituzun oinarrizko blokeak.\n\n**COO Formatua** erabiltzen dugu: 3 zerrenda paralelo (Balioak, Errenkadak, Zutabeak)."
+      }
+    },
+    {
+      "type": "interactive-sparse-matrix"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-spar-ex1",
+      "title": {
+        "ENG": "1. Initialize the Structure",
+        "CAS": "1. Inicializar la Estructura",
+        "EUS": "1. Egitura Hasieratu"
+      },
+      "description": {
+        "ENG": "The PDF requires a specific return format for `create_coo`. It must return a list containing three empty lists: `[values, rows, columns]`.\n\n**Task:** Write a single line inside the function to return this structure.",
+        "CAS": "El PDF requiere un formato de retorno específico para `crear_coo`. Debe devolver una lista que contenga tres listas vacías: `[valores, filas, columnas]`.\n\n**Tarea:** Escribe una sola línea dentro de la función para devolver esta estructura.",
+        "EUS": "PDFak itzulera-formatu zehatz bat eskatzen du `crear_coo`-rako. Hiru zerrenda huts dituen zerrenda bat itzuli behar du: `[balioak, errenkadak, zutabeak]`.\n\n**Zeregina:** Idatzi lerro bakar bat funtzioaren barruan egitura hau itzultzeko."
+      },
+      "initialCode": {
+        "ENG": "def create_coo():\n    # Your code here (1 line)\n    pass\n\n# Verification\nprint(create_coo())",
+        "CAS": "def crear_coo():\n    # Tu código aquí (1 línea)\n    pass\n\n# Verificación\nprint(crear_coo())",
+        "EUS": "def crear_coo():\n    # Zure kodea hemen (lerro 1)\n    pass\n\n# Egiaztapena\nprint(crear_coo())"
+      },
+      "testCode": "res = locals()['crear_coo']() if 'crear_coo' in locals() else locals()['create_coo']()\nassert res == [[], [], []], f'Expected [[], [], []] but got {res}'"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-spar-ex2",
+      "title": {
+        "ENG": "2. The 'Non-Zero' Filter",
+        "CAS": "2. El Filtro 'No-Cero'",
+        "EUS": "2. 'Ez-Zero' Iragazkia"
+      },
+      "description": {
+        "ENG": "The core logic of `normal_to_coo` is filtering. We only care about data that is **not zero**.\n\n**Task:** Complete the `if` statement so it only prints \"Save\" when `v` is not 0.",
+        "CAS": "La lógica central de `normal_a_coo` es el filtrado. Solo nos importan los datos que **no son cero**.\n\n**Tarea:** Completa el `if` para que solo imprima \"Guardar\" cuando `v` no sea 0.",
+        "EUS": "`normal_a_coo`-ren oinarrizko logika iragaztea da. **Zero ez diren** datuak bakarrik interesatzen zaizkigu.\n\n**Zeregina:** Osatu `if`-a, `v` 0 ez denean bakarrik inprima dezan \"Gorde\"."
+      },
+      "initialCode": {
+        "ENG": "values = [0, 5, 0, 2, 0]\nfor v in values:\n    # Write the if here (1 line)\n        print(f\"Save: {v}\")",
+        "CAS": "valores = [0, 5, 0, 2, 0]\nfor v in valores:\n    # Escribe el if aquí (1 línea)\n        print(f\"Guardar: {v}\")",
+        "EUS": "balioak = [0, 5, 0, 2, 0]\nfor v in balioak:\n    # Idatzi if-a hemen (lerro 1)\n        print(f\"Gorde: {v}\")"
+      },
+      "testCode": "import re\nassert re.search(r\"if\\s+v\\s*!=*\\s*0\\s*:\", code), \"Check if v is not equal to 0 (v != 0)\""
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-spar-ex3",
+      "title": {
+        "ENG": "3. Parallel Access",
+        "CAS": "3. Acceso por Índices Paralelos",
+        "EUS": "3. Sarbide Paraleloa"
+      },
+      "description": {
+        "ENG": "In `coo_to_normal`, you need to reconstruct the matrix. The row index stored in `rows[i]` corresponds to the column index in `cols[i]`.\n\n**Task:** Use `rows` and `cols` to assign `10` to the correct position in matrix `m`.",
+        "CAS": "En `coo_a_normal`, necesitas reconstruir la matriz. El índice de fila guardado en `filas[i]` corresponde con el de columna en `columnas[i]`.\n\n**Tarea:** Usa `filas` y `columnas` para asignar `10` en la posición correcta de la matriz `m`.",
+        "EUS": "`coo_a_normal`-en, matrizea berreraiki behar duzu. `errenkadak[i]`-n gordetako errenkada-indizea `zutabeak[i]`-ko zutabe-indizearekin bat dator.\n\n**Zeregina:** Erabili `errenkadak` eta `zutabeak` `10` balioa `m` matrizearen posizio zuzenean esleitzeko."
+      },
+      "initialCode": {
+        "ENG": "m = [[0,0], [0,0]] # Empty 2x2 matrix\nrows = [1]\ncols = [0]\ni = 0\n\n# Your line here to do m[row][col] = 10\n\nprint(\"Matrix result:\", m)",
+        "CAS": "m = [[0,0], [0,0]] # Matriz 2x2 vacía\nfilas = [1]\ncolumnas = [0]\ni = 0\n\n# Tu línea aquí para hacer m[fila][columna] = 10\n\nprint(\"Matriz resultado:\", m)",
+        "EUS": "m = [[0,0], [0,0]] # 2x2 matrize hutsa\nerrenkadak = [1]\nzutabeak = [0]\ni = 0\n\n# Zure lerroa hemen m[errenkada][zutabea] = 10 egiteko\n\nprint(\"Matriz emaitza:\", m)"
+      },
+      "testCode": "assert m[1][0] == 10, 'Value 10 should be at m[1][0]'"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-spar-ex4",
+      "title": {
+        "ENG": "4. Finding Coordinates",
+        "CAS": "4. Búsqueda de Coordenadas",
+        "EUS": "4. Koordenatuak Bilatzen"
+      },
+      "description": {
+        "ENG": "For `exists_in(r, c)`, we need to check if a value is stored at a specific position. This requires checking BOTH the row list AND the column list simultaneously.\n\n**Task:** Write the condition to check if `rows_coo[i]` is `f` AND `cols_coo[i]` is `c`.",
+        "CAS": "Para `existe_en(f, c)`, necesitamos ver si hay un valor en una posición específica. Esto requiere comprobar AMBAS listas, filas y columnas, a la vez.\n\n**Tarea:** Escribe la condición para ver si `filas_coo[i]` es `f` Y `cols_coo[i]` es `c`.",
+        "EUS": "`existe_en(f, c)` egiteko, posizio zehatz batean baliorik dagoen ikusi behar dugu. Horrek zerrenda BI, errenkadak eta zutabeak, aldi berean egiaztatzea eskatzen du.\n\n**Zeregina:** Idatzi baldintza `filas_coo[i]` `f` den ETA `cols_coo[i]` `c` den ikusteko."
+      },
+      "initialCode": {
+        "ENG": "rows_coo = [0, 2, 3]\ncols_coo = [1, 0, 3]\nf = 2\nc = 0\n\nfor i in range(3):\n    # Write the condition (1 line)\n        print(f\"Found at index {i}!\")",
+        "CAS": "filas_coo = [0, 2, 3]\ncols_coo  = [1, 0, 3]\nf = 2\nc = 0\n\nfor i in range(3):\n    # Escribe la condición (1 línea)\n        print(f\"¡Encontrado en índice {i}!\")",
+        "EUS": "errenkadak_coo = [0, 2, 3]\nzutabeak_coo  = [1, 0, 3]\nf = 2\nc = 0\n\nfor i in range(3):\n    # Idatzi baldintza (lerro 1)\n        print(f\"Aurkitua indize honetan: {i}\")"
+      },
+      "testCode": "assert ' and ' in code, 'Use the \"and\" operator to check both conditions.'"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-spar-ex5",
+      "title": {
+        "ENG": "5. Increment or Assign",
+        "CAS": "5. Incrementar o Asignar",
+        "EUS": "5. Handitu edo Esleitu"
+      },
+      "description": {
+        "ENG": "This is critical for `sum_sparse`. If a coordinate already has a value, we **add** to it. If not, we append a new one.\n\n**Task:** The `else` block runs when the index IS found. Add `new_val` to the existing value in `vals` at that index.",
+        "CAS": "Esto es crítico para `suma_dispersas`. Si una coordenada ya tiene valor, **sumamos** a él. Si no, añadimos uno nuevo.\n\n**Tarea:** El bloque `else` se ejecuta cuando el índice SÍ se encuentra. Suma `valor_nuevo` al valor existente en `vals` en ese índice.",
+        "EUS": "Hau kritikoa da `suma_dispersas`-rentzat. Koordenatu batek balioa badu, **gehitu** egiten diogu. Ez bada, berri bat eransten dugu.\n\n**Zeregina:** `else` blokea indizea aurkitzen denean exekutatzen da. Gehitu `balio_berria` `vals`-eko balioari indize horretan."
+      },
+      "initialCode": {
+        "ENG": "vals = [10, 20]\nindex = 0 # Simulating we found data at index 0\nnew_val = 5\n\nif index == -1:\n    vals.append(new_val)\nelse:\n    # Your code here (1 line) to add new_val to vals[index]\n    pass\n\nprint(f\"Values: {vals}\")",
+        "CAS": "vals = [10, 20]\nindice = 0 # Simula que encontramos el dato en la posición 0\nvalor_nuevo = 5\n\nif indice == -1:\n    vals.append(valor_nuevo)\nelse:\n    # Tu código aquí (1 línea) para sumar valor_nuevo a vals[indice]\n    pass\n\nprint(f\"Valores: {vals}\")",
+        "EUS": "vals = [10, 20]\nindizea = 0 # 0 posizioan datua aurkitu dugula simulatzen du\nbalio_berria = 5\n\nif indizea == -1:\n    vals.append(balio_berria)\nelse:\n    # Zure kodea hemen (lerro 1) balio_berria vals[indizea]-ri gehitzeko\n    pass\n\nprint(f\"Balioak: {vals}\")"
+      },
+      "testCode": "assert vals[0] == 15, f'Expected 15 at index 0 (10+5), but got {vals[0]}.'"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 6. Ready for the Lab?\n\nYou now have the atomic pieces. Here is how they map to the final functions you must implement:\n\n*   **Exercise 1** -> `create_coo()`\n*   **Exercise 2** -> `normal_to_coo(matrix)`\n*   **Exercise 3** -> `coo_to_normal(coo, rows, cols)`\n*   **Exercise 4** -> `exists_in(coo, f, c)`\n*   **Exercise 5** -> `insert_or_increment(coo, f, c, val)`\n\n**Challenge:** The function `sum_sparses(coo1, coo2)` will require you to combine these tools. Good luck!",
+        "CAS": "## 6. ¿Listo para la Práctica?\n\nYa tienes las piezas atómicas. Así se mapean a las funciones finales que debes implementar:\n\n*   **Ejercicio 1** -> `crear_coo()`\n*   **Ejercicio 2** -> `normal_a_coo(matriz)`\n*   **Ejercicio 3** -> `coo_a_normal(coo, filas, columnas)`\n*   **Ejercicio 4** -> `existe_en(coo, f, c)`\n*   **Ejercicio 5** -> `insertar_o_incrementar(coo, f, c, val)`\n\n**Reto:** La función `suma_dispersas(coo1, coo2)` requerirá que combines estas herramientas. ¡Buena suerte!",
+        "EUS": "## 6. Laborategirako Prest?\n\nPieza atomikoak dituzu orain. Horrela lotzen dira inplementatu behar dituzun azken funtzioekin:\n\n*   **1. Ariketa** -> `crear_coo()`\n*   **2. Ariketa** -> `normal_a_coo(matriz)`\n*   **3. Ariketa** -> `coo_a_normal(coo, filas, columnas)`\n*   **4. Ariketa** -> `existe_en(coo, f, c)`\n*   **5. Ariketa** -> `insertar_o_incrementar(coo, f, c, val)`\n\n**Erronka:** `suma_dispersas(coo1, coo2)` funtzioak tresna hauek konbinatzea eskatuko dizu. Zorte on!"
+      }
+    }
+  ]
+}

@@ -67,6 +67,7 @@ export const loadSection = async (id: string): Promise<CoursePage | undefined> =
         // Map ID to filename key: 'ds-w02-intro' -> './ds_2026/week02_theory.json'
         let path = '';
         if (id === 'ds-w02-intro') path = './ds_2026/week02_theory.json';
+        if (id === 'ds-w02-sparse') path = './ds_2026/week02_sparse.json';
         
         const loader = dsModules[path];
         if (!loader) {
