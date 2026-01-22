@@ -13,6 +13,7 @@ import { InteractiveListVisualizer } from '../components/InteractiveListVisualiz
 import { FStringVisualizer } from '../components/FStringVisualizer';
 import { MainGuardVisualizer } from '../components/MainGuardVisualizer';
 import { SparseMatrixVisualizer } from '../components/SparseMatrixVisualizer';
+import { OOPVisualizer } from '../components/OOPVisualizer';
 
 const MoocCoursePage: React.FC = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -231,6 +232,11 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
     // Sparse Matrix Visualizer
     if (block.type === 'interactive-sparse-matrix') {
         return <SparseMatrixVisualizer />;
+    }
+
+    // OOP Visualizer
+    if (block.type === 'interactive-oop') {
+        return <OOPVisualizer />;
     }
 
     // Markdown
