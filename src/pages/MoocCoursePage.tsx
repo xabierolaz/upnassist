@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText } from '../data/mooc-exercises';
@@ -7,7 +7,6 @@ import { useProgressStore } from '../stores/progressStore';
 import { QuizPlaceholder } from '../components/mooc/QuizPlaceholder';
 import { Quiz } from '../components/mooc/Quiz';
 import { useLanguageStore } from '../stores/languageStore';
-import { LanguageSwitcher } from '../components/common/LanguageSwitcher';
 import { GlobalSidebar } from '../components/common/GlobalSidebar';
 import { InteractiveListVisualizer } from '../components/InteractiveListVisualizer';
 import { FStringVisualizer } from '../components/FStringVisualizer';
@@ -17,132 +16,196 @@ import { OOPVisualizer } from '../components/OOPVisualizer';
 import { PDFViewer } from '../components/common/PDFViewer';
 
 const MoocCoursePage: React.FC = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
-  // Use courseStructure for initial ID
-  const [activePageId, setActivePageId] = useState<string>(courseStructure[0].id);
-  const [activePageData, setActivePageData] = useState<CoursePage | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  
-  const { t, currentLang } = useLanguageStore();
+    const mainRef = useRef<HTMLDivElement>(null);
+    // Use courseStructure for initial ID
+    const [activePageId, setActivePageId] = useState<string>(courseStructure[0].id);
+    const [activePageData, setActivePageData] = useState<CoursePage | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Load section data when ID changes
-  useEffect(() => {
-    if (mainRef.current) mainRef.current.scrollTo(0, 0);
-    let isMounted = true;
-    const load = async () => {
-        setIsLoading(true);
-        const data = await loadSection(activePageId);
-        if (isMounted && data) {
-            setActivePageData(data);
-        }
-        if (isMounted) setIsLoading(false);
-    };
-    load();
-    return () => { isMounted = false; };
-  }, [activePageId]);
-  
-  return (
-    <div className="flex h-screen bg-white font-sans overflow-hidden">
-      
-      {/* Mobile Sidebar Toggle */}
-      <button 
-        className="md:hidden fixed bottom-4 right-4 z-50 bg-red-600 text-white p-3 rounded-full shadow-lg"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-      >
-        {isSidebarOpen ? '✕' : '☰'}
-      </button>
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-      {/* Global Sidebar */}
-      <GlobalSidebar 
-        isOpen={isSidebarOpen} 
-        onToggle={() => setIsSidebarOpen(!isSidebarOpen)} 
-        activePageId={activePageId}
-        onPageSelect={setActivePageId}
-      />
+    const { t, currentLang } = useLanguageStore();
 
-      {/* Main Content */}
-      <main ref={mainRef} className="flex-1 overflow-y-auto bg-white scroll-smooth relative">
-        <div className="max-w-4xl mx-auto px-4 md:px-12 py-10 pb-32">
+    // Load section data when ID changes
+    useEffect(() => {
+        if (mainRef.current) mainRef.current.scrollTo(0, 0);
+        let isMounted = true;
+        const load = async () => {
+            setIsLoading(true);
+            const data = await loadSection(activePageId);
+            if (isMounted && data) {
+                setActivePageData(data);
+            }
+            if (isMounted) setIsLoading(false);
+        };
+        load();
+        return () => { isMounted = false; };
+    }, [activePageId]);
+
+    // Detect if this is Part 15+ (Data Structures)
+    const isDsPart = useMemo(() => {
+        // IDs for Data Structures start with 'ds-' or belong to Part 15+
+        return activePageId.startsWith('ds-') || activePageId.includes('part15') || activePageId.includes('part16'); 
+    }, [activePageId]);
+
+    // Check if there is a PDF block
+    const pdfBlock = useMemo(() => {
+        return activePageData?.blocks?.find(b => b.type === 'pdf-viewer');
+    }, [activePageData]);
+
+    // Split Layout Condition: Part 15+ AND PDF exists
+    const isSplitLayout = isDsPart && !!pdfBlock;
+
+    // Force sidebar open on mount for non-DS parts, allow it to be closed for DS parts (overlay mode handles visibility)
+    useEffect(() => {
+        setIsSidebarOpen(!isDsPart);
+    }, [isDsPart]);
+
+    // --- Resizing Logic for Split Layout ---
+    const [leftPanelWidth, setLeftPanelWidth] = useState(50); // Percentage
+    const [isDragging, setIsDragging] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!isDragging || !containerRef.current) return;
             
-            <div className="flex justify-end mb-6">
-                <LanguageSwitcher />
-            </div>
+            const containerRect = containerRef.current.getBoundingClientRect();
+            const relativeX = e.clientX - containerRect.left;
+            const newPercentage = (relativeX / containerRect.width) * 100;
+            
+            // Clamp between 20% and 80%
+            const clampedPercentage = Math.min(Math.max(newPercentage, 20), 80);
+            setLeftPanelWidth(clampedPercentage);
+        };
 
-            {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
-                </div>
-            ) : (
-                <>
-                    {activePageData ? (
-                        <>
-                            <h1 className="text-4xl font-black text-gray-900 mb-8 pb-4 border-b border-gray-100">
-                                {getLocalizedText(activePageData.title, currentLang)}
-                            </h1>
-                            {activePageData.blocks.map((block, index) => (
-                                <BlockRenderer key={index} block={block} />
-                            ))}
-                        </>
+        const handleMouseUp = () => {
+            if (isDragging) {
+                setIsDragging(false);
+                document.body.style.cursor = 'default';
+                document.body.style.userSelect = 'auto';
+            }
+        };
+
+        if (isDragging) {
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', handleMouseUp);
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none'; // Prevent text selection while dragging
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging]);
+
+    return (
+        <div className="h-screen bg-gray-50 flex overflow-hidden font-sans text-gray-900">
+            {/* Sidebar */}
+            <GlobalSidebar
+                isOpen={isSidebarOpen}
+                onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+                activePageId={activePageId}
+                onPageSelect={setActivePageId}
+                mode={isDsPart ? 'overlay' : 'fixed'}
+            />
+
+            {/* Main Content Area */}
+            <main className="flex-1 flex flex-col min-w-0 h-full relative" ref={containerRef}>
+                
+                {/* Mobile Header / Toggle (Only for fixed mode on mobile) */}
+                {!isSidebarOpen && !isDsPart && (
+                   <button 
+                     onClick={() => setIsSidebarOpen(true)}
+                     className="md:hidden absolute top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md shadow-lg"
+                   >
+                     ☰
+                   </button>
+                )}
+
+                {isLoading ? (
+                    <div className="flex-1 flex items-center justify-center">
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                            <p className="text-gray-500">Cargando contenido...</p>
+                        </div>
+                    </div>
+                ) : activePageData ? (
+                    isSplitLayout ? (
+                        /* --- STRICT SPLIT LAYOUT (Part 15+) --- */
+                        <div className="absolute inset-0 flex flex-row h-full w-full overflow-hidden">
+                            
+                            {/* LEFT PANEL: PDF ONLY */}
+                            <div 
+                                className="h-full bg-gray-100 relative flex-shrink-0"
+                                style={{ width: `${leftPanelWidth}%` }}
+                            >
+                                {pdfBlock && pdfBlock.src && (
+                                    <PDFViewer 
+                                        src={pdfBlock.src} 
+                                        title={pdfBlock.title as any} 
+                                        className="h-full w-full border-none rounded-none my-0 shadow-none" 
+                                        fullHeight={true} 
+                                    />
+                                )}
+                                {/* Overlay overlaying PDF when dragging to prevent iframe capturing mouse events */}
+                                {isDragging && <div className="absolute inset-0 z-50 bg-transparent" />}
+                            </div>
+
+                            {/* RESIZER HANDLE */}
+                            <div
+                                className={`w-1.5 h-full bg-gray-200 hover:bg-blue-400 cursor-col-resize z-40 transition-colors flex items-center justify-center group flex-shrink-0 ${isDragging ? 'bg-blue-500' : ''}`}
+                                onMouseDown={(e) => { e.preventDefault(); setIsDragging(true); }}
+                            >
+                                <div className="h-8 w-1 bg-gray-400 rounded-full group-hover:bg-white" />
+                            </div>
+
+                            {/* RIGHT PANEL: CONTENT (Filtered, No PDF) */}
+                            <div 
+                                className="h-full overflow-y-auto bg-gray-50 p-8 flex-1" 
+                                ref={mainRef}
+                                style={{ width: `${100 - leftPanelWidth}%` }}
+                            >
+                                <div className="max-w-3xl mx-auto space-y-8">
+                                    <header className="mb-8">
+                                        <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                                            {getLocalizedText(activePageData.title, currentLang)}
+                                        </h1>
+                                    </header>
+
+                                    {/* Render Blocks (STRICTLY SKIP PDF) */}
+                                    {activePageData.blocks.map((block, idx) => {
+                                        if (block.type === 'pdf-viewer') return null; // Ensure PDF is NOT rendered here
+                                        return <BlockRenderer key={idx} block={block} />;
+                                    })}
+                                </div>
+                            </div>
+                        </div>
                     ) : (
-                        <div className="text-center text-gray-500">Error loading content.</div>
-                    )}
-                </>
-            )}
-
-            {/* Bottom Navigation */}
-            <div className="mt-16 pt-8 border-t border-gray-200 flex justify-between">
-                {(() => {
-                    const currentIndex = courseStructure.findIndex(p => p.id === activePageId);
-                    const prevPage = courseStructure[currentIndex - 1];
-                    const nextPage = courseStructure[currentIndex + 1];
-
-                    return (
-                        <>
-                            {prevPage ? (
-                                <button
-                                    onClick={() => {
-                                        setActivePageId(prevPage.id);
-                                        window.scrollTo(0, 0);
-                                    }}
-                                    className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-[#c0392b] transition-colors"
-                                >
-                                    ← {getLocalizedText(prevPage.title, currentLang)}
-                                </button>
-                            ) : <div></div>}
-
-                            {nextPage ? (
-                                <button
-                                    onClick={() => {
-                                        setActivePageId(nextPage.id);
-                                        window.scrollTo(0, 0);
-                                    }}
-                                    className="flex items-center px-4 py-2 text-sm font-medium text-white bg-[#c0392b] border border-[#c0392b] rounded-lg hover:bg-[#a93226] shadow-sm transition-colors"
-                                >
-                                    {getLocalizedText(nextPage.title, currentLang)} →
-                                </button>
-                            ) : (
-                                <div className="text-gray-400 text-sm font-italic">{t.endOf} {t.part1}</div>
-                            )}
-                        </>
-                    );
-                })()}
-            </div>
-
-            <footer className="mt-20 border-t border-gray-200 pt-10 pb-6 text-center text-gray-500 text-sm">
-                <p>© 2026 {t.university} / UpnAssist</p>
-                <p className="mt-2">
-                    {t.footer}
-                    <br/>
-                    Licensed under Creative Commons BY-NC-SA 4.0.
-                </p>
-            </footer>
-
+                        /* --- STANDARD LAYOUT --- */
+                        <div className="flex-1 overflow-y-auto p-4 md:p-8" ref={mainRef}>
+                            <div className="max-w-4xl mx-auto space-y-8">
+                                <header className="mb-8">
+                                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                                        {getLocalizedText(activePageData.title, currentLang)}
+                                    </h1>
+                                </header>
+                                
+                                {activePageData.blocks.map((block, idx) => (
+                                    <BlockRenderer key={idx} block={block} />
+                                ))}
+                            </div>
+                        </div>
+                    )
+                ) : (
+                    <div className="flex-1 flex items-center justify-center text-gray-500">
+                        Selecciona una sección para comenzar.
+                    </div>
+                )}
+            </main>
         </div>
-      </main>
-    </div>
-  );
+    );
 };
 
 // Reusable Markdown Renderer with Custom Components
@@ -152,8 +215,9 @@ const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
             remarkPlugins={[remarkGfm]}
             components={{
                 pre: ({children}: any) => <>{children}</>,
-                h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8" {..._props} />,
-                h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4" {..._props} />,
+                h1: ({node: _node, ..._props}) => <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8 font-sans" {..._props} />,
+                h2: ({node: _node, ..._props}) => <h2 className="text-2xl font-bold text-gray-900 mt-10 mb-4 font-sans border-b pb-2 border-gray-200" {..._props} />,
+                h3: ({node: _node, ..._props}) => <h3 className="text-xl font-bold text-gray-800 mt-8 mb-3 font-sans" {..._props} />,
                 p: ({node: _node, children, ...props}: any) => {
                     if (children && children.toString().includes('[[QUIZ_PLACEHOLDER]]')) {
                         return <QuizPlaceholder />;
