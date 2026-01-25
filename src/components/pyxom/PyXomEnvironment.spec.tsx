@@ -36,7 +36,7 @@ describe('PyXomEnvironment UI', () => {
       // Debe haber un botón Ejecutar y un botón Enviar
       expect(screen.getByText(/Ejecutar/i)).toBeInTheDocument();
       expect(screen.getByText(/Enviar/i)).toBeInTheDocument();
-      expect(screen.getByTitle('Reiniciar')).toBeInTheDocument();
+      expect(screen.getByText('Reiniciar')).toBeInTheDocument();
     });
   it('handles Run button click', async () => {
     render(<PyXomEnvironment initialCode="print('hi')" />);
@@ -60,7 +60,7 @@ describe('PyXomEnvironment UI', () => {
       const confirmSpy = vi.spyOn(window, 'confirm');
       confirmSpy.mockImplementation(() => true);
   
-      const resetButton = screen.getByTitle('Reiniciar');
+      const resetButton = screen.getByText('Reiniciar');
       fireEvent.click(resetButton);
   
       expect(confirmSpy).toHaveBeenCalled();

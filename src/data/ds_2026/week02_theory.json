@@ -178,7 +178,7 @@
         "CAS": "class Estudiante:\n    def __init__(self, nombre, edad):\n        # TODO: Asigna self.nombre y self.edad\n        pass\n\ne1 = Estudiante(\"Alicia\", 20)\nprint(e1.nombre)",
         "EUS": "class Ikaslea:\n    def __init__(self, izena, adina):\n        # TODO: Esleitu self.izena eta self.adina\n        pass\n\ni1 = Ikaslea(\"Ane\", 20)\nprint(i1.izena)"
       },
-      "testCode": "assert \"self.\" in code"
+      "testCode": "import unittest\nassert \"self.\" in code"
     },
     {
       "type": "exercise",
@@ -194,7 +194,7 @@
         "CAS": "class Estudiante:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n    \n    # TODO: Define es_adulto(self)\n\ne1 = Estudiante(\"Bob\", 17)\n# print(e1.es_adulto())",
         "EUS": "class Ikaslea:\n    def __init__(self, izena, adina):\n        self.izena = izena\n        self.adina = adina\n    \n    # TODO: Definitu heldua_da(self)\n\ni1 = Ikaslea(\"Bob\", 17)\n# print(i1.heldua_da())"
       },
-      "testCode": "assert \"def\" in code and \">=\" in code"
+      "testCode": "import unittest\nassert \"def\" in code and \">=\" in code"
     }
   ]
 }

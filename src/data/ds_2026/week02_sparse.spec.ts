@@ -72,16 +72,8 @@ describe('Week 02 Sparse Matrix Exercises Verification', () => {
             vals[indice] += valor_nuevo;
         }
 
-        // Assertion from testCode: assert vals[0] == 25
-        expect(vals[0]).toBe(25); // 20 is vals[1], vals[0] starts at 10. Wait.
-        // Initial vals = [10, 20]. Index 0 is 10. 10 + 5 = 15.
-        // Wait, looking at the JSON... 
-        // vals = [10, 20]. index = 0. new_val = 5.
-        // vals[0] is 10. 10 + 5 = 15.
-        // The previous JSON testCode said: assert vals[0] == 25.
-        // ERROR FOUND: 10 + 5 is 15. Why did I write 25? 
-        // Ah, maybe I thought 20 + 5. 
-        // THIS IS WHY WE WRITE TESTS.
+        // Assertion from testCode: assert vals[0] == 15
+        expect(vals[0]).toBe(15); // 20 is vals[1], vals[0] starts at 10. 10+5=15.
         
         // Let's correct expectation to 15.
         expect(vals[0]).toBe(15);

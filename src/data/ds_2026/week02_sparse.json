@@ -45,7 +45,7 @@
         "CAS": "def crear_coo():\n    # Tu código aquí (1 línea)\n    pass\n\n# Verificación\nprint(crear_coo())",
         "EUS": "def crear_coo():\n    # Zure kodea hemen (lerro 1)\n    pass\n\n# Egiaztapena\nprint(crear_coo())"
       },
-      "testCode": "res = locals()['crear_coo']() if 'crear_coo' in locals() else locals()['create_coo']()\nassert res == [[], [], []], f'Expected [[], [], []] but got {res}'"
+      "testCode": "import unittest\nres = locals()['crear_coo']() if 'crear_coo' in locals() else locals()['create_coo']()\nassert res == [[], [], []], f'Expected [[], [], []] but got {res}'"
     },
     {
       "type": "exercise",
@@ -65,7 +65,7 @@
         "CAS": "valores = [0, 5, 0, 2, 0]\nfor v in valores:\n    # Escribe el if aquí (1 línea)\n        print(f\"Guardar: {v}\")",
         "EUS": "balioak = [0, 5, 0, 2, 0]\nfor v in balioak:\n    # Idatzi if-a hemen (lerro 1)\n        print(f\"Gorde: {v}\")"
       },
-      "testCode": "import re\nassert re.search(r\"if\\s+v\\s*!=*\\s*0\\s*:\", code), \"Check if v is not equal to 0 (v != 0)\""
+      "testCode": "import unittest\nimport re\nassert re.search(r\"if\\s+v\\s*!=*\\s*0\\s*:\", code), \"Check if v is not equal to 0 (v != 0)\""
     },
     {
       "type": "exercise",
@@ -85,7 +85,7 @@
         "CAS": "m = [[0,0], [0,0]] # Matriz 2x2 vacía\nfilas = [1]\ncolumnas = [0]\ni = 0\n\n# Tu línea aquí para hacer m[fila][columna] = 10\n\nprint(\"Matriz resultado:\", m)",
         "EUS": "m = [[0,0], [0,0]] # 2x2 matrize hutsa\nerrenkadak = [1]\nzutabeak = [0]\ni = 0\n\n# Zure lerroa hemen m[errenkada][zutabea] = 10 egiteko\n\nprint(\"Matriz emaitza:\", m)"
       },
-      "testCode": "assert m[1][0] == 10, 'Value 10 should be at m[1][0]'"
+      "testCode": "import unittest\nassert m[1][0] == 10, 'Value 10 should be at m[1][0]'"
     },
     {
       "type": "exercise",
@@ -105,7 +105,7 @@
         "CAS": "filas_coo = [0, 2, 3]\ncols_coo  = [1, 0, 3]\nf = 2\nc = 0\n\nfor i in range(3):\n    # Escribe la condición (1 línea)\n        print(f\"¡Encontrado en índice {i}!\")",
         "EUS": "errenkadak_coo = [0, 2, 3]\nzutabeak_coo  = [1, 0, 3]\nf = 2\nc = 0\n\nfor i in range(3):\n    # Idatzi baldintza (lerro 1)\n        print(f\"Aurkitua indize honetan: {i}\")"
       },
-      "testCode": "assert ' and ' in code, 'Use the \"and\" operator to check both conditions.'"
+      "testCode": "import unittest\nassert ' and ' in code, 'Use the \"and\" operator to check both conditions.'"
     },
     {
       "type": "exercise",
@@ -125,7 +125,7 @@
         "CAS": "vals = [10, 20]\nindice = 0 # Simula que encontramos el dato en la posición 0\nvalor_nuevo = 5\n\nif indice == -1:\n    vals.append(valor_nuevo)\nelse:\n    # Tu código aquí (1 línea) para sumar valor_nuevo a vals[indice]\n    pass\n\nprint(f\"Valores: {vals}\")",
         "EUS": "vals = [10, 20]\nindizea = 0 # 0 posizioan datua aurkitu dugula simulatzen du\nbalio_berria = 5\n\nif indizea == -1:\n    vals.append(balio_berria)\nelse:\n    # Zure kodea hemen (lerro 1) balio_berria vals[indizea]-ri gehitzeko\n    pass\n\nprint(f\"Balioak: {vals}\")"
       },
-      "testCode": "assert vals[0] == 15, f'Expected 15 at index 0 (10+5), but got {vals[0]}.'"
+      "testCode": "import unittest\nassert vals[0] == 15, f'Expected 15 at index 0 (10+5), but got {vals[0]}.'"
     },
     {
       "type": "markdown",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { courseStructure, loadSection, CoursePage, ContentBlock, getLocalizedText } from '../data/mooc-exercises';
@@ -13,7 +13,6 @@ import { FStringVisualizer } from '../components/FStringVisualizer';
 import { MainGuardVisualizer } from '../components/MainGuardVisualizer';
 import { SparseMatrixVisualizer } from '../components/SparseMatrixVisualizer';
 import { OOPVisualizer } from '../components/OOPVisualizer';
-import { PDFViewer } from '../components/common/PDFViewer';
 
 const MoocCoursePage: React.FC = () => {
     const mainRef = useRef<HTMLDivElement>(null);
@@ -42,64 +41,6 @@ const MoocCoursePage: React.FC = () => {
         return () => { isMounted = false; };
     }, [activePageId]);
 
-    // Detect if this is Part 15+ (Data Structures)
-    const isDsPart = useMemo(() => {
-        // IDs for Data Structures start with 'ds-' or belong to Part 15+
-        return activePageId.startsWith('ds-') || activePageId.includes('part15') || activePageId.includes('part16'); 
-    }, [activePageId]);
-
-    // Check if there is a PDF block
-    const pdfBlock = useMemo(() => {
-        return activePageData?.blocks?.find(b => b.type === 'pdf-viewer');
-    }, [activePageData]);
-
-    // Split Layout Condition: Part 15+ AND PDF exists
-    const isSplitLayout = isDsPart && !!pdfBlock;
-
-    // Force sidebar open on mount for non-DS parts, allow it to be closed for DS parts (overlay mode handles visibility)
-    useEffect(() => {
-        setIsSidebarOpen(!isDsPart);
-    }, [isDsPart]);
-
-    // --- Resizing Logic for Split Layout ---
-    const [leftPanelWidth, setLeftPanelWidth] = useState(50); // Percentage
-    const [isDragging, setIsDragging] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!isDragging || !containerRef.current) return;
-            
-            const containerRect = containerRef.current.getBoundingClientRect();
-            const relativeX = e.clientX - containerRect.left;
-            const newPercentage = (relativeX / containerRect.width) * 100;
-            
-            // Clamp between 20% and 80%
-            const clampedPercentage = Math.min(Math.max(newPercentage, 20), 80);
-            setLeftPanelWidth(clampedPercentage);
-        };
-
-        const handleMouseUp = () => {
-            if (isDragging) {
-                setIsDragging(false);
-                document.body.style.cursor = 'default';
-                document.body.style.userSelect = 'auto';
-            }
-        };
-
-        if (isDragging) {
-            window.addEventListener('mousemove', handleMouseMove);
-            window.addEventListener('mouseup', handleMouseUp);
-            document.body.style.cursor = 'col-resize';
-            document.body.style.userSelect = 'none'; // Prevent text selection while dragging
-        }
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [isDragging]);
-
     return (
         <div className="h-screen bg-gray-50 flex overflow-hidden font-sans text-gray-900">
             {/* Sidebar */}
@@ -108,14 +49,13 @@ const MoocCoursePage: React.FC = () => {
                 onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
                 activePageId={activePageId}
                 onPageSelect={setActivePageId}
-                mode={isDsPart ? 'overlay' : 'fixed'}
             />
 
             {/* Main Content Area */}
-            <main className="flex-1 flex flex-col min-w-0 h-full relative" ref={containerRef}>
+            <main className="flex-1 flex flex-col min-w-0 h-full relative">
                 
-                {/* Mobile Header / Toggle (Only for fixed mode on mobile) */}
-                {!isSidebarOpen && !isDsPart && (
+                {/* Mobile Header / Toggle */}
+                {!isSidebarOpen && (
                    <button 
                      onClick={() => setIsSidebarOpen(true)}
                      className="md:hidden absolute top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded-md shadow-lg"
@@ -132,72 +72,20 @@ const MoocCoursePage: React.FC = () => {
                         </div>
                     </div>
                 ) : activePageData ? (
-                    isSplitLayout ? (
-                        /* --- STRICT SPLIT LAYOUT (Part 15+) --- */
-                        <div className="absolute inset-0 flex flex-row h-full w-full overflow-hidden">
+                    /* --- STANDARD LAYOUT --- */
+                    <div className="flex-1 overflow-y-auto p-4 md:p-8" ref={mainRef}>
+                        <div className="max-w-4xl mx-auto space-y-8">
+                            <header className="mb-8">
+                                <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                                    {getLocalizedText(activePageData.title, currentLang)}
+                                </h1>
+                            </header>
                             
-                            {/* LEFT PANEL: PDF ONLY */}
-                            <div 
-                                className="h-full bg-gray-100 relative flex-shrink-0"
-                                style={{ width: `${leftPanelWidth}%` }}
-                            >
-                                {pdfBlock && pdfBlock.src && (
-                                    <PDFViewer 
-                                        src={pdfBlock.src} 
-                                        title={pdfBlock.title as any} 
-                                        className="h-full w-full border-none rounded-none my-0 shadow-none" 
-                                        fullHeight={true} 
-                                    />
-                                )}
-                                {/* Overlay overlaying PDF when dragging to prevent iframe capturing mouse events */}
-                                {isDragging && <div className="absolute inset-0 z-50 bg-transparent" />}
-                            </div>
-
-                            {/* RESIZER HANDLE */}
-                            <div
-                                className={`w-1.5 h-full bg-gray-200 hover:bg-blue-400 cursor-col-resize z-40 transition-colors flex items-center justify-center group flex-shrink-0 ${isDragging ? 'bg-blue-500' : ''}`}
-                                onMouseDown={(e) => { e.preventDefault(); setIsDragging(true); }}
-                            >
-                                <div className="h-8 w-1 bg-gray-400 rounded-full group-hover:bg-white" />
-                            </div>
-
-                            {/* RIGHT PANEL: CONTENT (Filtered, No PDF) */}
-                            <div 
-                                className="h-full overflow-y-auto bg-gray-50 p-8 flex-1" 
-                                ref={mainRef}
-                                style={{ width: `${100 - leftPanelWidth}%` }}
-                            >
-                                <div className="max-w-3xl mx-auto space-y-8">
-                                    <header className="mb-8">
-                                        <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                                            {getLocalizedText(activePageData.title, currentLang)}
-                                        </h1>
-                                    </header>
-
-                                    {/* Render Blocks (STRICTLY SKIP PDF) */}
-                                    {activePageData.blocks.map((block, idx) => {
-                                        if (block.type === 'pdf-viewer') return null; // Ensure PDF is NOT rendered here
-                                        return <BlockRenderer key={idx} block={block} />;
-                                    })}
-                                </div>
-                            </div>
+                            {activePageData.blocks.map((block, idx) => (
+                                <BlockRenderer key={idx} block={block} />
+                            ))}
                         </div>
-                    ) : (
-                        /* --- STANDARD LAYOUT --- */
-                        <div className="flex-1 overflow-y-auto p-4 md:p-8" ref={mainRef}>
-                            <div className="max-w-4xl mx-auto space-y-8">
-                                <header className="mb-8">
-                                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                                        {getLocalizedText(activePageData.title, currentLang)}
-                                    </h1>
-                                </header>
-                                
-                                {activePageData.blocks.map((block, idx) => (
-                                    <BlockRenderer key={idx} block={block} />
-                                ))}
-                            </div>
-                        </div>
-                    )
+                    </div>
                 ) : (
                     <div className="flex-1 flex items-center justify-center text-gray-500">
                         Selecciona una sección para comenzar.
@@ -304,10 +192,7 @@ const BlockRenderer: React.FC<{ block: ContentBlock }> = ({ block }) => {
         return <OOPVisualizer />;
     }
 
-    // PDF Viewer
-    if (block.type === 'pdf-viewer' && block.src) {
-        return <PDFViewer src={block.src} title={block.title as any} />;
-    }
+    // PDF Viewer BLOCK REMOVED
 
     // Markdown
     if (block.type === 'markdown' && block.content) {

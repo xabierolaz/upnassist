@@ -28,7 +28,7 @@
     },
     {
       "type": "exercise",
-      "id": "part16-1-ex1",
+      "exerciseId": "part16-1-ex1",
       "title": { "ENG": "Mini-Task: The Sandwich", "CAS": "Mini-Tarea: El Sandwich", "EUS": "Mini-Zeregina: Sandwich-a" },
       "description": {
         "ENG": "Extract the first and last element into `bread1` and `bread2`. Put everything in the middle into `fillings`.",
@@ -55,7 +55,7 @@
     },
     {
       "type": "exercise",
-      "id": "part16-1-ex-enum",
+      "exerciseId": "part16-1-ex-enum",
       "title": { "ENG": "Mini-Task: Fix the Loop", "CAS": "Mini-Tarea: Arregla el Bucle", "EUS": "Mini-Zeregina: Konpondu begizta" },
       "description": {
         "ENG": "The loop below prints nonsense because variables are swapped. Fix the `for` line.",
@@ -87,7 +87,7 @@
     },
     {
       "type": "exercise",
-      "id": "part16-1-ex-files-safe",
+      "exerciseId": "part16-1-ex-files-safe",
       "title": { "ENG": "Mini-Task: Safe Path", "CAS": "Mini-Tarea: Ruta Segura", "EUS": "Mini-Zeregina: Bide Segurua" },
       "description": {
         "ENG": "Define a variable `path` pointing to `C:\\Data\\log.txt` correctly using a **raw string**.",
@@ -95,7 +95,7 @@
         "EUS": "Definitu `path` aldagaia `C:\\Data\\log.txt`-ra apuntatzen duena ondo, **raw string** bat erabiliz."
       },
       "initialCode": "# TODO: Fix the string to handle backslashes correctly\npath = \"C:\\Data\\log.txt\" \nprint(path)",
-      "testCode": "import unittest\nclass TestPath(unittest.TestCase):\n    def test_raw(self):\n        # In the student code execution, path might be broken if they didn't fix it\n        # We check the code text for the 'r' prefix\n        if \"r\\\"\" in code or \"r'\" in code:\n             pass\n        elif \"\\\\\" in code: # Double backslash escape is also valid\n             pass\n        elif \"/\" in code: # Forward slash is also valid\n             pass\n        else:\n             # If they simply used single backslash in a normal string, it's risky (though \\D might not be an escape seq, it's bad practice)\n             # We want to force awareness.\n             pass\n        \n        # Let's check the result\n        # If executed, does 'path' match expectations?\n        try:\n            # Depending on how the runner handles globals\n            pass\n        except:\n            pass\n        \n        # Simple check: Does the code contain r\"...\"?\n        correct = \"r\\\"C:\" in code or \"r'C:\" in code or \"/\" in code or \"\\\\\" in code\n        self.assertTrue(correct, \"Use a raw string (r'...') or escape slashes (\\) / Usa un raw string (r'...') o escapa las barras (\\)\")\nif __name__ == '__main__': unittest.main()"
+      "testCode": "import unittest\nclass TestPath(unittest.TestCase):\n    def test_raw(self):\n        # In the student code execution, path might be broken if they didn't fix it\n        # We check the code text for the 'r' prefix\n        if 'r\"' in code or \"r'\" in code:\n             pass\n        elif \"\\\\\" in code: # Double backslash escape is also valid\n             pass\n        elif \"/\" in code: # Forward slash is also valid\n             pass\n        else:\n             pass\n        \n        # Simple check: Does the code contain r\"...\"?\n        correct = 'r\"C:' in code or \"r'C:\" in code or \"/\" in code or \"\\\\\" in code\n        self.assertTrue(correct, \"Use a raw string (r'...') or escape slashes (\\) / Usa un raw string (r'...') o escapa las barras (\\)\")\nif __name__ == '__main__': unittest.main()"
     },
     {
       "type": "text",
@@ -129,7 +129,7 @@
     },
     {
       "type": "exercise",
-      "id": "part16-1-ex-self",
+      "exerciseId": "part16-1-ex-self",
       "title": { "ENG": "Mini-Task: Using Self", "CAS": "Mini-Tarea: Usando Self", "EUS": "Mini-Zeregina: Self Erabiltzen" },
       "description": {
         "ENG": "Complete `greet`. It should use `self.name` to print \"Hi, I am [name]\".",
@@ -156,7 +156,7 @@
     },
     {
       "type": "exercise",
-      "id": "part16-1-ex-private",
+      "exerciseId": "part16-1-ex-private",
       "title": { "ENG": "Challenge: Break the Lock", "CAS": "Reto: Rompe el Candado", "EUS": "Erronka: Apurtu Kandadua" },
       "description": {
         "ENG": "Try to access `__secret` directly. It will fail. Then use `reveal()`.",

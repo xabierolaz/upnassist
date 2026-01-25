@@ -3,10 +3,10 @@ import { courseStructure, loadSection } from './mooc-exercises';
 
 describe('MOOC Content Architecture', () => {
   
-  it('should load course structure with 14 parts', () => {
+  it('should load course structure with 27 parts', () => {
     expect(courseStructure.length).toBeGreaterThan(60);
     const parts = new Set(courseStructure.map(s => s.part));
-    expect(parts.size).toBe(14);
+    expect(parts.size).toBe(27);
   });
 
   it('should have valid metadata for Part 1', () => {
