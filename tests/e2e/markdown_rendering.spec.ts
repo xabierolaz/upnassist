@@ -11,7 +11,6 @@ test.describe('Markdown Rendering Clinical Audit', () => {
     await expect(learningHeader).toBeVisible();
     
     // Verify content follows (e.g. list items)
-    const listAfterHeader = page.locator('h3 + ul').first();
     // Note: The HTML structure might vary slightly, but we expect a list nearby.
     // Actually, in the MD, the text box contains a list.
     // If it's converted to "### Header \n List", then H3 is followed by UL.

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { loadUnit } from '../core/loader';
-import { courseStructureMetadata as courseStructure } from '../courses/mooc/manifest';
+import { loadUnit } from '../../loader';
+import { courseStructureMetadata as courseStructure } from '../../../courses/mooc/manifest';
 
 describe('Python Exercises Integrity', () => {
   // Test all sections

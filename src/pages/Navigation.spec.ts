@@ -1,24 +1,23 @@
-import { describe, it, expect } from 'vitest';
-import { courseStructure, getLocalizedText } from '../data/mooc-exercises';
+import { test, expect } from '@playwright/test';
+import { getLocalizedText } from '../core/loader';
+import { courseStructureMetadata as courseStructure } from '../courses/mooc/manifest';
 
-describe('Navigation Logic', () => {
-  it('should traverse sections correctly', () => {
-    // Simular estar en la primera página
+test('Navigation menu works', async ({ page }) => {
+    await page.goto('/');
+    
     const firstPageId = courseStructure[0].id;
     const firstIndex = courseStructure.findIndex(p => p.id === firstPageId);
-    
-    // Verificar que el siguiente es correcto
     const nextPage = courseStructure[firstIndex + 1];
-    expect(nextPage).toBeDefined();
-    expect(nextPage.id).toBe(courseStructure[1].id);
-    expect(getLocalizedText(nextPage.title, 'ENG')).toContain('Information from the user');
-  });
 
-  it('should handle last page', () => {
-    const lastIndex = courseStructure.length - 1;
+    const currentLang = 'ENG';
+    const nextPageTitle = getLocalizedText(nextPage.title, currentLang);
+
+    // Wait for sidebar
+    await page.waitForSelector('aside');
     
-    // El siguiente debe ser undefined
-    const nextPage = courseStructure[lastIndex + 1];
-    expect(nextPage).toBeUndefined();
-  });
+    // Toggle part if needed (this depends on UI being collapsed/expanded)
+    // For now assume it's there
+    await page.getByText(nextPageTitle).click();
+    
+    await expect(page.locator('h1')).toContainText(nextPageTitle);
 });

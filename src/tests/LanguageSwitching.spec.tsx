@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
-import { PyXomEnvironment } from '../components/pyxom/PyXomEnvironment';
-import { useLanguageStore } from '../stores/languageStore';
+import { PyXomEnvironment } from '../core/engine/python/PyXomEnvironment';
+import { useLanguageStore } from '../core/store/languageStore';
 
 // Mockear scrollIntoView
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
