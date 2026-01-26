@@ -22,6 +22,7 @@ export const loadUnit = async (courseId: string, unitId: string): Promise<Course
     if (courseId === 'ds') {
         // IDs like "ds-w02-intro" -> path "../courses/ds/content/week02_theory.json"
         let filename = '';
+        if (unitId === 'ds-w01-presentation') filename = 'week01_theory.json';
         if (unitId === 'ds-w02-intro') filename = 'week02_theory.json';
         if (unitId === 'ds-w02-sparse') filename = 'week02_sparse.json';
         

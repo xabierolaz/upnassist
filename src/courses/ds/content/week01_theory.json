@@ -1,0 +1,18 @@
+{
+  "id": "ds-w01-presentation",
+  "title": {
+    "ENG": "Course Presentation",
+    "CAS": "Presentación del Curso",
+    "EUS": "Ikastaroaren Aurkezpena"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## Course Logistics\n\n**Lecturer:** Ugaitz Amozarrain\n\n**Email:** ugaitz.amozarrain@unavarra.es\n\n**Office:** 9002 (Basement, 'Las Encinas' building)\n\n**Office Hours:**\n- Monday: 16:00-18:00\n- Wednesday: 11:00-13:00\n\n## Schedule\n\n- **Theory:** Monday 12:00-14:00 (Room A-020)\n- **Lab:** Thursday 12:00-14:00 (Room A-331)\n\n## Evaluation Criteria\n\n| Method | Weight | Retake? |\n|--------|--------|---------|\n| Exams  | 50%    | YES     |\n| Deliverables | 50% | YES |\n\n**Note:** You must get at least 50% on the exams to pass.\n\n### Deliverables Breakdown\n\n- **Linked Lists:** 2 points (Correction)\n- **Huffman Coding:** 2 points (Correction)\n- **Others (7 items):** 1 point total (n/7)\n  - Sparse Matrices\n  - Working with Files\n  - Postfix Calculator\n  - Palindromes\n  - Balanced Parentheses\n  - Recursion Exercises\n  - Constructing Binary Trees",
+        "CAS": "## Logística del Curso\n\n**Profesor:** Ugaitz Amozarrain\n\n**Email:** ugaitz.amozarrain@unavarra.es\n\n**Despacho:** 9002 (Sótano, edificio 'Las Encinas')\n\n**Horario de Tutorías:**\n- Lunes: 16:00-18:00\n- Miércoles: 11:00-13:00\n\n## Horario\n\n- **Teoría:** Lunes 12:00-14:00 (Aula A-020)\n- **Laboratorio:** Jueves 12:00-14:00 (Aula A-331)\n\n## Criterios de Evaluación\n\n| Método | Peso | ¿Recuperable? |\n|--------|------|---------------|\n| Exámenes | 50% | SÍ |\n| Entregables | 50% | SÍ |\n\n**Nota:** Debes obtener al menos el 50% en los exámenes para aprobar.\n\n### Desglose de Entregables\n\n- **Listas Enlazadas:** 2 puntos (Corrección)\n- **Codificación Huffman:** 2 puntos (Corrección)\n- **Otros (7 ítems):** 1 punto total (n/7)\n  - Matrices Dispersas\n  - Trabajando con Archivos\n  - Calculadora Postfija\n  - Palíndromos\n  - Paréntesis Balanceados\n  - Ejercicios de Recursividad\n  - Construcción de Árboles Binarios",
+        "EUS": "## Ikastaroaren Logistika\n\n**Irakaslea:** Ugaitz Amozarrain\n\n**Posta elektronikoa:** ugaitz.amozarrain@unavarra.es\n\n**Bulegoa:** 9002 (Sototoa, 'Las Encinas' eraikina)\n\n**Tutoretza Orduak:**\n- Astelehena: 16:00-18:00\n- Asteazkena: 11:00-13:00\n\n## Ordutegia\n\n- **Teoria:** Astelehena 12:00-14:00 (Gela A-020)\n- **Laborategia:** Osteguna 12:00-14:00 (Gela A-331)\n\n## Ebaluazio Irizpideak\n\n| Metodoa | Pisua | Berreskuragarria? |\n|---------|-------|-------------------|\n| Azterketak | %50 | BAI |\n| Entregagarriak | %50 | BAI |\n\n**Oharra:** Azterketetan gutxienez %50 lortu behar duzu gainditzeko.\n\n### Entregagarrien Banaketa\n\n- **Zerrenda Estekatuak:** 2 puntu (Zuzenketa)\n- **Huffman Kodifikazioa:** 2 puntu (Zuzenketa)\n- **Besteak (7 elementu):** Puntu 1 guztira (n/7)\n  - Matrize Sakabanatuak\n  - Fitxategiekin Lanean\n  - Postfix Kalkulagailua\n  - Palindromoak\n  - Parentesi Orekatuak\n  - Errekurtsibitate Ariketak\n  - Zuhaitz Binarioak Eraikitzen"
+      }
+    }
+  ]
+}
