@@ -1,3 +1,5 @@
+import { Course } from '../types';
+
 export const syllabusData = {
   courseName: {
     ENG: "Data Structures",
@@ -39,25 +41,6 @@ export const syllabusData = {
       retake: true 
     }
   ],
-  moduleTitles: {
-    1: { ENG: "01. Introduction & Basics", CAS: "01. Introducción y Conceptos Básicos", EUS: "01. Sarrera eta Oinarriak" },
-    2: { ENG: "02. Sparse Matrices", CAS: "02. Matrices Dispersas", EUS: "02. Matrize Sakabanatuak" },
-    3: { ENG: "03. Stacks & Queues", CAS: "03. Pilas y Colas", EUS: "03. Pilak eta Ilarak" },
-    4: { ENG: "04. Postfix Calculator", CAS: "04. Calculadora Postfija", EUS: "04. Postfix Kalkulagailua" },
-    5: { ENG: "05. Linked Lists", CAS: "05. Listas Enlazadas", EUS: "05. Zerrenda Estekatuak" },
-    6: { ENG: "06. Algorithmic Complexity", CAS: "06. Complejidad Algorítmica", EUS: "06. Konplexutasun Algoritmikoa" },
-    7: { ENG: "07. Recursion", CAS: "07. Recursividad", EUS: "07. Errekurtsibitatea" },
-    8: { ENG: "08. Binary Trees", CAS: "08. Árboles Binarios", EUS: "08. Zuhaitz Binarioak" },
-    9: { ENG: "09. Midterm Exam 1", CAS: "09. Examen Parcial 1", EUS: "09. 1. Azterketa Partziala" },
-    10: { ENG: "10. Graphs", CAS: "10. Grafos", EUS: "10. Grafoak" },
-    11: { ENG: "11. HOLIDAY (Easter)", CAS: "11. FESTIVO (Semana Santa)", EUS: "11. JAIEGUNA (Aste Santua)" },
-    12: { ENG: "12. Advanced Graphs", CAS: "12. Grafos Avanzados", EUS: "12. Grafo Aurreratuak" },
-    13: { ENG: "13. Conway's Game of Life", CAS: "13. Juego de la Vida (Conway)", EUS: "13. Conway-ren Bizitzaren Jokoa" },
-    14: { ENG: "14. Battleship (Setup)", CAS: "14. Hundir la Flota (Planteamiento)", EUS: "14. Hondoratu Itsasontzia (Planteamendua)" },
-    15: { ENG: "15. Battleship (Development)", CAS: "15. Hundir la Flota (Desarrollo)", EUS: "15. Hondoratu Itsasontzia (Garapena)" },
-    16: { ENG: "16. Battleship (Finalization)", CAS: "16. Hundir la Flota (Finalización)", EUS: "16. Hondoratu Itsasontzia (Amaiera)" },
-    17: { ENG: "17. Final Exam & Retake", CAS: "17. Examen Final y Recuperación", EUS: "17. Azterketa Finala eta Berreskurapena" }
-  },
   calendar: [
     // Week 1
     { week: 1, date: "Jan 26", topic: { ENG: "Presentation", CAS: "Presentación", EUS: "Aurkezpena" }, type: "Theory" },
@@ -126,5 +109,49 @@ export const syllabusData = {
     // Exams
     { week: 18, date: "May 25", topic: { ENG: "FINAL EXAM", CAS: "EXAMEN FINAL", EUS: "AZTERKETA FINALA" }, type: "Theory" },
     { week: 21, date: "Jun 17", topic: { ENG: "RETAKE EXAM", CAS: "RECUPERACIÓN", EUS: "BERRESKURAPENA" }, type: "Theory" }
+  ]
+};
+
+export const course: Course = {
+  id: "ds",
+  title: {
+    ENG: "Data Structures (Python)",
+    CAS: "Estructura de Datos (Python)",
+    EUS: "Datu Egiturak (Python)"
+  },
+  modules: [
+    {
+      id: "ds-intro",
+      title: { ENG: "1. Introduction & Review", CAS: "1. Introducción y Repaso", EUS: "1. Sarrera eta Berrikuspena" },
+      isCollapsed: false,
+      units: [
+        { id: "ds-w01-theory", title: { ENG: "Syllabus & Logistics", CAS: "Guía Docente", EUS: "Gida Dokentea" } },
+        { id: "ds-w02-theory", title: { ENG: "Python Tips & Tricks", CAS: "Trucos de Python", EUS: "Python Trikimailuak" } },
+        { id: "ds-w03-theory", title: { ENG: "Object Oriented Python", CAS: "Python Orientado a Objetos", EUS: "OBP Pythonen" } }
+      ]
+    },
+    {
+      id: "ds-linear",
+      title: { ENG: "2. Linear Data Structures", CAS: "2. Estructuras Lineales", EUS: "2. Egitura Linealak" },
+      isCollapsed: false,
+      units: [
+        { id: "ds-w04-theory", title: { ENG: "Stacks & Queues", CAS: "Pilas y Colas", EUS: "Pilak eta Ilarak" } },
+        { id: "ds-w05-theory", title: { ENG: "Queues & Dequeues", CAS: "Colas y Doble Colas", EUS: "Ilarak eta Ilara Bikoitzak" } },
+        { id: "ds-w06-theory", title: { ENG: "Buffers & Extensions", CAS: "Búferes y Extensiones", EUS: "Bufferrak eta Luzapenak" } },
+        { id: "ds-w07-linked", title: { ENG: "Linked Lists", CAS: "Listas Enlazadas", EUS: "Zerrenda Estekatuak" } }
+      ]
+    },
+    {
+      id: "ds-labs",
+      title: { ENG: "3. Lab Projects", CAS: "3. Prácticas", EUS: "3. Praktikak" },
+      isCollapsed: false,
+      units: [
+        { id: "ds-w02-sparse", title: { ENG: "Sparse Matrices", CAS: "Matrices Dispersas", EUS: "Matrize Sakabanatuak" } },
+        { id: "ds-w03-files", title: { ENG: "File Management (CSV)", CAS: "Gestión de Ficheros", EUS: "Fitxategien Kudeaketa" } },
+        { id: "ds-w04-postfix", title: { ENG: "Postfix Calculator", CAS: "Calculadora Postfija", EUS: "Postfix Kalkulagailua" } },
+        { id: "ds-w05-palindrome", title: { ENG: "Palindrome Checker", CAS: "Verificador de Palíndromos", EUS: "Palindromo Egiaztatzailea" } },
+        { id: "ds-w06-parentheses", title: { ENG: "Balanced Parentheses", CAS: "Paréntesis Balanceados", EUS: "Parentesi Orekatuak" } }
+      ]
+    }
   ]
 };

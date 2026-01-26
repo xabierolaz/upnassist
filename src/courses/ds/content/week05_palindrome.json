@@ -1,0 +1,35 @@
+{
+  "id": "ds-w05-palindrome",
+  "part": 15,
+  "title": {
+    "ENG": "Lab: Palindrome Checker",
+    "CAS": "Práctica: Verificador de Palíndromos",
+    "EUS": "Praktika: Palindromo Egiaztatzailea"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. What is a Palindrome?\n\nA word or phrase that reads the same forward and backward (ignoring spaces, case, and punctuation). Examples: *madam*, *racecar*, *Anita lava la tina*.\n\n### Using a Deque\nTo check if a word is a palindrome efficiently:\n1.  Put all characters in a **Deque**.\n2.  Repeatedly pop from **both ends** and compare.\n3.  If they differ at any point, it's not a palindrome!",
+        "CAS": "## 1. ¿Qué es un Palíndromo?\n\nUna palabra o frase que se lee igual al derecho que al revés (ignorando espacios, mayúsculas y signos). Ejemplos: *madam*, *reconocer*, *Anita lava la tina*.\n\n### Usando una Doble Cola (Deque)\nPara comprobar un palíndromo eficientemente:\n1.  Pon todos los caracteres en un **Deque**.\n2.  Saca repetidamente por **ambos extremos** y compara.\n3.  Si en algún punto son distintos, ¡no es un palíndromo!",
+        "EUS": "## 1. Zer da Palindromo bat?\n\nAurrerantz eta atzerantz berdina irakurtzen den hitz edo esaldi bat (espazioak, letra larriak eta zeinuak kontuan hartu gabe). Adibideak: *madam*, *euskaraz*, *Anita lava la tina*.\n\n### Deque bat Erabiliz\nPalindromo bat eraginkortasunez egiaztatzeko:\n1.  Jarri karaktere guztiak **Deque** batean.\n2.  Atera behin eta berriz **bi muturretatik** eta konparatu.\n3.  Punturen batean desberdinak badira, ez da palindromoa!"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w05-pal-ex1",
+      "title": { "ENG": "Cleaning the String", "CAS": "Limpieza de Cadena", "EUS": "Katea Garbitzea" },
+      "description": {
+        "ENG": "Convert the string to lowercase and remove spaces.",
+        "CAS": "Convierte la cadena a minúsculas y quita los espacios.",
+        "EUS": "Bihurtu katea letra xeheetara eta kendu espazioak."
+      },
+      "initialCode": {
+        "ENG": "text = \"Anita lava la tina\"\n# TODO: Lowercase and remove spaces\n",
+        "CAS": "texto = \"Anita lava la tina\"\n# TODO: Minúsculas y quitar espacios\n",
+        "EUS": "testua = \"Anita lava la tina\"\n# TODO: Letra xeheak eta espazioak kendu\n"
+      },
+      "testCode": "import unittest\nassert \"lower\" in code and \"replace\" in code"
+    }
+  ]
+}
