@@ -64,13 +64,15 @@ for (const week of weeks) {
         };
     });
 
+    const moduleTitle = (dsManifest as any).moduleTitles?.[week] || { 
+        ENG: `Week ${week}`, 
+        CAS: `Semana ${week}`, 
+        EUS: `Astea ${week}` 
+    };
+
     dsCourse.modules.push({
         id: `week${week}`,
-        title: { 
-            ENG: `Week ${week}`, 
-            CAS: `Semana ${week}`, 
-            EUS: `Astea ${week}` 
-        },
+        title: moduleTitle,
         units: units
     });
 }

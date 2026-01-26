@@ -1,0 +1,267 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - generic [ref=e5] [cursor=pointer]:
+        - heading "UpnAssist 2026" [level=1] [ref=e6]
+        - paragraph [ref=e7]: UPNA - Universidad Pública de Navarra
+      - generic [ref=e8]:
+        - button "Introducción a la Programación ▼" [ref=e10] [cursor=pointer]:
+          - generic [ref=e11]: Introducción a la Programación
+          - generic [ref=e13]: ▼
+        - button "Curso Avanzado ▼" [ref=e15] [cursor=pointer]:
+          - generic [ref=e16]: Curso Avanzado
+          - generic [ref=e18]: ▼
+        - button "Estructura de Datos (Python) ▼" [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: Estructura de Datos (Python)
+          - generic [ref=e23]: ▼
+    - main [ref=e24]:
+      - generic [ref=e26]:
+        - heading "Comenzando" [level=1] [ref=e28]
+        - generic [ref=e29]:
+          - heading "Objetivos de aprendizaje" [level=3] [ref=e30]
+          - paragraph [ref=e31]: Después de esta sección
+          - list [ref=e32]:
+            - listitem [ref=e33]: Habrás escrito y ejecutado tu primer programa en Python
+            - listitem [ref=e34]: Sabrás cómo usar el comando print
+            - listitem [ref=e35]: Podrás usar la programación para operaciones aritméticas
+          - paragraph [ref=e36]:
+            - text: Los programas informáticos consisten en
+            - emphasis [ref=e37]: comandos
+            - text: ", cada comando instruye a la computadora para que realice alguna acción. Una computadora ejecuta estos comandos uno por uno. Entre otras cosas, los comandos se pueden usar para realizar cálculos, comparar cosas en la memoria de la computadora, causar cambios en cómo funciona el programa, transmitir mensajes o pedir información al usuario del programa."
+          - paragraph [ref=e38]:
+            - text: Comencemos a programar familiarizándonos con el comando
+            - code [ref=e39]: print
+            - text: ", que"
+            - emphasis [ref=e40]: imprime
+            - text: texto. En este contexto, imprimir esencialmente significa que el programa mostrará algo de texto en la pantalla.
+          - paragraph [ref=e41]: "El siguiente programa imprimirá la línea \"¡Hola!\":"
+          - code [ref=e43]: print("¡Hola!")
+          - paragraph [ref=e44]: "Cuando se ejecuta el programa, produce esto:"
+          - generic [ref=e45]:
+            - generic [ref=e46]: Sample output
+            - generic [ref=e47]: ¡Hola!
+          - paragraph [ref=e48]: "El programa no funcionará a menos que el código se escriba exactamente como arriba. Por ejemplo, intentar ejecutar el comando print sin las comillas, así:"
+          - code [ref=e50]: print(¡Hola!)
+          - paragraph [ref=e51]: "no imprimirá el mensaje, sino que causará un error:"
+          - generic [ref=e52]:
+            - generic [ref=e53]: Sample output
+            - generic [ref=e54]: "<pre> File \"<stdin>\", line 1 print(¡Hola!) ^ SyntaxError: invalid syntax </pre>"
+          - paragraph [ref=e55]: En resumen, si quieres imprimir texto, el texto debe estar encerrado entre comillas o Python no lo interpretará correctamente.
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - img [ref=e59]
+            - generic [ref=e61]:
+              - generic [ref=e62]: Ejercicio
+              - heading "Emoticono" [level=3] [ref=e63]
+            - generic [ref=e64]:
+              - generic [ref=e65]: "Puntos:"
+              - generic [ref=e66]: 0/1
+          - paragraph [ref=e68]: "Por favor escribe un programa que imprima un emoticono: :-)"
+          - generic [ref=e70]:
+            - generic [ref=e73]: Editor Python
+            - generic [ref=e74]:
+              - code [ref=e79]:
+                - generic [ref=e80]:
+                  - generic [ref=e85]: "1"
+                  - generic [ref=e91]: print(":-)")
+                  - textbox "Editor content" [ref=e93]
+              - generic [ref=e95]:
+                - button "Terminal" [ref=e96] [cursor=pointer]
+                - button "Resultados" [ref=e97] [cursor=pointer]
+            - generic [ref=e99]:
+              - button "▶ Ejecutar" [ref=e100] [cursor=pointer]:
+                - generic [ref=e101]: ▶
+                - text: Ejecutar
+              - button "👁 Enviar" [ref=e102] [cursor=pointer]:
+                - generic [ref=e103]: 👁
+                - text: Enviar
+              - button "Reiniciar" [ref=e104] [cursor=pointer]
+        - generic [ref=e105]:
+          - heading "Un programa de múltiples comandos" [level=2] [ref=e106]
+          - paragraph [ref=e107]: Los comandos múltiples escritos en sucesión se ejecutarán en orden desde el primero hasta el último. Por ejemplo, este programa
+          - code [ref=e109]: print("¡Bienvenido a Introducción a la Programación!") print("Primero practicaremos el uso del comando print.") print("Este programa imprime tres líneas de texto en la pantalla.")
+          - paragraph [ref=e110]: "imprime las siguientes líneas en la pantalla:"
+          - generic [ref=e111]:
+            - generic [ref=e112]: Sample output
+            - generic [ref=e113]: ¡Bienvenido a Introducción a la Programación! Primero practicaremos el uso del comando print. Este programa imprime tres líneas de texto en la pantalla.
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - img [ref=e117]
+            - generic [ref=e119]:
+              - generic [ref=e120]: Ejercicio
+              - heading "Pueblos de Navarra" [level=3] [ref=e121]
+            - generic [ref=e122]:
+              - generic [ref=e123]: "Puntos:"
+              - generic [ref=e124]: 0/1
+          - generic [ref=e125]:
+            - paragraph [ref=e126]: Navarra (Nafarroa) es una tierra de diversidad, desde la Ribera hasta la Montaña. Aquí tienes una lista de municipios importantes.
+            - paragraph [ref=e127]: Se supone que este programa debe imprimirlos en orden alfabético, pero todavía no funciona bien. Por favor, arregla el programa para que los nombres se impriman en el orden correcto (A-Z).
+            - code [ref=e129]: print("Tudela") print("Pamplona") print("Estella") print("Alsasua") print("Tafalla") print("Olite") print("Baztan")
+          - generic [ref=e131]:
+            - generic [ref=e134]: Editor Python
+            - generic [ref=e135]:
+              - code [ref=e140]:
+                - generic [ref=e141]:
+                  - generic [ref=e146]: "1"
+                  - generic [ref=e152]: print("Tudela")
+                  - textbox "Editor content" [ref=e154]
+              - generic [ref=e156]:
+                - button "Terminal" [ref=e157] [cursor=pointer]
+                - button "Resultados" [ref=e158] [cursor=pointer]
+            - generic [ref=e160]:
+              - button "▶ Ejecutar" [ref=e161] [cursor=pointer]:
+                - generic [ref=e162]: ▶
+                - text: Ejecutar
+              - button "👁 Enviar" [ref=e163] [cursor=pointer]:
+                - generic [ref=e164]: 👁
+                - text: Enviar
+              - button "Reiniciar" [ref=e165] [cursor=pointer]
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - img [ref=e169]
+            - generic [ref=e171]:
+              - generic [ref=e172]: Ejercicio
+              - heading "Rema, rema, rema tu bote" [level=3] [ref=e173]
+            - generic [ref=e174]:
+              - generic [ref=e175]: "Puntos:"
+              - generic [ref=e176]: 0/1
+          - generic [ref=e177]:
+            - paragraph [ref=e178]: "Por favor escribe un programa que imprima las siguientes líneas exactamente como están escritas aquí:"
+            - generic [ref=e179]:
+              - generic [ref=e180]: Sample output
+              - generic [ref=e181]: En un agujero en el suelo, vivía un hobbit. No un agujero húmedo, sucio, repugnante, con restos de gusanos y olor a fango, ni tampoco un agujero seco, desnudo y arenoso.
+          - generic [ref=e183]:
+            - generic [ref=e186]: Editor Python
+            - generic [ref=e187]:
+              - code [ref=e192]:
+                - generic [ref=e193]:
+                  - generic [ref=e198]: "1"
+                  - generic [ref=e204]: print("En un agujero...")
+                  - textbox "Editor content" [ref=e206]
+              - generic [ref=e208]:
+                - button "Terminal" [ref=e209] [cursor=pointer]
+                - button "Resultados" [ref=e210] [cursor=pointer]
+            - generic [ref=e212]:
+              - button "▶ Ejecutar" [ref=e213] [cursor=pointer]:
+                - generic [ref=e214]: ▶
+                - text: Ejecutar
+              - button "👁 Enviar" [ref=e215] [cursor=pointer]:
+                - generic [ref=e216]: 👁
+                - text: Enviar
+              - button "Reiniciar" [ref=e217] [cursor=pointer]
+        - generic [ref=e218]:
+          - heading "Operaciones aritméticas" [level=2] [ref=e219]
+          - paragraph [ref=e220]:
+            - text: También puedes poner operaciones aritméticas dentro de un comando
+            - code [ref=e221]: print
+            - text: . Al ejecutarlo se imprimirá el resultado de la operación. Por ejemplo, el siguiente programa
+          - code [ref=e223]: print(2 + 5) print(3 * 3) print(2 + 2 * 10)
+          - paragraph [ref=e224]: "imprime estas líneas:"
+          - generic [ref=e225]:
+            - generic [ref=e226]: Sample output
+            - generic [ref=e227]: 7 9 22
+          - paragraph [ref=e228]:
+            - text: Observa la falta de comillas alrededor de las operaciones aritméticas anteriores. Las comillas se utilizan para indicar
+            - emphasis [ref=e229]: cadenas
+            - text: "(strings). En el contexto de la programación, las cadenas son secuencias de caracteres. Pueden consistir en letras, números y cualquier otro tipo de caracteres, como signos de puntuación. Las cadenas no son solo palabras como las entendemos comúnmente, sino que una sola cadena puede ser tan larga como múltiples oraciones completas. Las cadenas generalmente se imprimen exactamente como están escritas. Por lo tanto, los siguientes dos comandos producen dos resultados bastante diferentes:"
+          - code [ref=e231]: print(2 + 2 * 10) print("2 + 2 * 10")
+          - paragraph [ref=e232]: "Este programa imprime:"
+          - generic [ref=e233]:
+            - generic [ref=e234]: Sample output
+            - generic [ref=e235]: 22 2 + 2 * 10
+          - paragraph [ref=e236]: Con la segunda línea de código, Python no calcula el resultado de la operación, sino que imprime la operación en sí misma, como una cadena. Así, las cadenas se imprimen tal como están escritas, sin ninguna referencia a su contenido.
+          - heading "Comentarios" [level=2] [ref=e237]
+          - paragraph [ref=e238]:
+            - text: Cualquier línea que comience con el signo de almohadilla
+            - code [ref=e239]: "#"
+            - text: ", también conocido como hash, es un comentario. Esto significa que cualquier texto en esa línea que siga al símbolo"
+            - code [ref=e240]: "#"
+            - text: no afectará de ninguna manera el funcionamiento del programa. Python simplemente lo ignorará.
+          - paragraph [ref=e241]: "Los comentarios se utilizan para explicar cómo funciona un programa, tanto para el programador mismo como para otros que lean el código del programa. En este programa un comentario explica el cálculo realizado en el código:"
+          - code [ref=e243]: "print(\"Horas en un año:\") # hay 365 días en un año y 24 horas en cada día print(365*24)"
+          - paragraph [ref=e244]: "Cuando se ejecuta el programa, el comentario no será visible para el usuario:"
+          - generic [ref=e245]:
+            - generic [ref=e246]: Sample output
+            - generic [ref=e247]: "Horas en un año: 8760"
+          - paragraph [ref=e248]: "Los comentarios cortos también se pueden agregar al final de una línea:"
+          - code [ref=e250]: "print(\"Horas en un año:\") print(365*24) # 365 días, 24 horas en cada día"
+        - generic [ref=e251]:
+          - generic [ref=e252]:
+            - img [ref=e254]
+            - generic [ref=e256]:
+              - generic [ref=e257]: Ejercicio
+              - heading "Minutos en un año" [level=3] [ref=e258]
+            - generic [ref=e259]:
+              - generic [ref=e260]: "Puntos:"
+              - generic [ref=e261]: 0/1
+          - paragraph [ref=e263]: Por favor escribe un programa que imprima el número de minutos en un año. Usa código Python para realizar el cálculo, como en el ejemplo de código anterior.
+          - generic [ref=e265]:
+            - generic [ref=e268]: Editor Python
+            - generic [ref=e269]:
+              - code [ref=e274]:
+                - generic [ref=e275]:
+                  - generic [ref=e280]: "1"
+                  - generic [ref=e286]: print(365*24*60)
+                  - textbox "Editor content" [ref=e288]
+              - generic [ref=e290]:
+                - button "Terminal" [ref=e291] [cursor=pointer]
+                - button "Resultados" [ref=e292] [cursor=pointer]
+            - generic [ref=e294]:
+              - button "▶ Ejecutar" [ref=e295] [cursor=pointer]:
+                - generic [ref=e296]: ▶
+                - text: Ejecutar
+              - button "👁 Enviar" [ref=e297] [cursor=pointer]:
+                - generic [ref=e298]: 👁
+                - text: Enviar
+              - button "Reiniciar" [ref=e299] [cursor=pointer]
+        - generic [ref=e300]:
+          - generic [ref=e301]:
+            - img [ref=e303]
+            - generic [ref=e305]:
+              - generic [ref=e306]: Ejercicio
+              - heading "Imprimir código" [level=3] [ref=e307]
+            - generic [ref=e308]:
+              - generic [ref=e309]: "Puntos:"
+              - generic [ref=e310]: 0/1
+          - generic [ref=e311]:
+            - paragraph [ref=e312]:
+              - text: Hasta ahora, probablemente has usado comillas dobles
+              - code [ref=e313]: "\""
+              - text: para imprimir cadenas. Además de las comillas dobles, Python también acepta comillas simples
+              - code [ref=e314]: "'"
+              - text: .
+            - paragraph [ref=e315]: "Esto es útil si alguna vez quieres imprimir las propias comillas:"
+            - code [ref=e317]: print(""¡Vuelve ahora mismo!", gritó el oficial de policía.")
+            - generic [ref=e318]:
+              - generic [ref=e319]: Sample output
+              - generic [ref=e320]: "\"¡Vuelve ahora mismo!\", gritó el oficial de policía."
+            - paragraph [ref=e321]: "Por favor escribe un programa que imprima lo siguiente:"
+            - generic [ref=e322]:
+              - generic [ref=e323]: Sample output
+              - generic [ref=e324]: print("Hello there!")
+          - generic [ref=e326]:
+            - generic [ref=e329]: Editor Python
+            - generic [ref=e330]:
+              - code [ref=e335]:
+                - generic [ref=e336]:
+                  - generic [ref=e341]: "1"
+                  - generic [ref=e347]: print('print("Hello there!")')
+                  - textbox "Editor content" [ref=e349]
+              - generic [ref=e351]:
+                - button "Terminal" [ref=e352] [cursor=pointer]
+                - button "Resultados" [ref=e353] [cursor=pointer]
+            - generic [ref=e355]:
+              - button "▶ Ejecutar" [ref=e356] [cursor=pointer]:
+                - generic [ref=e357]: ▶
+                - text: Ejecutar
+              - button "👁 Enviar" [ref=e358] [cursor=pointer]:
+                - generic [ref=e359]: 👁
+                - text: Enviar
+              - button "Reiniciar" [ref=e360] [cursor=pointer]
+  - generic [ref=e361]:
+    - alert
+    - alert
+```

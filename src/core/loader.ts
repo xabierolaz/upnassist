@@ -20,13 +20,26 @@ export const loadUnit = async (courseId: string, unitId: string): Promise<Course
     }
 
     if (courseId === 'ds') {
-        // IDs like "ds-w02-intro" -> path "../courses/ds/content/week02_theory.json"
-        let filename = '';
-        if (unitId === 'ds-w01-presentation') filename = 'week01_theory.json';
-        if (unitId === 'ds-w02-intro') filename = 'week02_theory.json';
-        if (unitId === 'ds-w02-sparse') filename = 'week02_sparse.json';
+        // 1. Explicit mappings for IDs that don't match the file pattern exactly
+        const mapping: Record<string, string> = {
+            'ds-w02-intro': 'week02_theory.json',
+            'ds-w02-sparse': 'week02_sparse.json',
+            // Add legacy mappings here if needed
+        };
+
+        let filename = mapping[unitId];
+
+        // 2. Fallback: Try standard pattern "ds-wXX-type" -> "weekXX_type.json"
+        if (!filename) {
+            const match = unitId.match(/ds-w(\d+)-(.+)/);
+            if (match) {
+                const [_, week, type] = match;
+                filename = `week${week}_${type}.json`;
+            }
+        }
         
         if (!filename) return undefined;
+        
         const path = `../courses/ds/content/${filename}`;
         const loader = dsModules[path];
         return loader ? await loader() : undefined;

@@ -6,18 +6,18 @@ export const syllabusData = {
   },
   academicYear: "2025-2026",
   lecturer: {
-    name: "Ugaitz Amozarrain",
+    name: "Xabier Olaz Moratinos",
     department: {
       ENG: "Statistics, Computer Science and Mathematics",
       CAS: "Estadística, Informática y Matemáticas",
       EUS: "Estatistika, Informatika eta Matematika"
     },
     office: {
-      ENG: "9002 (Basement, 'Las Encinas' building)",
-      CAS: "9002 (Sótano, edificio 'Las Encinas')",
-      EUS: "9002 (Sototoa, 'Las Encinas' eraikina)"
+      ENG: "9001 (Basement, 'Las Encinas' building)",
+      CAS: "9001 (Sótano, edificio 'Las Encinas')",
+      EUS: "9001 (Sototoa, 'Las Encinas' eraikina)"
     },
-    email: "ugaitz.amozarrain@unavarra.es",
+    email: "xabier.olaz@unavarra.es",
     officeHours: [
       { day: { ENG: "Monday", CAS: "Lunes", EUS: "Astelehena" }, time: "16:00-18:00" },
       { day: { ENG: "Wednesday", CAS: "Miércoles", EUS: "Asteazkena" }, time: "11:00-13:00" }
@@ -39,6 +39,25 @@ export const syllabusData = {
       retake: true 
     }
   ],
+  moduleTitles: {
+    1: { ENG: "01. Introduction & Basics", CAS: "01. Introducción y Conceptos Básicos", EUS: "01. Sarrera eta Oinarriak" },
+    2: { ENG: "02. Sparse Matrices", CAS: "02. Matrices Dispersas", EUS: "02. Matrize Sakabanatuak" },
+    3: { ENG: "03. Stacks & Queues", CAS: "03. Pilas y Colas", EUS: "03. Pilak eta Ilarak" },
+    4: { ENG: "04. Postfix Calculator", CAS: "04. Calculadora Postfija", EUS: "04. Postfix Kalkulagailua" },
+    5: { ENG: "05. Linked Lists", CAS: "05. Listas Enlazadas", EUS: "05. Zerrenda Estekatuak" },
+    6: { ENG: "06. Algorithmic Complexity", CAS: "06. Complejidad Algorítmica", EUS: "06. Konplexutasun Algoritmikoa" },
+    7: { ENG: "07. Recursion", CAS: "07. Recursividad", EUS: "07. Errekurtsibitatea" },
+    8: { ENG: "08. Binary Trees", CAS: "08. Árboles Binarios", EUS: "08. Zuhaitz Binarioak" },
+    9: { ENG: "09. Midterm Exam 1", CAS: "09. Examen Parcial 1", EUS: "09. 1. Azterketa Partziala" },
+    10: { ENG: "10. Graphs", CAS: "10. Grafos", EUS: "10. Grafoak" },
+    11: { ENG: "11. HOLIDAY (Easter)", CAS: "11. FESTIVO (Semana Santa)", EUS: "11. JAIEGUNA (Aste Santua)" },
+    12: { ENG: "12. Advanced Graphs", CAS: "12. Grafos Avanzados", EUS: "12. Grafo Aurreratuak" },
+    13: { ENG: "13. Conway's Game of Life", CAS: "13. Juego de la Vida (Conway)", EUS: "13. Conway-ren Bizitzaren Jokoa" },
+    14: { ENG: "14. Battleship (Setup)", CAS: "14. Hundir la Flota (Planteamiento)", EUS: "14. Hondoratu Itsasontzia (Planteamendua)" },
+    15: { ENG: "15. Battleship (Development)", CAS: "15. Hundir la Flota (Desarrollo)", EUS: "15. Hondoratu Itsasontzia (Garapena)" },
+    16: { ENG: "16. Battleship (Finalization)", CAS: "16. Hundir la Flota (Finalización)", EUS: "16. Hondoratu Itsasontzia (Amaiera)" },
+    17: { ENG: "17. Final Exam & Retake", CAS: "17. Examen Final y Recuperación", EUS: "17. Azterketa Finala eta Berreskurapena" }
+  },
   calendar: [
     // Week 1
     { week: 1, date: "Jan 26", topic: { ENG: "Presentation", CAS: "Presentación", EUS: "Aurkezpena" }, type: "Theory" },
