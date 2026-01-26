@@ -15,9 +15,35 @@
 \usepackage{hyperref}
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{multirow, makecell}
+
+% color def
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+
+\usepackage{listings}
+\usepackage{upquote}
+
+\lstdefinestyle{Python}{
+    language=Python,
+    basicstyle=\ttfamily\small,
+   	backgroundcolor=\color{white},
+   	commentstyle=\color{darkgreen}\slshape,
+   	keywordstyle=\color{blue}\bfseries\itshape,
+   	stringstyle=\color{darkred},
+   	emphstyle=\color{pink}\underbar,
+}
+
+\lstset{style=Python, tabsize=4, breaklines=true, frame=single, showstringspaces=false}
 
 \author{Estructura de Datos}
-\title{Presentacion}
+\title{\huge{Presentación}}
+\titlegraphic{\includegraphics[width=2cm]{img/UPNA}}
 \date{Curso 2025-2026}
 
 \begin{document}
@@ -28,74 +54,169 @@
 \begin{frame}{Profesor}
 \begin{itemize}
 \item \textbf{Xabier Olaz Moratinos}
-\item Dpto. de Estadistica, Informatica y Matematicas
-\item Edificio Las Encinas, sotano, despacho 9001
-\item Email: xabier.olaz@unavarra.es
+\item Dpto. de Estadística, Informática y Matemáticas
+\item Edificio Las Encinas, sótano, despacho 9001
+\item Email: \href{mailto:xabier.olaz@unavarra.es}{xabier.olaz@unavarra.es}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Horario de Tutorias}
+\begin{frame}{Horario de Tutorías}
 \begin{itemize}
-\item \textbf{Lunes:} 08:30 a 10:00
-\item \textbf{Jueves:} 14:00 a 15:30
+\item \textbf{Lunes:} 08:30--10:00
+\item \textbf{Jueves:} 14:00--15:30
 \end{itemize}
 \vspace{0.3cm}
 \begin{block}{Notas}
-Las tutorias se realizan en mi despacho (9001) salvo aviso previo. Se ruega contactar por MiAulario para coordinar.
+Las tutorías se realizan en mi despacho (9001) salvo aviso previo. Se ruega contactar por MiAulario para coordinar y evitar aglomeraciones.
 \end{block}
 \end{frame}
 
 \begin{frame}{Horario: Ciencia de Datos}
 \begin{description}
-\item[Lunes (Teoria)] 10:00 a 12:00 en Aula A-119
-\item[Jueves (Practica)] 12:00 a 14:00 en Aula A-306
+\item[Lunes (Teoría)] 10:00--12:00 \\ Aula A-119
+\item[Jueves (Práctica)] 12:00--14:00 \\ Aula A-306
 \end{description}
 \vspace{0.2cm}
-\begin{alertblock}{Nota}
-El 19 de febrero la practica sera en el Aula A-304.
+\footnotesize
+\begin{alertblock}{Excepción}
+El 19 de febrero la práctica será en el Aula A-304.
 \end{alertblock}
 \end{frame}
 
-\begin{frame}{Horario: Biotecnologia}
+\begin{frame}{Horario: Biotecnología}
 \begin{description}
-\item[Lunes (Teoria)] 12:00 a 14:00 en Aula A-222
-\item[Jueves (Practica)] 10:00 a 12:00 en Aulas A-311 y A-305
+\item[Lunes (Teoría)] 12:00--14:00 \\ Aula A-222
+\item[Jueves (Práctica)] 10:00--12:00 \\ Aulas A-311 y A-305
 \end{description}
 \end{frame}
 
-\begin{frame}{¿Por que estructuras de datos?}
+\begin{frame}{¿Por qué estructuras de datos?}
+\begin{block}{Eficiencia y Escalabilidad}
+No basta con que el código funcione; debe ser óptimo cuando los datos crecen (Big Data).
+\end{block}
 \begin{itemize}
-\item \textbf{Eficiencia:} No basta con que funcione; debe ser rapido con muchos datos.
-\item \textbf{Busqueda:} Encontrar un dato entre millones al instante.
-\item \textbf{Historial:} Pilas para el Deshacer (Ctrl+Z).
-\item \textbf{Planificacion:} Colas para gestionar tareas.
-\item \textbf{Rutas:} Grafos para GPS o redes sociales.
+\item \textbf{Búsqueda:} Árboles para buscar entre millones de datos al instante.
+\item \textbf{Historial:} Pilas (Stacks) para el Deshacer (Ctrl+Z).
+\item \textbf{Planificación:} Colas (Queues) para procesos del SO.
+\item \textbf{Conectividad:} Grafos para rutas GPS o redes sociales.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Cronograma del Semestre}
+\begin{frame}{Planificación Semanal (Sem. 1--9)}
+\centering
+\tiny
+\begin{tabular}{cll}
+\toprule
+\textbf{Sem.} & \textbf{Teoría (Lunes)} & \textbf{Laboratorio (Jueves)} \\
+\midrule
+1  & Presentación y Repaso Python & Configuración Entorno \\
+2  & Matrices Dispersas (COO) & Implementación Sparse Matrix \\
+3  & POO y Clases en Python & Gestión de Archivos (I/O) \\
+4  & Pilas y Diccionarios & Calculadora Postfija \\
+5  & Colas y Deques & Palíndromos \\
+6  & Buffers y Flujos & Paréntesis Balanceados \\
+7  & Listas Enlazadas (Singly) & Juego de la Vida (Conway) \\
+8  & Listas Dobles & Proyecto: Estructuras Lineales \\
+9  & \textbf{Examen Parcial I} & Repaso \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Planificación Semanal (Sem. 10--17)}
+\centering
+\tiny
+\begin{tabular}{cll}
+\toprule
+\textbf{Sem.} & \textbf{Teoría (Lunes)} & \textbf{Laboratorio (Jueves)} \\
+\midrule
+10 & Complejidad Algorítmica & Ejercicios de Recursividad \\
+11 & Árboles Binarios & Construcción de Árboles \\
+12 & \textit{FESTIVO (Semana Santa)} & \textit{---} \\
+13 & Árboles de Búsqueda y Grafos & Implementación de Grafos \\
+14 & Algoritmos de Grafos & Proyecto: Huffman I \\
+15 & Codificación Huffman & Proyecto: Huffman II \\
+16 & Repaso General & Finalización Hundir la Flota \\
+17 & \textbf{Examen Final} & Entrega de Proyectos \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Grupos de Laboratorio (506108)}
+Dos grupos de 32 alumnos:
+\vspace{0.3cm}
 \begin{itemize}
-\item \textbf{Sem. 1-3: Cimientos}: Repaso Python y POO.
-\item \textbf{Sem. 4-6: Lineales}: Pilas y Colas.
-\item \textbf{Sem. 7-9: Dinamicas}: Listas enlazadas.
-\item \textbf{Sem. 10-11: Jerarquias}: Recursividad y Arboles.
-\item \textbf{Sem. 12-15: Avanzada}: Grafos y Huffman.
+\item \textbf{Grupo 1:} \\
+Haizea Aguirre $\rightarrow$ Adrian Hernandez
+\item \textbf{Grupo 2:} \\
+Aitana Hualde $\rightarrow$ Martina Villanueva
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Evaluacion}
+\begin{frame}{Criterios de Evaluación}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Método de Evaluación} & \textbf{Peso} & \textbf{Recuperable} \\
+\midrule
+Exámenes Teórico-Prácticos & 50\% & Sí \\
+Entregables (Laboratorios) & 50\% & Sí \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Detalles del Examen (5 puntos)}
 \begin{itemize}
-\item \textbf{Examen:} 50\% (Obligatorio aprobar).
-\item \textbf{Entregables:} 50\% (Laboratorios).
-\item \textbf{Detalle:} 2 proyectos grandes (2 pts cada uno) + 8 ejercicios (0,125 pts cada uno).
+\item \textbf{Obligatorio:} Aprobar el examen para aprobar el curso.
+\item \textbf{Entorno:} Ordenador con \textbf{Linux} y \textbf{SIN Internet}.
+\item \textbf{Recuperación:} Nota única (100\%) en segunda convocatoria.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Examenes}
+\begin{frame}{Entregables (5 puntos)}
+\begin{itemize}
+\item \textbf{Proyectos (4 pts):} Listas Enlazadas y Huffman. Individuales.
+\item \textbf{Ejercicios Semanales (1 pt):} 8 entregas breves.
+\item \textbf{Cada ejercicio semanal:} 0,125 puntos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Desglose de Proyectos}
+\centering
+\renewcommand{\arraystretch}{1.1}
+\tiny
+\begin{tabular}{llc}
+\toprule
+\textbf{Proyecto} & \textbf{Tipo} & \textbf{Puntos máx} \\
+\midrule
+\textbf{Listas Enlazadas} & Individual (con corrección) & 2,0 \\
+\textbf{Codificación Huffman} & Individual (con corrección) & 2,0 \\
+\midrule
+Matrices Dispersas & Entrega & 0,125 \\
+Trabajando con Ficheros & Entrega & 0,125 \\
+Calculadora Postfija & Entrega & 0,125 \\
+Palíndromos & Entrega & 0,125 \\
+Paréntesis Balanceados & Entrega & 0,125 \\
+Juego de la Vida & Entrega & 0,125 \\
+Recursividad & Entrega & 0,125 \\
+Árboles Binarios & Entrega & 0,125 \\
+\midrule
+\multicolumn{2}{r}{\textbf{Total Ejercicios Semanales:}} & \textbf{1,0 pto} \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Exámenes}
 \begin{description}
 \item[25/05/2026] Examen Final (16:00)
-\item[17/06/2026] Examen de Recuperacion (16:00)
+\item[17/06/2026] Examen de Recuperación (16:00)
 \end{description}
+\end{frame}
+
+\begin{frame}{Uso de IA Generativa}
+\begin{alertblock}{Cuidado con las herramientas de IA}
+La intención de este curso es que aprendáis a crear y usar estructuras de datos. No dejéis que la IA haga el trabajo por vosotros.
+\end{alertblock}
 \end{frame}
 
 \end{document}
