@@ -1,27 +1,113 @@
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
+\documentclass[spanish,12pt,a4paper]{article}
 \usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
 \usepackage{fullpage}
+\usepackage{xcolor}
+\usepackage{here}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow, makecell}
 
-\title{Estructura de Datos}
+\title{Estructura de Datos (2025-2026)}
 \author{Xabier Olaz Moratinos}
-\date{2025-2026}
+\date{}
 
 \begin{document}
 \maketitle
 
-\section{Horarios}
-Ciencia de Datos: Lunes 10-12 (A-119), Jueves 12-14 (A-306).
-Biotecnologia: Lunes 12-14 (A-222), Jueves 10-12 (A-311).
+\section*{Informaci\'{o}n del Profesor}
+\textbf{Profesor:} Xabier Olaz Moratinos \\
+\textbf{Departamento:} Estad\'{i}stica, Inform\'{a}tica y Matem\'{a}ticas \\
+\textbf{Despacho:} Edificio Las Encinas, s\'{o}tano, oficina 9001 \\
+\textbf{Email:} \href{mailto:xabier.olaz@unavarra.es}{xabier.olaz@unavarra.es}
 
-\section{Profesor}
-Xabier Olaz Moratinos. Despacho 9001.
-Tutorias: Lunes 08:30-10:00, Jueves 14:00-15:30.
+\subsection*{Horario de Tutor\'{i}as}
+\begin{itemize}
+    \item \textbf{Lunes:} 08:30 -- 10:00
+    \item \textbf{Jueves:} 14:00 -- 15:30
+\end{itemize}
+\textit{Nota: Por favor, contactar por MiAulario para coordinar las reuniones.}
 
-\section{Evaluacion}
-Examen 50%. Entregables 50%.
-Proyectos: Listas (2 pts), Huffman (2 pts).
-Ejercicios semanales: 0.125 pts cada uno.
+\section*{Horarios de Clase}
+
+\subsection*{Grado en Ciencia de Datos}
+\begin{itemize}
+    \item \textbf{Lunes (Teor\'{i}a):} 10:00 -- 12:00 $\rightarrow$ Aula A-119
+    \item \textbf{Jueves (Pr\'{a}ctica):} 12:00 -- 14:00 $\rightarrow$ Aula A-306
+    \item \textit{Aviso:} El d\'{i}a 19 de febrero la sesi\'{o}n de pr\'{a}ctica se trasladar\'{a} al Aula A-304.
+\end{itemize}
+
+\subsection*{Grado en Biotecnolog\'{i}a}
+\begin{itemize}
+    \item \textbf{Lunes (Teor\'{i}a):} 12:00 -- 14:00 $\rightarrow$ Aula A-222
+    \item \textbf{Jueves (Pr\'{a}ctica):} 10:00 -- 12:00 $\rightarrow$ Aulas A-311 y A-305
+\end{itemize}
+
+\section*{Grupos de Laboratorio (Asignatura 506108)}
+La clase se divide en dos grupos para las sesiones pr\'{a}cticas:
+\begin{itemize}
+    \item \textbf{Grupo 1:} Apellidos desde \textit{Aguirre} hasta \textit{Hern\'{a}ndez}.
+    \item \textbf{Grupo 2:} Apellidos desde \textit{Hualde} hasta \textit{Villanueva}.
+\end{itemize}
+
+\newpage
+
+\section*{Sistema de Evaluaci\'{o}n}
+
+La nota final se compone de dos bloques principales (50\% cada uno). Es obligatorio aprobar el examen para superar la asignatura.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lcc}
+\toprule
+\textbf{M\'{e}todo de Evaluaci\'{o}n} & \textbf{Peso} & \textbf{Recuperable} \\
+\midrule
+Ex\'{a}menes Te\'{o}rico-Pr\'{a}cticos (Individual) & 50\% & S\'{I} \\
+Entregables de Laboratorio & 50\% & S\'{I} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{Detalles del Examen (5 puntos)}
+\begin{itemize}
+    \item Se realizar\'{a} en un entorno \textbf{Linux} sin acceso a Internet.
+    \item Si se suspende la convocatoria ordinaria, la recuperaci\'{o}n contar\'{a} como el 100\% de la nota.
+\end{itemize}
+
+\subsection*{Desglose de Entregables (5 puntos)}
+Los entregables consisten en 2 grandes proyectos y 8 ejercicios semanales breves.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{llc}
+\toprule
+\textbf{Trabajo} & \textbf{Tipo} & \textbf{Puntos m\'{a}x} \\
+\midrule
+\textbf{Proyecto Listas Enlazadas} & Individual (con correcci\'{o}n) & 2,0 pts \\
+\textbf{Proyecto Codificaci\'{o}n Huffman} & Individual (con correcci\'{o}n) & 2,0 pts \\
+\midrule
+Matrices Dispersas & Entrega semanal & 0,125 pts \\
+Lectura/Escritura de Ficheros & Entrega semanal & 0,125 pts \\
+Calculadora Postfija (Stacks) & Entrega semanal & 0,125 pts \\
+Pal\'{i}ndromos y Deques & Entrega semanal & 0,125 pts \\
+Par\'{e}ntesis Balanceados & Entrega semanal & 0,125 pts \\
+Juego de la Vida (Conway) & Entrega semanal & 0,125 pts \\
+Ejercicios de Recursividad & Entrega semanal & 0,125 pts \\
+\'{A}rboles Binarios & Entrega semanal & 0,125 pts \\
+\midrule
+\multicolumn{2}{r}{\textbf{Total Bloque Semanal:}} & \textbf{1,0 pt} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Fechas de Ex\'{a}menes}
+\begin{itemize}
+    \item \textbf{Examen Ordinario:} 25 de mayo de 2026 a las 16:00.
+    \item \textbf{Examen Extraordinario:} 17 de junio de 2026 a las 16:00.
+\end{itemize}
 
 \end{document}
