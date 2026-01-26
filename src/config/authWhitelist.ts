@@ -118,4 +118,3 @@ export const AUTH_WHITELIST = [
 ];
 
 export const ADMIN_EMAIL = "xabier.olaz@unavarra.es";
-export const ADMIN_FALLBACK_PASSWORD = "Miaularizador42";
