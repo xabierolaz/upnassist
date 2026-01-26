@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguageStore } from '../core/store/languageStore';
 import { useAuthStore } from '../stores/authStore';
+import { AdminDashboard } from '../components/AdminDashboard';
 
 export const HomePage: React.FC = () => {
     const navigate = useNavigate();
@@ -44,19 +45,22 @@ export const HomePage: React.FC = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+        <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-900">
             {/* Simple Header */}
             <header className="bg-white border-b border-gray-200 py-6 px-8 shadow-sm">
                 <div className="max-w-6xl mx-auto flex justify-between items-center">
                     <div>
-                        <h1 className="text-3xl font-black text-[#c0392b] tracking-tight">UpnAssist 2026</h1>
+                        <h1 className="text-3xl font-black text-[#c0392b] tracking-tight italic">UpnAssist 2026</h1>
                         <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{t.university}</p>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <span className="text-sm text-gray-600 hidden sm:block">Hola, <span className="font-bold">{user?.email}</span></span>
+                        <div className="hidden sm:flex flex-col items-end mr-4 border-r border-gray-100 pr-4">
+                            <span className="text-xs text-gray-400 font-bold uppercase">Sesión iniciada</span>
+                            <span className="text-sm font-black text-gray-700">{user?.email}</span>
+                        </div>
                         <button 
                             onClick={() => logout()}
-                            className="text-xs font-bold text-gray-400 hover:text-red-600 uppercase tracking-wider transition-colors"
+                            className="text-xs font-bold text-red-600 hover:bg-red-50 px-4 py-2 rounded-xl border border-red-100 uppercase tracking-wider transition-all shadow-sm active:scale-95"
                         >
                             Cerrar Sesión
                         </button>
@@ -64,30 +68,20 @@ export const HomePage: React.FC = () => {
                 </div>
             </header>
 
-            {/* Admin Stats Panel */}
+            {/* Admin Panel Section */}
             {user?.role === 'admin' && (
-                <div className="max-w-6xl mx-auto w-full px-8 pt-12">
-                    <div className="bg-white rounded-3xl p-8 shadow-sm border-2 border-red-100 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-4 opacity-5 text-6xl font-black italic">ADMIN</div>
-                        <h2 className="text-xl font-black text-gray-900 mb-6 flex items-center">
-                            <span className="bg-red-600 w-2 h-6 rounded-full mr-3"></span>
-                            Panel de Control Administrativo
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Usuarios Autorizados</div>
-                                <div className="text-3xl font-black text-gray-900">114</div>
-                            </div>
-                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Ejercicios Totales</div>
-                                <div className="text-3xl font-black text-gray-900">283</div>
-                            </div>
-                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Estado de Firebase</div>
-                                <div className="text-3xl font-black text-green-600">ONLINE</div>
-                            </div>
+                <div className="max-w-6xl mx-auto w-full px-8 pt-12 animate-in fade-in slide-in-from-top-4 duration-700">
+                    <div className="mb-8">
+                        <div className="flex items-center space-x-2 text-red-600 mb-2">
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                            <span className="text-xs font-black uppercase tracking-widest">Modo Administrador</span>
                         </div>
+                        <h2 className="text-3xl font-black text-gray-900 tracking-tight">Consola de Seguimiento</h2>
                     </div>
+                    
+                    <AdminDashboard />
                 </div>
             )}
 
@@ -98,7 +92,7 @@ export const HomePage: React.FC = () => {
                         {t.courses}
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl">
-                        Selecciona un curso para comenzar tu aprendizaje interactivo en Python.
+                        Bienvenido a UpnAssist. Selecciona un curso para comenzar tu aprendizaje interactivo.
                     </p>
                 </div>
 

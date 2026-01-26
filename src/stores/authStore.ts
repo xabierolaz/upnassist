@@ -7,7 +7,8 @@ import {
   onAuthStateChanged,
   User as FirebaseUser 
 } from 'firebase/auth';
-import { auth } from '../core/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '../core/firebase';
 import { AUTH_WHITELIST, ADMIN_EMAIL } from '../config/authWhitelist';
 
 interface User {
@@ -27,6 +28,7 @@ interface AuthState {
   logout: () => Promise<void>;
   clearError: () => void;
   initialize: () => void;
+  logActivity: (email: string, type: string) => Promise<void>;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -58,6 +60,19 @@ export const useAuthStore = create<AuthState>()(
         });
       },
 
+      logActivity: async (email: string, type: string) => {
+        try {
+          await addDoc(collection(db, 'activity_logs'), {
+            email: email.toLowerCase().trim(),
+            type,
+            timestamp: serverTimestamp(),
+            userAgent: navigator.userAgent
+          });
+        } catch (err) {
+          console.error("Error logging activity:", err);
+        }
+      },
+
       login: async (email: string, password: string) => {
         const normalizedEmail = email.toLowerCase().trim();
         if (!get().checkWhitelist(normalizedEmail)) {
@@ -67,6 +82,7 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           await signInWithEmailAndPassword(auth, normalizedEmail, password);
+          await get().logActivity(normalizedEmail, 'login');
           set({ error: null });
         } catch (err: any) {
           if (err.code === 'auth/user-not-found') {
@@ -88,6 +104,7 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           await createUserWithEmailAndPassword(auth, normalizedEmail, password);
+          await get().logActivity(normalizedEmail, 'register');
           set({ error: null });
         } catch (err: any) {
           if (err.code === 'auth/email-already-in-use') {

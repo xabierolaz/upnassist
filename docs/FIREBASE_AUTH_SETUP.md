@@ -1,17 +1,10 @@
-# UpnAssist 2026: Sistema de Acceso Restringido
+# UpnAssist 2026: Sistema de Acceso y Seguimiento
 
-Este proyecto utiliza un sistema de **Lista Blanca (Whitelist)** combinada con **Firebase Authentication** para garantizar que solo los alumnos autorizados puedan acceder al contenido.
-
-## Características del Sistema
-1.  **Whitelist Estricta:** Solo los correos en `src/config/authWhitelist.ts` pueden registrarse o iniciar sesión.
-2.  **Auto-Registro:** La primera vez que un alumno entra, introduce su correo UPNA y **elige su propia contraseña**.
-3.  **Roles:** El correo `xabier.olaz@unavarra.es` tiene automáticamente el rol `admin` y acceso a un panel de control.
-4.  **Recuperación Manual:** Si un alumno olvida su contraseña, el sistema le dirige a contactar con el profesor para un reset manual en el panel de Firebase.
+Este proyecto utiliza **Firebase Authentication** para el acceso y **Firestore** para el seguimiento de actividad de los alumnos.
 
 ## Requisitos de Configuración (Vercel / Local)
 
-Debes configurar las siguientes variables de entorno en Vercel (Settings > Environment Variables) o en tu archivo `.env.local`:
-
+Asegúrate de tener estas variables de entorno configuradas:
 ```bash
 VITE_FIREBASE_API_KEY=xxx
 VITE_FIREBASE_AUTH_DOMAIN=upnassist-155b0.firebaseapp.com
@@ -21,18 +14,40 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=xxx
 VITE_FIREBASE_APP_ID=xxx
 ```
 
-## Cómo resetear una contraseña (Admin)
-Como administrador, si un alumno te escribe porque ha olvidado su contraseña:
-1.  Ve a la [Consola de Firebase](https://console.firebase.google.com/project/upnassist-155b0/authentication/users).
-2.  Busca el correo del alumno.
-3.  Haz clic en los tres puntos (⋮) y selecciona **Reset password** (enviará un email automático) o **Change password** (para ponérsela tú manualmente).
+## Configuración en Firebase Console (OBLIGATORIO)
 
-## Estructura de Archivos Auth
-- `src/config/authWhitelist.ts`: Contiene la lista de emails permitidos.
-- `src/stores/authStore.ts`: Lógica de autenticación y estado global (Zustand).
-- `src/core/firebase.ts`: Inicialización del SDK de Firebase.
-- `src/pages/LoginPage.tsx`: Interfaz de login y registro restringido.
-- `src/App.tsx`: Protección de rutas mediante el componente `ProtectedRoute`.
+Para que el seguimiento de alumnos funcione, debes activar la base de datos:
 
-## Lista de Alumnos Actualizada (Ene 2026)
-La lista completa de los ~114 correos autorizados ya está integrada en el código fuente. Para añadir o quitar alumnos, edita `src/config/authWhitelist.ts`.
+1.  **Activar Firestore:**
+    *   Ve a [Firebase Console > Firestore Database](https://console.firebase.google.com/project/upnassist-155b0/firestore).
+    *   Haz clic en **Create database**.
+    *   Selecciona una ubicación (ej: `europe-west3` para España).
+    *   Empieza en **Test mode** (Modo prueba) para que funcione de inmediato.
+
+2.  **Reglas de Seguridad (Opcional pero recomendado):**
+    Una vez activado, en la pestaña **Rules**, puedes pegar esto para que solo tú (admin) puedas leer todos los logs, pero todos puedan escribir sus propios logs de entrada:
+    ```
+    rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /activity_logs/{log} {
+          allow create: if request.auth != null;
+          allow read: if request.auth != null && request.auth.token.email == 'xabier.olaz@unavarra.es';
+        }
+      }
+    }
+    ```
+
+## Panel de Administrador
+Al entrar con `xabier.olaz@unavarra.es`, verás una nueva sección en la página principal llamada **"Consola de Seguimiento"**. 
+Desde ahí verás:
+*   Nombre del alumno.
+*   Número total de veces que ha entrado.
+*   Fecha y hora del último acceso.
+*   Mini-historial de los últimos 5 días que entró.
+
+## Gestión de Usuarios
+Si un alumno olvida su contraseña:
+1.  Ve a [Authentication > Users](https://console.firebase.google.com/project/upnassist-155b0/authentication/users).
+2.  Busca su correo.
+3.  En los tres puntos (⋮), selecciona **Reset password**.
