@@ -1,0 +1,192 @@
+\documentclass[spanish,12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{fullpage}
+\usepackage{termcal}
+\usepackage{xcolor}
+\usepackage{here}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{here}
+\usepackage{array}
+\usepackage{multirow, makecell}
+
+\title{Data Structures}
+\date{Course 2025-2026}
+
+
+\renewcommand{\calprintdate}{%
+    \framebox{\monthname\ \ordinaldate}%
+}
+
+% Few useful commands (our classes always meet either on Monday and Wednesday 
+% or on Tuesday and Thursday)
+
+\newcommand{\TFClass}{%
+\calday[Monday]{\classday} % Monday 
+\skipday % Tuesday 
+\skipday  % Wednesday
+\calday[Thursday]{\classday} % Thursday
+\skipday % Friday 
+\skipday\skipday % weekend (no class)
+}
+
+%\newcommand{\TRClass}{%
+%\skipday % Monday (no class)
+%\calday[Tuesday]{\classday} % Tuesday
+%\skipday % Wednesday (no class)
+%\calday[Thursday]{\classday} % Thursday
+%\skipday % Friday 
+%\skipday\skipday % weekend (no class)
+%}
+
+\newcommand{\Holiday}[2]{%
+\options{#1}{\noclassday}
+\caltext{#1}{#2}
+}
+
+\begin{document}
+\maketitle
+\subsection*{Theory and Lab lectures:}
+\begin{description}
+\item[Monday:] 12:00-14:00 $\rightarrow$ Theory $\rightarrow$ Classroom: A-020
+\item[Thursday:] 12:00-14:00 $\rightarrow$ Lab $\rightarrow$ Classroom: A-331
+\end{description}
+
+\subsection*{Lecturer:}
+\noindent Ugaitz Amozarrain\\
+Department of Statistics, Computer Science and Mathematics\\
+``Las Encinas'' building, basement, office 9002\\
+\href{mailto:ugaitz.amozarrain@unavarra.es}{ugaitz.amozarrain@unavarra.es} 
+
+\subsection*{Office hours:}
+\begin{itemize}
+\item Monday: 16:00-18:00
+\item Wednesday: 11:00-13:00
+\end{itemize}
+
+By default, otherwise stated, all office hours will be in my office, though it will be helpful if we agree on the time slot. 
+You can contact me either through the internal email of MiAulario, or at \href{mailto:ugaitz.amozarrain@unavarra.es}{ugaitz.amozarrain@unavarra.es}.
+Thus, we coordinate the meetings and avoid crowds in the department corridor.
+
+\newpage
+
+\subsection*{Tentative Schedule:}
+\begin{center}
+% CAREFUL the date is in american month/day/year
+\begin{calendar}{1/26/2026}{18} % Semester starts on 1/26/2026 and last for 18 weeks, including finals week
+                    %TODO adjust weeks
+\setlength{\calboxdepth}{.3in}
+\TFClass
+% schedule
+\caltexton{1}{Presentation}
+\caltextnext{}
+\caltextnext{Review Python basics / Tips and tricks}
+\caltextnext{Sparse Matrices}
+\caltextnext{Object-Oriented Python}
+\caltextnext{Working with Files}
+\caltextnext{Lists, Dictionaries, Stacks}
+\caltextnext{Postfix Calculator}
+\caltextnext{Queues and Dequeues}
+\caltextnext{Palindromes}
+\caltextnext{Buffers}
+\caltextnext{Balanced Parentheses}
+\caltextnext{Linked Lists I}
+\caltextnext{Conway's Game of Life}
+\caltextnext{Linked Lists II}
+\caltextnext{Linked Lists III}
+\caltextnext{Working with Linked Lists}
+\caltextnext{Recursion and Computational Complexity}
+\caltextnext{Binary Trees}
+\caltextnext{Recursion Exercises}
+\caltextnext{Constructing Binary Trees}
+\caltextnext{Generalizing Trees}
+\caltextnext{Huffman Coding I}
+\caltextnext{Graphs}
+\caltextnext{Huffman Coding II}
+\caltextnext{Review}
+\caltextnext{Huffman Coding III}
+% ... and so on
+
+% Holidays
+\Holiday{3/19/2026}{\textcolor{red}{\textbf{{\large Father's Day}}}}
+\Holiday{4/2/2026}{\textcolor{red}{\textbf{{\large Easter}}}}
+\Holiday{4/6/2026}{\textcolor{red}{\textbf{{\large Easter}}}}
+\Holiday{4/9/2026}{\textcolor{red}{\textbf{{\large Easter}}}}
+\Holiday{4/20/2026}{\textcolor{red}{\textbf{{Day of the University}}}}
+% ... and so on
+% TODO make it show finals week
+\options{5/18/2026}{\noclassday} % finals week
+\options{5/21/2026}{\noclassday} % finals week
+\options{5/25/2026}{\noclassday} % finals week
+\options{5/28/2026}{\noclassday} % finals week
+\end{calendar}
+\end{center}
+
+
+\subsection*{Exams:}
+% TODO check dates
+\begin{description}
+\item[25/05/2026:] 16:00 $\rightarrow$ Final exam: Everything
+\item[17/06/2026:] 16:00 $\rightarrow$ Retake exam: Everything
+\end{description}
+
+\subsection*{Evaluation criteria:}
+
+\begin{table}[H]
+\def\arraystretch{1.5}
+\begin{tabular}{|p{0.6\linewidth}|c|c|}
+\hline
+\textbf{Evaluation method} & \textbf{Weigth} (\%) & \textbf{Retake policy} \\
+\hline
+\hline
+Theoretical/Practical exams (Individually performed). Every student must get at least 50\% on the exams to average with the rest of the gradable aspects. & 50\% & YES \\
+\hline
+Deliverables & 50\% & YES \\
+\hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+
+\begin{itemize}
+\item Exam (5 points):
+\begin{itemize}
+\item It is mandatory to pass the exam in order to pass the course.
+\item The re-take exam is worth 100\% of the grade. 
+\end{itemize}
+\item Deliverables (5 points):
+\begin{itemize}
+\item All deliverables will be checked to confirm correct delivery.
+\item Each week you will have to deliver the code for the corresponding lab project.
+\\
+\vspace{-0.5cm}
+\begin{table}[h!btp]
+\renewcommand{\arraystretch}{1.2}
+\centering
+\begin{tabular}{m{0.35\textwidth}@{\hskip 0.05\textwidth}m{0.3\textwidth}m{0.2\textwidth}}
+\toprule
+\textbf{Lab Project} & \textbf{Delivery/Correction} & \textbf{Max points} \\
+\midrule
+Linked Lists & Correction & 2 \\
+Huffman Coding & Correction & 2 \\
+\midrule
+Sparse Matrices & Delivery & \multirowcell{8}{{\Huge $\frac{n}{8}$}, where n is \\the number of \\delivered items} \\
+Working with Files & Delivery &  \\
+Postfix Calculator & Delivery  &  \\
+Palindromes & Delivery &  \\
+Balanced Parentheses & Delivery &  \\
+Conway's game of Life & Delivery & \\
+Recursion Exercises & Delivery &  \\
+Constructing Binary Trees & Delivery &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}

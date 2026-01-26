@@ -1,0 +1,271 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usetheme{Darmstadt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+	\begin{beamercolorbox}[ht=3ex,leftskip=1.4cm,rightskip=.3cm]{author in head/foot}
+		\hfill \insertframenumber
+		\vspace*{0.07cm}
+	\end{beamercolorbox}
+} 
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\usepackage{booktabs}
+\usepackage{multirow, makecell}
+
+% color def
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+
+\usepackage{listings}
+\usepackage{upquote}
+
+\lstdefinestyle{Python}{
+    language=Python,
+    morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,} % Python builtin
+	morekeywords=[2]{,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,}, % magic methods
+	morekeywords=[3]{,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr,}, % common functions
+	morekeywords=[4]{,Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError,}, % errors
+	morekeywords=[5]{,ode,fsolve,sqrt,exp,sin,cos,arctan,arctan2,arccos,pi, array,norm,solve,dot,arange,isscalar,max,sum,flatten,shape,reshape,find,any,all,abs,plot,linspace,legend,quad,polyval,polyfit,hstack,concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze,}, % numpy / math
+	%morestring=*[b]{"},
+    basicstyle=\ttfamily,
+   	backgroundcolor=\color{white},
+   	commentstyle=\color{darkgreen}\slshape,
+   	keywordstyle=\color{blue}\bfseries\itshape,
+   	keywordstyle=[2]\color{blue}\bfseries,
+   	keywordstyle=[3]\color{grass},
+   	keywordstyle=[4]\color{red},
+   	keywordstyle=[5]\color{orange},
+   	stringstyle=\color{darkred},
+   	emphstyle=\color{pink}\underbar,
+    % honek neretako bakarrik die
+    %deletekeywords=[2]{next,set},
+    %deletekeywords=[3]{next,set},
+}
+
+% General Setting of listings
+\lstset{
+    style=Python,
+	tabsize=4,
+	aboveskip=1em,
+	breaklines=true,
+	abovecaptionskip=-6pt,
+	captionpos=b,
+	escapeinside={\%*}{*)},
+	frame=single,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\tiny,
+    showstringspaces=false,
+}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+
+\tikzset{
+	squarecross/.style={
+		draw, rectangle,minimum size=18pt, fill=orange!80,
+		inner sep=0pt, text=black,
+		path picture = {
+			\draw[black]
+			(path picture bounding box.north west) --
+			(path picture bounding box.south east)
+			(path picture bounding box.south west) --
+			(path picture bounding box.north east);
+		}
+	},
+	list/.style={
+		very thick, rectangle split,
+		rectangle split parts=2, draw,
+		rectangle split horizontal, minimum size=18pt,
+		inner sep=4pt, text=black,
+		rectangle split part fill={red!20, blue!20}
+	},
+	->, start chain, very thick,
+	chain_arrow/.style={*->, thick}
+}
+
+\author{Data Structures}
+\title{\huge{Presentation}}
+\titlegraphic{\includegraphics[width=3cm]{img/UPNA}}
+\date[]{2025-2026}
+\subject{Data Structures}
+%\subtitle{}
+%\logo{}
+%\institute{}
+%\date{}
+%\subject{}
+%\setbeamercovered{transparent}
+%\setbeamertemplate{navigation symbols}{}
+
+\AtBeginSection[]{
+	\begin{frame}[plain]
+		\frametitle{}
+		\tableofcontents[currentsection, hideothersubsections]
+	\end{frame}
+}
+
+\begin{document}
+\begin{frame}[plain]
+	\maketitle
+\end{frame}
+
+
+%-------------------------------------------------
+\begin{frame}{Lecturer}
+\begin{itemize}
+\item \textbf{Ugaitz Amozarrain}
+\item Department of Statistics, Computer Science and Mathematics
+\item \emph{Las Encinas} building, basement, office 9002
+\item Email: \href{mailto:ugaitz.amozarrain@unavarra.es}{ugaitz.amozarrain@unavarra.es}
+\end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------
+\begin{frame}{Office Hours}
+\begin{itemize}
+\item Monday: 16:00--18:00
+\item Wednesday: 11:00--13:00
+\end{itemize}
+\vspace{0.3cm}
+\begin{block}{Notes}
+Office hours are held in my office unless stated otherwise.\
+Please contact me in advance to agree on a time slot and avoid overcrowding.
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Course Schedule}
+\textbf{Theory and Lab Lectures}
+\vspace{0.3cm}
+\begin{description}
+\item[Monday] 12:00--14:00 \\
+\quad Theory --- Classroom A-020
+\item[Thursday] 12:00--14:00 \\
+\quad Lab --- Classroom A-331
+\end{description}
+\end{frame}
+
+
+\begin{frame}{Different problems need different ways of organizing data}
+\begin{itemize}
+\item Searching millions of elements → Trees
+\item Undo/redo in an editor → Stacks
+\item Task scheduling → Queues
+\item File compression → Huffman Coding
+\item Social networks → Graphs
+\end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------
+\begin{frame}{Semester Timeline (Overview)}
+\small
+\begin{itemize}
+\item \textbf{Weeks 1--3}: Python review, Sparse matrices, OOP, file handling
+\item \textbf{Weeks 4--6}: Lists, stacks, queues, deques
+\item \textbf{Weeks 7--9}: Linked lists
+\item \textbf{Weeks 10--11}: Recursion and complexity, binary trees
+\item \textbf{Weeks 12--15}: Trees, graphs, Huffman coding
+\end{itemize}
+\end{frame}
+
+
+
+
+%-------------------------------------------------
+\begin{frame}{Evaluation Criteria}
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Evaluation Method} & \textbf{Weight} & \textbf{Retake} \\
+\midrule
+Theoretical / Practical Exams & 50\% & Yes \\
+Deliverables & 50\% & Yes \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+
+%-------------------------------------------------
+\begin{frame}{Exam Details}
+\begin{itemize}
+\item Exam value: 5 points
+\item Practical exam performed on computer
+\begin{itemize}
+\item You will be able to test your code
+\item No access to the internet
+\end{itemize}
+\item Mandatory to pass the exam to pass the course
+\item Retake exam counts for 100\% of the final grade
+\end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------
+\begin{frame}{Deliverables}
+\begin{itemize}
+\item Deliverables value: 5 points
+\item Weekly lab assignments
+\begin{itemize}
+\item All submissions are checked for correctness
+\end{itemize}
+\item 2 bigger projects that will contain a practical part and a report
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{table}[h!btp]
+\renewcommand{\arraystretch}{1.2}
+\centering
+\begin{tabular}{m{0.35\textwidth}@{\hskip 0.05\textwidth}m{0.3\textwidth}m{0.2\textwidth}}
+\toprule
+\textbf{Lab Project} & \textbf{Delivery/Correction} & \textbf{Max points} \\
+\midrule
+Linked Lists & Correction & 2 \\
+Huffman Coding & Correction & 2 \\
+\midrule
+Sparse Matrices & Delivery &  \\
+Working with Files & Delivery &  \\
+Postfix Calculator & Delivery  &  \\
+Palindromes & Delivery &  \\
+Balanced Parentheses & Delivery &  \\
+Conway's game of Life & Delivery & \\
+Recursion Exercises & Delivery &  \\
+Constructing Binary Trees & Delivery &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{Exams}
+\begin{description}
+\item[25/05/2026] Final exam (16:00) \\
+Covers all course contents
+\item[17/06/2026] Retake exam (16:00) \\
+Covers all course contents
+\end{description}
+\end{frame}
+
+\begin{frame}{Use of Generative AI}
+\begin{alertblock}{Careful with AI tools}
+The intention of this course is for you to learn how to create and use data structures. Do not let Generative AI do the work for you.
+\end{alertblock}
+\end{frame}
+
+
+\end{document}
