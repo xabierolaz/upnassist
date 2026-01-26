@@ -4,6 +4,8 @@ import { useLanguageStore } from '../core/store/languageStore';
 import { useAuthStore } from '../stores/authStore';
 import { AdminDashboard } from '../components/AdminDashboard';
 
+import { CodeBracketIcon, Square3Stack3DIcon } from '@heroicons/react/24/outline';
+
 export const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const { t, currentLang } = useLanguageStore();
@@ -23,7 +25,7 @@ export const HomePage: React.FC = () => {
                 EUS: "Ikasi Python hutsetik 14 zati intentsiborekin, oinarrizko kontzeptuetatik jokoen garapeneraino."
             },
             color: "bg-blue-600",
-            icon: "🐍",
+            icon: <CodeBracketIcon className="w-8 h-8 text-white" />,
             path: "/course/mooc/part1-1"
         },
         {
@@ -39,7 +41,7 @@ export const HomePage: React.FC = () => {
                 EUS: "Ikasi kontzeptu aurreratuak, hala nola Zerrenda Estekatuak, Zuhaitzak eta Errekurtsibitatea Python erabiliz."
             },
             color: "bg-green-600",
-            icon: "🌲",
+            icon: <Square3Stack3DIcon className="w-8 h-8 text-white" />,
             path: "/course/ds/ds-w02-intro"
         }
     ];
@@ -103,7 +105,7 @@ export const HomePage: React.FC = () => {
                             onClick={() => navigate(course.path)}
                             className="group relative bg-white rounded-3xl shadow-sm border border-gray-200 p-8 cursor-pointer hover:shadow-xl hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-1"
                         >
-                            <div className={`w-16 h-16 ${course.color} rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner`}>
+                            <div className={`w-16 h-16 ${course.color} rounded-2xl flex items-center justify-center mb-6 shadow-inner`}>
                                 {course.icon}
                             </div>
                             

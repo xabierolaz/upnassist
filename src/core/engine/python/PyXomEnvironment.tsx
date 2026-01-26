@@ -20,6 +20,8 @@ export interface PyXomEnvironmentProps {
   className?: string;
 }
 
+import { PlayIcon, StopIcon, EyeIcon } from '@heroicons/react/24/solid';
+
 export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
   exerciseId,
   initialCode = '',
@@ -194,16 +196,16 @@ export const PyXomEnvironment: React.FC<PyXomEnvironmentProps> = ({
                 }} 
                 className="flex items-center px-4 py-2 text-sm font-bold text-white bg-red-600 rounded hover:bg-red-700 shadow-sm transition-colors animate-pulse"
             >
-                ⏹️ {t.stop}
+                <StopIcon className="w-4 h-4 mr-2" /> {t.stop}
             </button>
           ) : (
             <button onClick={handleRun} className="flex items-center px-4 py-2 text-sm font-bold text-white bg-blue-600 rounded hover:bg-blue-700 shadow-sm transition-transform active:scale-95">
-                <span className="mr-2">▶</span> {t.run}
+                <PlayIcon className="w-4 h-4 mr-2" /> {t.run}
             </button>
           )}
 
           <button onClick={handleSubmit} disabled={isRunning} className="flex items-center px-4 py-2 text-sm font-bold text-orange-700 bg-white border border-gray-300 rounded hover:bg-orange-50 disabled:opacity-50 shadow-sm transition-colors">
-            <span className="mr-2">👁</span> {t.submit} {/* Using Eye icon to match MOOC.fi 'TEST' look */}
+            <EyeIcon className="w-4 h-4 mr-2" /> {t.submit}
           </button>
 
           <div className="flex-1"></div> {/* Spacer */}

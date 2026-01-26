@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircleIcon, ExclamationTriangleIcon, XCircleIcon, LightBulbIcon } from '@heroicons/react/24/solid';
 import { TestSuiteResult, TestCaseResult } from '../core/TestRunner';
 
 interface FeedbackPanelProps {
@@ -59,7 +60,14 @@ const FeedbackPanel: React.FC<FeedbackPanelProps> = ({ results, isRunning }) => 
 
 const TestResultCard: React.FC<{ result: TestCaseResult }> = ({ result }) => {
   const isPass = result.status === 'pass';
-  const icon = isPass ? '✅' : (result.status === 'error' ? '⚠️' : '❌');
+  
+  const icon = isPass ? (
+    <CheckCircleIcon className="w-5 h-5 text-green-500" />
+  ) : result.status === 'error' ? (
+    <ExclamationTriangleIcon className="w-5 h-5 text-amber-500" />
+  ) : (
+    <XCircleIcon className="w-5 h-5 text-red-500" />
+  );
   
   // Procesar mensaje de error para hacerlo amigable
   let displayMessage = result.message;
@@ -77,7 +85,7 @@ const TestResultCard: React.FC<{ result: TestCaseResult }> = ({ result }) => {
       isPass ? 'border-green-200 bg-white' : 'border-red-200 bg-red-50'
     }`}>
       <div className="flex items-start gap-3">
-        <span className="text-xl mt-0.5">{icon}</span>
+        <span className="mt-0.5">{icon}</span>
         <div className="flex-1">
           <h4 className={`font-semibold text-sm ${isPass ? 'text-gray-800' : 'text-red-800'}`}>
             {result.description || result.name}
@@ -97,8 +105,9 @@ const TestResultCard: React.FC<{ result: TestCaseResult }> = ({ result }) => {
                 )}
               </div>
               {result.feedback && (
-                <div className="mt-2 text-gray-600 italic">
-                  💡 Pista: {result.feedback}
+                <div className="mt-2 text-gray-600 italic flex items-center gap-1">
+                  <LightBulbIcon className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                  <span>Pista: {result.feedback}</span>
                 </div>
               )}
             </div>

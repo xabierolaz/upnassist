@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import { loadUnit } from '../loader';
 import { useLanguageStore } from '../store/languageStore';
 import { Course, ContentBlock } from '../types';
@@ -76,7 +77,7 @@ export const CourseShell: React.FC<CourseShellProps> = ({ courseManifest }) => {
                      onClick={() => setIsSidebarOpen(true)}
                      className="md:hidden absolute top-4 left-4 z-50 p-2 bg-brand-dark text-white rounded-md shadow-lg"
                    >
-                     ☰
+                     <Bars3Icon className="w-6 h-6" />
                    </button>
                 )}
 

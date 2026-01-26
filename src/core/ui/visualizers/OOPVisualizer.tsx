@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useLanguageStore } from '../../store/languageStore';
 
 export const OOPVisualizer: React.FC = () => {
@@ -96,7 +97,7 @@ export const OOPVisualizer: React.FC = () => {
                             </div>
 
                             {/* Arrow */}
-                            <div className="text-gray-300 text-4xl">➔</div>
+                            <ArrowRightIcon className="w-8 h-8 text-gray-300" />
 
                             {/* Heap / Object */}
                             <div className="w-40 h-40 bg-blue-50 border-2 border-blue-200 rounded-xl flex flex-col items-center justify-center p-2 relative shadow-md">

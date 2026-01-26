@@ -337,8 +337,9 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
                             </div>
                             <p className="text-sm mt-1">{displayMessage}</p>
                             {result.suggestion && (
-                              <p className="text-xs text-gray-600 mt-1">
-                                💡 {result.suggestion}
+                              <p className="text-xs text-gray-600 mt-1 flex items-center gap-1">
+                                <LightBulbIcon className="h-3 w-3 text-amber-500" />
+                                {result.suggestion}
                               </p>
                             )}
                           </div>

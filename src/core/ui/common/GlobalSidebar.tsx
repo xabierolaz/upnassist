@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useLanguageStore } from '../../store/languageStore';
 import { useNavigate } from 'react-router-dom';
 import { CourseModule, getLocalizedText } from '../../types';
@@ -85,7 +86,7 @@ export const GlobalSidebar: React.FC<GlobalSidebarProps> = ({
                                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                                         {getLocalizedText(module.title, currentLang)}
                                     </div>
-                                    <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
+                                    <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                                 </button>
                                 
                                 {isOpen && (

@@ -1,9 +1,12 @@
 import React from 'react';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 export const QuizPlaceholder: React.FC = () => {
   return (
     <div className="my-8 p-6 bg-purple-50 border border-purple-100 rounded-xl shadow-sm flex items-start gap-4">
-        <div className="text-3xl">📝</div>
+        <div className="flex-shrink-0">
+            <DocumentTextIcon className="w-8 h-8 text-purple-600" />
+        </div>
         <div>
             <h4 className="font-bold text-purple-900 mb-1">Cuestionario Teórico</h4>
             <p className="text-purple-800 text-sm">
