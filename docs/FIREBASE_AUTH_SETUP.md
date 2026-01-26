@@ -1,100 +1,38 @@
-# Configuración de Firebase Authentication para UpnAssist
+# UpnAssist 2026: Sistema de Acceso Restringido
 
-## Configuración Actual
-- **Proyecto Firebase**: upnassist-155b0
-- **URL del proyecto**: https://console.firebase.google.com/project/upnassist-155b0
+Este proyecto utiliza un sistema de **Lista Blanca (Whitelist)** combinada con **Firebase Authentication** para garantizar que solo los alumnos autorizados puedan acceder al contenido.
 
-## Pasos para Habilitar Emails Reales
+## Características del Sistema
+1.  **Whitelist Estricta:** Solo los correos en `src/config/authWhitelist.ts` pueden registrarse o iniciar sesión.
+2.  **Auto-Registro:** La primera vez que un alumno entra, introduce su correo UPNA y **elige su propia contraseña**.
+3.  **Roles:** El correo `xabier.olaz@unavarra.es` tiene automáticamente el rol `admin` y acceso a un panel de control.
+4.  **Recuperación Manual:** Si un alumno olvida su contraseña, el sistema le dirige a contactar con el profesor para un reset manual en el panel de Firebase.
 
-### 1. Habilitar Email/Password Authentication
-1. Ve a [Firebase Console](https://console.firebase.google.com/project/upnassist-155b0/authentication/providers)
-2. En la pestaña **Sign-in method**
-3. Habilita **Email/Password**
-4. Marca también **Email link (passwordless sign-in)** si lo deseas
+## Requisitos de Configuración (Vercel / Local)
 
-### 2. Configurar Plantillas de Email
-1. Ve a [Authentication > Templates](https://console.firebase.google.com/project/upnassist-155b0/authentication/emails)
-2. Personaliza las siguientes plantillas:
-   - **Password reset** - Para recuperación de contraseña
-   - **Email address verification** - Para verificación de email
-   - **Email address change** - Para cambio de email
+Debes configurar las siguientes variables de entorno en Vercel (Settings > Environment Variables) o en tu archivo `.env.local`:
 
-### 3. Configurar Dominios Autorizados
-1. Ve a [Authentication > Settings](https://console.firebase.google.com/project/upnassist-155b0/authentication/settings)
-2. En **Authorized domains**, añade:
-   - `localhost` (ya incluido por defecto)
-   - `upnassist-155b0.firebaseapp.com` (ya incluido)
-   - Tu dominio de producción cuando lo tengas
-
-### 4. Configurar Action URL (Importante)
-1. En [Authentication > Templates](https://console.firebase.google.com/project/upnassist-155b0/authentication/emails)
-2. Cada plantilla tiene un **Action URL**
-3. Por defecto usa: `https://upnassist-155b0.firebaseapp.com/__/auth/action`
-4. Para desarrollo local, puedes configurar un custom action handler
-
-### 5. Verificar Cuotas y Límites
-Firebase Auth gratuito incluye:
-- 10,000 verificaciones de email/mes
-- 10,000 emails de password reset/mes
-- Ilimitadas autenticaciones
-
-## Prueba de Funcionamiento
-
-### Test con cuda2020 (Admin Backdoor)
+```bash
+VITE_FIREBASE_API_KEY=xxx
+VITE_FIREBASE_AUTH_DOMAIN=upnassist-155b0.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=upnassist-155b0
+VITE_FIREBASE_STORAGE_BUCKET=upnassist-155b0.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=xxx
+VITE_FIREBASE_APP_ID=xxx
 ```
-Email/Usuario: cuda2020
-Contraseña: cuda2020
-```
-Este acceso funciona sin necesidad de Firebase.
 
-### Test con Email Real
-1. Usa un email real en formato: `nombre.apellido@unavarra.es`
-2. El sistema enviará un email de verificación real
-3. Revisa tu bandeja de entrada y spam
+## Cómo resetear una contraseña (Admin)
+Como administrador, si un alumno te escribe porque ha olvidado su contraseña:
+1.  Ve a la [Consola de Firebase](https://console.firebase.google.com/project/upnassist-155b0/authentication/users).
+2.  Busca el correo del alumno.
+3.  Haz clic en los tres puntos (⋮) y selecciona **Reset password** (enviará un email automático) o **Change password** (para ponérsela tú manualmente).
 
-## Usuarios Preregistrados
-Los siguientes usuarios están preregistrados en el sistema:
+## Estructura de Archivos Auth
+- `src/config/authWhitelist.ts`: Contiene la lista de emails permitidos.
+- `src/stores/authStore.ts`: Lógica de autenticación y estado global (Zustand).
+- `src/core/firebase.ts`: Inicialización del SDK de Firebase.
+- `src/pages/LoginPage.tsx`: Interfaz de login y registro restringido.
+- `src/App.tsx`: Protección de rutas mediante el componente `ProtectedRoute`.
 
-### Administradores
-- `admin@upna.es`
-- `director@unavarra.es`
-
-### Profesores
-- `prof.garcia@unavarra.es` - Ingeniería del Software
-- `prof.martinez@unavarra.es` - Estructura de Datos
-- `prof.lopez@unavarra.es` - AAEE
-- `prof.sanchez@unavarra.es` - Informática
-
-### Estudiantes
-- `estudiante1@unavarra.es` - 240304, 506108
-- `estudiante2@unavarra.es` - 509106, 509102
-- `maria.gonzalez@unavarra.es` - 240304, 509106
-- `carlos.rodriguez@unavarra.es` - 506108, 509102
-
-## Troubleshooting
-
-### Los emails no llegan
-1. Verifica que Email/Password esté habilitado en Firebase Console
-2. Revisa la carpeta de spam
-3. Verifica que el email esté en la lista de usuarios preregistrados
-4. Comprueba los logs en Firebase Console > Authentication > Usage
-
-### Error "auth/invalid-api-key"
-1. Verifica que las variables de entorno en `.env` coincidan con Firebase Console
-2. Reinicia el servidor de desarrollo
-
-### Error "auth/network-request-failed"
-1. Verifica tu conexión a internet
-2. Comprueba que no haya un firewall bloqueando Firebase
-3. Intenta en modo incógnito
-
-## Notas de Seguridad
-- El backdoor `cuda2020` es solo para desarrollo
-- En producción, elimina o cambia este backdoor
-- Configura reglas de Firestore para proteger los datos de usuarios
-- Habilita 2FA para cuentas administrativas
-
-## Enlaces Útiles
-- [Firebase Auth Documentation](https://firebase.google.com/docs/auth)
-- [Firebase Console](https://console.firebase.google.com/project/upnassist-155b0)
-- [Precios de Firebase](https://firebase.google.com/pricing)
+## Lista de Alumnos Actualizada (Ene 2026)
+La lista completa de los ~114 correos autorizados ya está integrada en el código fuente. Para añadir o quitar alumnos, edita `src/config/authWhitelist.ts`.

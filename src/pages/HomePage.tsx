@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguageStore } from '../core/store/languageStore';
+import { useAuthStore } from '../stores/authStore';
 
 export const HomePage: React.FC = () => {
     const navigate = useNavigate();
     const { t, currentLang } = useLanguageStore();
+    const { user, logout } = useAuthStore();
 
     const courses = [
         {
@@ -44,14 +46,50 @@ export const HomePage: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
             {/* Simple Header */}
-            <header className="bg-white border-b border-gray-200 py-6 px-8">
+            <header className="bg-white border-b border-gray-200 py-6 px-8 shadow-sm">
                 <div className="max-w-6xl mx-auto flex justify-between items-center">
                     <div>
                         <h1 className="text-3xl font-black text-[#c0392b] tracking-tight">UpnAssist 2026</h1>
                         <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">{t.university}</p>
                     </div>
+                    <div className="flex items-center space-x-4">
+                        <span className="text-sm text-gray-600 hidden sm:block">Hola, <span className="font-bold">{user?.email}</span></span>
+                        <button 
+                            onClick={() => logout()}
+                            className="text-xs font-bold text-gray-400 hover:text-red-600 uppercase tracking-wider transition-colors"
+                        >
+                            Cerrar Sesión
+                        </button>
+                    </div>
                 </div>
             </header>
+
+            {/* Admin Stats Panel */}
+            {user?.role === 'admin' && (
+                <div className="max-w-6xl mx-auto w-full px-8 pt-12">
+                    <div className="bg-white rounded-3xl p-8 shadow-sm border-2 border-red-100 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-4 opacity-5 text-6xl font-black italic">ADMIN</div>
+                        <h2 className="text-xl font-black text-gray-900 mb-6 flex items-center">
+                            <span className="bg-red-600 w-2 h-6 rounded-full mr-3"></span>
+                            Panel de Control Administrativo
+                        </h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Usuarios Autorizados</div>
+                                <div className="text-3xl font-black text-gray-900">114</div>
+                            </div>
+                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Ejercicios Totales</div>
+                                <div className="text-3xl font-black text-gray-900">283</div>
+                            </div>
+                            <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <div className="text-gray-400 text-xs font-bold uppercase mb-1">Estado de Firebase</div>
+                                <div className="text-3xl font-black text-green-600">ONLINE</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Hero Section */}
             <main className="flex-1 max-w-6xl mx-auto px-8 py-16 w-full">
