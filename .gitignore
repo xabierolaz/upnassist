@@ -33,3 +33,34 @@ dist-ssr
 
 # Testing
 coverage/
+test-results/
+
+# LaTeX temporales
+*.aux
+*.log
+*.synctex.gz
+*.out
+*.nav
+*.snm
+*.toc
+*.vrb
+*.bbl
+*.blg
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# Backups
+*.orig
+*.bak
+*.swp
+
+# Binarios
+*.bin

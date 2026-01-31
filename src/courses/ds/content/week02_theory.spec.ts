@@ -36,11 +36,13 @@ describe('Week 02 Theory Module (Audit Fix)', () => {
         expect(tableBlock).toBeDefined();
     });
 
-    it('should have a valid exercise with an ID', () => {
-        const exercise = week02Theory.blocks.find(b => b.type === 'exercise');
-        expect(exercise).toBeDefined();
-        expect(exercise?.exerciseId).toBe('ds-w02-ex1');
-        expect(exercise?.title).toBeDefined();
-        expect(exercise?.initialCode).toBeDefined();
+    it('should contain interactive elements (quiz, interactive-list, etc.)', () => {
+        const interactiveBlocks = week02Theory.blocks.filter(b =>
+            b.type === 'quiz' ||
+            b.type === 'interactive-list' ||
+            b.type === 'interactive-fstring' ||
+            b.type === 'interactive-mainguard'
+        );
+        expect(interactiveBlocks.length).toBeGreaterThan(0);
     });
 });

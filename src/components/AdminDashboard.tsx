@@ -52,7 +52,8 @@ export const AdminDashboard: React.FC = () => {
         userMap[log.email].loginCount++;
         userMap[log.email].history.push(date);
         
-        if (!userMap[log.email].lastLogin || date > userMap[log.email].lastLogin) {
+        const lastLogin = userMap[log.email].lastLogin;
+        if (!lastLogin || date > lastLogin) {
           userMap[log.email].lastLogin = date;
         }
       });
