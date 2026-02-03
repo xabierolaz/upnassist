@@ -19,10 +19,38 @@ describe('Content Loader', () => {
   });
 
   it('should load unit data dynamically', async () => {
-    // This depends on the glob loader, in test environment we might need to mock or ensure paths exist
     const data = await loadUnit('mooc', 'part1-1');
     if (data) {
         expect(data.id).toBe('part1-1');
+    }
+  });
+
+  it('should return undefined for invalid courseId', async () => {
+    const data = await loadUnit('invalid', 'part1-1');
+    expect(data).toBeUndefined();
+  });
+
+  it('should return undefined for invalid mooc unitId pattern', async () => {
+    const data = await loadUnit('mooc', 'invalid-id');
+    expect(data).toBeUndefined();
+  });
+
+  it('should return undefined for invalid ds unitId pattern', async () => {
+    const data = await loadUnit('ds', 'invalid-id');
+    expect(data).toBeUndefined();
+  });
+
+  it('should load ds unit with mapping', async () => {
+    const data = await loadUnit('ds', 'ds-w02-intro');
+    if (data) {
+        expect(data.id).toBeDefined();
+    }
+  });
+
+  it('should load ds unit with fallback pattern', async () => {
+    const data = await loadUnit('ds', 'ds-w02-sparse');
+    if (data) {
+        expect(data.id).toBeDefined();
     }
   });
 });

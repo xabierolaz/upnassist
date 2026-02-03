@@ -147,3 +147,20 @@ button, input, select, textarea, .card, .modal {
     padding: var(--space-6);
   }
 }
+
+/* === DEBUGGER HIGHLIGHTS === */
+.debug-line-highlight {
+  background-color: rgba(59, 130, 246, 0.2) !important; /* Blue-500 with opacity */
+  border-left: 3px solid #3b82f6;
+}
+
+.vs-dark .debug-line-highlight {
+  background-color: rgba(30, 58, 138, 0.4) !important; /* Blue-900 with opacity */
+  border-left: 3px solid #60a5fa;
+}
+
+.debug-glyph-margin {
+  background-color: #3b82f6;
+  width: 5px !important;
+  margin-left: 2px;
+}

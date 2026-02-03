@@ -1,0 +1,8 @@
+import time
+
+inicio = time.perf_counter_ns()
+for _ in range(1000):
+    x = (12 ** 124) ** 0.5
+fin = time.perf_counter_ns()
+
+print(f"Tiempo: {(fin-inicio)/1e9:.10f} segundos")

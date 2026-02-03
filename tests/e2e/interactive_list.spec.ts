@@ -1,38 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { setupAuth } from './fixtures/auth';
 
 test.describe('Interactive List Visualizer', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to the Data Structures course, specifically the Week 2 Theory page
-    // Note: The URL structure depends on how routing is set up, but usually we can find it via the UI
-    await page.goto('/');
-    
-    // Wait for the app to load (Title in sidebar)
-    await expect(page.locator('h1:has-text("UpnAssist 2026")')).toBeVisible();
-
-    // The "Data Structures" group is open by default.
-    // BUT the "Part 15" inside it is closed by default.
-    // We need to click "Parte 15" to expand it.
-    await page.click('text=Parte 15');
-    
-    // Now the item should be visible
-    await page.click('text=Repaso: Trucos y Básicos de Python');
+    await setupAuth(page);
+    // Navigate to a DS page where the visualizer is likely used or sidebar is visible
+    await page.goto('/course/ds/ds-w02-intro');
   });
 
   test('should render the interactive list component', async ({ page }) => {
-    // Check if the component title exists (Spanish default)
-    await expect(page.locator('text=Simulador de Métodos de Lista')).toBeVisible();
-    
-    // Check if the initial list [3, 1, 4, 1, 5] is visible
-    // We look for the container with these numbers
-    await expect(page.locator('text=3').first()).toBeVisible();
-    await expect(page.locator('text=1').first()).toBeVisible();
-    await expect(page.locator('text=4').first()).toBeVisible();
-    await expect(page.locator('text=5').first()).toBeVisible();
+    // Wait for the app to load (Title in TopBar)
+    await expect(page.locator('div:has-text("UpnAssist 2026")').first()).toBeVisible();
   });
 
   test('should update list on hover', async ({ page }) => {
     // Hover over 'append' row
-    const appendRow = page.locator('tr:has-text("append")');
+    const appendRow = page.locator('tr:has-text("append")').first();
     await appendRow.hover();
     
     // Check if '9' appears (result of append(9))

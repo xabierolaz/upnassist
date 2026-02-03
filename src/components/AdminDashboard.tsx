@@ -1,72 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { collection, query, orderBy, getDocs, Timestamp } from 'firebase/firestore';
-import { db } from '../core/firebase';
-
-interface ActivityLog {
-  email: string;
-  timestamp: Timestamp;
-  type: string;
-}
-
-interface UserStats {
-  email: string;
-  loginCount: number;
-  lastLogin: Date | null;
-  history: Date[];
-}
+import React from 'react';
+import { useAdminStats } from '../hooks/useAdminStats';
 
 export const AdminDashboard: React.FC = () => {
-  const [stats, setStats] = useState<UserStats[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchLogs();
-  }, []);
-
-  const fetchLogs = async () => {
-    try {
-      setLoading(true);
-      const q = query(collection(db, 'activity_logs'), orderBy('timestamp', 'desc'));
-      const querySnapshot = await getDocs(q);
-      
-      const logs: ActivityLog[] = [];
-      querySnapshot.forEach((doc) => {
-        logs.push(doc.data() as ActivityLog);
-      });
-
-      // Group by user
-      const userMap: Record<string, UserStats> = {};
-      
-      logs.forEach(log => {
-        if (!userMap[log.email]) {
-          userMap[log.email] = {
-            email: log.email,
-            loginCount: 0,
-            lastLogin: null,
-            history: []
-          };
-        }
-        
-        const date = log.timestamp?.toDate() || new Date();
-        userMap[log.email].loginCount++;
-        userMap[log.email].history.push(date);
-        
-        const lastLogin = userMap[log.email].lastLogin;
-        if (!lastLogin || date > lastLogin) {
-          userMap[log.email].lastLogin = date;
-        }
-      });
-
-      const statsArray = Object.values(userMap).sort((a, b) => b.loginCount - a.loginCount);
-      setStats(statsArray);
-      setLoading(false);
-    } catch (err: any) {
-      console.error("Error fetching logs:", err);
-      setError(err.message);
-      setLoading(false);
-    }
-  };
+  const { stats, loading, error, refresh } = useAdminStats();
 
   if (loading) return <div className="text-center py-10 text-gray-500 font-mono text-sm animate-pulse">Consultando registros de actividad...</div>;
   if (error) return <div className="text-red-600 p-4 bg-red-50 rounded-xl border border-red-100">Error: {error}. Asegúrate de haber activado Firestore en la consola de Firebase.</div>;
@@ -79,7 +15,7 @@ export const AdminDashboard: React.FC = () => {
           Actividad de Alumnos
         </h3>
         <button 
-          onClick={fetchLogs}
+          onClick={refresh}
           className="text-xs font-bold text-red-600 hover:text-red-700 uppercase tracking-widest bg-white px-3 py-1.5 rounded-lg border border-red-100 shadow-sm transition-all"
         >
           Refrescar

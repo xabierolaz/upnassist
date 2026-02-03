@@ -1,9 +1,16 @@
 import { test, expect } from '@playwright/test';
+import { setupAuth } from './fixtures/auth';
 
 test.describe('Inline Code Rendering Fix', () => {
+  
+  test.beforeEach(async ({ page }) => {
+    await setupAuth(page);
+    await page.goto('/course/mooc/part1-1');
+  });
+
   test('Verify inline code is rendered correctly (not as block)', async ({ page }) => {
-    // Navigate to Part 1 Section 1 (default page)
-    await page.goto('http://localhost:5173/');
+    // Wait for content to load
+    await expect(page.locator('main h1')).toBeVisible();
 
     // Wait for content to load
     await expect(page.locator('main h1')).toBeVisible();

@@ -7,7 +7,6 @@ import {
   BugAntIcon
 } from '@heroicons/react/24/outline';
 import { useLanguageStore } from '../../../store/languageStore';
-// import { PythonRunner } from '../core/PythonRunner';
 
 interface DebugState {
   isDebugging: boolean;
@@ -214,16 +213,6 @@ export const PythonDebugger: React.FC<PythonDebuggerProps> = ({
     setDebugState(newState);
     onDebugStateChange(newState);
   };
-
-  /* const toggleBreakpoint = (lineNumber: number) => {
-    const newBreakpoints = new Set(breakpoints);
-    if (newBreakpoints.has(lineNumber)) {
-      newBreakpoints.delete(lineNumber);
-    } else {
-      newBreakpoints.add(lineNumber);
-    }
-    setBreakpoints(newBreakpoints);
-  }; */
 
   return (
     <div className="bg-white rounded-lg shadow border">

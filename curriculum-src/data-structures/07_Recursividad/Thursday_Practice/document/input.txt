@@ -1,0 +1,10 @@
+# Simplemente le pediremos al usuario que ingrese algo
+respuesta = easygui.enterbox(msg="Escribe algo")
+# Qu pasa si el usuario presiona cancelar o cierra la ventana?
+print(respuesta)
+
+# A veces queremos que el usuario tenga ms espacio
+# Podemos usar una funcin diferente
+respuesta = easygui.textbox(msg="Escribe mucho")
+# Qu pasa si el usuario presiona enter?
+# Qu ha pasado en el enterbox si el usuario presion enter?

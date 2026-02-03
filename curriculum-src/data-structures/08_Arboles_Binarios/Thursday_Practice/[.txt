@@ -1,0 +1,2 @@
+print("") # Viva
+print("") # Muerta

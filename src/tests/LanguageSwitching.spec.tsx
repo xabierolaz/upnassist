@@ -1,31 +1,36 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { PyXomEnvironment } from '../core/engine/python/PyXomEnvironment';
 import { useLanguageStore } from '../core/store/languageStore';
 
 // Mockear scrollIntoView
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
-// Mockear PythonRunner para evitar WebWorkers
-vi.mock('../components/pyxom/core/PythonRunner', () => {
+// Mockear PythonRunner para simular ejecución y error de sintaxis en TERMINAL
+vi.mock('../core/engine/python/core/PythonRunner', () => {
   return {
     default: {
       getInstance: () => ({
         setInputHandler: vi.fn(),
         sendInput: vi.fn(),
       }),
-      execute: vi.fn(),
+      execute: vi.fn((code) => {
+          return Promise.resolve({
+              success: false,
+              // Este error triggerea el regex de RUNTIME_SYNTAX_PRINT
+              error: "SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?"
+          });
+      }),
       interrupt: vi.fn()
     }
   };
 });
 
-// Componente Helper para manipular el store dentro del contexto de React
 const LanguageTestWrapper = () => {
     return (
         <div>
-            <PyXomEnvironment />
+            <PyXomEnvironment initialCode="print 'hola'" />
             <TestControls />
         </div>
     );
@@ -42,17 +47,22 @@ const TestControls = () => {
     );
 }
 
-describe('Language Switching', () => {
-  // afterEach(() => {
-  //     // Store reset handled by tests if needed
-  // });
-
-  it('should switch interface language dynamically', async () => {
+describe('Language Switching & Reactive Terminal', () => {
+  it('should translate terminal error history dynamically', async () => {
     render(<LanguageTestWrapper />);
 
-    // 1. Verificar Castellano (Default)
-    expect(screen.getByText(/Ejecutar/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Run/i)).not.toBeInTheDocument();
+    // 1. Ejecutar código (Run) -> Esto va a la terminal
+    const runBtn = screen.getByText(/Ejecutar|Run|Exekutatu/i);
+    await act(async () => {
+        runBtn.click();
+    });
+
+    // Verificar que estamos en la pestaña Terminal (por defecto)
+    // El error debe aparecer en CAS (default)
+    // RUNTIME_SYNTAX_PRINT: "Faltan paréntesis en la llamada a 'print'..."
+    await waitFor(() => {
+        expect(screen.getByText(/Faltan paréntesis/i)).toBeInTheDocument();
+    });
 
     // 2. Cambiar a Inglés
     const btnEng = screen.getByText('SetENG');
@@ -60,9 +70,13 @@ describe('Language Switching', () => {
         btnEng.click();
     });
 
-    // Verificar Inglés
-    expect(screen.getByText(/Run/i)).toBeInTheDocument();
-    expect(screen.queryByText(/Ejecutar/i)).not.toBeInTheDocument();
+    // Verificar que el mensaje en la terminal cambió a Inglés
+    // RUNTIME_SYNTAX_PRINT: "Missing parentheses in call to 'print'..."
+    await waitFor(() => {
+        expect(screen.getByText(/Missing parentheses/i)).toBeInTheDocument();
+        // El mensaje en español ya no debería estar
+        expect(screen.queryByText(/Faltan paréntesis/i)).not.toBeInTheDocument();
+    });
 
     // 3. Cambiar a Euskera
     const btnEus = screen.getByText('SetEUS');
@@ -71,6 +85,9 @@ describe('Language Switching', () => {
     });
 
     // Verificar Euskera
-    expect(screen.getByText(/Exekutatu/i)).toBeInTheDocument();
+    // RUNTIME_SYNTAX_PRINT: "Parentesiak falta dira 'print' deian..."
+    await waitFor(() => {
+        expect(screen.getByText(/Parentesiak falta/i)).toBeInTheDocument();
+    });
   });
 });

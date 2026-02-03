@@ -1,0 +1,557 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usetheme{Darmstadt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+	\begin{beamercolorbox}[ht=3ex,leftskip=1.4cm,rightskip=.3cm]{author in head/foot}
+		\hfill \insertframenumber
+		\vspace*{0.07cm}
+	\end{beamercolorbox}
+}
+\usepackage{url}
+\usepackage{hyperref}
+
+% color def
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+
+\usepackage{listings}
+
+\lstdefinestyle{Python}{
+    language=Python,
+    morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,} % Python builtin
+	morekeywords=[2]{,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,}, % magic methods
+	morekeywords=[3]{,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr,}, % common functions
+	morekeywords=[4]{,Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError,}, % errors
+	morekeywords=[5]{,ode,fsolve,sqrt,exp,sin,cos,arctan,arctan2,arccos,pi, array,norm,solve,dot,arange,isscalar,max,sum,flatten,shape,reshape,find,any,all,abs,plot,linspace,legend,quad,polyval,polyfit,hstack,concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze,}, % numpy / math
+	morestring=*[d]{"},
+    basicstyle=\ttfamily,
+   	backgroundcolor=\color{white},
+   	commentstyle=\color{darkgreen}\slshape,
+   	keywordstyle=\color{blue}\bfseries\itshape,
+   	keywordstyle=[2]\color{blue}\bfseries,
+   	keywordstyle=[3]\color{grass},
+   	keywordstyle=[4]\color{red},
+   	keywordstyle=[5]\color{orange},
+   	stringstyle=\color{darkred},
+   	emphstyle=\color{pink}\underbar,
+    % honek neretako bakarrik die
+    deletekeywords=[2]{next,set},
+    deletekeywords=[3]{next,set},
+}
+
+% General Setting of listings
+\lstset{
+    style=Python,
+	tabsize=4,
+	aboveskip=1em,
+	breaklines=true,
+	abovecaptionskip=-6pt,
+	captionpos=b,
+	escapeinside={\%*}{*)},
+	frame=single,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\tiny,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1 {¿}{{\textquestiondown}}1 {¡}{{\textexclamdown}}1
+}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+
+\tikzset{
+	squarecross/.style={
+		draw, rectangle,minimum size=18pt, fill=orange!80,
+		inner sep=0pt, text=black,
+		path picture = {
+			\draw[black]
+			(path picture bounding box.north west) --
+			(path picture bounding box.south east)
+			(path picture bounding box.south west) --
+			(path picture bounding box.north east);
+		}
+	},
+	list/.style={
+		very thick, rectangle split,
+		rectangle split parts=2, draw,
+		rectangle split horizontal, minimum size=18pt,
+		inner sep=4pt, text=black,
+		rectangle split part fill={red!20, blue!20}
+	},
+	->, start chain, very thick,
+	chain_arrow/.style={*->, thick}
+}
+
+
+\begin{document}
+	\author{Estructura de Datos}
+	\title{Listas Enlazadas}
+	\titlegraphic{\includegraphics[width=3cm]{img/UPNA}}
+	\date[]{2025-2026}
+	\subject{Estructura de Datos}
+
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
+
+\section{¿Qué es una Lista Enlazada?}
+
+	\begin{frame}
+		\frametitle{Visión General de una Lista Enlazada}
+		\begin{itemize}
+			\item Una lista es una colección de elementos
+			\item En una \textbf{Lista Enlazada} cada elemento de la lista apuntará al siguiente elemento
+			\item Cada elemento se llama \textbf{Nodo}
+			\item Un Nodo contendrá dos variables
+			\begin{itemize}
+				\item Los datos que queremos almacenar
+				\item La \textit{referencia} al siguiente Nodo
+			\end{itemize}
+		\end{itemize}
+		\vspace{1cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[list,on chain] (A) {12};
+				\node[list,on chain] (B) {99};
+				\node[list,on chain] (C) {37};
+				\node[squarecross]   (D) [right=of C] {};
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Cómo crear un Nodo}
+		\begin{itemize}
+			\item Un Nodo contendrá dos puntos de datos
+			\begin{itemize}
+				\item Los datos que queremos almacenar
+				\item La referencia al siguiente elemento
+			\end{itemize}
+			\item Podemos usar una lista simple para almacenarlo \lstinline|[dato, siguiente]|
+			\item Pero es más fácil usar una clase
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Añadiendo Relaciones a los Nodos}
+		\begin{itemize}
+			\item Una vez que hemos creado un Nodo para almacenar nuestros datos podemos empezar a encadenarlos
+			\begin{itemize}
+				\item De la misma manera que funcionan los eslabones de una cadena
+			\end{itemize}
+			\item Podemos crear nodos y unirlos mediante el atributo siguiente
+		\end{itemize}
+		\vspace{0.5cm}
+  		\begin{center}
+  			\begin{tikzpicture}
+  				\node[list,on chain] (A) {\lstinline|"aaaa"|};
+  				\node[list,on chain] (B) {\lstinline|"bbbb"|};
+  				\node[squarecross]   (D) [right=of B] {};
+  				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+  				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (D);
+  			\end{tikzpicture}
+  		\end{center}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Construyendo la Lista Enlazada}
+		\begin{itemize}
+			\item Hemos creado Nodos y los hemos enlazado definiendo el siguiente nodo
+			\item Pero tener que cambiar el valor del atributo siguiente del último elemento de la lista es engorroso
+			\item El siguiente paso es proporcionar una interfaz similar a las listas en Python
+			\begin{itemize}
+				\item Insertar un elemento (al principio, al final o en medio)
+				\item Eliminar un elemento
+				\item Obtener un elemento
+				\item Obtener el tamaño de la lista
+				\item Comprobar si un elemento existe en la lista
+				\item ...
+			\end{itemize}
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node[list,on chain] (A) {cabeza};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Usando una Clase para la Lista Enlazada}
+		\begin{itemize}
+		\item Podemos crear una clase que maneje las operaciones por nosotros
+		\item La clase tendrá un atributo que referencia la cabeza de la lista
+			\begin{itemize}
+				\item Se puede llegar a los siguientes elementos saltando de un nodo a otro
+				\item Siempre empieza en la cabeza
+			\end{itemize}
+		\item Trabajaremos con la lista enlazada, y no con nodos individuales
+		\end{itemize}
+\begin{lstlisting}
+class ListaEnlazada:
+	def __init__(self, cabeza = None):
+		self.__cabeza = cabeza
+\end{lstlisting}
+	\end{frame}
+
+\section{Funciones Básicas}
+
+	\begin{frame}[fragile]
+		\frametitle{Obteniendo el Tamaño}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.size()|
+			\item Empezando por la cabeza \textbf{recorremos} la lista hasta llegar al final
+			\begin{itemize}
+				\item Moverse de un Nodo a otro usando \texttt{siguiente}
+			\end{itemize}
+			\item En cada salto añadimos uno a un contador
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Comprobando si un Elemento está en la Lista}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.contains(elemento)|
+			\item Empezando por la cabeza recorremos la lista hasta llegar al final
+			\begin{itemize}
+				\item Moverse de un Nodo a otro usando \texttt{siguiente}
+			\end{itemize}
+			\item En cada salto probamos si el elemento en el Nodo es el que estamos buscando
+			\item Si no lo encontramos, devolvemos \lstinline|False|
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Obteniendo un Elemento por Índice}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.get(indice)|
+			\item El método devolverá el elemento en un índice específico
+			\item Tendremos que usar un contador para comprobar si hemos llegado al elemento deseado
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+	\frametitle{Establecer un Elemento en un Índice}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.set(indice, item)|
+			\item El método cambiará el valor de un elemento en un índice dado
+			\item Al igual que con el anterior, tendremos que usar un contador para comprobar si hemos llegado al elemento deseado
+		\end{itemize}
+\end{frame}
+
+
+\section{Añadiendo Elementos}
+
+	\begin{frame}
+		\frametitle{Añadiendo un Elemento}
+		\begin{itemize}
+			\item Queremos añadir un Nodo a la lista
+			\begin{itemize}
+				\item En la cabeza
+				\item Al final
+				\item Después de un índice
+			\end{itemize}
+			\item \texttt{nuevo\_elemento} puede ser de cualquier tipo
+			\item Tendremos que crear un Nodo que encapsule el elemento
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\node[list,on chain] (E) [above=of head] {nuevo\_el};
+				\node[squarecross]   (F) [right=of E] {};
+				\draw[->, thick] (head) -- (A);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+				\draw[chain_arrow] let \p1 = (E.two), \p2 = (E.center) in (\x1,\y2) -- (F);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+	
+
+	\begin{frame}
+		\frametitle{Añadiendo un Elemento en la Cabeza}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.add_head(nuevo_elemento)|
+			\item El atributo \texttt{siguiente} del nuevo Nodo apuntará a la antigua cabeza
+			\item La cabeza apuntará ahora al nuevo Nodo
+			\item Ten cuidado con el orden de las operaciones
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\node[list,on chain] (E) [above=of head] {nuevo\_el};
+				\draw[->, thick] (head) -- (E);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+				\draw[chain_arrow] let \p1 = (E.two), \p2 = (E.center) in (\x1,\y2) to [bend left=45] (A);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Añadiendo un Elemento al Final}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.add_tail(nuevo_elemento)|
+			\item Empezando por la cabeza recorremos la lista hasta encontrar el final
+			\begin{itemize}
+				\item El Nodo de la cola tendrá el atributo \texttt{siguiente} establecido en \lstinline|None|
+			\end{itemize}
+			\item Modificar el atributo \texttt{siguiente} de la cola para que apunte al nuevo Nodo
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[list,on chain] (E) [above=of C] {nuevo\_el};
+				\node[squarecross]   (F) [right=of E] {};
+				\draw[->, thick] (head) -- (A);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) to [out=90, in=270] (E.south);
+				\draw[chain_arrow] let \p1 = (E.two), \p2 = (E.center) in (\x1,\y2) -- (F);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{Añadiendo un Elemento después de un Índice}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.add_after(indice, nuevo_elemento)|
+			\item Empezando por la cabeza recorremos la lista y buscamos el Nodo en la posición \texttt{indice}
+			\item Establecemos el atributo \texttt{siguiente} del nuevo Nodo al \texttt{siguiente} del Nodo en el índice
+			\item Modificamos el atributo \texttt{siguiente} del Nodo en el \texttt{indice} para que apunte al nuevo Nodo
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\node[list,on chain] (E) [above=of B] {nuevo\_el};
+				\draw[->, thick] (head) -- (A);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) to [out=90, in=270] (E.south);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+				\draw[chain_arrow] let \p1 = (E.two), \p2 = (E.center) in (\x1,\y2) to [bend left=45] (C);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+
+\section{Eliminando Elementos}
+
+	\begin{frame}
+		\frametitle{Eliminando un Elemento}
+		\begin{itemize}
+			\item Queremos eliminar un Nodo de la lista
+			\begin{itemize}
+				\item En la cabeza
+				\item Al final
+				\item En un índice
+			\end{itemize}
+			\item Tendremos que dejar de referenciar el Nodo que queremos borrar
+			\begin{itemize}
+				\item Hacer el nodo inalcanzable para la cadena
+				\item Siempre seguimos la cadena empezando por la cabeza y siguiendo las flechas
+			\end{itemize}
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\draw[->, thick] (head) -- (A);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Eliminando la Cabeza}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.remove_head()|
+			\item El atributo \texttt{\___}cabeza\texttt{\___} de la lista enlazada dejará de apuntar al primer elemento
+			\begin{itemize}
+				\item Establecemos la nueva \texttt{\___}cabeza\texttt{\___} al valor del atributo \texttt{siguiente} de la antigua
+				\item La antigua cabeza será inalcanzable
+			\end{itemize}
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node (removed) [below=of A] {eliminado};
+				\node[list,on chain] (B) {medio};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\draw[->, thick] (head) to [out=65, in=125] (B);
+				\draw[->] (removed) -- (A);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{Eliminando el Final}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.remove_tail()|
+			\item Tenemos que encontrar el Nodo cuyo atributo \texttt{siguiente} apunta al final
+			\begin{itemize}
+				\item Establecemos el atributo \texttt{siguiente} de ese Nodo a \lstinline|None|
+			\end{itemize}
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node (removed) [below=of C] {eliminado};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\node[squarecross]   (F) [above=of C] {};
+				\draw[->, thick] (head) -- (A);
+				\draw[->] (removed) -- (C);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) -- (B);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) to [out=0, in=180] (F);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{Eliminando en un Índice}
+		\begin{itemize}
+			\item \lstinline|lista_enlazada.remove(indice)|
+			\item Tenemos que encontrar el Nodo cuyo atributo \texttt{siguiente} apunta al Nodo en el índice
+			\begin{itemize}
+				\item Establecemos el atributo \texttt{siguiente} de ese Nodo al valor del atributo \texttt{siguiente} del Nodo que queremos borrar
+			\end{itemize}
+		\end{itemize}
+		\vspace{0.7cm}
+		\begin{center}
+			\begin{tikzpicture}
+				\node (head) {cabeza};
+				\node[list,on chain] (A) [right=of head]{primero};
+				\node[list,on chain] (B) {medio};
+				\node (removed) [below=of B] {eliminado};
+				\node[list,on chain] (C) {cola};
+				\node[squarecross]   (D) [right=of C] {};
+				\draw[->, thick] (head) -- (A);
+				\draw[->] (removed) -- (B);
+				\draw[chain_arrow] let \p1 = (A.two), \p2 = (A.center) in (\x1,\y2) to [bend left=55] (C);
+				\draw[chain_arrow] let \p1 = (B.two), \p2 = (B.center) in (\x1,\y2) -- (C);
+				\draw[chain_arrow] let \p1 = (C.two), \p2 = (C.center) in (\x1,\y2) -- (D);
+			\end{tikzpicture}
+		\end{center}
+	\end{frame}
+
+
+	\begin{frame}[fragile]
+	\frametitle{Eliminando un Elemento Específico}
+		\begin{itemize}
+			\item También podemos usar un método que en lugar de eliminar un elemento en un índice dado, tome el elemento en sí
+            \item Tendremos que recorrer la lista buscando un Nodo con el atributo de dato correcto
+            \begin{itemize}
+                \item Tendremos que detenernos con una referencia a un nodo que esté antes del que queremos eliminar
+            \end{itemize}
+            \item En este punto usamos un proceso similar a eliminar después de un índice
+		\end{itemize}
+\end{frame}
+
+\section{Mejoras}
+
+	\begin{frame}
+		\frametitle{Cambios Recomendados}
+		\begin{itemize}
+			\item Si las funciones de eliminación devuelven el elemento eliminado, funcionarán de forma similar a \texttt{pop()} en una \texttt{list} 
+			\item Mantener un contador en la clase para saber el número de elementos, de esta forma no tenemos que recorrer la lista para saber el tamaño 
+			\begin{itemize}
+				\item Cada vez que se añade un ítem a la lista sumamos 1 al contador
+				\item Cada vez que se elimina un ítem de la lista restamos 1 al contador
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Manejo de Errores}
+		\begin{itemize}
+			\item El código que hemos visto no cubre el manejo de errores para algunos casos
+			\begin{itemize}
+				\item ¿Qué pasa si intentamos llamar a \lstinline|lista_enlazada.add_after(100, nuevo_elemento)| en una lista que solo tiene 5 elementos?
+				\item ¿Deberíamos lanzar una excepción?
+				\item ¿Usar la sentencia return para mostrar si la función tuvo éxito? 
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Métodos Dunder}
+		\begin{itemize}
+			\item Python ofrece algunos métodos para mejorar la funcionalidad de una clase
+			\begin{itemize}
+				\item Se llaman métodos \href{https://docs.python.org/3/reference/datamodel.html#special-method-names}{{\color{blue}\underline{dunder o mágicos}}}, los métodos están rodeados por dobles guiones bajos
+			\end{itemize}
+			\item Mostrar una representación de la lista enlazada al imprimirla como una \texttt{list} normal
+			\begin{itemize}
+				\item Implementar la función \lstinline|__str__(self)| y devolver un \texttt{string}
+			\end{itemize}
+			\item Poder usar \lstinline|len(lista_enlazada)| para obtener el número de elementos
+			\begin{itemize}
+				\item Implementar la función \lstinline|__len__(self)| y devolver el tamaño
+			\end{itemize}
+			\item Hay más, échales un vistazo e intenta implementarlos
+		\end{itemize}
+	\end{frame}
+
+\end{document}

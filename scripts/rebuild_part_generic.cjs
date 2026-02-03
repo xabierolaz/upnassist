@@ -4,8 +4,8 @@ const path = require('path');
 // Configuration
 const projectRoot = path.resolve(__dirname, '..');
 const srcDataPath = path.join(projectRoot, 'src/data');
-const textRepoPath = path.join(projectRoot, 'external_resources/programming-25-repo/data');
-const codeRepoPath = path.join(projectRoot, 'external_resources/Python_Programming_MOOC_2026_I');
+const textRepoPath = path.join(projectRoot, 'curriculum-src/python-textbook/data');
+const codeRepoPath = path.join(projectRoot, 'curriculum-src/python-intro');
 
 /**
  * Rebuilds a specific section JSON using the Double Source Truth protocol.
@@ -21,9 +21,9 @@ Rebuilding Part ${partNum} Section ${sectionNum}...`);
     const textPartDir = path.join(textRepoPath, `part-${partNum}`);
     
     // Code Repo Logic: Part 1-7 in Repo I, Part 8-14 in Repo II
-    let currentCodeRepo = path.join(projectRoot, 'external_resources/Python_Programming_MOOC_2026_I');
+    let currentCodeRepo = path.join(projectRoot, 'curriculum-src/python-intro');
     if (partNum >= 8) {
-        currentCodeRepo = path.join(projectRoot, 'external_resources/Python_Programming_MOOC_2026_II');
+        currentCodeRepo = path.join(projectRoot, 'curriculum-src/python-advanced');
     }
     
     // Code Repo uses 'part01', 'part02'... (Zero padded)

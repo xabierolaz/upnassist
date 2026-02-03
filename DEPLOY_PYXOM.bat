@@ -1,60 +1,40 @@
 @echo off
-title UpnAssist - Deployment Script
+title UpnAssist - Quick Deployment Script
 echo ========================================
-echo    INICIANDO DEPLOY A GITHUB
+echo    DESPLIEGUE OPTIMIZADO A GITHUB
 echo ========================================
 echo.
 
 cd /d "%~dp0"
 
-echo [1/4] Limpiando archivos temporales...
-if exist "node_modules" (
-    echo Eliminando node_modules...
-    rmdir /s /q "node_modules"
-)
-
-if exist "dist" (
-    echo Eliminando dist...
-    rmdir /s /q "dist"
-)
-
-echo [2/4] Instalando dependencias...
-npm install
-
-echo [3/4] Construyendo la aplicación...
-npm run build
-
-echo [4/4] Preparando para despliegue...
-echo.
-echo === COMPROBACIONES FINALES ===
-echo.
-echo Verificando que el directorio dist se haya creado...
-if exist "dist" (
-    echo [OK] Directorio dist creado correctamente
-) else (
-    echo [ERROR] No se pudo crear el directorio dist
+echo [1/3] Verificando integridad (Tests)...
+call npm run test:run
+if %ERRORLEVEL% NEQ 0 (
+    echo [ERROR] Los tests fallaron. Abortando despliegue para proteger la rama main.
     pause
     exit /b 1
 )
 
-echo.
-echo === DEPLOY A GITHUB ===
-echo.
-echo Asegurándose de que el repositorio esté configurado...
+echo [2/3] Construyendo la aplicación (Build)...
+call npm run build
+if %ERRORLEVEL% NEQ 0 (
+    echo [ERROR] La compilación falló. Revisa los errores de TypeScript/Vite.
+    pause
+    exit /b 1
+)
+
+echo [3/3] Sincronizando con GitHub...
 git add .
-git commit -m "Deployment build: %date% %time%"
+set /p commit_msg="Introduce mensaje del commit (Enter para default): "
+if "%commit_msg%"=="" set commit_msg="Update: Visual Debugger & Stability Improvements %date% %time%"
+
+git commit -m "%commit_msg%"
 git push origin main
 
 echo.
-echo === DEPLOY A VERCEL ===
-echo.
-echo El despliegue a Vercel se realizará automáticamente desde GitHub.
-echo Si estás usando Vercel CLI, ejecuta: vercel --prod
-
-echo.
 echo ========================================
-echo    DEPLOY COMPLETADO
+echo    DESPLIEGUE COMPLETADO CON EXITO
 echo ========================================
-echo Puedes cerrar esta ventana.
+echo Vercel iniciará el despliegue automáticamente en breve.
 echo.
 pause

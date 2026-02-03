@@ -1,0 +1,142 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{accsupp}
+\usepackage{attachfile}
+\usepackage{verbatim}
+\usepackage[misc]{ifsym}
+
+% color def
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+
+% listings
+\usepackage{listings}
+
+% General Setting of listings
+\lstset{
+	language=Python,
+	tabsize=4,
+	aboveskip=1em,
+	breaklines=true,
+	abovecaptionskip=-6pt,
+	captionpos=b,
+	escapeinside={\%*}{*)},
+	frame=single,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\tiny,
+	morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,} % Python builtin
+	morekeywords=[2]{,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,}, % magic methods
+	morekeywords=[3]{,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr,}, % common functions
+	morekeywords=[4]{,Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError,}, % errors
+	morekeywords=[5]{,ode,fsolve,sqrt,exp,sin,cos,arctan,arctan2,arccos,pi, array,norm,solve,dot,arange,isscalar,max,sum,flatten,shape,reshape,find,any,all,abs,plot,linspace,legend,quad,polyval,polyfit,hstack,concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze,}, % numpy / math
+	deletekeywords=[2]{next,set},
+	deletekeywords=[3]{next,set},
+	basicstyle=\ttfamily,
+	backgroundcolor=\color{white},
+	commentstyle=\color{darkgreen}\slshape,
+	keywordstyle=\color{blue}\bfseries\itshape,
+	keywordstyle=[2]\color{blue}\bfseries,
+	keywordstyle=[3]\color{grass},
+	keywordstyle=[4]\color{red},
+	keywordstyle=[5]\color{orange},
+	stringstyle=\color{darkred},
+	emphstyle=\color{pink}\underbar,
+	morestring=[d]{"},
+	showstringspaces=false,
+	upquote=true,
+}
+
+\makeatletter
+\renewcommand\thesection{}
+\renewcommand\thesubsection{\@arabic\c@subsection}
+\makeatother
+
+
+\makeatletter
+\lst@RequireAspects{writefile}
+
+% Use \attachfile command to add listing content as paperclip.
+\lstnewenvironment{attachedlisting}[1][]{%
+	\lst@BeginAlsoWriteFile{#1.txt}%
+}
+{%
+	\lst@EndWriteFile
+	\marginpar{\attachfile[appearance=false,icon=Paperclip,mimetype=text/tex]{#1.txt}}
+}
+
+% Use accsupp package to add listing content as copyable text.
+\lstnewenvironment{copyablelisting}{%
+	\lst@BeginAlsoWriteFile{\jobname.txt}%
+}
+{%
+	\lst@EndWriteFile
+	\let\verbatim@processline\add@lstline
+	\global\let\lstfile\empty
+	\verbatiminput{\jobname.txt}%
+	\marginpar{(\BeginAccSupp{method=escape,ActualText={\lstfile}}\PaperPortrait\EndAccSupp{})}
+}
+\def\add@lstline
+{\xdef\lstfile{\unexpanded\expandafter{\lstfile}\the\verbatim@line\string^^J}}
+\makeatother
+
+\title{Trabajando Con\\{\huge Ficheros}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Introducción}
+Este documento contiene un proyecto para trabajar con ficheros, más específicamente ficheros CSV. CSV es un acrónimo de \textit{Comma Separated Values} (valores separados por comas), y es una descripción del contenido del fichero. Cada línea en un fichero CSV representa una fila, y los valores en esa fila están separados por un delimitador, típicamente una coma (,). La primera fila a menudo contiene encabezados (nombres de columnas), pero no son necesarios. También se utilizan otros delimitadores, como ``;'' o tabulaciones. En este último caso, también podemos llamar al fichero TSV o \textit{Tab Separated Values} (valores separados por tabulaciones).
+
+Un ejemplo de un fichero CSV puede contener lo siguiente:
+\begin{verbatim}
+Nombre,Edad,Ciudad
+Alice,25,Nueva York
+Bob,30,Los Ángeles
+\end{verbatim}
+
+El fichero CSV que vamos a usar contiene información de calificaciones para estudiantes universitarios. Cada fila representa las calificaciones de una asignatura específica tomada por un solo estudiante. El fichero incluye varias columnas: el nombre del estudiante, un identificador único, el nombre de la asignatura, múltiples columnas con calificaciones de exámenes (el número de exámenes varía según la asignatura) y la calificación promedio del estudiante para esa asignatura.
+
+Aquí hay un ejemplo de tres líneas del fichero:
+\begin{verbatim}
+Kimberly James,26a7d38c-15a5-42f8-9b22-879f4a959479,Big Data Analysis,3.8,8.2,7.6,4.2,,,,6
+William Brown,8db76a4e-eff9-415d-bc1c-87c28dec6406,Bioinformatics,1.9,6.3,0.3,1.9,8.3,7.3,,4.3
+William Thompson,4fb62d32-76a7-4363-b8bd-c18d56fa272f,Machine Learning,1.5,0.7,6.8,,,,,3
+\end{verbatim}
+
+Observa que cada fila en el fichero tiene el mismo número de columnas, aunque algunas columnas pueden estar vacías en ciertos casos. Puedes abrir el fichero en LibreOffice Calc para examinar su contenido; sin embargo, usaremos Python para modificar este fichero.
+
+\newpage
+\section{Ejercicios}
+\subsection{Corregir el Fichero}
+
+Durante el proceso de creación del fichero, ocurrió un error, lo que resultó en la pérdida de los nombres de algunos estudiantes, dejando la columna de nombres vacía en sus filas. La segunda columna, que contiene un identificador único para cada estudiante, ha sido transcrita con precisión. Podemos usar este identificador para recuperar los nombres de los estudiantes. Aunque podrías corregir el fichero manualmente, su gran tamaño hace que esta sea una tarea desalentadora y que consume mucho tiempo. Afortunadamente, podemos usar Python para identificar y corregir estos errores de manera eficiente.
+
+Crea una función que acepte la ruta del fichero como argumento. Esta función leerá el fichero CSV, identificará las filas que faltan los nombres de los estudiantes y usará el identificador único para localizar los nombres correctos de otras filas. Las filas corregidas deben mostrarse en la consola. Finalmente, genera un nuevo fichero CSV llamado \texttt{notas\_arreglado.csv} que contenga la misma información que el original, pero con los errores corregidos.
+
+\subsection{Organizar el Fichero}
+
+Como habrás notado, el fichero se creó de manera desorganizada, con filas mostradas sin ningún orden en particular. Crea otra función que tome una ruta de fichero como argumento y genere varios ficheros CSV nuevos, uno para cada asignatura encontrada en el fichero original. Crea una carpeta llamada \texttt{organizado} y coloca los ficheros dentro. Estos ficheros deben llamarse \texttt{notas\_\{asignatura\}.csv}, donde asignatura será reemplazado por el nombre correspondiente de la asignatura. Dado que el número de asignaturas es desconocido, la función debe extraer esta información del fichero original. Cada fichero nuevo debe tener a los estudiantes ordenados alfabéticamente.
+
+\subsection{Mostrar Algunos Datos}
+
+Con los problemas del fichero resueltos y los datos bien organizados, ahora podemos mostrar algunas estadísticas. Crea una función que tome la ruta al directorio que contiene los ficheros organizados como argumento. Esta función debe mostrar las calificaciones mínimas, máximas y promedio para todas las asignaturas encontradas en la carpeta. Dado que el número de ficheros en la carpeta es desconocido, necesitarás usar la función \lstinline|os.listdir(path)| del módulo \lstinline|os|.
+
+
+\end{document}

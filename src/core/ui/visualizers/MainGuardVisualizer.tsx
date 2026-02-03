@@ -1,27 +1,10 @@
 import React, { useState } from 'react';
 import { useLanguageStore } from '../../store/languageStore';
+import VisualizerCard from './VisualizerCard';
 
 export const MainGuardVisualizer: React.FC = () => {
-    const { currentLang } = useLanguageStore();
+    const { t } = useLanguageStore();
     const [mode, setMode] = useState<'execute' | 'import'>('execute');
-
-    // Labels
-    const labels = {
-        title: { ENG: "Module Context Simulator", CAS: "Simulador de Contexto de Módulo", EUS: "Modulu Testuinguru Simuladorea" },
-        executeBtn: { ENG: "Run directly (python script.py)", CAS: "Ejecutar directo (python script.py)", EUS: "Zuzenean exekutatu (python script.py)" },
-        importBtn: { ENG: "Import (import script)", CAS: "Importar (import script)", EUS: "Inportatu (import script)" },
-        variableName: "__name__",
-        descExecute: { 
-            ENG: "When you run a file directly, Python sets its name to '__main__'. This triggers the protected code.", 
-            CAS: "Al ejecutar el archivo directamente, Python le pone el nombre '__main__'. Esto activa el código protegido.", 
-            EUS: "Fitxategia zuzenean exekutatzen duzunean, Python-ek '__main__' izena jartzen dio. Honek babestutako kodea aktibatzen du."
-        },
-        descImport: { 
-            ENG: "When imported, the file keeps its original filename. The protected code is SKIPPED.", 
-            CAS: "Al importarse, el archivo mantiene su nombre original. El código protegido se SALTA.", 
-            EUS: "Inportatzean, fitxategiak bere jatorrizko izena mantentzen du. Babestutako kodea SALTATU egiten da."
-        }
-    };
 
     const isMain = mode === 'execute';
     const varValue = isMain ? "'__main__'" : "'script'";
@@ -29,19 +12,16 @@ export const MainGuardVisualizer: React.FC = () => {
     const codeOpacity = isMain ? "opacity-100" : "opacity-40 grayscale";
 
     return (
-        <div className="my-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden font-sans">
-             <div className="bg-gray-50 p-4 border-b border-gray-200 flex justify-between items-center">
-                <h3 className="font-bold text-gray-700 text-lg flex items-center gap-2">
-                    <span className="bg-purple-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-mono">M</span>
-                    {labels.title[currentLang]}
-                </h3>
-            </div>
-
+        <VisualizerCard
+            title={t.visualizers.mainGuard.title}
+            icon="M"
+            iconColor="bg-purple-600"
+        >
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Controls */}
                 <div className="flex flex-col gap-4">
                     <div className="text-sm text-gray-500 font-medium uppercase tracking-wide mb-2">
-                        {currentLang === 'ENG' ? "Action" : "Acción"}
+                        {t.action}
                     </div>
                     
                     <button 
@@ -49,7 +29,7 @@ export const MainGuardVisualizer: React.FC = () => {
                         className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${mode === 'execute' ? 'border-green-500 bg-green-50 shadow-md' : 'border-gray-200 hover:border-gray-300'}`}
                     >
                         <div className="font-mono font-bold text-gray-800">python script.py</div>
-                        <div className="text-xs text-gray-500 mt-1">{labels.executeBtn[currentLang]}</div>
+                        <div className="text-xs text-gray-500 mt-1">{t.visualizers.mainGuard.runDirect}</div>
                     </button>
 
                     <button 
@@ -57,11 +37,11 @@ export const MainGuardVisualizer: React.FC = () => {
                         className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${mode === 'import' ? 'border-yellow-500 bg-yellow-50 shadow-md' : 'border-gray-200 hover:border-gray-300'}`}
                     >
                         <div className="font-mono font-bold text-gray-800">import script</div>
-                        <div className="text-xs text-gray-500 mt-1">{labels.importBtn[currentLang]}</div>
+                        <div className="text-xs text-gray-500 mt-1">{t.visualizers.mainGuard.importModule}</div>
                     </button>
 
                     <div className={`mt-4 p-4 rounded-lg border text-sm ${statusColor}`}>
-                        <strong>Info:</strong> {isMain ? labels.descExecute[currentLang] : labels.descImport[currentLang]}
+                        <strong>{t.info}:</strong> {isMain ? t.visualizers.mainGuard.descExecute : t.visualizers.mainGuard.descImport}
                     </div>
                 </div>
 
@@ -106,6 +86,6 @@ export const MainGuardVisualizer: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </VisualizerCard>
     );
 };

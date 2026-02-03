@@ -4,22 +4,22 @@
 
 ## 🚨 Regla de Oro: NO INVENTAR, NO SCRAPEAR
 Todo el contenido ya existe en tu disco duro.
-*   **Texto:** `external_resources/programming-25-repo/data/`
-*   **Código:** `external_resources/Python_Programming_MOOC_2026_I/`
+*   **Texto:** `curriculum-src/python-textbook/data/`
+*   **Código:** `curriculum-src/python-intro/` (Part 1-7) y `curriculum-src/python-advanced/` (Part 8-14)
 
 ## Procedimiento Estándar de Generación
 
 Para crear o reparar una sección (`src/data/partX/sectionY.json`), sigue este algoritmo estrictamente:
 
 ### 1. Lectura del Markdown (Fuente 1)
-Lee el archivo `.md` correspondiente en `external_resources/programming-25-repo`.
+Lee el archivo `.md` correspondiente en `curriculum-src/python-textbook/data`.
 *   Este archivo dicta el **ORDEN**.
 *   Todo texto fuera de las etiquetas `<in-browser-programming-exercise>` es un bloque `markdown`.
 *   Las etiquetas `<in-browser-programming-exercise>` indican dónde va un bloque `exercise`.
 
 ### 2. Inyección de Código (Fuente 2)
 Cuando encuentres un ejercicio, extrae su atributo `tmcname` (ej: `part01-01_emoticon`).
-*   Ve a `external_resources/Python_Programming_MOOC_2026_I/partX/{tmcname}`.
+*   Ve a `curriculum-src/python-intro/partX/{tmcname}` (o `python-advanced` si es > Part 7).
 *   **Initial Code:** Lee `src/{archivo}.py`. Si hay varios, busca el principal.
 *   **Test Code:** Lee `test/test_{archivo}.py`.
 

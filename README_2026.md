@@ -10,39 +10,42 @@ UpnAssist es una plataforma educativa para el aprendizaje de Python en la UPNA (
 
 ## 🏗 Arquitectura de Datos (Doble Fuente)
 
-El contenido del curso **NO** se escribe manualmente. Se genera fusionando dos repositorios oficiales de MOOC.fi que están clonados localmente en `external_resources/`.
+El contenido del curso **NO** se escribe manualmente. Se genera fusionando dos repositorios oficiales de MOOC.fi que están alojados localmente en `curriculum-src/`.
 
 ### 1. La "Fuente de Verdad" (Texto y Estructura)
-*   **Ruta:** `external_resources/programming-25-repo/data/part-X/`
+*   **Ruta:** `curriculum-src/python-textbook/data/part-X/`
 *   **Contenido:** Archivos Markdown (`.md`) que definen el orden de las lecciones, el texto explicativo y dónde van los ejercicios.
 *   **Uso:** Determina la secuencia narrativa.
 *   **Referencia para Auditoría:** Si el texto o el orden en la app no coincide con estos archivos, la app está mal.
 
 ### 2. La "Fuente de Código" (Ejercicios y Tests)
-*   **Ruta:** `external_resources/Python_Programming_MOOC_2026_I/partX/`
+*   **Ruta:** `curriculum-src/python-intro/partX/` (Partes 1-7)
+*   **Ruta:** `curriculum-src/python-advanced/partX/` (Partes 8-14)
 *   **Contenido:** Proyectos Python reales con carpetas `src/` (código plantilla) y `test/` (pruebas unitarias).
 *   **Uso:** Provee el `initialCode` y `testCode` para los ejercicios interactivos.
 *   **Referencia para Auditoría:** Si el código inicial o la validación fallan, verificar estos archivos originales.
 
 ### Proceso de Fusión
 Los archivos JSON finales en `src/data/partX/sectionY.json` son el resultado de "tejer" estas dos fuentes:
-1. Se lee el Markdown del Repo 1.
+1. Se lee el Markdown del Repo 1 (Textbook).
 2. Se extraen bloques de texto.
-3. Al encontrar un tag `<in-browser-programming-exercise>`, se busca el código correspondiente en el Repo 2 y se inyecta.
+3. Al encontrar un tag `<in-browser-programming-exercise>`, se busca el código correspondiente en el Repo 2 (Intro/Advanced) y se inyecta.
 
 ## Estructura del Proyecto
 
 ```
 D:\Upnassist2026\Pyxom-vNext\
-├── external_resources/      # Fuentes originales (NO EDITAR)
-│   ├── programming-25-repo  # Fuente de Texto
-│   └── Python_MOOC_...      # Fuente de Código
+├── curriculum-src/      # Fuentes originales (NO EDITAR)
+│   ├── python-textbook  # Fuente de Texto
+│   ├── python-intro     # Código (Partes 1-7)
+│   ├── python-advanced  # Código (Partes 8-14)
+│   └── data-structures  # Estructura de Datos (LaTeX)
 ├── src/
-│   ├── data/                # JSONs generados y lógica de carga
-│   ├── components/          # Componentes React
-│   └── pages/               # Páginas de la aplicación
-├── scripts/                 # Herramientas de mantenimiento
-└── _archive/                # Scripts de migración antiguos
+│   ├── data/            # JSONs generados y lógica de carga
+│   ├── components/      # Componentes React
+│   └── pages/           # Páginas de la aplicación
+├── scripts/             # Herramientas de mantenimiento
+└── _archive/            # Scripts de migración antiguos
 ```
 
 ## Comandos Disponibles

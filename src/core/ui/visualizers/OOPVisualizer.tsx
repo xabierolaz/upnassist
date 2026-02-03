@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { useLanguageStore } from '../../store/languageStore';
+import VisualizerCard from './VisualizerCard';
 
 export const OOPVisualizer: React.FC = () => {
-    const { currentLang } = useLanguageStore();
+    const { t } = useLanguageStore();
     const [activeTab, setActiveTab] = useState<'constructor' | 'self'>('constructor');
 
     // Tab 1: Constructor State
@@ -12,44 +13,21 @@ export const OOPVisualizer: React.FC = () => {
     // Tab 2: Self State
     const [activeInstance, setActiveInstance] = useState<'e1' | 'e2' | null>(null);
 
-    const labels = {
-        tabs: {
-            constructor: { ENG: "1. The Constructor", CAS: "1. El Constructor", EUS: "1. Eraikitzailea" },
-            self: { ENG: "2. The 'self' Pointer", CAS: "2. El Puntero 'self'", EUS: "2. 'self' Erakuslea" }
-        },
-        constructor: {
-            stack: { ENG: "Function Scope (Temporary)", CAS: "Ámbito de Función (Temporal)", EUS: "Funtzio Eremua (Denborazkoa)" },
-            heap: { ENG: "Object Memory (Permanent)", CAS: "Memoria del Objeto (Permanente)", EUS: "Objektuaren Memoria (Iraunkorra)" },
-            btnCall: { ENG: "Call Estudiante('Alice')", CAS: "Llamar Estudiante('Alicia')", EUS: "Deitu Estudiante('Ane')" },
-            btnAssign: { ENG: "Exec: self.name = name", CAS: "Ejec: self.nombre = nombre", EUS: "Exek: self.izena = izena" },
-            btnReset: { ENG: "Reset", CAS: "Reiniciar", EUS: "Berrabiarazi" }
-        },
-        self: {
-            instruction: { 
-                ENG: "Click an object to call its 'greet()' method and see where 'self' points.", 
-                CAS: "Haz clic en un objeto para llamar a 'saludar()' y ver a dónde apunta 'self'.", 
-                EUS: "Egin klik objektu batean 'agurtu()' deitzeko eta ikusi 'self' nora doan." 
-            },
-            code: "def greet(self):",
-            print: "print(self.name)"
-        }
-    };
-
     return (
-        <div className="my-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden font-sans">
+        <VisualizerCard>
             {/* Tabs */}
             <div className="flex border-b border-gray-200">
                 <button 
                     onClick={() => setActiveTab('constructor')}
                     className={`flex-1 py-3 text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === 'constructor' ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:bg-gray-50'}`}
                 >
-                    {labels.tabs.constructor[currentLang]}
+                    {t.visualizers.oop.constructor}
                 </button>
                 <button 
                     onClick={() => setActiveTab('self')}
                     className={`flex-1 py-3 text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === 'self' ? 'bg-purple-50 text-purple-600 border-b-2 border-purple-600' : 'text-gray-500 hover:bg-gray-50'}`}
                 >
-                    {labels.tabs.self[currentLang]}
+                    {t.visualizers.oop.selfPointer}
                 </button>
             </div>
 
@@ -62,20 +40,20 @@ export const OOPVisualizer: React.FC = () => {
                                 disabled={step > 0}
                                 className={`px-4 py-2 rounded-lg font-bold text-sm ${step === 0 ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-400'}`}
                             >
-                                {labels.constructor.btnCall[currentLang]}
+                                {t.visualizers.oop.btnCall}
                             </button>
                             <button 
                                 onClick={() => setStep(2)} 
                                 disabled={step !== 1}
                                 className={`px-4 py-2 rounded-lg font-bold text-sm ${step === 1 ? 'bg-green-600 text-white hover:bg-green-700' : 'bg-gray-200 text-gray-400'}`}
                             >
-                                {labels.constructor.btnAssign[currentLang]}
+                                {t.visualizers.oop.btnAssign}
                             </button>
                             <button 
                                 onClick={() => setStep(0)} 
                                 className="px-4 py-2 rounded-lg font-bold text-sm bg-gray-100 text-gray-600 hover:bg-gray-200"
                             >
-                                {labels.constructor.btnReset[currentLang]}
+                                {t.visualizers.oop.btnReset}
                             </button>
                         </div>
 
@@ -85,7 +63,7 @@ export const OOPVisualizer: React.FC = () => {
                                 w-40 h-40 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center p-2 relative transition-all duration-500
                                 ${step >= 1 ? 'opacity-100' : 'opacity-30'}
                             `}>
-                                <div className="text-xs text-gray-400 absolute top-2 uppercase font-bold">{labels.constructor.stack[currentLang]}</div>
+                                <div className="text-xs text-gray-400 absolute top-2 uppercase font-bold">{t.visualizers.oop.stack}</div>
                                 <div className="text-sm font-mono text-gray-600 mb-1">nombre</div>
                                 <div className={`
                                     bg-yellow-100 text-yellow-800 px-3 py-1 rounded font-mono font-bold shadow-sm border border-yellow-300
@@ -114,16 +92,16 @@ export const OOPVisualizer: React.FC = () => {
                         
                         {/* Explanation Text */}
                         <div className="text-center text-sm text-gray-600 italic">
-                            {step === 0 && "Waiting to start..."}
-                            {step === 1 && "Parameter 'nombre' exists in temporary memory."}
-                            {step === 2 && "Data copied to 'self'. Now it survives!"}
+                            {step === 0 && t.visualizers.oop.waiting}
+                            {step === 1 && t.visualizers.oop.paramExists}
+                            {step === 2 && t.visualizers.oop.dataCopied}
                         </div>
                     </div>
                 )}
 
                 {activeTab === 'self' && (
                     <div className="flex flex-col gap-8">
-                        <p className="text-center text-sm text-gray-600">{labels.self.instruction[currentLang]}</p>
+                        <p className="text-center text-sm text-gray-600">{t.visualizers.oop.selfInstruction}</p>
                         
                         <div className="flex justify-center gap-12 items-start relative">
                             {/* Instance 1 */}
@@ -178,6 +156,6 @@ export const OOPVisualizer: React.FC = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </VisualizerCard>
     );
 };

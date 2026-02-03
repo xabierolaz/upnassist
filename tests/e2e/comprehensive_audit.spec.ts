@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { setupAuth } from './fixtures/auth';
 
 test.describe('Comprehensive Clinical Audit of Frontend', () => {
   
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await setupAuth(page);
+    await page.goto('/course/mooc/part1-1');
     await expect(page.locator('aside')).toBeVisible();
   });
 
@@ -13,9 +15,9 @@ test.describe('Comprehensive Clinical Audit of Frontend', () => {
     const langButton = page.locator('button').filter({ hasText: new RegExp(`^${lang}$`) });
     await langButton.click();
     if (lang === 'ENG') {
-      await expect(page.locator('aside')).toContainText('Introduction');
+      await expect(page.locator('aside')).toContainText('Part 1');
     } else if (lang === 'CAS') {
-        await expect(page.locator('aside')).toContainText('Introducción');
+        await expect(page.locator('aside')).toContainText('Parte 1');
     }
   }
 
@@ -26,15 +28,16 @@ test.describe('Comprehensive Clinical Audit of Frontend', () => {
       await switchLanguage(page, 'ENG');
 
       // 2. Find Part Button
+      // The button contains "Part 1", "Part 2", etc. and a Chevron icon.
       const partButton = page.locator('aside button')
-                             .filter({ hasText: '▼' })
-                             .filter({ hasText: String(partNum) })
+                             .filter({ hasText: `Part ${partNum}` })
                              .first();
       
       await expect(partButton).toBeVisible();
       
       // 3. Ensure Expanded
-      const arrow = partButton.locator('span').last();
+      // Check if the SVG icon is rotated. The SVG is the last child of the button.
+      const arrow = partButton.locator('svg').last();
       const isRotated = await arrow.getAttribute('class').then(c => c?.includes('rotate-180'));
       
       if (!isRotated) {
@@ -45,9 +48,9 @@ test.describe('Comprehensive Clinical Audit of Frontend', () => {
       // 4. Find Sections
       for (let secNum = 1; secNum <= 20; secNum++) {
         const sectionPrefix = `${secNum}. `;
-        const sectionButton = page.locator('aside button')
+        // Section buttons are inside the UL list, not the top-level button
+        const sectionButton = page.locator('aside ul button')
                                   .filter({ hasText: sectionPrefix })
-                                  .filter({ hasNotText: '▼' })
                                   .filter({ has: page.locator('visible=true') })
                                   .first();
         

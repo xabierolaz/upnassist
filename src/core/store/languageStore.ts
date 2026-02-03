@@ -1,9 +1,13 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { ENG } from '../../i18n/locales/en';
+import { CAS } from '../../i18n/locales/cas';
+import { EUS } from '../../i18n/locales/eus';
 
 export type Language = 'ENG' | 'CAS' | 'EUS';
 
-interface Translation {
+export interface Translation {
+  // Core UI
   title: string;
   university: string;
   sandbox: string;
@@ -32,7 +36,6 @@ interface Translation {
   feedbackFail: string;
   introProg: string;
   advProg: string;
-  // New additions
   logOut: string;
   analyzing: string;
   debug: string;
@@ -45,172 +48,73 @@ interface Translation {
   hide: string;
   show: string;
   allHintsUsed: string;
-  // Dynamic hint strings (simplified for now)
-  hintsAvailable: string; // "Available hints: "
-  hintLabel: string; // "Hint"
-  useNextHint: string; // "Use next hint"
-  remaining: string; // "remaining"
+  hintsAvailable: string;
+  hintLabel: string;
+  useNextHint: string;
+  remaining: string;
   qualityScore: string;
   lineLabel: string;
   codeAnalysisTitle: string;
   points: string;
   dataStruct: string;
+  action: string;
+  info: string;
+
+  // Visualizers
+  visualizers: {
+    // List Visualizer
+    list: {
+      title: string;
+      instruction: string;
+      method: string;
+      usage: string;
+      description: string;
+    };
+    // F-String Visualizer
+    fstring: {
+      title: string;
+    };
+    // Sparse Matrix Visualizer
+    sparseMatrix: {
+      title: string;
+      denseMatrix: string;
+      cooFormat: string;
+      instruction: string;
+      memoryUsage: string;
+      fixedUnits: string;
+    };
+    // Main Guard Visualizer
+    mainGuard: {
+      title: string;
+      runDirect: string;
+      importModule: string;
+      descExecute: string;
+      descImport: string;
+    };
+    // OOP Visualizer
+    oop: {
+      constructor: string;
+      selfPointer: string;
+      stack: string;
+      heap: string;
+      btnCall: string;
+      btnAssign: string;
+      btnReset: string;
+      selfInstruction: string;
+      waiting: string;
+      paramExists: string;
+      dataCopied: string;
+    };
+  };
+
+  // Error Messages (Codes)
+  errors: Record<string, string>;
 }
 
 const translations: Record<Language, Translation> = {
-  ENG: {
-    title: "UpnAssist 2026",
-    university: "UPNA - Public University of Navarre",
-    sandbox: "Free Playground",
-    part1: "Part 1",
-    run: "Run",
-    submit: "Submit",
-    stop: "Stop",
-    reset: "Reset",
-    resetConfirm: "Restore original code? Your changes will be lost.",
-    terminal: "Terminal Output",
-    tests: "Test Results",
-    exercise: "Exercise",
-    completed: "Completed",
-    footer: "Designed by Xabier Olaz Moratinos. Content adapted for UPNassist 2026.",
-    courses: "Courses",
-    writeCode: "Type here and press Enter...",
-    editorTitle: "Python Editor",
-    endOf: "End of",
-    errorPrefix: "\nError: ",
-    criticalError: "Critical Error: ",
-    noTests: "This exercise has no tests configured.",
-    interrupted: "\nExecution interrupted.",
-    feedbackSuccess: "Excellent! All tests passed",
-    feedbackReview: "Review needed",
-    testCount: "Tests",
-    feedbackFail: "Some tests failed. Check details below.",
-    introProg: "Introduction to Programming",
-    advProg: "Advanced Course",
-    logOut: "Log out",
-    analyzing: "Analyzing...",
-    debug: "Debug",
-    step: "Step",
-    continue: "Continue",
-    executing: "Running...",
-    variables: "Variables",
-    noVariables: "No variables defined",
-    hints: "Hints",
-    hide: "Hide",
-    show: "Show",
-    allHintsUsed: "You have used all available hints",
-    hintsAvailable: "Available hints:",
-    hintLabel: "Hint",
-    useNextHint: "Use next hint",
-    remaining: "remaining",
-    qualityScore: "Quality Score",
-    lineLabel: "Line",
-    codeAnalysisTitle: "Code Analysis",
-    points: "Points",
-    dataStruct: "Data Structures (Python)"
-  },
-  CAS: {
-    title: "UpnAssist 2026",
-    university: "UPNA - Universidad Pública de Navarra",
-    sandbox: "Zona de Pruebas",
-    part1: "Parte 1",
-    run: "Ejecutar",
-    submit: "Enviar",
-    stop: "Parar",
-    reset: "Reiniciar",
-    resetConfirm: "¿Restaurar código original? Se perderán tus cambios.",
-    terminal: "Terminal",
-    tests: "Resultados",
-    exercise: "Ejercicio",
-    completed: "Completado",
-    footer: "Diseñado por Xabier Olaz Moratinos. Contenido adaptado para UPNassist 2026.",
-    courses: "Cursos",
-    writeCode: "Escribe aquí y pulsa Enter...",
-    editorTitle: "Editor Python",
-    endOf: "Fin de la",
-    errorPrefix: "\nError: ",
-    criticalError: "Error crítico: ",
-    noTests: "Este ejercicio no tiene pruebas configuradas.",
-    interrupted: "\nEjecución interrumpida.",
-    feedbackSuccess: "¡Excelente! Todo correcto",
-    feedbackReview: "Revisión necesaria",
-    testCount: "Pruebas",
-    feedbackFail: "Algunas pruebas fallaron. Revisa los detalles abajo.",
-    introProg: "Introducción a la Programación",
-    advProg: "Curso Avanzado",
-    logOut: "Cerrar sesión",
-    analyzing: "Analizando...",
-    debug: "Depurar",
-    step: "Paso",
-    continue: "Continuar",
-    executing: "Ejecutando...",
-    variables: "Variables",
-    noVariables: "No hay variables definidas",
-    hints: "Pistas",
-    hide: "Ocultar",
-    show: "Mostrar",
-    allHintsUsed: "Has usado todas las pistas disponibles",
-    hintsAvailable: "Pistas disponibles:",
-    hintLabel: "Pista",
-    useNextHint: "Usar siguiente pista",
-    remaining: "restantes",
-    qualityScore: "Calidad del Código",
-    lineLabel: "Línea",
-    codeAnalysisTitle: "Análisis de Código",
-    points: "Puntos",
-    dataStruct: "Estructura de Datos (Python)"
-  },
-  EUS: {
-    title: "UpnAssist 2026",
-    university: "NUP - Nafarroako Unibertsitate Publikoa",
-    sandbox: "Proba Eremua",
-    part1: "1. Zatia",
-    run: "Exekutatu",
-    submit: "Bidali",
-    stop: "Gelditu",
-    reset: "Hasieratu",
-    resetConfirm: "Jatorrizko kodea berreskuratu? Aldaketak galduko dira.",
-    terminal: "Terminala",
-    tests: "Emaitzak",
-    exercise: "Ariketa",
-    completed: "Eginda",
-    footer: "Xabier Olaz Moratinosek diseinatua. UPNassist 2026rako egokitutako edukia.",
-    courses: "Ikastaroak",
-    writeCode: "Idatzi hemen eta sakatu Enter...",
-    editorTitle: "Python Editorea",
-    endOf: "Amaiera:",
-    errorPrefix: "\nErrorea: ",
-    criticalError: "Errore larria: ",
-    noTests: "Ariketa honek ez du probarik konfiguratuta.",
-    interrupted: "\nExekuzioa etenda.",
-    feedbackSuccess: "Bikain! Proba guztiak gainditu dira",
-    feedbackReview: "Berrikusi beharra",
-    testCount: "Probak",
-    feedbackFail: "Proba batzuek huts egin dute. Ikusi xehetasunak behean.",
-    introProg: "Programazioaren Sarrera",
-    advProg: "Ikastaro Aurreratua",
-    logOut: "Saioa itxi",
-    analyzing: "Aztertzen...",
-    debug: "Araztu",
-    step: "Urratsa",
-    continue: "Jarraitu",
-    executing: "Exekutatzen...",
-    variables: "Aldagaiak",
-    noVariables: "Ez dago aldagairik definituta",
-    hints: "Pistak",
-    hide: "Ezkutatu",
-    show: "Erakutsi",
-    allHintsUsed: "Erabilgarri dauden pista guztiak erabili dituzu",
-    hintsAvailable: "Erabilgarri dauden pistak:",
-    hintLabel: "Pista",
-    useNextHint: "Erabili hurrengo pista",
-    remaining: "geratzen dira",
-    qualityScore: "Kodearen Kalitatea",
-    lineLabel: "Lerroa",
-    codeAnalysisTitle: "Kodearen Analisia",
-    points: "Puntuak",
-    dataStruct: "Datu Egiturak (Python)"
-  }
+  ENG,
+  CAS,
+  EUS
 };
 
 interface LanguageState {
@@ -229,10 +133,10 @@ export const useLanguageStore = create<LanguageState>()(
     {
       name: 'pyxom-language-storage',
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ currentLang: state.currentLang } as any),
+      partialize: (state) => ({ currentLang: state.currentLang }),
       onRehydrateStorage: () => (state) => {
         if (state) {
-            state.t = translations[state.currentLang];
+          state.t = translations[state.currentLang];
         }
       }
     }

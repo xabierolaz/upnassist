@@ -1,0 +1,6 @@
+# Establecemos las opciones como antes
+opciones = ["primera", "segunda", "tercera"]
+eleccion = easygui.buttonbox(choices=opciones)
+# Cmo sabemos qu botn ha presionado el usuario?
+# No tenemos un ndice como antes
+print(eleccion)

@@ -1,3 +1,4 @@
+import type { UserRole } from '../types/global';
 
 // Constantes y definiciones globales de configuración
 
@@ -38,39 +39,13 @@ export const SUBJECT_COLORS = {
 
 export type SubjectColorKey = keyof typeof SUBJECT_COLORS;
 
-// Enums de configuración
-export enum UserRole {
-  ADMIN = 'admin',
-  TEACHER = 'teacher',
-  STUDENT = 'student',
-  GUEST = 'guest'
-}
+// Re-export types from global.ts as source of truth
+export type { UserRole, DifficultyLevel, ExerciseStatus } from '../types/global';
 
-export enum ExerciseStatus {
-  PENDING = 'pending',
-  IN_PROGRESS = 'in_progress',
-  COMPLETED = 'completed',
-  FAILED = 'failed'
-}
+// Subject status remains here as it's specific to this module
+export type SubjectStatus = 'active' | 'archived' | 'upcoming';
 
-export enum DifficultyLevel {
-  EASY = 'facil',
-  MEDIUM = 'medio',
-  HARD = 'dificil'
-}
-
-export enum SubjectStatus {
-  ACTIVE = 'activa',
-  ARCHIVED = 'archivada',
-  UPCOMING = 'proxima'
-}
-
-export enum EventType {
-  INFO = 'info',
-  WARNING = 'warning',
-  ERROR = 'error',
-  SUCCESS = 'success'
-}
+export type EventType = 'info' | 'warning' | 'error' | 'success';
 
 // Tipos de configuración
 export interface Route {

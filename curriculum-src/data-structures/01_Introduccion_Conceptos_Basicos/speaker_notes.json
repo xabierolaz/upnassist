@@ -1,0 +1,247 @@
+{
+    "Introducción y Conceptos Básicos de Python": {
+        "time": "1 min",
+        "script": [
+            "Buenos días a todos. Bienvenidos a la asignatura de Estructura de Datos.",
+            "Hoy empezamos con una sesión de nivelación (Bootcamp). El objetivo es que nadie se quede atrás por temas de sintaxis o herramientas.",
+            "Aunque sepáis programar, prestad atención a la sección de Clases, porque la usaremos todo el curso."
+        ]
+    },
+    "Índice": {
+        "time": "1 min",
+        "script": [
+            "Vamos a dividir la clase en tres bloques:",
+            "1. Herramientas: Instalar lo necesario para no luchar contra el ordenador.",
+            "2. Python Pro: Trucos (sintaxis 'sugar') que diferencian a un novato de un experto.",
+            "3. Objetos: El núcleo de la asignatura. Entenderemos qué es una clase con ejemplos reales."
+        ]
+    },
+    "Entornos de Desarrollo Integrados": {
+        "time": "< 1 min",
+        "script": [
+            "Breve introducción al primer bloque. Solo transición."
+        ]
+    },
+    "IDE": {
+        "time": "3 min",
+        "script": [
+            "¿Dónde escribís código? Por favor, el Bloc de Notas de Windows está prohibido. Es como cavar una zanja con una cuchara.",
+            "Necesitáis un IDE. Un programa que os ayude: colorea el código, avisa de errores y autocompleta.",
+            "Recomendación: Spyder (muy científico, parecido a MATLAB) o PyCharm (el estándar de la industria)."
+        ],
+        "qa": [
+            {
+                "q": "¿Puedo usar VS Code?",
+                "a": "Sí, por supuesto. Es excelente, pero asegúrate de instalar la extensión de Python de Microsoft."
+            },
+            {
+                "q": "¿Y Google Colab?",
+                "a": "Sirve para pruebas rápidas, pero para las prácticas grandes de la asignatura necesitáis trabajar en local con archivos .py."
+            }
+        ]
+    },
+    "Instalando Spyder": {
+        "time": "2 min",
+        "script": [
+            "Si no queréis complicaciones, descargad Anaconda.",
+            "Es un 'todo en uno': trae Python, Spyder, Jupyter y las librerías matemáticas.",
+            "Instalar y listo. Ahorra muchos problemas de configuración de variables de entorno."
+        ],
+        "qa": [
+            {
+                "q": "Anaconda pesa mucho (4GB). ¿Alternativa?",
+                "a": "Instala 'Miniconda' o Python oficial + VS Code."
+            },
+            {
+                "q": "Tengo Mac/Linux, ¿funciona?",
+                "a": "Sí, Anaconda es multiplataforma."
+            }
+        ]
+    },
+    "Controlando el final de línea (end)": {
+        "time": "2 min",
+        "script": [
+            "Imaginad que `print` es una máquina de escribir antigua.",
+            "Por defecto, al terminar de escribir, la máquina golpea el rodillo y baja de línea automáticamente (ENTER).",
+            "El parámetro `end` sirve para cambiar ese comportamiento.",
+            "Si ponemos `end=' '`, le decimos: 'No bajes de línea, pon un espacio y quédate ahí'."
+        ]
+    },
+    "Desempaquetado y Separadores (sep)": {
+        "time": "3 min",
+        "script": [
+            "El asterisco `*` es el operador de desempaquetado. Vuelca los elementos de la lista uno a uno.",
+            "Aquí entra en juego `sep` (separador).",
+            "Por defecto, Python pone un espacio entre cada elemento que imprimimos.",
+            "Con `sep=' - '` podemos elegir qué carácter poner en medio de esos elementos desempaquetados."
+        ],
+        "qa": [
+            {
+                "q": "¿Cuál es la diferencia entre imprimir la lista sola e imprimirla con asterisco?",
+                "a": "Sin asterisco, imprimes el OBJETO lista (con corchetes y comas). Con asterisco, imprimes los ELEMENTOS sueltos."
+            }
+        ]
+    },
+    "Asignación Múltiple de Variables": {
+        "time": "2 min",
+        "script": [
+            "Mirad la comparación. A la izquierda, la forma Pythonica. A la derecha, la forma lenta.",
+            "Python reparte como si fueran cartas: 'Una para ti (nombre), otra para mí (edad)'.",
+            "Es mucho más limpio y evita errores de copiar y pegar."
+        ]
+    },
+    "Asignación de Variables con Desempaquetado": {
+        "time": "3 min",
+        "script": [
+            "Fijaos en el ejemplo de los colores.",
+            "En el primer caso: La variable `azul` se queda con el valor 'azul' porque va PRIMERA. La variable `verde` con 'verde' porque va SEGUNDA.",
+            "Y la variable `*resto` (la que tiene el asterisco) actúa de escoba y recoge todo lo que sobra ('rojo' y 'negro').",
+            "Lo importante es la posicion respecto a las comas."
+        ],
+        "qa": [
+            {
+                "q": "¿Por qué no puedo poner dos asteriscos?",
+                "a": "Porque Python no sabría dónde cortar. ¿Dónde acaba la primera parte y empieza la segunda? Es ambiguo."
+            }
+        ]
+    },
+    "El Problema: ¿En qué posición está?": {
+        "time": "2 min",
+        "script": [
+            "Tenemos una lista de corredores: Ana, Beto...",
+            "Problema: Quiero imprimir '1. Ana', '2. Beto'.",
+            "Intento 1: Si uso `for x in lista`, pierdo el número.",
+            "Intento 2: Si uso `range(len())`, funciona, pero el código es feo, largo y difícil de leer."
+        ]
+    },
+    "La Solución: enumerate": {
+        "time": "2 min",
+        "script": [
+            "Aquí está la solución elegante: `enumerate`.",
+            "Esta función nos permite pedirle al bucle DOS cosas a la vez.",
+            "La primera variable (`i`) será nuestro contador automático (0, 1, 2...).",
+            "La segunda variable (`nombre`) será el dato real.",
+            "Fijaos que ya no usamos corchetes `[]` ni calculamos longitudes. Es mucho más limpio."
+        ],
+        "qa": []
+    },
+    "Ayuda, No Puedo Acceder a mi Archivo": {
+        "time": "3 min",
+        "script": [
+            "Este es el error nº1 en prácticas. El alumno copia la ruta de Windows: `C:\\notas\\trabajo.txt`.",
+            "¡Cuidado! Python leerá el `\\n` de `\\notas` como un salto de línea y el programa fallará.",
+            "Consejo para Spyder: Olvidad las barras invertidas. Usad siempre la barra normal `/`. Python se encarga de traducirlo por debajo.",
+            "Y recordad: si no encuentra el archivo, haced un `os.getcwd()` para ver qué carpeta 'cree' Python que es la actual."
+        ],
+        "qa": []
+    },
+    "Cerrando el Archivo (Importante)": {
+        "time": "3 min",
+        "script": [
+            "Dejar un archivo abierto es como dejar la nevera abierta. Gastas recursos y puedes corromper datos.",
+            "La Opción 1 (Manual) es arriesgada. Si el programa falla antes del `close()`, el archivo se queda abierto (zombie).",
+            "La Opción 2 (with) es la profesional. Es una 'puerta automática'. Aunque el programa falle dentro, Python garantiza que el archivo se cierra al salir."
+        ]
+    },
+    "Iterar Sobre un Archivo": {
+        "time": "2 min",
+        "script": [
+            "Esta es la mejor forma.",
+            "Tratad el archivo como si fuera una lista. Un bucle `for` os da las líneas una a una.",
+            "Es eficiente (no carga todo en memoria) y limpio."
+        ],
+        "qa": [
+            {
+                "q": "¿Por qué sale doble salto de línea al imprimir?",
+                "a": "Porque la línea del archivo ya tiene un `\\n` al final, y el `print` añade otro. Usad `linea.strip()`."
+            }
+        ]
+    },
+    "Usando F-Strings": {
+        "time": "3 min",
+        "script": [
+            "La evolución de imprimir texto.",
+            "Lo de abajo es lo moderno (desde Python 3.6). Se llama F-String.",
+            "Ponéis una `f` delante y escribís las variables directamente entre llaves `{}`. Es como leer una frase normal."
+        ]
+    },
+    "Cómo Comentar Código": {
+        "time": "2 min",
+        "script": [
+            "Hay dos formas de hablar con Python.",
+            "La `#` es para ti mismo o para otro programador (notas rapidas).",
+            "Las triples comillas `\"\"\"` son para DOCUMENTAR. Si alguien usa tu funcion, Spyder le mostrara ese texto como ayuda.",
+            "Recordad: el buen codigo se explica casi solo, los comentarios deben decir POR QUE hacemos algo, no QUE hacemos."
+        ]
+    },
+    "Buenas Prácticas: La función main": {
+        "time": "2 min",
+        "script": [
+            "¿Por qué definimos `main()` en lugar de escribir código a lo loco?",
+            "1. Orden. Sabemos dónde empieza todo.",
+            "2. Limpieza. Las variables dentro de `main` mueren al terminar `main`. No se quedan flotando (variables globales) consumiendo memoria o causando bugs."
+        ]
+    },
+    "El Guardián: if __name__ == \"__main__\"": {
+        "time": "4 min (Concepto Difícil)",
+        "script": [
+            "Este bloque raro `if __name__...` lo veréis siempre.",
+            "Es un control de seguridad. Imaginad que sois una librería.",
+            "Pregunta: '¿Me has dado al Play a mí directamente?'. Si es sí, ejecuto `main()`.",
+            "Si es no (porque alguien me ha importado para usar mis funciones), me quedo quieto.",
+            "Copiad y pegad esto en todos vuestros scripts."
+        ]
+    },
+    "¿Qué es una Clase? (El Molde)": {
+        "time": "5 min",
+        "script": [
+            "Analogía clave: El Molde y la Galleta.",
+            "La Clase es el molde. Es abstracto. No se puede comer.",
+            "El Objeto es la galleta. Es real. Tienes una, te la comes.",
+            "Con un solo molde (Clase Estudiante) podemos hacer mil galletas distintas (Juan, Ana, Luis...)."
+        ],
+        "qa": []
+    },
+    "Partes de una Clase": {
+        "time": "2 min",
+        "script": [
+            "Es simple: Datos y Acciones.",
+            "Atributos = Variables pegadas al objeto (Color, Edad).",
+            "Métodos = Funciones pegadas al objeto (Correr, Saltar)."
+        ]
+    },
+    "El Nacimiento: __init__": {
+        "time": "5 min (Concepto Clave)",
+        "script": [
+            "El `__init__` es el nacimiento del objeto. Python lo llama AUTOMÁTICAMENTE.",
+            "self: Es la referencia a sí mismo. Significa 'MI'.",
+            "Cuando ponemos `self.nombre = nombre`, estamos diciendo: 'Guarda en MI mochila el nombre que me han pasado'."
+        ]
+    },
+    "¿Por Qué el __? (Privacidad)": {
+        "time": "3 min",
+        "script": [
+            "Problema: Si dejamos la nota pública, alguien podría poner `juan.nota = 1000` y romper el sistema.",
+            "Solución: Los dos guiones bajos `__` son un candado.",
+            "Solo el propio objeto puede tocar sus variables privadas desde dentro."
+        ]
+    },
+    "Añadiendo un Método (Acción)": {
+        "time": "3 min",
+        "script": [
+            "OJO AQUÍ: La trampa del `self`.",
+            "Al DEFINIR la función `estudiar`, tengo que escribir `self` porque necesito saber QUIÉN estudia.",
+            "Pero al LLAMARLA `juan.estudiar(10)`, NO escribo `juan` dentro del paréntesis.",
+            "¿Por qué? Porque Python hace magia: coge lo que hay a la izquierda del punto (`juan`) y lo mete como primer argumento invisible."
+        ],
+        "qa": []
+    },
+    "La Magia del self (¿Qué pasa por debajo?)": {
+        "time": "2 min",
+        "script": [
+            "Si alguna vez os liáis con el número de argumentos, acordaos de esta diapositiva.",
+            "Cuando llamáis a `juan.estudiar(5)`, Python coge a `juan` (el sujeto) y lo mete a la fuerza como primer argumento.",
+            "Por eso la función recibe DOS cosas: `juan` (que se llama `self` dentro) y `5` (las horas)."
+        ]
+    }
+}

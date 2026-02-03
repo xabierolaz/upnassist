@@ -36,6 +36,22 @@ class MockWorker {
 // @ts-ignore
 global.Worker = MockWorker;
 
+// Mock SharedArrayBuffer and Atomics for tests
+if (typeof global.SharedArrayBuffer === 'undefined') {
+    // @ts-ignore
+    global.SharedArrayBuffer = ArrayBuffer;
+}
+
+if (typeof global.Atomics === 'undefined') {
+    // @ts-ignore
+    global.Atomics = {
+        store: vi.fn(),
+        notify: vi.fn(),
+        wait: vi.fn(),
+        load: vi.fn(),
+    };
+}
+
 // Runs a cleanup after each test case (e.g. clearing jsdom)
 afterEach(() => {
   cleanup();

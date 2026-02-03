@@ -12,6 +12,7 @@ interface CodeEditorProps {
   minHeight?: string; // Mantenemos la prop en la interfaz por compatibilidad
   lintErrors?: LintError[];
   fontSize?: number;
+  activeLine?: number | null;
 }
 
 // Configure Monaco Editor with Python language support and autocomplete
@@ -175,10 +176,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   readOnly = false,
   fontSize = 14,
   lintErrors,
+  activeLine,
   // minHeight is intentionally ignored/removed from destructuring to avoid unused var error
 }) => {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const monacoRef = useRef<typeof import('monaco-editor') | null>(null);
+  const decorationsRef = useRef<string[]>([]);
 
   const handleEditorDidMount = (editor: editor.IStandaloneCodeEditor, monaco: typeof import('monaco-editor')) => {
     editorRef.current = editor;
@@ -242,6 +245,32 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       }
     }
   }, [lintErrors]);
+
+  // Apply active line highlight
+  useEffect(() => {
+    if (editorRef.current && monacoRef.current) {
+        const newDecorations: editor.IModelDeltaDecoration[] = [];
+        
+        if (activeLine) {
+            newDecorations.push({
+                range: new monacoRef.current.Range(activeLine, 1, activeLine, 1),
+                options: {
+                    isWholeLine: true,
+                    className: 'debug-line-highlight',
+                    glyphMarginClassName: 'debug-glyph-margin',
+                }
+            });
+            
+            // Scroll to the line
+            editorRef.current.revealLineInCenterIfOutsideViewport(activeLine);
+        }
+        
+        decorationsRef.current = editorRef.current.deltaDecorations(
+            decorationsRef.current,
+            newDecorations
+        );
+    }
+  }, [activeLine]);
 
   return (
     <div className="h-full w-full border-t border-gray-200">

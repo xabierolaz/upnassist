@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguageStore } from '../../store/languageStore';
+import VisualizerCard from './VisualizerCard';
 
 interface ListMethod {
     name: string;
@@ -154,38 +155,19 @@ export const METHODS: ListMethod[] = [
 ];
 
 export const InteractiveListVisualizer: React.FC = () => {
-    const { currentLang } = useLanguageStore();
+    const { currentLang, t } = useLanguageStore();
     const [activeMethod, setActiveMethod] = useState<ListMethod | null>(null);
 
     const baseState: ReturnType<ListMethod['apply']> = { resultList: BASE_LIST };
     const currentState = activeMethod ? activeMethod.apply(BASE_LIST) : baseState;
 
-    // Determine what to show in the visualization area
-    // If hovering 'pop' or 'remove', we might want to show the list BEFORE it disappears, but with visual cues?
-    // Actually, showing the RESULT is more instructive, perhaps with a "phantom" effect for removed items if complex.
-    // For simplicity, we just show the RESULT list.
-    
-    // However, for pedagogical reasons, seeing the connection is good.
-    // Let's keep it simple: Show the Result List.
-    // If something was removed, maybe we can't see it in the result list. 
-    // BUT we can use the 'returnedValue' to show what came out.
-    
     return (
-        <div className="my-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
-            <div className="bg-gray-50 p-4 border-b border-gray-200">
-                <h3 className="font-bold text-gray-700 text-lg flex items-center gap-2">
-                    <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-mono">i</span>
-                    {currentLang === 'EUS' ? 'Zerrenda Metodoen Simulatzailea' : 
-                     currentLang === 'CAS' ? 'Simulador de Métodos de Lista' : 
-                     'List Methods Simulator'}
-                </h3>
-                <p className="text-sm text-gray-500 mt-1">
-                    {currentLang === 'EUS' ? 'Pasatu sagua metodoen gainetik zerrenda nola aldatzen den ikusteko.' :
-                     currentLang === 'CAS' ? 'Pasa el ratón sobre los métodos para ver cómo cambia la lista.' :
-                     'Hover over methods to see how the list changes.'}
-                </p>
-            </div>
-
+        <VisualizerCard
+            title={t.visualizers.list.title}
+            instruction={t.visualizers.list.instruction}
+            icon="i"
+            iconColor="bg-blue-600"
+        >
             {/* Visualization Area */}
             <div className="p-8 bg-slate-100 flex flex-col items-center justify-center min-h-[240px] transition-all duration-300">
                 
@@ -240,13 +222,13 @@ export const InteractiveListVisualizer: React.FC = () => {
                     <thead className="bg-gray-50 text-gray-500 font-medium border-b border-gray-200">
                         <tr>
                             <th className="px-6 py-3 w-24">
-                                {currentLang === 'EUS' ? 'Metodoa' : currentLang === 'CAS' ? 'Método' : 'Method'}
+                                {t.visualizers.list.method}
                             </th>
                             <th className="px-6 py-3 w-48">
-                                {currentLang === 'EUS' ? 'Erabilera' : currentLang === 'CAS' ? 'Uso' : 'Usage'}
+                                {t.visualizers.list.usage}
                             </th>
                             <th className="px-6 py-3">
-                                {currentLang === 'EUS' ? 'Azalpena' : currentLang === 'CAS' ? 'Explicación' : 'Description'}
+                                {t.visualizers.list.description}
                             </th>
                         </tr>
                     </thead>
@@ -275,6 +257,6 @@ export const InteractiveListVisualizer: React.FC = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </VisualizerCard>
     );
 };

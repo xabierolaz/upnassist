@@ -1,0 +1,813 @@
+\documentclass[11pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usetheme{Darmstadt}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{
+	\begin{beamercolorbox}[ht=3ex,leftskip=1.4cm,rightskip=.3cm]{author in head/foot}
+		\hfill \insertframenumber
+		\vspace*{0.07cm}
+	\end{beamercolorbox}
+} 
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage{amsmath}
+\usepackage{booktabs}
+
+% color def
+\usepackage{color}
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+
+\usepackage{nth}
+
+% General Setting of listings
+\lstset{
+	language=Python,
+	tabsize=4,
+	aboveskip=1em,
+	breaklines=true,
+	abovecaptionskip=-6pt,
+	captionpos=b,
+	escapeinside={\%*}{*)},
+	frame=single,
+	numbers=left,
+	numbersep=8pt,
+	numberstyle=\tiny,
+	morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,} % Python builtin
+	morekeywords=[2]{,__init__,__add__,__mul__,__div__,__sub__,__call__,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__,__future__,__all__,}, % magic methods
+	morekeywords=[3]{,object,type,isinstance,copy,deepcopy,zip,enumerate,reversed,list,set,len,dict,tuple,range,xrange,append,execfile,real,imag,reduce,str,repr,}, % common functions
+	morekeywords=[4]{,Exception,NameError,IndexError,SyntaxError,TypeError,ValueError,OverflowError,ZeroDivisionError,}, % errors
+	morekeywords=[5]{,ode,fsolve,sqrt,exp,sin,cos,arctan,arctan2,arccos,pi, array,norm,solve,dot,arange,isscalar,max,sum,flatten,shape,reshape,find,any,all,abs,plot,linspace,legend,quad,polyval,polyfit,hstack,concatenate,vstack,column_stack,empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze,}, % numpy / math
+	deletekeywords=[2]{next,set},
+	deletekeywords=[3]{next,set},
+	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{white},
+	commentstyle=\color{darkgreen}\slshape,
+	keywordstyle=\color{blue}\bfseries\itshape,
+	keywordstyle=[2]\color{blue}\bfseries,
+	keywordstyle=[3]\color{grass},
+	keywordstyle=[4]\color{red},
+	keywordstyle=[5]\color{orange},
+	stringstyle=\color{darkred},
+	emphstyle=\color{pink}\underbar,
+	morestring=*[d]{"},
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1 {¿}{{\textquestiondown}}1 {¡}{{\textexclamdown}}1
+}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning,overlay-beamer-styles,arrows.meta,bending}
+
+\tikzset{  
+    vertex/.style={circle, draw, minimum size=8mm, thick},
+    edge/.style={draw, -{Stealth[length=3mm]}},
+    biedge/.style={draw, {Stealth[length=3mm]}-{Stealth[length=3mm]}},
+    weight/.style={midway, fill=white, inner sep=1pt}
+}
+
+
+\begin{document}
+	\author{Estructura de Datos}
+	\title{Grafos}
+	\titlegraphic{\includegraphics[width=3cm]{img/UPNA}}
+	\date[]{2025-2026}
+	\subject{Estructura de Datos}
+
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
+
+\section{¿Qué es un Grafo?}
+
+\begin{frame}\frametitle{¿Qué es un Grafo?}
+\begin{itemize}
+\item ¿Cómo puede Google Maps encontrar el camino de una ciudad a otra?
+\item ¿Cómo Facebook, Twitter... rastrean las relaciones entre usuarios?
+\item Si intentamos representar Internet como un dibujo, ¿qué forma tendría?
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Definición}
+\begin{itemize}
+\item Un grafo es una estructura que representa relaciones entre elementos
+\item Una tupla de vértices y aristas
+\begin{itemize}
+    \item Un conjunto de vértices: $V = {v_1, v_2, ..., v_n}$
+    \item Un conjunto de aristas: $E = {e_1, e_2, ..., e_m}$
+\end{itemize}
+\pause
+\hspace{1cm}
+\begin{block}{}
+$$
+G = (V, E)
+$$
+\end{block}
+\end{itemize}
+\end{frame}
+
+\subsection{Terminología Básica}
+
+\begin{frame}\frametitle{Vértice}
+\begin{itemize}
+\item También conocidos como nodos
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex, very thick, fill=blue!20] (A) at (0,0) {A};
+    \node[vertex, very thick, fill=blue!20] (B) at (3,2) {B};
+    \node[vertex, very thick, fill=blue!20] (C) at (4,1) {C};
+    \node[vertex, very thick, fill=blue!20] (D) at (2,-1) {D};
+    \node[vertex, very thick, fill=blue!20] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Arista (Edge)}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[very thick, color=blue!50] (A) to[bend left] (B);
+    \draw[very thick, color=blue!50] (B) to[bend left] (C);
+    \draw[very thick, color=blue!50] (C) to[bend left] (D);
+    \draw[very thick, color=blue!50] (D) to[bend left] (A);
+    \draw[very thick, color=blue!50] (A) -- (C); 
+    \draw[very thick, color=blue!50] (E) to[bend right=80] (D);
+    \draw[very thick, color=blue!50] (E) to[bend left] (B);
+    \draw[very thick, color=blue!50] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}\frametitle{Camino (Path)}
+\begin{itemize}
+\item Una secuencia de aristas que conectan vértices
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex, fill=blue!20] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex, fill=blue!20] (C) at (4,1) {C};
+    \node[vertex, fill=blue!20] (D) at (2,-1) {D};
+    \node[vertex, fill=blue!20] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw[very thick, color=blue!50] (C) to[bend left] (D);
+    \draw[very thick, color=blue!50] (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw[very thick, color=blue!50] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\begin{frame}\frametitle{Conexión entre elementos}
+\begin{block}{}
+¿Es lo siguiente un grafo? % SÍ
+\end{block}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    %\draw (B) to[bend left] (C);
+    %\draw (C) to[bend left) (D);
+    \draw (D) to[bend left] (A);
+    %\draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Auto-aristas (Self edges)}
+\begin{itemize}
+\item Algunos grafos permiten aristas que conectan un vértice consigo mismo
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+    \draw[very thick] (C) to[in=-30, out=30, looseness=12] (C);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{Tipos de Grafos}
+
+\subsection{No Dirigidos}
+
+\begin{frame}\frametitle{Grafos No Dirigidos}
+\begin{itemize}
+\item Las aristas no tienen una dirección específica
+    \begin{itemize}
+    \item Las aristas siempre serán bidireccionales
+    \item La arista ${A,B}$ es la misma que ${B,A}$
+    \end{itemize}
+\pause
+\item ¿Qué podría ser un ejemplo de la vida real de un grafo no dirigido? % Amigos de Facebook
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Grado}
+\begin{itemize}
+\item Número de aristas conectadas a un vértice
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Grado}
+\begin{itemize}
+\item Número de aristas conectadas a un vértice
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {4};
+    \node[vertex] (B) at (3,2) {3};
+    \node[vertex] (C) at (4,1) {3};
+    \node[vertex] (D) at (2,-1) {3};
+    \node[vertex] (E) at (-2, 2.5) {3};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\subsection{Dirigidos}
+
+\begin{frame}\frametitle{Grafos Dirigidos}
+\begin{itemize}
+\item Las aristas pueden tener dirección
+\item Cada arista tendrá un origen y un destino
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[edge] (A) to[bend left] (B);
+    \draw[edge] (B) to[bend left] (C);
+    \draw[edge] (C) to[bend left] (D);
+    \draw[edge] (D) to[bend left] (A);
+    \draw[biedge] (A) -- (C); 
+    \draw[edge] (E) to[bend right=80] (D);
+    \draw[biedge] (E) to[bend left] (B);
+    \draw[edge] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Grado}
+\begin{itemize}
+\item Podemos diferenciar dos grados para un vértice
+    \begin{description}
+        \item[Grado de entrada:] El número de aristas que entran
+        \item[Grado de salida:] El número de aristas que salen
+    \end{description}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Grado de entrada}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {3};
+    \node[vertex] (B) at (3,2) {2};
+    \node[vertex] (C) at (4,1) {2};
+    \node[vertex] (D) at (2,-1) {2};
+    \node[vertex] (E) at (-2, 2.5) {1};
+
+    % edges
+    \draw[edge] (A) to[bend left] (B);
+    \draw[edge] (B) to[bend left] (C);
+    \draw[edge] (C) to[bend left] (D);
+    \draw[edge] (D) to[bend left] (A);
+    \draw[biedge] (A) -- (C); 
+    \draw[edge] (E) to[bend right=80] (D);
+    \draw[biedge] (E) to[bend left] (B);
+    \draw[edge] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Grado de salida}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {2};
+    \node[vertex] (B) at (3,2) {2};
+    \node[vertex] (C) at (4,1) {2};
+    \node[vertex] (D) at (2,-1) {1};
+    \node[vertex] (E) at (-2, 2.5) {3};
+
+    % edges
+    \draw[edge] (A) to[bend left] (B);
+    \draw[edge] (B) to[bend left] (C);
+    \draw[edge] (C) to[bend left] (D);
+    \draw[edge] (D) to[bend left] (A);
+    \draw[biedge] (A) -- (C); 
+    \draw[edge] (E) to[bend right=80] (D);
+    \draw[biedge] (E) to[bend left] (B);
+    \draw[edge] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+\subsection{Ponderados}
+
+\begin{frame}\frametitle{Grafos Ponderados}
+\begin{itemize}
+\item En algunos casos nos interesa añadir un peso a cada arista
+\begin{itemize}
+\item Un coste por recorrer la arista
+\end{itemize}
+\item Se puede usar en grafos dirigidos o no dirigidos
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape, 
+                    weight/.style={midway, fill=white, inner sep=1pt}]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[edge] (A) to[bend left] node[weight] {5} (B);
+    \draw[edge] (B) to[bend left] node[weight] {1} (C);
+    \draw[edge] (C) to[bend left] node[weight] {4} (D);
+    \draw[edge] (D) to[bend left] node[weight] {2} (A);
+    \draw[biedge] (A) -- node[weight] {7} (C) ; 
+    \draw[edge] (E) to[bend right=80] node[weight] {15} (D);
+    \draw[biedge] (E) to[bend left] node[weight] {8} (B);
+    \draw[edge] (E) to[bend left] node[weight] {3} (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Más Terminología}
+\begin{description}
+\item[Longitud del camino:] Número de aristas en un camino
+\item[Coste del camino:] Suma de pesos en un camino
+\end{description}
+\begin{block}{}
+Calcula la longitud y el coste del camino más corto de E a D
+\end{block}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape,
+                    weight/.style={midway, fill=white, inner sep=1pt}]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex, fill=blue!20] (D) at (2,-1) {D};
+    \node[vertex, fill=blue!20] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[edge] (A) to[bend left] node[weight] {5} (B);
+    \draw[edge] (B) to[bend left] node[weight] {1} (C);
+    \draw[edge] (C) to[bend left] node[weight] {4} (D);
+    \draw[edge] (D) to[bend left] node[weight] {2} (A);
+    \draw[biedge] (A) -- node[weight] {7} (C) ; 
+    \draw[edge] (E) to[bend right=80] node[weight] {15} (D);
+    \draw[biedge] (E) to[bend left] node[weight] {8} (B);
+    \draw[edge] (E) to[bend left] node[weight] {3} (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{Representación de Grafos}
+
+\begin{frame}\frametitle{Del Concepto a la Estructura de Datos}
+\begin{itemize}
+\item Un grafo es útil para las siguientes preguntas:
+    \begin{itemize}
+    \item ¿Cuál es el camino más corto entre dos ciudades?
+    \item ¿Hay una ruta que visite cada nodo exactamente una vez? 
+    \item ¿Cuántos grados de separación hay entre dos usuarios?
+    \item ¿Hay comunidades o grupos de personas?
+    \item ¿Qué páginas web son más importantes? (PageRank)
+    \end{itemize}
+\item Necesitamos una Estructura de Datos para almacenar la información del grafo y trabajar con ella
+\item Hay diferentes enfoques
+    \begin{itemize}
+    \item Según la información en el grafo (denso o disperso)
+    \item Según las consultas comunes (qué aristas tiene un vértice o si existe la arista (u, v))
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Matriz de Adyacencia}
+
+\begin{frame}\frametitle{Matriz de Adyacencia}
+\begin{itemize}
+\item Usa una matriz $n\times n$ donde $n$ es el número de vértices
+    \begin{itemize}
+    \item $G[i][j] = 1$ si hay una arista del vértice i al vértice j
+    \item $G[i][j] = 0$ en caso contrario
+    \end{itemize}
+\pause
+\item Crea la matriz para el siguiente grafo:
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%\begin{frame}\frametitle{Matriz de Adyacencia No Dirigida}
+%\begin{center}
+%$
+%\mathbf{G} = 
+%    \bordermatrix{ 
+%        & A & B & C & D & E \cr
+%      A & 0 & 1 & 1 & 1 & 1 \cr
+%      B & 1 & 0 & 1 & 0 & 1 \cr
+%      C & 1 & 1 & 0 & 1 & 0 \cr
+%      D & 1 & 0 & 1 & 0 & 1 \cr
+%      E & 1 & 1 & 0 & 1 & 0 
+%      }
+%$
+%\end{center}
+%\pause
+%\begin{itemize}
+%\item ¿Hay alguna propiedad especial en esta matriz? 
+%% diagonales 0
+%% simétrica
+%\pause
+%\item ¿Qué pasa con las auto-aristas?
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}\frametitle{Matriz de Adyacencia Dirigida}
+\begin{itemize}
+\item ¿Es la matriz de adyacencia de este grafo igual que antes?
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[edge] (A) to[bend left] (B);
+    \draw[edge] (B) to[bend left] (C);
+    \draw[edge] (C) to[bend left] (D);
+    \draw[edge] (D) to[bend left] (A);
+    \draw[biedge] (A) -- (C); 
+    \draw[edge] (E) to[bend right=80] (D);
+    \draw[biedge] (E) to[bend left] (B);
+    \draw[edge] (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%\begin{frame}\frametitle{Matriz de Adyacencia Dirigida}
+%\begin{center}
+%$
+%\mathbf{G} = 
+%    \bordermatrix{ 
+%        & A & B & C & D & E \cr
+%      A & 0 & 1 & 1 & 0 & 0 \cr
+%      B & 0 & 0 & 1 & 0 & 1 \cr
+%      C & 1 & 0 & 0 & 1 & 0 \cr
+%      D & 1 & 0 & 0 & 0 & 0 \cr
+%      E & 1 & 1 & 0 & 1 & 0 
+%      }
+%$
+%\end{center}
+%\pause
+%\begin{itemize}
+%\item ¿La matriz ya no es simétrica? 
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}\frametitle{Matriz de Adyacencia Ponderada}
+\begin{itemize}
+\item Ahora, trabajemos con un grafo ponderado.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape,
+                    weight/.style={midway, fill=white, inner sep=1pt}]]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw[edge] (A) to[bend left] node[weight] {5} (B);
+    \draw[edge] (B) to[bend left] node[weight] {1} (C);
+    \draw[edge] (C) to[bend left] node[weight] {4} (D);
+    \draw[edge] (D) to[bend left] node[weight] {2} (A);
+    \draw[biedge] (A) -- node[weight] {7} (C) ; 
+    \draw[edge] (E) to[bend right=80] node[weight] {15} (D);
+    \draw[biedge] (E) to[bend left] node[weight] {8} (B);
+    \draw[edge] (E) to[bend left] node[weight] {3} (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%\begin{frame}\frametitle{Matriz de Adyacencia Ponderada}
+%\begin{center}
+%$
+%\mathbf{G} = 
+%    \bordermatrix{ 
+%        & A & B & C & D & E \cr
+%      A & 0 & 5 & 7 & 0 & 0 \cr
+%      B & 0 & 0 & 1 & 0 & 8 \cr
+%      C & 7 & 0 & 0 & 4 & 0 \cr
+%      D & 2 & 0 & 0 & 0 & 0 \cr
+%      E & 3 & 8 & 0 & 15 & 0 
+%      }
+%$
+%\end{center}
+%\end{frame}
+
+\subsection{Lista de Adyacencia}
+
+\begin{frame}\frametitle{Lista de Adyacencia}
+\begin{itemize}
+\item Otra opción es almacenar una lista de todos los vértices adyacentes para cada vértice.
+\pause
+\item ¿Cuáles serán las listas creadas para el siguiente grafo?
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=1, transform shape]
+    % Nodes
+    \node[vertex] (A) at (0,0) {A};
+    \node[vertex] (B) at (3,2) {B};
+    \node[vertex] (C) at (4,1) {C};
+    \node[vertex] (D) at (2,-1) {D};
+    \node[vertex] (E) at (-2, 2.5) {E};
+
+    % edges
+    \draw (A) to[bend left] (B);
+    \draw (B) to[bend left] (C);
+    \draw (C) to[bend left] (D);
+    \draw (D) to[bend left] (A);
+    \draw (A) -- (C); 
+    \draw (E) to[bend right=80] (D);
+    \draw (E) to[bend left] (B);
+    \draw (E) to[bend left] (A);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+%\begin{frame}\frametitle{Ejemplo de Lista de Adyacencia}
+%\begin{description}
+%\item[A:] B, C, D, E
+%\item[B:] A, C, E
+%\item[C:] A, B, D
+%\item[D:] A, C, E
+%\item[E:] A, B, D
+%\end{description}
+%\end{frame}
+
+\begin{frame}[fragile]\frametitle{Lista de Adyacencia en Python}
+\begin{itemize}
+\item ¿Cuál es la mejor estructura para la Lista de Adyacencia en Python?
+% Diccionario o clase
+\pause
+\item Podemos usar un diccionario
+\begin{lstlisting}
+G = {'A': ['B', 'C', 'D', 'E'], 
+     'B': ['A', 'C', 'E'],
+     ...}
+\end{lstlisting}
+\pause
+\item O podemos usar algo similar a los árboles
+\begin{lstlisting}
+class Vertice:
+    def __init__(self, id):
+        self.__id = id
+        self.__adyacentes = []
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Incluyendo más información}
+\begin{itemize}
+\item ¿Qué modificaciones son necesarias para diferenciar un grafo no dirigido de uno dirigido?
+\item ¿Qué pasa si el grafo es ponderado?
+\end{itemize}
+\end{frame}
+
+\subsection{Cuál elegir}
+
+\begin{frame}\frametitle{Complejidad}
+\begin{center}
+\begin{tabular}{@{} lll @{}}
+\toprule
+\textbf{Operación} & \textbf{Matriz Adyacencia} & \textbf{Lista Adyacencia} \\
+\midrule
+Complejidad Espacial             & $O(|V|^2)$           & $O(|V| + |E|)$            \\
+Añadir una arista                & $O(1)$               & $O(1)$                \\
+Eliminar una arista              & $O(1)$               & $O(\deg(v))$          \\
+¿Existe arista $(u,v)$?          & $O(1)$               & $O(\deg(v))$          \\
+Enumerar vecinos                 & $O(|V|)$             & $O(\deg(v))$          \\
+Enumerar aristas                 & $O(|V|^2)$           & $O(|V| + |E|)$            \\
+Obtener peso                     & $O(1)$               & $O(\deg(v))$          \\
+Recorrido DFS/BFS                & $O(|V|^2)$           & $O(|V| + |E|)$            \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Uso de Memoria}
+\begin{itemize}
+\item Matriz de adyacencia
+    \begin{itemize}
+    \item Siempre espacio $|V|^2$ (se puede reducir si no es dirigido)
+    \item Buena para grafos densos donde $|E| \sim |V|^2$
+    \end{itemize}
+\item Lista de adyacencia
+    \begin{itemize}
+    \item Espacio proporcional a $|V| + |E|$
+    \item Mejor para grafos dispersos donde $|E| \ll |V|^2$
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Casos de Uso}
+\centering
+\begin{tabular}{@{} p{0.6\textwidth} l @{}}
+\toprule
+\textbf{Caso de Uso} & \textbf{Mejor Representación} \\
+\midrule
+El grafo es denso & Matriz de Adyacencia \\
+El grafo es disperso & Lista de Adyacencia \\
+Comprobar existencia de arista a menudo & Matriz de Adyacencia \\
+Iterar sobre vecinos frecuentemente & Lista de Adyacencia \\
+Minimizar uso de espacio & Lista de Adyacencia \\
+Usar algoritmo de Dijkstra & Lista de Adyacencia \\
+Usar algoritmo de Floyd-Warshall & Matriz de Adyacencia \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\section{Ejercicios}
+
+% Ejercicio para crear lista de caminos posibles y su coste total
+% Se puede asemejar a la creacion de un arbol donde cada nodo tendra como hijos los posibles caminos
+% para evitar ciclos no se puede añadir como hijo si ya esta en algun punto hacia la raiz
+\begin{frame}\frametitle{Encontrar Caminos}
+\begin{enumerate}
+\item Encuentra el camino más corto de B a H
+\item Encuentra el camino más corto de D to G
+\item ¿Podemos automatizarlo?
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}
+
+% Nodes with randomized positions
+\node[vertex] (A) at (3,1)     {A};
+\node[vertex] (B) at (2,3)     {B};
+\node[vertex] (C) at (5,2)     {C};
+\node[vertex] (D) at (7,1)     {D};
+\node[vertex] (E) at (5,0)     {E};
+\node[vertex] (F) at (2,-1.5)    {F};
+\node[vertex] (G) at (-0.5,0)    {G};
+\node[vertex] (H) at (-1.5,2)    {H};
+
+% Directed edges with weights (max 3 out/in edges per node)
+\draw[biedge] (A) to[bend left=10] node[weight] {4} (B);
+\draw[biedge] (A) to[bend right=15] node[weight] {3} (G);
+\draw[edge] (A) to[bend left=15] node[weight] {2} (F);
+
+\draw[edge] (B) to[bend left=10] node[weight] {7} (C);
+\draw[biedge] (B) to[out=20, in=90] node[weight] {2} (D);
+
+\draw[biedge] (C) to[bend left=10] node[weight] {2} (E);
+
+\draw[edge] (D) to node[weight] {3} (E);
+\draw[biedge] (D) to[out=-90, in=-10] node[weight] {4} (F);
+
+\draw[edge] (E) to[bend left=15] node[weight] {6} (A);
+\draw[edge] (E) to[bend left=10] node[weight] {2} (F);
+
+\draw[biedge] (F) to[bend left=10] node[weight] {3} (G);
+\draw[edge] (F) to[out=200, in=-110] node[weight] {5} (H);
+
+\draw[biedge] (G) to[bend left=10] node[weight] {4} (H);
+
+\draw[edge] (H) to[bend left=20] node[weight] {3} (B);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\end{document}

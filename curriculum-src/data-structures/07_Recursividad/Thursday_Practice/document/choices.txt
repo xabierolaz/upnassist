@@ -1,0 +1,9 @@
+# Primero definimos una lista de opciones
+opciones = ["primera", "segunda", "tercera"]
+# Ahora creamos una ventana con esas opciones
+eleccion = easygui.choicebox(choices=opciones)
+# Cules son los posibles valores para esta variable?
+print(eleccion)
+
+# Podemos usar esto para crear el men de nuestro programa
+eleccion = easygui.choicebox(msg="Bienvenido al men principal\nSelecciona una opcin", title="Verificador de parntesis", choices=opciones)

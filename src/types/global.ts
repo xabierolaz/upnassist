@@ -44,7 +44,7 @@ export interface FormComponentProps<T = any> extends BaseComponentProps {
 // TIPOS DE DOMINIO - USUARIO
 // ========================================
 
-export type UserRole = 'student' | 'professor' | 'admin';
+export type UserRole = 'admin' | 'teacher' | 'student' | 'guest';
 
 export interface User {
   id: string;

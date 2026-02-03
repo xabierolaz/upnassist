@@ -1,0 +1,16 @@
+from colorama import Fore, Back, Style
+# Establecer el color de forma semi-permanente
+print(Fore.CYAN) # Observa que se inserta un salto de lnea
+print("El texto seguir siendo cian")
+print("hasta que se restablezca o cambie")
+print(Style.RESET_ALL)  # Observa que se inserta un salto de lnea
+# Colorear una sola lnea y luego restablecer
+print(Fore.RED + 'Puedes colorear una sola lnea.' + Style.RESET_ALL)
+# Colorear una sola palabra en la salida
+print('O una sola ' + Back.GREEN + 'palabra' + Style.RESET_ALL + ' puede ser resaltada')
+# Combinar color de primer plano y de fondo
+print(Fore.BLUE + Back.WHITE)
+print('El primer plano, el fondo y los estilos se pueden combinar')
+print("==========")
+print(Style.RESET_ALL)  # Observa que se inserta un salto de linea
+print('Si no ests seguro, restablece todo a la normalidad.')

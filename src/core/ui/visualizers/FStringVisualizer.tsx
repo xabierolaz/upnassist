@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import { useLanguageStore } from '../../store/languageStore';
+import VisualizerCard from './VisualizerCard';
 
 export const FStringVisualizer: React.FC = () => {
-    const { currentLang } = useLanguageStore();
+    const { t } = useLanguageStore();
     const [name, setName] = useState("Alice");
     const [price, setPrice] = useState(49.99);
 
     const priceFormatted = price.toFixed(2);
 
     return (
-        <div className="my-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
-             <div className="bg-gray-50 p-4 border-b border-gray-200">
-                <h3 className="font-bold text-gray-700 text-lg flex items-center gap-2">
-                    <span className="bg-green-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-mono">f</span>
-                    {currentLang === 'EUS' ? 'F-Strings Laborategia' : 
-                     currentLang === 'CAS' ? 'Laboratorio F-Strings' : 
-                     'F-Strings Laboratory'}
-                </h3>
-            </div>
-
+        <VisualizerCard
+            title={t.visualizers.fstring.title}
+            icon="f"
+            iconColor="bg-green-600"
+        >
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Controls */}
                 <div className="space-y-6">
@@ -69,6 +65,6 @@ export const FStringVisualizer: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </VisualizerCard>
     );
 };

@@ -8,11 +8,13 @@ import {
   CogIcon
 } from '@heroicons/react/24/outline';
 import { useLanguageStore } from '../../../store/languageStore';
+import { ErrorCodes, ErrorCode } from '../../types/ErrorCodes';
 
 interface AnalysisResult {
   type: 'error' | 'warning' | 'info' | 'suggestion';
   line: number;
-  message: string;
+  code: ErrorCode;
+  params?: Record<string, string | number>;
   category: 'syntax' | 'logic' | 'style' | 'performance' | 'best-practice';
   severity: 'high' | 'medium' | 'low';
   suggestion?: string;
@@ -21,19 +23,27 @@ interface AnalysisResult {
 interface CodeAnalyzerProps {
   code: string;
   language: 'python' | 'java';
-  onAnalysisComplete: (results: AnalysisResult[]) => void;
+  onAnalysisComplete?: (results: AnalysisResult[]) => void;
+  results?: AnalysisResult[]; // Allow external results injection
 }
 
 export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
   code,
   language,
-  onAnalysisComplete
+  onAnalysisComplete,
+  results: externalResults
 }) => {
-  const [analysis, setAnalysis] = useState<AnalysisResult[]>([]);
+  const [internalAnalysis, setInternalAnalysis] = useState<AnalysisResult[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { t, currentLang } = useLanguageStore();
 
+  // Use external results if provided, otherwise internal
+  const analysis = externalResults || internalAnalysis;
+
   const analyzeCode = useCallback(async () => {
+    // If we have external results, do nothing internal
+    if (externalResults) return;
+
     setIsAnalyzing(true);
     
     // Simulate analysis delay
@@ -50,34 +60,52 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
 
         // Syntax checks
         if (trimmedLine.includes('=') && !trimmedLine.includes('==') && !trimmedLine.includes('!=')) {
-          const assignmentMatch = trimmedLine.match(/([a-zA-Z_]\w*)\s*=\s*(.+)/);
+          const assignmentMatch = trimmedLine.match(/^([a-zA-Z_][a-zA-Z0-9_-]*)\s*=\s*(.+)/);
           if (assignmentMatch) {
             const [, varName] = assignmentMatch;
             
             // Variable naming convention
-            if (varName.includes('-') || varName.startsWith('_') && !varName.startsWith('__')) {
+            const isSnakeCase = /^[a-z0-9_]+$/.test(varName);
+            const isDunder = varName.startsWith('__') && varName.endsWith('__');
+            
+            if (!isSnakeCase && !isDunder && !varName.startsWith('_')) {
               results.push({
                 type: 'warning',
                 line: lineNum,
-                message: `Variable '${varName}' should use snake_case naming`,
+                code: 'STYLE_SNAKE_CASE_VAR',
+                params: { name: varName },
                 category: 'style',
-                severity: 'low',
-                suggestion: 'Use lowercase letters and underscores for variable names'
+                severity: 'low'
               });
             }
             
+            if (varName.startsWith('_') && !varName.startsWith('__')) {
+                results.push({
+                  type: 'info',
+                  line: lineNum,
+                  code: 'STYLE_PRIVATE_VAR',
+                  params: { name: varName },
+                  category: 'best-practice',
+                  severity: 'low'
+                });
+            }
+            
             // Unused assignment detection
+            const usageRegex = new RegExp(`\\b${varName}\\b`);
             const varUsedLater = lines.slice(index + 1).some(laterLine => 
-              laterLine.includes(varName) && !laterLine.trim().startsWith('#')
+              usageRegex.test(laterLine) && !laterLine.trim().startsWith('#')
             );
-            if (!varUsedLater && !trimmedLine.includes('print')) {
+            
+            const isPrintedOnSameLine = trimmedLine.includes('print(') && trimmedLine.includes(varName);
+
+            if (!varUsedLater && !isPrintedOnSameLine && !varName.startsWith('_')) {
               results.push({
                 type: 'warning',
                 line: lineNum,
-                message: `Variable '${varName}' is assigned but never used`,
+                code: 'LOGIC_UNUSED_VAR',
+                params: { name: varName },
                 category: 'logic',
-                severity: 'medium',
-                suggestion: 'Remove unused variables or use them in your program'
+                severity: 'medium'
               });
             }
           }
@@ -94,10 +122,10 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
               results.push({
                 type: 'suggestion',
                 line: lineNum,
-                message: `Function '${funcName}' should use snake_case naming`,
+                code: 'STYLE_SNAKE_CASE_FUNC',
+                params: { name: funcName },
                 category: 'style',
-                severity: 'low',
-                suggestion: 'Use lowercase letters and underscores for function names'
+                severity: 'low'
               });
             }
             
@@ -107,10 +135,10 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
               results.push({
                 type: 'info',
                 line: lineNum,
-                message: `Function '${funcName}' should have a docstring`,
+                code: 'BEST_PRACTICE_DOCSTRING',
+                params: { name: funcName },
                 category: 'best-practice',
-                severity: 'low',
-                suggestion: 'Add a docstring to describe what the function does'
+                severity: 'low'
               });
             }
           }
@@ -118,10 +146,6 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
 
         // Import organization
         if (trimmedLine.startsWith('import ') || trimmedLine.startsWith('from ')) {
-          /* const laterImports = lines.slice(index + 1).some(laterLine => 
-            (laterLine.trim().startsWith('import ') || laterLine.trim().startsWith('from ')) &&
-            !laterLine.trim().startsWith('#')
-          ); */
           const codeBeforeImports = lines.slice(0, index).some(earlierLine => 
             !earlierLine.trim().startsWith('#') && 
             !earlierLine.trim().startsWith('import ') && 
@@ -133,10 +157,9 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
             results.push({
               type: 'warning',
               line: lineNum,
-              message: 'Imports should be at the top of the file',
+              code: 'STYLE_IMPORTS_TOP',
               category: 'style',
-              severity: 'medium',
-              suggestion: 'Move all imports to the beginning of your file'
+              severity: 'medium'
             });
           }
         }
@@ -147,10 +170,9 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
           results.push({
             type: 'warning',
             line: lineNum,
-            message: 'Deep nesting detected (consider refactoring)',
+            code: 'LOGIC_DEEP_NESTING',
             category: 'logic',
-            severity: 'medium',
-            suggestion: 'Break down complex nested code into smaller functions'
+            severity: 'medium'
           });
         }
 
@@ -159,10 +181,9 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
           results.push({
             type: 'suggestion',
             line: lineNum,
-            message: 'Consider using direct iteration instead of range(len())',
+            code: 'PERF_RANGE_LEN',
             category: 'performance',
-            severity: 'low',
-            suggestion: 'Use "for item in list:" instead of "for i in range(len(list)):"'
+            severity: 'low'
           });
         }
 
@@ -172,23 +193,25 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
           results.push({
             type: 'error',
             line: lineNum,
-            message: 'Assignment in conditional statement (did you mean ==?)',
+            code: 'LOGIC_ASSIGN_IN_COND',
             category: 'logic',
-            severity: 'high',
-            suggestion: 'Use == for comparison, = for assignment'
+            severity: 'high'
           });
         }
 
-        // Print statement optimization
-        if (trimmedLine.includes('print(') && lines.filter(l => l.includes('print(')).length > 5) {
-          results.push({
-            type: 'info',
-            line: lineNum,
-            message: 'Many print statements detected',
-            category: 'best-practice',
-            severity: 'low',
-            suggestion: 'Consider using logging module for better output control'
-          });
+        // Print statement optimization - only flag once
+        const printCount = lines.filter(l => l.includes('print(')).length;
+        if (trimmedLine.includes('print(') && printCount > 5) {
+          const alreadyFlagged = results.some(r => r.code === 'BEST_PRACTICE_MANY_PRINT');
+          if (!alreadyFlagged) {
+            results.push({
+              type: 'info',
+              line: lineNum,
+              code: 'BEST_PRACTICE_MANY_PRINT',
+              category: 'best-practice',
+              severity: 'low'
+            });
+          }
         }
       });
     }
@@ -202,10 +225,9 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
       results.push({
         type: 'suggestion',
         line: 1,
-        message: 'Consider adding more comments to explain your code',
+        code: 'BEST_PRACTICE_COMMENTS',
         category: 'best-practice',
-        severity: 'low',
-        suggestion: 'Add comments to explain complex logic and function purposes'
+        severity: 'low'
       });
     }
 
@@ -213,15 +235,14 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
       results.push({
         type: 'info',
         line: 1,
-        message: 'Large file detected - consider breaking into smaller modules',
+        code: 'FILE_TOO_LARGE',
         category: 'logic',
-        severity: 'low',
-        suggestion: 'Split large files into smaller, more focused modules'
+        severity: 'low'
       });
     }
 
-    setAnalysis(results);
-    onAnalysisComplete(results);
+    setInternalAnalysis(results);
+    if (onAnalysisComplete) onAnalysisComplete(results);
     setIsAnalyzing(false);
   }, [code, language, onAnalysisComplete]);
 
@@ -298,7 +319,7 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
         {analysis.length === 0 && !isAnalyzing ? (
           <div className="text-center py-8 text-gray-500">
             <CheckCircleIcon className="h-12 w-12 mx-auto mb-2 text-green-500" />
-            <p>{currentLang === 'EUS' ? 'Kode bikaina! Ez da arazorik aurkitu.' : currentLang === 'CAS' ? '¡Gran código! No se han encontrado problemas.' : 'Great code! No issues found.'}</p>
+            <p>{t.feedbackSuccess}</p>
           </div>
         ) : (
           <div className="space-y-4">
@@ -310,10 +331,15 @@ export const CodeAnalyzer: React.FC<CodeAnalyzerProps> = ({
                 </h3>
                 <div className="space-y-2">
                   {results.map((result, index) => {
-                    // Logic to select the localized message
-                    const displayMessage = currentLang === 'EUS' ? (result as any).msg_eu || result.message :
-                                         currentLang === 'CAS' ? (result as any).msg_es || result.message :
-                                         result.message;
+                    // Translate the error code to a user-friendly message
+                    let displayMessage = (t.errors as any)[result.code] || result.code;
+                    
+                    // Interpolate parameters if any
+                    if (result.params) {
+                        Object.entries(result.params).forEach(([key, value]) => {
+                            displayMessage = displayMessage.replace(`{${key}}`, String(value));
+                        });
+                    }
 
                     return (
                       <div key={index} className={`p-3 rounded border-l-4 ${

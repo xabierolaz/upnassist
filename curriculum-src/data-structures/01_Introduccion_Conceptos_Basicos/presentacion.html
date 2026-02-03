@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introducción y Conceptos Básicos de Python</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css" id="theme">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+<style>
+    :root { --r-main-font: 'Lato', sans-serif; --r-link-color: #004291; }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 { color: #000; text-transform: none; }
+    body { border-top: 5px solid #333; }
+    .reveal pre { background: #f0f0f0; border: 1px solid #ccc; margin-bottom: 5px !important; }
+    .reveal pre code { padding: 15px; background: white; color: #333; }
+    .terminal-box { background: #222; color: #0f0; font-family: monospace; padding: 5px 10px; border-radius: 0px; margin-bottom: 10px; font-size: 0.8em; border-left: 5px solid #666; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section><section><h2>Introducción y Conceptos Básicos <br>de Python</h2><div style="margin-top: 40px;"><img src="img/UPNA.png" alt="UPNA Logo" style="width: 3cm; border:none; box-shadow:none;"></div><p style="margin-top: 20px;">2024-2025</p>
+<aside class="notes"><h3>⏱️ 1 min</h3><ul><li>Buenos días a todos. Bienvenidos a la asignatura de Estructura de Datos.</li><li>Hoy empezamos con una sesión de nivelación (Bootcamp). El objetivo es que nadie se quede atrás por temas de sintaxis o herramientas.</li><li>Aunque sepáis programar, prestad atención a la sección de Clases, porque la usaremos todo el curso.</li></ul></aside></section></section>
+<section><section><h3>Índice</h3><ol><li>IDEs</li><li>Python Pro</li><li>Clases</li></ol>
+<aside class="notes"><h3>⏱️ 1 min</h3><ul><li>Vamos a dividir la clase en tres bloques:</li><li>1. Herramientas: Instalar lo necesario para no luchar contra el ordenador.</li><li>2. Python Pro: Trucos (sintaxis 'sugar') que diferencian a un novato de un experto.</li><li>3. Objetos: El núcleo de la asignatura. Entenderemos qué es una clase con ejemplos reales.</li></ul></aside></section></section>
+<section><section><h3></h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Sin Título</h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Sin Título</h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>IDE</h3>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>¿Dónde escribís código? Por favor, el Bloc de Notas de Windows está prohibido. Es como cavar una zanja con una cuchara.</li><li>Necesitáis un IDE. Un programa que os ayude: colorea el código, avisa de errores y autocompleta.</li><li>Recomendación: Spyder (muy científico, parecido a MATLAB) o PyCharm (el estándar de la industria).</li></ul></aside></section></section>
+<section><section><h3>Instalando Spyder</h3>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Si no queréis complicaciones, descargad Anaconda.</li><li>Es un 'todo en uno': trae Python, Spyder, Jupyter y las librerías matemáticas.</li><li>Instalar y listo. Ahorra muchos problemas de configuración de variables de entorno.</li></ul></aside></section></section>
+<section><section><h3>Controlando el final de línea (\texttt{end</h3><pre><code class="python" data-line-numbers># 1. Comportamiento por defecto (Baja de linea):
+lst = ['uno', 'dos']
+for e in lst:
+    print(e)
+\end{lstlisting}</code></pre><div class="terminal-box">uno
+dos</div><pre><code class="python" data-line-numbers># 2. Usando end=' ' (Se queda en la misma linea):
+for e in lst:
+    print(e, end=' ')
+\end{lstlisting}</code></pre><div class="terminal-box">uno dos</div>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Desempaquetado y Separadores (\texttt{sep</h3><pre><code class="python" data-line-numbers># Desempaquetado con separador personalizado
+lst = ['uno', 'dos', 'tres']
+print(*lst, sep=' - ')
+\end{lstlisting}</code></pre><div class="terminal-box">uno - dos - tres</div><pre><code class="python" data-line-numbers># Comparar con print normal (muestra el objeto lista)
+print(lst)
+\end{lstlisting}</code></pre><div class="terminal-box">['uno', 'dos', 'tres']</div>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Asignación Múltiple de Variables</h3><pre><code class="python" data-line-numbers>nombre, edad = "Ana", 25
+\end{lstlisting}</code></pre><pre><code class="python" data-line-numbers>nombre = "Ana"
+edad = 25
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Mirad la comparación. A la izquierda, la forma Pythonica. A la derecha, la forma lenta.</li><li>Python reparte como si fueran cartas: 'Una para ti (nombre), otra para mí (edad)'.</li><li>Es mucho más limpio y evita errores de copiar y pegar.</li></ul></aside></section></section>
+<section><section><h3>Asignación de Variables con Desempaquetado</h3><pre><code class="python" data-line-numbers># 1. El resto al final:
+azul, verde, *resto = colores
+print(otros)
+\end{lstlisting}</code></pre><div class="terminal-box">['rojo', 'negro']</div><pre><code class="python" data-line-numbers># 2. El resto al principio:
+*resto, negro = colores
+print(otros)
+\end{lstlisting}</code></pre><div class="terminal-box">['azul', 'verde', 'rojo']</div><pre><code class="python" data-line-numbers># 3. El resto en medio (Sandwich):
+azul, *resto, negro = colores
+print(otros)
+\end{lstlisting}</code></pre><div class="terminal-box">['verde', 'rojo']</div>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>Fijaos en el ejemplo de los colores.</li><li>En el primer caso: La variable `azul` se queda con el valor 'azul' porque va PRIMERA. La variable `verde` con 'verde' porque va SEGUNDA.</li><li>Y la variable `*resto` (la que tiene el asterisco) actúa de escoba y recoge todo lo que sobra ('rojo' y 'negro').</li><li>Lo importante es la posicion respecto a las comas.</li></ul></aside></section></section>
+<section><section><h3>El Problema: ¿En qué posición está?</h3><pre><code class="python" data-line-numbers># Intento 1: Bucle for normal
+ranking = ['Ana', 'Beto']
+for persona in ranking:
+    print(persona)
+\end{lstlisting}</code></pre><div class="terminal-box">Ana
+Beto</div><pre><code class="python" data-line-numbers># Intento 2: Usando indices manuales
+for i in range(len(ranking)):
+    # Acceso manual con [i] y correccion de indice (+1)
+    print(i + 1, ":", ranking[i])
+\end{lstlisting}</code></pre><div class="terminal-box">1 : Ana
+2 : Beto</div>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Tenemos una lista de corredores: Ana, Beto...</li><li>Problema: Quiero imprimir '1. Ana', '2. Beto'.</li><li>Intento 1: Si uso `for x in lista`, pierdo el número.</li><li>Intento 2: Si uso `range(len())`, funciona, pero el código es feo, largo y difícil de leer.</li></ul></aside></section></section>
+<section><section><h3>La Solución: enumerate</h3><pre><code class="python" data-line-numbers>#           0       1       2
+ranking = ['Ana', 'Beto', 'Carla']
+
+# 1. Veamos que genera realmente enumerate:
+# 1. El indice (contador automatico)
+# 2. El dato (nombre)
+
+for i, nombre in enumerate(ranking):
+    print(i + 1, ":", nombre)
+\end{lstlisting}</code></pre><div class="terminal-box">1 : Ana
+2 : Beto
+3 : Carla</div>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Aquí está la solución elegante: `enumerate`.</li><li>Esta función nos permite pedirle al bucle DOS cosas a la vez.</li><li>La primera variable (`i`) será nuestro contador automático (0, 1, 2...).</li><li>La segunda variable (`nombre`) será el dato real.</li><li>Fijaos que ya no usamos corchetes `[]` ni calculamos longitudes. Es mucho más limpio.</li></ul></aside></section></section>
+<section><section><h3>¿Por Qué Usar Archivos?</h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Interactuando con Archivos</h3><pre><code class="python" data-line-numbers>import os
+
+# 1. ¿Donde estoy? (Get Current Working Directory)
+print(os.getcwd())
+
+# 2. ¿Existe algo ahi? (Archivo O Carpeta)
+ruta = "datos.txt"
+if os.path.exists(ruta):
+    print("Algo existe...")
+
+# 3. ¿Es un archivo valido? (RECOMENDADO)
+if os.path.isfile(ruta):
+    print("¡Es un archivo! Puedo leerlo.")
+else:
+    print("No es un archivo (o no existe).")
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Ayuda, No Puedo Acceder a mi Archivo</h3><pre><code class="python" data-line-numbers>import os
+print(os.getcwd()) # Si no carga, comprueba SIEMPRE donde estas
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>Este es el error nº1 en prácticas. El alumno copia la ruta de Windows: `C:\notas\trabajo.txt`.</li><li>¡Cuidado! Python leerá el `\n` de `\notas` como un salto de línea y el programa fallará.</li><li>Consejo para Spyder: Olvidad las barras invertidas. Usad siempre la barra normal `/`. Python se encarga de traducirlo por debajo.</li><li>Y recordad: si no encuentra el archivo, haced un `os.getcwd()` para ver qué carpeta 'cree' Python que es la actual.</li></ul></aside></section></section>
+<section><section><h3>Abriendo un Archivo</h3><pre><code class="python" data-line-numbers>open(nombre_fichero, mode='r')
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Abriendo un Archivo</h3><pre><code class="python" data-line-numbers>fichero = open("mi_archivo.txt", mode="r")
+# Hacer cosas
+fichero.close() # No olvides cerrar el archivo
+\end{lstlisting}</code></pre><pre><code class="python" data-line-numbers>with open("mi_archivo.txt", mode="r") as fichero:
+    # Hacer cosas
+# Cuando salimos de la declaración with, el archivo se cierra automáticamente
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Leer el Contenido</h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Iterar Sobre un Archivo</h3><pre><code class="python" data-line-numbers>with open("mi_archivo.txt", mode="r") as  fichero:
+    for linea in fichero:
+        print(linea)
+        # podríamos tener que usar la función str.strip() para eliminar cualquier nueva línea al final
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Esta es la mejor forma.</li><li>Tratad el archivo como si fuera una lista. Un bucle `for` os da las líneas una a una.</li><li>Es eficiente (no carga todo en memoria) y limpio.</li></ul></aside></section></section>
+<section><section><h3>Evolución: Formateando la Salida</h3><pre><code class="python" data-line-numbers>nombre = "Ana"; asig = "Datos"
+
+# 1. Por comas (Añade espacios automaticos)
+print('Hola', nombre, '! Bienvenido a', asig)
+
+# 2. Operador % (Antiguo, estilo C)
+print('Hola %s! Bienvenido a %s.' % (nombre, asig))
+
+# 3. Metodo .format() (Mas moderno)
+print('Hola {}! Bienvenido a {}.'.format(nombre, asig))
+
+# 4. F-Strings (RECOMENDADO: Mas rapido y legible)
+print(f'Hola {nombre}! Bienvenido a {asig}.')
+\end{lstlisting}</code></pre><div class="terminal-box">Hola Ana ! Bienvenido a Datos
+Hola Ana! Bienvenido a Datos.
+Hola Ana! Bienvenido a Datos.
+Hola Ana! Bienvenido a Datos.</div>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Usando F-Strings</h3><pre><code class="python" data-line-numbers>nombre = "Ana"
+
+# 1. String Normal (Literal, tonto)
+print("Hola {nombre}") 
+
+# 2. F-String (Inteligente, evalúa variables)
+print(f"Hola {nombre}")
+\end{lstlisting}</code></pre><div class="terminal-box">Hola \{nombre\</div><pre><code class="python" data-line-numbers># ¡Admite cualquier expresión!
+print(f"Mañana cumpliras {25 + 1} años")
+\end{lstlisting}</code></pre><div class="terminal-box">Mañana cumpliras 26 años</div>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>La evolución de imprimir texto.</li><li>Lo de abajo es lo moderno (desde Python 3.6). Se llama F-String.</li><li>Ponéis una `f` delante y escribís las variables directamente entre llaves `{}`. Es como leer una frase normal.</li></ul></aside></section></section>
+<section><section><h3>Formateando F-Strings</h3><pre><code class="python" data-line-numbers>numero = 123.123141241241
+# El punto especifica el número de decimales
+# La f al final es para tratarlo como float
+print(f'Número con 3 decimales={numero:.3f}')
+
+# Podemos especificar la dirección con <, >, ^
+# Podemos reservar un espacio de 10 de ancho para el número
+print(f'Más ancho y a la derecha={numero:>10.3f}')
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Formateando F-Strings, Uso Básico</h3><pre><code class="python" data-line-numbers>pi = 3.14159
+print(f"|{pi:*>10.2f}|")  # Relleno=*, Align=>, Ancho=10, Prec=.2, Tipo=f
+\end{lstlisting}</code></pre><div class="terminal-box">|******3.14|</div>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Tipado en Python (Type Hints)</h3><pre><code class="python" data-line-numbers># Indicamos que 'nombre' es str y la funcion devuelve str
+def saludar(nombre: str) -> str:
+    return f"Hola {nombre}"
+
+edad: int = 25 # Tambien en variables
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Tipado Simple</h3><pre><code class="python" data-line-numbers># Formato: nombre: tipo = valor
+a: int = 5
+b: float = 2.3
+c: list = []
+
+def sumar(x: int, y: int) -> int:
+    return x + y
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Complicando los Tipos</h3><pre><code class="python" data-line-numbers># m: Una lista que contiene listas de enteros
+m: list[list[int]] = [[1, 2], [3, 4]]
+
+# d: Diccionario con nombres (str) y notas (float)
+d: dict[str, float] = {"Ana": 9.5, "Beto": 7.0}
+
+# Podemos ser tan especificos como queramos
+# (Estructura: Clave=str, Valor=Lista de listas de ints)
+a: dict[str, list[list[int]]] = {"id": [[1], [2]]}
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Cómo Comentar Código</h3><pre><code class="python" data-line-numbers># 1. Comentario de una linea (nota tecnica)
+x = x + 1  # Incrementamos el contador
+
+# 2. Comentario Multilinea (Documentacion)
+"""
+Esta funcion calcula el promedio de una lista.
+Argumentos: una lista de numeros (int o float).
+Retorna: el promedio (float).
+"""
+def calcular_promedio(lista):
+    pass
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Hay dos formas de hablar con Python.</li><li>La `#` es para ti mismo o para otro programador (notas rapidas).</li><li>Las triples comillas `"""` son para DOCUMENTAR. Si alguien usa tu funcion, Spyder le mostrara ese texto como ayuda.</li><li>Recordad: el buen codigo se explica casi solo, los comentarios deben decir POR QUE hacemos algo, no QUE hacemos.</li></ul></aside></section></section>
+<section><section><h3>Documentando Funciones</h3>
+<aside class="notes"><h3>⏱️ -</h3><ul><li>Sin notas</li></ul></aside></section></section>
+<section><section><h3>Buenas Prácticas: La función main</h3><pre><code class="python" data-line-numbers># MAL: Código suelto (Global)
+print("Arrancando...")
+x = 5
+
+# BIEN: Todo ordenado en su sitio
+def main():
+    print("Arrancando...")
+    x = 5
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>¿Por qué definimos `main()` en lugar de escribir código a lo loco?</li><li>1. Orden. Sabemos dónde empieza todo.</li><li>2. Limpieza. Las variables dentro de `main` mueren al terminar `main`. No se quedan flotando (variables globales) consumiendo memoria o causando bugs.</li></ul></aside></section></section>
+<section><section><h3>El Guardián: if __name__ == "__main__"</h3><pre><code class="python" data-line-numbers>def main():
+    print("Soy el programa principal")
+
+# Si el archivo se ejecuta directamente...
+if __name__ == "__main__":
+    main() # ...entonces arranca.
+# Si se importa como modulo, NO hace nada.
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 4 min (Concepto Difícil)</h3><ul><li>Este bloque raro `if __name__...` lo veréis siempre.</li><li>Es un control de seguridad. Imaginad que sois una librería.</li><li>Pregunta: '¿Me has dado al Play a mí directamente?'. Si es sí, ejecuto `main()`.</li><li>Si es no (porque alguien me ha importado para usar mis funciones), me quedo quieto.</li><li>Copiad y pegad esto en todos vuestros scripts.</li></ul></aside></section></section>
+<section><section><h3>¿Qué es una Clase? (El Molde)</h3>
+<aside class="notes"><h3>⏱️ 5 min</h3><ul><li>Analogía clave: El Molde y la Galleta.</li><li>La Clase es el molde. Es abstracto. No se puede comer.</li><li>El Objeto es la galleta. Es real. Tienes una, te la comes.</li><li>Con un solo molde (Clase Estudiante) podemos hacer mil galletas distintas (Juan, Ana, Luis...).</li></ul></aside></section></section>
+<section><section><h3>Partes de una Clase</h3>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Es simple: Datos y Acciones.</li><li>Atributos = Variables pegadas al objeto (Color, Edad).</li><li>Métodos = Funciones pegadas al objeto (Correr, Saltar).</li></ul></aside></section></section>
+<section><section><h3>El Nacimiento: __init__</h3><pre><code class="python" data-line-numbers>class Estudiante:
+    def __init__(self, nombre, nota):
+        # "MI nombre es igual al nombre que me pasan"
+        self.nombre = nombre
+        self.nota = nota
+
+# Creando el objeto (La galleta)
+# Python llama a __init__ por nosotros
+juan = Estudiante("Juan", 5) 
+print(juan.nombre) # Acceso directo (Publico)
+\end{lstlisting}</code></pre><div class="terminal-box">Juan</div>
+<aside class="notes"><h3>⏱️ 5 min (Concepto Clave)</h3><ul><li>El `__init__` es el nacimiento del objeto. Python lo llama AUTOMÁTICAMENTE.</li><li>self: Es la referencia a sí mismo. Significa 'MI'.</li><li>Cuando ponemos `self.nombre = nombre`, estamos diciendo: 'Guarda en MI mochila el nombre que me han pasado'.</li></ul></aside></section></section>
+<section><section><h3>¿Por Qué el __? (Privacidad)</h3><pre><code class="python" data-line-numbers>juan.nota = 1000 # ¡Trampa! Esto es valido si es publico
+\end{lstlisting}</code></pre><pre><code class="python" data-line-numbers>class Estudiante:
+    def __init__(self, nombre, nota):
+        self.__nombre = nombre # Protegido
+        self.__nota = nota     # Protegido
+
+# juan.__nota = 1000  -> ERROR (Python no lo encuentra)
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>Problema: Si dejamos la nota pública, alguien podría poner `juan.nota = 1000` y romper el sistema.</li><li>Solución: Los dos guiones bajos `__` son un candado.</li><li>Solo el propio objeto puede tocar sus variables privadas desde dentro.</li></ul></aside></section></section>
+<section><section><h3>Añadiendo un Método (Acción)</h3><pre><code class="python" data-line-numbers>class Estudiante:
+    def __init__(self, nombre, nota):
+        self.__nombre = nombre; self.__nota = nota
+        
+    # DEFINICION: self es obligatorio aqui
+    def estudiar(self, horas):
+        self.__nota += (horas * 0.1)
+        print(f"Nueva nota: {self.__nota}")
+
+juan = Estudiante("Juan", 5)
+
+# LLAMADA: NO pasamos self (Python pasa a 'juan' por nosotros)
+juan.estudiar(10) 
+\end{lstlisting}</code></pre><div class="terminal-box">Nueva nota: 6.0</div>
+<aside class="notes"><h3>⏱️ 3 min</h3><ul><li>OJO AQUÍ: La trampa del `self`.</li><li>Al DEFINIR la función `estudiar`, tengo que escribir `self` porque necesito saber QUIÉN estudia.</li><li>Pero al LLAMARLA `juan.estudiar(10)`, NO escribo `juan` dentro del paréntesis.</li><li>¿Por qué? Porque Python hace magia: coge lo que hay a la izquierda del punto (`juan`) y lo mete como primer argumento invisible.</li></ul></aside></section></section>
+<section><section><h3>La Magia del self (¿Qué pasa por debajo?)</h3><pre><code class="python" data-line-numbers># TU ESCRIBES:
+juan.estudiar(5)
+
+# PYTHON REALMENTE EJECUTA:
+# Pasa el objeto 'juan' como primer argumento (self)
+Estudiante.estudiar(juan, 5)
+\end{lstlisting}</code></pre>
+<aside class="notes"><h3>⏱️ 2 min</h3><ul><li>Si alguna vez os liáis con el número de argumentos, acordaos de esta diapositiva.</li><li>Cuando llamáis a `juan.estudiar(5)`, Python coge a `juan` (el sujeto) y lo mete a la fuerza como primer argumento.</li><li>Por eso la función recibe DOS cosas: `juan` (que se llama `self` dentro) y `5` (las horas).</li></ul></aside></section></section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+<script>
+    Reveal.initialize({ 
+        hash: true, 
+        slideNumber: true, 
+        plugins: [ RevealHighlight, RevealNotes ], 
+        transition: 'slide',
+        totalTime: 7200, // 2 horas en segundos
+        defaultTiming: 120 // 2 minutos por defecto por diapo
+    });
+</script>
+</body>
+</html>

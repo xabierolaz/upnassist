@@ -1,85 +1,95 @@
-import { Language } from '../../../store/languageStore';
+import { Language, useLanguageStore } from '../../../store/languageStore';
+import { ErrorCode, ErrorCodes } from '../../types/ErrorCodes';
 
 interface ErrorMapping {
   pattern: RegExp;
-  translations: Record<Language, string>;
+  code: ErrorCode;
+  paramExtractor?: (match: RegExpMatchArray) => Record<string, string>;
 }
 
 const errorMappings: ErrorMapping[] = [
   {
     pattern: /SyntaxError: Missing parentheses in call to 'print'\. Did you mean print\(\.\.\.\)\?/, 
-    translations: {
-      CAS: "Error de Sintaxis: Faltan paréntesis en la llamada a 'print'. En Python 3, debes usar print(\"texto\").",
-      EUS: "Sintaxi-errorea: Parentesiak falta dira 'print' deian. Python 3-n, print(\"testua\") erabili behar duzu.",
-      ENG: "SyntaxError: Missing parentheses in call to 'print'. Use print(\"text\")."
-    }
+    code: 'RUNTIME_SYNTAX_PRINT'
   },
   {
     pattern: /SyntaxError: invalid syntax/,
-    translations: {
-      CAS: "Error de Sintaxis: El código no sigue las reglas de Python. Revisa que no falte nada o sobre algún símbolo.",
-      EUS: "Sintaxi-errorea: Kodeak ez ditu Python-en arauak betetzen. Egiaztatu ezer ez dela falta edo ikurren bat soberan dagoen.",
-      ENG: "SyntaxError: Invalid syntax. Please check your code structure."
-    }
+    code: 'RUNTIME_SYNTAX_INVALID'
   },
   {
     pattern: /NameError: name '(.*)' is not defined/,
-    translations: {
-      CAS: "Error de Nombre: El nombre '{0}' no existe. ¿Lo has escrito bien o lo has definido antes?",
-      EUS: "Izen-errorea: '{0}' izena ez da existitzen. Ondo idatzi duzu edo lehenago definitu duzu?",
-      ENG: "NameError: name '{0}' is not defined."
-    }
+    code: 'RUNTIME_NAME_ERROR',
+    paramExtractor: (match) => ({ name: match[1] })
   },
   {
     pattern: /IndentationError: expected an indented block/,
-    translations: {
-      CAS: "Error de Sangría: Se esperaba un bloque con sangría (espacios). Recuerda usar espacios después de ':' en bucles o condiciones.",
-      EUS: "Koska-errorea: Koska duen bloke bat espero zen. Gogoratu ':' ondoren espazioak erabiltzea begizta edo baldintzetan.",
-      ENG: "IndentationError: expected an indented block."
-    }
+    code: 'RUNTIME_INDENT_BLOCK'
   },
   {
     pattern: /IndentationError: unindent does not match any outer indentation level/,
-    translations: {
-      CAS: "Error de Sangría: La alineación del código no es correcta. Revisa los espacios al principio de la línea.",
-      EUS: "Koska-errorea: Kodearen lerrokatzea ez da zuzena. Egiaztatu lerroaren hasierako espazioak.",
-      ENG: "IndentationError: indentation alignment is incorrect."
-    }
+    code: 'RUNTIME_INDENT_ALIGN'
   },
   {
     pattern: /TypeError: (.*) object is not callable/,
-    translations: {
-      CAS: "Error de Tipo: Estás intentando llamar a algo que no es una función (quizás sobran paréntesis).",
-      EUS: "Mota-errorea: Funtzioa ez den zerbaiti deitzen saiatzen ari zara (agian parentesiak soberan daude).",
-      ENG: "TypeError: object is not callable."
-    }
+    code: 'RUNTIME_TYPE_CALLABLE'
   },
   {
       pattern: /ZeroDivisionError: division by zero/,
-      translations: {
-          CAS: "Error de Cálculo: No se puede dividir entre cero.",
-          EUS: "Kalkulu-errorea: Ezin da zeroz zatitu.",
-          ENG: "ZeroDivisionError: division by zero."
-      }
+      code: 'RUNTIME_ZERO_DIV'
   }
 ];
 
-export const translatePythonError = (error: string, lang: Language): string => {
+export interface ErrorAnalysis {
+    code: ErrorCode | null;
+    params?: Record<string, string>;
+    original: string;
+}
+
+export const getErrorCode = (error: string): ErrorAnalysis => {
   for (const mapping of errorMappings) {
     const match = error.match(mapping.pattern);
     if (match) {
-      let translation = mapping.translations[lang] || mapping.translations['ENG'];
-      
-      // Reemplazar marcadores como {0}, {1} con los grupos capturados
-      if (match.length > 1) {
-        for (let i = 1; i < match.length; i++) {
-          translation = translation.replace(`{${i - 1}}`, match[i]);
-        }
-      }
-      return translation;
+      return {
+          code: mapping.code,
+          params: mapping.paramExtractor ? mapping.paramExtractor(match) : undefined,
+          original: error
+      };
     }
   }
+  return { code: null, original: error };
+};
+
+/**
+ * @deprecated Use getErrorCode and translate in UI instead.
+ * Kept for backward compatibility during migration.
+ */
+export const translatePythonError = (error: string, lang: Language): string => {
+  const analysis = getErrorCode(error);
   
-  // Si no hay traducción específica, limpiar un poco el error original
+  // Need to access store directly or pass translations map. 
+  // Since this is a pure function, we can't use the hook here. 
+  // We rely on the caller passing the correct lang, but we need access to the translation strings.
+  // TEMPORARY HACK: We will try to reconstruct the legacy behavior or 
+  // we assume this function will be removed in next phase.
+  
+  // For now, let's keep the logic here but using the new codes is hard without store access.
+  // Actually, we can get the store state non-reactively.
+  const state = useLanguageStore.getState();
+  const t = state.t; // This is the translation object for the *current* language in store, not necessarily 'lang' arg if they differ.
+  
+  // But wait, the argument 'lang' might be different from store.
+  // Ideally we should just use the store's current translations if lang matches.
+  // Let's simplified: 
+  
+  if (analysis.code) {
+      let message = (t.errors as any)[analysis.code] || analysis.code;
+      if (analysis.params) {
+          Object.entries(analysis.params).forEach(([key, value]) => {
+              message = message.replace(`{${key}}`, value);
+          });
+      }
+      return message;
+  }
+  
   return error.replace("PythonError: ", "").trim();
 };

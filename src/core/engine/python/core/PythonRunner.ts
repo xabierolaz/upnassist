@@ -1,4 +1,5 @@
 import type { ExecutionResult } from '../types';
+import type { IPythonRunner } from './IPythonRunner';
 
 export interface LintError {
   line: number;
@@ -8,7 +9,7 @@ export interface LintError {
   type: 'error' | 'warning';
 }
 
-class PythonRunner {
+class PythonRunner implements IPythonRunner {
   private worker: Worker | null = null;
   private sharedBuffer: SharedArrayBuffer | null = null;
   private sharedArray: Int32Array | null = null;
@@ -16,6 +17,7 @@ class PythonRunner {
   private outputBuffer = "";
   
   private resolveExecution: ((value: ExecutionResult) => void) | null = null;
+  private resolveTrace: ((frames: any[]) => void) | null = null;
   private onStdout: ((text: string) => void) | null = null;
   private onInputRequest: ((prompt: string) => void) | null = null;
 
@@ -39,7 +41,7 @@ class PythonRunner {
     });
 
     this.worker.onmessage = (e) => {
-      const { type, output, error, prompt } = e.data;
+      const { type, output, error, prompt, frames } = e.data;
 
       switch (type) {
         case "READY":
@@ -56,6 +58,12 @@ class PythonRunner {
             this.sendInput("Input no disponible");
           }
           break;
+        case "TRACE_RESULT":
+          if (this.resolveTrace) {
+            this.resolveTrace(frames || []);
+            this.resolveTrace = null;
+          }
+          break;
         case "DONE":
           if (this.resolveExecution) {
             this.resolveExecution({ success: true, output: this.outputBuffer });
@@ -66,6 +74,11 @@ class PythonRunner {
           if (this.resolveExecution) {
             this.resolveExecution({ success: false, output: this.outputBuffer, error: error });
             this.cleanupExecution();
+          }
+          if (this.resolveTrace) {
+             // If trace fails, we return a single error frame
+             this.resolveTrace([{ event: 'exception', error: error || 'Unknown Trace Error' }]);
+             this.resolveTrace = null;
           }
           break;
       }
@@ -131,11 +144,34 @@ class PythonRunner {
     });
   }
 
+  public async trace(code: string): Promise<any[]> {
+    if (!this.worker) this.initWorker();
+    
+    if (!this.isReady) {
+        let attempts = 0;
+        while (!this.isReady && attempts < 50) {
+            await new Promise(r => setTimeout(r, 100));
+            attempts++;
+        }
+        if (!this.isReady) throw new Error("El entorno Python no está respondiendo.");
+    }
+
+    return new Promise((resolve) => {
+      this.resolveTrace = resolve;
+      this.worker!.postMessage({ type: "TRACE", code });
+    });
+  }
+
   static instance: PythonRunner;
   
   static async execute(code: string, onStdout?: (text: string) => void): Promise<ExecutionResult> {
     if (!this.instance) this.instance = new PythonRunner();
     return this.instance.execute(code, onStdout);
+  }
+  
+  static async trace(code: string): Promise<any[]> {
+    if (!this.instance) this.instance = new PythonRunner();
+    return this.instance.trace(code);
   }
   
   static getInstance(): PythonRunner {

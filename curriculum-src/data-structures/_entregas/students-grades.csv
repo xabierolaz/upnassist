@@ -1,0 +1,37 @@
+Nombre,Nota (base 10),Nota ponderada,Comentarios
+Alfaro Reta Aimar (alfaro.164800),9.5,0.2375,Implementación completa con operaciones ternarias potenciación y negativos
+Alvarez Allende Arrate (alvarez.170265),7,0.175,Falta implementación pila. No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Armendariz Lozano Javier (armendariz.172034),NP,0,No presentado
+Ayesa Ongay Jorge (ayesa.171588),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Bernal Larraya Unai (bernal.171356),6.5,0.1625,No usa pilas. No implementa números negativos ni operaciones ternarias
+Clarke Etxeberria Aisling (clarke.171974),6.5,0.1625,Faltan argumentos en funciones. Errores de ejecución. No implementa números decimales ni operaciones ternarias
+Echarri Díaz Uxue (echarri.171662),6.5,0.1625,Faltan argumentos en funciones. Errores de ejecución. No implementa números decimales ni operaciones ternarias
+Elizalde Iturmendi Xabier (elizalde.171593),6.5,0.1625,No usa pilas. No implementa números negativos ni operaciones ternarias
+Esain Pérez Irati (esain.171410),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Garaikoetxea Otermin Jon (garaikoetxea.169638),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Grafulla Cumba Mario (grafulla.171520),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Huete Sánchez Fermín (huete.171540),6.5,0.1625,No usa pilas. No implementa números negativos ni operaciones ternarias
+Izquierdo Alonso Jaime (izquierdo.171692),,, 
+Lamy Terradillos Nahia (lamy.172173),6.5,0.1625,Faltan argumentos en funciones. Errores de ejecución. No implementa números decimales ni operaciones ternarias
+Lara Domínguez Unai (lara.171408),6.5,0.1625,Funciones incompletas. No soporta operaciones avanzadas
+Lorenz Sótil Nerea (lorenz.171286),6.5,0.1625,No usa pilas. No implementa números negativos ni operaciones ternarias
+Martínez Fernández Marco (martinez.171882),4,0.1,Implementación muy parcial. Errores graves en conversión de expresiones
+Mendoza Peña Dayara (mendoza.171496),4.5,0.1125,No hay ejecución ni función main. Error en definición de operadores. No soporta funcionalidades
+Molina Inda Andrea (molina.171420),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Nasarre Viñuales Rodrigo (nasarre.169556),NP,0,No presentado
+Nieto Colás Héctor (nieto.172401),8,0.2,Implementación detallada con manejo avanzado de precedencia
+Oliva Liñeira Valentina Avril (oliva.171933),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Pinilla Sarnago Julia (pinilla.171421),6.5,0.1625,Faltan argumentos en funciones. Errores de ejecución. No implementa números decimales ni operaciones ternarias
+Ramírez Pérez Sergio (ramirez.171756),6.5,0.1625,Faltan argumentos en funciones. No implementa números decimales ni operaciones ternarias
+Rojas Bernal Aiyana (rojas.171287),8,0.2,Implementación sólida con soporte para números negativos
+San Julián Goya Jokin (sanjulian.169613),6.5,0.1625,Funciones principales con limitaciones. No soporta operaciones avanzadas
+Sevillano Garayoa Aitor (sevillano.171276),8,0.2,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+Torres Romero David (torres.171669),4,0.1,No hay función main. Calculadora no funciona. Sin soporte para funcionalidades
+Velasco González Lucía (velasco.172722),7,0.175,No soporta números decimales ni operaciones adicionales ni números negativos ni operaciones ternarias
+
+Estadísticas:
+Media,7.11,,
+Desviación Estándar,2.14,,
+Número de Aprobados,43,,
+Número de Suspensos o No Presentados,6,,
+Porcentaje de Aprobados,87.76%,,

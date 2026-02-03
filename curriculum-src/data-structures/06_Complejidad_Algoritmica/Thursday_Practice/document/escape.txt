@@ -1,0 +1,6 @@
+print("normal")
+print("\tUn nivel")
+print("\t\tDos niveles")
+
+print("aaaaaa", end="")
+print("\rbbbbbb")

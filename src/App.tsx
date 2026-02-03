@@ -6,13 +6,14 @@ import LoginPage from './pages/LoginPage';
 import { useAuthStore } from './stores/authStore';
 import { courseStructureMetadata as moocManifest } from './courses/mooc/manifest';
 import { syllabusData as dsManifest } from './courses/ds/manifest';
+import { Course, CourseModule } from './types/global';
 import './App.css';
 
 // --- MOOC Course Definition ---
-const moocCourse = {
+const moocCourse: Course = {
     id: 'mooc',
     title: { ENG: 'Python Programming Course', CAS: 'Curso de Programación Python', EUS: 'Python Programazio Ikastaroa' },
-    modules: [] as any[]
+    modules: []
 };
 
 const parts = new Set(moocManifest.map(s => s.part));
@@ -29,10 +30,10 @@ for (const part of parts) {
 }
 
 // --- Data Structures Course Definition ---
-const dsCourse = {
+const dsCourse: Course = {
     id: 'ds',
     title: dsManifest.courseName,
-    modules: [] as any[]
+    modules: []
 };
 
 const weeks = [...new Set(dsManifest.calendar.map(e => e.week))].sort((a, b) => a - b);
@@ -87,12 +88,12 @@ function App() {
         {/* Protected Course Routes */}
         <Route path="/course/mooc/:unitId?" element={
           <ProtectedRoute>
-            <CourseShell courseManifest={moocCourse as any} />
+            <CourseShell courseManifest={moocCourse} />
           </ProtectedRoute>
         } />
         <Route path="/course/ds/:unitId?" element={
           <ProtectedRoute>
-            <CourseShell courseManifest={dsCourse as any} />
+            <CourseShell courseManifest={dsCourse} />
           </ProtectedRoute>
         } />
         
