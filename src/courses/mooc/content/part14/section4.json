@@ -13,6 +13,26 @@
         "CAS": "## El último ejercicio de programación\n\nEl ejercicio final de programación en este curso es crear un pequeño juego propio con pygame. La plantilla del ejercicio contiene algunas imágenes para que las uses...\n\nEl tema del juego depende de ti, pero debería ser aproximadamente tan complicado como el ejemplo de Sokoban en esta parte del material. El juego debe contener las siguientes características:\n\n* El juego tiene un sprite que el jugador puede mover de alguna manera\n* El juego tiene algunos ítems coleccionables y/o enemigos\n* Al jugador se le debe asignar una tarea clara en el juego\n* El juego contiene un contador que le dice al jugador cómo lo está haciendo en el juego\n* El código fuente del juego está dividido en funciones como en el ejemplo de Sokoban\n\nCuando el juego esté terminado, envíalo para revisión por pares...\n\n### Enviando el juego\n\nDebes enviar el código fuente de tu juego a través de la función TMC Paste...",
         "EUS": "## Azken programazio ariketa\n\nIkastaro honetako azken programazio ariketa pygame-rekin zure joko txiki bat sortzea da. Ariketa txantiloiak irudi batzuk ditu zuk erabiltzeko...\n\nJokoaren gaia zure esku dago, baina materialaren zati honetako Sokoban adibidea bezain konplikatua izan beharko luke gutxi gorabehera. Jokoak ezaugarri hauek izan behar ditu:\n\n* Jokoak sprite bat du jokalariak nolabait mugi dezakeena\n* Jokoak biltzeko moduko elementu batzuk eta/edo etsaiak ditu\n* Jokalariari zeregin argi bat jarri behar zaio jokoan\n* Jokoak kontagailu bat du, jokalariari jokoan nola dabilen esaten diona\n* Jokoaren iturburu kodea funtziotan banatuta dago Sokoban adibidean bezala\n\nJokoa amaitutakoan, bidali ikaskideen berrikuspenetarako...\n\n### Jokoa bidaltzen\n\nZure jokoaren iturburu kodea TMC Paste funtzioaren bidez bidali behar duzu..."
       }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "part14-01_own_game",
+      "title": {
+        "ENG": "Your own game",
+        "CAS": "Tu propio juego",
+        "EUS": "Zure jokoa"
+      },
+      "description": {
+        "ENG": "Create your own game here using pygame. The assets (robot.png, etc) are available.",
+        "CAS": "Crea tu propio juego aquí usando pygame. Los recursos (robot.png, etc) están disponibles.",
+        "EUS": "Sortu zure jokoa hemen pygame erabiliz. Baliabideak (robot.png, etab) eskuragarri daude."
+      },
+      "initialCode": {
+        "ENG": "import pygame\n\n# Write your game here!",
+        "CAS": "import pygame\n\n# ¡Escribe tu juego aquí!",
+        "EUS": "import pygame\n\n# Idatzi zure jokoa hemen!"
+      },
+      "testCode": "import unittest\nclass GameTest(unittest.TestCase):\n    def test_exists(self):\n        pass"
     }
   ]
 }

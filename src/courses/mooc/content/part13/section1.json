@@ -28,9 +28,9 @@
         "EUS": "Mesedez idatzi programa bat leihoaren lau izkinetan robot bana marrazten duena."
       },
       "initialCode": {
-        "ENG": "import pygame\r\n\r\npygame.init()\r\nwidth_window = 640\r\nheight_window = 480\r\n\r\nwindow = pygame.display.set_mode((width_window, height_window))\r\n\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\nwindow.fill((0,0,0))\r\n\r\nwindow.blit(robot, (0,0))\r\nwindow.blit(robot, (width_window-width,0))\r\nwindow.blit(robot, (0,height_window-height))\r\nwindow.blit(robot, (width_window-width,height_window-height))\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()",
-        "CAS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
-        "EUS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
       "testCode": "import unittest\nimport ast\nimport sys\n\nfrom tmc import points\n\n@points('13.pygame')\nclass PygameStaticTest(unittest.TestCase):\n    def test_source_analysis(self):\n        # Read source code from the expected file location in Pyodide env\n        filename = \"four_robots\"\n        try:\n            with open(f\"src/{filename}.py\", \"r\") as f:\n                source = f.read()\n        except:\n            # Fallback: try to read main file or inspect sys.modules if loaded (risky with loops)\n            # In Pyxom, user code is usually written to a main file.\n            # We'll assume the environment sets up the file.\n            # If not, we pass to avoid blocking user, but print warning.\n            return\n\n        tree = ast.parse(source)\n        \n        has_flip = False\n        has_loop = False\n        \n        for node in ast.walk(tree):\n            if isinstance(node, ast.Call):\n                if isinstance(node.func, ast.Attribute):\n                    if node.func.attr == 'flip':\n                        has_flip = True\n            if isinstance(node, ast.While):\n                has_loop = True\n\n        self.assertTrue(has_flip, \"Did you forget pygame.display.flip()?\")\n        self.assertTrue(has_loop, \"The program should have a main loop (while True).\")\n        \n        blit_calls = 0\n        for node in ast.walk(tree):\n            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == 'blit':\n                blit_calls += 1\n        self.assertTrue(blit_calls >= 4, \"You should verify that you are drawing 4 robots. (Check if you have 4 blit calls).\")\n                 \n\nif __name__ == '__main__':\n    unittest.main()\n"
     },
@@ -48,9 +48,9 @@
         "EUS": "Mesedez idatzi programa bat hamar robot ilaran marrazten dituena."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 640\r\nwindow_height = 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\n\r\nwindow.fill((0,0,0))\r\n\r\nfor i in range(0,10):\r\n    window.blit(robot,(75+width*i,100))\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()",
-        "CAS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n",
-        "EUS": "import pygame\n\npygame.init()\nwindow = pygame.display.set_mode((640, 480))\n\nrobot = pygame.image.load(\"robot.png\")\n\n# write your code here\n\npygame.display.flip()\n\nwhile True:\n    for event in pygame.event.get():\n        if event.type == pygame.QUIT:\n            exit()\n"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
       "testCode": "import unittest\nimport ast\nimport sys\n\nfrom tmc import points\n\n@points('13.pygame')\nclass PygameStaticTest(unittest.TestCase):\n    def test_source_analysis(self):\n        # Read source code from the expected file location in Pyodide env\n        filename = \"robots_row\"\n        try:\n            with open(f\"src/{filename}.py\", \"r\") as f:\n                source = f.read()\n        except:\n            # Fallback: try to read main file or inspect sys.modules if loaded (risky with loops)\n            # In Pyxom, user code is usually written to a main file.\n            # We'll assume the environment sets up the file.\n            # If not, we pass to avoid blocking user, but print warning.\n            return\n\n        tree = ast.parse(source)\n        \n        has_flip = False\n        has_loop = False\n        \n        for node in ast.walk(tree):\n            if isinstance(node, ast.Call):\n                if isinstance(node.func, ast.Attribute):\n                    if node.func.attr == 'flip':\n                        has_flip = True\n            if isinstance(node, ast.While):\n                has_loop = True\n\n        self.assertTrue(has_flip, \"Did you forget pygame.display.flip()?\")\n        self.assertTrue(has_loop, \"The program should have a main loop (while True).\")\n        \n        blit_calls = 0\n        for node in ast.walk(tree):\n            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == 'blit':\n                blit_calls += 1\n        \n        self.assertTrue(blit_calls > 0, \"You must draw the robot using window.blit().\")\n            \n\nif __name__ == '__main__':\n    unittest.main()\n"
     },
@@ -68,7 +68,7 @@
         "EUS": "Mesedez idatzi programa bat ehun robot marrazten dituena: hamar ilara hamarna robotekin ilara bakoitzean."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 640\r\nwindow_height = 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\nwindow.fill((0,0,0))\r\n\r\nfor i in range(10):\r\n    for j in range(10):\r\n        window.blit(robot, (75+10*i+40*j, 100+i*20))\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n",
+        "ENG": "# Write your solution here",
         "CAS": "import pygame\n\n# ...\n",
         "EUS": "import pygame\n\n# ...\n"
       },
@@ -88,7 +88,7 @@
         "EUS": "Mesedez idatzi programa bat _mila_ robot ausazko lekuetan marrazten dituena."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nfrom random import randint\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 640\r\nwindow_height = 480\r\n\r\nwindow = pygame.display.set_mode((window_width , window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\nwindow.fill((0, 0, 0))\r\n\r\nfor i in range(1000):\r\n    x = randint(0, window_width-width)\r\n    y = randint(0, window_height-height)\r\n    window.blit(robot, (x, y))\r\n\r\npygame.display.flip()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()",
+        "ENG": "# Write your solution here",
         "CAS": "import pygame\nfrom random import randint\n# ...\n",
         "EUS": "import pygame\nfrom random import randint\n# ...\n"
       },

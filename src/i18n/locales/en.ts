@@ -200,6 +200,12 @@ export const ENG: Translation = {
         // SYSTEM
         SYS_INTERNAL: "Internal Error.",
         SYS_TIMEOUT: "Execution timed out.",
-        SYS_OUTPUT_CORRUPT: "Corrupt output."
+        SYS_OUTPUT_CORRUPT: "Corrupt output.",
+
+        // COMMON ASSERTIONS
+        ASSERT_INPUT_TOO_MANY: "Input is asked too many times.",
+        ASSERT_INPUT_NOT_EXPECTED: "Asking input from the user was not expected.",
+        ASSERT_NO_OUTPUT: "Your program does not print out anything.",
+        ASSERT_MISSING_FUNC: "Your code should contain function named as '{name}'."
     }
 };

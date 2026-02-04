@@ -28,9 +28,9 @@
         "EUS": "Mesedez idatzi programa bat emotikono bat inprimatzen duena: :-)"
       },
       "initialCode": {
-        "ENG": "print(\":-)\")",
-        "CAS": "print(\":-)\")",
-        "EUS": "print(\":-)\")"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
       "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import load_module, reload_module, get_stdout\n\nexercise = 'src.emoticon'\n@points('1.emoticon')\nclass EmoticonTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n\n    def test_print_emoticon(self):\n        reload_module(self.module)\n        output = get_stdout()\n        self.assertTrue(output.startswith(\":\"), \"Make sure that you don't print out extra characters before the emoticon starts. | Asegúrate de no imprimir caracteres extra antes de que empiece el emoticono. | Ziurtatu ez duzula karaktere gehigarririk inprimatzen emotikonoa hasi aurretik.\")\n        self.assertTrue(output.endswith(\"\"), \"Make sure that you don't print out extra characters after the emoticon ends. | Asegúrate de no imprimir caracteres extra después de que termine el emoticono. | Ziurtatu ez duzula karaktere gehigarririk inprimatzen emotikonoa amaitu ondoren.\")\n        self.assertEqual(output, \":-)\", \"Emoticon is malformed. | El emoticono está mal formado. | Emotikonoa gaizki osatuta dago.\")"
     },
@@ -60,7 +60,7 @@
         "CAS": "print(\"Tudela\")",
         "EUS": "print(\"Tudela\")"
       },
-      "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import load_module, reload_module, get_stdout\n\nexercise = 'src.seven_brothers'\n@points('1.seven_brothers')\nclass SevenBrothersTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n\n    def test_content(self):\n        reload_module(self.module)\n        split_output = get_stdout().split('\\\\n')\n        self.assertEqual(len(split_output), 7, 'Output was expected to have 7 lines, your program\\'s output is now in {1} lines. | Se esperaba que la salida tuviera 7 líneas, pero tu programa produjo {1} líneas. | Irteerak 7 lerro izatea espero zen, baina zure programak {1} lerro sortu ditu.')\n        correct = \"Alsasua Baztan Estella Olite Pamplona Tafalla Tudela\".split()\n        for i in range(7):\n            self.assertEqual(split_output[i], correct[i], \"Line {0} in output is incorrect. | La línea {0} en la salida es incorrecta. | Irteerako {0} lerroa okerra da.\".format(i + 1))"
+      "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import load_module, reload_module, get_stdout\n\nexercise = 'src.seven_brothers'\n@points('1.seven_brothers')\nclass SevenBrothersTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n\n    def test_content(self):\n        reload_module(self.module)\n        split_output = get_stdout().split('\\n')\n        self.assertEqual(len(split_output), 7, 'Output was expected to have 7 lines, your program\\'s output is now in {1} lines. | Se esperaba que la salida tuviera 7 líneas, pero tu programa produjo {1} líneas. | Irteerak 7 lerro izatea espero zen, baina zure programak {1} lerro sortu ditu.')\n        correct = \"Alsasua Baztan Estella Olite Pamplona Tafalla Tudela\".split()\n        for i in range(7):\n            self.assertEqual(split_output[i], correct[i], \"Line {0} in output is incorrect. | La línea {0} en la salida es incorrecta. | Irteerako {0} lerroa okerra da.\".format(i + 1))"
     },
     {
       "type": "exercise",
@@ -76,11 +76,11 @@
         "EUS": "Mesedez idatzi programa bat honako lerro hauek zehazki hemen idatzita dauden bezala inprimatzen dituena:\n\n<sample-output>\n\nZulo bat zen, lurrean egina, eta han hobbit bat bizi zen.\nEz zen zulo zikin, heze eta higuingarria,\nzizare muturrez eta lohi-usainez betea;\n\n</sample-output>"
       },
       "initialCode": {
-        "ENG": "print(\"In a hole...\")",
-        "CAS": "print(\"En un agujero...\")",
-        "EUS": "print(\"Zulo bat zen...\")"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
-      "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import get_stdout, load_module, reload_module, assert_ignore_ws, sanitize\n\nexercise = 'src.row_your_boat'\n@points('1.row_your_boat')\nclass RowYourBoatTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n        \n    def test_content(self):\n        reload_module(self.module)\n        out = get_stdout()\n        self.assertTrue(len(out)>0, 'Your code does not print anything | Tu código no imprime nada | Zure kodeak ez du ezer inprimatzen')\n        \n        # Check for key phrases to ensure they changed the text\n        lower_out = out.lower()\n        self.assertTrue(\"hobbit\" in lower_out, \"Output does not contain 'hobbit'. | La salida no contiene 'hobbit'. | Irteerak ez du 'hobbit' hitza.\")\n        self.assertTrue(\"hole\" in lower_out or \"agujero\" in lower_out or \"zulo\" in lower_out, \"Output does not contain 'hole'/'agujero'/'zulo'.\")\n\n        split_output = sanitize(out).split('\\\\n')\n        self.assertTrue(len(split_output) >= 4, 'Output should have at least 4 lines. | La salida debe tener al menos 4 líneas. | Irteerak gutxienez 4 lerro izan behar ditu.')\n"
+      "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import get_stdout, load_module, reload_module, assert_ignore_ws, sanitize\n\nexercise = 'src.row_your_boat'\n@points('1.row_your_boat')\nclass RowYourBoatTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n        \n    def test_content(self):\n        reload_module(self.module)\n        out = get_stdout()\n        self.assertTrue(len(out)>0, 'Your code does not print anything | Tu código no imprime nada | Zure kodeak ez du ezer inprimatzen')\n        \n        # Check for key phrases to ensure they changed the text\n        lower_out = out.lower()\n        self.assertTrue(\"hobbit\" in lower_out, \"Output does not contain 'hobbit'. | La salida no contiene 'hobbit'. | Irteerak ez du 'hobbit' hitza.\")\n        self.assertTrue(\"hole\" in lower_out or \"agujero\" in lower_out or \"zulo\" in lower_out, \"Output does not contain 'hole'/'agujero'/'zulo'.\")\n\n        split_output = sanitize(out).split('\\n')\n        self.assertTrue(len(split_output) >= 4, 'Output should have at least 4 lines. | La salida debe tener al menos 4 líneas. | Irteerak gutxienez 4 lerro izan behar ditu.')\n"
     },
     {
       "type": "markdown",
@@ -104,7 +104,9 @@
         "EUS": "Mesedez idatzi urte bateko minutu kopurua inprimatzen duen programa. Erabili Python kodea kalkulua egiteko, aurreko kode adibidean bezala."
       },
       "initialCode": {
-        "ENG": "print(365*24*60)"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
       "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import load_module, reload_module, get_stdout\n\nexercise = 'src.minutes_in_a_year'\n@points('1.minutes_in_a_year')\nclass MinutesInAYearTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n\n    def test_output(self):\n        reload_module(self.module)\n        output = get_stdout()\n        self.assertTrue(output.find(\"525600\") > -1, \"Output does not contain correct amount of minutes. | La salida no contiene la cantidad correcta de minutos. | Irteerak ez dauka minutu kopuru zuzena.\")"
     },
@@ -122,7 +124,9 @@
         "EUS": "Orain arte, ziurrenik komatxo bikoitzak `\"` erabili dituzu kateak inprimatzeko. Komatxo bikoitzez gain, Python-ek komatxo simpleak `'` ere onartzen ditu.\n\nBeharrezkoa da noizbait komatxoak berak inprimatu nahi badituzu:\n\n```python\n\nprint(\"\"Itzuli berehala!\", oihukatu zuen polizia agenteak.\")\n\n```\n\n<sample-output>\n\n\"Itzuli berehala!\", oihukatu zuen polizia agenteak.\n\n</sample-output>\n\nMesedez idatzi honako hau inprimatzen duen programa:\n\n<sample-output>\n\nprint(\"Hello there!\")\n\n</sample-output>"
       },
       "initialCode": {
-        "ENG": "print('print(\"Hello there!\")')"
+        "ENG": "# Write your solution here",
+        "CAS": "# Escribe tu solución aquí",
+        "EUS": "# Idatzi zure irtenbidea hemen"
       },
       "testCode": "import unittest\nfrom tmc import points\nfrom tmc.utils import load_module, reload_module, get_stdout\n\nexercise = 'src.print_code'\n@points('1.print_code')\nclass PrintCodeTest(unittest.TestCase):\n    @classmethod\n    def setUpClass(cls):\n        cls.module = load_module(exercise, 'en')\n\n    def test_output(self):\n        reload_module(self.module)\n        output = get_stdout()\n        self.assertFalse(len(output) == 0, \"Your code does not print anything :( | Tu código no imprime nada :( | Zure kodeak ez du ezer inprimatzen :(\")\n        self.assertTrue(output.count('print') == 1, \"Output is missing print command. | Falta el comando print en la salida. | Print komandoa falta da irteeran.\")"
     }

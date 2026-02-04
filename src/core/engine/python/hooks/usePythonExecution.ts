@@ -23,6 +23,14 @@ export const usePythonExecution = (initialCode: string) => {
   const [inputPrompt, setInputPrompt] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Expose setCode for E2E testing
+  useEffect(() => {
+      if (typeof window !== 'undefined') {
+          // @ts-ignore
+          window.__PYXOM_SET_CODE__ = setCode;
+      }
+  }, []);
+
   // Initialize Input Handler
   useEffect(() => {
       const runner = PythonRunner.getInstance();

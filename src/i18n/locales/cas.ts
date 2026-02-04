@@ -200,6 +200,12 @@ export const CAS: Translation = {
         // SYSTEM
         SYS_INTERNAL: "Error Interno.",
         SYS_TIMEOUT: "Tiempo de ejecución agotado.",
-        SYS_OUTPUT_CORRUPT: "Salida corrupta."
+        SYS_OUTPUT_CORRUPT: "Salida corrupta.",
+
+        // COMMON ASSERTIONS (AUTO-TRANSLATED)
+        ASSERT_INPUT_TOO_MANY: "Se pidió 'input' demasiadas veces.",
+        ASSERT_INPUT_NOT_EXPECTED: "No se esperaba que el programa pidiera 'input'.",
+        ASSERT_NO_OUTPUT: "Tu programa no imprimió nada.",
+        ASSERT_MISSING_FUNC: "Tu código debería contener la función '{name}'."
     }
 };

@@ -56,7 +56,7 @@
         "EUS": "Please write a recursive function named `recursive_sum(number: int)` which calculates the sum `1 + 2 + ... + number`. The exercise template contains the following outline:\r\n\r\n```python\r\ndef recursive_sum(number: int):\r\n    # if the number is 1, there is nothing else to add\r\n    if number <= 1:\r\n        return number\r\n\r\n    # fill in the rest of the function\r\n```\r\n\r\nSome examples:\r\n\r\n```python\r\nresult = recursive_sum(3)\r\nprint(result)\r\n\r\nprint(recursive_sum(5))\r\nprint(recursive_sum(10))\r\n```\r\n\r\n<sample-output>\r\n\r\n6\r\n15\r\n55\r\n\r\n</sample-output>"
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\n\r\ndef recursive_sum(number: int):\r\n    # if the number is 1, there is nothing else to add\r\n    if number <= 1:\r\n        return number\r\n\r\n    # fill in the rest of the function\r\n    else:\r\n        return number + recursive_sum(number-1)\r\n        \r\nif __name__ == \"__main__\":\r\n    result = recursive_sum(3)\r\n    print(result)\r\n\r\n    print(recursive_sum(5))\r\n    print(recursive_sum(10))",
+        "ENG": "# Write your solution here",
         "CAS": "# Escribe tu solución aquí",
         "EUS": "# Idatzi zure irtenbidea hemen"
       },

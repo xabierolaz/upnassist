@@ -28,7 +28,7 @@
         "EUS": "Mesedez sortu animazio bat non robota gora eta behera mugitzen den begizta amaigabe batean."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 640\r\nwindow_height = 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nx = 0\r\ny = 0\r\nvelocity = 1\r\nclock = pygame.time.Clock()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n\r\n    window.fill((0, 0, 0))\r\n    window.blit(robot, (x, y))\r\n    pygame.display.flip()\r\n\r\n    y += velocity\r\n    if velocity > 0 and y+robot.get_height() >= 480:\r\n        velocity = -velocity\r\n    if velocity < 0 and y <= 0:\r\n        velocity = -velocity\r\n\r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "import pygame\n\n# ...\n",
         "EUS": "import pygame\n\n# ...\n"
       },
@@ -48,7 +48,7 @@
         "EUS": "Mesedez sortu animazio bat non robotak leihoaren perimetroa jarraitzen duen."
       },
       "initialCode": {
-        "ENG": "# # WRITE YOUR SOLUTION HERE:\r\nfrom turtle import width\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 240\r\nwindow_height = 160\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\nx = 0\r\ny = 0\r\nvelocity = 1\r\ndirection = 1 # direction 1 = right, 2 = down, 3 = left, 4 = up\r\n\r\nclock = pygame.time.Clock()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n\r\n    window.fill((0, 0, 0))\r\n    window.blit(robot, (x, y))\r\n    pygame.display.flip()\r\n\r\n\r\n    if direction == 1:                               \r\n        x += velocity\r\n        if x + width == window_width:    \r\n            direction = 2                              \r\n    elif direction == 2:                               \r\n        y += velocity\r\n        if y + height == window_height:\r\n            direction = 3                              \r\n    elif direction == 3:                              \r\n        x -= velocity\r\n        if x == 0:                                 \r\n            direction = 4\r\n    elif direction == 4:                               \r\n        y -= velocity\r\n        if y == 0:                               \r\n            direction = 1\r\n\r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "# Escribe tu solución aquí",
         "EUS": "# Idatzi zure irtenbidea hemen"
       },
@@ -68,7 +68,7 @@
         "EUS": "Mesedez sortu animazio bat non bi robot ezker-eskuin mugitzen diren. Beheko robotak goikoaren abiadura bikoitzean mugitu behar du."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\n\r\npygame.init()\r\n\r\nwindow_width = 640\r\nwindow_height = 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n\r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\n#First robot\r\nx1 = 0\r\ny1 = 100\r\nvelocity1 = 1\r\ndirection1 = 1 # 1 = right, 2 = left\r\n\r\n#Second robot \r\nx2 = 0\r\ny2 = 200\r\nvelocity2 = 2\r\ndirection2 = 1 # 1 = right, 2 = left\r\n\r\nclock = pygame.time.Clock()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n\r\n    window.fill((0, 0, 0))\r\n    window.blit(robot, (x1, y1))\r\n    window.blit(robot, (x2, y2))\r\n    pygame.display.flip()\r\n\r\n    #First robot movement from side to side \r\n    if direction1 == 1:\r\n        x1 += velocity1\r\n        if x1 >=  window_width - width:\r\n            direction1 = 2\r\n    elif direction1 == 2:\r\n        x1 -= velocity1\r\n        if x1 <=  0:\r\n            direction1 = 1\r\n    \r\n    #First robot movement from side to side \r\n    if direction2 == 1:\r\n        x2 += velocity2\r\n        if x2 >=  window_width - width:\r\n            direction2 = 2\r\n    elif direction2 == 2:\r\n        x2 -= velocity2\r\n        if x2 <=  0:\r\n            direction2 = 1\r\n\r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "import pygame\n\n# ...\n",
         "EUS": "import pygame\n\n# ...\n"
       },
@@ -88,7 +88,7 @@
         "EUS": "Mesedez sortu animazio bat non hamar robot zirkuluan doazen."
       },
       "initialCode": {
-        "ENG": "import pygame\r\nimport math\r\n \r\npygame.init()\r\n\r\nwindow_width, window_height = 640, 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nrobot = pygame.image.load(\"robot.png\")\r\n \r\nwidth = robot.get_width()\r\nheight = robot.get_height()\r\n\r\nangle = 0\r\nradius = 150\r\nnumber = 10\r\nclock = pygame.time.Clock()\r\n \r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n \r\n    window.fill((0, 0, 0))\r\n    for i in range(number):\r\n        x = window_width/2+math.cos(angle+2*math.pi*i/number)*radius-width/2\r\n        y = window_height/2+math.sin(angle+2*math.pi*i/number)*radius-height/2\r\n        window.blit(robot, (x, y))\r\n    pygame.display.flip()\r\n \r\n    angle += 0.01\r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "import pygame\nimport math\n\n# ...\n",
         "EUS": "import pygame\nimport math\n\n# ...\n"
       },
@@ -108,7 +108,7 @@
         "EUS": "Ariketa txantiloiak `ball.png` irudia dauka. Mesedez sortu animazio bat non pilotak leihoaren hormetan errebotatzen duen."
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\nimport math\r\n\r\npygame.init()\r\n\r\nwindow_width, window_height = 640, 480\r\n\r\nwindow = pygame.display.set_mode((window_width, window_height))\r\nball = pygame.image.load(\"ball.png\")\r\n\r\nwidth = ball.get_width()\r\nheight = ball.get_height()\r\n\r\nh = 1\r\nx = 320\r\ny = 240\r\n\r\nxvelocity = 2\r\nyvelocity = 2\r\nclock = pygame.time.Clock()\r\n\r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n\r\n    window.fill((0, 0, 0))    \r\n    window.blit(ball, (x, y))\r\n    pygame.display.flip()\r\n\r\n    if x+width >= 640 or x <= 0:\r\n        xvelocity = -xvelocity\r\n    if y+height >= 480 or y <= 0:\r\n        yvelocity = -yvelocity\r\n\r\n    x += xvelocity\r\n    y += yvelocity\r\n\r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "# Escribe tu solución aquí",
         "EUS": "# Idatzi zure irtenbidea hemen"
       },
@@ -128,7 +128,7 @@
         "EUS": "Please create an animation where robots fall from the sky randomly. When a robot reaches the ground, it starts moving to the left or to the right, and finaly disappears off the screen. The end result should look like this:\r\n\r\n<img src=\"pygame_invasion.gif\">"
       },
       "initialCode": {
-        "ENG": "# WRITE YOUR SOLUTION HERE:\r\nimport pygame\r\nfrom random import randint\r\n \r\npygame.init()\r\nwidth, height = 640, 480\r\nscreen = pygame.display.set_mode((width, height))\r\n \r\nrobot = pygame.image.load(\"robot.png\")\r\n \r\n# number of robots (the same robots are reused)\r\nnumber = 20\r\n \r\nrobots = []\r\nfor i in range(number):\r\n    # causes the new random start position to be drawn immediately\r\n    robots.append([-1000,height])\r\n \r\nclock = pygame.time.Clock()\r\n \r\nwhile True:\r\n    for event in pygame.event.get():\r\n        if event.type == pygame.QUIT:\r\n            exit()\r\n \r\n    for i in range(number):\r\n        if robots[i][1]+robot.get_height() < height:\r\n            # the robot falls downwards\r\n            robots[i][1] += 1\r\n        else:\r\n            if robots[i][0] < -robot.get_width() or robots[i][0] > width:\r\n                # new random start point\r\n                robots[i][0] = randint(0,width-robot.get_width())\r\n                robots[i][1] = -randint(100,1000)\r\n            elif robots[i][0]+robot.get_width()/2 < width/2:\r\n                # the robot moves to the left\r\n                robots[i][0] -= 1\r\n            else:\r\n                # the robot moves to the right\r\n                robots[i][0] += 1\r\n \r\n    screen.fill((0, 0, 0))\r\n    for i in range(number):\r\n        screen.blit(robot, (robots[i][0], robots[i][1]))\r\n    pygame.display.flip()\r\n \r\n    clock.tick(60)",
+        "ENG": "# Write your solution here",
         "CAS": "# Escribe tu solución aquí",
         "EUS": "# Idatzi zure irtenbidea hemen"
       },

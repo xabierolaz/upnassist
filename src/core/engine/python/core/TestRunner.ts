@@ -133,10 +133,25 @@ def normalize_assertion_error(msg):
     # msg pattern: "technical_diff : custom_hint"
     parts = msg.split(' : ', 1)
     tech_diff = parts[0]
-    raw_hint = parts[1] if len(parts) > 1 else ""
+    raw_hint = parts[1] if len(parts) > 1 else msg # Fallback to full msg if no colon
     
-    # Localize hint if it follows our pipe-separated format
+    # Clean raw_hint if it has pipe
     localized_hint = localize_message(raw_hint)
+
+    # --- COMMON ASSERTION PATTERNS ---
+    if "Input is asked too many times" in msg:
+        return {"code": "ASSERT_INPUT_TOO_MANY"}
+    
+    if "Asking input from the user was not expected" in msg or "Input was not expected" in msg:
+        return {"code": "ASSERT_INPUT_NOT_EXPECTED"}
+        
+    if "Your program does not print out anything" in msg or "Your code does not print anything" in msg or "does not print anything" in msg:
+        return {"code": "ASSERT_NO_OUTPUT"}
+        
+    # Function missing
+    match = re.search(r"contain function named as ([^\s\(\)]+)", msg)
+    if match:
+        return {"code": "ASSERT_MISSING_FUNC", "params": {"name": match.group(1)}}
 
     # String equality 'A' != 'B'
     match = re.search(r"^'(.+)' != '(.+)'$", tech_diff)
@@ -156,7 +171,7 @@ def normalize_assertion_error(msg):
         
     return {
         "code": "ASSERT_GENERIC",
-        "params": {"message": localize_message(msg)}
+        "params": {"message": localized_hint}
     }
 
 # 3. DEFINIR HELPER RUNNER

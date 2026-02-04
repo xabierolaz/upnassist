@@ -200,6 +200,12 @@ export const EUS: Translation = {
         // SYSTEM
         SYS_INTERNAL: "Barne Errorea.",
         SYS_TIMEOUT: "Exekuzio denbora agortuta.",
-        SYS_OUTPUT_CORRUPT: "Irteera hondatuta."
+        SYS_OUTPUT_CORRUPT: "Irteera hondatuta.",
+
+        // COMMON ASSERTIONS (AUTO-TRANSLATED)
+        ASSERT_INPUT_TOO_MANY: "Input gehiegi eskatu dira.",
+        ASSERT_INPUT_NOT_EXPECTED: "Ez zen input eskaerarik espero.",
+        ASSERT_NO_OUTPUT: "Zure programak ez du ezer inprimatu.",
+        ASSERT_MISSING_FUNC: "Zure kodeak '{name}' funtzioa eduki beharko luke."
     }
 };
