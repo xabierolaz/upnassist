@@ -8,15 +8,6 @@
   },
   "blocks": [
     {
-      "type": "pdf-viewer",
-      "src": "/slides/15.2_sparse_matrices.pdf",
-      "title": {
-        "ENG": "Original Lab: Sparse Matrices",
-        "CAS": "Práctica Original: Matrices Dispersas",
-        "EUS": "Jatorrizko Praktika: Matrize Sakabanatuak"
-      }
-    },
-    {
       "type": "markdown",
       "content": {
         "ENG": "## 1. Introduction: The Strategy\n\nBefore tackling the full lab, we must master the **5 atomic movements** of Sparse Matrices. These are the building blocks you will need to implement functions like `normal_to_coo` or `sum_sparse`.\n\nWe work with **COO Format**: 3 parallel lists (Values, Rows, Columns).",

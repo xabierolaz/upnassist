@@ -8,15 +8,6 @@
   },
   "blocks": [
     {
-      "type": "pdf-viewer",
-      "src": "/slides/15.1_intro_python.pdf",
-      "title": {
-        "ENG": "Original Slides: Intro Python",
-        "CAS": "Diapositivas Originales: Intro Python",
-        "EUS": "Jatorrizko Diapositibak: Intro Python"
-      }
-    },
-    {
       "type": "markdown",
       "content": {
         "ENG": "## 0. Development Environment (IDEs)\n\nTo program efficiently, you need more than a text editor. While **Notepad++** is valid for quick edits, professional development requires robust environments.\n\n### Recommended Options\n*   **Anaconda (Spyder/Jupyter)**: The standard for Data Science. Includes all necessary libraries (NumPy, Pandas).\n*   **Visual Studio Code**: The most popular modern editor. Lightweight and extensible.\n*   **PyCharm**: Powerful, specific for Python.\n\nIn this course, we recommend **Spyder** (via Anaconda) for its integrated variable explorer, or **VS Code** for general development.",
@@ -112,10 +103,22 @@
         "EUS": "Zein da mota-iradokizun zuzena aldagai honetarako? `datuak = {'notak': [9.5, 8.0], 'izenak': ['Ane']}`"
       },
       "options": [
-        { "text": "dict[str, list]", "correct": false },
-        { "text": "dict[str, list[float | str]]", "correct": true },
-        { "text": "dict[str, list[float]]", "correct": false },
-        { "text": "list[dict[str, any]]", "correct": false }
+        {
+          "text": "dict[str, list]",
+          "correct": false
+        },
+        {
+          "text": "dict[str, list[float | str]]",
+          "correct": true
+        },
+        {
+          "text": "dict[str, list[float]]",
+          "correct": false
+        },
+        {
+          "text": "list[dict[str, any]]",
+          "correct": false
+        }
       ]
     },
     {
