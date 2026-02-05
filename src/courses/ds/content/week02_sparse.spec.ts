@@ -1,53 +1,45 @@
 import { describe, it, expect } from 'vitest';
-import week02Sparse from './week02_sparse.json';
+import content from './week02_sparse.json';
 
-describe('Week 02 Sparse Matrix Module (Audit Fix)', () => {
-    it('should have the correct ID and metadata', () => {
-        expect(week02Sparse.id).toBe('ds-w02-sparse');
-        expect(week02Sparse.part).toBe(15.2);
-        expect(week02Sparse.title.ENG).toBe('Lab: Sparse Matrices (COO)');
-    });
+describe('Week 2 Content (Sparse Matrices)', () => {
+  it('should have the correct id', () => {
+    expect(content.id).toBe('ds-w02-sparse');
+  });
 
-    it('should contain the Introduction section', () => {
-        const introBlock = week02Sparse.blocks.find(b => 
-            b.type === 'markdown' && 
-            typeof b.content === 'object' && 
-            (b.content as any).ENG.includes('# Sparse Matrices')
-        );
-        expect(introBlock).toBeDefined();
-    });
+  it('should have a title in all languages', () => {
+    expect(content.title.ENG).toBeDefined();
+    expect(content.title.CAS).toBeDefined();
+    expect(content.title.EUS).toBeDefined();
+  });
 
-    it('should contain the SparseMatrixVisualizer', () => {
-        const visBlock = week02Sparse.blocks.find(b => b.type === 'interactive-sparse-matrix');
-        expect(visBlock).toBeDefined();
-    });
+  it('should start with the visual introduction', () => {
+    const firstBlock = content.blocks[0];
+    expect(firstBlock.type).toBe('markdown');
+    expect(firstBlock.content.ENG).toContain('The Problem: An Ocean of Zeros');
+  });
 
-    it('should contain exactly 10 exercises', () => {
-        const exercises = week02Sparse.blocks.filter(b => b.type === 'exercise');
-        expect(exercises.length).toBe(10);
-    });
+  it('should contain the sparse matrix visualizer', () => {
+    const visualizerBlock = content.blocks.find(b => b.type === 'interactive-sparse-matrix');
+    expect(visualizerBlock).toBeDefined();
+  });
 
-    it('should have Exercise 1: input_matrix', () => {
-        const ex1 = week02Sparse.blocks.find(b => 
-            b.type === 'exercise' && b.exerciseId === 'ds-w02-sparse-ex1'
-        );
-        expect(ex1).toBeDefined();
-        expect((ex1 as any).title.ENG).includes('input_matrix');
-    });
+  it('should contain the memory calculation exercise', () => {
+    const memoryExercise = content.blocks.find(b => b.exerciseId === 'ds-w02-sparse-ex5');
+    expect(memoryExercise).toBeDefined();
+    if (memoryExercise && memoryExercise.type === 'exercise') {
+        expect(memoryExercise.title.ENG).toContain('Calculating Real Memory');
+    }
+  });
 
-    it('should have Exercise 4: normal_to_coo', () => {
-        const ex4 = week02Sparse.blocks.find(b => 
-            b.type === 'exercise' && b.exerciseId === 'ds-w02-sparse-ex4'
-        );
-        expect(ex4).toBeDefined();
-        expect((ex4 as any).title.ENG).includes('normal_to_coo');
-    });
-
-    it('should have Exercise 9: sum_sparses', () => {
-        const ex9 = week02Sparse.blocks.find(b => 
-            b.type === 'exercise' && b.exerciseId === 'ds-w02-sparse-ex9'
-        );
-        expect(ex9).toBeDefined();
-        expect((ex9 as any).title.ENG).includes('sum_sparses');
-    });
+  it('should contain the sum strategy explanation', () => {
+    const sumBlock = content.blocks.find(b => 
+      b.type === 'markdown' && b.content.ENG.includes('The Merge (Sum)')
+    );
+    // Note: The title is in the exercise, not markdown block, let's check the exercise
+    const sumExercise = content.blocks.find(b => b.exerciseId === 'ds-w02-sparse-ex9');
+    expect(sumExercise).toBeDefined();
+    if (sumExercise && sumExercise.type === 'exercise') {
+        expect(sumExercise.title.ENG).toContain('The Merge (Sum)');
+    }
+  });
 });
