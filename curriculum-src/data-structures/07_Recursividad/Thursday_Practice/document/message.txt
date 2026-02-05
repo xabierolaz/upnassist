@@ -1,8 +1,0 @@
-# Mostrar un mensaje simple
-easygui.msgbox(msg="Mensaje")
-
-# Podemos agregar un ttulo
-easygui.msgbox(msg="Mensaje", title="Error")
-
-# Incluso podemos modificar lo que se muestra en el botn de ok
-easygui.msgbox(msg="Mensaje", title="Error", ok_button="Soy un botn")

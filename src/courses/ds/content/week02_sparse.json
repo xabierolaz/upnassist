@@ -1,156 +1,221 @@
 {
   "id": "ds-w02-sparse",
-  "part": 15,
+  "part": 15.2,
   "title": {
-    "ENG": "Sparse Matrices: The Mechanics",
-    "CAS": "Matrices Dispersas: La Mecánica",
-    "EUS": "Matrize Sakabanatuak: Mekanika"
+    "ENG": "Lab: Sparse Matrices (COO)",
+    "CAS": "Práctica: Matrices Dispersas (COO)",
+    "EUS": "Praktika: Matrize Dispertsuak (COO)"
   },
   "blocks": [
     {
       "type": "markdown",
       "content": {
-        "ENG": "# The Problem: Ocean of Zeros\n\nImagine a generic matrix. Most of it is empty space.\n\n| | 0 | 1 | 2 |\n|---|---|---|---|
-| **0** | 0 | 0 | **5** |\n| **1** | 0 | **8** | 0 |\n\nStoring the zeros is waste. We only care about **5** (at 0,2) and **8** (at 1,1).\n\n### The Solution: COO Format (Parallel Lists)\nInstead of a grid, we use 3 parallel lists. This is efficient but requires careful index management.\n\n1. `values`: [ 5, 8 ]\n2. `rows`:   [ 0, 1 ]\n3. `cols`:   [ 2, 1 ]",
-        "CAS": "# El Problema: Un Océano de Ceros\n\nImagina una matriz. La mayoría es espacio vacío.\n\n| | 0 | 1 | 2 |\n|---|---|---|---|
-| **0** | 0 | 0 | **5** |\n| **1** | 0 | **8** | 0 |\n\nGuardar los ceros es un desperdicio. Solo nos importan el **5** (en 0,2) y el **8** (en 1,1).\n\n### La Solución: Formato COO (Listas Paralelas)\nEn lugar de una cuadrícula, usamos 3 listas paralelas. Es eficiente pero requiere gestión cuidadosa de índices.\n\n1. `valores`: [ 5, 8 ]\n2. `filas`:   [ 0, 1 ]\n3. `cols`:    [ 2, 1 ]",
-        "EUS": "# Arazoa: Zeroen Ozeanoa\n\nImajina ezazu matrize bat. Gehiena espazio hutsa da.\n\n| | 0 | 1 | 2 |\n|---|---|---|---|
-| **0** | 0 | 0 | **5** |\n| **1** | 0 | **8** | 0 |\n\nZeroak gordetzea alferrikakoa da. **5** (0,2-n) eta **8** (1,1-ean) bakarrik inporta zaizkigu.\n\n### Irtenbidea: COO Formatua (Zerrenda Paraleloak)\nSareta baten ordez, 3 zerrenda paralelo erabiltzen ditugu. Eraginkorra da baina indize kudeaketa zorrotza eskatzen du.\n\n1. `balioak`: [ 5, 8 ]\n2. `errenk`:  [ 0, 1 ]\n3. `zut`:     [ 2, 1 ]"
+        "ENG": "# Sparse Matrices (COO Format)\n\n## 1. What is a Sparse Matrix?\n\nA matrix is **sparse** when most of its elements are **zero**. \n\nImagine a matrix of 1000x1000 (1 million elements). If only 10 elements are non-zero, why store 999,990 zeros? It's a waste of memory and processing power.\n\n## 2. The COO Format: The 'Coordinate' Strategy\n\nInstead of storing the grid, we store a **list of non-zero elements** and their exact coordinates. We use three parallel lists:\n\n*   **`values`**: What is the number?\n*   **`rows`**: In which row is it?\n*   **`cols`**: In which column is it?\n\n### 🟢 Visual Example\n\n**Standard Matrix (4x4):**\n```\n[ 0  0  0  0 ]\n[ 0  7  0  0 ]  <-- Value 7 at (1, 1)\n[ 0  0  0  5 ]  <-- Value 5 at (2, 3)\n[ 0  0  0  0 ]\n```\n\n**COO Representation:**\n*   `values` = `[7, 5]`\n*   `rows`   = `[1, 2]`\n*   `cols`   = `[1, 3]`\n\n> **Key Concept:** The index `0` in all lists refers to the first element (7 at 1,1). The index `1` refers to the second element (5 at 2,3).\n\n---\n\n## 3. How to Convert: The Algorithm\n\nTo convert a normal matrix to COO, follow this 'recipe':\n\n1.  **Initialize** three empty lists: `v = []`, `r = []`, `c = []`.\n2.  **Iterate** through every row `i` of the matrix.\n3.  **Iterate** through every column `j` of that row.\n4.  **Check**: If the value at `matrix[i][j]` is **not zero**:\n    *   Append the value to `v`.\n    *   Append the row index `i` to `r`.\n    *   Append the column index `j` to `c`.\n\n```python\nfor i in range(len(matrix)):\n    for j in range(len(matrix[i])):\n        if matrix[i][j] != 0:\n            values.append(matrix[i][j])\n            rows.append(i)\n            cols.append(j)\n```",
+        "CAS": "# Matrices Dispersas (Formato COO)\n\n## 1. ¿Qué es una Matriz Dispersa?\n\nUna matriz es **dispersa** (sparse) cuando la gran mayoría de sus elementos son **cero**.\n\nImagina una matriz de 1000x1000 (1 millón de elementos). Si solo 10 elementos son distintos de cero, ¿por qué guardar 999.990 ceros? Es un desperdicio de memoria y potencia de cálculo.\n\n## 2. El Formato COO: La Estrategia de Coordenadas\n\nEn lugar de guardar la cuadrícula completa, guardamos una **lista de los elementos no nulos** y sus coordenadas exactas. Usamos tres listas paralelas:\n\n*   **`valores`**: ¿Qué número es?\n*   **`filas`**: ¿En qué fila está?\n*   **`columnas`**: ¿En qué columna está?\n\n### 🟢 Ejemplo Visual\n\n**Matriz Estándar (4x4):**\n```\n[ 0  0  0  0 ]\n[ 0  7  0  0 ]  <-- Valor 7 en (1, 1)\n[ 0  0  0  5 ]  <-- Valor 5 en (2, 3)\n[ 0  0  0  0 ]\n```\n\n**Representación COO:**\n*   `valores`  = `[7, 5]`\n*   `filas`    = `[1, 2]`\n*   `columnas` = `[1, 3]`\n\n> **Concepto Clave:** El índice `0` de todas las listas se refiere al primer elemento (7 en 1,1). El índice `1` se refiere al segundo (5 en 2,3).\n\n---\n\n## 3. Cómo convertir: El Algoritmo\n\nPara pasar de matriz normal a COO, sigue esta \"receta\":\n\n1.  **Inicializa** tres listas vacías: `v = []`, `r = []`, `c = []`.\n2.  **Recorre** cada fila `i` de la matriz.\n3.  **Recorre** cada columna `j` de esa fila.\n4.  **Condición**: Si el valor en `matriz[i][j]` **no es cero**:\n    *   Añade el valor a `v`.\n    *   Añade el índice de fila `i` a `r`.\n    *   Añade el índice de columna `j` a `c`.\n\n```python\nfor i in range(len(matriz)):\n    for j in range(len(matriz[i])):\n        if matriz[i][j] != 0:\n            valores.append(matriz[i][j])\n            filas.append(i)\n            columnas.append(j)\n```",
+        "EUS": "# Matrize Dispertsuak (COO Formatua)\n\n## 1. Zer da Matrize Dispertsua?\n\nMatrize bat **dispertsua** (sparse) da bere elementu gehienak **zero** direnean.\n\nImajinatu 1000x1000-ko matrize bat (milioi bat elementu). 10 elementu bakarrik badira zero ez direnak, zergatik gorde 999.990 zero? Memoria eta kalkulu-ahalmenaren galera handia da.\n\n## 2. COO Formatua: Koordenatuen Estrategia\n\nSare osoa gorde beharrean, **zero ez diren elementuen zerrenda** eta haien koordenatu zehatzak gordetzen ditugu. Hiru zerrenda paralelo erabiltzen ditugu:\n\n*   **`balioak`**: Zein zenbaki da?\n*   **`errenkadak`**: Zein errenkadatan dago?\n*   **`zutabeak`**: Zein zutabetan dago?\n\n### 🟢 Adibide Bisuala\n\n**Matrize Estandarra (4x4):**\n```\n[ 0  0  0  0 ]\n[ 0  7  0  0 ]  <-- 7 balioa (1, 1) posizioan\n[ 0  0  0  5 ]  <-- 5 balioa (2, 3) posizioan\n[ 0  0  0  0 ]\n```\n\n**COO Errepresentazioa:**\n*   `balioak`    = `[7, 5]`\n*   `errenkadak`  = `[1, 2]`\n*   `zutabeak`   = `[1, 3]`\n\n> **Funtsezko kontzeptua:** Zerrenda guztietako `0` indizeak lehen elementuari egiten dio erreferentzia (7 balioa 1,1ean). `1` indizeak bigarrenari (5 balioa 2,3an).\n\n---\n\n## 3. Nola bihurtu: Algoritmoa\n\nMatrize normal batetik COOra pasatzeko, jarraitu \"errezeta\" hau:\n\n1.  **Hasieratu** hiru zerrenda huts: `v = []`, `r = []`, `c = []`.\n2.  **Iteratu** matrizeko `i` errenkada bakoitzetik.\n3.  **Iteratu** errenkada horretako `j` zutabe bakoitzetik.\n4.  **Baldintza**: `matrizea[i][j]` balioa **zero ez bada**:\n    *   Gehitu balioa `v`-ri.\n    *   Gehitu `i` errenkada-indizea `r`-ri.\n    *   Gehitu `j` zutabe-indizea `c`-ri.\n\n```python\nfor i in range(len(matrizea)):\n    for j in range(len(matrizea[i])):\n        if matrizea[i][j] != 0:\n            balioak.append(matrizea[i][j])\n            errenkadak.append(i)\n            zutabeak.append(j)\n```"
       }
     },
     {
-      "type": "exercise",
-      "exerciseId": "ds-w02-spar-ex1",
-      "title": {
-        "ENG": "1. The Skeleton",
-        "CAS": "1. El Esqueleto",
-        "EUS": "1. Eskeletoa"
-      },
-      "description": {
-        "ENG": "First, we need a container. The standard way to represent a COO Matrix in this course is a list containing 3 empty lists: `[values, rows, columns]`.\n\n**Task:** Implement the function to return exactly this structure.",
-        "CAS": "Primero, necesitamos un contenedor. La forma estándar de representar una Matriz COO en este curso es una lista con 3 listas vacías dentro: `[valores, filas, cols]`.\n\n**Tarea:** Implementa la función para devolver exactamente esta estructura.",
-        "EUS": "Lehenik, ontzi bat behar dugu. Ikastaro honetan COO Matrize bat adierazteko modu estandarra barruan 3 zerrenda huts dituen zerrenda bat da: `[balioak, errenkadak, zutabeak]`.\n\n**Zeregina:** Inplementatu funtzioa zehazki egitura hori itzultzeko."
-      },
-      "initialCode": {
-        "ENG": "def create_coo():\n    # Return the list of 3 empty lists\n    pass\n\nprint(create_coo())",
-        "CAS": "def crear_coo():\n    # Devuelve la lista de 3 listas vacías\n    pass\n\nprint(crear_coo())",
-        "EUS": "def sortu_coo():\n    # Itzuli 3 zerrenda huts dituen zerrenda\n    pass\n\nprint(sortu_coo())"
-      },
-      "testCode": "import unittest\nfunc = locals().get('crear_coo') or locals().get('create_coo') or locals().get('sortu_coo')\nassert func() == [[], [], []], 'Return [[], [], []]'"
+      "type": "interactive-sparse-matrix"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 2. Converting Dense to Sparse\n\nTo compress, we iterate the matrix. If value != 0, we save it.\n\n**State 1: Scanning (0,0)**\nValue: `0` ❌ (Ignore)\n\n**State 2: Scanning (0,2)**\nValue: `5` ✅ **SAVE!**\n\n| Lists | Content |\n|---|---|
-| Values | `[ 5 ]` |\n| Rows | `[ 0 ]` |\n| Cols | `[ 2 ]` |",
-        "CAS": "## 2. Convirtiendo Densa a Dispersa\n\nPara comprimir, iteramos la matriz. Si valor != 0, lo guardamos.\n\n**Estado 1: Escaneando (0,0)**\nValor: `0` ❌ (Ignorar)\n\n**Estado 2: Escaneando (0,2)**\nValor: `5` ✅ **¡GUARDAR!**\n\n| Listas | Contenido |\n|---|---|
-| Valores | `[ 5 ]` |\n| Filas | `[ 0 ]` |\n| Cols | `[ 2 ]` |",
-        "EUS": "## 2. Trinkoa Sakabanatura Bihurtzen\n\nKonprimitzeko, matrizea iteratzen dugu. Balioa != 0 bada, gorde.\n\n**1. Egoera: Eskaneatzen (0,0)**\nBalioa: `0` ❌ (Ezikusi)\n\n**2. Egoera: Eskaneatzen (0,2)**\nBalioa: `5` ✅ **GORDE!**\n\n| Zerrendak | Edukia |\n|---|---|
-| Balioak | `[ 5 ]` |\n| Errenk | `[ 0 ]` |\n| Zut | `[ 2 ]` |"
+        "ENG": "## 2. Lab Exercises\n\n### 🛠️ Useful Python Tools\n\nTo complete this lab, you will need to master these functions:\n\n**1. `split()`**: Splits a string into a list of substrings.\n```python\ntext = \"1 23 -4\"\nparts = text.split() \n# Result: ['1', '23', '-4']\n```\n\n**2. `append(x)`**: Adds an element to the end of a list.\n```python\nnums = [1, 2, 3]\nnums.append(4)\n# Result: [1, 2, 3, 4]\n```\n\n**💡 Pro-Tip: Reading numbers from a string**\n```python\nline = \"10 20 30\"\nparts = line.split()    # ['10', '20', '30']\n\nnumbers = []\nfor p in parts:\n    numbers.append(int(p)) # Convert each part to an integer!\n\nprint(numbers)  # [10, 20, 30]\n```",
+        "CAS": "## 2. Ejercicios de Laboratorio\n\n### 🛠️ Herramientas Útiles de Python\n\nPara esta práctica necesitarás dominar estas funciones:\n\n**1. `split()`**: Divide un string en una lista de trozos.\n```python\ntexto = \"1 23 -4\"\npartes = texto.split() \n# Resultado: ['1', '23', '-4']\n```\n\n**2. `append(x)`**: Añade un elemento al final de una lista.\n```python\nnums = [1, 2, 3]\nnums.append(4)\n# Resultado: [1, 2, 3, 4]\n```\n\n**💡 Truco: Leer números de un string**\n```python\nlinea = \"10 20 30\"\npartes = linea.split()    # ['10', '20', '30']\n\nnumeros = []\nfor p in partes:\n    numeros.append(int(p)) # ¡Convierte cada parte a entero!\n\nprint(numeros)  # [10, 20, 30]\n```",
+        "EUS": "## 2. Laborategiko Ariketak\n\n### 🛠️ Python Tresna Erabilgarriak\n\nPraktika hau egiteko funtzio hauek menperatu beharko dituzu:\n\n**1. `split()`**: Testu bat zatietan mozten du (zerrenda bat).\n```python\ntestua = \"1 23 -4\"\nzatiak = testua.split() \n# Emaitza: ['1', '23', '-4']\n```\n\n**2. `append(x)`**: Elementu bat gehitzen du zerrendaren amaieran.\n```python\nzenbakiak = [1, 2, 3]\nzenbakiak.append(4)\n# Emaitza: [1, 2, 3, 4]\n```\n\n**💡 Trikitia: Testu batetik zenbakiak irakurtzea**\n```python\nlerroa = \"10 20 30\"\nzatiak = lerroa.split()    # ['10', '20', '30']\n\nzenbakiak = []\nfor z in zatiak:\n    zenbakiak.append(int(z)) # Bihurtu zati bakoitza osoko zenbaki!\n\nprint(zenbakiak)  # [10, 20, 30]\n```"
       }
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-spar-ex2",
-      "title": {
-        "ENG": "2. The Filter Loop",
-        "CAS": "2. El Bucle de Filtrado",
-        "EUS": "2. Iragazki Begizta"
-      },
-      "description": {
-        "ENG": "We are iterating through a row. We need to decide what to print.\n\n**Task:** Complete the `if` statement inside the loop. Only print the value if it is **NOT zero**.",
-        "CAS": "Estamos iterando por una fila. Tenemos que decidir qué imprimir.\n\n**Tarea:** Completa el `if` dentro del bucle. Solo imprime el valor si **NO es cero**.",
-        "EUS": "Errenkada batetik iteratzen ari gara. Zer inprimatu erabaki behar dugu.\n\n**Zeregina:** Osatu `if`-a begizta barruan. Balioa inprimatu bakarrik **zero EZ bada**."
-      },
-      "initialCode": {
-        "ENG": "row_data = [0, 5, 0, 8, 0]\n\nfor v in row_data:\n    # Write the condition here:\n        print(f\"Keeping: {v}\")",
-        "CAS": "datos_fila = [0, 5, 0, 8, 0]\n\nfor v in datos_fila:\n    # Escribe la condición aquí:\n        print(f\"Guardando: {v}\")",
-        "EUS": "errenkada_datuak = [0, 5, 0, 8, 0]\n\nfor v in errenkada_datuak:\n    # Idatzi baldintza hemen:\n        print(f\"Gordetzen: {v}\")"
-      },
-      "testCode": "import unittest\nfrom unittest.mock import patch\nfrom tmc.utils import get_stdout\n\nout = get_stdout()\nassert \"0\" not in out, \"You printed a 0! The filter failed.\"\nassert \"5\" in out and \"8\" in out, \"You missed the valid numbers.\""
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-spar-ex3",
-      "title": {
-        "ENG": "3. The Capture (Parallel Lists)",
-        "CAS": "3. La Captura (Listas Paralelas)",
-        "EUS": "3. Harrapaketa (Zerrenda Paraleloak)"
-      },
-      "description": {
-        "ENG": "Now we have the real data. We must save the **Value**, the **Row**, and the **Column** into their respective lists.\n\n**Task:** Inside the `if`, append `val`, `r`, and `c` to `vals`, `rows`, and `cols`.",
-        "CAS": "Ahora tenemos los datos reales. Debemos guardar el **Valor**, la **Fila**, y la **Columna** en sus respectivas listas.\n\n**Tarea:** Dentro del `if`, añade (append) `val`, `r`, y `c` a `vals`, `rows`, y `cols`.",
-        "EUS": "Orain benetako datuak ditugu. **Balioa**, **Errenkada** eta **Zutabea** dagokien zerrendetan gorde behar ditugu.\n\n**Zeregina:** `if`-aren barruan, erantsi `val`, `r` eta `c` `vals`, `rows` eta `cols`-ei."
-      },
-      "initialCode": {
-        "ENG": "vals = []\nrows = []\ncols = []\n\n# Simulated loop variables\nval = 9\nr = 2\nc = 4\n\nif val != 0:\n    # 1. Append val to vals\n    # 2. Append r to rows\n    # 3. Append c to cols\n    pass\n\nprint(vals, rows, cols)",
-        "CAS": "vals = []\nrows = []\ncols = []\n\n# Variables simuladas del bucle\nval = 9\nr = 2\nc = 4\n\nif val != 0:\n    # 1. Añade val a vals\n    # 2. Añade r a rows\n    # 3. Añade c a cols\n    pass\n\nprint(vals, rows, cols)",
-        "EUS": "vals = []\nrows = []\ncols = []\n\n# Begizta aldagai simulatuak\nval = 9\nr = 2\nc = 4\n\nif val != 0:\n    # 1. Erantsi val vals-i\n    # 2. Erantsi r rows-i\n    # 3. Erantsi c cols-i\n    pass\n\nprint(vals, rows, cols)"
-      },
-      "testCode": "import unittest\nassert vals == [9] and rows == [2] and cols == [4], 'You must append all 3 values to their lists.'"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 3. The Radar (Search)\n\nThis is the tricky part. To sum matrices, we need to know: *\"Do I already have a value at (2, 4)?\"*\n\nSince we don't have a grid, we must **scan our lists**.\n\nWe iterate index `k`. We check: `rows[k] == target_r` **AND** `cols[k] == target_c`.",
-        "CAS": "## 3. El Radar (Búsqueda)\n\nEsta es la parte difícil. Para sumar matrices, necesitamos saber: *\"¿Ya tengo un valor en (2, 4)?\"*\n\nComo no tenemos cuadrícula, debemos **escanear nuestras listas**.\n\nIteramos índice `k`. Comprobamos: `rows[k] == target_r` **Y** `cols[k] == target_c`.",
-        "EUS": "## 3. Radar-a (Bilaketa)\n\nHau da zati zaila. Matrizeak batzeko, jakin behar dugu: *\"Badut baliorik (2, 4)-n?\"*\n\nSaretarik ez dugunez, gure **zerrendak eskaneatu** behar ditugu.\n\n`k` indizea iteratzen dugu. Egiaztatzen dugu: `rows[k] == target_r` **ETA** `cols[k] == target_c`."
+        "ENG": "### ⌨️ Logic: How to read a matrix from Console\n\nTo implement `input_matrix()`, follow these steps:\n1.  **Initialize** an empty list `matrix = []` and a variable `num_cols = -1` (to track the first row's length).\n2.  **Start a loop** (`while True`) to keep reading lines.\n3.  **Read input**: `line = input()`. If the line is empty (`\"\"`), **break** the loop.\n4.  **Process**: Use `split()` to get parts, and a loop to convert each part into an `int` to build the `current_row` list.\n5.  **Validate**: \n    *   If it's the first row, set `num_cols = len(current_row)`.\n    *   If not, check if `len(current_row) == num_cols`. If they don't match, warn the user and `continue` to the next iteration.\n6.  **Store**: Append the valid `current_row` to the `matrix`.",
+        "CAS": "### ⌨️ Lógica: Cómo leer una matriz por Consola\n\nPara implementar `input_matrix()`, sigue estos pasos:\n1.  **Inicializa** una lista vacía `matriz = []` y una variable `num_cols = -1` (para saber el tamaño de la primera fila).\n2.  **Bucle principal** (`while True`) para seguir leyendo líneas.\n3.  **Leer entrada**: `linea = input()`. Si la línea es vacía (`\"\"`), sal del bucle con **break**.\n4.  **Procesar**: Usa `split()` para separar los trozos, y un bucle para convertir cada trozo a `int` y construir la lista `fila_actual`.\n5.  **Validar**: \n    *   Si es la primera fila, guarda su tamaño: `num_cols = len(fila_actual)`.\n    *   Si no, comprueba si `len(fila_actual) == num_cols`. Si no coinciden, avisa al usuario y usa `continue` para pedir la fila de nuevo.\n6.  **Guardar**: Añade la `fila_actual` válida a la `matriz`.",
+        "EUS": "### ⌨️ Logika: Nola irakurri matrize bat kontsolatik\n\n`input_matrix()` inplementatzeko, jarraitu urrats hauek:\n1.  **Hasieratu** zerrenda huts bat `matrizea = []` eta aldagai bat `zut_kop = -1` (lehen errenkadaren tamaina jakiteko).\n2.  **Begizta nagusia** (`while True`) lerroak irakurtzen jarraitzeko.\n3.  **Irakurri sarrera**: `lerroa = input()`. Lerroa hutsik badago (`\"\"`), atera begiztatik **break** bidez.\n4.  **Prozesatu**: Erabili `split()` zatiak bereizteko, eta begizta bat zati bakoitza `int` bihurtzeko eta `uneko_errenkada` zerrenda osatzeko.\n5.  **Balidatu**: \n    *   Lehen errenkada bada, gorde bere tamaina: `zut_kop = len(uneko_errenkada)`.\n    *   Bestela, egiaztatu `len(uneko_errenkada) == zut_kop` den. Bat ez badatoz, ohartarazi erabiltzailea eta erabili `continue` errenkada berriro eskatzeko.\n6.  **Gorde**: Gehitu `uneko_errenkada` balioduna `matrizea`-ri."
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "ds-w02-spar-ex4-search",
-      "title": {
-        "ENG": "4. Finding the Coordinate",
-        "CAS": "4. Encontrando la Coordenada",
-        "EUS": "4. Koordenatua Aurkitzen"
-      },
+      "exerciseId": "ds-w02-sparse-ex1",
+      "title": { "ENG": "1. input_matrix()", "CAS": "1. input_matrix()", "EUS": "1. input_matrix()" },
       "description": {
-        "ENG": "We are searching for `(target_r, target_c)`. We iterate through the lists with index `k`.\n\n**Task:** Write the condition. If `rows[k]` matches `target_r` AND `cols[k]` matches `target_c`, print \"Found!\".",
-        "CAS": "Buscamos `(target_r, target_c)`. Iteramos por las listas con índice `k`.\n\n**Tarea:** Escribe la condición. Si `rows[k]` coincide con `target_r` Y `cols[k]` coincide con `target_c`, imprime \"¡Encontrado!\".",
-        "EUS": "`(target_r, target_c)` bilatzen ari gara. Zerrendetatik iteratzen dugu `k` indizearekin.\n\n**Zeregina:** Idatzi baldintza. `rows[k]` eta `target_r` bat badatoz ETA `cols[k]` eta `target_c` bat badatoz, inprimatu \"Aurkitua!\"."
+        "ENG": "Read a matrix from the console. Each line is a row, numbers separated by spaces. An empty line ends the input. Ensure all rows have the same number of columns.",
+        "CAS": "Lee una matriz desde la consola. Cada línea es una fila, números separados por espacios. Una línea vacía termina la entrada. Asegúrate de que todas las filas tengan el mismo número de columnas.",
+        "EUS": "Irakurri matrize bat kontsolatik. Lerro bakoitza errenkada bat da, espazioez berezitako zenbakiekin. Lerro huts batek amaitzen du sarrera. Ziurtatu errenkada guztiek zutabe kopuru bera dutela."
       },
       "initialCode": {
-        "ENG": "rows = [0, 2, 5]\ncols = [1, 2, 0]\ntarget_r = 2\ntarget_c = 2\n\nfor k in range(len(rows)):\n    # Write the AND condition here:\n        print(f\"Found at index {k}\")",
-        "CAS": "rows = [0, 2, 5]\ncols = [1, 2, 0]\ntarget_r = 2\ntarget_c = 2\n\nfor k in range(len(rows)):\n    # Escribe la condición AND aquí:\n        print(f\"Encontrado en índice {k}\")",
-        "EUS": "rows = [0, 2, 5]\ncols = [1, 2, 0]\ntarget_r = 2\ntarget_c = 2\n\nfor k in range(len(rows)):\n    # Idatzi AND baldintza hemen:\n        print(f\"Aurkitua indize honetan: {k}\")"
+        "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: break\n        # TODO: Process the line\n    return matrix",
+        "CAS": "def input_matrix() -> list:\n    matriz = []\n    print(\"Introduce la matriz (línea vacía para terminar):\")\n    while True:\n        linea = input()\n        if not linea: break\n        # TODO: Procesa la línea\n    return matriz",
+        "EUS": "def input_matrix() -> list:\n    matrizea = []\n    print(\"Sartu matrizea (lerro hutsa amaitzeko):\")\n    while True:\n        lerroa = input()\n        if not lerroa: break\n        # TODO: Prozesatu lerroa\n    return matrizea"
       },
-      "testCode": "import unittest\nfrom tmc.utils import get_stdout\nout = get_stdout()\nassert \"1\" in out or \"index 1\" in out, 'It should find it at index 1'"
+      "testCode": "import unittest\n# Mock testing here"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex2",
+      "title": { "ENG": "2. read_matrix(path)", "CAS": "2. read_matrix(path)", "EUS": "2. read_matrix(path)" },
+      "description": {
+        "ENG": "Read a matrix from a text file. Each line is a row. Validate that all rows have the same length.\n\n**💡 Hint:** Use `with open(path, mode='r') as f:` to safely open the file and `for line in f:` to iterate through it.",
+        "CAS": "Lee una matriz desde un archivo de texto. Cada línea es una fila. Valida que todas las filas tengan la misma longitud.\n\n**💡 Pista:** Usa `with open(path, mode='r') as f:` para abrir el archivo de forma segura y `for linea in f:` para recorrerlo.",
+        "EUS": "Irakurri matrize bat testu-fitxategi batetik. Lerro bakoitza errenkada bat da. Balidatu errenkada guztiek luzera bera dutela.\n\n**💡 Laguntza:** Erabili `with open(path, mode='r') as f:` fitxategia modu seguruan irekitzeko eta `for lerroa in f:` hura zeharkatzeko."
+      },
+      "initialCode": {
+        "ENG": "def read_matrix(path: str) -> list:\n    matrix = []\n    # TODO: Open file and read lines\n    return matrix",
+        "CAS": "def read_matrix(path: str) -> list:\n    matriz = []\n    # TODO: Abre el archivo y lee las líneas\n    return matriz",
+        "EUS": "def read_matrix(path: str) -> list:\n    matrizea = []\n    # TODO: Ireki fitxategia eta irakurri lerroak\n    return matrizea"
+      },
+      "testCode": "import unittest\n# Mock file testing"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 4. The Sum Logic\n\nWhen adding a new number to our sparse matrix, two things can happen:\n\n1.  **Coordinate Exists:** We modify the existing value (`vals[k] += new`).\n2.  **Coordinate New:** We append a new entry to the end (`append`).\n\nThis distinction is crucial for the function `insert_or_increment`.",
-        "CAS": "## 4. La Lógica de Suma\n\nAl añadir un nuevo número a nuestra matriz dispersa, pueden pasar dos cosas:\n\n1.  **Coordenada Existe:** Modificamos el valor existente (`vals[k] += new`).\n2.  **Coordenada Nueva:** Añadimos una nueva entrada al final (`append`).\n\nEsta distinción es crucial para la función `insertar_o_incrementar`.",
-        "EUS": "## 4. Batuketa Logika\n\nZenbaki berri bat gure matrize sakabanatuan gehitzean, bi gauza gerta daitezke:\n\n1.  **Koordenatua Bada:** Dauden balioa aldatzen dugu (`vals[k] += new`).\n2.  **Koordenatu Berria:** Sarrera berri bat eransten dugu amaieran (`append`).\n\nBereizketa hau funtsezkoa da `txertatu_edo_handitu` funtziorako."
+        "ENG": "### 🔄 Concept: Modifying 'In-Place'\n\nIn functions like `insert_or_increment`, you don't need to return the matrix. In Python, when you pass a list to a function and modify it using methods like `append()` or `matrix[i] = x`, the changes **persist** outside the function. This is known as *mutating the object*.",
+        "CAS": "### 🔄 Concepto: Modificar 'In-Place'\n\nEn funciones como `insert_or_increment`, no necesitas devolver la matriz. En Python, cuando pasas una lista a una función y la modificas (usando `append()` o `matriz[i] = x`), los cambios **persisten** fuera de la función. Esto se conoce como *mutar el objeto*.",
+        "EUS": "### 🔄 Kontzeptua: 'In-Place' aldatzea\n\n`insert_or_increment` bezalako funtzioetan, ez duzu matrizea itzuli behar. Pythonen, zerrenda bat funtzio bati pasatzen diozunean eta aldatzen duzunean (`append()` edo `matriz[i] = x` erabiliz), aldaketek funtziotik kanpo **irauten dute**. Honi *objektua mutatzea* deitzen zaio."
       }
     },
     {
       "type": "exercise",
-      "exerciseId": "ds-w02-spar-ex5-update",
-      "title": {
-        "ENG": "5. Update or Append?",
-        "CAS": "5. ¿Actualizar o Añadir?",
-        "EUS": "5. Eguneratu ala Erantsi?"
-      },
+      "exerciseId": "ds-w02-sparse-ex3",
+      "title": { "ENG": "3. create_coo()", "CAS": "3. create_coo()", "EUS": "3. create_coo()" },
       "description": {
-        "ENG": "We have `vals`. We searched for a coordinate. `index` is the result (-1 means not found).\n\n**Task:** If `index` is valid (not -1), add `new_val` to `vals[index]`. Else, append `new_val`.",
-        "CAS": "Tenemos `vals`. Buscamos una coordenada. `index` es el resultado (-1 significa no encontrado).\n\n**Tarea:** Si `index` es válido (no -1), suma `new_val` a `vals[index]`. Si no, haz append de `new_val`.",
-        "EUS": "`vals` dugu. Koordenatu bat bilatu dugu. `index` da emaitza (-1 ez da aurkitu).\n\n**Zeregina:** `index` baliozkoa bada (ez -1), gehitu `new_val` `vals[index]`-ri. Bestela, erantsi `new_val`."
+        "ENG": "Return an empty COO matrix: a list with three empty lists.",
+        "CAS": "Retorna una matriz COO vacía: una lista con tres listas vacías.",
+        "EUS": "Itzuli COO matrize huts bat: hiru zerrenda huts dituen zerrenda bat."
       },
       "initialCode": {
-        "ENG": "vals = [10, 20]\nindex = 1  # We found it at index 1 (value 20)\nnew_val = 5\n\nif index != -1:\n    # Update existing value\n    pass\nelse:\n    # Append new value\n    pass\n\nprint(vals)",
-        "CAS": "vals = [10, 20]\nindex = 1  # Encontrado en índice 1 (valor 20)\nnew_val = 5\n\nif index != -1:\n    # Actualiza valor existente\n    pass\nelse:\n    # Añade nuevo valor\n    pass\n\nprint(vals)",
-        "EUS": "vals = [10, 20]\nindex = 1  # 1 indizean aurkitua (20 balioa)\nnew_val = 5\n\nif index != -1:\n    # Eguneratu dauden balioa\n    pass\nelse:\n    # Erantsi balio berria\n    pass\n\nprint(vals)"
+        "ENG": "def create_coo() -> list:\n    # TODO: Return [[], [], []]\n    return []",
+        "CAS": "def create_coo() -> list:\n    # TODO: Retorna [[], [], []]\n    return []",
+        "EUS": "def create_coo() -> list:\n    # TODO: Itzuli [[], [], []]\n    return []"
       },
-      "testCode": "import unittest\nassert vals[1] == 25, 'Value at index 1 should be 20+5=25'"
+      "testCode": "assert create_coo() == [[], [], []]"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex4",
+      "title": { "ENG": "4. normal_to_coo(matrix)", "CAS": "4. normal_to_coo(matrix)", "EUS": "4. normal_to_coo(matrix)" },
+      "description": {
+        "ENG": "Convert a standard matrix (list of lists) to COO format.\n\n**💡 Hint:** You need two nested loops. Use `range(len(matrix))` for rows and `range(len(matrix[i]))` for columns to get the indices `i` and `j`.",
+        "CAS": "Convierte una matriz estándar (lista de listas) al formato COO.\n\n**💡 Pista:** Necesitas dos bucles anidados. Usa `range(len(matriz))` para las filas y `range(len(matriz[i]))` para las columnas para obtener los índices `i` y `j`.",
+        "EUS": "Bihurtu matrize estandar bat (zerrenden zerrenda) COO formatura.\n\n**💡 Laguntza:** Bi begizta habiaratu behar dituzu. Erabili `range(len(matrizea))` errenkadetarako eta `range(len(matrizea[i]))` zutabeetarako `i` eta `j` indizeak lortzeko."
+      },
+      "initialCode": {
+        "ENG": "def normal_to_coo(matrix: list) -> list:\n    coo = [[], [], []]\n    # TODO: Iterate and find non-zero elements\n    return coo",
+        "CAS": "def normal_to_coo(matriz: list) -> list:\n    coo = [[], [], []]\n    # TODO: Itera y encuentra elementos no nulos\n    return coo",
+        "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = [[], [], []]\n    # TODO: Iteratu eta aurkitu zero ez diren elementuak\n    return coo"
+      },
+      "testCode": "m = [[0,1],[2,0]]; assert normal_to_coo(m) == [[1,2],[0,1],[1,0]]"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex5",
+      "title": { "ENG": "5. list_memory_size(lst)", "CAS": "5. list_memory_size(lst)", "EUS": "5. list_memory_size(lst)" },
+      "description": {
+        "ENG": "Calculate the memory size (in bytes) of a nested list using `sys.getsizeof`.",
+        "CAS": "Calcula el tamaño en memoria (en bytes) de una lista anidada usando `sys.getsizeof`.",
+        "EUS": "Kalkulatu habiaratutako zerrenda baten memoria-tamaina (bytetan) `sys.getsizeof` erabiliz."
+      },
+      "initialCode": {
+        "ENG": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for element in lst:\n        if isinstance(element, list):\n            size += list_memory_size(element)\n        else:\n            size += sys.getsizeof(element)\n    return size",
+        "CAS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for elemento in lst:\n        if isinstance(elemento, list):\n            size += list_memory_size(elemento)\n        else:\n            size += sys.getsizeof(elemento)\n    return size",
+        "EUS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    tamaina = sys.getsizeof(lst)\n    for elementua in lst:\n        if isinstance(elementua, list):\n            tamaina += list_memory_size(elementua)\n        else:\n            tamaina += sys.getsizeof(elementua)\n    return tamaina"
+      },
+      "testCode": "import sys; assert list_memory_size([1, 2]) > sys.getsizeof([1, 2])"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex6",
+      "title": { "ENG": "6. coo_to_normal(coo, rows, cols)", "CAS": "6. coo_to_normal(coo, filas, columnas)", "EUS": "6. coo_to_normal(coo, errenkadak, zutabeak)" },
+      "description": {
+        "ENG": "Convert a COO matrix back to standard format.\n\n**💡 Steps:** \n1. Create a matrix (list of lists) filled with zeros of size `rows x cols`.\n2. Iterate through the COO lists and place each value in its corresponding `matrix[row][col]`.",
+        "CAS": "Convierte una matriz COO de vuelta al formato estándar.\n\n**💡 Pasos:** \n1. Crea una matriz (lista de listas) llena de ceros de tamaño `filas x columnas`.\n2. Recorre las listas COO y coloca cada valor en su `matriz[fila][columna]` correspondiente.",
+        "EUS": "Bihurtu COO matrize bat formatu estandarrera.\n\n**💡 Urratsak:** \n1. Sortu zeroz betetako matrize bat (zerrenden zerrenda) `errenkadak x zutabeak` tamainakoa.\n2. Zeharkatu COO zerrendak eta jarri balio bakoitza dagokion `matrizea[errenkada][zutabea]` posizioan."
+      },
+      "initialCode": {
+        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # TODO: Create a rows x cols matrix filled with zeros\n    # TODO: Fill it with values from COO\n    return []",
+        "CAS": "def coo_to_normal(coo: list, filas: int, columnas: int) -> list:\n    # TODO: Crea una matriz de filas x columnas llena de ceros\n    # TODO: Rellénala con los valores del COO\n    return []",
+        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # TODO: Sortu errenkada x zutabe matrize bat zeroz beteta\n    # TODO: Bete COOko balioekin\n    return []"
+      },
+      "testCode": "coo = [[1],[0],[1]]; assert coo_to_normal(coo, 1, 2) == [[0, 1]]"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex7",
+      "title": { "ENG": "7. is_it_in(coo, row, col)", "CAS": "7. is_it_in(coo, fila, columna)", "EUS": "7. is_it_in(coo, errenkada, zutabea)" },
+      "description": {
+        "ENG": "Search for a value at (row, col) in the COO matrix. Return the index in the COO lists if found, otherwise return -1.\n\n**💡 Logic:** Iterate through `coo[1]` (rows) and `coo[2]` (columns). If `coo[1][k] == row` AND `coo[2][k] == col`, you found it!",
+        "CAS": "Busca un valor en (fila, columna) en la matriz COO. Retorna el índice en las listas COO si lo encuentra, si no retorna -1.\n\n**💡 Lógica:** Recorre `coo[1]` (filas) y `coo[2]` (columnas). Si `coo[1][k] == fila` Y `coo[2][k] == columna`, ¡lo has encontrado!",
+        "EUS": "Bilatu balio bat (errenkada, zutabea) posizioan COO matrizean. Itzuli indizea COO zerrendetan aurkitzen bada, bestela itzuli -1.\n\n**💡 Logika:** Zeharkatu `coo[1]` (errenkadak) eta `coo[2]` (zutabeak). `coo[1][k] == errenkada` ETA `coo[2][k] == zutabea` bada, aurkitu duzu!"
+      },
+      "initialCode": {
+        "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # TODO: Search in coo[1] (rows) and coo[2] (cols)\n    return -1",
+        "CAS": "def is_it_in(coo: list, fila: int, columna: int) -> int:\n    # TODO: Busca en coo[1] (filas) y coo[2] (columnas)\n    return -1",
+        "EUS": "def is_it_in(coo: list, errenkada: int, zutabea: int) -> int:\n    # TODO: Bilatu coo[1]-en (errenkadak) eta coo[2]-n (zutabeak)\n    return -1"
+      },
+      "testCode": "coo = [[9],[5],[3]]; assert is_it_in(coo, 5, 3) == 0; assert is_it_in(coo, 0, 0) == -1"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex8",
+      "title": { "ENG": "8. insert_or_increment(coo, row, col, value)", "CAS": "8. insert_or_increment(coo, fila, columna, valor)", "EUS": "8. insert_or_increment(coo, errenkada, zutabea, balioa)" },
+      "description": {
+        "ENG": "If the position (row, col) exists, add the value to the current one. If not, insert a new entry.",
+        "CAS": "Si la posición (fila, columna) existe, suma el valor al actual. Si no, inserta una nueva entrada.",
+        "EUS": "(errenkada, zutabea) posizioa existitzen bada, gehitu balioa oraingoari. Bestela, sartu sarrera berri bat."
+      },
+      "initialCode": {
+        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col)\n    if idx != -1:\n        # TODO: Increment existing value\n        pass\n    else:\n        # TODO: Append new entry\n        pass",
+        "CAS": "def insert_or_increment(coo: list, fila: int, columna: int, valor: int) -> None:\n        idx = is_it_in(coo, fila, columna)\n        if idx != -1:\n            # TODO: Incrementa el valor existente\n            pass\n        else:\n            # TODO: Añade una nueva entrada\n            pass",
+        "EUS": "def insert_or_increment(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = is_it_in(coo, errenkada, zutabea)\n    if idx != -1:\n        # TODO: Inkrementatu existitzen den balioa\n        pass\n    else:\n        # TODO: Gehitu sarrera berria\n        pass"
+      },
+      "testCode": "coo = [[1],[0],[0]]; insert_or_increment(coo,0,0,5); assert coo[0][0] == 6"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## Ready for the Lab!\n\nYou now possess the **Search** and **Update** logic needed to implement the full Sparse Matrix library. \n\nOpen the `sparse.py` file in the lab folder and complete the functions using these building blocks.",
-        "CAS": "## ¡Listo para el Laboratorio!\n\nAhora posees la lógica de **Búsqueda** y **Actualización** necesaria para implementar la librería completa. \n\nAbre el archivo `sparse.py` en la carpeta del laboratorio y completa las funciones usando estos bloques.",
-        "EUS": "## Laborategirako Prest!\n\nOrain Matrize Sakabanatuen liburutegi osoa inplementatzeko beharrezkoa den **Bilaketa** eta **Eguneratze** logika duzu.\n\nIreki `sparse.py` fitxategia laborategiko karpetan eta osatu funtzioak bloke hauek erabiliz."
+        "ENG": "### 🧠 Strategy: Summing Sparse Matrices\n\nHow do we sum two COO matrices without converting them back to normal matrices (which would be slow)?\n\n**The Trick:** Just merge them!\n\n1.  Create a **new empty COO matrix** (`C`).\n2.  Insert every element from Matrix `A` into `C`.\n3.  Insert every element from Matrix `B` into `C`.\n\nSince you already implemented `insert_or_increment` (Exercise 8), it will handle the magic:\n*   If a position is empty, it inserts the value.\n*   If the position already has a value (from Matrix A), it adds the new value (from Matrix B) to it.\n\nThis is much more efficient than checking every cell!",
+        "CAS": "### 🧠 Estrategia: Sumar Matrices Dispersas\n\n¿Cómo sumamos dos matrices COO sin convertirlas a normales (lo cual sería lento)?\n\n**El Truco:** ¡Simplemente mézclalas!\n\n1.  Crea una **nueva matriz COO vacía** (`C`).\n2.  Inserta todos los elementos de la Matriz `A` en `C`.\n3.  Inserta todos los elementos de la Matriz `B` en `C`.\n\nComo ya implementaste `insert_or_increment` (Ejercicio 8), esa función hará la magia:\n*   Si una posición está vacía, inserta el valor.\n*   Si la posición ya tiene un valor (de la Matriz A), le suma el nuevo valor (de la Matriz B).\n\n¡Esto es mucho más eficiente que comprobar cada celda!",
+        "EUS": "### 🧠 Estrategia: Matrize Dispertsuak Batzea\n\nNola batzen ditugu bi COO matrize normaletara bihurtu gabe (motela izango litzatekeena)?\n\n**Trikimailua:** Nahastu besterik ez!\n\n1.  Sortu **COO matrize huts berri bat** (`C`).\n2.  Sartu `A` Matrizeko elementu guztiak `C`-n.\n3.  Sartu `B` Matrizeko elementu guztiak `C`-n.\n\n`insert_or_increment` (8. Ariketa) inplementatu duzunez, funtzio horrek egingo du magia:\n*   Posizio bat hutsik badago, balioa sartzen du.\n*   Posizioak dagoeneko balio bat badu (A Matrizetik), balio berria (B Matrizetik) gehitzen dio.\n\nHau askoz eraginkorragoa da gelaxka bakoitza egiaztatzea baino!"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex9",
+      "title": { "ENG": "9. sum_sparses(coo1, coo2)", "CAS": "9. sum_sparses(coo1, coo2)", "EUS": "9. sum_sparses(coo1, coo2)" },
+      "description": {
+        "ENG": "Sum two sparse matrices in COO format. Recommendation: Create a new COO and use `insert_or_increment` for all elements of both matrices.",
+        "CAS": "Suma dos matrices dispersas en formato COO. Recomendación: Crea un nuevo COO y usa `insert_or_increment` para todos los elementos de ambas matrices.",
+        "EUS": "Batu bi matrize dispertsu COO formatuan. Gomendioa: Sortu COO berri bat eta erabili `insert_or_increment` bi matrizeen elementu guztientzat."
+      },
+      "initialCode": {
+        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    new_coo = create_coo()\n    # TODO: Process all elements from coo1 and coo2\n    return new_coo",
+        "CAS": "def sum_sparses(coo1: list, coo2: list) -> list:\n    nuevo_coo = create_coo()\n    # TODO: Procesa todos los elementos de coo1 y coo2\n    return nuevo_coo",
+        "EUS": "def sum_sparses(coo1: list, coo2: list) -> list:\n    coo_berria = create_coo()\n    # TODO: Prozesatu coo1 eta coo2-ko elementu guztiak\n    return coo_berria"
+      },
+      "testCode": "import unittest\n# Complex sum testing"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex10",
+      "title": { "ENG": "10. print_matrix(matrix)", "CAS": "10. print_matrix(matriz)", "EUS": "10. print_matrix(matrizea)" },
+      "description": {
+        "ENG": "Print a standard matrix line by line in a readable way.",
+        "CAS": "Imprime una matriz estándar fila por fila de forma legible.",
+        "EUS": "Inprimatu matrize estandar bat lerroz lerro modu irakurgarrian."
+      },
+      "initialCode": {
+        "ENG": "def print_matrix(matrix: list) -> None:\n    # TODO: Iterate rows and print elements separated by spaces\n    pass",
+        "CAS": "def print_matrix(matriz: list) -> None:\n    # TODO: Itera las filas e imprime los elementos separados por espacios\n    pass",
+        "EUS": "def print_matrix(matrizea: list) -> None:\n    # TODO: Iteratu errenkadak eta inprimatu elementuak espazioez berezita\n    pass"
+      },
+      "testCode": "import unittest\n# Output capture testing"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 3. Main Program\n\nFinally, unite everything:\n1. Read `m1` from a file.\n2. Read `m2` from the console.\n3. Convert both to COO.\n4. Sum them.\n5. Print the result in normal format.",
+        "CAS": "## 3. Programa Principal\n\nFinalmente, únelo todo:\n1. Lee `m1` desde un archivo.\n2. Lee `m2` desde la consola.\n3. Convierte ambas a COO.\n4. Súmalas.\n5. Muestra el resultado en formato normal.",
+        "EUS": "## 3. Programa Nagusia\n\nAzkenik, batu dena:\n1. Irakurri `m1` fitxategi batetik.\n2. Irakurri `m2` kontsolatik.\n3. Bihurtu biak COO formatura.\n4. Batu itzazu.\n5. Erakutsi emaitza formatu normalean."
       }
     }
   ]

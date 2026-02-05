@@ -1,9 +1,0 @@
-# Una pregunta simple al usuario
-eleccion = easygui.ynbox(msg="Intentar de nuevo?")
-# Cmo sabemos qu ha elegido el usuario?
-# Cules son los posibles valores para esta variable?
-print(eleccion)
-
-# Tambin podemos modificar lo que muestran los botones
-eleccion = easygui.ynbox(msg="Intentar de nuevo?", choices=["S", "No"])
-# Esto cambia lo que se devuelve?

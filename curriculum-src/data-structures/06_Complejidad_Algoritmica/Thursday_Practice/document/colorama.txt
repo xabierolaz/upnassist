@@ -1,5 +1,0 @@
-from colorama import Fore
-print("Texto normal")
-print(Fore.RED + "Texto en rojo")
-print(Fore.RESET) # y restablecer al color predeterminado
-print("Texto normal de nuevo")

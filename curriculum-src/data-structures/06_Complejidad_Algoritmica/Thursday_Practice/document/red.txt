@@ -1,4 +1,0 @@
-print("Texto normal")
-print("\033[31m" + "Texto en rojo")
-print("\033[39m") # y restablecer al color predeterminado
-print("Texto normal de nuevo")
