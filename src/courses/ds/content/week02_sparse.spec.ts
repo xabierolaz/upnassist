@@ -35,9 +35,16 @@ describe('Week 2 Content (Sparse Matrices)', () => {
     }
   });
 
-  it('should contain the sum strategy explanation', () => {
+  it('should contain all 10 standard exercises', () => {
+    const exerciseIds = ['ds-w02-sparse-ex1', 'ds-w02-sparse-ex2', 'ds-w02-sparse-ex3', 'ds-w02-sparse-ex4', 'ds-w02-sparse-ex6', 'ds-w02-sparse-ex7', 'ds-w02-sparse-ex8', 'ds-w02-sparse-ex9', 'ds-w02-sparse-ex10'];
+    exerciseIds.forEach(id => {
+        const ex = content.blocks.find(b => b.type === 'exercise' && (b as any).exerciseId === id);
+        expect(ex).toBeDefined();
+    });
+  });
+
+  it('should have proper sum strategy title', () => {
     const sumExercise = content.blocks.find(b => b.type === 'exercise' && (b as any).exerciseId === 'ds-w02-sparse-ex9');
-    expect(sumExercise).toBeDefined();
     if (sumExercise) {
         const title = sumExercise.title as any;
         expect(title.ENG).toContain('The Merge (Sum)');

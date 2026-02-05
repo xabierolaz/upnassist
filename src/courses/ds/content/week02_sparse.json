@@ -55,14 +55,14 @@
       "exerciseId": "ds-w02-sparse-ex1",
       "title": { "ENG": "1. Input Matrix", "CAS": "1. Leer Matriz", "EUS": "1. Matrizea Irakurri" },
       "description": {
-        "ENG": "Read a matrix from the console line by line.",
-        "CAS": "Lee una matriz desde la consola línea por línea.",
-        "EUS": "Irakurri matrize bat kontsolatik lerroz lerro."
+        "ENG": "Read a matrix from the console. Use a loop to read rows until an empty line is entered.",
+        "CAS": "Lee una matriz desde la consola. Usa un bucle para leer filas hasta que se introduzca una línea vacía.",
+        "EUS": "Irakurri matrize bat kontsolatik. Erabili begizta bat errenkadak irakurtzeko lerro huts bat sartu arte."
       },
       "initialCode": {
-        "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: break\n        # TODO: Process line\n    return matrix",
-        "CAS": "def input_matrix() -> list:\n    matriz = []\n    print(\"Introduce matriz (línea vacía para terminar):\")\n    while True:\n        linea = input()\n        if not linea: break\n        # TODO: Procesar línea\n    return matriz",
-        "EUS": "def input_matrix() -> list:\n    matrizea = []\n    print(\"Sartu matrizea (lerro hutsa amaitzeko):\")\n    while True:\n        lerroa = input()\n        if not lerroa: break\n        # TODO: Prozesatu lerroa\n    return matrizea"
+        "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: \n            break\n        # 1. Split the line into strings\n        # 2. Convert each string to int and build a list (the row)\n        # 3. Append the row to the matrix\n    return matrix",
+        "CAS": "def input_matrix() -> list:\n    matriz = []\n    print(\"Introduce la matriz (línea vacía para terminar):\")\n    while True:\n        linea = input()\n        if not linea: \n            break\n        # 1. Divide la linea en partes (split)\n        # 2. Convierte cada parte a int y crea una lista (la fila)\n        # 3. Añade la fila a la matriz\n    return matriz",
+        "EUS": "def input_matrix() -> list:\n    matrizea = []\n    print(\"Sartu matrizea (lerro hutsa amaitzeko):\")\n    while True:\n        lerroa = input()\n        if not lerroa: \n            break\n        # 1. Zatitu lerroa (split)\n        # 2. Bihurtu zati bakoitza int-era eta sortu zerrenda bat (errenkada)\n        # 3. Gehitu errenkada matrizea-ri\n    return matrizea"
       },
       "testCode": "import unittest\n# Mock testing here"
     },
@@ -71,14 +71,14 @@
       "exerciseId": "ds-w02-sparse-ex2",
       "title": { "ENG": "2. Read File", "CAS": "2. Leer Fichero", "EUS": "2. Fitxategia Irakurri" },
       "description": {
-        "ENG": "Read a matrix from a text file. Use `with open(...)`.",
-        "CAS": "Lee una matriz de un fichero de texto. Usa `with open(...)`.",
-        "EUS": "Irakurri matrize bat testu fitxategi batetik. Erabili `with open(...)`."
+        "ENG": "Read a matrix from a text file. Use `with open(...)` and iterate through the file object.",
+        "CAS": "Lee una matriz de un fichero de texto. Usa `with open(...)` y recorre el objeto fichero.",
+        "EUS": "Irakurri matrize bat testu fitxategi batetik. Erabili `with open(...)` eta zeharkatu fitxategi-objektua."
       },
       "initialCode": {
-        "ENG": "def read_matrix(path: str) -> list:\n    # TODO: Open file, read lines, return list of lists\n    return []",
-        "CAS": "def read_matrix(path: str) -> list:\n    # TODO: Abrir fichero, leer líneas, devolver lista de listas\n    return []",
-        "EUS": "def read_matrix(path: str) -> list:\n    # TODO: Ireki fitxategia, irakurri lerroak, itzuli zerrenden zerrenda\n    return []"
+        "ENG": "def read_matrix(path: str) -> list:\n    matrix = []\n    # with open(path, 'r') as f:\n    #     for line in f:\n    #         # Process the line and append to matrix\n    return matrix",
+        "CAS": "def read_matrix(ruta: str) -> list:\n    matriz = []\n    # with open(ruta, 'r') as f:\n    #     for linea in f:\n    #         # Procesa la linea y añade a la matriz\n    return matriz",
+        "EUS": "def read_matrix(bidea: str) -> list:\n    matrizea = []\n    # with open(bidea, 'r') as f:\n    #     for lerroa in f:\n    #         # Prozesatu lerroa eta gehitu matrizea-ri\n    return matrizea"
       },
       "testCode": "import unittest\n# Mock file testing"
     },
@@ -87,16 +87,16 @@
       "exerciseId": "ds-w02-sparse-ex3",
       "title": { "ENG": "3. Initialize COO", "CAS": "3. Inicializar COO", "EUS": "3. COO Hasieratu" },
       "description": {
-        "ENG": "Create the skeleton: a list containing 3 empty lists.",
-        "CAS": "Crea el esqueleto: una lista que contiene 3 listas vacías.",
-        "EUS": "Sortu eskeletoa: 3 zerrenda huts dituen zerrenda bat."
+        "ENG": "Return an empty COO structure: a list containing 3 empty lists.",
+        "CAS": "Devuelve una estructura COO vacía: una lista que contiene 3 listas vacías.",
+        "EUS": "Itzuli COO egitura huts bat: 3 zerrenda huts dituen zerrenda bat."
       },
       "initialCode": {
-        "ENG": "def create_coo() -> list:\n    return [[], [], []]",
-        "CAS": "def create_coo() -> list:\n    return [[], [], []]",
-        "EUS": "def create_coo() -> list:\n    return [[], [], []]"
+        "ENG": "def create_coo() -> list:\n    # Return a list with 3 empty lists inside\n    return []",
+        "CAS": "def crear_coo() -> list:\n    # Devuelve una lista con 3 listas vacías dentro\n    return []",
+        "EUS": "def sortu_coo() -> list:\n    # Itzuli barruan 3 zerrenda huts dituen zerrenda bat\n    return []"
       },
-      "testCode": "assert create_coo() == [[], [], []]"
+      "testCode": "import unittest\nfunc = locals().get('crear_coo') or locals().get('create_coo') or locals().get('sortu_coo')\nassert func() == [[], [], []]"
     },
     {
       "type": "exercise",
@@ -108,11 +108,11 @@
         "EUS": "Iteratu sareta. Zero ez den balio bat aurkitzen baduzu, gorde 3 zerrendetan."
       },
       "initialCode": {
-        "ENG": "def normal_to_coo(matrix: list) -> list:\n    coo = create_coo()\n    # TODO: Iterate rows and cols. If val != 0, append to coo lists.\n    return coo",
-        "CAS": "def normal_to_coo(matriz: list) -> list:\n    coo = create_coo()\n    # TODO: Itera filas y cols. Si val != 0, añade a listas coo.\n    return coo",
-        "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = create_coo()\n    # TODO: Iteratu errenk eta zut. Balioa != 0 bada, erantsi coo zerrendei.\n    return coo"
+        "ENG": "def normal_to_coo(matrix: list) -> list:\n    coo = [[], [], []]\n    # Use nested loops (for i, for j)\n    # if matrix[i][j] != 0:\n    #     # Append value, row (i) and col (j)\n    return coo",
+        "CAS": "def normal_a_coo(matriz: list) -> list:\n    coo = [[], [], []]\n    # Usa bucles anidados (for i, for j)\n    # si matriz[i][j] != 0:\n    #     # Añade valor, fila (i) y col (j)\n    return coo",
+        "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = [[], [], []]\n    # Erabili habiaratutako begiztak (for i, for j)\n    # matrizea[i][j] != 0 bada:\n    #     # Erantsi balioa, errenkada (i) eta zutabea (j)\n    return coo"
       },
-      "testCode": "m = [[0,1],[2,0]]; assert normal_to_coo(m) == [[1,2],[0,1],[1,0]]"
+      "testCode": "m = [[0,1],[2,0]]; func = locals().get('normal_a_coo') or locals().get('normal_to_coo'); assert func(m) == [[1,2],[0,1],[1,0]]"
     },
     {
       "type": "exercise",
@@ -124,11 +124,11 @@
         "EUS": "Berreraiki sareta. Hasi zeroekin, gero bete balioak COO zerrendetatik."
       },
       "initialCode": {
-        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # TODO: Create zero matrix\n    # TODO: Fill from coo\n    return []",
-        "CAS": "def coo_to_normal(coo: list, filas: int, columnas: int) -> list:\n    # TODO: Crear matriz ceros\n    # TODO: Rellenar desde coo\n    return []",
-        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # TODO: Sortu zero matrizea\n    # TODO: Bete coo-tik\n    return []"
+        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # 1. Create a matrix of rows x cols filled with 0s\n    # 2. Iterate through COO lists using range(len(coo[0]))\n    # 3. Place each value in the correct matrix[r][c]\n    return []",
+        "CAS": "def coo_a_normal(coo: list, filas: int, columnas: int) -> list:\n    # 1. Crea una matriz de filas x columnas llena de 0s\n    # 2. Recorre las listas COO usando range(len(coo[0]))\n    # 3. Pon cada valor en su matriz[f][c] correcto\n    return []",
+        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # 1. Sortu errenkada x zutabe matrize bat 0z beteta\n    # 2. Zeharkatu COO zerrendak range(len(coo[0])) erabiliz\n    # 3. Jarri balio bakoitza dagokion matrizea[e][z] posizioan\n    return []"
       },
-      "testCode": "coo = [[1],[0],[1]]; assert coo_to_normal(coo, 1, 2) == [[0, 1]]"
+      "testCode": "coo = [[1],[0],[1]]; func = locals().get('coo_a_normal') or locals().get('coo_to_normal'); assert func(coo, 1, 2) == [[0, 1]]"
     },
     {
       "type": "markdown",
@@ -148,11 +148,11 @@
         "EUS": "Eskaneatu `errenkadak` eta `zutabeak` zerrendak aldi berean. `(e, z)`-rako bat-etortzea aurkitzen baduzu, itzuli indizea. Bestela -1."
       },
       "initialCode": {
-        "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # TODO: Loop through coo[1] (rows). If row matches AND col matches, return index.\n    return -1",
-        "CAS": "def is_it_in(coo: list, fila: int, columna: int) -> int:\n    # TODO: Bucle por coo[1] (filas). Si fila coincide Y col coincide, retorna índice.\n    return -1",
-        "EUS": "def is_it_in(coo: list, errenkada: int, zutabea: int) -> int:\n    # TODO: Begizta coo[1]-en. Errenkada bat badator ETA zutabea bat badator, itzuli indizea.\n    return -1"
+        "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == row and coo[2][k] == col:\n    #         return k\n    return -1",
+        "CAS": "def existe_en(coo: list, fila: int, columna: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == fila and coo[2][k] == columna:\n    #         return k\n    return -1",
+        "EUS": "def bertan_dago(coo: list, errenkada: int, zutabea: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == errenkada and coo[2][k] == zutabea:\n    #         return k\n    return -1"
       },
-      "testCode": "coo = [[9],[5],[3]]; assert is_it_in(coo, 5, 3) == 0; assert is_it_in(coo, 0, 0) == -1"
+      "testCode": "coo = [[9],[5],[3]]; func = locals().get('existe_en') or locals().get('is_it_in') or locals().get('bertan_dago'); assert func(coo, 5, 3) == 0; assert func(coo, 0, 0) == -1"
     },
     {
       "type": "exercise",
@@ -164,11 +164,11 @@
         "EUS": "Erabili zure Radarra (`bertan_dago`). Koordenatua aurkitzen badu, gehitu balioari. Ez bada, erantsi datu berriak."
       },
       "initialCode": {
-        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col)\n    if idx != -1:\n        # TODO: Update existing\n        pass\n    else:\n        # TODO: Append new\n        pass",
-        "CAS": "def insert_or_increment(coo: list, fila: int, columna: int, valor: int) -> None:\n        idx = is_it_in(coo, fila, columna)\n        if idx != -1:\n            # TODO: Actualizar existente\n            pass\n        else:\n            # TODO: Añadir nuevo\n            pass",
-        "EUS": "def insert_or_increment(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = is_it_in(coo, errenkada, zutabea)\n    if idx != -1:\n        # TODO: Eguneratu existitzen dena\n        pass\n    else:\n        # TODO: Erantsi berria\n        pass"
+        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col) # Or existe_en\n    if idx != -1:\n        # Update: coo[0][idx] += value\n        pass\n    else:\n        # Append: Add value to coo[0], row to coo[1], col to coo[2]\n        pass",
+        "CAS": "def insertar_o_incrementar(coo: list, fila: int, columna: int, valor: int) -> None:\n    idx = existe_en(coo, fila, columna) # O is_it_in\n    if idx != -1:\n        # Actualiza: coo[0][idx] += valor\n        pass\n    else:\n        # Añade: Add valor a coo[0], fila a coo[1], col a coo[2]\n        pass",
+        "EUS": "def txertatu_edo_handitu(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = bertan_dago(coo, errenkada, zutabea) # Edo is_it_in\n    if idx != -1:\n        # Eguneratu: coo[0][idx] += balioa\n        pass\n    else:\n        # Erantsi: Gehitu balioa coo[0]-ra, errenkada coo[1]-era, zutabea coo[2]-ra\n        pass"
       },
-      "testCode": "coo = [[1],[0],[0]]; insert_or_increment(coo,0,0,5); assert coo[0][0] == 6"
+      "testCode": "coo = [[1],[0],[0]]; func = locals().get('insertar_o_incrementar') or locals().get('insert_or_increment') or locals().get('txertatu_edo_handitu'); radar = locals().get('existe_en') or locals().get('is_it_in') or locals().get('bertan_dago'); globals()['is_it_in'] = radar; globals()['existe_en'] = radar; func(coo,0,0,5); assert coo[0][0] == 6"
     },
     {
       "type": "exercise",
@@ -176,13 +176,13 @@
       "title": { "ENG": "9. The Merge (Sum)", "CAS": "9. La Fusión (Suma)", "EUS": "9. Bateratzea (Batuketa)" },
       "description": {
         "ENG": "To sum two matrices, create a NEW empty COO matrix. Then, pour ALL elements from Matrix 1 and ALL elements from Matrix 2 into it using `insert_or_increment`.",
-        "CAS": "Para sumar dos matrices, crea una NUEVA matriz COO vacía. Luego, vierte TODOS los elementos de la Matriz 1 y TODOS los de la Matriz 2 en ella usando `insert_or_increment`.",
-        "EUS": "Bi matrize batzeko, sortu COO matrize huts BERRI bat. Gero, isuri Matrize 1eko elementu GUZTIAK eta Matrize 2ko elementu GUZTIAK bertara `insert_or_increment` erabiliz."
+        "CAS": "Para sumar dos matrices, crea una NUEVA matriz COO vacía. Luego, vierte TODOS los elementos de la Matriz 1 y TODOS los de la Matriz 2 en ella usando `insertar_o_incrementar`.",
+        "EUS": "Bi matrize batzeko, sortu COO matrize huts BERRI bat. Gero, isuri Matrize 1eko elementu GUZTIAK eta Matrize 2ko elementu GUZTIAK bertara `txertatu_edo_handitu` erabiliz."
       },
       "initialCode": {
-        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # TODO: Loop coo1 -> insert into result\n    # TODO: Loop coo2 -> insert into result\n    return result",
-        "CAS": "def sum_sparses(coo1: list, coo2: list) -> list:\n    resultado = create_coo()\n    # TODO: Bucle coo1 -> insertar en resultado\n    # TODO: Bucle coo2 -> insertar en resultado\n    return resultado",
-        "EUS": "def sum_sparses(coo1: list, coo2: list) -> list:\n    emaitza = create_coo()\n    # TODO: Begizta coo1 -> txertatu emaitzan\n    # TODO: Begizta coo2 -> txertatu emaitzan\n    return emaitza"
+        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # 1. Loop through all indices of coo1 and insert into result\n    # 2. Loop through all indices of coo2 and insert into result\n    return result",
+        "CAS": "def suma_dispersas(coo1: list, coo2: list) -> list:\n    resultado = crear_coo()\n    # 1. Recorre todos los elementos de coo1 e inserta en resultado\n    # 2. Recorre todos los elementos de coo2 e inserta en resultado\n    return resultado",
+        "EUS": "def batu_dispertsuak(coo1: list, coo2: list) -> list:\n    emaitza = sortu_coo()\n    # 1. Zeharkatu coo1-eko elementu guztiak eta txertatu emaitzan\n    # 2. Zeharkatu coo2-ko elementu guztiak eta txertatu emaitzan\n    return emaitza"
       },
       "testCode": "import unittest\n# Complex sum testing"
     },
@@ -196,9 +196,9 @@
         "EUS": "Inprimatu matrizea sareta bat bezala ikus dadin (balioak espazioz bereizita)."
       },
       "initialCode": {
-        "ENG": "def print_matrix(matrix: list) -> None:\n    # TODO: Print row by row\n    pass",
-        "CAS": "def print_matrix(matriz: list) -> None:\n    # TODO: Imprimir fila a fila\n    pass",
-        "EUS": "def print_matrix(matrizea: list) -> None:\n    # TODO: Inprimatu lerroz lerro\n    pass"
+        "ENG": "def print_matrix(matrix: list) -> None:\n    # for row in matrix:\n    #     # Print elements of the row separated by space\n    pass",
+        "CAS": "def imprimir_matriz(matriz: list) -> None:\n    # for fila in matriz:\n    #     # Imprime elementos de la fila separados por espacio\n    pass",
+        "EUS": "def inprimatu_matrizea(matrizea: list) -> None:\n    # for errenkada in matrizea:\n    #     # Inprimatu errenkadako elementuak espazioz bereizita\n    pass"
       },
       "testCode": "import unittest\n# Output capture testing"
     },
