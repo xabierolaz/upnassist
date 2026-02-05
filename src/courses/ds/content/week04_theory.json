@@ -1,0 +1,59 @@
+{
+  "id": "ds-w04-theory",
+  "part": 15,
+  "title": {
+    "ENG": "Stacks & Queues",
+    "CAS": "Pilas y Colas",
+    "EUS": "Pilak eta Ilarak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. The Stack ADT (LIFO)\n\nA **Stack** is a collection of items where the last one added is the first one removed (**Last-In, First-Out**). Think of a stack of plates: you can only add or remove from the top.",
+        "CAS": "## 1. El TAD Pila (LIFO)\n\nUna **Pila** es una colección de elementos donde el último en entrar es el primero en salir (**Last-In, First-Out**). Piensa en una pila de platos: solo puedes añadir o quitar por arriba.",
+        "EUS": "## 1. Pila DAT (LIFO)\n\n**Pila** bat elementu-bilduma bat da, non sartzen azkena ateratzen lehena den (**Last-In, First-Out**). Pentsatu plater pila batean: goitik bakarrik gehitu edo kendu ditzakezu."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### Core Operations\n*   **Push:** Add an item to the top.\n*   **Pop:** Remove the top item.\n*   **Peek:** Look at the top item without removing it.\n*   **isEmpty:** Check if the stack is empty.",
+        "CAS": "### Operaciones Principales\n*   **Push (Apilar):** Añade un elemento arriba.\n*   **Pop (Desapilar):** Quita el elemento de arriba.\n*   **Peek (Mirar):** Mira el elemento de arriba sin quitarlo.\n*   **isEmpty:** Comprueba si la pila está vacía.",
+        "EUS": "### Oinarrizko Eragiketak\n*   **Push (Pilatu):** Gehitu elementu bat gainean.\n*   **Pop (Kendu):** Kendu gaineko elementua.\n*   **Peek (Begiratu):** Begiratu gaineko elementua kendu gabe.\n*   **isEmpty:** Egiaztatu pila hutsik dagoen."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. The Queue ADT (FIFO)\n\nA **Queue** is a collection where the first item added is the first one removed (**First-In, First-Out**). Like a line at a supermarket: the person who arrives first is served first.",
+        "CAS": "## 2. El TAD Cola (FIFO)\n\nUna **Cola** es una colección donde el primero en entrar es el primero en salir (**First-In, First-Out**). Como la fila del supermercado: quien llega primero, es atendido primero.",
+        "EUS": "## 2. Ilara DAT (FIFO)\n\n**Ilara** bat bilduma bat da, non sartzen lehena ateratzen lehena den (**First-In, First-Out**). Supermerkatuko ilara bezala: lehenengo iristen dena, lehenengo artatzen da."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### Core Operations\n*   **Enqueue:** Add an item to the back.\n*   **Dequeue:** Remove an item from the front.",
+        "CAS": "### Operaciones Principales\n*   **Enqueue (Encolar):** Añade un elemento al final.\n*   **Dequeue (Desencolar):** Quita el elemento del principio.",
+        "EUS": "### Oinarrizko Eragiketak\n*   **Enqueue (Ilararatu):** Gehitu elementu bat amaieran.\n*   **Dequeue (Desilararatu):** Kendu elementu bat hasieratik."
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w04-stack-ex1",
+      "title": { "ENG": "Stack with Python Lists", "CAS": "Pila con Listas de Python", "EUS": "Pila Python Zerrendekin" },
+      "description": {
+        "ENG": "Python lists can act as stacks. Use `.append()` for push and `.pop()` for pop. Implement `peek`.",
+        "CAS": "Las listas de Python pueden actuar como pilas. Usa `.append()` para apilar y `.pop()` para desapilar. Implementa `peek`.",
+        "EUS": "Python zerrendek pila gisa joka dezakete. Erabili `.append()` pilatzeko eta `.pop()` kentzeko. Inplementatu `peek`."
+      },
+      "initialCode": {
+        "ENG": "stack = [10, 20, 30]\n# TODO: Print the top element without removing it (last index)\n",
+        "CAS": "pila = [10, 20, 30]\n# TODO: Imprime el elemento de arriba sin quitarlo (último índice)\n",
+        "EUS": "pila = [10, 20, 30]\n# TODO: Inprimatu gaineko elementua kendu gabe (azken indizea)\n"
+      },
+      "testCode": "import unittest\nassert \"-1\" in code or \"len\" in code"
+    }
+  ]
+}

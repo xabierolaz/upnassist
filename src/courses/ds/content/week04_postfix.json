@@ -1,0 +1,51 @@
+{
+  "id": "ds-w04-postfix",
+  "part": 15,
+  "title": {
+    "ENG": "Lab: Postfix Calculator",
+    "CAS": "Práctica: Calculadora Postfija",
+    "EUS": "Praktika: Postfix Kalkulagailua"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. What is Postfix (RPN)?\n\nIn **Infix** notation (what we use), we write `2 + 3`. In **Postfix** (Reverse Polish Notation), we write `2 3 +`.\n\n**Benefit:** No parentheses needed! `(2 + 3) * 4` becomes `2 3 + 4 *`.\n\n### The Algorithm\n1.  Read from left to right.\n2.  If **Number**: Push to Stack.\n3.  If **Operator**: Pop 2 numbers, apply operator, push result back.",
+        "CAS": "## 1. ¿Qué es Postfijo (RPN)?\n\nEn notación **Infija** (la normal), escribimos `2 + 3`. En **Postfija** (Notación Polaca Inversa), escribimos `2 3 +`.\n\n**Ventaja:** ¡No necesita paréntesis! `(2 + 3) * 4` se convierte en `2 3 + 4 *`.\n\n### El Algoritmo\n1.  Lee de izquierda a derecha.\n2.  Si es **Número**: Apilar.\n3.  Si es **Operador**: Desapilar 2 números, aplicar operador, apilar el resultado.",
+        "EUS": "## 1. Zer da Postfix (RPN)?\n\nNotazio **Infixuan** (ohikoa), `2 + 3` idazten dugu. **Postfixuan** (Alderantzizko Notazio Poloniarra), `2 3 +` idazten dugu.\n\n**Abantaila:** Ez du parentesi beharrik! `(2 + 3) * 4` -> `2 3 + 4 *` bihurtzen da.\n\n### Algoritmoa\n1.  Irakurri ezkerretik eskuinera.\n2.  **Zenbakia** bada: Pilatu.\n3.  **Eragilea** bada: Kendu 2 zenbaki, eragilea aplikatu, emaitza berriro pilatu."
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w04-postfix-ex1",
+      "title": { "ENG": "Tokenizing Postfix", "CAS": "Tokenizar Postfijo", "EUS": "Postfix Tokenizatu" },
+      "description": {
+        "ENG": "Implement `prepare_postfix(string)` that splits a space-separated expression into a list.",
+        "CAS": "Implementa `preparar_postfijo(cadena)` que divida una expresión separada por espacios en una lista.",
+        "EUS": "Inplementatu `preparar_postfijo(katea)`, espazioz berezitako espresio bat zerrenda batean banatzen duena."
+      },
+      "initialCode": {
+        "ENG": "def prepare_postfix(expr: str) -> list:\n    # TODO: Split and return\n    pass\n\nprint(prepare_postfix(\"2 3 +\"))",
+        "CAS": "def preparar_postfijo(expr: str) -> list:\n    # TODO: Separa y retorna\n    pass\n\nprint(preparar_postfijo(\"2 3 +\"))",
+        "EUS": "def preparar_postfijo(expr: str) -> list:\n    # TODO: Banatu eta itzuli\n    pass\n\nprint(preparar_postfijo(\"2 3 +\"))"
+      },
+      "testCode": "import unittest\nassert \"split\" in code"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w04-postfix-ex2",
+      "title": { "ENG": "Single Operation", "CAS": "Operación Única", "EUS": "Eragiketa Bakarra" },
+      "description": {
+        "ENG": "Pop two numbers from `stack = [10, 5]` and apply `+`. Push result.",
+        "CAS": "Desapila dos números de `pila = [10, 5]` y aplica `+`. Apila el resultado.",
+        "EUS": "Kendu bi zenbaki `pila = [10, 5]`-tik eta aplikatu `+`. Pilatu emaitza."
+      },
+      "initialCode": {
+        "ENG": "stack = [10, 5]\n# TODO: Pop 2 values, add them, and push result\n",
+        "CAS": "pila = [10, 5]\n# TODO: Desapila 2 valores, súmalos y apila el resultado\n",
+        "EUS": "pila = [10, 5]\n# TODO: Kendu 2 balio, gehitu eta pilatu emaitza\n"
+      },
+      "testCode": "import unittest\nassert \"pop\" in code and \"append\" in code"
+    }
+  ]
+}

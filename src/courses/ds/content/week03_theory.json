@@ -1,0 +1,62 @@
+{
+  "id": "ds-w03-theory",
+  "part": 15,
+  "title": {
+    "ENG": "Object-Oriented Programming (OOP)",
+    "CAS": "Programación Orientada a Objetos (POO)",
+    "EUS": "Objektuetara Bideratutako Programazioa (OBP)"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. Why OOP for Data Structures?\n\nIn this course, we don't just use data; we build **tools** to manage it. An Abstract Data Type (ADT) is a conceptual model, and a **Class** is the perfect way to implement it in Python.\n\nImagine a **Stack**. It has data (the items) and behavior (push, pop). By wrapping both in a class, we ensure that the data is only modified through valid operations.",
+        "CAS": "## 1. ¿Por qué POO para Estructuras de Datos?\n\nEn este curso, no solo usamos datos; construimos **herramientas** para gestionarlos. Un Tipo Abstracto de Datos (TAD) es un modelo conceptual, y una **Clase** es la forma perfecta de implementarlo en Python.\n\nImagina una **Pila**. Tiene datos (los elementos) y comportamiento (apilar, desapilar). Al envolver ambos en una clase, nos aseguramos de que los datos solo se modifiquen mediante operaciones válidas.",
+        "EUS": "## 1. Zergatik OBP Datu Egituretarako?\n\nIkastaro honetan, ez dugu datuak soilik erabiltzen; kudeatzeko **tresnak** eraikitzen ditugu. Datu Mota Abstraktu bat (DMA) eredu kontzeptual bat da, eta **Klase** bat Python-en inplementatzeko modu ezin hobea da.\n\nImajinatu **Pila** bat. Datuak (elementuak) eta portaera (pilatu, kendu) ditu. Biak klase batean bilduta, datuak eragiketa baliodunen bidez soilik aldatzen direla ziurtatzen dugu."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### Interactive Lab: The Constructor & `self`\n\nUnderstanding `__init__` and `self` is the key to OOP. \nUse the visualizer below to see **where the data goes** step-by-step.\n\n1.  **Tab 1 (Constructor):** Click to see how data moves from the temporary parameter to the permanent object memory.\n2.  **Tab 2 (Self):** Click objects to see how `self` changes identity dynamically.",
+        "CAS": "### Laboratorio Interactivo: El Constructor y `self`\n\nEntender `__init__` y `self` es la clave de la POO.\nUsa el visualizador de abajo para ver **a dónde van los datos** paso a paso.\n\n1.  **Pestaña 1 (Constructor):** Haz clic para ver cómo los datos se mueven del parámetro temporal a la memoria permanente del objeto.\n2.  **Pestaña 2 (Self):** Haz clic en los objetos para ver cómo `self` cambia de identidad dinámicamente.",
+        "EUS": "### Laborategi Interaktiboa: Eraikitzailea eta `self`\n\n`__init__` eta `self` ulertzea da OBPren gakoa.\nErabili beheko bistaratzailea datuak **nora doazen** pausoz pauso ikusteko.\n\n1.  **1. Fitxa (Eraikitzailea):** Egin klik datuak aldagai tenporaletik objektuaren memoria iraunkorrera nola mugitzen diren ikusteko.\n2.  **2. Fitxa (Self):** Egin klik objektuetan `self`-ek identitatea dinamikoki nola aldatzen duen ikusteko."
+      }
+    },
+    {
+      "type": "interactive-oop"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.1 Instance Methods\n\nMethods are functions defined inside a class. They define what the object can **do**.\n\n*   They always accept `self` as the first parameter.\n*   To call a method from within another method, use `self.method_name()`.\n\n```python\nclass Greeter:\n    def __init__(self, name):\n        self.name = name\n\n    def _get_greeting(self):\n        return f\"Hello, {self.name}\"\n\n    def greet(self):\n        # Calling another method using self\n        msg = self._get_greeting()\n        print(msg)\n\ng = Greeter(\"Alice\")\ng.greet() # Output: Hello, Alice\n```",
+        "CAS": "### 7.1 Métodos de Instancia\n\nLos métodos son funciones definidas dentro de una clase. Definen lo que el objeto puede **hacer**.\n\n*   Siempre aceptan `self` como primer parámetro.\n*   Para llamar a un método desde otro, usa `self.nombre_metodo()`.\n\n```python\nclass Saludador:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def _obtener_saludo(self):\n        return f\"Hola, {self.nombre}\"\n\n    def saludar(self):\n        # Llamando a otro método usando self\n        msj = self._obtener_saludo()\n        print(msj)\n\ng = Saludador(\"Alicia\")\ng.saludar() # Salida: Hola, Alicia\n```",
+        "EUS": "### 7.1 Instantzia Metodoak\n\nMetodoak klase baten barruan definitutako funtzioak dira. Objektuak zer **egin** dezakeen definitzen dute.\n\n*   Beti onartzen dute `self` lehen parametro gisa.\n*   Metodo bat beste batetik deitzeko, erabili `self.metodoaren_izena()`.\n\n```python\nclass Agurtzailea:\n    def __init__(self, izena):\n        self.izena = izena\n\n    def _agurra_lortu(self):\n        return f\"Kaixo, {self.izena}\"\n\n    def agurtu(self):\n        # Beste metodo bat deitzen self erabiliz\n        mezua = self._agurra_lortu()\n        print(mezua)\n\ng = Agurtzailea(\"Ane\")\ng.agurtu() # Irteera: Kaixo, Ane\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. Encapsulation & Access Modifiers\n\nIn Data Structures, we often want to hide the internal implementation (e.g., how a Stack stores its items) to prevent users from breaking the structure.\n\nPython uses underscores to signal visibility:\n\n| Level | Prefix | Meaning |\n| :--- | :--- | :--- |\n| **Public** | `None` | Anyone can access or modify it. |\n| **Protected** | `_` | Internal use, but still accessible. |\n| **Private** | `__` | Name is mangled to prevent accidental access. |\n\n```python\nclass Stack:\n    def __init__(self):\n        self.__items = [] # Private: Users shouldn't touch this list directly!\n\n    def push(self, item):\n        self.__items.append(item)\n```",
+        "CAS": "## 2. Encapsulación y Modificadores de Acceso\n\nEn Estructura de Datos, a menudo queremos ocultar la implementación interna (ej., cómo guarda una Pila sus elementos) para evitar que los usuarios rompan la estructura.\n\nPython usa guiones bajos para señalizar la visibilidad:\n\n| Nivel | Prefijo | Significado |\n| :--- | :--- | :--- |\n| **Público** | `Ninguno` | Cualquiera puede acceder o modificarlo. |\n| **Protegido** | `_` | Uso interno, pero sigue siendo accesible. |\n| **Privado** | `__` | El nombre se oculta para evitar acceso accidental. |\n\n```python\nclass Pila:\n    def __init__(self):\n        self.__elementos = [] # Privado: ¡Los usuarios no deben tocar esta lista directamente!\n\n    def apilar(self, elemento):\n        self.__elementos.append(elemento)\n```",
+        "EUS": "## 2. Kapsularatzea eta Sarbide Aldatzaileak\n\nDatu Egituretan, askotan barne inplementazioa ezkutatu nahi dugu (adib., Pila batek nola gordetzen dituen elementuak) erabiltzaileek egitura apurtu ez dezaten.\n\nPython-ek azpimarrak erabiltzen ditu ikusgarritasuna adierazteko:\n\n| Maila | Aurrizkia | Esanahia |\n| :--- | :--- | :--- |\n| **Publikoa** | `Batere ez` | Edonork atzitu edo aldatu dezake. |\n| **Babestua** | `_` | Barne erabilera, baina oraindik atzigarria. |\n| **Pribatua** | `__` | Izena ezkutatzen da istripuzko atzipenak saihesteko. |\n\n```python\nclass Pila:\n    def __init__(self):\n        self.__elementuak = [] # Pribatua: Erabiltzaileek ez lukete zerrenda hau zuzenean ukitu behar!\n\n    def pilatu(self, elementua):\n        self.__elementuak.append(elementua)\n```"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w03-ex1",
+      "title": { "ENG": "Implement a Basic Stack Class", "CAS": "Implementa una Pila Básica", "EUS": "Inplementatu Oinarrizko Pila bat" },
+      "description": {
+        "ENG": "Create a `Stack` class with a private list `__items`. Add a `push(self, item)` method.",
+        "CAS": "Crea una clase `Pila` con una lista privada `__elementos`. Añade un método `apilar(self, elemento)`.",
+        "EUS": "Sortu `Pila` klasea `__elementuak` zerrenda pribatuarekin. Gehitu `pilatu(self, elementua)` metodoa."
+      },
+      "initialCode": {
+        "ENG": "class Stack:\n    def __init__(self):\n        # TODO: Initialize private items list\n        pass\n\n    def push(self, item):\n        # TODO: Append to the list\n        pass\n\ns = Stack()\ns.push(10)",
+        "CAS": "class Pila:\n    def __init__(self):\n        # TODO: Inicializa la lista privada de elementos\n        pass\n\n    def apilar(self, elemento):\n        # TODO: Añade a la lista\n        pass\n\np = Pila()\np.apilar(10)",
+        "EUS": "class Pila:\n    def __init__(self):\n        # TODO: Hasieratu elementuen zerrenda pribatua\n        pass\n\n    def pilatu(self, elementua):\n        # TODO: Gehitu zerrendara\n        pass\n\np = Pila()\np.pilatu(10)"
+      },
+      "testCode": "import unittest\nassert \"__\" in code and \"append\" in code"
+    }
+  ]
+}

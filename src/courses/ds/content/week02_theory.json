@@ -1,0 +1,144 @@
+{
+  "id": "ds-w02-intro",
+  "part": 15,
+  "title": {
+    "ENG": "Review: Python Tips & Tricks",
+    "CAS": "Repaso: Trucos y Básicos de Python",
+    "EUS": "Berrikuspena: Python Trikimailuak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 0. Development Environment (IDEs)\n\nTo program efficiently, you need more than a text editor. While **Notepad++** is valid for quick edits, professional development requires robust environments.\n\n### Recommended Options\n*   **Anaconda (Spyder/Jupyter)**: The standard for Data Science. Includes all necessary libraries (NumPy, Pandas).\n*   **Visual Studio Code**: The most popular modern editor. Lightweight and extensible.\n*   **PyCharm**: Powerful, specific for Python.\n\nIn this course, we recommend **Spyder** (via Anaconda) for its integrated variable explorer, or **VS Code** for general development.",
+        "CAS": "## 0. Entorno de Desarrollo (IDEs)\n\nPara programar con eficiencia, necesitas más que un editor de texto. Aunque **Notepad++** es válido para ediciones rápidas, el desarrollo profesional requiere entornos robustos.\n\n### Opciones Recomendadas\n*   **Anaconda (Spyder/Jupyter)**: El estándar en Data Science. Incluye todas las librerías necesarias (NumPy, Pandas).\n*   **Visual Studio Code**: El editor moderno más popular. Ligero y extensible.\n*   **PyCharm**: Potente, específico para Python.\n\nEn este curso, recomendamos **Spyder** (vía Anaconda) por su explorador de variables integrado, o **VS Code** para desarrollo general.",
+        "EUS": "## 0. Garapen Ingurunea (IDEak)\n\nEraginkortasunez programatzeko, testu-editore bat baino gehiago behar duzu. **Notepad++** edizio azkarretarako baliozkoa bada ere, garapen profesionalak ingurune sendoak eskatzen ditu.\n\n### Gomendatutako Aukerak\n*   **Anaconda (Spyder/Jupyter)**: Data Science-ko estandarra. Beharrezko liburutegi guztiak barne hartzen ditu (NumPy, Pandas).\n*   **Visual Studio Code**: Editore moderno ezagunena. Arina eta hedagarria.\n*   **PyCharm**: Indartsua, Python-erako espezifikoa.\n\nIkastaro honetan, **Spyder** (Anaconda bidez) gomendatzen dugu bere aldagai-esploratzaile integratuagatik, edo **VS Code** garapen orokorrerako."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. Warm-Up: List Methods Review\nBefore diving into advanced iteration, let's refresh the basic list operations (`append`, `pop`, `insert`) which are assumed knowledge.\n\nUse the interactive tool below to manipulate a list and observe how indices change.",
+        "CAS": "## 1. Calentamiento: Repaso de Listas\nAntes de entrar en iteración avanzada, refresquemos las operaciones básicas (`append`, `pop`, `insert`) que se asumen sabidas.\n\nUsa la herramienta interactiva de abajo para manipular una lista y observar cómo cambian los índices.",
+        "EUS": "## 1. Beroketa: Zerrenden Berrikuspena\nIterazio aurreratuan murgildu aurretik, gogora ditzagun oinarrizko eragiketak (`append`, `pop`, `insert`), ezagutzat ematen direnak.\n\nErabili beheko tresna zerrenda bat manipulatzeko eta indizeak nola aldatzen diren ikusteko."
+      }
+    },
+    {
+      "type": "interactive-list"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.1 Iterating with *enumerate*\nSometimes you need **both** the element and its index. Don't iterate by range `len(lst)`. Use `enumerate`.\n\n❌ **Avoid**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Use**: `for index, value in enumerate(lst): ...`\n\n```python\nnames = [\"Ana\", \"Bob\", \"Charlie\"]\nfor index, name in enumerate(names):\n    print(f\"{index}: {name}\")\n```",
+        "CAS": "### 1.1 Iterando con *enumerate*\nA veces necesitas **ambos**: el elemento y su índice. No iteres por rango `len(lst)`. Usa `enumerate`.\n\n❌ **Evita**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Usa**: `for indice, valor in enumerate(lst): ...`\n\n```python\nnombres = [\"Ana\", \"Bob\", \"Charlie\"]\nfor indice, nombre in enumerate(nombres):\n    print(f\"{indice}: {nombre}\")\n```",
+        "EUS": "### 1.1 Iteratzen *enumerate* erabiliz\nBatzuetan elementua **eta** bere indizea behar dituzu. Ez iteratu `len(lst)` eremua erabiliz. Erabili `enumerate`.\n\n❌ **Saihestu**: `for i in range(len(lst)): ... lst[i] ...`\n✅ **Erabili**: `for indizea, balioa in enumerate(lst): ...`\n\n```python\nizenak = [\"Ana\", \"Bob\", \"Charlie\"]\nfor indizea, izena in enumerate(izenak):\n    print(f\"{indizea}: {izena}\")\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.2 Unpacking & The Asterisk (*)\n\nPython allows assignments of multiple variables at once. You can use `*` to capture \"the rest\" of the list, or to unpack a list into arguments.\n\n```python\n# Variable unpacking\nvalues = [1, 2, 3, 4, 5]\nfirst, *middle, last = values\nprint(first)   # 1\nprint(middle)  # [2, 3, 4]\nprint(last)    # 5\n\n# Argument unpacking\nlst = [\"one\", \"two\", \"three\"]\nprint(*lst) # Equivalent to print(lst[0], lst[1], lst[2])\n```",
+        "CAS": "### 1.2 Desempaquetado y el Asterisco (*)\n\nPython permite asignar múltiples variables a la vez. Puedes usar `*` para capturar \"el resto\" de la lista, o para desempaquetar una lista en argumentos.\n\n```python\n# Desempaquetado de variables\nvalores = [1, 2, 3, 4, 5]\nprimero, *medio, ultimo = valores\nprint(primero) # 1\nprint(medio)   # [2, 3, 4]\nprint(ultimo)  # 5\n\n# Desempaquetado de argumentos\nlst = [\"uno\", \"dos\", \"tres\"]\nprint(*lst) # Equivalente a print(lst[0], lst[1], lst[2])\n```",
+        "EUS": "### 1.2 Desempaquetado eta Izartxoa (*)\n\nPython-ek aldagai anitz batera esleitzeko aukera ematen du. `*` erabil dezakezu zerrendaren \"gainerakoa\" harrapatzeko, edo zerrenda bat argumentuetan desempaquetatzeko.\n\n```python\n# Aldagaien desempaquetatzea\nbalioak = [1, 2, 3, 4, 5]\nlehena, *erdikoa, azkena = balioak\nprint(lehena)  # 1\nprint(erdikoa) # [2, 3, 4]\nprint(azkena)  # 5\n\n# Argumentuen desempaquetatzea\nlst = [\"bat\", \"bi\", \"hiru\"]\nprint(*lst) # print(lst[0], lst[1], lst[2])-ren baliokidea\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.3 Multiple Assignment\nPython allows you to assign multiple variables in a single line. This is actually **Tuple Unpacking** under the hood.\n\n```python\na, b = 1, 2\nprint(a) # 1\nprint(b) # 2\n\n# Swapping values without a temp variable\na, b = b, a\n```\n\n#### Returning Multiple Values\nFunctions can return multiple values. They are returned as a tuple, which you can immediately unpack.\n\n```python\ndef get_coordinates():\n    return 10.5, 20.0 # Returns (10.5, 20.0)\n\nx, y = get_coordinates()\n```",
+        "CAS": "### 1.3 Asignación Múltiple\nPython permite asignar múltiples variables en una línea. En realidad, esto es **Desempaquetado de Tuplas**.\n\n```python\na, b = 1, 2\nprint(a) # 1\nprint(b) # 2\n\n# Intercambiar valores sin variable temporal\na, b = b, a\n```\n\n#### Retornando Múltiples Valores\nLas funciones pueden retornar varios valores. Se devuelven como una tupla, que puedes desempaquetar inmediatamente.\n\n```python\ndef obtener_coordenadas():\n    return 10.5, 20.0 # Retorna (10.5, 20.0)\n\nx, y = obtener_coordenadas()\n```",
+        "EUS": "### 1.3 Esleipen Anitza\nPython-ek aldagai anitz lerro batean esleitzea ahalbidetzen du. Hau berez **Tuplen Desempaquetatzea** da.\n\n```python\na, b = 1, 2\nprint(a) # 1\nprint(b) # 2\n\n# Balioak aldagai tenporalik gabe trukatzea\na, b = b, a\n```\n\n#### Balio Anitz Itzultzea\nFuntzioek balio anitz itzul ditzakete. Tupla gisa itzultzen dira, eta berehala desempaquetatu ditzakezu.\n\n```python\ndef koordenatuak_lortu():\n    return 10.5, 20.0 # (10.5, 20.0) itzultzen du\n\nx, y = koordenatuak_lortu()\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### 1.4 Warning: Aliasing (References)\n\nIn Data Structures, this is the **#1 source of bugs**. Python variables are references (pointers) to objects, not boxes containing values.\n\n```python\na = [1, 2, 3]\nb = a # b POINTS to the same list as a\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! 'a' changed too!\n```\n\n✅ **The Fix**: If you want a separate copy, use `.copy()` or slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Unchanged\n```",
+        "CAS": "### 1.4 Advertencia: Aliasing (Referencias)\n\nEn Estructura de Datos, esta es la **fuente de bugs nº1**. Las variables en Python son referencias (punteros) a objetos, no cajas con valores.\n\n```python\na = [1, 2, 3]\nb = a # b APUNTA a la misma lista que a\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! ¡'a' también cambió!\n```\n\n✅ **La Solución**: Si quieres una copia separada, usa `.copy()` o slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Sin cambios\n```",
+        "EUS": "### 1.4 Oharra: Aliasing (Erreferentziak)\n\nDatu Egituretan, hau da **bug iturri nagusia**. Python aldagaiak objektuetarako erreferentziak (erakusleak) dira, ez balioak dituzten kaxak.\n\n```python\na = [1, 2, 3]\nb = a # b-k a-ren zerrenda BERDINERA apuntatzen du\n\nb.append(99)\nprint(a) # [1, 2, 3, 99] !!! 'a' ere aldatu da!\n```\n\n✅ **Konponbidea**: Kopia bereizi bat nahi baduzu, erabili `.copy()` edo slicing `[:]`.\n```python\nb = a.copy()\nb.append(100)\nprint(a) # Aldaketarik gabe\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. Working with Files\n\nFiles provide persistence. However, paths are the #1 source of errors. Always code defensively.\n\n### Reading Methods\nIterating (`for line in f`) is efficient, but sometimes you need specific methods:\n*   `f.read()`: Reads the **entire file** into a single string.\n*   `f.readline()`: Reads just **one line** (moves the cursor).\n*   `f.readlines()`: Reads all lines into a **list of strings**.\n\n### File Modes Cheat Sheet\n| Mode | Behavior | Pointer | Truncates? |\n| :--- | :--- | :--- | :--- |\n| `r` | Read only. Error if missing. | Start | No |\n| `w` | Write. Creates if missing. | Start | **Yes** |\n| `a` | Append. Creates if missing. | End | No |\n| `r+` | **Read & Write**. Error if missing. | Start | No |\n| `w+` | **Read & Write**. Creates new. | Start | **Yes** |\n| `a+` | **Read & Append**. Creates new. | End | No |\n\n### Path Theory: Absolute vs Relative\n*   **Absolute Path**: The full address from the root (e.g., `C:\\Users\\Data\\file.txt` or `/home/user/file.txt`). Rigid and breaks on other computers.\n*   **Relative Path**: The path relative to where the script is running (e.g., `data/file.txt`). Flexible.\n\n#### Current Working Directory (CWD)\nThe \"starting point\" for relative paths. Use `os.getcwd()` to check it.\n\n> ⚠️ **Common Error**: Running a script from the wrong folder changes the CWD, causing `FileNotFoundError`.\n\n### Defensive Opening\n```python\nimport os\nfilename = \"data.txt\"\n\nif os.path.exists(filename):\n    with open(filename, mode=\"r\") as f:\n        print(f.read()) # Read everything\nelse:\n    print(f\"Error: {filename} not found in {os.getcwd()}\")\n```",
+        "CAS": "## 2. Trabajando con Ficheros\n\nLos ficheros dan persistencia. Sin embargo, las rutas son la fuente nº1 de errores. Programa siempre a la defensiva.\n\n### Métodos de Lectura\nIterar (`for linea in f`) es eficiente, pero a veces necesitas métodos específicos:\n*   `f.read()`: Lee el **archivo completo** en un solo string.\n*   `f.readline()`: Lee solo **una línea** (mueve el cursor).\n*   `f.readlines()`: Lee todas las líneas en una **lista de strings**.\n\n### Chuleta de Modos\n| Modo | Comportamiento | Puntero | ¿Vacía? |\n| :--- | :--- | :--- | :--- |\n| `r` | Solo lectura. Error si falta. | Inicio | No |\n| `w` | Escritura. Crea si falta. | Inicio | **Sí** |\n| `a` | Adjuntar. Crea si falta. | Final | No |\n| `r+` | **Leer y Escribir**. Error si falta. | Inicio | No |\n| `w+` | **Leer y Escribir**. Crea nuevo. | Inicio | **Sí** |\n| `a+` | **Leer y Adjuntar**. Crea nuevo. | Final | No |\n\n### Teoría de Rutas: Absoluta vs Relativa\n*   **Ruta Absoluta**: La dirección completa desde la raíz (ej., `C:\\Users\\Data\\file.txt`). Rígida y falla en otros ordenadores.\n*   **Ruta Relativa**: La ruta relativa a donde se ejecuta el script (ej., `data/file.txt`). Flexible.\n\n#### Directorio de Trabajo Actual (CWD)\nEl \"punto de partida\" para rutas relativas. Usa `os.getcwd()` para verlo.\n\n> ⚠️ **Error Común**: Ejecutar un script desde la carpeta incorrecta cambia el CWD, causando `FileNotFoundError`.\n\n### Apertura Defensiva\n```python\nimport os\nnombre = \"data.txt\"\n\nif os.path.exists(nombre):\n    with open(nombre, mode=\"r\") as f:\n        print(f.read()) # Lee todo\nelse:\n    print(f\"Error: {nombre} no encontrado en {os.getcwd()}\")\n```",
+        "EUS": "## 2. Fitxategiekin Lanean\n\nFitxategiek persistentzia ematen dute. Hala ere, bideak dira erroreen 1. iturria. Programatu beti defentsan.\n\n### Irakurketa Metodoak\nIteratzea (`for lerroa in f`) eraginkorra da, baina batzuetan metodo zehatzak behar dituzu:\n*   `f.read()`: Fitxategi **osoa** string bakar batean irakurtzen du.\n*   `f.readline()`: Lerro **bakar bat** irakurtzen du (kurtsorea mugitzen du).\n*   `f.readlines()`: Lerro guztiak **string zerrenda** batean irakurtzen ditu.\n\n### Moduen Txuleta\n| Modua | Portaera | Erakuslea | Hustu? |\n| :--- | :--- | :--- | :--- |\n| `r` | Irakurri soilik. Errorea faltan bada. | Hasiera | Ez |\n| `w` | Idatzi. Sortu faltan bada. | Hasiera | **Bai** |\n| `a` | Erantsi. Sortu faltan bada. | Amaiera | Ez |\n| `r+` | **Irakurri eta Idatzi**. Errorea faltan bada. | Hasiera | Ez |\n| `w+` | **Irakurri eta Idatzi**. Berria sortu. | Hasiera | **Bai** |\n| `a+` | **Irakurri eta Erantsi**. Berria sortu. | Amaiera | Ez |\n\n### Bideen Teoria: Absolutua vs Erlatiboa\n*   **Bide Absolutua**: Errotik hasitako helbide osoa (adib., `/home/user/file.txt`). Zurruna eta beste ordenagailuetan huts egiten du.\n*   **Bide Erlatiboa**: Script-a exekutatzen den lekutik hasten den bidea (adib., `data/file.txt`). Malgua.\n\n#### Uneko Laneko Direktorioa (CWD)\nBide erlatiboetarako \"hasiera puntua\". Erabili `os.getcwd()` ikusteko.\n\n> ⚠️ **Errore Ohikoa**: Script bat okerreko karpetatik exekutatzeak CWD aldatzen du, `FileNotFoundError` eraginez.\n\n### Irekiera Defentsiboa\n```python\nimport os\nizena = \"data.txt\"\n\nif os.path.exists(izena):\n    with open(izena, mode=\"r\") as f:\n        print(f.read()) # Dena irakurri\nelse:\n    print(f\"Errorea: {izena} ez da aurkitu hemen: {os.getcwd()}\")\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 3. F-Strings Formatting\n\n### The Evolution of Formatting\nWhy use F-Strings? They are the modern standard (Python 3.6+).\n\n1.  **C-Style (`%`)**: Old and limited. `\"Val: %s\" % var`.\n2.  **`.format()`**: Better, but verbose. `\"Val: {}\"`.format(var).\n3.  **F-Strings (`f\"\"`)**: Fast, readable, and expressions allowed inside. `f\"Val: {var}\"`.\n\n✅ **Always prefer F-Strings** unless supporting legacy Python.\n\n### Basic Usage\nF-Strings are fast and readable. You can format numbers directly inside them.\nStructure: `{value:[fill][align][width][.precision][type]}`\n\n*   `: .2f` -> 2 decimal float.\n*   `: >10` -> Align right, 10 spaces width.\n\n```python\npi = 3.14159265\nprint(f\"Pi is approx {pi:.2f}\")       # 3.14\nprint(f\"Pi aligned: {pi:>10.2f}\")     # \"      3.14\"\n```",
+        "CAS": "## 3. Formato con F-Strings\n\n### La Evolución del Formateo\n¿Por qué usar F-Strings? Son el estándar moderno (Python 3.6+).\n\n1.  **Estilo C (`%`)**: Antiguo y limitado. `\"Val: %s\" % var`.\n2.  **`.format()`**: Mejor, pero verboso. `\"Val: {}\"`.format(var).\n3.  **F-Strings (`f\"\"`)**: Rápidas, legibles y permiten expresiones. `f\"Val: {var}\"`.\n\n✅ **Prefiere siempre F-Strings** salvo que soportes Python antiguo.\n\n### Uso Básico\nLas F-Strings son rápidas y legibles. Puedes formatear números directamente dentro.\nEstructura: `{valor:[relleno][alineacion][ancho][.precision][tipo]}`\n\n*   `: .2f` -> float con 2 decimales.\n*   `: >10` -> Alinear derecha, ancho 10.\n\n```python\npi = 3.14159265\nprint(f\"Pi es aprox {pi:.2f}\")        # 3.14\nprint(f\"Pi alineado: {pi:>10.2f}\")    # \"      3.14\"\n```",
+        "EUS": "## 3. F-Strings Formateatzea\n\n### Formateatzearen Eboluzioa\nZergatik erabili F-String-ak? Estandar modernoa dira (Python 3.6+).\n\n1.  **C-Estiloa (`%`)**: Zaharra eta mugatua. `\"Val: %s\" % var`.\n2.  **`.format()`**: Hobea, baina hitzontzia. `\"Val: {}\"`.format(var).\n3.  **F-Strings (`f\"\"`)**: Azkarrak, irakurgarriak eta espresioak onartzen ditu. `f\"Val: {var}\"`.\n\n✅ **Erabili beti F-String-ak** Python zaharra onartu behar ez baduzu.\n\n### Oinarrizko Erabilera\nF-String-ak azkarrak eta irakurgarriak dira. Zenbakiak zuzenean formateatu ditzakezu `{balioa:formatua}` sintaxiarekin.\n\n### Formatu Espezifikatzaileak\nSintaxi osoa honakoa da: `:[betegarria][lerrokatu][zabalera][.zehaztasuna][mota]`\n\n1.  **Zehaztasuna (`.2f`)**: Float baterako dezimal kopurua.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Zabalera (`10`)**: Eremuaren gutxieneko tamaina (zutabeetarako erabilgarria).\n    *   `f\"{izena:10}\"` -> `\"Ane       \"` (10eko zabalera bermatzen du)\n3.  **Lerrokatzea (`<`, `>`, `^`)**: Testua nola kokatu eremuan.\n    *   `>`: Eskuinean (Zenbakietarako lehentsia). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Ezkerrean (Testurako lehentsia). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Erdian. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Betegarria**: Hutsunea betetzeko karakterea (espazioa da lehentsia).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Zeroekin bete)\n\nErabili beheko laborategia konbinazio hauekin esperimentatzeko."
+      },
+      "blocks": [
+        {
+          "type": "markdown",
+          "content": {
+            "ENG": "### Format Specifiers Breakdown\n\nThe syntax `:[fill][align][width][.precision][type]` allows precise control:\n\n1.  **Precision (`.2f`)**: Digits after the decimal point.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Width (`10`)**: Minimum field length (great for columns).\n    *   `f\"{name:10}\"` -> `\"Alice     \"` (pads to 10 chars)\n3.  **Alignment (`<`, `>`, `^`)**: Where to place the text.\n    *   `>`: Right (Default for numbers). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Left (Default for strings). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Center. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Fill**: Character to fill empty space (default is space).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Pad with zeros)\n\nUse the interactive lab below to test these combinations.",
+            "CAS": "### Desglose de Especificadores\n\nLa sintaxis `:[relleno][alineación][ancho][.precisión][tipo]` permite control total:\n\n1.  **Precisión (`.2f`)**: Dígitos después del punto decimal.\n    *   `f\"{pi:.2f}\"` -> `\"3.14\"`\n2.  **Ancho (`10`)**: Tamaño mínimo del campo (útil para columnas).\n    *   `f\"{nombre:10}\"` -> `\"Ana       \"` (rellena hasta 10 caracteres)\n3.  **Alineación (`<`, `>`, `^`)**: Dónde colocar el texto.\n    *   `>`: Derecha (Por defecto en números). `f\"{1:5}\"` -> `\"    1\"`\n    *   `<`: Izquierda (Por defecto en texto). `f\"{1:<5}\"` -> `\"1    \"`\n    *   `^`: Centro. `f\"{1:^5}\"` -> `\"  1  \"`\n4.  **Relleno**: Carácter para llenar el espacio (por defecto es espacio).\n    *   `f\"{1:0>3}\"` -> `\"001\"` (Rellenar con ceros)\n\nUsa el laboratorio interactivo de abajo para probar estas combinaciones."
+          }
+        }
+      ]
+    },
+    {
+      "type": "interactive-fstring"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 4. Type Annotations (Type Hinting)\n\nPython is dynamic, but hints help your IDE catch bugs. Since Python 3.9, you can nest built-in types.\n\n### Basic Hints\n```python\nage: int = 25\nname: str = \"Alice\"\n```\n\n### Complex Structures (The Real Power)\nIn Data Structures, you deal with nested data. Be specific:\n\n```python\n# Matrix: A list of lists of integers\nmatrix: list[list[int]] = [[1, 0], [0, 1]]\n\n# Lookup Table: String keys to float values\nprices: dict[str, float] = {\"Apple\": 1.20, \"Banana\": 0.80}\n\n# Deep Nesting: A dictionary where values are lists of lists\ncomplex_map: dict[str, list[list[int]]] = ...\n```",
+        "CAS": "## 4. Anotaciones de Tipo (Type Hinting)\n\nPython es dinámico, pero las pistas ayudan a tu IDE a ver bugs. Desde Python 3.9, puedes anidar tipos nativos.\n\n### Pistas Básicas\n```python\nedad: int = 25\nnombre: str = \"Alicia\"\n```\n\n### Estructuras Complejas (El Poder Real)\nEn Estructura de Datos, usas datos anidados. Sé específico:\n\n```python\n# Matriz: Una lista de listas de enteros\nmatriz: list[list[int]] = [[1, 0], [0, 1]]\n\n# Tabla de Búsqueda: Claves string a valores float\nprecios: dict[str, float] = {\"Manzana\": 1.20, \"Plátano\": 0.80}\n\n# Anidación Profunda: Un diccionario donde los valores son listas de listas\nmapa_complejo: dict[str, list[list[int]]] = ...\n```",
+        "EUS": "## 4. Mota Anotazioak (Type Hinting)\n\nPython dinamikoa da, baina iradokizunek IDEari erroreak harrapatzen laguntzen diote. Python 3.9tik aurrera, jatorrizko motak habiaratu ditzakezu.\n\n### Oinarrizko Iradokizunak\n```python\nadina: int = 25\nizena: str = \"Ane\"\n```\n\n### Egitura Konplexuak (Benetako Boterea)\nDatu Egituretan, habiaratutako datuekin lan egiten duzu. Izan zehatza:\n\n```python\n# Matrizea: Osoko zenbakien zerrenden zerrenda\nmatrizea: list[list[int]] = [[1, 0], [0, 1]]\n\n# Bilaketa Taula: String gakoak float balioetara\nprezioak: dict[str, float] = {\"Sagarra\": 1.20, \"Banana\": 0.80}\n\n# Habiaratze Sakona: Balioak zerrenden zerrendak dituen hiztegia\nmapa_konplexua: dict[str, list[list[int]]] = ...\n```"
+      }
+    },
+    {
+      "type": "quiz",
+      "id": "ds-w02-q1",
+      "question": {
+        "ENG": "What is the correct type hint for this variable? `data = {'grades': [9.5, 8.0], 'names': ['Ana']}`",
+        "CAS": "¿Cuál es la pista de tipo correcta para esta variable? `datos = {'notas': [9.5, 8.0], 'nombres': ['Ana']}`",
+        "EUS": "Zein da mota-iradokizun zuzena aldagai honetarako? `datuak = {'notak': [9.5, 8.0], 'izenak': ['Ane']}`"
+      },
+      "options": [
+        {
+          "text": "dict[str, list]",
+          "correct": false
+        },
+        {
+          "text": "dict[str, list[float | str]]",
+          "correct": true
+        },
+        {
+          "text": "dict[str, list[float]]",
+          "correct": false
+        },
+        {
+          "text": "list[dict[str, any]]",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 5. Comments & Documentation\n\nCode is read more often than it is written. Good documentation is crucial for maintenance.\n\n### Types of Comments\n1.  **Inline Comments (`#`)**: Use for *why* something is done, not *what*. Explain complex logic.\n2.  **Docstrings (`\"\"\"...\"\"\"`)**: Use for functions, classes, and modules. They should describe inputs, outputs, and behavior.\n\n### Docstring Standards (NumPy Style)\nIn Data Science, we often use the NumPy style for clarity:\n\n```python\ndef calculate_mean(data: list[int]) -> float:\n    \"\"\"\n    Calculates the arithmetic mean of a list.\n\n    Parameters\n    ----------\n    data : list[int]\n        The list of numbers to process.\n\n    Returns\n    -------`\n    float\n        The calculated mean value.\n    \"\"\"\n    return sum(data) / len(data)\n```",
+        "CAS": "## 5. Comentarios y Documentación\n\nEl código se lee más veces de las que se escribe. Una buena documentación es crucial para el mantenimiento.\n\n### Tipos de Comentarios\n1.  **Comentarios de Línea (`#`)**: Úsalos para explicar *por qué*, no *qué*. Aclara lógica compleja.\n2.  **Docstrings (`\"\"\"...\"\"\"`)**: Úsalos para funciones, clases y módulos. Deben describir entradas, salidas y comportamiento.\n\n### Estándares de Docstrings (Estilo NumPy)\nEn Ciencia de Datos, a menudo usamos el estilo NumPy por su claridad:\n\n```python\ndef calcular_media(datos: list[int]) -> float:\n    \"\"\"\n    Calcula la media aritmética de una lista.\n\n    Parameters\n    ----------\n    datos : list[int]\n        La lista de números a procesar.\n\n    Returns\n    -------\n    float\n        El valor medio calculado.\n    \"\"\"\n    return sum(datos) / len(datos)\n```",
+        "EUS": "## 5. Iruzkinak eta Dokumentazioa\n\nKodea idatzi baino gehiagotan irakurtzen da. Dokumentazio ona ezinbestekoa da mantentze-lanetarako.\n\n### Iruzkin Motak\n1.  **Lerroko Iruzkinak (`#`)**: Erabili *zergatik* azaltzeko, ez *zer*. Logika konplexua argitu.\n2.  **Docstrings (`\"\"\"...\"\"\"`)**: Erabili funtzio, klase eta moduluetarako. Sarrerak, irteerak eta portaera deskribatu behar dituzte.\n\n### Docstring Estandarrak (NumPy Estiloa)\nDatu Zientzietan, askotan NumPy estiloa erabiltzen dugu argitasunagatik:\n\n```python\ndef kalkulatu_batezbestekoa(datuak: list[int]) -> float:\n    \"\"\"\n    Zerrenda baten batez besteko aritmetikoa kalkulatzen du.\n\n    Parameters\n    ----------\n    datuak : list[int]\n        Prozesatu beharreko zenbakien zerrenda.\n\n    Returns\n    -------\n    float\n        Kalkulatutako batez besteko balioa.\n    \"\"\"\n    return sum(datuak) / len(datuak)\n```"
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 6. Defining a Main Function\n\nWhy do we write `if __name__ == \"__main__\":`? It's not just a habit. It controls **context**.\n\nUse the simulator below to understand the two modes of running a Python file.",
+        "CAS": "## 6. Definiendo una Función Main\n\n¿Por qué escribimos `if __name__ == \"__main__\":`? No es solo una manía. Controla el **contexto**.\n\nUsa el simulador de abajo para entender los dos modos de ejecución de un archivo Python.",
+        "EUS": "## 6. Funtzio Nagusia (Main) Definitzen\n\nZergatik idazten dugu `if __name__ == \"__main__\":`? Ez da ohitura bat bakarrik. **Testuingurua** kontrolatzen du.\n\n### Simulazio Interaktiboa\nErabili beheko tresna `__name__` aldagaia nola aldatzen den ikusteko.\n\n1.  Sakatu **Run directly**: Fitxategia nagusia da (`__name__ == \"__main__\"`). Kodea exekutatzen da.\n2.  Sakatu **Import**: Fitxategia modulu bat da (`__name__ == \"script\"`). Kodea **EZ** da exekutatzen."
+      }
+    },
+    {
+      "type": "interactive-mainguard"
+    }
+  ]
+}

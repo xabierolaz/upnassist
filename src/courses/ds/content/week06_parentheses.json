@@ -1,0 +1,35 @@
+{
+  "id": "ds-w06-parentheses",
+  "part": 15,
+  "title": {
+    "ENG": "Lab: Balanced Parentheses",
+    "CAS": "Práctica: Paréntesis Balanceados",
+    "EUS": "Praktika: Parentesi Orekatuak"
+  },
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 1. The Balancing Problem\n\nHow does your code editor know you missed a closing bracket? It uses a **Stack**!\n\n### The Algorithm:\n1.  Scan the string.\n2.  If you see an **opening** bracket `( { [`: **Push** it to the stack.\n3.  If you see a **closing** bracket `) } ]`: **Pop** from the stack and check if it matches the opening one.\n4.  If the stack is empty at the end, it's balanced!",
+        "CAS": "## 1. El Problema del Balanceo\n\n¿Cómo sabe tu editor que te falta un corchete? ¡Usa una **Pila**!\n\n### El Algoritmo:\n1.  Escanea la cadena.\n2.  Si ves un paréntesis de **apertura** `( { [`: **Apílalo**.\n3.  Si ves uno de **cierre** `) } ]`: **Desapila** y comprueba si coincide con el de apertura.\n4.  Si al final la pila está vacía, ¡está balanceado!",
+        "EUS": "## 1. Orekaren Arazoa\n\nNola daki zure editoreak kako bat falta zaizula? **Pila** bat erabiltzen du!\n\n### Algoritmoa:\n1.  Eskaneatu katea.\n2.  **Irekiera** parentesi bat ikusten baduzu `( { [`: **Pilatu**.\n3.  **Itxiera** parentesi bat bada `) } ]`: **Kendu** pilatik eta egiaztatu irekierakoarekin bat datorren.\n4.  Bukaeran pila hutsik badago, orekatuta dago!"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w06-par-ex1",
+      "title": { "ENG": "Matching Brackets", "CAS": "Emparejando Paréntesis", "EUS": "Parentesiak Parekatzen" },
+      "description": {
+        "ENG": "Use a dictionary to map closing brackets to their opening counterparts.",
+        "CAS": "Usa un diccionario para emparejar paréntesis de cierre con sus aperturas.",
+        "EUS": "Erabili hiztegi bat itxiera parentesiak irekierakoekin parekatzeko."
+      },
+      "initialCode": {
+        "ENG": "pairs = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\nchar = \")\"\n# TODO: Print the matching opening bracket for char\n",
+        "CAS": "parejas = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\nchar = \")\"\n# TODO: Imprime el paréntesis de apertura correspondiente\n",
+        "EUS": "bikoteak = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\nchar = \")\"\n# TODO: Inprimatu dagokion irekiera parentesia\n"
+      },
+      "testCode": "import unittest\nassert \"pairs[\" in code or \"parejas[\" in code or \"bikoteak[\" in code"
+    }
+  ]
+}
