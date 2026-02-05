@@ -21,9 +21,17 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "### ⌨️ Phase 1: Reading Dense Data\n\nBefore processing, we need data. We will use `input()` to read from the console and `split()` to break strings into numbers.\n\n```python\nline = \"10 20 30\"\nparts = line.split()\n# result -> [\"10\", \"20\", \"30\"]\n```",
-        "CAS": "### ⌨️ Fase 1: Lectura de Datos Densos\n\nAntes de procesar, necesitamos datos. Usaremos `input()` para leer de consola y `split()` para trocear el texto.\n\n```python\nlinea = \"10 20 30\"\npartes = linea.split()\n# resultado -> [\"10\", \"20\", \"30\"]\n```",
-        "EUS": "### ⌨️ 1. Fasea: Datu Trinkoak Irakurtzea\n\nProzesatu aurretik, datuak behar ditugu. `input()` erabiliko dugu kontsolatik irakurtzeko eta `split()` testua zatitzeko.\n\n```python\nlerroa = \"10 20 30\"\nzatiak = lerroa.split()\n# emaitza -> [\"10\", \"20\", \"30\"]\n```"
+        "ENG": "### 🧰 Python Toolbox: Essential Functions\n\nReference guide for this lab:\n\n*   `len(lst)`: Returns the number of elements.\n*   `lst.append(x)`: Adds `x` to the end of the list.\n*   `range(n)`: Generates numbers `0, 1, ..., n-1`.\n*   `text.split()`: Splits a string by spaces into a list.\n*   `int(text)`: Converts string to integer.\n*   `str(num)`: Converts number to string.",
+        "CAS": "### 🧰 Caja de Herramientas Python: Funciones Esenciales\n\nGuía de referencia para esta práctica:\n\n*   `len(lista)`: Devuelve el número de elementos.\n*   `lista.append(x)`: Añade `x` al final de la lista.\n*   `range(n)`: Genera los números `0, 1, ..., n-1`.\n*   `texto.split()`: Divide un texto por espacios en una lista.\n*   `int(texto)`: Convierte texto a número entero.\n*   `str(num)`: Convierte número a texto.",
+        "EUS": "### 🧰 Python Tresna-kutxa: Funtzio Funtsezkoak\n\nLaborategi honetarako erreferentzia gida:\n\n*   `len(zerrenda)`: Elementu kopurua itzultzen du.\n*   `zerrenda.append(x)`: `x` zerrendaren amaieran gehitzen du.\n*   `range(n)`: `0, 1, ..., n-1` zenbakiak sortzen ditu.\n*   `testua.split()`: Testua zatietan banatzen du (zerrenda bat).\n*   `int(testua)`: Testua zenbaki osora bihurtzen du.\n*   `str(zenbakia)`: Zenbakia testura bihurtzen du."
+      }
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "### ⌨️ Phase 1: Reading Dense Data\n\n**Objective:** Read a matrix where the user types each row separated by spaces. Pressing **Enter** on an empty line finishes the input.\n\n```python\nline = \"10 20 30\"\nparts = line.split()\n# result -> [\"10\", \"20\", \"30\"]\n```",
+        "CAS": "### ⌨️ Fase 1: Lectura de Datos Densos\n\n**Objetivo:** Leer una matriz donde el usuario escribe cada fila separada por espacios. Al pulsar **Enter** en una línea vacía se termina la entrada.\n\n```python\nlinea = \"10 20 30\"\npartes = linea.split()\n# resultado -> [\"10\", \"20\", \"30\"]\n```",
+        "EUS": "### ⌨️ 1. Fasea: Datu Trinkoak Irakurtzea\n\n**Helburua:** Erabiltzaileak espazioz bereizitako errenkadak idazten dituen matrize bat irakurtzea. Lerro huts batean **Enter** sakatzean sarrera amaitzen da.\n\n```python\nlerroa = \"10 20 30\"\nzatiak = lerroa.split()\n# emaitza -> [\"10\", \"20\", \"30\"]\n```"
       }
     },
     {
@@ -69,9 +77,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 2. Transformation: Dense ↔ COO\n\nTo represent a Sparse Matrix, we use three parallel lists: `[values, rows, columns]`.",
-        "CAS": "## 2. Transformación: Densa ↔ COO\n\nPara representar una Matriz Dispersa, usamos tres listas paralelas: `[valores, filas, columnas]`.",
-        "EUS": "## 2. Transformazioa: Trinkoa ↔ COO\n\nMatrize Dispertsua adierazteko, hiru zerrenda paralelo erabiltzen ditugu: `[balioak, errenkadak, zutabeak]`."
+        "ENG": "## 2. Transformation: Dense ↔ COO\n\n**Objective:** Create a COO matrix. It is simply a list containing 3 internal lists:\n1.  **Values:** The non-zero numbers.\n2.  **Rows:** The row index for each value.\n3.  **Columns:** The column index for each value.",
+        "CAS": "## 2. Transformación: Densa ↔ COO\n\n**Objetivo:** Crear una matriz COO. Es simplemente una lista que contiene 3 listas internas:\n1.  **Valores:** Los números distintos de cero.\n2.  **Filas:** El índice de fila de cada valor.\n3.  **Columnas:** El índice de columna de cada valor.",
+        "EUS": "## 2. Transformazioa: Trinkoa ↔ COO\n\n**Helburua:** COO matrize bat sortzea. Besterik gabe, barneko 3 zerrenda dituen zerrenda bat da:\n1.  **Balioak:** Zero ez diren zenbakiak.\n2.  **Errenkadak:** Balio bakoitzaren errenkada-indizea.\n3.  **Zutabeak:** Balio bakoitzaren zutabe-indizea."
       }
     },
     {
@@ -141,9 +149,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 4. COO Operations\n\nReconstructing the dense matrix from COO requires pre-filling it with zeros first.",
-        "CAS": "## 4. Operaciones COO\n\nReconstruir la matriz densa desde COO requiere pre-rellenarla con ceros primero.",
-        "EUS": "## 4. COO Eragiketak\n\nMatrize trinkoa COOtik berreraikitzeak lehenengo zeroz betetzea eskatzen du."
+        "ENG": "## 4. COO Operations\n\n**Logic: COO to Dense**\n1.  **Create** a matrix full of zeros with the target size.\n2.  **Place** each value from the COO lists into its correct `(row, col)` position.",
+        "CAS": "## 4. Operaciones COO\n\n**Lógica: COO a Densa**\n1.  **Crea** una matriz llena de ceros con el tamaño deseado.\n2.  **Coloca** cada valor de las listas COO en su posición `(fila, col)` correcta.",
+        "EUS": "## 4. COO Eragiketak\n\n**Logika: COOtik Trinkora**\n1.  **Sortu** zeroz betetako matrize bat nahi den tamainarekin.\n2.  **Jarri** COO zerrendetako balio bakoitza bere `(errenk, zut)` posizio zuzenean."
       }
     },
     {
@@ -165,9 +173,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "### 🎯 The \"Radar\" Algorithm (Search)\n\nTo find if a **Coordinate** exists in COO, we iterate through its internal lists.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == r and coo[2][k] == c:\n        return k\n```",
-        "CAS": "### 🎯 El Algoritmo \"Radar\" (Búsqueda)\n\nPara saber si una **Coordenada** existe en el COO, recorremos sus listas internas.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == f and coo[2][k] == c:\n        return k\n```",
-        "EUS": "### 🎯 \"Radar\" Algoritmoa (Bilaketa)\n\n**Koordenatu** bat COOn dagoen jakiteko, bere barne-zerrendak zeharkatuko ditugu.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == e and coo[2][k] == z:\n        return k\n```"
+        "ENG": "### 🎯 The \"Radar\" Algorithm (Search)\n\n**Objective:** Check if a coordinate `(r, c)` already exists in our data.\n\n**Logic:** Loop through the lists. If `row[k] == r` AND `col[k] == c`, return `k`. If the loop finishes without finding it, return `-1`.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == r and coo[2][k] == c:\n        return k\n```",
+        "CAS": "### 🎯 El Algoritmo \"Radar\" (Búsqueda)\n\n**Objetivo:** Comprobar si una coordenada `(f, c)` ya existe en nuestros datos.\n\n**Lógica:** Recorre las listas. Si `filas[k] == f` Y `cols[k] == c`, devuelve `k`. Si el bucle termina sin encontrarlo, devuelve `-1`.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == f and coo[2][k] == c:\n        return k\n```",
+        "EUS": "### 🎯 \"Radar\" Algoritmoa (Bilaketa)\n\n**Helburua:** Egiaztatu `(e, z)` koordenatu bat gure datuetan existitzen den.\n\n**Logika:** Zeharkatu zerrendak. `errenk[k] == e` ETA `zut[k] == z` bada, itzuli `k`. Begizta aurkitu gabe amaitzen bada, itzuli `-1`.\n\n```python\nfor k in range(len(coo[1])):\n    if coo[1][k] == e and coo[2][k] == z:\n        return k\n```"
       }
     },
     {
@@ -189,9 +197,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "Updating a COO matrix depends on whether the coordinate already exists.\n\n```python\nidx = is_it_in(coo, r, c)\nif idx != -1:\n    # Update value\nelse:\n    # Append new coordinate\n```",
-        "CAS": "Actualizar una matriz COO depende de si la coordenada ya existe o no.\n\n```python\nidx = existe_en(coo, f, c)\nif idx != -1:\n    # Actualizar valor\nelse:\n    # Añadir nueva coordenada\n```",
-        "EUS": "COO matrize bat eguneratzea koordenatua lehendik dagoen ala ezaren araberakoa da.\n\n```python\nidx = bertan_dago(coo, e, z)\nif idx != -1:\n    # Eguneratu balioa\nelse:\n    # Erantsi koordenatu berria\n```"
+        "ENG": "**Objective:** Add a value to the matrix. Use the Radar to decide:\n*   **Not Found (`-1`):** It's a new number. **Append** it to `values`, `rows`, and `cols`.\n*   **Found (`k`):** It's an update. **Add** the new value to the existing one at index `k`.\n\n```python\nidx = is_it_in(coo, r, c)\nif idx != -1:\n    coo[0][idx] += new_value\nelse:\n    # Append to all 3 lists\n```",
+        "CAS": "**Objetivo:** Añadir un valor a la matriz. Usa el Radar para decidir:\n*   **No Encontrado (`-1`):** Es nuevo. **Añádelo** (append) a `valores`, `filas` y `cols`.\n*   **Encontrado (`k`):** Es una actualización. **Suma** el nuevo valor al que ya existe en el índice `k`.\n\n```python\nidx = existe_en(coo, f, c)\nif idx != -1:\n    coo[0][idx] += nuevo_valor\nelse:\n    # Añadir a las 3 listas\n```",
+        "EUS": "**Helburua:** Balio bat gehitu matrizeari. Erabili Radarra erabakitzeko:\n*   **Ez Aurkitua (`-1`):** Berria da. **Erantsi** (append) `balioak`, `errenk` eta `zut` zerrendei.\n*   **Aurkitua (`k`):** Eguneratzea da. **Gehitu** balio berria `k` indizean dagoenari.\n\n```python\nidx = bertan_dago(coo, e, z)\nif idx != -1:\n    coo[0][idx] += balio_berria\nelse:\n    # Erantsi 3 zerrendei\n```"
       }
     },
     {
@@ -213,9 +221,9 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 6. Goal: Sparse Matrix Sum\n\nSum two matrices by merging all their elements into a new empty COO structure using your `insert_or_increment` function.",
-        "CAS": "## 6. Objetivo: Suma de Matrices\n\nSuma dos matrices fusionando todos sus elementos en una nueva estructura COO vacía usando tu función `insertar_o_incrementar`.",
-        "EUS": "## 6. Helburua: Matrizeen Batuketa\n\nBatu bi matrize guztiak COO egitura huts berri batean fusionatuz zure `txertatu_edo_handitu` funtzioa erabiliz."
+        "ENG": "## 6. Goal: Sparse Matrix Sum\n\n**Strategy:** We don't need complex math. We just need to merge lists.\n1.  Create a **NEW empty** COO matrix.\n2.  Loop through **Matrix A** and insert every element into the new matrix.\n3.  Loop through **Matrix B** and insert every element into the new matrix.\n\nYour `insert_or_increment` function will automatically handle the addition if coordinates collide!",
+        "CAS": "## 6. Objetivo: Suma de Matrices\n\n**Estrategia:** No hace falta matemática compleja. Solo fusionar listas.\n1.  Crea una **NUEVA matriz** COO vacía.\n2.  Recorre la **Matriz A** e inserta cada elemento en la nueva.\n3.  Recorre la **Matriz B** e inserta cada elemento en la nueva.\n\n¡Tu función `insertar_o_incrementar` se encargará sola de sumar si las coordenadas chocan!",
+        "EUS": "## 6. Helburua: Matrizeen Batuketa\n\n**Estrategia:** Ez dugu matematika konplexurik behar. Zerrendak fusionatu besterik ez.\n1.  Sortu COO matrize **BERRI huts** bat.\n2.  Zeharkatu **A Matrizea** eta txertatu elementu bakoitza berrian.\n3.  Zeharkatu **B Matrizea** eta txertatu elementu bakoitza berrian.\n\nZure `txertatu_edo_handitu` funtzioak automatikoki kudeatuko du batuketa koordenatuek talka egiten badute!"
       }
     },
     {
