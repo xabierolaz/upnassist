@@ -19,86 +19,6 @@
       "type": "interactive-sparse-matrix"
     },
     {
-      "type": "markdown",
-      "content": {
-        "ENG": "## 2. Memory: The Hidden Cost\n\nAs you saw above, the **Dense Format** always uses 25 units of memory (for a 5x5 grid), regardless of the data. The **COO Format** starts empty and grows only when you add numbers.\n\n### 🧠 Concept: `sys.getsizeof` vs. Reality\nIn Python, lists are complex objects. `sys.getsizeof(list)` only counts the container's shell, not the items inside. To measure the *real* memory cost of a matrix, we need a recursive function that counts everything.\n\n**Why COO?**\n*   **Dense:** Cost = Rows × Cols (Quadratic growth 🟥)\n*   **COO:** Cost = 3 × Non-Zeros (Linear growth 🟩)",
-        "CAS": "## 2. Memoria: El Coste Oculto\n\nComo has visto arriba, el **Formato Denso** siempre usa 25 unidades de memoria (para 5x5), sin importar los datos. El **Formato COO** empieza vacío y solo crece cuando añades números.\n\n### 🧠 Concepto: `sys.getsizeof` vs. Realidad\nEn Python, las listas son objetos complejos. `sys.getsizeof(lista)` solo cuenta la \"cáscara\" del contenedor, no los elementos de dentro. Para medir el coste *real*, necesitamos una función recursiva.\n\n**¿Por qué COO?**\n*   **Denso:** Coste = Filas × Cols (Crecimiento Cuadrático 🟥)\n*   **COO:** Coste = 3 × No-Ceros (Crecimiento Lineal 🟩)",
-        "EUS": "## 2. Memoria: Ezkutuko Kostua\n\nGoian ikusi duzun bezala, **Formatu Trinkoak** beti 25 memoria-unitate erabiltzen ditu (5x5erako), datuak edozein direla ere. **COO Formatua** hutsik hasten da eta zenbakiak gehitzean bakarrik hazten da.\n\n### 🧠 Kontzeptua: `sys.getsizeof` vs. Errealitatea\nPython-en, zerrendak objektu konplexuak dira. `sys.getsizeof(lista)`-k edukiontziaren \"azala\" bakarrik kontatzen du. *Benetako* kostua neurtzeko, funtzio errekurtsibo bat behar dugu.\n\n**Zergatik COO?**\n*   **Trinkoa:** Kostua = Errenkadak × Zutabeak (Hazkunde Koadratikoa 🟥)\n*   **COO:** Kostua = 3 × Ez-Zeroak (Hazkunde Lineala 🟩)"
-      }
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-sparse-ex5",
-      "title": { "ENG": "Exercise: Calculating Real Memory", "CAS": "Ejercicio: Calculando Memoria Real", "EUS": "Ariketa: Benetako Memoria Kalkulatzen" },
-      "description": {
-        "ENG": "Implement a recursive function to calculate the total memory size of a nested list structure. Standard `sys.getsizeof` is not enough!",
-        "CAS": "Implementa una función recursiva para calcular el tamaño total en memoria de una lista anidada. ¡El `sys.getsizeof` estándar no basta!",
-        "EUS": "Inplementatu funtzio errekurtsibo bat habiaratutako zerrenda baten memoria osoa kalkulatzeko. `sys.getsizeof` estandarra ez da nahikoa!"
-      },
-      "initialCode": {
-        "ENG": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for element in lst:\n        if isinstance(element, list):\n            # TODO: Recursive call\n            pass\n        else:\n            # TODO: Add element size\n            pass\n    return size",
-        "CAS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for elemento in lst:\n        if isinstance(elemento, list):\n            # TODO: Llamada recursiva\n            pass\n        else:\n            # TODO: Sumar tamaño elemento\n            pass\n    return size",
-        "EUS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    tamaina = sys.getsizeof(lst)\n    for elementua in lst:\n        if isinstance(elementua, list):\n            # TODO: Dei errekurtsiboa\n            pass\n        else:\n            # TODO: Gehitu elementuaren tamaina\n            pass\n    return tamaina"
-      },
-      "testCode": "import sys; assert list_memory_size([1, [2]]) > sys.getsizeof([1, [2]])"
-    },
-    {
-      "type": "markdown",
-      "content": {
-        "ENG": "## 3. The 3 Pillars of COO\n\nTo build our Sparse Matrix library, we need to master 3 operations:\n\n1.  **Read/Write:** Getting data in and out.\n2.  **Conversion:** Transforming Grid ↔ Lists.\n3.  **Manipulation:** Searching and Adding values (The \"Radar\" logic).",
-        "CAS": "## 3. Los 3 Pilares de COO\n\nPara construir nuestra librería de Matrices Dispersas, necesitamos dominar 3 operaciones:\n\n1.  **Lectura/Escritura:** Entrar y sacar datos.\n2.  **Conversión:** Transformar Rejilla ↔ Listas.\n3.  **Manipulación:** Buscar y Añadir valores (La lógica del \"Radar\").",
-        "EUS": "## 3. COOren 3 Zutabeak\n\nGure Matrize Dispertsuen liburutegia eraikitzeko, 3 eragiketa menperatu behar ditugu:\n\n1.  **Irakurri/Idatzi:** Datuak sartu eta atera.\n2.  **Bihurketa:** Sareta ↔ Zerrendak eraldatu.\n3.  **Manipulazioa:** Balioak Bilatu eta Gehitu (\"Radar\" logika)."
-      }
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-sparse-ex1",
-      "title": { "ENG": "1. Input Matrix", "CAS": "1. Leer Matriz", "EUS": "1. Matrizea Irakurri" },
-      "description": {
-        "ENG": "Read a matrix from the console. Use a loop to read rows until an empty line is entered.",
-        "CAS": "Lee una matriz desde la consola. Usa un bucle para leer filas hasta que se introduzca una línea vacía.",
-        "EUS": "Irakurri matrize bat kontsolatik. Erabili begizta bat errenkadak irakurtzeko lerro huts bat sartu arte."
-      },
-      "initialCode": {
-        "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: \n            break\n        # 1. Split the line into strings\n        # 2. Convert each string to int and build a list (the row)\n        # 3. Append the row to the matrix\n    return matrix",
-        "CAS": "def input_matrix() -> list:\n    matriz = []\n    print(\"Introduce la matriz (línea vacía para terminar):\")\n    while True:\n        linea = input()\n        if not linea: \n            break\n        # 1. Divide la linea en partes (split)\n        # 2. Convierte cada parte a int y crea una lista (la fila)\n        # 3. Añade la fila a la matriz\n    return matriz",
-        "EUS": "def input_matrix() -> list:\n    matrizea = []\n    print(\"Sartu matrizea (lerro hutsa amaitzeko):\")\n    while True:\n        lerroa = input()\n        if not lerroa: \n            break\n        # 1. Zatitu lerroa (split)\n        # 2. Bihurtu zati bakoitza int-era eta sortu zerrenda bat (errenkada)\n        # 3. Gehitu errenkada matrizea-ri\n    return matrizea"
-      },
-      "testCode": "import unittest\n# Mock testing here"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-sparse-ex2",
-      "title": { "ENG": "2. Read File", "CAS": "2. Leer Fichero", "EUS": "2. Fitxategia Irakurri" },
-      "description": {
-        "ENG": "Read a matrix from a text file. Use `with open(...)` and iterate through the file object.",
-        "CAS": "Lee una matriz de un fichero de texto. Usa `with open(...)` y recorre el objeto fichero.",
-        "EUS": "Irakurri matrize bat testu fitxategi batetik. Erabili `with open(...)` eta zeharkatu fitxategi-objektua."
-      },
-      "initialCode": {
-        "ENG": "def read_matrix(path: str) -> list:\n    matrix = []\n    # with open(path, 'r') as f:\n    #     for line in f:\n    #         # Process the line and append to matrix\n    return matrix",
-        "CAS": "def read_matrix(ruta: str) -> list:\n    matriz = []\n    # with open(ruta, 'r') as f:\n    #     for linea in f:\n    #         # Procesa la linea y añade a la matriz\n    return matriz",
-        "EUS": "def read_matrix(bidea: str) -> list:\n    matrizea = []\n    # with open(bidea, 'r') as f:\n    #     for lerroa in f:\n    #         # Prozesatu lerroa eta gehitu matrizea-ri\n    return matrizea"
-      },
-      "testCode": "import unittest\n# Mock file testing"
-    },
-    {
-      "type": "exercise",
-      "exerciseId": "ds-w02-sparse-ex3",
-      "title": { "ENG": "3. Initialize COO", "CAS": "3. Inicializar COO", "EUS": "3. COO Hasieratu" },
-      "description": {
-        "ENG": "Return an empty COO structure: a list containing 3 empty lists.",
-        "CAS": "Devuelve una estructura COO vacía: una lista que contiene 3 listas vacías.",
-        "EUS": "Itzuli COO egitura huts bat: 3 zerrenda huts dituen zerrenda bat."
-      },
-      "initialCode": {
-        "ENG": "def create_coo() -> list:\n    # Return a list with 3 empty lists inside\n    return []",
-        "CAS": "def crear_coo() -> list:\n    # Devuelve una lista con 3 listas vacías dentro\n    return []",
-        "EUS": "def sortu_coo() -> list:\n    # Itzuli barruan 3 zerrenda huts dituen zerrenda bat\n    return []"
-      },
-      "testCode": "import unittest\nfunc = locals().get('crear_coo') or locals().get('create_coo') or locals().get('sortu_coo')\nassert func() == [[], [], []]"
-    },
-    {
       "type": "exercise",
       "exerciseId": "ds-w02-sparse-ex4",
       "title": { "ENG": "4. Dense to COO", "CAS": "4. Denso a COO", "EUS": "4. Trinkotik COOra" },
@@ -113,6 +33,30 @@
         "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = [[], [], []]\n    # Erabili habiaratutako begiztak (for i, for j)\n    # matrizea[i][j] != 0 bada:\n    #     # Erantsi balioa, errenkada (i) eta zutabea (j)\n    return coo"
       },
       "testCode": "m = [[0,1],[2,0]]; func = locals().get('normal_a_coo') or locals().get('normal_to_coo'); assert func(m) == [[1,2],[0,1],[1,0]]"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. Memory: The Payoff\n\nNow that you can convert matrices, let's see why we do it.\n\n### 🧠 Concept: `sys.getsizeof` vs. Reality\nIn Python, `sys.getsizeof(list)` only counts the container's shell. To measure the *real* memory cost of your new COO matrix, we need a recursive function.\n\n**Let's prove the efficiency:**",
+        "CAS": "## 2. Memoria: La Recompensa\n\nAhora que ya sabes convertir matrices, veamos por qué lo hacemos.\n\n### 🧠 Concepto: `sys.getsizeof` vs. Realidad\nEn Python, `sys.getsizeof(lista)` solo cuenta el envoltorio. Para medir el coste *real* de tu nueva matriz COO, necesitamos una función recursiva.\n\n**Vamos a demostrar la eficiencia:**",
+        "EUS": "## 2. Memoria: Saria\n\nOrain matrizeak bihurtzen dakizula, ikus dezagun zergatik egiten dugun.\n\n### 🧠 Kontzeptua: `sys.getsizeof` vs. Errealitatea\nPython-en, `sys.getsizeof(lista)`-k edukiontziaren azala bakarrik kontatzen du. Zure COO matrize berriaren *benetako* kostua neurtzeko, funtzio errekurtsibo bat behar dugu.\n\n**Froga dezagun eraginkortasuna:**"
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex5",
+      "title": { "ENG": "5. Real Memory Size", "CAS": "5. Tamaño Real en Memoria", "EUS": "5. Benetako Memoria Tamaina" },
+      "description": {
+        "ENG": "Implement a recursive function to calculate the total memory size of a nested list structure. Standard `sys.getsizeof` is not enough!",
+        "CAS": "Implementa una función recursiva para calcular el tamaño total en memoria de una lista anidada. ¡El `sys.getsizeof` estándar no basta!",
+        "EUS": "Inplementatu funtzio errekurtsibo bat habiaratutako zerrenda baten memoria osoa kalkulatzeko. `sys.getsizeof` estandarra ez da nahikoa!"
+      },
+      "initialCode": {
+        "ENG": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for element in lst:\n        if isinstance(element, list):\n            # TODO: Recursive call\n            pass\n        else:\n            # TODO: Add element size\n            pass\n    return size",
+        "CAS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for elemento in lst:\n        if isinstance(elemento, list):\n            # TODO: Llamada recursiva\n            pass\n        else:\n            # TODO: Sumar tamaño elemento\n            pass\n    return size",
+        "EUS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    tamaina = sys.getsizeof(lst)\n    for elementua in lst:\n        if isinstance(elementua, list):\n            # TODO: Dei errekurtsiboa\n            pass\n        else:\n            # TODO: Gehitu elementuaren tamaina\n            pass\n    return tamaina"
+      },
+      "testCode": "import sys; assert list_memory_size([1, [2]]) > sys.getsizeof([1, [2]])"
     },
     {
       "type": "exercise",
