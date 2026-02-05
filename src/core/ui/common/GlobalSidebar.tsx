@@ -76,20 +76,29 @@ export const GlobalSidebar: React.FC<GlobalSidebarProps> = ({
                 <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-gray-600">
                     {modules.map((module) => {
                         const isOpen = openModules[module.id] ?? !module.isCollapsed;
+                        const hasSingleUnit = module.units.length === 1;
+                        const isActive = hasSingleUnit && activePageId === module.units[0].id;
+
                         return (
                             <div key={module.id} className="mb-1">
                                 <button 
-                                    onClick={() => toggleModule(module.id)} 
-                                    className="group-btn w-full flex items-center justify-between px-3 py-3 mt-2 text-xs font-black text-gray-400 uppercase tracking-wider hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                                    onClick={() => hasSingleUnit ? handleNavigation(module.units[0].id) : toggleModule(module.id)} 
+                                    className={`group-btn w-full flex items-center justify-between px-3 py-3 mt-2 text-xs font-black uppercase tracking-wider rounded-lg transition-colors ${
+                                        isActive 
+                                        ? 'bg-brand-blue text-white shadow-sm' 
+                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                    }`}
                                 >
                                     <div className="flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                                        <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-white' : 'bg-blue-500'}`}></span>
                                         {getLocalizedText(module.title, currentLang)}
                                     </div>
-                                    <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                                    {!hasSingleUnit && (
+                                        <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                                    )}
                                 </button>
                                 
-                                {isOpen && (
+                                {isOpen && !hasSingleUnit && (
                                     <div className="pl-2 mt-1">
                                         <ul className="space-y-0.5 pl-2 border-l-2 border-gray-700 ml-4">
                                             {module.units.map((unit) => (

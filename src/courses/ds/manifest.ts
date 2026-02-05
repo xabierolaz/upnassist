@@ -121,37 +121,59 @@ export const course: Course = {
   },
   modules: [
     {
-      id: "ds-intro",
-      title: { ENG: "1. Introduction & Review", CAS: "1. Introducción y Repaso", EUS: "1. Sarrera eta Berrikuspena" },
-      isCollapsed: false,
-      units: [
-        { id: "ds-w01-theory", title: { ENG: "Syllabus & Logistics", CAS: "Guía Docente", EUS: "Gida Dokentea" } },
-        { id: "ds-w02-theory", title: { ENG: "Python Tips & Tricks", CAS: "Trucos de Python", EUS: "Python Trikimailuak" } },
-        { id: "ds-w03-theory", title: { ENG: "Object Oriented Python", CAS: "Python Orientado a Objetos", EUS: "OBP Pythonen" } }
-      ]
+      id: "ds-w01-theory",
+      title: { ENG: "Syllabus & Logistics", CAS: "Guía Docente", EUS: "Gida Dokentea" },
+      units: [{ id: "ds-w01-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
     },
     {
-      id: "ds-linear",
-      title: { ENG: "2. Linear Data Structures", CAS: "2. Estructuras Lineales", EUS: "2. Egitura Linealak" },
-      isCollapsed: false,
-      units: [
-        { id: "ds-w04-theory", title: { ENG: "Stacks & Queues", CAS: "Pilas y Colas", EUS: "Pilak eta Ilarak" } },
-        { id: "ds-w05-theory", title: { ENG: "Queues & Dequeues", CAS: "Colas y Doble Colas", EUS: "Ilarak eta Ilara Bikoitzak" } },
-        { id: "ds-w06-theory", title: { ENG: "Buffers & Extensions", CAS: "Búferes y Extensiones", EUS: "Bufferrak eta Luzapenak" } },
-        { id: "ds-w07-linked", title: { ENG: "Linked Lists", CAS: "Listas Enlazadas", EUS: "Zerrenda Estekatuak" } }
-      ]
+      id: "ds-w02-theory",
+      title: { ENG: "Python Tips & Tricks", CAS: "Trucos de Python", EUS: "Python Trikimailuak" },
+      units: [{ id: "ds-w02-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
     },
     {
-      id: "ds-labs",
-      title: { ENG: "3. Lab Projects", CAS: "3. Prácticas", EUS: "3. Praktikak" },
-      isCollapsed: false,
-      units: [
-        { id: "ds-w02-sparse", title: { ENG: "Sparse Matrices", CAS: "Matrices Dispersas", EUS: "Matrize Sakabanatuak" } },
-        { id: "ds-w03-files", title: { ENG: "File Management (CSV)", CAS: "Gestión de Ficheros", EUS: "Fitxategien Kudeaketa" } },
-        { id: "ds-w04-postfix", title: { ENG: "Postfix Calculator", CAS: "Calculadora Postfija", EUS: "Postfix Kalkulagailua" } },
-        { id: "ds-w05-palindrome", title: { ENG: "Palindrome Checker", CAS: "Verificador de Palíndromos", EUS: "Palindromo Egiaztatzailea" } },
-        { id: "ds-w06-parentheses", title: { ENG: "Balanced Parentheses", CAS: "Paréntesis Balanceados", EUS: "Parentesi Orekatuak" } }
-      ]
+      id: "ds-w02-sparse",
+      title: { ENG: "Lab: Sparse Matrices", CAS: "Lab: Matrices Dispersas", EUS: "Lab: Matrize Sakabanatuak" },
+      units: [{ id: "ds-w02-sparse", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w03-theory",
+      title: { ENG: "Object Oriented Python", CAS: "Python Orientado a Objetos", EUS: "OBP Pythonen" },
+      units: [{ id: "ds-w03-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w03-files",
+      title: { ENG: "Lab: File Management", CAS: "Lab: Gestión de Ficheros", EUS: "Lab: Fitxategien Kudeaketa" },
+      units: [{ id: "ds-w03-files", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w04-theory",
+      title: { ENG: "Stacks & Queues", CAS: "Pilas y Colas", EUS: "Pilak eta Ilarak" },
+      units: [{ id: "ds-w04-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w04-postfix",
+      title: { ENG: "Lab: Postfix Calculator", CAS: "Lab: Calculadora Postfija", EUS: "Lab: Postfix Kalkulagailua" },
+      units: [{ id: "ds-w04-postfix", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w05-theory",
+      title: { ENG: "Queues & Dequeues", CAS: "Colas y Doble Colas", EUS: "Ilarak eta Ilara Bikoitzak" },
+      units: [{ id: "ds-w05-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w05-palindrome",
+      title: { ENG: "Lab: Palindrome Checker", CAS: "Lab: Verificador de Palíndromos", EUS: "Lab: Palindromo Egiaztatzailea" },
+      units: [{ id: "ds-w05-palindrome", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w06-theory",
+      title: { ENG: "Buffers & Extensions", CAS: "Búferes y Extensiones", EUS: "Bufferrak eta Luzapenak" },
+      units: [{ id: "ds-w06-theory", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
+    },
+    {
+      id: "ds-w06-parentheses",
+      title: { ENG: "Lab: Balanced Parentheses", CAS: "Lab: Paréntesis Balanceados", EUS: "Lab: Parentesi Orekatuak" },
+      units: [{ id: "ds-w06-parentheses", title: { ENG: "Content", CAS: "Contenido", EUS: "Edukia" } }]
     }
   ]
 };
