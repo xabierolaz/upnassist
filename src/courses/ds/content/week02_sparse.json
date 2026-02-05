@@ -31,9 +31,9 @@
       "exerciseId": "ds-w02-sparse-ex1",
       "title": { "ENG": "1. Input Dense Matrix", "CAS": "1. Leer Matriz Densa", "EUS": "1. Matrize Trinkoa Irakurri" },
       "description": {
-        "ENG": "Read a dense matrix from the console line by line.",
-        "CAS": "Lee una matriz densa desde la consola línea por línea.",
-        "EUS": "Irakurri matrize trinkoa kontsolatik lerroz lerro."
+        "ENG": "Read a dense matrix from the console line by line. Each line represents a row.",
+        "CAS": "Lee una matriz densa desde la consola línea por línea. Cada línea representa una fila.",
+        "EUS": "Irakurri matrize trinkoa kontsolatik lerroz lerro. Lerro bakoitzak errenkada bat adierazten du."
       },
       "initialCode": {
         "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: \n            break\n        # Process line and append row to dense matrix\n    return matrix",
@@ -71,9 +71,9 @@
       "exerciseId": "ds-w02-sparse-ex3",
       "title": { "ENG": "3. Initialize COO", "CAS": "3. Inicializar COO", "EUS": "3. COO Hasieratu" },
       "description": {
-        "ENG": "Return an empty COO structure: a list containing 3 empty lists.",
-        "CAS": "Devuelve una estructura COO vacía: una lista que contiene 3 listas vacías.",
-        "EUS": "Itzuli COO egitura huts bat: 3 zerrenda huts dituen zerrenda bat."
+        "ENG": "Return an empty COO structure: a list containing 3 empty lists (Values, Rows, Columns).",
+        "CAS": "Devuelve una estructura COO vacía: una lista que contiene 3 listas vacías (Valores, Filas, Columnas).",
+        "EUS": "Itzuli COO egitura huts bat: 3 zerrenda huts (Balioak, Errenkadak, Zutabeak) dituen zerrenda bat."
       },
       "initialCode": {
         "ENG": "def create_coo() -> list:\n    # Return a list with 3 empty lists inside\n    return []",
@@ -140,18 +140,18 @@
         "EUS": "Berreraiki matrize trinkoa COO zerrendetatik abiatuta."
       },
       "initialCode": {
-        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # Create a dense matrix filled with zeros and fill it from COO\n    return []",
-        "CAS": "def coo_a_normal(coo: list, filas: int, columnas: int) -> list:\n    # Crea una matriz densa de ceros y rellénala desde el COO\n    return []",
-        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # Sortu zeroz betetako matrize trinkoa eta bete COO-tik\n    return []"
+        "ENG": "def coo_to_normal(coo: list, num_rows: int, num_cols: int) -> list:\n    # Create a dense matrix filled with zeros and fill it from COO\n    return []",
+        "CAS": "def coo_a_normal(coo: list, n_filas: int, n_columnas: int) -> list:\n    # Crea una matriz densa de ceros y rellénala desde el COO\n    return []",
+        "EUS": "def coo_to_normal(coo: list, errenk_kop: int, zut_kop: int) -> list:\n    # Sortu zeroz betetako matrize trinkoa eta bete COO-tik\n    return []"
       },
       "testCode": "coo = [[1],[0],[1]]; func = locals().get('coo_a_normal') or locals().get('coo_to_normal'); assert func(coo, 1, 2) == [[0, 1]]"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "### 🎯 The \"Radar\" Algorithm\n\nTo sum two matrices, we need a **\"Radar\"**: a function that tells us if a coordinate `(r, c)` already exists in our COO lists.",
-        "CAS": "### 🎯 El Algoritmo \"Radar\"\n\nPara sumar dos matrices, necesitamos un **\"Radar\"**: una función que nos diga si una coordenada `(f, c)` ya existe en nuestras listas COO.",
-        "EUS": "### 🎯 \"Radar\" Algoritmoa\n\nBi matrize batzeko, **\"Radar\"** bat behar dugu: `(e, z)` koordenatu bat gure COO zerrendetan existitzen den esaten digun funtzioa."
+        "ENG": "### 🎯 The \"Radar\" Algorithm (Search)\n\nTo sum two matrices, we need a **\"Radar\"**: a function that tells us if a **Coordinate** `(row, col)` already exists in our COO lists.\n\n*   **If it exists:** We get the **Index** `k` so we can update the value.\n*   **If not:** We get `-1` so we know we must append a new entry.",
+        "CAS": "### 🎯 El Algoritmo \"Radar\" (Búsqueda)\n\nPara sumar dos matrices, necesitamos un **\"Radar\"**: una función que nos diga si una **Coordenada** `(fila, col)` ya existe en nuestras listas COO.\n\n*   **Si existe:** Obtenemos el **Índice** `k` para poder sumar el valor.\n*   **Si no:** Obtenemos `-1` y sabemos que debemos añadir una entrada nueva.",
+        "EUS": "### 🎯 \"Radar\" Algoritmoa (Bilaketa)\n\nBi matrize batzeko, **\"Radar\"** bat behar dugu: `(errenk, zut)` **Koordenatu** bat gure COO zerrendetan existitzen den esaten digun funtzioa.\n\n*   **Existitzen bada:** `k` **Indizea** lortzen dugu balioa eguneratzeko.\n*   **Ez bada:** `-1` lortzen dugu eta badakigu sarrera berri bat erantsi behar dugula."
       }
     },
     {
@@ -159,9 +159,9 @@
       "exerciseId": "ds-w02-sparse-ex7",
       "title": { "ENG": "7. The Radar (is_it_in)", "CAS": "7. El Radar (existe_en)", "EUS": "7. Radarra (bertan_dago)" },
       "description": {
-        "ENG": "Scan the `rows` and `cols` lists to find if a coordinate exists in the COO format.",
-        "CAS": "Escanea las listas de filas y columnas para ver si una coordenada existe en el formato COO.",
-        "EUS": "Eskaneatu errenkada eta zutabe zerrendak koordenatu bat COO formatuan existitzen den ikusteko."
+        "ENG": "Scan the COO lists to find if a coordinate exists. Return the index or -1.",
+        "CAS": "Escanea las listas COO para ver si una coordenada existe. Devuelve el índice o -1.",
+        "EUS": "Eskaneatu COO zerrendak koordenatu bat existitzen den ikusteko. Itzuli indizea edo -1."
       },
       "initialCode": {
         "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # Scan COO and return index or -1\n    return -1",
@@ -173,32 +173,32 @@
     {
       "type": "exercise",
       "exerciseId": "ds-w02-sparse-ex8",
-      "title": { "ENG": "8. Insert or Update", "CAS": "8. Insertar o Actualizar", "EUS": "8. Txertatu edo Eguneratu" },
+      "title": { "ENG": "8. Insert or Increment", "CAS": "8. Insertar o Incrementar", "EUS": "8. Txertatu edo Handitu" },
       "description": {
-        "ENG": "Use your Radar to insert or update values in the COO matrix.",
-        "CAS": "Usa tu Radar para insertar o actualizar valores en la matriz COO.",
-        "EUS": "Erabili zure Radarra COO matrizean balioak txertatzeko edo eguneratzeko."
+        "ENG": "Use your Radar to insert or increment values in the COO matrix at a specific coordinate.",
+        "CAS": "Usa tu Radar para insertar o incrementar valores en la matriz COO en una coordenada específica.",
+        "EUS": "Erabili zure Radarra COO matrizean balioak txertatzeko edo handitzeko koordenatu zehatz batean."
       },
       "initialCode": {
-        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col)\n    # Update existing or append new entry to the COO lists\n    pass",
-        "CAS": "def insertar_o_incrementar(coo: list, fila: int, columna: int, valor: int) -> None:\n    idx = existe_en(coo, fila, columna)\n    # Actualiza existente o añade nueva entrada a las listas COO\n    pass",
-        "EUS": "def txertatu_edo_handitu(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = bertan_dago(coo, errenkada, zutabea)\n    # Eguneratu existitzen dena edo erantsi sarrera berria COO zerrendetara\n    pass"
+        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col)\n    # Update existing value at index, or append new data to the lists\n    pass",
+        "CAS": "def insertar_o_incrementar(coo: list, fila: int, columna: int, valor: int) -> None:\n    idx = existe_en(coo, fila, columna)\n    # Actualiza el valor en el índice, o añade nuevos datos a las listas\n    pass",
+        "EUS": "def txertatu_edo_handitu(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = bertan_dago(coo, errenkada, zutabea)\n    # Eguneratu balioa indizean, edo erantsi datu berriak zerrendetara\n    pass"
       },
       "testCode": "coo = [[1],[0],[0]]; func = locals().get('insertar_o_incrementar') or locals().get('insert_or_increment') or locals().get('txertatu_edo_handitu'); radar = locals().get('existe_en') or locals().get('is_it_in') or locals().get('bertan_dago'); globals()['is_it_in'] = radar; globals()['existe_en'] = radar; func(coo,0,0,5); assert coo[0][0] == 6"
     },
     {
       "type": "exercise",
       "exerciseId": "ds-w02-sparse-ex9",
-      "title": { "ENG": "9. The Merge (Sum)", "CAS": "9. La Fusión (Suma)", "EUS": "9. Bateratzea (Batuketa)" },
+      "title": { "ENG": "9. Sparse Matrix Sum", "CAS": "9. Suma de Matrices", "EUS": "9. Matrizeen Batuketa" },
       "description": {
-        "ENG": "Sum two COO matrices using `insert_or_increment`.",
-        "CAS": "Suma dos matrices COO usando `insertar_o_incrementar`.",
-        "EUS": "Batu bi COO matrize `txertatu_edo_handitu` erabiliz."
+        "ENG": "Sum two COO matrices by merging all elements into a new one using `insert_or_increment`.",
+        "CAS": "Suma dos matrices COO fusionando todos sus elementos en una nueva usando `insertar_o_incrementar`.",
+        "EUS": "Batu bi COO matrize elementu guztiak berri batean fusionatuz `txertatu_edo_handitu` erabiliz."
       },
       "initialCode": {
-        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # Pour ALL elements from coo1 and coo2 into result\n    return result",
-        "CAS": "def suma_dispersas(coo1: list, coo2: list) -> list:\n    resultado = crear_coo()\n    # Vierte TODOS los elementos de coo1 y coo2 en el resultado\n    return resultado",
-        "EUS": "def batu_dispertsuak(coo1: list, coo2: list) -> list:\n    emaitza = sortu_coo()\n    # Isuri coo1 eta coo2-ko elementu GUZTIAK emaitzara\n    return emaitza"
+        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # 1. Iterate and insert all from coo1\n    # 2. Iterate and insert all from coo2\n    return result",
+        "CAS": "def suma_dispersas(coo1: list, coo2: list) -> list:\n    resultado = crear_coo()\n    # 1. Itera e inserta todo de coo1\n    # 2. Itera e inserta todo de coo2\n    return resultado",
+        "EUS": "def batu_dispertsuak(coo1: list, coo2: list) -> list:\n    emaitza = sortu_coo()\n    # 1. Iteratu eta txertatu dena coo1-etik\n    # 2. Iteratu eta txertatu dena coo2-tik\n    return emaitza"
       },
       "testCode": "import unittest\n# Complex sum testing"
     },

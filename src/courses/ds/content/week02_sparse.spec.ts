@@ -31,12 +31,12 @@ describe('Week 2 Content (Sparse Matrices)', () => {
     expect(memoryExercise).toBeDefined();
     if (memoryExercise) {
         const title = memoryExercise.title as any;
-        expect(title.ENG).toContain('Calculating Real Memory');
+        expect(title.ENG).toContain('Real Memory Size');
     }
   });
 
   it('should contain all 10 standard exercises', () => {
-    const exerciseIds = ['ds-w02-sparse-ex1', 'ds-w02-sparse-ex2', 'ds-w02-sparse-ex3', 'ds-w02-sparse-ex4', 'ds-w02-sparse-ex6', 'ds-w02-sparse-ex7', 'ds-w02-sparse-ex8', 'ds-w02-sparse-ex9', 'ds-w02-sparse-ex10'];
+    const exerciseIds = ['ds-w02-sparse-ex1', 'ds-w02-sparse-ex2', 'ds-w02-sparse-ex3', 'ds-w02-sparse-ex4', 'ds-w02-sparse-ex5', 'ds-w02-sparse-ex6', 'ds-w02-sparse-ex7', 'ds-w02-sparse-ex8', 'ds-w02-sparse-ex9', 'ds-w02-sparse-ex10'];
     exerciseIds.forEach(id => {
         const ex = content.blocks.find(b => b.type === 'exercise' && (b as any).exerciseId === id);
         expect(ex).toBeDefined();
@@ -47,7 +47,7 @@ describe('Week 2 Content (Sparse Matrices)', () => {
     const sumExercise = content.blocks.find(b => b.type === 'exercise' && (b as any).exerciseId === 'ds-w02-sparse-ex9');
     if (sumExercise) {
         const title = sumExercise.title as any;
-        expect(title.ENG).toContain('The Merge (Sum)');
+        expect(title.ENG).toContain('Sparse Matrix Sum');
     }
   });
 });
