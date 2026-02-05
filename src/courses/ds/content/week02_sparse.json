@@ -10,36 +10,100 @@
     {
       "type": "markdown",
       "content": {
-        "ENG": "# Sparse Matrices: The Visual Guide\n\n## 1. The Problem: An Ocean of Zeros\n\nImagine a giant matrix (e.g., 1000x1000). If most of it is empty (zeros), storing it as a standard grid is a huge waste of memory. \n\n**👇 Interactive Demo:** Click on the grid below to add numbers. Watch how the **Dense Matrix** stores mostly nothing, while the **COO Lists** (right) only store what matters.",
-        "CAS": "# Matrices Dispersas: Guía Visual\n\n## 1. El Problema: Un Océano de Ceros\n\nImagina una matriz gigante (ej. 1000x1000). Si la mayoría está vacía (ceros), guardarla como una cuadrícula normal es un desperdicio enorme.\n\n**👇 Demo Interactiva:** Haz clic en la cuadrícula para añadir números. Observa cómo la **Matriz Densa** guarda \"nada\", mientras que las **Listas COO** (derecha) solo guardan lo importante.",
-        "EUS": "# Matrize Dispertsuak: Gida Bisuala\n\n## 1. Arazoa: Zeroen Ozeanoa\n\nImajinatu matrize erraldoi bat (adib. 1000x1000). Gehiena hutsik badago (zeroak), sareta arrunt gisa gordetzea memoria galtzea da.\n\n**👇 Demo Interaktiboa:** Egin klik saretan zenbakiak gehitzeko. Ikusi nola **Matrize Trinkoak** \"ezer\" gordetzen duen, eta **COO Zerrendek** (eskuinean) garrantzitsua dena bakarrik."
+        "ENG": "# Sparse Matrices: The Visual Guide\n\n## 1. The Problem: An Ocean of Zeros\n\nImagine a giant matrix (e.g., 1000x1000). If most of it is empty (zeros), storing it as a **Dense Matrix** (grid) is a huge waste of memory. \n\n**👇 Interactive Demo:** Click on the grid below to add numbers. Watch how the **Dense Matrix** stores mostly nothing, while the **COO Lists** (right) only store what matters.",
+        "CAS": "# Matrices Dispersas: Guía Visual\n\n## 1. El Problema: Un Océano de Ceros\n\nImagina una matriz gigante (ej. 1000x1000). Si la mayoría está vacía (ceros), guardarla como una **Matriz Densa** (cuadrícula) es un desperdicio enorme.\n\n**👇 Demo Interactiva:** Haz clic en la cuadrícula para añadir números. Observa cómo la **Matriz Densa** guarda \"nada\", mientras que las **Listas COO** (derecha) solo guardan lo importante.",
+        "EUS": "# Matrize Dispertsuak: Gida Bisuala\n\n## 1. Arazoa: Zeroen Ozeanoa\n\nImajinatu matrize erraldoi bat (adib. 1000x1000). Gehiena hutsik badago (zeroak), **Matrize Trinkoa** (sareta) gisa gordetzea memoria galtzea da.\n\n**👇 Demo Interaktiboa:** Egin klik saretan zenbakiak gehitzeko. Ikusi nola **Matrize Trinkoak** \"ezer\" gordetzen duen, eta **COO Zerrendek** (eskuinean) garrantzitsua dena bakarrik."
       }
     },
     {
       "type": "interactive-sparse-matrix"
     },
     {
+      "type": "markdown",
+      "content": {
+        "ENG": "### ⌨️ Logic: Reading a Dense Matrix\n\nTo build our library, we first need to get the data. We will start by reading a **Dense Matrix** from the user or a file.",
+        "CAS": "### ⌨️ Lógica: Lectura de una Matriz Densa\n\nPara construir nuestra librería, primero necesitamos obtener los datos. Empezaremos leyendo una **Matriz Densa** del usuario o de un archivo.",
+        "EUS": "### ⌨️ Logika: Matrize Trinkoa Irakurtzea\n\nGure liburutegia eraikitzeko, lehenik datuak lortu behar ditugu. Erabiltzailearengandik edo fitxategi batetik **Matrize Trinkoa** irakurtzen hasiko gara."
+      }
+    },
+    {
       "type": "exercise",
-      "exerciseId": "ds-w02-sparse-ex4",
-      "title": { "ENG": "4. Dense to COO", "CAS": "4. Denso a COO", "EUS": "4. Trinkotik COOra" },
+      "exerciseId": "ds-w02-sparse-ex1",
+      "title": { "ENG": "1. Input Dense Matrix", "CAS": "1. Leer Matriz Densa", "EUS": "1. Matrize Trinkoa Irakurri" },
       "description": {
-        "ENG": "Iterate the grid. If you find a non-zero value, save it to the 3 lists.",
-        "CAS": "Recorre la rejilla. Si encuentras un valor no-cero, guárdalo en las 3 listas.",
-        "EUS": "Iteratu sareta. Zero ez den balio bat aurkitzen baduzu, gorde 3 zerrendetan."
+        "ENG": "Read a dense matrix from the console line by line.",
+        "CAS": "Lee una matriz densa desde la consola línea por línea.",
+        "EUS": "Irakurri matrize trinkoa kontsolatik lerroz lerro."
       },
       "initialCode": {
-        "ENG": "def normal_to_coo(matrix: list) -> list:\n    coo = [[], [], []]\n    # Use nested loops (for i, for j)\n    # if matrix[i][j] != 0:\n    #     # Append value, row (i) and col (j)\n    return coo",
-        "CAS": "def normal_a_coo(matriz: list) -> list:\n    coo = [[], [], []]\n    # Usa bucles anidados (for i, for j)\n    # si matriz[i][j] != 0:\n    #     # Añade valor, fila (i) y col (j)\n    return coo",
-        "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = [[], [], []]\n    # Erabili habiaratutako begiztak (for i, for j)\n    # matrizea[i][j] != 0 bada:\n    #     # Erantsi balioa, errenkada (i) eta zutabea (j)\n    return coo"
+        "ENG": "def input_matrix() -> list:\n    matrix = []\n    print(\"Enter matrix (empty line to finish):\")\n    while True:\n        line = input()\n        if not line: \n            break\n        # Process line and append row to dense matrix\n    return matrix",
+        "CAS": "def input_matrix() -> list:\n    matriz = []\n    print(\"Introduce la matriz (línea vacía para terminar):\")\n    while True:\n        linea = input()\n        if not linea: \n            break\n        # Procesa la linea y añade la fila a la matriz densa\n    return matriz",
+        "EUS": "def input_matrix() -> list:\n    matrizea = []\n    print(\"Sartu matrizea (lerro hutsa amaitzeko):\")\n    while True:\n        lerroa = input()\n        if not lerroa: \n            break\n        # Prozesatu lerroa eta gehitu errenkada matrize trinkora\n    return matrizea"
+      },
+      "testCode": "import unittest\n# Mock testing here"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex2",
+      "title": { "ENG": "2. Read Dense File", "CAS": "2. Leer Fichero Denso", "EUS": "2. Fitxategi Trinkoa Irakurri" },
+      "description": {
+        "ENG": "Read a dense matrix from a text file.",
+        "CAS": "Lee una matriz densa de un fichero de texto.",
+        "EUS": "Irakurri matrize trinkoa testu fitxategi batetik."
+      },
+      "initialCode": {
+        "ENG": "def read_matrix(path: str) -> list:\n    matrix = []\n    # with open(path, 'r') as f:\n    #     # Read and build the dense matrix\n    return matrix",
+        "CAS": "def read_matrix(ruta: str) -> list:\n    matriz = []\n    # with open(ruta, 'r') as f:\n    #     # Lee y construye la matriz densa\n    return matriz",
+        "EUS": "def read_matrix(bidea: str) -> list:\n    matrizea = []\n    # with open(bidea, 'r') as f:\n    #     # Irakurri eta eraiki matrize trinkoa\n    return matrizea"
+      },
+      "testCode": "import unittest\n# Mock file testing"
+    },
+    {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 2. The COO Transformation\n\nOnce we have the **Dense Matrix**, we must transform it into the efficient **COO Format**.",
+        "CAS": "## 2. La Transformación COO\n\nUna vez tenemos la **Matriz Densa**, debemos transformarla al eficiente **Formato COO**.",
+        "EUS": "## 2. COO Transformazioa\n\nBehin **Matrize Trinkoa** dugunean, **COO Formatu** eraginkorrera eraldatu behar dugu."
+      }
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex3",
+      "title": { "ENG": "3. Initialize COO", "CAS": "3. Inicializar COO", "EUS": "3. COO Hasieratu" },
+      "description": {
+        "ENG": "Return an empty COO structure: a list containing 3 empty lists.",
+        "CAS": "Devuelve una estructura COO vacía: una lista que contiene 3 listas vacías.",
+        "EUS": "Itzuli COO egitura huts bat: 3 zerrenda huts dituen zerrenda bat."
+      },
+      "initialCode": {
+        "ENG": "def create_coo() -> list:\n    # Return a list with 3 empty lists inside\n    return []",
+        "CAS": "def crear_coo() -> list:\n    # Devuelve una lista con 3 listas vacías dentro\n    return []",
+        "EUS": "def sortu_coo() -> list:\n    # Itzuli barruan 3 zerrenda huts dituen zerrenda bat\n    return []"
+      },
+      "testCode": "import unittest\nfunc = locals().get('crear_coo') or locals().get('create_coo') or locals().get('sortu_coo')\nassert func() == [[], [], []]"
+    },
+    {
+      "type": "exercise",
+      "exerciseId": "ds-w02-sparse-ex4",
+      "title": { "ENG": "4. Dense to COO", "CAS": "4. Densa a COO", "EUS": "4. Trinkotik COOra" },
+      "description": {
+        "ENG": "Iterate the dense matrix. If you find a non-zero value, save it to the 3 COO lists.",
+        "CAS": "Recorre la matriz densa. Si encuentras un valor no-cero, guárdalo en las 3 listas COO.",
+        "EUS": "Iteratu matrize trinkoa. Zero ez den balio bat aurkitzen baduzu, gorde 3 COO zerrendetan."
+      },
+      "initialCode": {
+        "ENG": "def normal_to_coo(matrix: list) -> list:\n    coo = [[], [], []]\n    # Iterate through the dense matrix\n    return coo",
+        "CAS": "def normal_a_coo(matriz: list) -> list:\n    coo = [[], [], []]\n    # Recorre la matriz densa\n    return coo",
+        "EUS": "def normal_to_coo(matrizea: list) -> list:\n    coo = [[], [], []]\n    # Zeharkatu matrize trinkoa\n    return coo"
       },
       "testCode": "m = [[0,1],[2,0]]; func = locals().get('normal_a_coo') or locals().get('normal_to_coo'); assert func(m) == [[1,2],[0,1],[1,0]]"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 2. Memory: The Payoff\n\nNow that you can convert matrices, let's see why we do it.\n\n### 🧠 Concept: `sys.getsizeof` vs. Reality\nIn Python, `sys.getsizeof(list)` only counts the container's shell. To measure the *real* memory cost of your new COO matrix, we need a recursive function.\n\n**Let's prove the efficiency:**",
-        "CAS": "## 2. Memoria: La Recompensa\n\nAhora que ya sabes convertir matrices, veamos por qué lo hacemos.\n\n### 🧠 Concepto: `sys.getsizeof` vs. Realidad\nEn Python, `sys.getsizeof(lista)` solo cuenta el envoltorio. Para medir el coste *real* de tu nueva matriz COO, necesitamos una función recursiva.\n\n**Vamos a demostrar la eficiencia:**",
-        "EUS": "## 2. Memoria: Saria\n\nOrain matrizeak bihurtzen dakizula, ikus dezagun zergatik egiten dugun.\n\n### 🧠 Kontzeptua: `sys.getsizeof` vs. Errealitatea\nPython-en, `sys.getsizeof(lista)`-k edukiontziaren azala bakarrik kontatzen du. Zure COO matrize berriaren *benetako* kostua neurtzeko, funtzio errekurtsibo bat behar dugu.\n\n**Froga dezagun eraginkortasuna:**"
+        "ENG": "## 3. Memory: The Payoff\n\nNow that you can convert matrices, let's see why we do it.\n\n### 🧠 Concept: `sys.getsizeof` vs. Reality\nIn Python, `sys.getsizeof(list)` only counts the container's shell. To measure the *real* memory cost of your new COO matrix, we need a recursive function.\n\n**Let's prove the efficiency:**",
+        "CAS": "## 3. Memoria: La Recompensa\n\nAhora que ya sabes convertir matrices, veamos por qué lo hacemos.\n\n### 🧠 Concepto: `sys.getsizeof` vs. Realidad\nEn Python, `sys.getsizeof(lista)` solo cuenta el envoltorio. Para medir el coste *real* de tu nueva matriz COO, necesitamos una función recursiva.\n\n**Vamos a demostrar la eficiencia:**",
+        "EUS": "## 3. Memoria: Saria\n\nOrain matrizeak bihurtzen dakizula, ikus dezagun zergatik egiten dugun.\n\n### 🧠 Kontzeptua: `sys.getsizeof` vs. Errealitatea\nPython-en, `sys.getsizeof(lista)`-k edukiontziaren azala bakarrik kontatzen du. Zure COO matrize berriaren *benetako* kostua neurtzeko, funtzio errekurtsibo bat behar dugu.\n\n**Froga dezagun eraginkortasuna:**"
       }
     },
     {
@@ -47,39 +111,47 @@
       "exerciseId": "ds-w02-sparse-ex5",
       "title": { "ENG": "5. Real Memory Size", "CAS": "5. Tamaño Real en Memoria", "EUS": "5. Benetako Memoria Tamaina" },
       "description": {
-        "ENG": "Implement a recursive function to calculate the total memory size of a nested list structure. Standard `sys.getsizeof` is not enough!",
-        "CAS": "Implementa una función recursiva para calcular el tamaño total en memoria de una lista anidada. ¡El `sys.getsizeof` estándar no basta!",
-        "EUS": "Inplementatu funtzio errekurtsibo bat habiaratutako zerrenda baten memoria osoa kalkulatzeko. `sys.getsizeof` estandarra ez da nahikoa!"
+        "ENG": "Implement a recursive function to calculate the total memory size of a nested list structure (the dense matrix or the COO matrix).",
+        "CAS": "Implementa una función recursiva para calcular el tamaño total en memoria de una estructura de listas anidadas (la matriz densa o la COO).",
+        "EUS": "Inplementatu funtzio errekurtsibo bat habiaratutako zerrenda-egitura baten (matrize trinkoa edo COO egitura) memoria-tamaina osoa kalkulatzeko."
       },
       "initialCode": {
-        "ENG": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for element in lst:\n        if isinstance(element, list):\n            # TODO: Recursive call\n            pass\n        else:\n            # TODO: Add element size\n            pass\n    return size",
-        "CAS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for elemento in lst:\n        if isinstance(elemento, list):\n            # TODO: Llamada recursiva\n            pass\n        else:\n            # TODO: Sumar tamaño elemento\n            pass\n    return size",
-        "EUS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    tamaina = sys.getsizeof(lst)\n    for elementua in lst:\n        if isinstance(elementua, list):\n            # TODO: Dei errekurtsiboa\n            pass\n        else:\n            # TODO: Gehitu elementuaren tamaina\n            pass\n    return tamaina"
+        "ENG": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for element in lst:\n        if isinstance(element, list):\n            # Recursive call\n            pass\n        else:\n            # Add element size\n            pass\n    return size",
+        "CAS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    size = sys.getsizeof(lst)\n    for elemento in lst:\n        if isinstance(elemento, list):\n            # Llamada recursiva\n            pass\n        else:\n            # Sumar tamaño elemento\n            pass\n    return size",
+        "EUS": "import sys\n\ndef list_memory_size(lst: list) -> int:\n    tamaina = sys.getsizeof(lst)\n    for elementua in lst:\n        if isinstance(elementua, list):\n            # Dei errekurtsiboa\n            pass\n        else:\n            # Gehitu elementuaren tamaina\n            pass\n    return tamaina"
       },
       "testCode": "import sys; assert list_memory_size([1, [2]]) > sys.getsizeof([1, [2]])"
     },
     {
+      "type": "markdown",
+      "content": {
+        "ENG": "## 4. COO Operations\n\nNow we will implement the inverse transformation and the logic to manipulate COO matrices directly.",
+        "CAS": "## 4. Operaciones COO\n\nAhora implementaremos la transformación inversa y la lógica para manipular matrices COO directamente.",
+        "EUS": "## 4. COO Eragiketak\n\nOrain alderantzizko transformazioa eta COO matrizeak zuzenean manipulatzeko logika inplementatuko dugu."
+      }
+    },
+    {
       "type": "exercise",
       "exerciseId": "ds-w02-sparse-ex6",
-      "title": { "ENG": "6. COO to Dense", "CAS": "6. COO a Denso", "EUS": "6. COOtik Trinkora" },
+      "title": { "ENG": "6. COO to Dense", "CAS": "6. COO a Densa", "EUS": "6. COOtik Trinkora" },
       "description": {
-        "ENG": "Reconstruct the grid. Start with zeros, then fill in the values from the COO lists.",
-        "CAS": "Reconstruye la rejilla. Empieza con ceros, luego rellena con los valores de las listas COO.",
-        "EUS": "Berreraiki sareta. Hasi zeroekin, gero bete balioak COO zerrendetatik."
+        "ENG": "Reconstruct the dense matrix from the COO lists.",
+        "CAS": "Reconstruye la matriz densa a partir de las listas COO.",
+        "EUS": "Berreraiki matrize trinkoa COO zerrendetatik abiatuta."
       },
       "initialCode": {
-        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # 1. Create a matrix of rows x cols filled with 0s\n    # 2. Iterate through COO lists using range(len(coo[0]))\n    # 3. Place each value in the correct matrix[r][c]\n    return []",
-        "CAS": "def coo_a_normal(coo: list, filas: int, columnas: int) -> list:\n    # 1. Crea una matriz de filas x columnas llena de 0s\n    # 2. Recorre las listas COO usando range(len(coo[0]))\n    # 3. Pon cada valor en su matriz[f][c] correcto\n    return []",
-        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # 1. Sortu errenkada x zutabe matrize bat 0z beteta\n    # 2. Zeharkatu COO zerrendak range(len(coo[0])) erabiliz\n    # 3. Jarri balio bakoitza dagokion matrizea[e][z] posizioan\n    return []"
+        "ENG": "def coo_to_normal(coo: list, rows: int, cols: int) -> list:\n    # Create a dense matrix filled with zeros and fill it from COO\n    return []",
+        "CAS": "def coo_a_normal(coo: list, filas: int, columnas: int) -> list:\n    # Crea una matriz densa de ceros y rellénala desde el COO\n    return []",
+        "EUS": "def coo_to_normal(coo: list, errenkadak: int, zutabeak: int) -> list:\n    # Sortu zeroz betetako matrize trinkoa eta bete COO-tik\n    return []"
       },
       "testCode": "coo = [[1],[0],[1]]; func = locals().get('coo_a_normal') or locals().get('coo_to_normal'); assert func(coo, 1, 2) == [[0, 1]]"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 4. The \"Radar\" Algorithm\n\nNow comes the hardest part. How do we sum two COO matrices? We cannot just sum the lists index by index.\n\nWe need a **\"Radar\"**: a function that tells us if a coordinate `(r, c)` already exists in our COO lists.\n\n*   **If it exists:** We get the index so we can update the value.\n*   **If not:** We get `-1` so we know we must append a new entry.",
-        "CAS": "## 4. El Algoritmo \"Radar\"\n\nAhora viene lo difícil. ¿Cómo sumamos dos matrices COO? No podemos sumar las listas índice por índice.\n\nNecesitamos un **\"Radar\"**: una función que nos diga si una coordenada `(f, c)` ya existe en nuestras listas COO.\n\n*   **Si existe:** Obtenemos el índice para poder sumar el valor.\n*   **Si no:** Obtenemos `-1` y sabemos que debemos añadir una entrada nueva.",
-        "EUS": "## 4. \"Radar\" Algoritmoa\n\nOrain zailena dator. Nola batu bi COO matrize? Ezin ditugu zerrendak indizez indize batu.\n\n**\"Radar\"** bat behar dugu: `(e, z)` koordenatu bat gure COO zerrendetan existitzen den esaten digun funtzioa.\n\n*   **Existitzen bada:** Indizea lortzen dugu balioa eguneratzeko.\n*   **Ez bada:** `-1` lortzen dugu eta badakigu sarrera berri bat erantsi behar dugula."
+        "ENG": "### 🎯 The \"Radar\" Algorithm\n\nTo sum two matrices, we need a **\"Radar\"**: a function that tells us if a coordinate `(r, c)` already exists in our COO lists.",
+        "CAS": "### 🎯 El Algoritmo \"Radar\"\n\nPara sumar dos matrices, necesitamos un **\"Radar\"**: una función que nos diga si una coordenada `(f, c)` ya existe en nuestras listas COO.",
+        "EUS": "### 🎯 \"Radar\" Algoritmoa\n\nBi matrize batzeko, **\"Radar\"** bat behar dugu: `(e, z)` koordenatu bat gure COO zerrendetan existitzen den esaten digun funtzioa."
       }
     },
     {
@@ -87,14 +159,14 @@
       "exerciseId": "ds-w02-sparse-ex7",
       "title": { "ENG": "7. The Radar (is_it_in)", "CAS": "7. El Radar (existe_en)", "EUS": "7. Radarra (bertan_dago)" },
       "description": {
-        "ENG": "Scan the `rows` and `cols` lists simultaneously. If you find a match for `(r, c)`, return the index. Else -1.",
-        "CAS": "Escanea las listas `filas` y `cols` simultáneamente. Si encuentras coincidencia para `(f, c)`, devuelve el índice. Si no, -1.",
-        "EUS": "Eskaneatu `errenkadak` eta `zutabeak` zerrendak aldi berean. `(e, z)`-rako bat-etortzea aurkitzen baduzu, itzuli indizea. Bestela -1."
+        "ENG": "Scan the `rows` and `cols` lists to find if a coordinate exists in the COO format.",
+        "CAS": "Escanea las listas de filas y columnas para ver si una coordenada existe en el formato COO.",
+        "EUS": "Eskaneatu errenkada eta zutabe zerrendak koordenatu bat COO formatuan existitzen den ikusteko."
       },
       "initialCode": {
-        "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == row and coo[2][k] == col:\n    #         return k\n    return -1",
-        "CAS": "def existe_en(coo: list, fila: int, columna: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == fila and coo[2][k] == columna:\n    #         return k\n    return -1",
-        "EUS": "def bertan_dago(coo: list, errenkada: int, zutabea: int) -> int:\n    # for k in range(len(coo[1])):\n    #     if coo[1][k] == errenkada and coo[2][k] == zutabea:\n    #         return k\n    return -1"
+        "ENG": "def is_it_in(coo: list, row: int, col: int) -> int:\n    # Scan COO and return index or -1\n    return -1",
+        "CAS": "def existe_en(coo: list, fila: int, columna: int) -> int:\n    # Escanea el COO y devuelve el índice o -1\n    return -1",
+        "EUS": "def bertan_dago(coo: list, errenkada: int, zutabea: int) -> int:\n    # Eskaneatu COO egitura eta itzuli indizea edo -1\n    return -1"
       },
       "testCode": "coo = [[9],[5],[3]]; func = locals().get('existe_en') or locals().get('is_it_in') or locals().get('bertan_dago'); assert func(coo, 5, 3) == 0; assert func(coo, 0, 0) == -1"
     },
@@ -103,14 +175,14 @@
       "exerciseId": "ds-w02-sparse-ex8",
       "title": { "ENG": "8. Insert or Update", "CAS": "8. Insertar o Actualizar", "EUS": "8. Txertatu edo Eguneratu" },
       "description": {
-        "ENG": "Use your Radar (`is_it_in`). If it finds the coordinate, add to the value. If not, append new data.",
-        "CAS": "Usa tu Radar (`existe_en`). Si encuentra la coordenada, suma al valor. Si no, añade datos nuevos.",
-        "EUS": "Erabili zure Radarra (`bertan_dago`). Koordenatua aurkitzen badu, gehitu balioari. Ez bada, erantsi datu berriak."
+        "ENG": "Use your Radar to insert or update values in the COO matrix.",
+        "CAS": "Usa tu Radar para insertar o actualizar valores en la matriz COO.",
+        "EUS": "Erabili zure Radarra COO matrizean balioak txertatzeko edo eguneratzeko."
       },
       "initialCode": {
-        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col) # Or existe_en\n    if idx != -1:\n        # Update: coo[0][idx] += value\n        pass\n    else:\n        # Append: Add value to coo[0], row to coo[1], col to coo[2]\n        pass",
-        "CAS": "def insertar_o_incrementar(coo: list, fila: int, columna: int, valor: int) -> None:\n    idx = existe_en(coo, fila, columna) # O is_it_in\n    if idx != -1:\n        # Actualiza: coo[0][idx] += valor\n        pass\n    else:\n        # Añade: Add valor a coo[0], fila a coo[1], col a coo[2]\n        pass",
-        "EUS": "def txertatu_edo_handitu(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = bertan_dago(coo, errenkada, zutabea) # Edo is_it_in\n    if idx != -1:\n        # Eguneratu: coo[0][idx] += balioa\n        pass\n    else:\n        # Erantsi: Gehitu balioa coo[0]-ra, errenkada coo[1]-era, zutabea coo[2]-ra\n        pass"
+        "ENG": "def insert_or_increment(coo: list, row: int, col: int, value: int) -> None:\n    idx = is_it_in(coo, row, col)\n    # Update existing or append new entry to the COO lists\n    pass",
+        "CAS": "def insertar_o_incrementar(coo: list, fila: int, columna: int, valor: int) -> None:\n    idx = existe_en(coo, fila, columna)\n    # Actualiza existente o añade nueva entrada a las listas COO\n    pass",
+        "EUS": "def txertatu_edo_handitu(coo: list, errenkada: int, zutabea: int, balioa: int) -> None:\n    idx = bertan_dago(coo, errenkada, zutabea)\n    # Eguneratu existitzen dena edo erantsi sarrera berria COO zerrendetara\n    pass"
       },
       "testCode": "coo = [[1],[0],[0]]; func = locals().get('insertar_o_incrementar') or locals().get('insert_or_increment') or locals().get('txertatu_edo_handitu'); radar = locals().get('existe_en') or locals().get('is_it_in') or locals().get('bertan_dago'); globals()['is_it_in'] = radar; globals()['existe_en'] = radar; func(coo,0,0,5); assert coo[0][0] == 6"
     },
@@ -119,14 +191,14 @@
       "exerciseId": "ds-w02-sparse-ex9",
       "title": { "ENG": "9. The Merge (Sum)", "CAS": "9. La Fusión (Suma)", "EUS": "9. Bateratzea (Batuketa)" },
       "description": {
-        "ENG": "To sum two matrices, create a NEW empty COO matrix. Then, pour ALL elements from Matrix 1 and ALL elements from Matrix 2 into it using `insert_or_increment`.",
-        "CAS": "Para sumar dos matrices, crea una NUEVA matriz COO vacía. Luego, vierte TODOS los elementos de la Matriz 1 y TODOS los de la Matriz 2 en ella usando `insertar_o_incrementar`.",
-        "EUS": "Bi matrize batzeko, sortu COO matrize huts BERRI bat. Gero, isuri Matrize 1eko elementu GUZTIAK eta Matrize 2ko elementu GUZTIAK bertara `txertatu_edo_handitu` erabiliz."
+        "ENG": "Sum two COO matrices using `insert_or_increment`.",
+        "CAS": "Suma dos matrices COO usando `insertar_o_incrementar`.",
+        "EUS": "Batu bi COO matrize `txertatu_edo_handitu` erabiliz."
       },
       "initialCode": {
-        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # 1. Loop through all indices of coo1 and insert into result\n    # 2. Loop through all indices of coo2 and insert into result\n    return result",
-        "CAS": "def suma_dispersas(coo1: list, coo2: list) -> list:\n    resultado = crear_coo()\n    # 1. Recorre todos los elementos de coo1 e inserta en resultado\n    # 2. Recorre todos los elementos de coo2 e inserta en resultado\n    return resultado",
-        "EUS": "def batu_dispertsuak(coo1: list, coo2: list) -> list:\n    emaitza = sortu_coo()\n    # 1. Zeharkatu coo1-eko elementu guztiak eta txertatu emaitzan\n    # 2. Zeharkatu coo2-ko elementu guztiak eta txertatu emaitzan\n    return emaitza"
+        "ENG": "def sum_sparses(coo1: list, coo2: list) -> list:\n    result = create_coo()\n    # Pour ALL elements from coo1 and coo2 into result\n    return result",
+        "CAS": "def suma_dispersas(coo1: list, coo2: list) -> list:\n    resultado = crear_coo()\n    # Vierte TODOS los elementos de coo1 y coo2 en el resultado\n    return resultado",
+        "EUS": "def batu_dispertsuak(coo1: list, coo2: list) -> list:\n    emaitza = sortu_coo()\n    # Isuri coo1 eta coo2-ko elementu GUZTIAK emaitzara\n    return emaitza"
       },
       "testCode": "import unittest\n# Complex sum testing"
     },
@@ -135,23 +207,23 @@
       "exerciseId": "ds-w02-sparse-ex10",
       "title": { "ENG": "10. Pretty Print", "CAS": "10. Impresión Bonita", "EUS": "10. Inprimatze Polita" },
       "description": {
-        "ENG": "Print the matrix so it looks like a grid (values separated by spaces).",
-        "CAS": "Imprime la matriz para que parezca una rejilla (valores separados por espacios).",
-        "EUS": "Inprimatu matrizea sareta bat bezala ikus dadin (balioak espazioz bereizita)."
+        "ENG": "Print the dense matrix in a readable grid format.",
+        "CAS": "Imprime la matriz densa en un formato de rejilla legible.",
+        "EUS": "Inprimatu matrize trinkoa sareta formatu irakurgarrian."
       },
       "initialCode": {
-        "ENG": "def print_matrix(matrix: list) -> None:\n    # for row in matrix:\n    #     # Print elements of the row separated by space\n    pass",
-        "CAS": "def imprimir_matriz(matriz: list) -> None:\n    # for fila in matriz:\n    #     # Imprime elementos de la fila separados por espacio\n    pass",
-        "EUS": "def inprimatu_matrizea(matrizea: list) -> None:\n    # for errenkada in matrizea:\n    #     # Inprimatu errenkadako elementuak espazioz bereizita\n    pass"
+        "ENG": "def print_matrix(matrix: list) -> None:\n    # Print the dense matrix row by row\n    pass",
+        "CAS": "def imprimir_matriz(matriz: list) -> None:\n    # Imprime la matriz densa fila a fila\n    pass",
+        "EUS": "def inprimatu_matrizea(matrizea: list) -> None:\n    # Inprimatu matrize trinkoa lerroz lerro\n    pass"
       },
       "testCode": "import unittest\n# Output capture testing"
     },
     {
       "type": "markdown",
       "content": {
-        "ENG": "## 5. Final Challenge\n\nCombine everything: Read from file, read from console, convert both, sum them, and print the result!",
-        "CAS": "## 5. Reto Final\n\nCombínalo todo: Lee de archivo, lee de consola, convierte ambas, súmalas, ¡e imprime el resultado!",
-        "EUS": "## 5. Azken Erronka\n\nKonbinatu dena: Irakurri fitxategitik, irakurri kontsolatik, bihurtu biak, batu, eta inprimatu emaitza!"
+        "ENG": "## 5. Final Challenge\n\nCombine everything: Read from file, read from console, convert both to COO, sum them, and print the result as a dense matrix!",
+        "CAS": "## 5. Reto Final\n\nCombínalo todo: Lee de archivo, lee de consola, convierte ambas a COO, súmalas, ¡e imprime el resultado como matriz densa!",
+        "EUS": "## 5. Azken Erronka\n\nKonbinatu dena: Irakurri fitxategitik, irakurri kontsolatik, bihurtu biak COOra, batu, eta inprimatu emaitza matrize trinko gisa!"
       }
     }
   ]

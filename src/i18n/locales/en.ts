@@ -68,7 +68,7 @@ export const ENG: Translation = {
       },
       sparseMatrix: {
         title: "Dense Matrix vs COO Format",
-        denseMatrix: "Dense Matrix (5x5)",
+        denseMatrix: "Dense Matrix",
         cooFormat: "COO Representation (3 Lists)",
         instruction: "Click on the grid to add/remove non-zero numbers.",
         memoryUsage: "Memory Usage:",

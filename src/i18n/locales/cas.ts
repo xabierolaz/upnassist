@@ -68,9 +68,9 @@ export const CAS: Translation = {
       },
       sparseMatrix: {
         title: "Matriz Densa vs Formato COO",
-        denseMatrix: "Matriz Densa (5x5)",
+        denseMatrix: "Matriz Densa",
         cooFormat: "Representación COO (3 Listas)",
-        instruction: "Haz clic en la cuadrícula para poner/quitar números.",
+        instruction: "Haz clic en la cuadrícula para añadir/quitar números.",
         memoryUsage: "Memoria Usada:",
         fixedUnits: "25 unidades (Fijo)"
       },

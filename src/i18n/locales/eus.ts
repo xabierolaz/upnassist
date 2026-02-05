@@ -68,7 +68,7 @@ export const EUS: Translation = {
       },
       sparseMatrix: {
         title: "Matrize Trinkoa vs COO Formatua",
-        denseMatrix: "Matrize Trinkoa (5x5)",
+        denseMatrix: "Matrize Trinkoa",
         cooFormat: "COO Adierazpena (3 Zerrenda)",
         instruction: "Egin klik saretan zenbakiak gehitzeko/kentzeko.",
         memoryUsage: "Memoria Erabilera:",
