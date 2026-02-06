@@ -64,7 +64,8 @@ export const useAuthStore = create<AuthState>()(
       error: null,
 
       checkWhitelist: (email: string) => {
-        return AUTH_WHITELIST.includes(email.toLowerCase().trim());
+        const cleanEmail = email.toLowerCase().trim();
+        return AUTH_WHITELIST.map(e => e.toLowerCase().trim()).includes(cleanEmail);
       },
 
       clearError: () => set({ error: null }),
