@@ -14,6 +14,11 @@ import { AUTH_WHITELIST, ADMIN_EMAIL } from '../config/authWhitelist';
 
 import type { UserRole } from '../types/global';
 
+// --- CONFIGURACIÓN EXPERIMENTAL ---
+// Si es true, el sistema funciona 100% en el navegador (localStorage)
+// y no contacta con Firebase ni verifica la whitelist.
+const IS_OFFLINE_MODE = true; 
+
 interface User {
   email: string;
   role: UserRole;
@@ -64,6 +69,7 @@ export const useAuthStore = create<AuthState>()(
       error: null,
 
       checkWhitelist: (email: string) => {
+        if (IS_OFFLINE_MODE) return true; // Bypass whitelist in offline mode
         const cleanEmail = email.toLowerCase().trim();
         return AUTH_WHITELIST.map(e => e.toLowerCase().trim()).includes(cleanEmail);
       },
@@ -74,12 +80,15 @@ export const useAuthStore = create<AuthState>()(
         // Check for E2E bypass in localStorage
         const bypass = typeof window !== 'undefined' && window.localStorage.getItem('upnassist-auth-bypass') === 'true';
         
-        if (bypass) {
-          set({ 
+        if (bypass || IS_OFFLINE_MODE) {
+          // In offline mode, we rely on the persisted state (zustand/persist)
+          // We just need to mark as initialized.
+          // If a user was logged in, they stay logged in.
+          set((state) => ({ 
             isInitialized: true,
-            isAuthenticated: true,
-            user: { email: 'test@unavarra.es', role: 'admin' }
-          });
+            // Ensure persisted user remains if valid
+            isAuthenticated: !!state.user
+          }));
           return Promise.resolve();
         }
 
@@ -97,22 +106,20 @@ export const useAuthStore = create<AuthState>()(
             }
             resolve();
           }, (error: unknown) => {
-            if (bypass) {
-              set({ isInitialized: true });
-              resolve();
-              return;
-            }
             console.error('Auth state change error:', error);
             set({ user: null, isAuthenticated: false, isInitialized: true, error: getErrorMessage(error) });
             resolve();
           });
 
-          // Return unsubscribe for cleanup (stored but not currently used)
           return unsubscribe;
         });
       },
 
       logActivity: async (email: string, type: string) => {
+        if (IS_OFFLINE_MODE) {
+          console.log(`[Offline Activity] ${email} - ${type}`);
+          return;
+        }
         try {
           await addDoc(collection(db, 'activity_logs'), {
             email: email.toLowerCase().trim(),
@@ -127,6 +134,22 @@ export const useAuthStore = create<AuthState>()(
 
       login: async (email: string, password: string) => {
         const normalizedEmail = email.toLowerCase().trim();
+        
+        if (IS_OFFLINE_MODE) {
+          // Simulación de login local
+          if (password.length < 4) {
+             set({ error: "La contraseña es muy corta (min 4)." });
+             return;
+          }
+          const role: UserRole = normalizedEmail === ADMIN_EMAIL ? 'admin' : 'student';
+          set({
+            user: { email: normalizedEmail, role },
+            isAuthenticated: true,
+            error: null
+          });
+          return;
+        }
+
         if (!get().checkWhitelist(normalizedEmail)) {
           set({ error: "Este correo no está en la lista de autorizados." });
           return;
@@ -163,6 +186,22 @@ export const useAuthStore = create<AuthState>()(
 
       register: async (email: string, password: string) => {
         const normalizedEmail = email.toLowerCase().trim();
+
+        if (IS_OFFLINE_MODE) {
+           // Simulación de registro local (idéntico al login)
+           if (password.length < 4) {
+             set({ error: "La contraseña es muy corta (min 4)." });
+             return;
+          }
+          const role: UserRole = normalizedEmail === ADMIN_EMAIL ? 'admin' : 'student';
+          set({
+            user: { email: normalizedEmail, role },
+            isAuthenticated: true,
+            error: null
+          });
+          return;
+        }
+
         if (!get().checkWhitelist(normalizedEmail)) {
           set({ error: "Este correo no está en la lista de autorizados." });
           return;
@@ -194,6 +233,10 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: async () => {
+        if (IS_OFFLINE_MODE) {
+          set({ user: null, isAuthenticated: false, error: null });
+          return;
+        }
         try {
           await signOut(auth);
           set({ user: null, isAuthenticated: false, error: null });
