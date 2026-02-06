@@ -88,6 +88,7 @@ export const AUTH_WHITELIST = [
   "perez.183374@e.unavarra.es",
   "perosanz.165380@e.unavarra.es",
   "puga.183600@e.unavarra.es",
+  "ramos.147974@e.unavarra.es",
   "rodriguez.183214@e.unavarra.es",
   "rolan.171350@e.unavarra.es",
   "rosales.172410@e.unavarra.es",
